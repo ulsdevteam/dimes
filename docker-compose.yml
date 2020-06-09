@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  dimes-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dimes-docker
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/home/app
