@@ -9,4 +9,5 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - ./:/home/app
+      - ./:/app
+    stdin_open: true
