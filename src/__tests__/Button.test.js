@@ -2,7 +2,7 @@ import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
 
-import Button from "./Button";
+import Button from "../components/Button";
 
 let container = null;
 const originalConsoleError = global.console.error
@@ -10,7 +10,7 @@ const originalConsoleError = global.console.error
 class PropTypesError extends Error {
   constructor(message) {
     super(message); // (1)
-    this.name = "ValidationError"; // (2)
+    this.name = "PropTypesError"; // (2)
   }
 }
 
