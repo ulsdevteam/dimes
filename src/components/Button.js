@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 class Button extends Component {
   render() {
     return (
-      <button type={this.props.buttonType} className={this.props.className} onClick={this.props.handleClick} aria-label={this.props.ariaLabel}>
+      <button type={this.props.type} className={this.props.className} onClick={this.props.handleClick} aria-label={this.props.ariaLabel}>
         {this.props.icon && this.props.icon} {this.props.label}
       </button>
     )
@@ -13,7 +13,7 @@ class Button extends Component {
 }
 
 Button.propTypes = {
-  buttonType: PropTypes.oneOf(['button', 'submit', 'reset']),
+  type: PropTypes.oneOf(['button', 'submit', 'reset']),
   className: PropTypes.string,
   handleClick: PropTypes.func.isRequired,
   ariaLabel: PropTypes.string,
