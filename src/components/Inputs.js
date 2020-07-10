@@ -10,10 +10,11 @@ export class CheckBox extends Component {
           type="checkbox"
           className={this.props.className}
           id={this.props.id}
+          name={this.props.id}
           onClick={this.props.handleClick} />
         <label
           className={this.props.className}
-          id={this.props.id}>
+          htmlFor={this.props.id}>
             {this.props.label}
         </label>
       </div>
@@ -28,6 +29,40 @@ CheckBox.propTypes = {
   label: PropTypes.string.isRequired
 };
 
+export class DatePicker extends Component {
+  constructor(props) {
+    super(props);
+    this.currentDay = new Date();
+  }
+  render() {
+    return (
+      <div>
+        <label className={this.props.className} htmlFor={this.props.id} >
+          {this.props.label}
+        </label>
+        <input
+          type="date"
+          className={this.props.className}
+          id={this.props.id}
+          max={this.props.max}
+          min={this.currentDay}
+          name={this.props.id}
+          onClick={this.props.handleClick}
+          defaultValue={this.currentDay} />
+      </div>
+    )
+  }
+}
+
+DatePicker.propTypes = {
+  className: PropTypes.string,
+  handleClick: PropTypes.func,
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  max: PropTypes.string,
+  defaultValue: PropTypes.string
+};
+
 export class YearInput extends Component {
   constructor(props) {
     super(props);
@@ -36,12 +71,17 @@ export class YearInput extends Component {
   render() {
     return (
       <div>
-        <label className={this.props.className} id={this.props.id} >
+        <label className={this.props.className} htmlFor={this.props.id} >
           {this.props.label}
         </label>
-        <input type="number" className={this.props.className} id={this.props.id}
-               name={this.props.id} onClick={this.props.handleClick}
-               min="0" max={this.currentYear} />
+        <input
+          type="number"
+          className={this.props.className}
+          id={this.props.id}
+          max={this.currentYear}
+          min="0"
+          name={this.props.id}
+          onClick={this.props.handleClick} />
       </div>
     )
   }
