@@ -39,7 +39,9 @@ export class YearInput extends Component {
         <label className={this.props.className} id={this.props.id} >
           {this.props.label}
         </label>
-        <input type="number" className={this.props.className} id={this.props.id} name={this.props.id} onClick={this.props.handleClick} min="0" max={this.currentYear} />
+        <input type="number" className={this.props.className} id={this.props.id}
+               name={this.props.id} onClick={this.props.handleClick}
+               min="0" max={this.currentYear} />
       </div>
     )
   }
