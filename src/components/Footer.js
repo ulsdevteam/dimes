@@ -6,7 +6,7 @@ class Footer extends Component {
   render() {
     return (
       <footer className="rac-footer" role="contentinfo">
-        <div className="container">
+        <div className="container footer__top">
           <div className="footer__section title">Rockefeller<br />Archive Center</div>
           <div className="footer__section address">
             <p>15 Dayton Avenue<br />
@@ -30,6 +30,13 @@ class Footer extends Component {
             </p>
             <p>Copyright © Rockefeller Archive Center. All rights reserved.</p>
           </div>
+        </div>
+        <div className="container footer__bottom">
+          <ul>
+            <li>Licensing for our descriptive metadata</li>
+            <li>Bulk data download</li>
+            <li>Take-down policy</li>
+          </ul>
         </div>
       </footer>
     )
