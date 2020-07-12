@@ -22,7 +22,7 @@ NavItem.propTypes = {
 export class Nav extends Component {
   render() {
     return (
-      <nav className={this.props.className}>
+      <nav className={this.props.className} aria-label={this.props.ariaLabel}>
         <ul>
           {this.props.children}
         </ul>
@@ -32,5 +32,6 @@ export class Nav extends Component {
 }
 
 Nav.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  ariaLabel: PropTypes.string
 }
