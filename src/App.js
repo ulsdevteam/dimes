@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import Header from "./components/Header";
 import PageAgent from "./components/PageAgent";
 import PageRecord from "./components/PageRecord";
 import PageDigitalObject from "./components/PageDigitalObject";
@@ -11,6 +12,7 @@ import PageNotFound from "./components/PageNotFound";
 function App() {
   return (
       <div>
+      <Header />
         <Switch>
           <Route path="/list/" component={PageList} />
           <Route path="/search/" component={PageSearch} />
