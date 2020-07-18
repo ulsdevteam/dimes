@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import PageAgent from "./components/PageAgent";
 import PageRecord from "./components/PageRecord";
@@ -22,6 +23,7 @@ function App() {
           <Route exact path="/" component={PageHome} />
           <Route path="*" component={PageNotFound} />
         </Switch>
+        <Footer/>
       </div>
   );
 }
