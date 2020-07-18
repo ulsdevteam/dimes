@@ -8,7 +8,7 @@ class Footer extends Component {
       <footer className="rac-footer" role="contentinfo">
         <div className="container footer__top">
           <div className="footer__left">
-            <div className="footer__section title">Rockefeller<br />Archive Center</div>
+            <h2 className="footer__section title" aria-label="Rockefeller Archive Center Information>Rockefeller<br />Archive Center</h2>
             <div className="footer__section address">
               <p>15 Dayton Avenue<br />
                  Sleepy Hollow, New York 10591</p>
