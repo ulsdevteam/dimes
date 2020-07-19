@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-
-import SocialIcons from './SocialIcons'
+import SocialIcons from "./SocialIcons";
+import "./Footer.scss";
 
 class Footer extends Component {
   render() {
     return (
       <footer className="rac-footer" role="contentinfo">
-        <div className="container footer__top">
+        <div className="footer__top">
           <div className="footer__left">
-            <h2 className="footer__section title" aria-label="Rockefeller Archive Center Information>Rockefeller<br />Archive Center</h2>
+            <h2 className="footer__section title" aria-label="Rockefeller Archive Center Information">Rockefeller<br />Archive Center</h2>
             <div className="footer__section address">
               <p>15 Dayton Avenue<br />
                  Sleepy Hollow, New York 10591</p>
@@ -35,7 +35,8 @@ class Footer extends Component {
             </div>
           </div>
         </div>
-        <div className="container footer__bottom">
+        <div className="footer__bottom">
+          <div className="footer__left"></div>
           <div className="footer__right">
             <ul>
               <li>Licensing for our descriptive metadata</li>
