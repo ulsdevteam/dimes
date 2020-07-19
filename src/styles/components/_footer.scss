@@ -1,0 +1,81 @@
+@import "../styles";
+// TODO: factor out typography
+// TODO: make class names consistent
+
+.rac-footer {
+  justify-content: center;
+  p { @include footer-text; }
+  a { @include footer-text; } // TODO: do we need this?
+  .footer__top {
+    .address {
+      @media screen and (min-width: $break-lg) {
+        margin-left: 0px;
+      }
+    }
+  }
+  .footer__top {
+    display: flex;
+    background: $neutral-sand;
+  }
+  .footer__bottom {
+    display: flex;
+    background: $deep-navy;
+    color: $off-white;
+    ul {
+      list-style: none;
+      li  {
+        display: inline-block;
+      }
+    }
+  }
+  .footer__left, .footer__right {
+    margin-bottom: 40px;
+    @media screen and (min-width: $break-md) {
+      @include grid-column(6);
+      margin-bottom: 50px;
+    }
+    @media screen and (min-width: $break-lg) {
+      @include grid-column(6);
+    }
+  }
+  .policy-link:not(:first-child) {
+    margin-left: 28px;
+  }
+  .social {
+    margin-bottom: 30px;
+    .rac-social-icons { // TODO: factor this out completely to _social-icons.scss
+      display: unset;
+    }
+    & a {
+      margin-bottom: 18px;
+      i {
+        // display: inline-block;
+        font-size: 22px;
+        height: 44px;
+        width: 44px;
+        svg {
+          padding-bottom: 4px;
+        }
+      }
+    }
+    @media screen and (min-width: $break-md) {
+      @include grid-column(12);
+    }
+    @media screen and (min-width: $break-lg) {
+      @include grid-column(6);
+      text-align: right;
+    }
+  }
+  .title {
+    font-family: $sans-serif-stack;
+    font-weight: 900;
+    letter-spacing: 4px;
+    line-height: 26px;
+    text-transform: uppercase;
+    padding-top: 60px;
+    margin-bottom: 28px;
+    @media screen and (min-width: $break-md) {
+      @include grid-column(12);
+    }
+  }
+}
