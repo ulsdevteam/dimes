@@ -4,15 +4,15 @@ import PropTypes from "prop-types";
 export class NavItem extends Component {
   render() {
     return (
-      <li>
-        <a className={this.props.className} href={this.props.href}>{this.props.label} {this.props.icon}</a>
+      <li className={`${this.props.classPrefix}__nav-item`}>
+        <a className={`${this.props.classPrefix}__nav-link`} href={this.props.href}>{this.props.label} {this.props.icon}</a>
       </li>
     )
   }
 }
 
 NavItem.propTypes = {
-  className: PropTypes.string,
+  classPrefix: PropTypes.string,
   href: PropTypes.string.isRequired,
   icon: PropTypes.string,
   label: PropTypes.string.isRequired
@@ -21,8 +21,8 @@ NavItem.propTypes = {
 export class Nav extends Component {
   render() {
     return (
-      <nav className={this.props.className} aria-label={this.props.ariaLabel}>
-        <ul>
+      <nav className={`${this.props.classPrefix}__nav`} aria-label={this.props.ariaLabel}>
+        <ul className={`${this.props.classPrefix}__nav-list`}>
           {this.props.children}
         </ul>
       </nav>
@@ -31,6 +31,6 @@ export class Nav extends Component {
 }
 
 Nav.propTypes = {
-  className: PropTypes.string,
+  classPrefix: PropTypes.string,
   ariaLabel: PropTypes.string
 }

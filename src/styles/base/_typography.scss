@@ -161,6 +161,50 @@ small {
   }
 }
 
+@mixin secondary-header-text {
+  font-family: $sans-serif-stack;
+  color: $pure-white;
+  font-size: 12px;
+}
+
+@mixin secondary-header-title {
+  @include secondary-header-text;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 13px;
+  font-weight: 900;
+  &:hover {
+    color: $off-white;
+  }
+  @media screen and (min-width: $break-md) {
+    line-height: 18px;
+    font-size: 15px;
+  }
+}
+
+@mixin secondary-header-subtitle {
+  @include secondary-header-text;
+  font-style: italic;
+  line-height: 13px;
+}
+
+@mixin secondary-header-nav-link {
+  @include secondary-header-text;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  line-height: 60px;
+  &:hover {
+    color: $off-white;
+  }
+  @media screen and (min-width: $break-md)  {
+    line-height: 70px;
+  }
+  @media screen and (min-width: $break-lg)  {
+    line-height: 60px;
+  }
+}
+
 .material-icons {
     direction: ltr;
     display: inline-block;
