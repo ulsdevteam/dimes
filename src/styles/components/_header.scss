@@ -60,32 +60,3 @@
     margin-top: 4px;
   }
 }
-
-.header-secondary__nav {
-  text-align: right;
-  text-transform: uppercase;
-  @include grid-column(5);
-  @media screen and (min-width: $break-md) {
-    @include grid-column(6);
-    float: right;
-  }
-  @media screen and (min-width: $break-lg) {
-    @include grid-column(5);
-  }
-}
-
-.header-secondary__nav-list {margin: 0;}
-.header-secondary__nav-item {
-  display: inline-block;
-  &:hover {
-    background-color: $deep-navy-lighten;
-    transition: $transition-default
-  }
-  @media screen and (min-width: $break-md) {
-    padding-left: 14px;
-    padding-right: 14px;
-  }
-}
-.header-secondary__nav-link {
-  @include secondary-header-nav-link;
-}
