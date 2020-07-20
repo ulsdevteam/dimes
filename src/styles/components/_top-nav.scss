@@ -90,6 +90,7 @@ header.rac-header-secondary {
       display: inline-block;
       &:hover {
         background-color: #1A5096;
+        transition: $transition-default
       }
       a {
         font-weight: 700;
