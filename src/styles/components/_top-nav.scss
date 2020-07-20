@@ -1,27 +1,34 @@
 @import "../styles";
 
-$nav-height: 50px;
+$nav-height: 60px;
 $nav-background: $pure-white;
 $nav-font-color: $deep-navy;
+$nav-background-dark: $deep-navy;
+$nav-font-color-dark: $pure-white;
 $link-hover-color: $burnt-orange;
 
 // TODO: factor out typography
 // TODO: social icons should be in a div which is positioned; all other styles should be moved to _social-icons.scss
 // TODO: class names should be standardized
 
-nav.rac-top-nav {
+header.rac-header-secondary {
+  background: $nav-background-dark;
+  color: $nav-font-color-dark;
+  font-family: $sans-serif-stack;
+  p, a {
+    font-family: $sans-serif-stack;
+    color: $nav-font-color-dark;
+  }
   padding: 0;
   height: $nav-height;
   width: 100%;
   @media screen and (min-width: $break-md) {
-    $nav-height: 60px;
+    $nav-height: 70px;
     height: $nav-height;
   }
   @media screen and (min-width: $break-lg) {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    padding: 0;
+    $nav-height: 60px;
+    height: $nav-height;
   }
   .container {
     margin: 0;
@@ -29,25 +36,72 @@ nav.rac-top-nav {
   }
 }
 
-.brand {
-  position: absolute;
-  margin-left: 25px;
-  margin-top:10px;
-  float: left;
+.header__brand {
+  margin-left: 20px;
+  margin-top:9px;
   z-index: 3;
-  & img {
-    width: 62px;
+  @include grid-column(7);
+  & .title {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 12px;
+    line-height: 13px;
+    font-weight: 900;
+  }
+  & .subtitle {
+    margin: 0;
+    font-size: 12px;
+    font-style: italic;
+    line-height: 13px;
+    font-weight: 400;
   }
   @media screen and (min-width: $break-md) {
-    margin-left: 30px;
-    & img {
-      width: 70px;
+    margin-top:16px;
+    @include grid-column(6);
+    & .title {
+      line-height: 18px;
+      font-size: 15px;
+      margin-right: 10px;
     }
   }
   @media screen and (min-width: $break-lg) {
-    margin-left: 48px;
-    & img {
-      width: auto;
+    @include grid-column(5);
+    margin-top:21px;
+    margin-left: 80px;
+    & .title {
+      float: left;
+    }
+    & .subtitle {
+      float: left;
+      margin-top: 4px;
+    }
+  }
+}
+
+.header__nav {
+  text-align: right;
+  text-transform: uppercase;
+  @include grid-column(5);
+  ul {
+    li {
+      display: inline-block;
+      a {
+        font-weight: 700;
+        font-size: 13px;
+        letter-spacing: 0.1em;
+        line-height: 18px;
+      }
+    }
+  }
+  @media screen and (min-width: $break-md) {
+    @include grid-column(6);
+    float: right;
+    ul {
+      li {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
     }
   }
 }
@@ -146,7 +200,7 @@ nav.rac-top-nav {
       font-weight: 900;
       font-size: 16.5px;
       text-transform: none;
-      color: $pure-white;
+      color: $nav-font-color;
       line-height: 20px;
       letter-spacing: normal;
       margin: 0 0 3px 0;
@@ -156,7 +210,7 @@ nav.rac-top-nav {
       font-family: $serif-stack;
       font-weight: 400;
       font-style: italic;
-      color: $pure-white;
+      color: $nav-font-color;
       line-height: 20px;
       font-size: 14px;
       opacity: 0.8;
