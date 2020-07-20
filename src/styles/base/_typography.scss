@@ -119,20 +119,45 @@ small {
   @extend small;
 }
 
-@mixin footer-text {
+@mixin footer-primary-title-text {
+  font-family: $sans-serif-stack;
+  font-weight: 900;
+  font-size: 21px;
+  letter-spacing: 4px;
+  line-height: 26px;
+  text-transform: uppercase;
+}
+
+@mixin footer-primary-text {
   font-family: $serif-stack;
   font-weight: 400;
   font-size: 15px;
   color: $deep-navy;
   line-height: 22px;
   margin-bottom: 10px;
-  a {
-    text-decoration: underline;
-    font-weight: $font-weight-normal;
-    &:hover {
-      color: $burnt-orange;
-      transition: $transition-default;
-    }
+}
+
+@mixin footer-primary-link {
+  @include footer-primary-text;
+  text-decoration: underline;
+  font-weight: $font-weight-normal;
+  &:hover {
+    color: $burnt-orange;
+    transition: $transition-default;
+  }
+}
+
+@mixin footer-secondary-text {
+  @include footer-primary-text;
+  color: $pure-white;
+}
+
+@mixin footer-secondary-link {
+  @include footer-secondary-text;
+  text-decoration: underline;
+  &:hover {
+    color: $off-white;
+    transition: $transition-default;
   }
 }
 

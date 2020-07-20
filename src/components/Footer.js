@@ -5,41 +5,41 @@ import "./Footer.scss";
 class Footer extends Component {
   render() {
     return (
-      <footer className="rac-footer" role="contentinfo">
-        <div className="primary">
+      <footer className="footer" role="contentinfo">
+        <div className="footer-primary">
           <div className="container">
-            <h2 className="title" aria-label="Rockefeller Archive Center Information">Rockefeller<br />Archive Center</h2>
-            <div className="footer__section address">
-              <p>15 Dayton Avenue<br />
+            <h2 className="footer-primary__title" aria-label="Rockefeller Archive Center Information">Rockefeller<br />Archive Center</h2>
+            <div className="footer-primary__address">
+              <p className="footer-primary__text">15 Dayton Avenue<br />
                  Sleepy Hollow, New York 10591</p>
-              <p>Phone: (914) 366-6300<br />
+              <p className="footer-primary__text">Phone: (914) 366-6300<br />
                  Fax: (914) 631-6017<br />
-                 E-mail: <a href="mailto:archive@rockarch.org">archive@rockarch.org</a></p>
+                 E-mail: <a className="footer-primary__link" href="mailto:archive@rockarch.org">archive@rockarch.org</a></p>
             </div>
-            <div className="footer__section reading-room">
-              <p>Reading Room Hours:</p>
-              <p>Monday-Friday<br />
+            <div className="footer-primary__reading-room">
+              <p className="footer-primary__text">Reading Room Hours:</p>
+              <p className="footer-primary__text">Monday-Friday<br />
                  9:00 a.m. to 5:00 p.m.<br />
-                 <a href="https://rockarch.org/collections/access-and-request-materials/">By appointment only.</a></p>
-              <a href="https://rockarch.org/collections/access-and-request-materials/holiday-schedule/">See holiday schedule</a>
+                 <a className="footer-primary__link"href="https://rockarch.org/collections/access-and-request-materials/">By appointment only.</a></p>
+              <a className="footer-primary__link"href="https://rockarch.org/collections/access-and-request-materials/holiday-schedule/">See holiday schedule</a>
             </div>
-            <div className="footer__section social">
+            <div className="footer-primary__social">
               <SocialIcons />
               <p>
-                <a className="policy-link" href="#">Privacy Policy</a>
-                <a className="policy-link" href="https://docs.rockarch.org">RAC Policies</a>
+                <a className="footer-primary__link footer__policy-link" href="#">Privacy Policy</a>
+                <a className="footer-primary__link footer__policy-link" href="https://docs.rockarch.org">RAC Policies</a>
               </p>
-              <p>Copyright © Rockefeller Archive Center. All rights reserved.</p>
+              <p className="footer-primary__text">Copyright © Rockefeller Archive Center. All rights reserved.</p>
             </div>
           </div>
         </div>
-        <div className="secondary">
+        <div className="footer-secondary">
           <div className="container">
-            <div className="footer__section data">
-              <ul>
-                <li><a href="https://github.com/RockefellerArchiveCenter/data/blob/master/LICENSE.md">Licensing for our descriptive metadata</a></li> {/*TODO: should this be on the docs site?*/}
-                <li><a href="https://github.com/RockefellerArchiveCenter/data/">Bulk data download</a></li>
-                <li><a href="#">Take-down policy</a></li> {/*TODO: add take-down policy*/}
+            <div className="footer-secondary__data">
+              <ul className="footer-secondary__list">
+                <li className="footer-secondary__list-item"><a className="footer-secondary__link" href="https://github.com/RockefellerArchiveCenter/data/blob/master/LICENSE.md">Licensing for our descriptive metadata</a></li> {/*TODO: should this be on the docs site?*/}
+                <li className="footer-secondary__list-item"><a className="footer-secondary__link" href="https://github.com/RockefellerArchiveCenter/data/">Bulk data download</a></li>
+                <li className="footer-secondary__list-item"><a className="footer-secondary__link" href="#">Take-down policy</a></li> {/*TODO: add take-down policy*/}
               </ul>
             </div>
           </div>
