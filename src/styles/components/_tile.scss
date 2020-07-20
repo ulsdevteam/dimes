@@ -1,46 +1,28 @@
 @import "../styles";
 
 .tile {
-  font-family: $sans-serif-stack;
   display: inline-block;
-  background: #F6F6F4;
-  border: 1px solid #BCBAB4;
-  box-shadow: 0 0 4px 0 rgba(0,0,0,0.15);
+  background: $off-white;
+  border: 1px solid $orange-gray;
+  box-shadow: 0 0 4px 0 $light-gray;
   border-radius: 4px;
   padding: 26px 20px 26px 20px;
   &:hover {
-    border: 2px solid #F16943;
-    box-shadow: 0 0 8px 0 rgba(0,0,0,0.15);
+    border: 2px solid $red-orange;
+    box-shadow: 0 0 8px 0 $light-gray;
     transition: $transition-default;
   }
 }
 
-.tile__title  {
-  font-weight: 700;
-  font-size: 15px;
-  color: #2F2F2F;
-  line-height: 22px;
-}
+.tile__title  { @include tile-title-text; }
 
-.tile__date {
-  font-weight: 400;
-  font-size: 14px;
-  color: #2F2F2F;
-}
+.tile__date { @include tile-date-text; }
+
+.tile__type-label { @include tile-type-label-text }
 
 .tile__hit-count {
-  background: #F16943;
+  @include tile-hit-count-text;
+  background: $red-orange;
   border-radius: 0 0 2px 2px;
-  font-size: 11px;
-  color: #FFFFFF;
   padding: 7px 8px 5px 8px;
-}
-
-.tile__type-label {
-  text-transform: uppercase;
-  font-weight: 900;
-  font-size: 10px;
-  color: #B0613C;
-  letter-spacing: 0.1em;
-  line-height: 12px;
 }

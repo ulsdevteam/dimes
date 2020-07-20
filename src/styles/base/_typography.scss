@@ -205,6 +205,41 @@ small {
   }
 }
 
+@mixin tile-text {
+  font-family: $sans-serif-stack;
+}
+
+@mixin tile-title-text {
+  @include tile-text;
+  font-weight: 700;
+  font-size: 15px;
+  color: #2F2F2F;
+  line-height: 22px;
+}
+
+@mixin tile-date-text {
+  @include tile-text;
+  font-weight: 400;
+  font-size: 14px;
+  color: #2F2F2F;
+}
+
+@mixin tile-hit-count-text  {
+  @include tile-text;
+  font-size: 11px;
+  color: #FFFFFF;
+}
+
+@mixin tile-type-label-text {
+  @include tile-text;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 10px;
+  color: #B0613C;
+  letter-spacing: 0.1em;
+  line-height: 12px;
+}
+
 .material-icons {
     direction: ltr;
     display: inline-block;
