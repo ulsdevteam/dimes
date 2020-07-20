@@ -38,6 +38,7 @@ header.rac-header-secondary {
 
 .header__brand {
   margin-left: 20px;
+  margin-right: -20px;
   margin-top:9px;
   z-index: 3;
   @include grid-column(7);
@@ -66,9 +67,10 @@ header.rac-header-secondary {
     }
   }
   @media screen and (min-width: $break-lg) {
-    @include grid-column(5);
+    @include grid-column(7);
     margin-top:21px;
     margin-left: 80px;
+    margin-right: -80px;
     & .title {
       float: left;
     }
@@ -103,6 +105,9 @@ header.rac-header-secondary {
         padding-right: 14px;
       }
     }
+  }
+  @media screen and (min-width: $break-lg) {
+    @include grid-column(5);
   }
 }
 
