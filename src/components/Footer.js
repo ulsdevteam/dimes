@@ -6,9 +6,9 @@ class Footer extends Component {
   render() {
     return (
       <footer className="rac-footer" role="contentinfo">
-        <div className="footer__top">
-          <div className="footer__left">
-            <h2 className="footer__section title" aria-label="Rockefeller Archive Center Information">Rockefeller<br />Archive Center</h2>
+        <div className="primary">
+          <div className="container">
+            <h2 className="title" aria-label="Rockefeller Archive Center Information">Rockefeller<br />Archive Center</h2>
             <div className="footer__section address">
               <p>15 Dayton Avenue<br />
                  Sleepy Hollow, New York 10591</p>
@@ -23,8 +23,6 @@ class Footer extends Component {
                  <a href="https://rockarch.org/collections/access-and-request-materials/">By appointment only.</a></p>
               <a href="https://rockarch.org/collections/access-and-request-materials/holiday-schedule/">See holiday schedule</a>
             </div>
-          </div>
-          <div className="footer__right">
             <div className="footer__section social">
               <SocialIcons />
               <p>
@@ -35,14 +33,15 @@ class Footer extends Component {
             </div>
           </div>
         </div>
-        <div className="footer__bottom">
-          <div className="footer__left"></div>
-          <div className="footer__right">
-            <ul>
-              <li>Licensing for our descriptive metadata</li>
-              <li>Bulk data download</li>
-              <li>Take-down policy</li>
-            </ul>
+        <div className="secondary">
+          <div className="container">
+            <div className="footer__section data">
+              <ul>
+                <li><a href="https://github.com/RockefellerArchiveCenter/data/blob/master/LICENSE.md">Licensing for our descriptive metadata</a></li> {/*TODO: should this be on the docs site?*/}
+                <li><a href="https://github.com/RockefellerArchiveCenter/data/">Bulk data download</a></li>
+                <li><a href="#">Take-down policy</a></li> {/*TODO: add take-down policy*/}
+              </ul>
+            </div>
           </div>
         </div>
       </footer>
