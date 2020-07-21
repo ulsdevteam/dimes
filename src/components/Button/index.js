@@ -7,7 +7,7 @@ class Button extends Component {
   render() {
     return (
       <button type={this.props.type} className={this.props.className} onClick={this.props.handleClick} aria-label={this.props.ariaLabel}>
-        {this.props.icon && this.props.icon} {this.props.label}
+        {this.props.iconBefore && this.props.iconBefore} {this.props.label} {this.props.iconAfter && this.props.iconAfter}
       </button>
     )
   }
@@ -18,7 +18,8 @@ Button.propTypes = {
   className: PropTypes.string,
   handleClick: PropTypes.func.isRequired,
   ariaLabel: PropTypes.string,
-  icon: PropTypes.string,
+  iconAfter: PropTypes.string,
+  iconBefore: PropTypes.string,
   label: PropTypes.string
 };
 

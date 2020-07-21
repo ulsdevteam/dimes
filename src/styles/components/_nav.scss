@@ -17,7 +17,7 @@
 .nav__item {
   display: inline-block;
   &:hover {
-    background-color: $deep-navy-lighten;
+    background-color: $deep-blue;
     transition: $transition-default
   }
   @media screen and (min-width: $break-md) {
