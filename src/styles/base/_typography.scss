@@ -227,6 +227,7 @@ small {
 @mixin tile-hit-count-text  {
   @include tile-text;
   font-size: 11px;
+  line-height: 11px;
   color: #FFFFFF;
 }
 

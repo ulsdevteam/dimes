@@ -5,7 +5,7 @@ import "./styles.scss";
 class HitCount extends Component {
   render() {
     return (
-      <span className="tile__hit-count">{this.props.hits} matches</span>
+      <div className="tile__hit-count">{this.props.hits} matches</div>
     )
   }
 }
