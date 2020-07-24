@@ -18,7 +18,7 @@ function App() {
           <Route path="/list/" component={PageList} />
           <Route path="/search/" component={PageSearch} />
           <Route path="/record/" component={PageRecord} />
-          <Route path="/agent/" component={PageAgent} />
+          <Route path="/agent/:id" component={PageAgent} />
           <Route path="/view/" component={PageDigitalObject} />
           <Route exact path="/" component={PageHome} />
           <Route path="*" component={PageNotFound} />
