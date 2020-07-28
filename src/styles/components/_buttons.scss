@@ -50,6 +50,7 @@
 .btn--orange {
   background: $burnt-orange;
   color: $pure-white;
+  border: none;
   &:hover {
     background: $med-brown;
   }
@@ -68,4 +69,20 @@
   &:hover {
     background: $lighter-gray;
   }
+}
+
+.btn--back {
+  @extend .btn--gray;
+  @extend .btn--sm;
+  margin-top: 20px;
+  @media screen and (min-width: $break-md)  {
+    margin-top: 30px;
+  }
+}
+
+.btn--search-more {
+  @extend .btn--orange;
+  @extend .btn--sm;
+  margin-top: 15px;
+  margin-bottom: 40px;
 }
