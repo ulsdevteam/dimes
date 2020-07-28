@@ -21,7 +21,6 @@
 
 .header-secondary__brand {
   margin-left: 20px;
-  margin-right: -20px;
   margin-top:9px;
   z-index: 3;
   @include grid-column(7);
@@ -33,7 +32,6 @@
     @include grid-column(7);
     margin-top:21px;
     margin-left: 80px;
-    margin-right: -50px;
     & .subtitle {
       float: left;
       margin-top: 4px;
