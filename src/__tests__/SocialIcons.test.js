@@ -1,8 +1,0 @@
-import React from 'react';
-import {render} from 'react-dom';
-import SocialIcons from '../components/SocialIcons';
-
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  render(<SocialIcons />, div);
-});
