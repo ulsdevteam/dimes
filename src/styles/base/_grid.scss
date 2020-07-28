@@ -12,7 +12,7 @@ $grid-column: (
 .container {
   width: calc(100% - (#{$gutters-default}) * 2);
   max-width: 1440px;
-  margin-left: 30px;
-  margin-right: 30px;
+  margin-left: $gutters-default;
+  margin-right: $gutters-default;
   @include grid-container;
 }
