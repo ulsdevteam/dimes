@@ -14,7 +14,7 @@
   @include button-block;
 }
 
-.btn-sm {
+.btn--sm {
   @include button-text;
   border-radius: 3px;
   font-size: 10px;
@@ -24,20 +24,20 @@
   transition: $transition-default;
 }
 
-.btn-md  {
+.btn--md  {
   @include button-text;
   border-radius: 3px;
   font-size: 12px;
   padding: 13px 14px 15px 14px;
 }
 
-.btn-lg {
+.btn--lg {
   font-weight: 700;
   font-size: 14px;
   padding: 18px;
 }
 
-.btn-blue {
+.btn--blue {
   background: $deep-blue;
   color: $pure-white;
   &:hover {
@@ -45,7 +45,7 @@
   }
 }
 
-.btn-orange {
+.btn--orange {
   background: $burnt-orange;
   color: $pure-white;
   &:hover {
@@ -53,13 +53,13 @@
   }
 }
 
-.btn-transparent {
+.btn--transparent {
   background: transparent;
   border: 1px solid $light-med-gray;
   color: $med-dark-gray;
 }
 
-.btn-gray {
+.btn--gray {
   background: $off-white;
   color: $med-dark-gray;
   border: 1px solid $light-med-gray;
