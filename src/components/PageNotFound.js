@@ -10,7 +10,7 @@ const PageNotFound = () => (
     </div>
     <div className="container">
         <div ClassName="wrapper">
-            <div className="page-content one-column-content">
+            <div className="one-column-content">
                 <h2>Sorry, the requested page was not found!</h2>
                 <p>Try using the navigation at the top of this page to find what you're looking for.</p>
             </div>
