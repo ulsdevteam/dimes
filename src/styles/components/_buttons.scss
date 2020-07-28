@@ -32,6 +32,8 @@
 }
 
 .btn--lg {
+  @include button-text;
+  border-radius: 3px;
   font-weight: 700;
   font-size: 14px;
   padding: 18px;
