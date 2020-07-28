@@ -22,7 +22,7 @@ NavItem.propTypes = {
 export class Nav extends Component {
   render() {
     return (
-      <nav className={`nav ${this.props.className}`} aria-label={this.props.ariaLabel}>
+      <nav className={`nav ${this.props.className && this.props.className}`} aria-label={this.props.ariaLabel}>
         <ul className="nav__list">
           {this.props.children}
         </ul>
