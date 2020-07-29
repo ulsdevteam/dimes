@@ -12,7 +12,7 @@ const PageNotFound = () => (
         <div ClassName="wrapper">
             <div className="one-column-content">
                 <h2>Sorry, the requested page was not found!</h2>
-                <p>Try using the navigation at the top of this page to find what you're looking for.</p>
+                <p>Use the back button on your browser or the navigation at the top of this page to find what you're looking for.</p>
             </div>
         </div>
     </div>
