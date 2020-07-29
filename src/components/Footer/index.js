@@ -5,7 +5,7 @@ import "./styles.scss";
 class Footer extends Component {
   render() {
     return (
-      <footer className="footer" role="contentinfo">
+      <footer role="contentinfo">
         <div className="footer-primary">
           <div className="container">
             <h2 className="footer-primary__title" aria-label="Rockefeller Archive Center Information">Rockefeller<br />Archive Center</h2>
