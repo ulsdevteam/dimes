@@ -99,7 +99,7 @@ class PageAgent extends Component {
   }
   render() {
     // TODO: add onClick handler to Back to Search button
-    // TODO: CSS animation to make addition of related collections less jerky
+    // TODO: CSS animation to make addition of related collections and agent attributes less jerky
     if (!this.state.found) {
       return (<PageNotFound />)
     }

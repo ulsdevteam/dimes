@@ -6,7 +6,7 @@ class AgentAttribute extends Component {
   // TODO: full-width if note = true
   render() {
     return (
-      <div className="agent-attribute">
+      <div className={this.props.note ? "agent-attribute--full-width" : "agent-attribute"}>
         <p className="agent-attribute__label">{this.props.label}</p>
         <p className="agent-attribute__value">{this.props.value}</p>
       </div>
