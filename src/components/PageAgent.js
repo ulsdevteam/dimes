@@ -3,15 +3,17 @@ import axios from "axios";
 import PageNotFound from "./PageNotFound";
 import TileList from "./Tile";
 import Button from "./Button";
+import AgentAttributeList from "./AgentAttribute";
 
 class AgentDescription extends Component {
   render() {
-    // TODO: some conditional rendering here
+    if (!this.props.attributes) {
+      return null;
+    }
     return (
       <div className="agent__description">
         <h2 className="agent__section-title">Summary</h2>
-        <div className="agent__attributes"></div>
-        <div className="agent__notes"></div>
+        <AgentAttributeList items={this.props.attributes} />
       </div>
     )
   }
@@ -55,20 +57,45 @@ class PageAgent extends Component {
     this.state = {
       found: true,
       agent: {},
-      collections: null
+      collections: null,
+      attributes: null
     };
   };
   componentDidMount() {
     axios
       .get(`http://localhost:8000/agents/${this.props.match.params.id}`)
-      .then(res => {this.setState({ agent: res.data }); this.fetchCollections()})
+      .then(res => {
+        this.setState({ agent: res.data });
+        this.fetchCollections();
+        this.parseAgentAttributes();
+      })
       .catch(err => this.setState({ found: false }));
   };
-  fetchCollections() {
+  fetchCollections = () => {
     axios
       .get(`http://localhost:8000/collections/?query=${this.state.agent.title}&level=collection`)
-      .then(res => {console.log(res); this.setState({ collections: res.data.results })})
-      .catch(err => this.setState({ found: false }));
+      .then(res => this.setState({collections: res.data.results}))
+      .catch(err => console.log(err));
+  }
+  parseAgentAttributes = () => {
+    const items = [];
+    const agentType = this.state.agent.agent_type
+    if (this.state.agent.dates) {
+      this.state.agent.dates.forEach(date => {
+          items.push({"label": agentType === "organization" ? "Date Established" : "Date of Birth", "value": date.begin, "note": false})
+          items.push({"label": agentType === "organization" ? "Date Disbanded" : "Date of Death", "value": date.end, "note": false})
+      });
+    }
+    if (this.state.agent.notes) {
+      this.state.agent.notes.forEach(note => {
+        let content = "";
+        note.subnotes.forEach(subnote => {
+          content += subnote.content
+        });
+        items.push({"label": "Description", "value": content, "note": true})
+      });
+    }
+    this.setState({attributes: items});
   }
   render() {
     // TODO: add onClick handler to Back to Search button
@@ -84,8 +111,8 @@ class PageAgent extends Component {
           label="Back to Search" />
         <div className="main" role="main">
           <h1 className="agent__title">{ this.state.agent.title }</h1>
-          <p className="agent__subtitle"></p>
-          <AgentDescription agent={this.state.agent} />
+          <p className="agent__subtitle">{ this.state.agent.description }</p>
+          <AgentDescription attributes={this.state.attributes} />
           <AgentRelatedCollections collections={this.state.collections} />
         </div>
         <AgentSidebar related={this.state.agent.agents} />

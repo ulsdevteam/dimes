@@ -284,3 +284,19 @@ small {
   padding-bottom: 12px;
   letter-spacing: 2px;
 }
+
+.agent-attribute__label {
+  font-family: $sans-serif-stack;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.65px;
+  text-transform: uppercase;
+  margin: 0px;
+  color: $dark-gray;
+}
+
+.agent-attribute__value  {
+  font-family: $sans-serif-stack;
+  font-size: 16px;
+  color: $dark-gray;
+}
