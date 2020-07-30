@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
-import SkipLink from '../../SkipLink';
+import Link from '../../Link';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  render(<SkipLink contentAnchor="#main-content" />, div);
+  render(<Link href="#main-content" label="Skip to Main Content"/>, div);
 });
