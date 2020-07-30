@@ -19,6 +19,7 @@
 .footer-primary__title {
   @include grid-column(12);
   @include footer-primary-title-text;
+  width: 100%;
   margin: 60px 0 28px 0;
   padding-bottom: 0;
 }
@@ -26,22 +27,22 @@
 .footer-primary__address, .footer-primary__reading-room {
   @include grid-column(12);
   margin-bottom: 40px;
+  margin-left: 0px;
   @media screen and (min-width: $break-md) {
     @include grid-column(6);
+    margin-left: 0px;
     margin-bottom: 50px;
   }
   @media screen and (min-width: $break-lg) {
     @include grid-column(3);
+    margin-left: 0px;
     margin-bottom: 50px;
   }
 }
 
-.footer-primary__address {
-    @media screen and (min-width: $break-lg) {margin-left: 0px;}
-}
-
 .footer-primary__social {
   @include grid-column(12);
+  margin-left: 0px;
   margin-bottom: 30px;
   // TODO: needs more refactoring
   & a {
@@ -57,12 +58,13 @@
   }
   @media screen and (min-width: $break-md) {
     @include grid-column(12);
+    margin-left: 0px;
   }
   @media screen and (min-width: $break-lg) {
     @include grid-column(3);
     float: right;
     text-align: right;
-    margin-right: 40px;
+    // margin-right: 40px;
   }
 }
 
@@ -72,5 +74,6 @@
 
 .footer-secondary__data {
   @include grid-column(12);
+  width: 100%;
   @media screen and (min-width: $break-lg) {text-align: right;}
 }

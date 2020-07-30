@@ -5,7 +5,7 @@ import "./styles.scss";
 class Footer extends Component {
   render() {
     return (
-      <footer role="contentinfo">
+      <footer className="footer" role="contentinfo">
         <div className="footer-primary">
           <div className="container">
             <h2 className="footer-primary__title" aria-label="Rockefeller Archive Center Information">Rockefeller<br />Archive Center</h2>
@@ -26,8 +26,8 @@ class Footer extends Component {
             <div className="footer-primary__social">
               <SocialIcons />
               <p>
-                <a className="footer-primary__link footer__policy-link" href="#">Privacy Policy</a>
-                <a className="footer-primary__link footer__policy-link" href="https://docs.rockarch.org">RAC Policies</a>
+                <a className="footer-primary__link footer-primary__policy-link" href="#">Privacy Policy</a>
+                <a className="footer-primary__link footer-primary__policy-link" href="https://docs.rockarch.org">RAC Policies</a>
               </p>
               <p className="footer-primary__text">Copyright © Rockefeller Archive Center. All rights reserved.</p>
             </div>

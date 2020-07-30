@@ -22,10 +22,12 @@ class Tile extends Component {
   render() {
     return (
       <li className="tile">
-        {this.props.hits ? (<HitCount hits={this.props.hits} />) : null}
-        {this.props.type ? (<TypeLabel type={this.props.type} />) : null }
-        <div className="tile__title">{this.props.title}</div>
-        <div className="tile__date">{this.props.date}</div>
+        <a className="tile__link" href={this.props.uri}>
+          {this.props.hits ? (<HitCount hits={this.props.hits} />) : null}
+          {this.props.type ? (<TypeLabel type={this.props.type} />) : null }
+          <div className="tile__title">{this.props.title}</div>
+          <div className="tile__date">{this.props.date}</div>
+        </a>
       </li>
     )
   }
@@ -37,15 +39,17 @@ class TileList extends Component {
     const items = this.props.items
     this.listItems = items.map((item) =>
       <Tile
-        key={item.id}
+        key={item.uri}
         hits={item.hits}
         title={item.title}
-        type={item.type} />
+        type={item.type}
+        date={item.dates[0].expression}
+        uri={item.uri} />
     );
   }
   render() {
     return (
-      <ul>
+      <ul className="tile-list">
         {this.listItems}
       </ul>
     )

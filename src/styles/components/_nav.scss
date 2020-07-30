@@ -9,7 +9,8 @@
     float: right;
   }
   @media screen and (min-width: $break-lg) {
-    @include grid-column(5);
+    @include grid-column(4);
+    float: right;
   }
 }
 
