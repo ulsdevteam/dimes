@@ -104,17 +104,19 @@ class PageAgent extends Component {
       return (<PageNotFound />)
     }
     return (
-      <div className="container agent" role="main">
-        <Button
-          className="btn--back"
-          iconBefore="<"
-          label="Back to Search" />
-        <div className="main" role="main">
+      <div className="container agent">
+        <nav>
+          <Button
+            className="btn--back"
+            iconBefore="<"
+            label="Back to Search" />
+        </nav>
+        <main id="main" role="main">
           <h1 className="agent__title">{ this.state.agent.title }</h1>
           <p className="agent__subtitle">{ this.state.agent.description }</p>
           <AgentDescription attributes={this.state.attributes} />
           <AgentRelatedCollections collections={this.state.collections} />
-        </div>
+        </main>
         <AgentSidebar related={this.state.agent.agents} />
       </div>
     )
