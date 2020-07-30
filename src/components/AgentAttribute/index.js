@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import "./styles.scss"
 
 class AgentAttribute extends Component {
+  // TODO: full-width if note = true
   render() {
     return (
       <div className={this.props.note ? "agent-attribute--full-width" : "agent-attribute"}>

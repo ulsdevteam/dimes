@@ -73,7 +73,7 @@ class PageAgent extends Component {
   };
   fetchCollections = () => {
     axios
-      .get(`http://localhost:8000/collections/?query=${this.state.agent.title}&limit=6&ancestors__isnull=true`)
+      .get(`http://localhost:8000/collections/?query=${this.state.agent.title}&level=collection`)
       .then(res => this.setState({collections: res.data.results}))
       .catch(err => console.log(err));
   }
