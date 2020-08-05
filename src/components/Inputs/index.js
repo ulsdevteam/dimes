@@ -242,3 +242,5 @@ YearInput.defaultProps = {
   max: new Date().getFullYear(),
   min: 0
 }
+
+export default TextInput;
