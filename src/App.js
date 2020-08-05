@@ -6,7 +6,7 @@ import PageAgent from "./components/PageAgent";
 import PageRecord from "./components/PageRecord";
 import PageDigitalObject from "./components/PageDigitalObject";
 import PageHome from "./components/PageHome";
-import PageList from "./components/PageList";
+import PageList from "./components/PageMyList";
 import PageSearch from "./components/PageSearch";
 import PageNotFound from "./components/PageNotFound";
 

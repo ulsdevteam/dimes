@@ -1,9 +1,9 @@
 import React from 'react';
 
-const PageList = () => (
+const PageMyList = () => (
  <div>
     <h1>My List</h1>
 </div>
 )
 
-export default PageList;
+export default PageMyList;
