@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import PageNotFound from "./PageNotFound";
 import TileList from "./Tile";
-import Link  from "./Link";
 import AgentAttributeList from "./AgentAttribute";
 
 class AgentDescription extends Component {
