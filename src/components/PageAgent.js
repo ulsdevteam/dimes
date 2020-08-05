@@ -3,6 +3,7 @@ import axios from "axios";
 import PageNotFound from "./PageNotFound";
 import TileList from "./Tile";
 import AgentAttributeList from "./AgentAttribute";
+import "./Button/styles.scss";
 
 class AgentDescription extends Component {
   render() {
