@@ -6,6 +6,7 @@ class Link extends Component {
   render() {
     return (
       <a
+        tabIndex="0"
         className={this.props.className}
         href={this.props.href}>
           {this.props.label}
