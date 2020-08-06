@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import "./styles.scss";
 
 
 export class CheckBoxInput extends Component {
@@ -188,6 +189,7 @@ export class TextInput extends Component {
           type="text"
           id={this.props.id}
           name={this.props.id}
+          placeholder={this.props.placeholder}
           minLength={this.props.minLength}
           maxLength={this.props.maxLength}
           size={this.props.size} />
@@ -199,6 +201,7 @@ export class TextInput extends Component {
 TextInput.propTypes = {
   className: PropTypes.string,
   label: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   minLength: PropTypes.number,
   maxLength: PropTypes.number,
   size: PropTypes.number
@@ -208,6 +211,8 @@ TextInput.defaultProps = {
   maxLength: 255,
   size: 10
 }
+
+export default TextInput;
 
 export class YearInput extends Component {
   render() {
@@ -242,5 +247,3 @@ YearInput.defaultProps = {
   max: new Date().getFullYear(),
   min: 0
 }
-
-export default TextInput;

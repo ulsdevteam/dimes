@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Button from "./Button"
 import logo from "../assets/homepage_logo.png"
 import TextInput from "./Inputs";
 
@@ -17,8 +18,18 @@ class PageHome extends Component {
                 </div>
 
                 <TextInput
+                    className="label-hidden" //
+                    label="Enter a search term"
+                    id="search"
+                    placeholder="Start your search"
+                    size="60"
+                />
+                <Button
                     //className=" "
-                    label="Search Everything" />
+                    type="submit"
+                    aria-label="Search"
+                    label="Search" //replace with icon
+                />
             </div>
         )
     }
