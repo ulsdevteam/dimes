@@ -1,6 +1,6 @@
 $transition-default: all 0.2s ease;
 
-.visually-hidden {
+@mixin visually-hidden {
     clip: rect(1px, 1px, 1px, 1px);
     height: 1px;
     overflow: hidden;
@@ -15,4 +15,12 @@ $transition-default: all 0.2s ease;
       width: auto;
       z-index: 99;
   }
+}
+
+.visually-hidden {
+  @include visually-hidden;
+}
+
+.flex {
+  display: flex;
 }

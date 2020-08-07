@@ -249,7 +249,7 @@ small {
     font-style: normal;
     font-weight: normal;
     letter-spacing: normal;
-    line-height: 1;
+    vertical-align: middle;
     text-transform: none;
     white-space: nowrap;
     word-wrap: normal;
@@ -257,7 +257,7 @@ small {
     -webkit-font-smoothing: antialiased;
 }
 
-.agent__title {
+@mixin page-title {
   margin-top: 30px;
   margin-bottom: 30px;
   font-family: $sans-serif-stack;
@@ -266,6 +266,10 @@ small {
   @media screen and (min-width: $break-lg) {
     font-size: 28px;
   }
+}
+
+.agent__title {
+  @include page-title;
 }
 
 .agent__subtitle {
@@ -299,4 +303,12 @@ small {
   font-family: $sans-serif-stack;
   font-size: 16px;
   color: $dark-gray;
+}
+
+.mylist__title {
+  @include page-title;
+  float: left;
+  @media screen and (min-width: $break-lg) {
+    float: none;
+  }
 }
