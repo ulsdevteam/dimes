@@ -31,22 +31,28 @@ input::-ms-input-placeholder { /*Edge - only work on some properties */
 }
 
 .input-group__search {
+  @include grid-column(12);
 	display: flex;
-  position: relative;
-  text-align: center;
   margin: 30px 0 110px 0;
   @media screen and (min-width: $break-md) {
+    @include grid-column(8);
     margin: 59px 0 190px 0;
   }
   @media screen and (min-width: $break-lg) {
     margin: 64px 0 233px 0;
+    @include grid-column(6);
   }
 }
 
+.input__search {
+  width: 100%;
+}
+
 .input__search input {
+  @include input-text;
   border: 1px solid $dark-gray;
   padding: 20px;
-  width: 620px; //need to replace this with responsive width/layout
+  width: 100%;
   box-sizing: border-box;
 }
 

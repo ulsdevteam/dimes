@@ -5,6 +5,10 @@ html {
   scroll-behavior: smooth;
 }
 
+form {
+  width: 100%;
+}
+
 .skip-link {
   background: rgba(255,255,255,.9);
   padding: 20px 10px;
@@ -19,39 +23,6 @@ html {
 .wrapper {
   display: flex;
   justify-content: center;
-}
-
-.hero {
-  @include grid-column(12);
-  margin-top: 10px;
-  padding: 30px;
-  @media screen and (min-width: $break-md) {
-    margin-top: 113px;
-  }
-  @media screen and (min-width: $break-lg) {
-    margin-top: 103px;
-  }
-}
-
-.hero__logo {
-  height: auto;
-  text-align: left;
-  img {
-    width: 85px;
-    @media screen and (min-width: $break-md) {
-      width: 120px;
-    }
-    @media screen and (min-width: $break-lg) {
-      width: 160px;
-    }
-  }
-  @media screen and (min-width: $break-md) {
-    @include grid-column(3);
-  }
-  @media screen and (min-width: $break-lg) {
-    @include grid-column(2);
-    @include grid-push(2);
-  }
 }
 
 .rac-breadcrumb {
