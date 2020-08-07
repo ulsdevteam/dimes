@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import Button from "./Button"
-import logo from "../assets/homepage_logo.png"
+import Button from "../Button"
+import logo from "../../assets/homepage_logo.png"
 //import Menu from "./Menu"
-import TextInput from "./Inputs";
+import TextInput from "../Inputs";
+import "./styles.scss";
 
 class PageHome extends Component {
     render() {
@@ -18,8 +19,8 @@ class PageHome extends Component {
                         Search Our Collections.<br />Discover People and Organizations.<br />Access Digital Content.
                     </h1>
                 </div>
-                <div className="search search--home">
                   <form role="search" action="/search" method="get">
+                  <div className="search search--home">
                     <div className="input-group__search">
                       <TextInput
                           className="label-hidden input__search" //we can also use aria-label with no label element instead of a hidden label, but would need to alter the component
@@ -30,15 +31,16 @@ class PageHome extends Component {
                           type="search"
                       />
                       {/* Add Menu component */}
+                      {/* I think this is just a select that has an ID of `type`? */}
                       <Button
                           className="btn--block btn--search"
                           type="submit"
                           aria-label="Submit search"
-                          iconBefore="X" //replace with material search icon
+                          iconBefore="search"
                       />
                     </div>
+                    </div>
                 </form>
-              </div>
           </div>
         )
     }
