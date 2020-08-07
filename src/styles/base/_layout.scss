@@ -22,16 +22,14 @@ html {
 }
 
 .hero {
+  @include grid-column(12);
   margin-top: 10px;
   padding: 30px;
-  justify-content: center;
   @media screen and (min-width: $break-md) {
     margin-top: 113px;
-    display: flex;
   }
   @media screen and (min-width: $break-lg) {
     margin-top: 103px;
-    display: flex;
   }
 }
 
