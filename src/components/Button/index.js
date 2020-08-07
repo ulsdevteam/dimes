@@ -6,7 +6,7 @@ import "./styles.scss"
 class Button extends Component {
   render() {
     return (
-      <button type={this.props.type} className={this.props.className} onClick={this.props.handleClick} aria-label={this.props.ariaLabel}>
+      <button type={this.props.type} className={`btn #{this.props.className}`} onClick={this.props.handleClick} aria-label={this.props.ariaLabel}>
         {this.props.iconBefore && this.props.iconBefore} {this.props.label} {this.props.iconAfter && this.props.iconAfter}
       </button>
     )
