@@ -186,7 +186,7 @@ export class TextInput extends Component {
             {this.props.label}
         </label>
         <input
-          type="text"
+          type={this.props.type}
           id={this.props.id}
           name={this.props.id}
           placeholder={this.props.placeholder}
@@ -204,7 +204,8 @@ TextInput.propTypes = {
   placeholder: PropTypes.string,
   minLength: PropTypes.number,
   maxLength: PropTypes.number,
-  size: PropTypes.number
+  size: PropTypes.number,
+  type: PropTypes.oneOf(['text', 'search']),
 };
 
 TextInput.defaultProps = {

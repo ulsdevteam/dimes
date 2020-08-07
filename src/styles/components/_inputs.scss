@@ -1,3 +1,55 @@
+@import "../styles";
+
+
+@mixin input-text {
+  font-family: $sans-serif-stack;
+  color: $dark-gray;
+}
+
+@mixin placeholder-text {
+  color: $dim-gray;
+  font-size: 18px;
+}
+
+input {
+  @include input-text;
+}
+
+input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  @include input-text;
+  @include placeholder-text;
+}
+
+input:-ms-input-placeholder { /* IE 10+ */
+  @include input-text;
+  @include placeholder-text;
+
+}
+input::-ms-input-placeholder { /*Edge - only work on some properties */
+  @include input-text;
+  @include placeholder-text;
+}
+
+.input-group__search {
+	display: flex;
+  position: relative;
+  text-align: center;
+  margin: 30px 0 110px 0;
+  @media screen and (min-width: $break-md) {
+    margin: 59px 0 190px 0;
+  }
+  @media screen and (min-width: $break-lg) {
+    margin: 64px 0 233px 0;
+  }
+}
+
+.input__search input {
+  border: 1px solid $dark-gray;
+  padding: 20px;
+  width: 620px; //need to replace this with responsive width/layout
+  box-sizing: border-box;
+}
+
 .label-hidden label {
     border: 0;
     clip: rect(0 0 0 0);
