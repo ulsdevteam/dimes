@@ -6,7 +6,7 @@ export class NavItem extends Component {
   render() {
     return (
       <li className={`nav__item ${this.props.className}`}>
-        <a className={`nav__link ${this.props.className}`} href={this.props.href}>{this.props.label} {this.props.icon}</a>
+        <a className={`nav__link ${this.props.className}`} href={this.props.href}>{this.props.label} {this.props.icon && <i className="material-icons">{this.props.icon}</i>}</a>
       </li>
     )
   }
