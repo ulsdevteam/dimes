@@ -1,0 +1,39 @@
+@import "../styles";
+@import "./buttons";
+
+.dropdown {
+  display: block;
+  position: relative;
+}
+
+.dropdown__list {
+  position: absolute;
+  right: 0;
+  list-style: none;
+  margin-top: 5px;
+  border-radius: 3px;
+  padding: 20px 14px;
+  width: 260px;
+  & li {
+    @include button-text;
+    letter-spacing: 1.5px;
+    font-size: 12px;
+    padding: 5px 0px;
+    margin: 0;
+    & i {
+      font-size: 21px;
+      margin-right: 15px;
+    }
+  }
+  &.open {
+    display: block;
+  }
+  &.closed {
+    display: none;
+  }
+}
+
+.dropdown__list--orange {
+  background-color: $burnt-orange;
+  color: $pure-white;
+}
