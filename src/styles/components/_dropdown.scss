@@ -27,6 +27,7 @@
   }
   &.open {
     display: block;
+    z-index: 999;
   }
   &.closed {
     display: none;

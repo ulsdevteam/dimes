@@ -4,8 +4,8 @@ import { CheckBoxInput } from "../Inputs";
 import "./styles.scss";
 
 class SavedItem extends Component {
-  // TODO: add Digital Button
   // TODO: styling for checkbox
+  // TODO: onClick handlers for buttons
   render() {
     return (
       <div className="saved-item">
@@ -27,11 +27,11 @@ class SavedItem extends Component {
               <Button
                 label="View Online"
                 className="btn btn--blue btn--sm"
-                iconAfter="visibility"/>}
+                iconAfter="visibility" />}
             <Button
               label="Remove"
               className="btn btn--gray btn--sm"
-              iconBefore="delete"/>
+              iconBefore="delete" />
           </div>
         </div>
       </div>
@@ -43,9 +43,9 @@ class SavedItemGroup extends Component {
   constructor(props) {
     super(props);
     const items = this.props.items
-    this.listItems = items.map((item) =>
+    this.listItems = items.map((item, index) =>
       <SavedItem
-        key={item.uri}
+        key={index}
         title={item.title}
         date={item.date}
         description={item.description}

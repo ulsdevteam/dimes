@@ -23,11 +23,10 @@ class Dropdown extends Component {
       "isOpen": false
     }
     const items = this.props.items
-    const className = this.props.itemClassName
-    this.listItems = items.map((item, className) =>
+    this.listItems = items.map((item) =>
       <ActionItem
         key={item.label}
-        className={className}
+        className={this.props.itemClassName}
         label={item.label}
         iconBefore={item.iconBefore}
         onClick={item.onClick} />
