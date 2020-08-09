@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Button from "../Button";
+import MaterialIcon from "../MaterialIcon";
 import "./styles.scss";
 
 class ActionItem extends Component {
@@ -9,7 +10,7 @@ class ActionItem extends Component {
       <li
         className={`dropdown__item ${this.props.className}`}
         onClick={this.props.onClick}>
-          {this.props.iconBefore && <i className="material-icons">{this.props.iconBefore}</i>}
+          {this.props.iconBefore && <MaterialIcon icon={this.props.iconBefore} />}
           {this.props.label}
       </li>
     )
