@@ -22,6 +22,9 @@
   width: 100%;
   margin: 60px 0 28px 0;
   padding-bottom: 0;
+  .line-break {
+    display: table;
+  }
 }
 
 .footer-primary__address, .footer-primary__reading-room {
