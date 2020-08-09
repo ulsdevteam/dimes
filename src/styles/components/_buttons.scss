@@ -5,9 +5,17 @@
   letter-spacing: 1.5px;
   text-transform: uppercase;
   vertical-align: middle;
+  &:hover {
+    text-decoration: none;
+  }
+  &:focus {
+    text-decoration: none;
+  }
 }
 
 .btn {
+  @include button-text;
+  border-radius: 3px;
   display: inline-block;
   cursor: pointer;
 }
@@ -17,8 +25,6 @@
 }
 
 .btn--sm {
-  @include button-text;
-  border-radius: 3px;
   font-size: 10px;
   font-weight: 700;
   line-height: 16px;
@@ -31,8 +37,6 @@
 }
 
 .btn--md  {
-  @include button-text;
-  border-radius: 3px;
   font-size: 12px;
   line-height: 15px;
   padding: 13px 14px 15px 14px;
@@ -42,8 +46,6 @@
 }
 
 .btn--lg {
-  @include button-text;
-  border-radius: 3px;
   font-weight: 700;
   font-size: 14px;
   line-height: 18px;
@@ -69,6 +71,7 @@
   border: none;
   &:hover {
     background: $med-brown;
+    color: $off-white;
   }
 }
 
@@ -84,6 +87,7 @@
   border: 1px solid $light-med-gray;
   &:hover {
     background: $lighter-gray;
+    color: $med-dark-gray;
   }
 }
 

@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import PageNotFound from "./PageNotFound";
 import TileList from "./Tile";
-import Link  from "./Link";
 import AgentAttributeList from "./AgentAttribute";
+import "./Button/styles.scss";
 
 class AgentDescription extends Component {
   render() {
@@ -29,9 +29,7 @@ class AgentRelatedCollections extends Component {
       <div className="agent__related">
         <h2 className="agent__section-title">Related Collections</h2>
         <TileList items={this.props.collections} />
-        <Link
-          className="btn btn--search-more"
-          label="Search More Related Collections" />
+        <a href="#" className="btn btn--search-more">Search More Related Collections</a>
       </div>
     )
   }
@@ -106,9 +104,7 @@ class PageAgent extends Component {
     return (
       <div className="container agent">
         <nav>
-          <Link
-            className="btn btn--back"
-            label="< Back to Search" />
+          <a href="#" className="btn btn--back">Back to Search</a>
         </nav>
         <main id="main" role="main">
           <h1 className="agent__title">{ this.state.agent.title }</h1>
