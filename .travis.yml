@@ -5,8 +5,9 @@ cache:
   directories:
     - node_modules
 install:
-  - yarn run build
+  - yarn install
 script:
+  - yarn run build
   - yarn test
 notifications:
   email: false
