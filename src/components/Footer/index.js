@@ -27,7 +27,7 @@ class Footer extends Component {
               <div className="footer-primary__social">
                 <SocialIcons />
                 <p>
-                  <a className="footer-primary__link footer-primary__policy-link" href="#">Privacy Policy</a>
+                  <a className="footer-primary__link footer-primary__policy-link" href="https://rockarch.org/about-us/privacy-policy/">Privacy Policy</a>
                   <a className="footer-primary__link footer-primary__policy-link" href="https://docs.rockarch.org">RAC Policies</a>
                 </p>
                 <p className="footer-primary__text">Copyright © Rockefeller Archive Center. All rights reserved.</p>
@@ -42,7 +42,7 @@ class Footer extends Component {
                 <ul className="footer-secondary__list">
                   <li className="footer-secondary__list-item"><a className="footer-secondary__link" href="https://github.com/RockefellerArchiveCenter/data/blob/master/LICENSE.md">Licensing for our descriptive metadata</a></li> {/*TODO: should this be on the docs site?*/}
                   <li className="footer-secondary__list-item"><a className="footer-secondary__link" href="https://github.com/RockefellerArchiveCenter/data/">Bulk data download</a></li>
-                  <li className="footer-secondary__list-item"><a className="footer-secondary__link" href="#">Take-down policy</a></li> {/*TODO: add take-down policy*/}
+                  <li className="footer-secondary__list-item"><a className="footer-secondary__link" href="take-down-policy">Take-down policy</a></li> {/*TODO: add take-down policy*/}
                 </ul>
               </div>
             </div>
