@@ -43,7 +43,7 @@ class TileList extends Component {
         hits={item.hits}
         title={item.title}
         type={item.type}
-        date={item.dates[0].expression}
+        date={item.dates && item.dates[0].expression}
         uri={item.uri} />
     );
   }
