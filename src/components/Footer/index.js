@@ -8,7 +8,7 @@ class Footer extends Component {
       <footer className="footer" role="contentinfo">
         <div className="footer-primary">
           <div className="container">
-            <h2 className="footer-primary__title" aria-label="Rockefeller Archive Center Information">Rockefeller<br />Archive Center</h2>
+            <h2 className="footer-primary__title">Rockefeller <span class="line-break">Archive Center</span></h2>
             <div className="footer-primary__address">
               <p className="footer-primary__text">15 Dayton Avenue<br />
                  Sleepy Hollow, New York 10591</p>
