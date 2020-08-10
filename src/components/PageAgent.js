@@ -20,7 +20,7 @@ class AgentDescription extends Component {
 }
 
 class AgentRelatedCollections extends Component {
-  // TODO: add onClick handler to search more button
+  // TODO: add href to search more button
   render() {
     if (!this.props.collections) {
       return null;
@@ -29,7 +29,7 @@ class AgentRelatedCollections extends Component {
       <div className="agent__related">
         <h2 className="agent__section-title">Related Collections</h2>
         <TileList items={this.props.collections} />
-        <a href="#" className="btn btn--search-more">Search More Related Collections</a>
+        <a href="/search/" className="btn btn--search-more">Search More Related Collections</a>
       </div>
     )
   }
@@ -96,7 +96,7 @@ class PageAgent extends Component {
     this.setState({attributes: items});
   }
   render() {
-    // TODO: add onClick handler to Back to Search button
+    // TODO: add href to Back to Search button
     // TODO: CSS animation to make addition of related collections and agent attributes less jerky
     if (!this.state.found) {
       return (<PageNotFound />)
@@ -104,7 +104,7 @@ class PageAgent extends Component {
     return (
       <div className="container agent">
         <nav>
-          <a href="#" className="btn btn--back">Back to Search</a>
+          <a href="/search" className="btn btn--back">Back to Search</a>
         </nav>
         <main id="main" role="main">
           <h1 className="agent__title">{ this.state.agent.title }</h1>
