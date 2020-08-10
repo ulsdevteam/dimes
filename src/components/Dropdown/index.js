@@ -3,15 +3,13 @@ import Button from "../Button";
 import "./styles.scss";
 
 class ActionItem extends Component {
-  // TODO: should these be buttons rather than a list?
   render() {
     return (
-      <li
+      <Button
         className={`dropdown__item ${this.props.className}`}
-        onClick={this.props.onClick}>
-          {this.props.iconBefore && <i className="material-icons">{this.props.iconBefore}</i>}
-          {this.props.label}
-      </li>
+        onClick={this.props.onClick}
+        label={this.props.label}
+        iconBefore={this.props.iconBefore}/>
     )
   }
 }
@@ -26,7 +24,7 @@ class Dropdown extends Component {
     this.listItems = items.map((item) =>
       <ActionItem
         key={item.label}
-        className={this.props.itemClassName}
+        className={`btn--orange btn--dropdown ${this.props.itemClassName}`}
         label={item.label}
         iconBefore={item.iconBefore}
         onClick={item.onClick} />
@@ -45,10 +43,14 @@ class Dropdown extends Component {
           className={`dropdown__button ${this.props.buttonClassName}`}
           label={this.props.label}
           iconBefore={this.props.iconBefore}
-          onClick={() => {this.toggleList()}} />
-        <ul className={`dropdown__list ${this.props.listClassName} ${ this.state.isOpen ? "open" : "closed" }`}>
+          onClick={() => {this.toggleList()}}
+          ariaHasPopup="true"
+          ariaExpanded={this.state.isOpen} />
+        <div
+          className={`dropdown__list ${this.props.listClassName} ${ this.state.isOpen ? "open" : "closed" }`}
+          role="menu" >
           {this.listItems}
-        </ul>
+        </div>
       </div>
     )
   }
