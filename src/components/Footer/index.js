@@ -9,7 +9,7 @@ class Footer extends Component {
         <div className="footer-primary">
           <div className="wrapper">
             <div className="container">
-              <h2 className="footer-primary__title" aria-label="Rockefeller Archive Center Information">Rockefeller<br />Archive Center</h2>
+              <h2 className="footer-primary__title">Rockefeller <span class="line-break">Archive Center</span></h2>
               <div className="footer-primary__address">
                 <p className="footer-primary__text">15 Dayton Avenue<br />
                    Sleepy Hollow, New York 10591</p>
@@ -42,7 +42,7 @@ class Footer extends Component {
                 <ul className="footer-secondary__list">
                   <li className="footer-secondary__list-item"><a className="footer-secondary__link" href="https://github.com/RockefellerArchiveCenter/data/blob/master/LICENSE.md">Licensing for our descriptive metadata</a></li> {/*TODO: should this be on the docs site?*/}
                   <li className="footer-secondary__list-item"><a className="footer-secondary__link" href="https://github.com/RockefellerArchiveCenter/data/">Bulk data download</a></li>
-                  <li className="footer-secondary__list-item"><a className="footer-secondary__link" href="take-down/">Take-down policy</a></li> {/*TODO: add take-down policy*/}
+                  <li className="footer-secondary__list-item"><a className="footer-secondary__link" href="take-down-policy">Take-down policy</a></li> {/*TODO: add take-down policy*/}
                 </ul>
               </div>
             </div>
