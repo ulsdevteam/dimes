@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Button from "../Button";
-import MaterialIcon from "../MaterialIcon";
 import "./styles.scss";
 
 class ActionItem extends Component {
