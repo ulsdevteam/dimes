@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import MaterialIcon from "../MaterialIcon";
 import "./styles.scss"
 
 
@@ -13,7 +14,7 @@ class Button extends Component {
         aria-label={this.props.ariaLabel}
         aria-haspopup={this.props.ariaHasPopup}
         aria-expanded={this.props.ariaExpanded}>
-          {this.props.iconBefore && <i className="material-icons">{this.props.iconBefore}</i>} {this.props.label} {this.props.iconAfter && <i className="material-icons">{this.props.iconAfter}</i>}
+          {this.props.iconBefore && <MaterialIcon icon={this.props.iconBefore} />} {this.props.label} {this.props.iconAfter && <MaterialIcon icon={this.props.iconAfter} />}
       </button>
     )
   }
