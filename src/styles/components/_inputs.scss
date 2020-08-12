@@ -1,0 +1,5 @@
+@import "../styles";
+
+.checkbox__hide-label label {
+  @include visually-hidden;
+}

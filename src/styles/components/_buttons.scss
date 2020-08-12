@@ -2,8 +2,9 @@
 
 @mixin button-text {
   font-family: $sans-serif-stack;
-  letter-spacing: 0.1em;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
+  vertical-align: middle;
   &:hover {
     text-decoration: none;
   }
@@ -16,6 +17,7 @@
   @include button-text;
   border-radius: 3px;
   display: inline-block;
+  cursor: pointer;
 }
 
 .btn--block {
@@ -27,23 +29,37 @@
   font-weight: 700;
   line-height: 16px;
   padding: 6px 8px 8px 10px;
+  margin-right: 10px;
   transition: $transition-default;
+  & .material-icons {
+    font-size: 16px;
+  }
 }
 
 .btn--md  {
   font-size: 12px;
+  line-height: 15px;
   padding: 13px 14px 15px 14px;
+  & .material-icons {
+    font-size: 20px;
+  }
 }
 
 .btn--lg {
   font-weight: 700;
   font-size: 14px;
+  line-height: 18px;
   padding: 18px;
+  margin-bottom: 12px;
+  & .material-icons {
+    font-size: 20px;
+  }
 }
 
 .btn--blue {
   background: $deep-blue;
   color: $pure-white;
+  border: none;
   &:hover {
     background: $dark-blue;
   }
@@ -89,4 +105,16 @@
   @extend .btn--sm;
   margin-top: 15px;
   margin-bottom: 40px;
+}
+
+.btn--dropdown {
+  font-size: 12px;
+  line-height: 21px;
+  display: flex;
+  padding: 5px 14px;
+  width: 100%;
+  & i {
+    font-size: 21px;
+    margin-right: 15px;
+  }
 }
