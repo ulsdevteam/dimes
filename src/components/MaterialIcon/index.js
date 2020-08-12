@@ -5,7 +5,7 @@ import "./styles.scss";
 class MaterialIcon extends Component {
   render() {
     return (
-      <i className="material-icons" aria-hidden="true">{this.props.icon}</i>
+      <span className="material-icons" aria-hidden="true">{this.props.icon}</span>
     )
   }
 }
