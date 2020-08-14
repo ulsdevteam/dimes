@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import Button from "../Button"
 import logo from "../../assets/homepage_logo.png"
-//import Menu from "./Menu"
-import TextInput from "../Inputs";
+import { SelectInput, SelectOption, TextInput } from "../Inputs";
 import "./styles.scss";
 
 class PageHome extends Component {
@@ -30,8 +29,12 @@ class PageHome extends Component {
                         size="60"
                         type="search"
                     />
-                    {/* Add Menu component */}
-                    {/* I think this is just a select that has an ID of `type`? */}
+                    <SelectInput className="" id="type" label="choose a search category">
+                      <SelectOption label="Everything" />
+                      <SelectOption label="Collections" />
+                      <SelectOption label="People" />
+                      <SelectOption label="Organizations" />
+                    </SelectInput>
                     <Button
                         className="btn--search"
                         type="submit"

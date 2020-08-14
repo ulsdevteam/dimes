@@ -214,8 +214,6 @@ TextInput.defaultProps = {
   size: 10
 }
 
-export default TextInput;
-
 export class YearInput extends Component {
   render() {
     return (
