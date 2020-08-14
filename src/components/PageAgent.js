@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import {Helmet} from "react-helmet";
 import PageNotFound from "./PageNotFound";
 import TileList from "./Tile";
 import AgentAttributeList from "./AgentAttribute";
@@ -102,17 +103,22 @@ class PageAgent extends Component {
       return (<PageNotFound />)
     }
     return (
-      <div className="container agent">
-        <nav>
-          <a href="/search" className="btn btn--back">Back to Search</a>
-        </nav>
-        <main id="main" role="main">
-          <h1 className="agent__title">{ this.state.agent.title }</h1>
-          <p className="agent__subtitle">{ this.state.agent.description }</p>
-          <AgentDescription attributes={this.state.attributes} />
-          <AgentRelatedCollections collections={this.state.collections} />
-        </main>
-        <AgentSidebar related={this.state.agent.agents} />
+      <div>
+        <Helmet>
+          <title>{ this.state.agent.title }</title>
+        </Helmet>
+        <div className="container agent">
+          <nav>
+            <a href="/search" className="btn btn--back">Back to Search</a>
+          </nav>
+          <main id="main" role="main">
+            <h1 className="agent__title">{ this.state.agent.title }</h1>
+            <p className="agent__subtitle">{ this.state.agent.description }</p>
+            <AgentDescription attributes={this.state.attributes} />
+            <AgentRelatedCollections collections={this.state.collections} />
+          </main>
+          <AgentSidebar related={this.state.agent.agents} />
+        </div>
       </div>
     )
   }
