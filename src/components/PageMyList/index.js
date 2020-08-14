@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Button from "../Button";
 import Dropdown from "../Dropdown";
+import {Helmet} from "react-helmet";
 import SavedItemList from "../SavedItem";
 import "./styles.scss";
 
@@ -91,56 +92,61 @@ class PageMyList extends Component {
   render() {
     // TODO: add onClick handlers for actions
     return (
-      <div className="container mylist flex">
-        <main id="main" role="main">
-          <div className="mylist__header">
-            <h1 className="mylist__title">My List</h1>
-            <Dropdown
-              label="Actions"
-              iconBefore="settings"
-              className="mylist__actions"
-              buttonClassName="btn--orange btn--md"
-              itemClassName="dropdown__item--orange"
-              listClassName="dropdown__list--orange"
-              items={
-                [
-                  {
-                    "label": "Schedule a Visit",
-                    "iconBefore": "account_balance",
-                    "onClick": null
-                  },
-                  {
-                    "label": "Request in Reading Room",
-                    "iconBefore": "local_library",
-                    "onClick": null
-                  },
-                  {
-                    "label": "Request Copies",
-                    "iconBefore": "content_copy",
-                    "onClick": null
-                  },
-                  {
-                    "label": "Email List",
-                    "iconBefore": "email",
-                    "onClick": null
-                  },
-                  {
-                    "label": "Download as .csv",
-                    "iconBefore": "get_app",
-                    "onClick": null
-                  },
-                  {
-                    "label": "Remove All Items",
-                    "iconBefore": "delete",
-                    "onClick": null
-                  }
-                ]
-              } />
-          </div>
-          <MyListExportActions />
-          <SavedItemList items={this.items}/>
-        </main>
-        <MyListSidebar/>
+      <div>
+        <Helmet>
+          <title>DIMES: My List</title>
+        </Helmet>
+        <div className="container mylist flex">
+          <main id="main" role="main">
+            <div className="mylist__header">
+              <h1 className="mylist__title">My List</h1>
+              <Dropdown
+                label="Actions"
+                iconBefore="settings"
+                className="mylist__actions"
+                buttonClassName="btn--orange btn--md"
+                itemClassName="dropdown__item--orange"
+                listClassName="dropdown__list--orange"
+                items={
+                  [
+                    {
+                      "label": "Schedule a Visit",
+                      "iconBefore": "account_balance",
+                      "onClick": null
+                    },
+                    {
+                      "label": "Request in Reading Room",
+                      "iconBefore": "local_library",
+                      "onClick": null
+                    },
+                    {
+                      "label": "Request Copies",
+                      "iconBefore": "content_copy",
+                      "onClick": null
+                    },
+                    {
+                      "label": "Email List",
+                      "iconBefore": "email",
+                      "onClick": null
+                    },
+                    {
+                      "label": "Download as .csv",
+                      "iconBefore": "get_app",
+                      "onClick": null
+                    },
+                    {
+                      "label": "Remove All Items",
+                      "iconBefore": "delete",
+                      "onClick": null
+                    }
+                  ]
+                } />
+            </div>
+            <MyListExportActions />
+            <SavedItemList items={this.items}/>
+          </main>
+          <MyListSidebar/>
+        </div>
       </div>
     );
   }
