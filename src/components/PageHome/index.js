@@ -22,7 +22,7 @@ class PageHome extends Component {
                 <div className="search search--home">
                   <div className="input-group__search">
                     <TextInput
-                        className="label-hidden input__search" //we can also use aria-label with no label element instead of a hidden label, but would need to alter the component
+                        className="hide-label input__search" //we can also use aria-label with no label element instead of a hidden label, but would need to alter the component
                         label="Enter a search term"
                         id="query"
                         placeholder="Search..."
