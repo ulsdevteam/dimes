@@ -242,23 +242,7 @@ small {
   line-height: 12px;
 }
 
-.material-icons {
-    direction: ltr;
-    display: inline-block;
-    font-family: 'Material Icons';
-    font-size: 24px;
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    line-height: 1;
-    text-transform: none;
-    white-space: nowrap;
-    word-wrap: normal;
-    -webkit-font-feature-settings: 'liga';
-    -webkit-font-smoothing: antialiased;
-}
-
-.agent__title {
+@mixin page-title {
   margin-top: 30px;
   margin-bottom: 30px;
   font-family: $sans-serif-stack;
@@ -267,6 +251,10 @@ small {
   @media screen and (min-width: $break-lg) {
     font-size: 28px;
   }
+}
+
+.agent__title {
+  @include page-title;
 }
 
 .agent__subtitle {
@@ -317,5 +305,13 @@ small {
     @include grid-column(7);
     font-size: 34px;
     line-height: 42px;
+  }
+}
+
+.mylist__title {
+  @include page-title;
+  float: left;
+  @media screen and (min-width: $break-lg) {
+    float: none;
   }
 }

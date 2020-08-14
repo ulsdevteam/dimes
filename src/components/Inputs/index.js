@@ -11,7 +11,8 @@ export class CheckBoxInput extends Component {
           type="checkbox"
           id={this.props.id}
           name={this.props.id}
-          onChange={this.props.handleChange} />
+          onChange={this.props.handleChange}
+          defaultChecked={this.props.checked} />
         <label
           htmlFor={this.props.id}>
             {this.props.label}

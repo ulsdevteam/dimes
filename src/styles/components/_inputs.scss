@@ -1,6 +1,5 @@
 @import "../styles";
 
-
 @mixin input-text {
   font-family: $sans-serif-stack;
   color: $dark-gray;
@@ -66,3 +65,7 @@ input::-ms-input-placeholder { /*Edge - only work on some properties */
     position: absolute;
     width: 1px;
   }
+
+.checkbox__hide-label label {
+  @include visually-hidden;
+}

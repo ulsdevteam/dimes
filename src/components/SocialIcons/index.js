@@ -5,11 +5,11 @@ class SocialIcons extends Component {
   render() {
     return (
       <div className="rac-social-icons">
-        <a href="https://twitter.com/rockarch_org"><i className="fab fa-twitter"></i><span className="visually-hidden">Twitter</span></a>
-        <a href="https://www.facebook.com/RockefellerArchiveCenter"><i className="fab fa-facebook-f"></i><span className="visually-hidden">Facebook</span></a>
-        <a href="https://www.instagram.com/rockefellerarchivecenter"><i className="fab fa-instagram"></i><span className="visually-hidden">Instagram</span></a>
-        <a href="https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"><i className="fab fa-youtube"></i><span className="visually-hidden">YouTube</span></a>
-        <a href="https://www.flickr.com/photos/147074352@N05/"><i>
+        <a href="https://twitter.com/rockarch_org"><span className="fab fa-twitter"></span><span className="visually-hidden">Twitter</span></a>
+        <a href="https://www.facebook.com/RockefellerArchiveCenter"><span className="fab fa-facebook-f"></span><span className="visually-hidden">Facebook</span></a>
+        <a href="https://www.instagram.com/rockefellerarchivecenter"><span className="fab fa-instagram"></span><span className="visually-hidden">Instagram</span></a>
+        <a href="https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"><span className="fab fa-youtube"></span><span className="visually-hidden">YouTube</span></a>
+        <a href="https://www.flickr.com/photos/147074352@N05/"><span>
         <svg width="18px" height="8px" viewBox="0 0 18 8" version="1.1" xmlns="http://www.w3.org/2000/svg">
             <title>Flickr icon</title>
             <g id="Style-Guide" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
@@ -21,7 +21,7 @@ class SocialIcons extends Component {
                 </g>
             </g>
         </svg>
-        </i><span className="visually-hidden">Flickr</span></a>
+        </span><span className="visually-hidden">Flickr</span></a>
       </div>
     )
   }

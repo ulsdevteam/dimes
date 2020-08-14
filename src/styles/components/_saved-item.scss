@@ -1,0 +1,73 @@
+@import "../styles";
+
+.saved-items__item-group {
+  @include grid-column(12)
+  border-top: 1px dotted $faded-navy;
+}
+
+.item-group__title {
+  font-size: 20px;
+  color: $dark-gray;
+  border-bottom: none;
+  margin-top: 24px;
+  margin-bottom: 30px;
+  padding: 0;
+}
+
+.saved-item {
+  @include grid-column(12);
+  margin-bottom: 40px;
+  float: left;
+  position: relative;
+}
+
+.saved-item__inputs {
+  @include grid-column(1);
+}
+
+.saved-item__item-description  {
+  @include grid-column(11);
+}
+
+.saved-item__buttons {
+  @media screen and (min-width: $break-lg) {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+.saved-item__title {
+  margin: 0 0 5px 0;
+  font-size: 20px;
+}
+
+@mixin saved-item-text {
+  font-family: $sans-serif-stack;
+  font-size: 14px;
+  color: $dark-gray;
+  line-height: 16px;
+}
+
+.saved-item__date {
+  @include saved-item-text;
+}
+
+.saved-item__description {
+  @include saved-item-text;
+}
+
+.saved-item__found-in {
+  @include saved-item-text;
+  & a  {
+    @include saved-item-text;
+    color: $dark-gray;
+    font-weight: normal;
+    text-decoration: underline;
+  }
+}
+
+.saved-item__last-requested {
+  @include saved-item-text;
+  font-style: italic;
+}
