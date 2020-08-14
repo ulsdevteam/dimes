@@ -33,7 +33,7 @@ class PageHome extends Component {
                     {/* Add Menu component */}
                     {/* I think this is just a select that has an ID of `type`? */}
                     <Button
-                        className="btn--block btn--search"
+                        className="btn--search"
                         type="submit"
                         aria-label="Submit search"
                         iconBefore="search"

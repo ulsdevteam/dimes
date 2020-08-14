@@ -102,17 +102,12 @@
 
 .btn--search {
   @extend .btn--orange;
-  height: 51px;
-  width:55px;
-  font-weight: 700;
-  font-size: 36px;
-  align-items: center;
-  justify-content: center;
+  border-radius: 0px;
+  height: 60px;
+  width: 66px;
   border: 1px solid $med-brown;
-  box-sizing: border-box;
-  @media screen and (min-width: $break-md) {
-    height: 60px;
-    width:66px;
+  & .material-icons {
+    font-size: 36px;
   }
 }
 
