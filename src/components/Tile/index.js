@@ -23,7 +23,7 @@ class Tile extends Component {
     return (
       <li className="tile">
         <a className="tile__link" href={this.props.uri}>
-          {this.props.hits ? (<HitCount hits={this.props.hits} />) : null}
+          {this.props.hit_count ? (<HitCount hits={this.props.hit_count} />) : null}
           {this.props.type ? (<TypeLabel type={this.props.type} />) : null }
           <div className="tile__title">{this.props.title}</div>
           <div className="tile__date">{this.props.date}</div>
@@ -34,13 +34,11 @@ class Tile extends Component {
 }
 
 class TileList extends Component {
-  constructor(props) {
-    super(props);
-    const items = this.props.items
-    this.listItems = items.map((item) =>
+  listItems = (items) => {
+    return items.map((item) =>
       <Tile
         key={item.uri}
-        hits={item.hits}
+        hit_count={item.hit_count}
         title={item.title}
         type={item.type}
         date={item.dates?.length && item.dates[0].expression}
@@ -50,7 +48,7 @@ class TileList extends Component {
   render() {
     return (
       <ul className="tile-list">
-        {this.listItems}
+        {this.listItems(this.props.items)}
       </ul>
     )
   }
