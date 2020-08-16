@@ -5,7 +5,7 @@ import "./styles.scss";
 class HitCount extends Component {
   render() {
     return (
-      <div className="tile__hit-count">{this.props.hits} matches</div>
+      <div className="tile__hit-count">{this.props.hit_count} matches</div>
     )
   }
 }
@@ -23,7 +23,7 @@ class Tile extends Component {
     return (
       <li className="tile">
         <a className="tile__link" href={this.props.uri}>
-          {this.props.hit_count ? (<HitCount hits={this.props.hit_count} />) : null}
+          {this.props.hit_count ? (<HitCount hit_count={this.props.hit_count} />) : null}
           {this.props.type ? (<TypeLabel type={this.props.type} />) : null }
           <div className="tile__title">{this.props.title}</div>
           <div className="tile__date">{this.props.date}</div>
