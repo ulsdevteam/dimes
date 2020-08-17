@@ -108,11 +108,12 @@
 }
 
 .btn--dropdown {
+  border-radius: 0;
   font-size: 12px;
   line-height: 21px;
   display: flex;
-  padding: 5px 14px;
-  width: 100%;
+  padding: 10px 14px;
+  margin: 0;
   & i {
     font-size: 21px;
     margin-right: 15px;

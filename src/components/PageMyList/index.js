@@ -104,7 +104,7 @@ class PageMyList extends Component {
                 label="Actions"
                 iconBefore="settings"
                 className="mylist__actions"
-                buttonClassName="btn--orange btn--md"
+                buttonClassName="btn btn--orange btn--md"
                 itemClassName="dropdown__item--orange"
                 listClassName="dropdown__list--orange"
                 items={
