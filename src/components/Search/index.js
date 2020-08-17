@@ -5,6 +5,7 @@ import { SelectInput, SelectOption, TextInput } from "../Inputs";
 import "./styles.scss";
 
 
+// TODO: add onClick handler to Search button
 class Search extends Component {
   render () {
     return (

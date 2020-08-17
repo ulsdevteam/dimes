@@ -1,5 +1,5 @@
-@import "../styles.scss";
-@import "inputs.scss";
+@import "../styles";
+@import "inputs";
 
 input[type=search] {
   @include input-text;
