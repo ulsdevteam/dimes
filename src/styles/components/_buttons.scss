@@ -101,6 +101,7 @@
 }
 
 .btn--search {
+  @extend .btn--block;
   @extend .btn--orange;
   border-radius: 0px;
   height: 62px;
