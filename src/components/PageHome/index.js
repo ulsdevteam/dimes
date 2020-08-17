@@ -29,12 +29,14 @@ class PageHome extends Component {
                         size="60"
                         type="search"
                     />
-                    <SelectInput className="" id="type" label="choose a search category">
-                      <SelectOption label="Everything" />
-                      <SelectOption label="Collections" />
-                      <SelectOption label="People" />
-                      <SelectOption label="Organizations" />
-                    </SelectInput>
+                    <div class="select__search--wrapper">
+                      <SelectInput className="hide-label select__search" id="type" label="Choose a search category">
+                        <SelectOption label="Everything" />
+                        <SelectOption label="Collections" />
+                        <SelectOption label="People" />
+                        <SelectOption label="Organizations" />
+                      </SelectInput>
+                    </div>
                     <Button
                         className="btn--search"
                         type="submit"

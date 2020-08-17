@@ -34,12 +34,11 @@ input::-ms-input-placeholder { /*Edge - only work on some properties */
 	display: flex;
   margin: 30px 0 110px 0;
   @media screen and (min-width: $break-md) {
-    @include grid-column(8);
+    @include grid-column(9);
     margin: 59px 0 190px 0;
   }
   @media screen and (min-width: $break-lg) {
     margin: 64px 0 233px 0;
-    @include grid-column(6);
   }
 }
 
@@ -48,11 +47,43 @@ input::-ms-input-placeholder { /*Edge - only work on some properties */
 }
 
 .input__search input {
-  @include input-text;
   border: 1px solid $dark-gray;
   padding: 20px;
   width: 100%;
-  box-sizing: border-box;
+}
+
+.select__search--wrapper {
+  position: relative;
+}
+
+.select__search--wrapper::after {
+  font-family: 'Material Icons';
+  content: "expand_more";
+  font-size: 20px;
+  top: 20px;
+  right: 22px;
+  position: absolute;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 0;
+}
+
+select::-ms-expand {
+  display: none; /* for IE 11 */
+}
+
+.select__search select {
+  @include input-text;
+  background-color: $pure-white;
+  border-radius: 0px;
+  border-top: 1px solid $dark-gray;
+  border-bottom: 1px solid $dark-gray;
+  padding: 20px;
+  width: 180px;
 }
 
 .hide-label label {
