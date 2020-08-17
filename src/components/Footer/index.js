@@ -9,7 +9,7 @@ class Footer extends Component {
         <div className="footer-primary">
           <div className="wrapper">
             <div className="container">
-              <h2 className="footer-primary__title">Rockefeller <span class="line-break">Archive Center</span></h2>
+              <h2 className="footer-primary__title">Rockefeller <span className="line-break">Archive Center</span></h2>
               <div className="footer-primary__address">
                 <p className="footer-primary__text">15 Dayton Avenue<br />
                    Sleepy Hollow, New York 10591</p>
