@@ -31,6 +31,10 @@ input[type=search] {
 
 .select__search--wrapper {
   position: relative;
+  display: none;
+  @media screen and (min-width: $break-lg) {
+    display: inline-block;
+  }
 }
 
 .select__search--wrapper::after {
