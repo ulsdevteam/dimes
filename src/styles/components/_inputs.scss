@@ -10,8 +10,9 @@
   font-size: 18px;
 }
 
-input {
+input[type=search] {
   @include input-text;
+  font-size: 18px;
 }
 
 input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
