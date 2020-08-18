@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -10,16 +10,34 @@ import PageMyList from "./components/PageMyList";
 import PageSearch from "./components/PageSearch";
 import PageNotFound from "./components/PageNotFound";
 
-function App() {
+class App extends Component {
   // TODO: eliminate root div
-  return (
-      <div>
-        <Header />
+  constructor(props) {
+    super(props)
+    this.state = {
+      "myListCount": 0
+    }
+  }
+  componentDidMount() {
+    this.fetchMyListCount()
+  }
+  fetchMyListCount() {
+    var existing = localStorage.getItem("savedItems");
+    existing = existing ? JSON.parse(existing) : {};
+    this.updateMyListCount(Object.keys(existing).length)
+  }
+  updateMyListCount = count  => {
+    this.setState({ "myListCount": count })
+  }
+  render() {
+    return (
+        <div>
+          <Header myListCount={this.state.myListCount} />
           <div className="wrapper">
             <Switch>
               <Route path="/list/" component={PageMyList} />
               <Route path="/search/" component={PageSearch} />
-              <Route path="/records/" component={PageRecord} />
+              <Route path="/records/" component={() => <PageRecord updateMyListCount={this.updateMyListCount}/>} />
               <Route path="/agents/:id" component={PageAgent} />
               <Route path="/view/" component={PageDigitalObject} />
               <Route exact path="/" component={PageHome} />
@@ -28,7 +46,8 @@ function App() {
           </div>
         <Footer/>
       </div>
-  );
+    );
+  }
 }
 
 export default App;
