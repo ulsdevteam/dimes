@@ -100,6 +100,20 @@
   }
 }
 
+.btn--search {
+  @extend .btn--block;
+  @extend .btn--orange;
+  border-radius: 0px;
+  height: 62px;
+  width: 66px;
+  border: 1px solid $med-brown;
+  & .material-icons {
+    font-size: 36px;
+    line-height: 58px;
+    width: 100%;
+  }
+}
+
 .btn--search-more {
   @extend .btn--orange;
   @extend .btn--sm;

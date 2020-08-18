@@ -11,7 +11,7 @@ class SavedItem extends Component {
       <div className="saved-item">
         <div className="saved-item__inputs">
           <CheckBoxInput
-            className="checkbox--orange checkbox__hide-label"
+            className="checkbox--orange hide-label"
             id={this.props.title}
             checked={true}
             label={this.props.title} />
