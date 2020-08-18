@@ -20,7 +20,7 @@ input[type=search] {
 }
 
 .input__search {
-  width: 100%;
+  width: calc(100% - 200px);
 }
 
 .input__search input {
