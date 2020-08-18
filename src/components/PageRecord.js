@@ -4,6 +4,7 @@ import Button from "./Button";
 class PageRecord extends Component {
   constructor(props) {
     super(props)
+    // This is example data to test myList functionality
     const exampleData = [
       {"uri": "/objects/wjhfxgo5jdzsysz72cbypcyhp3"},
       {"uri": "/objects/qckuiz9z5hb358esjsyuxqxfx4"},
@@ -22,9 +23,9 @@ class PageRecord extends Component {
     );
   }
   saveItem = item => {
-	  var list = this.props.fetchMyList
+	  var list = this.props.fetchMyList()
     list[item.uri] = {"saved": Date.now()}
-    this.saveMyList(list)
+    this.props.saveMyList(list)
   }
   requestButtons
   render() {

@@ -50,7 +50,12 @@ class App extends Component {
                   updateMyListCount={this.updateMyListCount} />
               } />
               <Route path="/search/" component={PageSearch} />
-              <Route path="/records/" component={() => <PageRecord updateMyListCount={this.updateMyListCount}/>} />
+              <Route path="/records/" component={() =>
+                <PageRecord
+                  fetchMyList={this.fetchMyList}
+                  saveMyList={this.saveMyList}
+                  updateMyListCount={this.updateMyListCount} />
+                } />
               <Route path="/agents/:id" component={PageAgent} />
               <Route path="/view/" component={PageDigitalObject} />
               <Route exact path="/" component={PageHome} />
