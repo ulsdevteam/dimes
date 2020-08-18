@@ -21,7 +21,8 @@ class MyListExportActions extends Component {
         <Button
           className="btn--gray btn--sm"
           label="Remove All Items"
-          iconBefore="delete" />
+          iconBefore="delete"
+          onClick={() => this.props.removeAllItems()} />
       </div>
     )
   }
@@ -89,6 +90,9 @@ class PageMyList extends Component {
       }
     ]
   }
+  removeAllItems = () => {
+    this.props.saveMyList({})
+  }
   render() {
     // TODO: add onClick handlers for actions
     return (
@@ -137,12 +141,12 @@ class PageMyList extends Component {
                     {
                       "label": "Remove All Items",
                       "iconBefore": "delete",
-                      "onClick": null
+                      "onClick": this.removeAllItems
                     }
                   ]
                 } />
             </div>
-            <MyListExportActions />
+            <MyListExportActions removeAllItems={this.removeAllItems} />
             <SavedItemList items={this.items}/>
           </main>
           <MyListSidebar/>
