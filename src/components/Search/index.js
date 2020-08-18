@@ -10,7 +10,7 @@ class Search extends Component {
   render () {
     return (
       <form role="search" action="/search" method="get">
-        <div className={`search ${this.props.className}`}>
+        <div className={`${this.props.className}`}>
           <div className="input-group__search">
             <TextInput
               className="hide-label input__search"
@@ -27,7 +27,7 @@ class Search extends Component {
               <SelectOption label="People" />
               <SelectOption label="Organizations" />
               </SelectInput>
-              </div>
+            </div>
             <Button
               className="btn--search"
               type="submit"
