@@ -14,7 +14,7 @@ class Header extends Component {
             </div>
             <Nav ariaLabel="Main">
               <NavItem href="#" label="Sign in to RACcess" icon="arrow_right_alt" />
-              <NavItem href="list" label={`My List ${this.props.myListCount > 0  ? `(${this.props.myListCount})` : "" }`} icon="arrow_right_alt" />
+              <NavItem href="list" label={`My List${this.props.myListCount > 0  ? ` (${this.props.myListCount})` : ""}`} icon="arrow_right_alt" />
             </Nav>
           </div>
         </div>

@@ -22,11 +22,9 @@ class PageRecord extends Component {
     );
   }
   saveItem = item => {
-	  var existing = localStorage.getItem("savedItems");
-    existing = existing ? JSON.parse(existing) : {};
-    existing[item.uri] = {"saved": Date.now()}
-	  localStorage.setItem("savedItems", JSON.stringify(existing));
-    this.props.updateMyListCount(Object.keys(existing).length)
+	  var list = this.props.fetchMyList
+    list[item.uri] = {"saved": Date.now()}
+    this.saveMyList(list)
   }
   requestButtons
   render() {
