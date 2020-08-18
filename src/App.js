@@ -19,14 +19,22 @@ class App extends Component {
     }
   }
   componentDidMount() {
-    this.fetchMyListCount()
+    this.updateMyListCount()
   }
-  fetchMyListCount() {
+  fetchMyList() {
     var existing = localStorage.getItem("savedItems");
-    existing = existing ? JSON.parse(existing) : {};
-    this.updateMyListCount(Object.keys(existing).length)
+    return existing ? JSON.parse(existing) : {};
+  }
+  saveMyList = list => {
+    localStorage.setItem("savedItems", JSON.stringify(list));
+    this.updateMyListCount(Object.keys(list).length)
+  }
+  fetchMyListCount = () => {
+    var list = this.fetchMyList()
+    return Object.keys(list).length
   }
   updateMyListCount = count  => {
+    count = count ? count : this.fetchMyListCount()
     this.setState({ "myListCount": count })
   }
   render() {
@@ -35,7 +43,12 @@ class App extends Component {
           <Header myListCount={this.state.myListCount} />
           <div className="wrapper">
             <Switch>
-              <Route path="/list/" component={PageMyList} />
+              <Route path="/list/" component={() =>
+                <PageMyList
+                  fetchMyList={this.fetchMyList}
+                  saveMyList={this.saveMyList}
+                  updateMyListCount={this.updateMyListCount} />
+              } />
               <Route path="/search/" component={PageSearch} />
               <Route path="/records/" component={() => <PageRecord updateMyListCount={this.updateMyListCount}/>} />
               <Route path="/agents/:id" component={PageAgent} />
