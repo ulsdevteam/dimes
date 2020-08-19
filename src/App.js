@@ -31,7 +31,7 @@ class App extends Component {
   setMyListCount = data => {
     var list = data ? data : this.fetchMyList()
     var count = 0
-    for (const [key, value] of Object.entries(list)) {
+    for (const [ , value] of Object.entries(list)) {
       count += Object.keys(value).length
     }
     this.setState({ "myListCount": count })
