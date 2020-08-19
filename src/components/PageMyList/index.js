@@ -79,6 +79,7 @@ class PageMyList extends Component {
       if (fetchedGroup) {
         const resolved = {
           "title": fetchedGroup.title,
+          "uri": fetchedGroup.uri,
           "items": []
         }
         for (const [key, value] of Object.entries(items)) {
@@ -100,10 +101,11 @@ class PageMyList extends Component {
             }
             resolved.items.push({
               "title": fetchedItem.title,
+              "uri": fetchedItem.uri,
               "date": dates.join(", "),
               "description": description.join(", "),
               "parent": fetchedItem.ancestors[0].title,
-              "parentIdentifier": fetchedItem.ancestors[0].identifier,
+              "parentRef": `/collections/${fetchedItem.ancestors[0].identifier}`,
               "online": fetchedItem.online,
               "lastRequested": value.lastRequested ? value.lastRequested : null,
               "saved": value.saved
@@ -123,6 +125,16 @@ class PageMyList extends Component {
   }
   removeAllItems = () => {
     this.props.saveMyList({})
+  }
+  removeItem = (group, item) => {
+    // TODO: Reload list in more performant way
+    const list = this.props.fetchMyList();
+    delete list[group][item]
+    if (Object.entries(list[group]).length === 0) {
+      delete list[group]
+    }
+    this.props.saveMyList(list);
+    this.resolveList(list);
   }
   render() {
     // TODO: add onClick handlers for actions
@@ -178,7 +190,10 @@ class PageMyList extends Component {
                 } />
             </div>
             <MyListExportActions removeAllItems={this.removeAllItems} />
-            <SavedItemList items={this.state.savedItems} isLoading={this.state.isLoading} />
+            <SavedItemList
+              items={this.state.savedItems}
+              isLoading={this.state.isLoading}
+              removeItem={this.removeItem} />
           </main>
           <MyListSidebar/>
         </div>

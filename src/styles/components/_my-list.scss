@@ -8,6 +8,7 @@
 }
 
 .mylist main {
+  @include grid-column(12);
   @media screen and (min-width: $break-lg) {
     @include grid-column(8);
   }

@@ -32,7 +32,8 @@ class SavedItem extends Component {
             <Button
               label="Remove"
               className="btn btn--gray btn--sm"
-              iconBefore="delete" />
+              iconBefore="delete"
+              onClick={() => this.props.onClick(this.props.groupUri, this.props.uri)} />
           </div>
         </div>
       </div>
@@ -54,6 +55,7 @@ class SavedItemGroup extends Component {
   constructor(props) {
     super(props);
     const items = this.props.items
+    console.log(this.props.items)
     this.listItems = items.map((item, index) =>
       <SavedItem
         key={index}
@@ -63,7 +65,10 @@ class SavedItemGroup extends Component {
         parent={item.parent}
         parentRef={item.parentRef}
         lastRequested={item.lastRequested}
-        online={item.online} />
+        online={item.online}
+        groupUri={this.props.groupUri}
+        uri={item.uri}
+        onClick={this.props.removeItem} />
     );
   }
   render() {
@@ -90,7 +95,9 @@ class SavedItemList extends Component {
       <SavedItemGroup
         key={item.title}
         title={item.title}
-        items={item.items} />
+        items={item.items}
+        groupUri={item.uri}
+        removeItem={this.props.removeItem} />
     )) : (<p className="saved-items__empty">No saved items.</p>)
   }
   render() {
