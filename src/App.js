@@ -11,7 +11,6 @@ import PageSearch from "./components/PageSearch";
 import PageNotFound from "./components/PageNotFound";
 
 class App extends Component {
-  // TODO: eliminate root div
   constructor(props) {
     super(props)
     this.state = {
@@ -19,7 +18,7 @@ class App extends Component {
     }
   }
   componentDidMount() {
-    this.updateMyListCount()
+    this.setMyListCount()
   }
   fetchMyList() {
     var existing = localStorage.getItem("savedItems");
@@ -27,34 +26,32 @@ class App extends Component {
   }
   saveMyList = list => {
     localStorage.setItem("savedItems", JSON.stringify(list));
-    this.updateMyListCount(Object.keys(list).length)
+    this.setMyListCount()
   }
-  fetchMyListCount = () => {
-    var list = this.fetchMyList()
-    return Object.keys(list).length
-  }
-  updateMyListCount = count  => {
-    count = count ? count : this.fetchMyListCount()
+  setMyListCount = data => {
+    var list = data ? data : this.fetchMyList()
+    var count = 0
+    for (const [key, value] of Object.entries(list)) {
+      count += Object.keys(value).length
+    }
     this.setState({ "myListCount": count })
   }
   render() {
     return (
-        <div>
+        <React.Fragment>
           <Header myListCount={this.state.myListCount} />
           <div className="wrapper">
             <Switch>
               <Route path="/list/" component={() =>
                 <PageMyList
                   fetchMyList={this.fetchMyList}
-                  saveMyList={this.saveMyList}
-                  updateMyListCount={this.updateMyListCount} />
+                  saveMyList={this.saveMyList} />
               } />
               <Route path="/search/" component={PageSearch} />
               <Route path="/records/" component={() =>
                 <PageRecord
                   fetchMyList={this.fetchMyList}
-                  saveMyList={this.saveMyList}
-                  updateMyListCount={this.updateMyListCount} />
+                  saveMyList={this.saveMyList} />
                 } />
               <Route path="/agents/:id" component={PageAgent} />
               <Route path="/view/" component={PageDigitalObject} />
@@ -63,7 +60,7 @@ class App extends Component {
             </Switch>
           </div>
         <Footer/>
-      </div>
+      </React.Fragment>
     );
   }
 }

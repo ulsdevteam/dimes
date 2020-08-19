@@ -1,7 +1,7 @@
 @import "../styles";
 
-.saved-items__item-group {
-  @include grid-column(12)
+.saved-items__item-group, .saved-items__loading, .saved-items__empty {
+  @include grid-column(12);
   border-top: 1px dotted $faded-navy;
 }
 

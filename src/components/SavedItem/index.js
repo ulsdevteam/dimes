@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import Button from "../Button";
 import { CheckBoxInput } from "../Inputs";
 import "./styles.scss";
@@ -39,6 +40,16 @@ class SavedItem extends Component {
   }
 }
 
+SavedItem.propTypes = {
+  title: PropTypes.string,
+  date: PropTypes.string,
+  description: PropTypes.string,
+  parent: PropTypes.string,
+  parentRef: PropTypes.string,
+  lastRequested: PropTypes.instanceOf(Date),
+  online: PropTypes.bool
+}
+
 class SavedItemGroup extends Component {
   constructor(props) {
     super(props);
@@ -67,24 +78,33 @@ class SavedItemGroup extends Component {
   }
 }
 
+SavedItemGroup.propTypes = {
+  title: PropTypes.string.isRequired,
+  items: PropTypes.array.isRequired
+}
+
+
 class SavedItemList extends Component {
-  constructor(props) {
-    super(props);
-    const items = this.props.items
-    this.groupItems = items ? (items.map((item) =>
+  groupItems = items => {
+    return items.length ? (items.map((item) =>
       <SavedItemGroup
         key={item.title}
         title={item.title}
         items={item.items} />
-    )) : (<p>No saved items.</p>)
+    )) : (<p className="saved-items__empty">No saved items.</p>)
   }
   render() {
     return (
       <div className="saved-items">
-        {this.groupItems}
+        {this.props.isLoading ? <p className="saved-items__loading">Loading...</p> : this.groupItems(this.props.items)}
       </div>
     )
   }
+}
+
+SavedItemList.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  items: PropTypes.array.isRequired
 }
 
 export default SavedItemList;

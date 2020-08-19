@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
+import axios from "axios";
 import Button from "../Button";
 import Dropdown from "../Dropdown";
 import {Helmet} from "react-helmet";
@@ -28,6 +30,10 @@ class MyListExportActions extends Component {
   }
 }
 
+MyListExportActions.propTypes = {
+  removeAllItems: PropTypes.func.isRequired
+}
+
 class MyListSidebar extends Component  {
   // TODO: add onClick actions
   render() {
@@ -50,45 +56,70 @@ class MyListSidebar extends Component  {
   }
 }
 
+MyListSidebar.propTypes = {
+
+}
+
 class PageMyList extends Component {
-  // TODO: remove mock data
-  // TODO: make call to get data
   constructor(props) {
     super(props);
-    this.items = [
-      {
-        "title": "Nelson A. Rockefeller gubernatorial records, Public Relations, Series 27",
-        "items": [
-          {
-            "title": "'The Future of Federalism'",
-            "date": "1962",
-            "description": "NAR's Godkin Lectures at Harvard University in book format. (These annual lectures ...",
-            "parent": "Subseries 1: Books and Articles",
-            "lastRequested": "Apr 14 2020",
-            "online": false
-          },
-          {
-            "title": "'A Civil Rights Program for the United States'",
-            "date": "June 17, 1960",
-            "description": "Speech: Given at Buffalo, New York to National Sunday School and Baptist Training ...",
-            "parent": "Subseries 2: Speeches",
-            "lastRequested": "Apr 08 2020",
-            "online": false
+    this.state = {
+      "savedItems": [],
+      "isLoading": true
+    }
+  }
+  componentDidMount() {
+    // TODO: resolve error with state update on unmounted component
+    const list = this.props.fetchMyList();
+    this.resolveList(list);
+  }
+  resolveList = async(list) => {
+    for (const [uri, items] of Object.entries(list)) {
+      const fetchedGroup = await this.fetchFromUri(uri);
+      if (fetchedGroup) {
+        const resolved = {
+          "title": fetchedGroup.title,
+          "items": []
+        }
+        for (const [key, value] of Object.entries(items)) {
+          const fetchedItem = await this.fetchFromUri(key)
+          if (fetchedItem) {
+            let dates = []
+            fetchedItem["dates"].forEach(function(e) {
+                dates = dates.concat(e.expression);
+            });
+            let description = []
+            if (fetchedItem.notes) {
+              fetchedItem.notes.forEach(function(e) {
+                if (e.title === "Scope and Contents") {
+                  e.subnotes.forEach(function(s) {
+                    description = description.concat(s.content)
+                  })
+                }
+              });
+            }
+            resolved.items.push({
+              "title": fetchedItem.title,
+              "date": dates.join(", "),
+              "description": description.join(", "),
+              "parent": fetchedItem.ancestors[0].title,
+              "parentIdentifier": fetchedItem.ancestors[0].identifier,
+              "online": fetchedItem.online,
+              "lastRequested": value.lastRequested ? value.lastRequested : null,
+              "saved": value.saved
+            })
           }
-        ]
-      },
-      {
-        "title": "Rockefeller Foundation records, officers' diaries, RG 12, A-E",
-        "items": [
-          {
-            "title": "1946-1947",
-            "description": "RF_Aitken_1946_1947.pdf",
-            "parent": "Officer: Aitken, Thomas H.G.",
-            "online": true
-          }
-        ]
+        }
+        this.setState({ savedItems: [...this.state.savedItems, resolved] })
       }
-    ]
+    }
+    this.setState({isLoading: false})
+  }
+  fetchFromUri(uri) {
+    return axios
+      .get(`http://localhost:8000${uri}`)
+      .then(res => res.data)
+      .catch(err => console.log(err));
   }
   removeAllItems = () => {
     this.props.saveMyList({})
@@ -96,7 +127,7 @@ class PageMyList extends Component {
   render() {
     // TODO: add onClick handlers for actions
     return (
-      <div>
+      <React.Fragment>
         <Helmet>
           <title>DIMES: My List</title>
         </Helmet>
@@ -147,13 +178,17 @@ class PageMyList extends Component {
                 } />
             </div>
             <MyListExportActions removeAllItems={this.removeAllItems} />
-            <SavedItemList items={this.items}/>
+            <SavedItemList items={this.state.savedItems} isLoading={this.state.isLoading} />
           </main>
           <MyListSidebar/>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
+}
+
+PageMyList.propTypes = {
+  fetchMyList: PropTypes.func.isRequired
 }
 
 export default PageMyList;
