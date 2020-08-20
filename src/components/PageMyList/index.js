@@ -4,7 +4,8 @@ import axios from "axios";
 import Button from "../Button";
 import Dropdown from "../Dropdown";
 import {Helmet} from "react-helmet";
-import SavedItemList from "../SavedItem";
+import {EmailModal} from "../Modal";
+import {SavedItemList} from "../SavedItem";
 import "./styles.scss";
 
 class MyListExportActions extends Component {
@@ -15,7 +16,8 @@ class MyListExportActions extends Component {
         <Button
           className="btn--orange btn--sm"
           label="Email List"
-          iconBefore="email" />
+          iconBefore="email"
+          onClick={this.props.emailList} />
         <Button
           className="btn--orange btn--sm"
           label="Download as .CSV"
@@ -31,6 +33,7 @@ class MyListExportActions extends Component {
 }
 
 MyListExportActions.propTypes = {
+  emailList: PropTypes.func.isRequired,
   removeAllItems: PropTypes.func.isRequired
 }
 
@@ -65,7 +68,8 @@ class PageMyList extends Component {
     super(props);
     this.state = {
       "savedItems": [],
-      "isLoading": true
+      "isLoading": true,
+      "emailModal": false
     }
   }
   componentDidMount() {
@@ -136,8 +140,12 @@ class PageMyList extends Component {
     this.props.saveMyList(list);
     this.resolveList(list);
   }
+  toggleModal = (modal)  => {
+    this.setState({ [modal]: !this.state[modal] })
+  }
   render() {
     // TODO: add onClick handlers for actions
+    // TODO: move dropdown to main Dropdown file, create MyListDropdown component
     return (
       <React.Fragment>
         <Helmet>
@@ -174,7 +182,7 @@ class PageMyList extends Component {
                     {
                       "label": "Email List",
                       "iconBefore": "email",
-                      "onClick": null
+                      "onClick": () => this.toggleModal("emailModal")
                     },
                     {
                       "label": "Download as .csv",
@@ -189,7 +197,9 @@ class PageMyList extends Component {
                   ]
                 } />
             </div>
-            <MyListExportActions removeAllItems={this.removeAllItems} />
+            <MyListExportActions
+              removeAllItems={this.removeAllItems}
+              emailList={() => this.toggleModal("emailModal")}/>
             <SavedItemList
               items={this.state.savedItems}
               isLoading={this.state.isLoading}
@@ -197,6 +207,11 @@ class PageMyList extends Component {
           </main>
           <MyListSidebar/>
         </div>
+        <EmailModal
+          isOpen={this.state.emailModal}
+          toggleModal={() => this.toggleModal("emailModal")}
+          list={this.state.savedItems}
+        />
       </React.Fragment>
     );
   }
