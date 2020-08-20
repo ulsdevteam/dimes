@@ -12,10 +12,11 @@ export class CheckBoxInput extends Component {
           id={this.props.id}
           name={this.props.id}
           onChange={this.props.handleChange}
-          defaultChecked={this.props.checked} />
+          defaultChecked={this.props.checked}
+          required={this.props.required} />
         <label
           htmlFor={this.props.id}>
-            {this.props.label}
+            {this.props.label}{this.props.required && " *"}
         </label>
       </div>
     )
@@ -23,11 +24,17 @@ export class CheckBoxInput extends Component {
 }
 
 CheckBoxInput.propTypes = {
+  checked: PropTypes.bool.isRequired,
   className: PropTypes.string,
   handleChange: PropTypes.func,
   id: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired
+  label: PropTypes.string.isRequired,
+  required: PropTypes.bool
 };
+
+CheckBoxInput.defaultProps = {
+  checked: true,
+}
 
 export class DatePickerInput extends Component {
   render() {
@@ -35,7 +42,7 @@ export class DatePickerInput extends Component {
       <div className={this.props.className}>
         <label
           htmlFor={this.props.id} >
-            {this.props.label}
+            {this.props.label}{this.props.required && " *"}
         </label>
         <input
           type="date"
@@ -44,7 +51,8 @@ export class DatePickerInput extends Component {
           min={this.props.min}
           name={this.props.id}
           onChange={this.props.handleChange}
-          defaultValue={this.currentDay} />
+          defaultValue={this.currentDay}
+          required={this.props.required} />
       </div>
     )
   }
@@ -57,7 +65,8 @@ DatePickerInput.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   max: PropTypes.instanceOf(Date),
-  min: PropTypes.instanceOf(Date)
+  min: PropTypes.instanceOf(Date),
+  required: PropTypes.bool
 };
 
 DatePickerInput.defaultProps = {
@@ -73,10 +82,11 @@ export class RadioInput extends Component {
           id={this.props.id}
           name={this.props.groupName}
           onChange={this.props.handleChange}
-          value={this.props.id} />
+          value={this.props.value}
+          required={this.props.required} />
         <label
           htmlFor={this.props.id}>
-            {this.props.label}
+            {this.props.label}{this.props.required && " *"}
         </label>
       </div>
     )
@@ -88,14 +98,19 @@ RadioInput.propTypes = {
   groupName: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  handleChange: PropTypes.func
+  handleChange: PropTypes.func,
+  required: PropTypes.bool
 };
 
 export class RadioGroup extends Component {
   render() {
     return (
-      <fieldset className={this.props.className}>
-        <p>{this.props.label}</p>
+      <fieldset
+        className={this.props.className}
+        required={this.props.required}
+        onChange={this.props.onChange}
+      >
+        <p>{this.props.label}{this.props.required && " *"}</p>
         {this.props.children}
       </fieldset>
     )
@@ -104,20 +119,22 @@ export class RadioGroup extends Component {
 
 RadioGroup.propTypes = {
   className: PropTypes.string,
-  label: PropTypes.string.isRequired
+  label: PropTypes.string.isRequired,
+  required: PropTypes.bool
 };
 
 export class SelectInput extends Component {
   render()  {
     return (
-      <div className={this.props.className}>
+      <div className={this.props.className} required={this.props.required}>
         <label
           htmlFor={this.props.id}>
-            {this.props.label}
+            {this.props.label}{this.props.required && " *"}
         </label>
         <select
           name={this.props.id}
-          id={this.props.id}>
+          id={this.props.id}
+          onChange={this.props.handleChange}>
             {this.props.children}
         </select>
       </div>
@@ -127,8 +144,10 @@ export class SelectInput extends Component {
 
 SelectInput.propTypes = {
   className: PropTypes.string,
+  handleChange: PropTypes.func,
   id: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired
+  label: PropTypes.string.isRequired,
+  required: PropTypes.bool
 }
 
 export class SelectOption extends Component {
@@ -143,7 +162,8 @@ export class SelectOption extends Component {
 }
 
 SelectOption.propTypes = {
-  label: PropTypes.string.isRequired
+  label: PropTypes.string.isRequired,
+  value: PropTypes.string
 }
 
 export class TextAreaInput extends Component {
@@ -152,13 +172,16 @@ export class TextAreaInput extends Component {
       <div className={this.props.className}>
         <label
           htmlFor={this.props.id}>
-            {this.props.label}
+            {this.props.label}{this.props.required && " *"}
         </label>
         <textarea
           id={this.props.id}
           name={this.props.id}
           rows={this.props.rows}
-          cols={this.props.cols}>
+          cols={this.props.cols}
+          required={this.props.required}
+          value={this.props.value}
+          onChange={this.props.handleChange} >
         </textarea>
       </div>
     )
@@ -167,10 +190,13 @@ export class TextAreaInput extends Component {
 
 TextAreaInput.propTypes = {
   className: PropTypes.string,
+  handleChange: PropTypes.func,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   rows: PropTypes.number,
-  cols: PropTypes.number
+  cols: PropTypes.number,
+  required: PropTypes.bool,
+  value: PropTypes.string
 }
 
 TextAreaInput.defaultProps = {
@@ -184,7 +210,7 @@ export class TextInput extends Component {
       <div className={this.props.className}>
         <label
           htmlFor={this.props.id}>
-            {this.props.label}
+            {this.props.label}{this.props.required && " *"}
         </label>
         <input
           type={this.props.type}
@@ -193,7 +219,10 @@ export class TextInput extends Component {
           placeholder={this.props.placeholder}
           minLength={this.props.minLength}
           maxLength={this.props.maxLength}
-          size={this.props.size} />
+          size={this.props.size}
+          required={this.props.required}
+          onChange={this.props.handleChange}
+          value={this.props.value} />
        </div>
     )
   }
@@ -201,12 +230,15 @@ export class TextInput extends Component {
 
 TextInput.propTypes = {
   className: PropTypes.string,
+  handleChange: PropTypes.func,
   label: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   minLength: PropTypes.number,
   maxLength: PropTypes.number,
+  required: PropTypes.bool,
   size: PropTypes.number,
   type: PropTypes.oneOf(['text', 'search']),
+  value: PropTypes.string
 };
 
 TextInput.defaultProps = {
@@ -220,7 +252,7 @@ export class YearInput extends Component {
       <div className={this.props.className} >
         <label
           htmlFor={this.props.id}>
-            {this.props.label}
+            {this.props.label}{this.props.required && " *"}
         </label>
         <input
           type="number"
@@ -228,7 +260,9 @@ export class YearInput extends Component {
           max={this.currentYear}
           min={this.props.min}
           name={this.props.id}
-          onChange={this.props.handleChange} />
+          onChange={this.props.handleChange}
+          value={this.props.value}
+          required={this.props.required} />
       </div>
     )
   }
@@ -240,7 +274,9 @@ YearInput.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   max: PropTypes.number,
-  min: PropTypes.number
+  min: PropTypes.number,
+  required: PropTypes.bool,
+  value: PropTypes.number
 };
 
 YearInput.defaultProps = {
