@@ -13,7 +13,8 @@ class Button extends Component {
         onClick={this.props.onClick}
         aria-label={this.props.ariaLabel}
         aria-haspopup={this.props.ariaHasPopup}
-        aria-expanded={this.props.ariaExpanded}>
+        aria-expanded={this.props.ariaExpanded}
+        disabled={this.props.disabled} >
           {this.props.iconBefore && <MaterialIcon icon={this.props.iconBefore} />} {this.props.label} {this.props.iconAfter && <MaterialIcon icon={this.props.iconAfter} />}
       </button>
     )
@@ -27,7 +28,8 @@ Button.propTypes = {
   ariaLabel: PropTypes.string,
   iconAfter: PropTypes.string,
   iconBefore: PropTypes.string,
-  label: PropTypes.string
+  label: PropTypes.string,
+  disabled: PropTypes.bool
 };
 
 export default Button;
