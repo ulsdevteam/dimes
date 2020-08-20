@@ -1,8 +1,16 @@
 @import "../styles";
 
-.saved-items__item-group, .saved-items__loading, .saved-items__empty {
+.saved-items__item-group,
+.saved-items__loading,
+.saved-items__empty,
+.modal-saved-items__item-group {
   @include grid-column(12);
   border-top: 1px dotted $faded-navy;
+}
+
+.saved-items__empty {
+  font-family: $sans-serif-stack;
+  padding: 20px 0px;
 }
 
 .item-group__title {
@@ -14,18 +22,29 @@
   padding: 0;
 }
 
+.modal-item-group__title {
+  @extend .item-group__title;
+  font-size: 15px;
+  margin: 20px 0px;
+
+}
+
 .saved-item {
   @include grid-column(12);
   margin-bottom: 40px;
   float: left;
-  position: relative;
 }
 
-.saved-item__inputs {
+.modal-saved-item {
+  @extend .saved-item;
+  margin-bottom: 15px;
+}
+
+.saved-item__inputs, .modal-saved-item__inputs {
   @include grid-column(1);
 }
 
-.saved-item__item-description  {
+.saved-item__item-description, .modal-saved-item__item-description  {
   @include grid-column(11);
 }
 
@@ -40,6 +59,11 @@
 .saved-item__title {
   margin: 0 0 5px 0;
   font-size: 20px;
+}
+
+.modal-saved-item__title {
+  @extend .saved-item__title;
+  font-size: 14px;
 }
 
 @mixin saved-item-text {
@@ -59,7 +83,7 @@
 
 .saved-item__found-in {
   @include saved-item-text;
-  & a  {
+  & a {
     @include saved-item-text;
     color: $dark-gray;
     font-weight: normal;

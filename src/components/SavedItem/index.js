@@ -33,7 +33,7 @@ class SavedItem extends Component {
               label="Remove"
               className="btn btn--gray btn--sm"
               iconBefore="delete"
-              onClick={() => this.props.onClick(this.props.groupUri, this.props.uri)} />
+              onClick={this.props.onClick} />
           </div>
         </div>
       </div>
@@ -51,11 +51,34 @@ SavedItem.propTypes = {
   online: PropTypes.bool
 }
 
+class ModalSavedItem extends Component {
+  // TODO: styling for checkbox
+  render() {
+    return (
+      <div className="modal-saved-item">
+        <div className="modal-saved-item__inputs">
+          <CheckBoxInput
+            className="checkbox--orange hide-label"
+            id={this.props.title}
+            checked={true}
+            label={this.props.title} />
+        </div>
+        <div className="modal-saved-item__item-description">
+          <h3 className="modal-saved-item__title">{this.props.title}</h3>
+        </div>
+      </div>
+    )
+  }
+}
+
+ModalSavedItem.propTypes = {
+  title: PropTypes.string.isRequired
+}
+
 class SavedItemGroup extends Component {
   constructor(props) {
     super(props);
     const items = this.props.items
-    console.log(this.props.items)
     this.listItems = items.map((item, index) =>
       <SavedItem
         key={index}
@@ -66,9 +89,7 @@ class SavedItemGroup extends Component {
         parentRef={item.parentRef}
         lastRequested={item.lastRequested}
         online={item.online}
-        groupUri={this.props.groupUri}
-        uri={item.uri}
-        onClick={this.props.removeItem} />
+        onClick={() => this.props.removeItem(this.props.groupUri, item.uri)} />
     );
   }
   render() {
@@ -88,8 +109,35 @@ SavedItemGroup.propTypes = {
   items: PropTypes.array.isRequired
 }
 
+class ModalSavedItemGroup extends Component {
+  constructor(props) {
+    super(props);
+    const items = this.props.items
+    this.listItems = items.map((item, index) =>
+      <ModalSavedItem
+        key={index}
+        title={item.title}
+        uri={item.uri} />
+    );
+  }
+  render() {
+    return (
+      <div className="modal-saved-items__item-group">
+        <h2 className="modal-item-group__title">{this.props.title}</h2>
+        <div className="modal-item-group__items">
+          {this.listItems}
+        </div>
+      </div>
+    )
+  }
+}
 
-class SavedItemList extends Component {
+ModalSavedItemGroup.propTypes = {
+  title: PropTypes.string.isRequired,
+  items: PropTypes.array.isRequired
+}
+
+export class SavedItemList extends Component {
   groupItems = items => {
     return items.length ? (items.map((item) =>
       <SavedItemGroup
@@ -114,4 +162,25 @@ SavedItemList.propTypes = {
   items: PropTypes.array.isRequired
 }
 
-export default SavedItemList;
+export class ModalSavedItemList extends Component {
+  groupItems = items => {
+    return items.length ? (items.map((item) =>
+      <ModalSavedItemGroup
+        key={item.title}
+        title={item.title}
+        items={item.items}
+        groupUri={item.uri} />
+    )) : (<p className="saved-items__empty">No saved items.</p>)
+  }
+  render() {
+    return (
+      <div className="modal-saved-items">
+        {this.groupItems(this.props.items)}
+      </div>
+    )
+  }
+}
+
+ModalSavedItemList.propTypes = {
+  items: PropTypes.array.isRequired
+}
