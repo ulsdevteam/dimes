@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import {Helmet} from "react-helmet";
-import Button from "./Button";
-import {TextInput} from "./Inputs";
+import Search from "./Search";
 import TileList from "./Tile";
 
 class PageSearch extends Component {
@@ -38,36 +37,18 @@ class PageSearch extends Component {
     // TODO: replace with search component
     // TODO: perform search without page reload
     return (
-      <div>
+      <React.Fragment>
         <Helmet>
           <title>Search Results</title>
         </Helmet>
         <div className="container search">
+          <Search className="search--results" />
           <main id="main" role="main">
             <h1 className="search__title">Search Results</h1>
-            <form role="search" action="/search" method="get">
-                <div className="search search--results">
-                  <div className="input-group__search">
-                    <TextInput
-                        className="label-hidden input__search"
-                        label="Enter a search term"
-                        id="query"
-                        size="60"
-                        type="search"
-                    />
-                    <Button
-                        className="btn--block btn--search"
-                        type="submit"
-                        aria-label="Submit search"
-                        iconBefore="search"
-                    />
-                </div>
-              </div>
-            </form>
             { this.state.inProgress ? (<p>Searching</p>) : (<TileList items={this.state.items} />)}
           </main>
         </div>
-      </div>
+      </React.Fragment>
     )
   }
 }

@@ -13,7 +13,7 @@ import PageNotFound from "./components/PageNotFound";
 function App() {
   // TODO: eliminate root div
   return (
-      <div>
+      <React.Fragment>
         <Header />
           <div className="wrapper">
             <Switch>
@@ -27,7 +27,7 @@ function App() {
             </Switch>
           </div>
         <Footer/>
-      </div>
+      </React.Fragment>
   );
 }
 

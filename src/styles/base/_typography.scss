@@ -315,3 +315,7 @@ small {
     float: none;
   }
 }
+
+.search__title {
+  @include page-title;
+}
