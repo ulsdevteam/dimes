@@ -17,11 +17,12 @@ class MyListModal extends Component {
     return (
       <Modal
         isOpen={this.props.isOpen}
+        onRequestClose={this.props.toggleModal}
         className="modal-content"
         overlayClassName="modal-overlay">
         <div className="modal-header">
           <h2 className="modal-header__title">{this.props.title}</h2>
-          <button className="modal-header__button" onClick={this.props.toggleModal}>
+          <button className="modal-header__button" aria-label="Close" onClick={this.props.toggleModal}>
             <MaterialIcon icon="close"/>
           </button>
         </div>
