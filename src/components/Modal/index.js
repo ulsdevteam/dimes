@@ -4,7 +4,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
 import Button from "../Button";
-import {TextInput, TextAreaInput} from "../Inputs";
+import {EmailInput, TextInput, TextAreaInput} from "../Inputs";
 import MaterialIcon from "../MaterialIcon";
 import {ModalSavedItemList} from "../SavedItem";
 import "./styles.scss"
@@ -76,7 +76,7 @@ export class EmailModal extends Component {
     }
   }
   componentDidMount() {
-    // TODO: what should we do if this request fails? 
+    // TODO: what should we do if this request fails?
     axios
       .post("http://request-broker/api/process-request/email", this.props.data)
       .then(res => { this.setState({ data: res.data}) })
@@ -117,11 +117,10 @@ export class EmailModal extends Component {
         submitError={this.props.submitError}
         inputs={
           <React.Fragment>
-            <TextInput
+            <EmailInput
               id="email"
               name="email"
               className="modal-form__input"
-              type="text"
               label="Email Address"
               required={true}
               value={this.state.email}

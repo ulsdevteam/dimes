@@ -73,6 +73,44 @@ DatePickerInput.defaultProps = {
   min: new Date()
 }
 
+
+export class EmailInput extends Component {
+  render()  {
+    return (
+      <div className={this.props.className}>
+        <label
+          htmlFor={this.props.id}>
+            {this.props.label}{this.props.required && " *"}
+        </label>
+        <input
+          type="email"
+          id={this.props.id}
+          name={this.props.id}
+          placeholder={this.props.placeholder}
+          minLength={this.props.minLength}
+          maxLength={this.props.maxLength}
+          size={this.props.size}
+          required={this.props.required}
+          onChange={this.props.handleChange}
+          value={this.props.value} />
+       </div>
+    )
+  }
+}
+
+EmailInput.propTypes = {
+  className: PropTypes.string,
+  handleChange: PropTypes.func,
+  label: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
+  minLength: PropTypes.number,
+  maxLength: PropTypes.number,
+  required: PropTypes.bool,
+  size: PropTypes.number,
+  value: PropTypes.string
+};
+
+
 export class RadioInput extends Component {
   render() {
     return (
