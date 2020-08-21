@@ -22,10 +22,10 @@ class Search extends Component {
             />
             <div className="select__search--wrapper">
               <SelectInput className="hide-label select__search" id="type" label="Choose a search category">
-              <SelectOption label="Everything" />
-              <SelectOption label="Collections" />
-              <SelectOption label="People" />
-              <SelectOption label="Organizations" />
+              <SelectOption label="Everything" value="" />
+              <SelectOption label="Collections" value="object" />
+              <SelectOption label="People" value="agent" />
+              <SelectOption label="Organizations" value="agent" />
               </SelectInput>
             </div>
             <Button
