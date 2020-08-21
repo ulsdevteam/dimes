@@ -37,13 +37,3 @@
 .mylist__title {
   margin-top: 40px;
 }
-
-.mylist__actions {
-  margin-top: 40px;
-  margin-bottom: 30px;
-  display: block;
-  float: right;
-  @media screen and (min-width: $break-lg) {
-    display: none;
-  }
-}
