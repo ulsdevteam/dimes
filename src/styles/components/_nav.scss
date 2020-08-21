@@ -3,10 +3,16 @@
 .nav {
   text-align: right;
   text-transform: uppercase;
-  @include grid-column(5);
+  @include grid-column(1);
+  margin-left: 0;
+  border-left: 1px solid $med-dark-gray;
+  height: 60px;
+  box-sizing: border-box;
   @media screen and (min-width: $break-md) {
     @include grid-column(6);
+    border: none;
     float: right;
+    padding-left: 0px;
   }
   @media screen and (min-width: $break-lg) {
     @include grid-column(4);
@@ -14,9 +20,18 @@
   }
 }
 
-.nav__list {margin: 0;}
+.nav__list {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  @media screen and (min-width: $break-lg) {
+    margin-right: 80px;
+    border-right: 1px solid $med-dark-gray;
+  }
+}
 .nav__item {
   display: inline-block;
+  border-left: 1px solid $med-dark-gray;
   &:hover {
     background-color: $deep-blue;
     transition: $transition-default
