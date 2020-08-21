@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import axios from "axios";
 import ReCAPTCHA from "react-google-recaptcha";
 import PropTypes from "prop-types";
-import Modal from 'react-modal';
+import Modal from "react-modal";
 import Button from "../Button";
 import {TextInput, TextAreaInput} from "../Inputs";
 import MaterialIcon from "../MaterialIcon";
@@ -11,6 +12,7 @@ import "./styles.scss"
 Modal.setAppElement("#root");
 
 class MyListModal extends Component {
+  // TODO: replace captcha key
   render() {
     return (
       <Modal
@@ -34,11 +36,12 @@ class MyListModal extends Component {
               </div>
               <div className="modal-form__captcha">
                 <ReCAPTCHA
-                  sitekey="Your client site key"
-                  onChange={this.handleCaptchaChange} />
+                  sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                  onChange={this.props.handleCaptchaChange} />
               </div>
               <div className="modal-form__buttons">
                 {this.props.buttons}
+                {this.props.submitError && <p className="modal-error">{this.props.submitError}</p>}
               </div>
             </form>
           </div>
@@ -67,21 +70,40 @@ export class EmailModal extends Component {
     this.state  = {
       "email": "",
       "subject":  "",
-      "message": ""
+      "message": "",
+      "submitDisabled": true,
+      "data": {},
     }
   }
+  componentDidMount() {
+    // TODO: what should we do if this request fails? 
+    axios
+      .post("http://request-broker/api/process-request/email", this.props.data)
+      .then(res => { this.setState({ data: res.data}) })
+      .catch(err => console.log(err))
+  }
   handleSubmit = event => {
-    // TODO: do something with this.state, which contains form data
     event.preventDefault();
-    this.props.toggleModal();
+    const data = Object.assign({}, this.state.data, {
+      "email": this.state.email,
+      "subject": this.state.subject,
+      "message": this.state.message
+    });
+    axios
+      .post("http://request-broker/api/deliver-request/email", data)
+      .then(res => { this.props.toggleModal(); })
+      .catch(err => {
+        let msg = err.response ? err.response : "An unknown error occurred."
+        this.props.handleError(msg, "email");
+      }
+    );
   }
   handleChange = event => {
     let name = event.target.name
     this.setState({ [name]: event.target.value});
   }
   handleCaptchaChange = value => {
-    // TODO: enable submit button
-    console.log(value)
+    this.setState({ submitDisabled: false })
   }
   render() {
     return (
@@ -92,6 +114,7 @@ export class EmailModal extends Component {
         contentLabel="Email List"
         list={this.props.list}
         handleCaptchaChange={this.handleCaptchaChange}
+        submitError={this.props.submitError}
         inputs={
           <React.Fragment>
             <TextInput
@@ -128,7 +151,8 @@ export class EmailModal extends Component {
               type="submit"
               value="submit"
               label="Send List"
-              onClick={this.handleSubmit} />
+              onClick={this.handleSubmit}
+              disabled={this.state.submitDisabled} />
             <Button
               className="btn--gray btn--sm"
               type="reset"
@@ -142,6 +166,8 @@ export class EmailModal extends Component {
 }
 
 EmailModal.propTypes = {
+  handleError: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
-  isOpen: PropTypes.bool.isRequired
+  isOpen: PropTypes.bool.isRequired,
+  list: PropTypes.array.isRequired,
 }

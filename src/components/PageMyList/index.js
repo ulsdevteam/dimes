@@ -69,7 +69,10 @@ class PageMyList extends Component {
     this.state = {
       "savedItems": [],
       "isLoading": true,
-      "emailModal": false
+      "email": {
+        "isOpen": false,
+        "error": ""
+      }
     }
   }
   componentDidMount() {
@@ -121,6 +124,9 @@ class PageMyList extends Component {
     }
     this.setState({isLoading: false})
   }
+  handleError = (msg, modal) => {
+    this.setState({ [modal]: {...this.state[modal], error: msg}})
+  }
   fetchFromUri(uri) {
     return axios
       .get(`http://localhost:8000${uri}`)
@@ -141,7 +147,7 @@ class PageMyList extends Component {
     this.resolveList(list);
   }
   toggleModal = (modal)  => {
-    this.setState({ [modal]: !this.state[modal] })
+    this.setState({ [modal]: {...this.state[modal], isOpen: !this.state[modal]["isOpen"], error: ""} })
   }
   render() {
     // TODO: add onClick handlers for actions
@@ -182,7 +188,7 @@ class PageMyList extends Component {
                     {
                       "label": "Email List",
                       "iconBefore": "email",
-                      "onClick": () => this.toggleModal("emailModal")
+                      "onClick": () => this.toggleModal("email")
                     },
                     {
                       "label": "Download as .csv",
@@ -199,7 +205,7 @@ class PageMyList extends Component {
             </div>
             <MyListExportActions
               removeAllItems={this.removeAllItems}
-              emailList={() => this.toggleModal("emailModal")}/>
+              emailList={() => this.toggleModal("email")}/>
             <SavedItemList
               items={this.state.savedItems}
               isLoading={this.state.isLoading}
@@ -208,9 +214,11 @@ class PageMyList extends Component {
           <MyListSidebar/>
         </div>
         <EmailModal
-          isOpen={this.state.emailModal}
-          toggleModal={() => this.toggleModal("emailModal")}
+          isOpen={this.state.email.isOpen}
+          toggleModal={() => this.toggleModal("email")}
           list={this.state.savedItems}
+          handleError={this.handleError}
+          submitError={this.state.email.error}
         />
       </React.Fragment>
     );
