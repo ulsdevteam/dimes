@@ -65,6 +65,16 @@
   }
 }
 
+.btn--navy {
+  background: $deep-navy;
+  color: $pure-white;
+  border: none;
+  &:hover {
+    background: $dark-blue;
+    color: $off-white;
+  }
+}
+
 .btn--orange {
   background: $burnt-orange;
   color: $pure-white;
