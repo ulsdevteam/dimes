@@ -135,7 +135,7 @@ export class SelectOption extends Component {
   render() {
     return (
       <option
-        value={this.props.value ? this.props.value : this.props.label.toLowerCase()}>
+        value={this.props.value}>
           {this.props.label}
       </option>
     )
@@ -143,7 +143,8 @@ export class SelectOption extends Component {
 }
 
 SelectOption.propTypes = {
-  label: PropTypes.string.isRequired
+  label: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired
 }
 
 export class TextAreaInput extends Component {
