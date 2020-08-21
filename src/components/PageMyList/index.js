@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import axios from "axios";
 import Button from "../Button";
-import Dropdown from "../Dropdown";
+import {MyListDropdown} from "../Dropdown";
 import {Helmet} from "react-helmet";
 import SavedItemList from "../SavedItem";
 import "./styles.scss";
@@ -147,47 +147,7 @@ class PageMyList extends Component {
           <main id="main" role="main">
             <div className="mylist__header">
               <h1 className="mylist__title">My List</h1>
-              <Dropdown
-                label="Actions"
-                iconBefore="settings"
-                className="mylist__actions"
-                buttonClassName="btn btn--orange btn--md"
-                itemClassName="dropdown__item--orange"
-                listClassName="dropdown__list--orange"
-                items={
-                  [
-                    {
-                      "label": "Schedule a Visit",
-                      "iconBefore": "account_balance",
-                      "onClick": null
-                    },
-                    {
-                      "label": "Request in Reading Room",
-                      "iconBefore": "local_library",
-                      "onClick": null
-                    },
-                    {
-                      "label": "Request Copies",
-                      "iconBefore": "content_copy",
-                      "onClick": null
-                    },
-                    {
-                      "label": "Email List",
-                      "iconBefore": "email",
-                      "onClick": null
-                    },
-                    {
-                      "label": "Download as .csv",
-                      "iconBefore": "get_app",
-                      "onClick": null
-                    },
-                    {
-                      "label": "Remove All Items",
-                      "iconBefore": "delete",
-                      "onClick": this.removeAllItems
-                    }
-                  ]
-                } />
+              <MyListDropdown removeAllItems={this.removeAllItems} />
             </div>
             <MyListExportActions removeAllItems={this.removeAllItems} />
             <SavedItemList
