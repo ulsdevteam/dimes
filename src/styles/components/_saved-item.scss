@@ -13,6 +13,14 @@
   padding: 20px 0px;
 }
 
+.modal-item-group__items {
+  list-style: none;
+  padding-left: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: $dark-gray;
+}
+
 .item-group__title {
   font-size: 20px;
   color: $dark-gray;
@@ -26,17 +34,16 @@
   @extend .item-group__title;
   font-size: 15px;
   margin: 20px 0px;
-
 }
 
 .saved-item {
   @include grid-column(12);
   margin-bottom: 40px;
   float: left;
+  position: relative;
 }
 
 .modal-saved-item {
-  @extend .saved-item;
   margin-bottom: 15px;
 }
 

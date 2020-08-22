@@ -55,18 +55,13 @@ class ModalSavedItem extends Component {
   // TODO: styling for checkbox
   render() {
     return (
-      <div className="modal-saved-item">
-        <div className="modal-saved-item__inputs">
+      <li className="modal-saved-item">
           <CheckBoxInput
-            className="checkbox--orange hide-label"
+            className="checkbox--orange"
             id={this.props.title}
             checked={true}
             label={this.props.title} />
-        </div>
-        <div className="modal-saved-item__item-description">
-          <h3 className="modal-saved-item__title">{this.props.title}</h3>
-        </div>
-      </div>
+      </li>
     )
   }
 }
@@ -95,7 +90,7 @@ class SavedItemGroup extends Component {
   render() {
     return (
       <div className="saved-items__item-group">
-        <h2 className="item-group__title">{this.props.title}</h2>
+        <h3 className="item-group__title">{this.props.title}</h3>
         <div className="item-group__items">
           {this.listItems}
         </div>
@@ -123,10 +118,10 @@ class ModalSavedItemGroup extends Component {
   render() {
     return (
       <div className="modal-saved-items__item-group">
-        <h2 className="modal-item-group__title">{this.props.title}</h2>
-        <div className="modal-item-group__items">
+        <h3 className="modal-item-group__title">{this.props.title}</h3>
+        <ul className="modal-item-group__items">
           {this.listItems}
-        </div>
+        </ul>
       </div>
     )
   }
