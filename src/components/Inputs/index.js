@@ -3,6 +3,18 @@ import PropTypes from "prop-types";
 import "./styles.scss";
 
 
+const InputLabel = ({id, label, required}) => (
+  <label htmlFor={id}>
+    {label}{required && " *"}
+  </label>)
+
+InputLabel.propTypes = {
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  required: PropTypes.bool
+}
+
+
 export const CheckBoxInput = (props) => (
   <div className={props.className}>
     <input
@@ -12,10 +24,7 @@ export const CheckBoxInput = (props) => (
       onChange={props.handleChange}
       defaultChecked={props.checked}
       required={props.required} />
-    <label
-      htmlFor={props.id}>
-        {props.label}{props.required && " *"}
-    </label>
+    <InputLabel {...props} />
   </div>
 )
 
@@ -34,10 +43,7 @@ CheckBoxInput.defaultProps = {
 
 export const DatePickerInput = (props) => (
   <div className={props.className}>
-    <label
-      htmlFor={props.id} >
-        {props.label}{props.required && " *"}
-    </label>
+    <InputLabel {...props} />
     <input
       type="date"
       id={props.id}
@@ -68,10 +74,7 @@ DatePickerInput.defaultProps = {
 
 export const EmailInput = (props) => (
   <div className={props.className}>
-    <label
-      htmlFor={props.id}>
-        {props.label}{props.required && " *"}
-    </label>
+    <InputLabel {...props} />
     <input
       type="email"
       id={props.id}
@@ -109,10 +112,7 @@ export const RadioInput = (props) => (
       onChange={props.handleChange}
       value={props.value}
       required={props.required} />
-    <label
-      htmlFor={props.id}>
-        {props.label}{props.required && " *"}
-    </label>
+    <InputLabel {...props} />
   </div>
 )
 
@@ -146,10 +146,7 @@ RadioGroup.propTypes = {
 
 export const SelectInput = (props) => (
   <div className={props.className} required={props.required}>
-    <label
-      htmlFor={props.id}>
-        {props.label}{props.required && " *"}
-    </label>
+    <InputLabel {...props} />
     <select
       name={props.id}
       id={props.id}
@@ -180,10 +177,7 @@ SelectOption.propTypes = {
 
 export const TextAreaInput = (props) => (
   <div className={props.className}>
-    <label
-      htmlFor={props.id}>
-        {props.label}{props.required && " *"}
-    </label>
+    <InputLabel {...props} />
     <textarea
       id={props.id}
       name={props.id}
@@ -214,10 +208,7 @@ TextAreaInput.defaultProps = {
 
 export const TextInput = (props) => (
   <div className={props.className}>
-    <label
-      htmlFor={props.id}>
-        {props.label}{props.required && " *"}
-    </label>
+    <InputLabel {...props} />
     <input
       type={props.type}
       id={props.id}
@@ -253,9 +244,7 @@ TextInput.defaultProps = {
 
 export const YearInput = (props) => (
   <div className={props.className} >
-    <label htmlFor={props.id} >
-        {props.label}{props.required && " *"}
-    </label>
+    <InputLabel {...props} />
     <input
       type="number"
       id={props.id}
