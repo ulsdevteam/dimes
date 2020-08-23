@@ -4,7 +4,7 @@ import Button from "../Button";
 import { CheckBoxInput } from "../Inputs";
 import "./styles.scss";
 
-const SavedItem  = (props) => (
+const SavedItem = (props) => (
 // TODO: styling for checkbox
 // TODO: onClick handlers for buttons
   <div className="saved-item">
@@ -17,7 +17,7 @@ const SavedItem  = (props) => (
     </div>
     <div className="saved-item__item-description">
       <h3 className="saved-item__title">{props.title}</h3>
-      {props.date !== title && <p className="saved-item__date">{props.date}</p>}
+      {props.date !== props.title && <p className="saved-item__date">{props.date}</p>}
       {props.description && <p className="saved-item__description">{props.description}</p>}
       {props.parent && <p className="saved-item__found-in">Found in: <a href={props.parentRef}>{props.parent}</a></p>}
       {props.lastRequested && <p className="saved-item__last-requested">Last requested on: {props.lastRequested}</p>}

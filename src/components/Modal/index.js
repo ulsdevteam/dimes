@@ -9,11 +9,10 @@ import MaterialIcon from "../MaterialIcon";
 import {ModalSavedItemList} from "../SavedItem";
 import "./styles.scss"
 
-Modal.setAppElement("#root");
-
 const MyListModal = (props) => (
   // TODO: replace captcha key
   <Modal
+    appElement={props.appElement ? props.appElement : Modal.setAppElement("#root")}
     isOpen={props.isOpen}
     onRequestClose={props.toggleModal}
     className="modal-content"
@@ -49,6 +48,7 @@ const MyListModal = (props) => (
 )
 
 MyListModal.propTypes = {
+  appElement: PropTypes.object,
   isOpen: PropTypes.bool.isRequired,
   toggleModal: PropTypes.func.isRequired,
   handleCaptchaChange: PropTypes.func.isRequired,
@@ -105,6 +105,7 @@ export class EmailModal extends Component {
   render() {
     return (
       <MyListModal
+        appElement={this.props.appElement}
         title="Email List"
         isOpen={this.props.isOpen}
         toggleModal={this.props.toggleModal}
@@ -162,6 +163,7 @@ export class EmailModal extends Component {
 }
 
 EmailModal.propTypes = {
+  appElement: PropTypes.object,
   handleError: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
