@@ -11,36 +11,36 @@ import "./styles.scss"
 
 Modal.setAppElement("#root");
 
-const MyListModal = ({ buttons, handleCaptchaChange, inputs, isOpen, list, submitError, title, toggleModal  }) => (
+const MyListModal = (props) => (
   // TODO: replace captcha key
   <Modal
-    isOpen={isOpen}
-    onRequestClose={toggleModal}
+    isOpen={props.isOpen}
+    onRequestClose={props.toggleModal}
     className="modal-content"
     overlayClassName="modal-overlay">
     <div className="modal-header">
-      <h2 className="modal-header__title">{title}</h2>
-      <button className="modal-header__button" aria-label="Close" onClick={toggleModal}>
+      <h2 className="modal-header__title">{props.title}</h2>
+      <button className="modal-header__button" aria-label="Close" onClick={props.toggleModal}>
         <MaterialIcon icon="close"/>
       </button>
     </div>
     <div className="modal-body">
       <div className="modal-list">
-        <ModalSavedItemList items={list} />
+        <ModalSavedItemList items={props.list} />
       </div>
       <div className="modal-form">
         <form>
           <div className="modal-form__input-group">
-            {inputs}
+            {props.inputs}
           </div>
           <div className="modal-form__captcha">
             <ReCAPTCHA
               sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-              onChange={handleCaptchaChange} />
+              onChange={props.handleCaptchaChange} />
           </div>
           <div className="modal-form__buttons">
-            {buttons}
-            {submitError && <p className="modal-error">{submitError}</p>}
+            {props.buttons}
+            {props.submitError && <p className="modal-error">{props.submitError}</p>}
           </div>
         </form>
       </div>

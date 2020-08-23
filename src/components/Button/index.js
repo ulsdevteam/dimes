@@ -4,16 +4,16 @@ import MaterialIcon from "../MaterialIcon";
 import "./styles.scss"
 
 
-const Button = ({ ariaLabel, ariaHasPopup, ariaExpanded, className, disabled, handleClick, iconAfter, iconBefore, label, type }) => (
+const Button = (props) => (
   <button
-    type={type}
-    className={`btn ${className}`}
-    onClick={handleClick}
-    aria-label={ariaLabel}
-    aria-haspopup={ariaHasPopup}
-    aria-expanded={ariaExpanded}
-    disabled={disabled} >
-      {iconBefore && <MaterialIcon icon={iconBefore} />} {label} {iconAfter && <MaterialIcon icon={iconAfter} />}
+    type={props.type}
+    className={`btn ${props.className}`}
+    onClick={props.handleClick}
+    aria-label={props.ariaLabel}
+    aria-haspopup={props.ariaHasPopup}
+    aria-expanded={props.ariaExpanded}
+    disabled={props.disabled} >
+      {props.iconBefore && <MaterialIcon icon={props.iconBefore} />} {props.label} {props.iconAfter && <MaterialIcon icon={props.iconAfter} />}
   </button>)
 
 Button.propTypes = {

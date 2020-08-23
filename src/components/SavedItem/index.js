@@ -4,25 +4,25 @@ import Button from "../Button";
 import { CheckBoxInput } from "../Inputs";
 import "./styles.scss";
 
-const SavedItem  = ({date, description, handleClick, lastRequested, online, parent, parentRef, title}) => (
+const SavedItem  = (props) => (
 // TODO: styling for checkbox
 // TODO: onClick handlers for buttons
   <div className="saved-item">
     <div className="saved-item__inputs">
       <CheckBoxInput
         className="checkbox--orange hide-label"
-        id={title}
+        id={props.title}
         checked={true}
-        label={title} />
+        label={props.title} />
     </div>
     <div className="saved-item__item-description">
-      <h3 className="saved-item__title">{title}</h3>
-      {date !== title && <p className="saved-item__date">{date}</p>}
-      {description && <p className="saved-item__description">{description}</p>}
-      {parent && <p className="saved-item__found-in">Found in: <a href={parentRef}>{parent}</a></p>}
-      {lastRequested && <p className="saved-item__last-requested">Last requested on: {lastRequested}</p>}
+      <h3 className="saved-item__title">{props.title}</h3>
+      {props.date !== title && <p className="saved-item__date">{props.date}</p>}
+      {props.description && <p className="saved-item__description">{props.description}</p>}
+      {props.parent && <p className="saved-item__found-in">Found in: <a href={props.parentRef}>{props.parent}</a></p>}
+      {props.lastRequested && <p className="saved-item__last-requested">Last requested on: {props.lastRequested}</p>}
       <div className="saved-item__buttons">
-        {online &&
+        {props.online &&
           <Button
             label="View Online"
             className="btn btn--blue btn--sm"
@@ -31,7 +31,7 @@ const SavedItem  = ({date, description, handleClick, lastRequested, online, pare
           label="Remove"
           className="btn btn--gray btn--sm"
           iconBefore="delete"
-          handlerClick={handleClick} />
+          handlerClick={props.handleClick} />
       </div>
     </div>
   </div>)

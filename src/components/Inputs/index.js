@@ -3,18 +3,18 @@ import PropTypes from "prop-types";
 import "./styles.scss";
 
 
-export const CheckBoxInput = ({ checked, className, handleChange, id, label, required}) => (
-  <div className={className}>
+export const CheckBoxInput = (props) => (
+  <div className={props.className}>
     <input
       type="checkbox"
-      id={id}
-      name={id}
-      onChange={handleChange}
-      defaultChecked={checked}
-      required={required} />
+      id={props.id}
+      name={props.id}
+      onChange={props.handleChange}
+      defaultChecked={props.checked}
+      required={props.required} />
     <label
-      htmlFor={id}>
-        {label}{required && " *"}
+      htmlFor={props.id}>
+        {props.label}{props.required && " *"}
     </label>
   </div>
 )
@@ -32,21 +32,21 @@ CheckBoxInput.defaultProps = {
   checked: true,
 }
 
-export const DatePickerInput = ({ className, handleChange, id, label, max, min, required }) => (
-  <div className={className}>
+export const DatePickerInput = (props) => (
+  <div className={props.className}>
     <label
-      htmlFor={id} >
-        {label}{required && " *"}
+      htmlFor={props.id} >
+        {props.label}{props.required && " *"}
     </label>
     <input
       type="date"
-      id={id}
-      max={max}
-      min={min}
-      name={id}
-      onChange={handleChange}
-      defaultValue={new Date()}
-      required={required} />
+      id={props.id}
+      max={props.max}
+      min={props.min}
+      name={props.id}
+      onChange={props.handleChange}
+      defaultValue={props.defaultValue ? props.defaultValue : new Date()}
+      required={props.required} />
   </div>
 )
 
@@ -66,51 +66,52 @@ DatePickerInput.defaultProps = {
 }
 
 
-export const EmailInput = ({ className, label, handleChange, id, maxLength, minLength, placeholder, required, size, value }) => (
-  <div className={className}>
+export const EmailInput = (props) => (
+  <div className={props.className}>
     <label
-      htmlFor={id}>
-        {label}{required && " *"}
+      htmlFor={props.id}>
+        {props.label}{props.required && " *"}
     </label>
     <input
       type="email"
-      id={id}
-      name={id}
-      placeholder={placeholder}
-      minLength={minLength}
-      maxLength={maxLength}
-      size={size}
-      required={required}
-      onChange={handleChange}
-      value={value} />
+      id={props.id}
+      name={props.id}
+      placeholder={props.placeholder}
+      minLength={props.minLength}
+      maxLength={props.maxLength}
+      size={props.size}
+      required={props.required}
+      onChange={props.handleChange}
+      value={props.value} />
    </div>
 )
 
 EmailInput.propTypes = {
   className: PropTypes.string,
   handleChange: PropTypes.func,
+  id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  placeholder: PropTypes.string,
-  minLength: PropTypes.number,
   maxLength: PropTypes.number,
+  minLength: PropTypes.number,
+  placeholder: PropTypes.string,
   required: PropTypes.bool,
   size: PropTypes.number,
   value: PropTypes.string
 };
 
 
-export const RadioInput = ({ className, groupName, label, handleChange, id, required, value }) => (
-  <div className={className}>
+export const RadioInput = (props) => (
+  <div className={props.className}>
     <input
       type="radio"
-      id={id}
-      name={groupName}
-      onChange={handleChange}
-      value={value}
-      required={required} />
+      id={props.id}
+      name={props.groupName}
+      onChange={props.handleChange}
+      value={props.value}
+      required={props.required} />
     <label
-      htmlFor={id}>
-        {label}{required && " *"}
+      htmlFor={props.id}>
+        {props.label}{props.required && " *"}
     </label>
   </div>
 )
@@ -118,40 +119,42 @@ export const RadioInput = ({ className, groupName, label, handleChange, id, requ
 RadioInput.propTypes = {
   className: PropTypes.string,
   groupName: PropTypes.string,
+  handleChange: PropTypes.func,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  handleChange: PropTypes.func,
-  required: PropTypes.bool
+  required: PropTypes.bool,
+  value: PropTypes.string
 };
 
-export const RadioGroup = ({ children, className, handleChange, label, required }) => (
+export const RadioGroup = (props) => (
   <fieldset
-    className={className}
-    required={required}
-    onChange={handleChange}
+    className={props.className}
+    required={props.required}
+    onChange={props.handleChange}
   >
-    <p>{label}{required && " *"}</p>
-    {children}
+    <p>{props.label}{props.required && " *"}</p>
+    {props.children}
   </fieldset>
 )
 
 RadioGroup.propTypes = {
   className: PropTypes.string,
+  handleChange: PropTypes.func,
   label: PropTypes.string.isRequired,
   required: PropTypes.bool
 };
 
-export const SelectInput =({ children, className, handleChange, label, id, required}) => (
-  <div className={className} required={required}>
+export const SelectInput = (props) => (
+  <div className={props.className} required={props.required}>
     <label
-      htmlFor={id}>
-        {label}{required && " *"}
+      htmlFor={props.id}>
+        {props.label}{props.required && " *"}
     </label>
     <select
-      name={id}
-      id={id}
-      onChange={handleChange}>
-        {children}
+      name={props.id}
+      id={props.id}
+      onChange={props.handleChange}>
+        {props.children}
     </select>
   </div>
 )
@@ -175,32 +178,32 @@ SelectOption.propTypes = {
   value: PropTypes.string
 }
 
-export const TextAreaInput = ({ className, cols, handleChange, id, label, required, rows, value }) => (
-  <div className={className}>
+export const TextAreaInput = (props) => (
+  <div className={props.className}>
     <label
-      htmlFor={id}>
-        {label}{required && " *"}
+      htmlFor={props.id}>
+        {props.label}{props.required && " *"}
     </label>
     <textarea
-      id={id}
-      name={id}
-      rows={rows}
-      cols={cols}
-      required={required}
-      value={value}
-      onChange={handleChange} >
+      id={props.id}
+      name={props.id}
+      rows={props.rows}
+      cols={props.cols}
+      required={props.required}
+      value={props.value}
+      onChange={props.handleChange} >
     </textarea>
   </div>
 )
 
 TextAreaInput.propTypes = {
   className: PropTypes.string,
+  cols: PropTypes.number,
   handleChange: PropTypes.func,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  rows: PropTypes.number,
-  cols: PropTypes.number,
   required: PropTypes.bool,
+  rows: PropTypes.number,
   value: PropTypes.string
 }
 
@@ -209,33 +212,34 @@ TextAreaInput.defaultProps = {
   cols: 33
 }
 
-export const TextInput = ({ className, handleChange, id, label, maxLength, minLength, placeholder, required, size, type, value }) => (
-  <div className={className}>
+export const TextInput = (props) => (
+  <div className={props.className}>
     <label
-      htmlFor={id}>
-        {label}{required && " *"}
+      htmlFor={props.id}>
+        {props.label}{props.required && " *"}
     </label>
     <input
-      type={type}
-      id={id}
-      name={id}
-      placeholder={placeholder}
-      minLength={minLength}
-      maxLength={maxLength}
-      size={size}
-      required={required}
-      onChange={handleChange}
-      value={value} />
+      type={props.type}
+      id={props.id}
+      name={props.id}
+      placeholder={props.placeholder}
+      minLength={props.minLength}
+      maxLength={props.maxLength}
+      size={props.size}
+      required={props.required}
+      onChange={props.handleChange}
+      value={props.value} />
    </div>
 )
 
 TextInput.propTypes = {
   className: PropTypes.string,
   handleChange: PropTypes.func,
+  id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  placeholder: PropTypes.string,
-  minLength: PropTypes.number,
   maxLength: PropTypes.number,
+  minLength: PropTypes.number,
+  placeholder: PropTypes.string,
   required: PropTypes.bool,
   size: PropTypes.number,
   type: PropTypes.oneOf(['text', 'search']),
@@ -247,20 +251,20 @@ TextInput.defaultProps = {
   size: 10
 }
 
-export const YearInput = ({ className, handleChange, id, label, max, min, required, value }) => (
-  <div className={className} >
-    <label htmlFor={id} >
-        {label}{required && " *"}
+export const YearInput = (props) => (
+  <div className={props.className} >
+    <label htmlFor={props.id} >
+        {props.label}{props.required && " *"}
     </label>
     <input
       type="number"
-      id={id}
-      max={max}
-      min={min}
-      name={id}
-      onChange={handleChange}
-      value={value}
-      required={required} />
+      id={props.id}
+      max={props.max}
+      min={props.min}
+      name={props.id}
+      onChange={props.handleChange}
+      value={props.value}
+      required={props.required} />
   </div>
 )
 
