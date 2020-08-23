@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 import Modal from "react-modal";
-import {SavedItemList} from '../../SavedItem';
+import {SavedItemList} from '..';
 
 import { items } from '../../../__fixtures__/resolvedList';
 

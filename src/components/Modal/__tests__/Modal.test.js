@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
-import {EmailModal} from '../../Modal';
+import {EmailModal} from '..';
 
 import { items } from '../../../__fixtures__/resolvedList';
 

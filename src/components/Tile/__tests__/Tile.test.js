@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
-import TileList from "../../Tile"
+import TileList from ".."
 
 
 const items = [

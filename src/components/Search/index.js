@@ -15,10 +15,10 @@ const Search = ({ className }) => (
           label="Enter a search term"
           id="query"
           placeholder="Search..."
-          size="60"
+          size={60}
           type="search"
         />
-        <div class="select__search--wrapper">
+        <div className="select__search--wrapper">
           <SelectInput className="hide-label select__search" id="type" label="Choose a search category">
           <SelectOption label="Everything" />
           <SelectOption label="Collections" />

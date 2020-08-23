@@ -1,8 +1,8 @@
 import React from 'react';
 import {render} from 'react-dom';
-import SocialIcons from '..';
+import Search from '..';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  render(<SocialIcons />, div);
+  render(<Search />, div);
 });
