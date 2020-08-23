@@ -1,17 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import MaterialIcon from "../MaterialIcon";
 import "./styles.scss";
 
-export class NavItem extends Component {
-  render() {
-    return (
-      <li className={`nav__item ${this.props.className}`}>
-        <a className={`nav__link ${this.props.className}`} href={this.props.href}>{this.props.label} {this.props.icon && <MaterialIcon icon={this.props.icon} />}</a>
-      </li>
-    )
-  }
-}
+export const NavItem  = ({ className, href, icon, label}) => (
+  <li className={`nav__item ${className}`}>
+    <a className={`nav__link ${className}`} href={href}>{label} {icon && <MaterialIcon icon={icon} />}</a>
+  </li>)
 
 NavItem.propTypes = {
   className: PropTypes.string,
@@ -20,17 +15,12 @@ NavItem.propTypes = {
   label: PropTypes.string.isRequired
 }
 
-export class Nav extends Component {
-  render() {
-    return (
-      <nav className={`nav ${this.props.className && this.props.className}`} aria-label={this.props.ariaLabel}>
-        <ul className="nav__list">
-          {this.props.children}
-        </ul>
-      </nav>
-    )
-  }
-}
+export const Nav = ({ ariaLabel, children, className}) => (
+  <nav className={`nav ${className && className}`} aria-label={ariaLabel}>
+    <ul className="nav__list">
+      {children}
+    </ul>
+  </nav>)
 
 Nav.propTypes = {
   className: PropTypes.string,

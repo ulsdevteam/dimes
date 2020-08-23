@@ -4,42 +4,37 @@ import Button from "../Button";
 import { CheckBoxInput } from "../Inputs";
 import "./styles.scss";
 
-class SavedItem extends Component {
-  // TODO: styling for checkbox
-  // TODO: onClick handlers for buttons
-  render() {
-    return (
-      <div className="saved-item">
-        <div className="saved-item__inputs">
-          <CheckBoxInput
-            className="checkbox--orange hide-label"
-            id={this.props.title}
-            checked={true}
-            label={this.props.title} />
-        </div>
-        <div className="saved-item__item-description">
-          <h3 className="saved-item__title">{this.props.title}</h3>
-          {this.props.date !== this.props.title && <p className="saved-item__date">{this.props.date}</p>}
-          {this.props.description && <p className="saved-item__description">{this.props.description}</p>}
-          {this.props.parent && <p className="saved-item__found-in">Found in: <a href={this.props.parentRef}>{this.props.parent}</a></p>}
-          {this.props.lastRequested && <p className="saved-item__last-requested">Last requested on: {this.props.lastRequested}</p>}
-          <div className="saved-item__buttons">
-            {this.props.online &&
-              <Button
-                label="View Online"
-                className="btn btn--blue btn--sm"
-                iconAfter="visibility" />}
-            <Button
-              label="Remove"
-              className="btn btn--gray btn--sm"
-              iconBefore="delete"
-              onClick={this.props.onClick} />
-          </div>
-        </div>
+const SavedItem  = ({date, description, handleClick, lastRequested, online, parent, parentRef, title}) => (
+// TODO: styling for checkbox
+// TODO: onClick handlers for buttons
+  <div className="saved-item">
+    <div className="saved-item__inputs">
+      <CheckBoxInput
+        className="checkbox--orange hide-label"
+        id={title}
+        checked={true}
+        label={title} />
+    </div>
+    <div className="saved-item__item-description">
+      <h3 className="saved-item__title">{title}</h3>
+      {date !== title && <p className="saved-item__date">{date}</p>}
+      {description && <p className="saved-item__description">{description}</p>}
+      {parent && <p className="saved-item__found-in">Found in: <a href={parentRef}>{parent}</a></p>}
+      {lastRequested && <p className="saved-item__last-requested">Last requested on: {lastRequested}</p>}
+      <div className="saved-item__buttons">
+        {online &&
+          <Button
+            label="View Online"
+            className="btn btn--blue btn--sm"
+            iconAfter="visibility" />}
+        <Button
+          label="Remove"
+          className="btn btn--gray btn--sm"
+          iconBefore="delete"
+          handlerClick={handleClick} />
       </div>
-    )
-  }
-}
+    </div>
+  </div>)
 
 SavedItem.propTypes = {
   title: PropTypes.string,
@@ -51,20 +46,16 @@ SavedItem.propTypes = {
   online: PropTypes.bool
 }
 
-class ModalSavedItem extends Component {
+const ModalSavedItem = ({ title }) => (
   // TODO: styling for checkbox
-  render() {
-    return (
-      <li className="modal-saved-item">
-          <CheckBoxInput
-            className="checkbox--orange"
-            id={this.props.title}
-            checked={true}
-            label={this.props.title} />
-      </li>
-    )
-  }
-}
+  <li className="modal-saved-item">
+      <CheckBoxInput
+        className="checkbox--orange"
+        id={title}
+        checked={true}
+        label={title} />
+  </li>
+)
 
 ModalSavedItem.propTypes = {
   title: PropTypes.string.isRequired
@@ -77,14 +68,8 @@ class SavedItemGroup extends Component {
     this.listItems = items.map((item, index) =>
       <SavedItem
         key={index}
-        title={item.title}
-        date={item.date}
-        description={item.description}
-        parent={item.parent}
-        parentRef={item.parentRef}
-        lastRequested={item.lastRequested}
-        online={item.online}
-        onClick={() => this.props.removeItem(this.props.groupUri, item.uri)} />
+        {...item}
+        handleClick={() => this.props.removeItem(this.props.groupUri, item.uri)} />
     );
   }
   render() {
@@ -111,8 +96,7 @@ class ModalSavedItemGroup extends Component {
     this.listItems = items.map((item, index) =>
       <ModalSavedItem
         key={index}
-        title={item.title}
-        uri={item.uri} />
+        {...item} />
     );
   }
   render() {
@@ -137,8 +121,7 @@ export class SavedItemList extends Component {
     return items.length ? (items.map((item) =>
       <SavedItemGroup
         key={item.title}
-        title={item.title}
-        items={item.items}
+        {...item}
         groupUri={item.uri}
         removeItem={this.props.removeItem} />
     )) : (<p className="saved-items__empty">No saved items.</p>)
@@ -162,8 +145,7 @@ export class ModalSavedItemList extends Component {
     return items.length ? (items.map((item) =>
       <ModalSavedItemGroup
         key={item.title}
-        title={item.title}
-        items={item.items}
+        {...item}
         groupUri={item.uri} />
     )) : (<p className="saved-items__empty">No saved items.</p>)
   }

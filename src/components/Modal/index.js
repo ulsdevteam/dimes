@@ -11,46 +11,42 @@ import "./styles.scss"
 
 Modal.setAppElement("#root");
 
-class MyListModal extends Component {
+const MyListModal = ({ buttons, handleCaptchaChange, inputs, isOpen, list, submitError, title, toggleModal  }) => (
   // TODO: replace captcha key
-  render() {
-    return (
-      <Modal
-        isOpen={this.props.isOpen}
-        onRequestClose={this.props.toggleModal}
-        className="modal-content"
-        overlayClassName="modal-overlay">
-        <div className="modal-header">
-          <h2 className="modal-header__title">{this.props.title}</h2>
-          <button className="modal-header__button" aria-label="Close" onClick={this.props.toggleModal}>
-            <MaterialIcon icon="close"/>
-          </button>
-        </div>
-        <div className="modal-body">
-          <div className="modal-list">
-            <ModalSavedItemList items={this.props.list} />
+  <Modal
+    isOpen={isOpen}
+    onRequestClose={toggleModal}
+    className="modal-content"
+    overlayClassName="modal-overlay">
+    <div className="modal-header">
+      <h2 className="modal-header__title">{title}</h2>
+      <button className="modal-header__button" aria-label="Close" onClick={toggleModal}>
+        <MaterialIcon icon="close"/>
+      </button>
+    </div>
+    <div className="modal-body">
+      <div className="modal-list">
+        <ModalSavedItemList items={list} />
+      </div>
+      <div className="modal-form">
+        <form>
+          <div className="modal-form__input-group">
+            {inputs}
           </div>
-          <div className="modal-form">
-            <form>
-              <div className="modal-form__input-group">
-                {this.props.inputs}
-              </div>
-              <div className="modal-form__captcha">
-                <ReCAPTCHA
-                  sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-                  onChange={this.props.handleCaptchaChange} />
-              </div>
-              <div className="modal-form__buttons">
-                {this.props.buttons}
-                {this.props.submitError && <p className="modal-error">{this.props.submitError}</p>}
-              </div>
-            </form>
+          <div className="modal-form__captcha">
+            <ReCAPTCHA
+              sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+              onChange={handleCaptchaChange} />
           </div>
-        </div>
-      </Modal>
-    )
-  }
-}
+          <div className="modal-form__buttons">
+            {buttons}
+            {submitError && <p className="modal-error">{submitError}</p>}
+          </div>
+        </form>
+      </div>
+    </div>
+  </Modal>
+)
 
 MyListModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
@@ -151,13 +147,13 @@ export class EmailModal extends Component {
               type="submit"
               value="submit"
               label="Send List"
-              onClick={this.handleSubmit}
+              handleClick={this.handleSubmit}
               disabled={this.state.submitDisabled} />
             <Button
               className="btn--gray btn--sm"
               type="reset"
               label="Cancel"
-              onClick={this.props.toggleModal} />
+              handleClick={this.props.toggleModal} />
           </React.Fragment>
         }
       />

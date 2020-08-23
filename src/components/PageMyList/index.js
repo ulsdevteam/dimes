@@ -8,60 +8,47 @@ import {EmailModal} from "../Modal";
 import {SavedItemList} from "../SavedItem";
 import "./styles.scss";
 
-class MyListExportActions extends Component {
-  // TODO: add onClick actions
-  render() {
-    return (
-      <div className="mylist__export-actions">
-        <Button
-          className="btn--orange btn--sm"
-          label="Email List"
-          iconBefore="email"
-          onClick={this.props.emailList} />
-        <Button
-          className="btn--orange btn--sm"
-          label="Download as .CSV"
-          iconBefore="get_app" />
-        <Button
-          className="btn--gray btn--sm"
-          label="Remove All Items"
-          iconBefore="delete"
-          onClick={() => this.props.removeAllItems()} />
-      </div>
-    )
-  }
-}
+const MyListExportActions = ({emailList, removeAllItems}) => (
+  <div className="mylist__export-actions">
+    <Button
+      className="btn--orange btn--sm"
+      label="Email List"
+      iconBefore="email"
+      handleClick={emailList} />
+    <Button
+      className="btn--orange btn--sm"
+      label="Download as .CSV"
+      iconBefore="get_app" />
+    <Button
+      className="btn--gray btn--sm"
+      label="Remove All Items"
+      iconBefore="delete"
+      handleClick={() => removeAllItems()} />
+  </div>)
 
 MyListExportActions.propTypes = {
   emailList: PropTypes.func.isRequired,
   removeAllItems: PropTypes.func.isRequired
 }
 
-class MyListSidebar extends Component  {
-  // TODO: add onClick actions
-  render() {
-    return (
-      <aside className="mylist__sidebar">
-        <Button
-          className="btn--orange btn--lg"
-          label="Schedule a Visit"
-          iconBefore="account_balance" />
-        <Button
-          className="btn--orange btn--lg"
-          label="Request in Reading Room"
-          iconBefore="local_library" />
-        <Button
-          className="btn--orange btn--lg"
-          label="Request Copies"
-          iconBefore="content_copy" />
-      </aside>
-    )
-  }
-}
+const MyListSidebar = () => (
+// TODO: add onClick actions
+  <aside className="mylist__sidebar">
+    <Button
+      className="btn--orange btn--lg"
+      label="Schedule a Visit"
+      iconBefore="account_balance" />
+    <Button
+      className="btn--orange btn--lg"
+      label="Request in Reading Room"
+      iconBefore="local_library" />
+    <Button
+      className="btn--orange btn--lg"
+      label="Request Copies"
+      iconBefore="content_copy" />
+  </aside>)
 
-MyListSidebar.propTypes = {
-
-}
+MyListSidebar.propTypes = {}
 
 class PageMyList extends Component {
   constructor(props) {
@@ -214,11 +201,10 @@ class PageMyList extends Component {
           <MyListSidebar/>
         </div>
         <EmailModal
-          isOpen={this.state.email.isOpen}
+          {...this.state.email}
           toggleModal={() => this.toggleModal("email")}
           list={this.state.savedItems}
           handleError={this.handleError}
-          submitError={this.state.email.error}
         />
       </React.Fragment>
     );

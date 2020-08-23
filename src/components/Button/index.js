@@ -4,27 +4,22 @@ import MaterialIcon from "../MaterialIcon";
 import "./styles.scss"
 
 
-class Button extends Component {
-  render() {
-    return (
-      <button
-        type={this.props.type}
-        className={`btn ${this.props.className}`}
-        onClick={this.props.onClick}
-        aria-label={this.props.ariaLabel}
-        aria-haspopup={this.props.ariaHasPopup}
-        aria-expanded={this.props.ariaExpanded}
-        disabled={this.props.disabled} >
-          {this.props.iconBefore && <MaterialIcon icon={this.props.iconBefore} />} {this.props.label} {this.props.iconAfter && <MaterialIcon icon={this.props.iconAfter} />}
-      </button>
-    )
-  }
-}
+const Button = ({ ariaLabel, ariaHasPopup, ariaExpanded, className, disabled, handleClick, iconAfter, iconBefore, label, type }) => (
+  <button
+    type={type}
+    className={`btn ${className}`}
+    onClick={handleClick}
+    aria-label={ariaLabel}
+    aria-haspopup={ariaHasPopup}
+    aria-expanded={ariaExpanded}
+    disabled={disabled} >
+      {iconBefore && <MaterialIcon icon={iconBefore} />} {label} {iconAfter && <MaterialIcon icon={iconAfter} />}
+  </button>)
 
 Button.propTypes = {
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
   className: PropTypes.string,
-  onClick: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
   ariaLabel: PropTypes.string,
   iconAfter: PropTypes.string,
   iconBefore: PropTypes.string,

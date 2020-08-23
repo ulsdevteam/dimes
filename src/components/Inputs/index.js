@@ -3,25 +3,21 @@ import PropTypes from "prop-types";
 import "./styles.scss";
 
 
-export class CheckBoxInput extends Component {
-  render() {
-    return (
-      <div className={this.props.className}>
-        <input
-          type="checkbox"
-          id={this.props.id}
-          name={this.props.id}
-          onChange={this.props.handleChange}
-          defaultChecked={this.props.checked}
-          required={this.props.required} />
-        <label
-          htmlFor={this.props.id}>
-            {this.props.label}{this.props.required && " *"}
-        </label>
-      </div>
-    )
-  }
-}
+export const CheckBoxInput = ({ checked, className, handleChange, id, label, required}) => (
+  <div className={className}>
+    <input
+      type="checkbox"
+      id={id}
+      name={id}
+      onChange={handleChange}
+      defaultChecked={checked}
+      required={required} />
+    <label
+      htmlFor={id}>
+        {label}{required && " *"}
+    </label>
+  </div>
+)
 
 CheckBoxInput.propTypes = {
   checked: PropTypes.bool.isRequired,
@@ -36,27 +32,23 @@ CheckBoxInput.defaultProps = {
   checked: true,
 }
 
-export class DatePickerInput extends Component {
-  render() {
-    return (
-      <div className={this.props.className}>
-        <label
-          htmlFor={this.props.id} >
-            {this.props.label}{this.props.required && " *"}
-        </label>
-        <input
-          type="date"
-          id={this.props.id}
-          max={this.props.max}
-          min={this.props.min}
-          name={this.props.id}
-          onChange={this.props.handleChange}
-          defaultValue={this.currentDay}
-          required={this.props.required} />
-      </div>
-    )
-  }
-}
+export const DatePickerInput = ({ className, handleChange, id, label, max, min, required }) => (
+  <div className={className}>
+    <label
+      htmlFor={id} >
+        {label}{required && " *"}
+    </label>
+    <input
+      type="date"
+      id={id}
+      max={max}
+      min={min}
+      name={id}
+      onChange={handleChange}
+      defaultValue={new Date()}
+      required={required} />
+  </div>
+)
 
 DatePickerInput.propTypes = {
   className: PropTypes.string,
@@ -74,29 +66,25 @@ DatePickerInput.defaultProps = {
 }
 
 
-export class EmailInput extends Component {
-  render()  {
-    return (
-      <div className={this.props.className}>
-        <label
-          htmlFor={this.props.id}>
-            {this.props.label}{this.props.required && " *"}
-        </label>
-        <input
-          type="email"
-          id={this.props.id}
-          name={this.props.id}
-          placeholder={this.props.placeholder}
-          minLength={this.props.minLength}
-          maxLength={this.props.maxLength}
-          size={this.props.size}
-          required={this.props.required}
-          onChange={this.props.handleChange}
-          value={this.props.value} />
-       </div>
-    )
-  }
-}
+export const EmailInput = ({ className, label, handleChange, id, maxLength, minLength, placeholder, required, size, value }) => (
+  <div className={className}>
+    <label
+      htmlFor={id}>
+        {label}{required && " *"}
+    </label>
+    <input
+      type="email"
+      id={id}
+      name={id}
+      placeholder={placeholder}
+      minLength={minLength}
+      maxLength={maxLength}
+      size={size}
+      required={required}
+      onChange={handleChange}
+      value={value} />
+   </div>
+)
 
 EmailInput.propTypes = {
   className: PropTypes.string,
@@ -111,25 +99,21 @@ EmailInput.propTypes = {
 };
 
 
-export class RadioInput extends Component {
-  render() {
-    return (
-      <div className={this.props.className}>
-        <input
-          type="radio"
-          id={this.props.id}
-          name={this.props.groupName}
-          onChange={this.props.handleChange}
-          value={this.props.value}
-          required={this.props.required} />
-        <label
-          htmlFor={this.props.id}>
-            {this.props.label}{this.props.required && " *"}
-        </label>
-      </div>
-    )
-  }
-}
+export const RadioInput = ({ className, groupName, label, handleChange, id, required, value }) => (
+  <div className={className}>
+    <input
+      type="radio"
+      id={id}
+      name={groupName}
+      onChange={handleChange}
+      value={value}
+      required={required} />
+    <label
+      htmlFor={id}>
+        {label}{required && " *"}
+    </label>
+  </div>
+)
 
 RadioInput.propTypes = {
   className: PropTypes.string,
@@ -140,20 +124,16 @@ RadioInput.propTypes = {
   required: PropTypes.bool
 };
 
-export class RadioGroup extends Component {
-  render() {
-    return (
-      <fieldset
-        className={this.props.className}
-        required={this.props.required}
-        onChange={this.props.onChange}
-      >
-        <p>{this.props.label}{this.props.required && " *"}</p>
-        {this.props.children}
-      </fieldset>
-    )
-  }
-}
+export const RadioGroup = ({ children, className, handleChange, label, required }) => (
+  <fieldset
+    className={className}
+    required={required}
+    onChange={handleChange}
+  >
+    <p>{label}{required && " *"}</p>
+    {children}
+  </fieldset>
+)
 
 RadioGroup.propTypes = {
   className: PropTypes.string,
@@ -161,24 +141,20 @@ RadioGroup.propTypes = {
   required: PropTypes.bool
 };
 
-export class SelectInput extends Component {
-  render()  {
-    return (
-      <div className={this.props.className} required={this.props.required}>
-        <label
-          htmlFor={this.props.id}>
-            {this.props.label}{this.props.required && " *"}
-        </label>
-        <select
-          name={this.props.id}
-          id={this.props.id}
-          onChange={this.props.handleChange}>
-            {this.props.children}
-        </select>
-      </div>
-    )
-  }
-}
+export const SelectInput =({ children, className, handleChange, label, id, required}) => (
+  <div className={className} required={required}>
+    <label
+      htmlFor={id}>
+        {label}{required && " *"}
+    </label>
+    <select
+      name={id}
+      id={id}
+      onChange={handleChange}>
+        {children}
+    </select>
+  </div>
+)
 
 SelectInput.propTypes = {
   className: PropTypes.string,
@@ -188,43 +164,34 @@ SelectInput.propTypes = {
   required: PropTypes.bool
 }
 
-export class SelectOption extends Component {
-  render() {
-    return (
-      <option
-        value={this.props.value ? this.props.value : this.props.label.toLowerCase()}>
-          {this.props.label}
-      </option>
-    )
-  }
-}
+export const SelectOption = ({ label, value }) => (
+  <option value={value ? value : label.toLowerCase()}>
+    {label}
+  </option>
+)
 
 SelectOption.propTypes = {
   label: PropTypes.string.isRequired,
   value: PropTypes.string
 }
 
-export class TextAreaInput extends Component {
-  render()  {
-    return (
-      <div className={this.props.className}>
-        <label
-          htmlFor={this.props.id}>
-            {this.props.label}{this.props.required && " *"}
-        </label>
-        <textarea
-          id={this.props.id}
-          name={this.props.id}
-          rows={this.props.rows}
-          cols={this.props.cols}
-          required={this.props.required}
-          value={this.props.value}
-          onChange={this.props.handleChange} >
-        </textarea>
-      </div>
-    )
-  }
-}
+export const TextAreaInput = ({ className, cols, handleChange, id, label, required, rows, value }) => (
+  <div className={className}>
+    <label
+      htmlFor={id}>
+        {label}{required && " *"}
+    </label>
+    <textarea
+      id={id}
+      name={id}
+      rows={rows}
+      cols={cols}
+      required={required}
+      value={value}
+      onChange={handleChange} >
+    </textarea>
+  </div>
+)
 
 TextAreaInput.propTypes = {
   className: PropTypes.string,
@@ -242,29 +209,25 @@ TextAreaInput.defaultProps = {
   cols: 33
 }
 
-export class TextInput extends Component {
-  render()  {
-    return (
-      <div className={this.props.className}>
-        <label
-          htmlFor={this.props.id}>
-            {this.props.label}{this.props.required && " *"}
-        </label>
-        <input
-          type={this.props.type}
-          id={this.props.id}
-          name={this.props.id}
-          placeholder={this.props.placeholder}
-          minLength={this.props.minLength}
-          maxLength={this.props.maxLength}
-          size={this.props.size}
-          required={this.props.required}
-          onChange={this.props.handleChange}
-          value={this.props.value} />
-       </div>
-    )
-  }
-}
+export const TextInput = ({ className, handleChange, id, label, maxLength, minLength, placeholder, required, size, type, value }) => (
+  <div className={className}>
+    <label
+      htmlFor={id}>
+        {label}{required && " *"}
+    </label>
+    <input
+      type={type}
+      id={id}
+      name={id}
+      placeholder={placeholder}
+      minLength={minLength}
+      maxLength={maxLength}
+      size={size}
+      required={required}
+      onChange={handleChange}
+      value={value} />
+   </div>
+)
 
 TextInput.propTypes = {
   className: PropTypes.string,
@@ -284,27 +247,22 @@ TextInput.defaultProps = {
   size: 10
 }
 
-export class YearInput extends Component {
-  render() {
-    return (
-      <div className={this.props.className} >
-        <label
-          htmlFor={this.props.id}>
-            {this.props.label}{this.props.required && " *"}
-        </label>
-        <input
-          type="number"
-          id={this.props.id}
-          max={this.currentYear}
-          min={this.props.min}
-          name={this.props.id}
-          onChange={this.props.handleChange}
-          value={this.props.value}
-          required={this.props.required} />
-      </div>
-    )
-  }
-}
+export const YearInput = ({ className, handleChange, id, label, max, min, required, value }) => (
+  <div className={className} >
+    <label htmlFor={id} >
+        {label}{required && " *"}
+    </label>
+    <input
+      type="number"
+      id={id}
+      max={max}
+      min={min}
+      name={id}
+      onChange={handleChange}
+      value={value}
+      required={required} />
+  </div>
+)
 
 YearInput.propTypes = {
   className: PropTypes.string,
