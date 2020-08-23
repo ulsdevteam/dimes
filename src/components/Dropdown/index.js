@@ -1,10 +1,10 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import useDropdownMenu from 'react-accessible-dropdown-menu-hook';
 import MaterialIcon from "../MaterialIcon";
 import "../Button/styles.scss";
 import "./styles.scss";
 
-const Dropdown = props => {
+const Dropdown = (props) => {
   const [buttonClassName] = useState(props.buttonClassName);
   const [className] = useState(props.className);
   const [iconBefore] = useState(props.iconBefore);
@@ -20,7 +20,7 @@ const Dropdown = props => {
       key={idx}
       id={`menu-item-${idx}`}
       className={`btn ${itemClassName}`}
-      onClick={item.onClick}
+      onClick={item.handleClick}
       href={item.href}
       {...itemProps[idx]}>{item.iconBefore && <MaterialIcon icon={item.iconBefore} />}{item.label}{item.iconAfter && <MaterialIcon icon={item.iconAfter} />}</a>
   );
@@ -41,78 +41,70 @@ const Dropdown = props => {
   )
 }
 
-export class MyListDropdown extends Component {
-  render() {
-    return (
-      <Dropdown
-        label="Actions"
-        iconBefore="settings"
-        className="mylist__actions"
-        buttonClassName="btn btn--orange btn--md"
-        itemClassName="btn--orange btn--dropdown dropdown__item--orange"
-        listClassName="dropdown__list--orange"
-        items={
-          [
-            {
-              "label": "Schedule a Visit",
-              "iconBefore": "account_balance",
-              "onClick": null
-            },
-            {
-              "label": "Request in Reading Room",
-              "iconBefore": "local_library",
-              "onClick": null
-            },
-            {
-              "label": "Request Copies",
-              "iconBefore": "content_copy",
-              "onClick": null
-            },
-            {
-              "label": "Email List",
-              "iconBefore": "email",
-              "onClick": null
-            },
-            {
-              "label": "Download as .csv",
-              "iconBefore": "get_app",
-              "onClick": null
-            },
-            {
-              "label": "Remove All Items",
-              "iconBefore": "delete",
-              "onClick": this.props.removeAllItems
-            }
-          ]
-        } />
-    )
-  }
-}
+export const MyListDropdown = ({ removeAllItems }) => (
+  <Dropdown
+    label="Actions"
+    iconBefore="settings"
+    className="mylist__actions"
+    buttonClassName="btn btn--orange btn--md"
+    itemClassName="btn--orange btn--dropdown dropdown__item--orange"
+    listClassName="dropdown__list--orange"
+    items={
+      [
+        {
+          "label": "Schedule a Visit",
+          "iconBefore": "account_balance",
+          "handleClick": null
+        },
+        {
+          "label": "Request in Reading Room",
+          "iconBefore": "local_library",
+          "handleClick": null
+        },
+        {
+          "label": "Request Copies",
+          "iconBefore": "content_copy",
+          "handleClick": null
+        },
+        {
+          "label": "Email List",
+          "iconBefore": "email",
+          "handleClick": null
+        },
+        {
+          "label": "Download as .csv",
+          "iconBefore": "get_app",
+          "handleClick": null
+        },
+        {
+          "label": "Remove All Items",
+          "iconBefore": "delete",
+          "handleClick": removeAllItems
+        }
+      ]
+    } />
+  )
 
-export class NavDropdown extends Component {
-  render() {
-    return (
-      <Dropdown
-        iconBefore="menu"
-        iconBeforeOpen="close"
-        className="nav-mobile hide-on-md-up"
-        buttonClassName="btn nav-mobile__btn"
-        itemClassName="btn--navy btn--mobile-dropdown dropdown__item--navy"
-        listClassName="dropdown__list--mobile dropdown__list--navy"
-        items={
-          [
-            {
-              "label": "Sign in to RACcess",
-              "iconAfter": "east",
-              "onClick": null
-            },
-            {
-              "label": "My List",
-              "iconAfter": "east",
-              "onClick": null
-            }
-          ]
-        } />
-    )
-  }
-}
+export const NavDropdown = () => (
+  <Dropdown
+    iconBefore="menu"
+    iconBeforeOpen="close"
+    className="nav-mobile hide-on-md-up"
+    buttonClassName="btn nav-mobile__btn"
+    itemClassName="btn--navy btn--mobile-dropdown dropdown__item--navy"
+    listClassName="dropdown__list--mobile dropdown__list--navy"
+    items={
+      [
+        {
+          "label": "Sign in to RACcess",
+          "iconAfter": "east",
+          "handleClick": null
+        },
+        {
+          "label": "My List",
+          "iconAfter": "east",
+          "handleClick": null
+        }
+      ]
+    } />
+)
