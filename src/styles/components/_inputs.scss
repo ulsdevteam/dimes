@@ -25,6 +25,10 @@ input::-ms-input-placeholder { /*Edge - only work on some properties */
   @include placeholder-text;
 }
 
+[type=checkbox] {
+  margin-right: 5px;
+}
+
 select {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -34,6 +38,10 @@ select {
 
 select::-ms-expand {
   display: none; /* for IE 11 */
+}
+
+label {
+  @include input-text;
 }
 
 .hide-label label {

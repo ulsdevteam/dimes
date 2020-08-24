@@ -2,16 +2,11 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "./styles.scss"
 
-class AgentAttribute extends Component {
-  render() {
-    return (
-      <div className={this.props.note ? "agent-attribute--full-width" : "agent-attribute"}>
-        <p className="agent-attribute__label">{this.props.label}</p>
-        <p className="agent-attribute__value">{this.props.value}</p>
-      </div>
-    )
-  }
-}
+const AgentAttribute = ({ label, note, value }) => (
+  <div className={note ? "agent-attribute--full-width" : "agent-attribute"}>
+    <p className="agent-attribute__label">{label}</p>
+    <p className="agent-attribute__value">{value}</p>
+  </div>)
 
 class AgentAttributeList extends Component {
   constructor(props) {

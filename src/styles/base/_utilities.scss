@@ -24,3 +24,10 @@ $transition-default: all 0.2s ease;
 .flex {
   display: flex;
 }
+
+@mixin show-in-lg {
+  display: none;
+  @media screen and (min-width: $break-lg) {
+    display: block;
+  }
+}

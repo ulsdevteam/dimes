@@ -4,68 +4,62 @@ import axios from "axios";
 import Button from "../Button";
 import Dropdown from "../Dropdown";
 import {Helmet} from "react-helmet";
-import SavedItemList from "../SavedItem";
+import {EmailModal} from "../Modal";
+import {SavedItemList} from "../SavedItem";
 import "./styles.scss";
 
-class MyListExportActions extends Component {
-  // TODO: add onClick actions
-  render() {
-    return (
-      <div className="mylist__export-actions">
-        <Button
-          className="btn--orange btn--sm"
-          label="Email List"
-          iconBefore="email" />
-        <Button
-          className="btn--orange btn--sm"
-          label="Download as .CSV"
-          iconBefore="get_app" />
-        <Button
-          className="btn--gray btn--sm"
-          label="Remove All Items"
-          iconBefore="delete"
-          onClick={() => this.props.removeAllItems()} />
-      </div>
-    )
-  }
-}
+const MyListExportActions = ({emailList, removeAllItems}) => (
+  <div className="mylist__export-actions">
+    <Button
+      className="btn--orange btn--sm"
+      label="Email List"
+      iconBefore="email"
+      handleClick={emailList} />
+    <Button
+      className="btn--orange btn--sm"
+      label="Download as .CSV"
+      iconBefore="get_app" />
+    <Button
+      className="btn--gray btn--sm"
+      label="Remove All Items"
+      iconBefore="delete"
+      handleClick={() => removeAllItems()} />
+  </div>)
 
 MyListExportActions.propTypes = {
+  emailList: PropTypes.func.isRequired,
   removeAllItems: PropTypes.func.isRequired
 }
 
-class MyListSidebar extends Component  {
-  // TODO: add onClick actions
-  render() {
-    return (
-      <aside className="mylist__sidebar">
-        <Button
-          className="btn--orange btn--lg"
-          label="Schedule a Visit"
-          iconBefore="account_balance" />
-        <Button
-          className="btn--orange btn--lg"
-          label="Request in Reading Room"
-          iconBefore="local_library" />
-        <Button
-          className="btn--orange btn--lg"
-          label="Request Copies"
-          iconBefore="content_copy" />
-      </aside>
-    )
-  }
-}
+const MyListSidebar = () => (
+// TODO: add onClick actions
+  <aside className="mylist__sidebar">
+    <Button
+      className="btn--orange btn--lg"
+      label="Schedule a Visit"
+      iconBefore="account_balance" />
+    <Button
+      className="btn--orange btn--lg"
+      label="Request in Reading Room"
+      iconBefore="local_library" />
+    <Button
+      className="btn--orange btn--lg"
+      label="Request Copies"
+      iconBefore="content_copy" />
+  </aside>)
 
-MyListSidebar.propTypes = {
-
-}
+MyListSidebar.propTypes = {}
 
 class PageMyList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       "savedItems": [],
-      "isLoading": true
+      "isLoading": true,
+      "email": {
+        "isOpen": false,
+        "error": ""
+      }
     }
   }
   componentDidMount() {
@@ -117,6 +111,9 @@ class PageMyList extends Component {
     }
     this.setState({isLoading: false})
   }
+  handleError = (msg, modal) => {
+    this.setState({ [modal]: {...this.state[modal], error: msg}})
+  }
   fetchFromUri(uri) {
     return axios
       .get(`http://localhost:8000${uri}`)
@@ -136,8 +133,12 @@ class PageMyList extends Component {
     this.props.saveMyList(list);
     this.resolveList(list);
   }
+  toggleModal = (modal)  => {
+    this.setState({ [modal]: {...this.state[modal], isOpen: !this.state[modal]["isOpen"], error: ""} })
+  }
   render() {
     // TODO: add onClick handlers for actions
+    // TODO: move dropdown to main Dropdown file, create MyListDropdown component
     return (
       <React.Fragment>
         <Helmet>
@@ -174,7 +175,7 @@ class PageMyList extends Component {
                     {
                       "label": "Email List",
                       "iconBefore": "email",
-                      "onClick": null
+                      "onClick": () => this.toggleModal("email")
                     },
                     {
                       "label": "Download as .csv",
@@ -189,7 +190,9 @@ class PageMyList extends Component {
                   ]
                 } />
             </div>
-            <MyListExportActions removeAllItems={this.removeAllItems} />
+            <MyListExportActions
+              removeAllItems={this.removeAllItems}
+              emailList={() => this.toggleModal("email")}/>
             <SavedItemList
               items={this.state.savedItems}
               isLoading={this.state.isLoading}
@@ -197,6 +200,12 @@ class PageMyList extends Component {
           </main>
           <MyListSidebar/>
         </div>
+        <EmailModal
+          {...this.state.email}
+          toggleModal={() => this.toggleModal("email")}
+          list={this.state.savedItems}
+          handleError={this.handleError}
+        />
       </React.Fragment>
     );
   }

@@ -38,7 +38,7 @@ class PageRecord extends Component {
         label="Add example data"
         iconAfter="add_circle_outline"
         className="btn--gray btn--sm"
-        onClick={() => this.saveItem(item)} />
+        handleClick={() => this.saveItem(item)} />
     );
   }
   saveItem = item => {
