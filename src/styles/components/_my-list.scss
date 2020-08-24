@@ -1,12 +1,5 @@
 @import "../styles";
 
-@mixin show-in-lg {
-  display: none;
-  @media screen and (min-width: $break-lg) {
-    display: block;
-  }
-}
-
 .mylist main {
   @include grid-column(12);
   @media screen and (min-width: $break-lg) {

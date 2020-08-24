@@ -3,13 +3,14 @@ import { render } from "react-dom";
 import {
   CheckBoxInput,
   DatePickerInput,
+  EmailInput,
   RadioGroup,
   RadioInput,
   SelectInput,
   SelectOption,
   TextAreaInput,
   TextInput,
-  YearInput } from "../../Inputs";
+  YearInput } from "..";
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
@@ -19,6 +20,11 @@ it('renders without crashing', () => {
 it('renders without crashing', () => {
   const div = document.createElement('div');
   render(<DatePickerInput label="Select a date" id="1" />, div);
+});
+
+it('renders without crashing', () => {
+  const div = document.createElement('div');
+  render(<EmailInput label="Email" id="1" />, div);
 });
 
 it('renders without crashing', () => {
