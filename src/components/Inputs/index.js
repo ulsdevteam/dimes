@@ -47,13 +47,14 @@ export const DatePickerInput = (props) => (
     <input
       type="date"
       id={props.id}
+      aria-describedby={`desc-${props.id}`}
       max={props.max && props.max.toISOString().substring(0, 10)}
       min={props.min && props.min.toISOString().substring(0, 10)}
       name={props.id}
       onChange={props.handleChange}
       value={props.value ? props.value.toISOString().substring(0, 10) : new Date().toISOString().substring(0, 10)}
       required={props.required} />
-    {props.helpText && <p className="help-text">{props.helpText}</p>}
+    {props.helpText && <p className="help-text" aria-describedby={`desc-${props.id}`}>{props.helpText}</p>}
   </div>
 )
 
@@ -183,13 +184,14 @@ export const TextAreaInput = (props) => (
     <textarea
       id={props.id}
       name={props.id}
+      aria-describedby={`desc-${props.id}`}
       rows={props.rows}
       cols={props.cols}
       required={props.required}
       value={props.value}
       onChange={props.handleChange} >
     </textarea>
-    {props.helpText && <p className="help-text">{props.helpText}</p>}
+    {props.helpText && <p className="help-text" aria-describedby={`desc-${props.id}`}>{props.helpText}</p>}
   </div>
 )
 
