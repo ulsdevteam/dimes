@@ -8,7 +8,7 @@ import {EmailModal} from "../Modal";
 import {SavedItemList} from "../SavedItem";
 import "./styles.scss";
 
-const MyListExportActions = ({emailList, removeAllItems}) => (
+const MyListExportActions = ({downloadCsv, emailList, removeAllItems}) => (
   <div className="mylist__export-actions show-on-lg-up">
     <Button
       className="btn--orange btn--sm"
@@ -18,7 +18,8 @@ const MyListExportActions = ({emailList, removeAllItems}) => (
     <Button
       className="btn--orange btn--sm"
       label="Download as .CSV"
-      iconBefore="get_app" />
+      iconBefore="get_app"
+      handleClick={downloadCsv} />
     <Button
       className="btn--gray btn--sm"
       label="Remove All Items"
@@ -27,6 +28,7 @@ const MyListExportActions = ({emailList, removeAllItems}) => (
   </div>)
 
 MyListExportActions.propTypes = {
+  downloadCsv: PropTypes.func.isRequired,
   emailList: PropTypes.func.isRequired,
   removeAllItems: PropTypes.func.isRequired
 }
@@ -65,6 +67,35 @@ class PageMyList extends Component {
   componentDidMount() {
     // TODO: resolve error with state update on unmounted component
     const list = this.props.fetchMyList();
+    this.resolveList(list);
+  }
+  downloadCsv = () => {
+    // TODO: what should happen if there are errors?
+    axios
+      .post("http://request-broker/api/download-csv/", this.state.savedItems)
+      .then(res => { console.log(res.data) })
+      .catch(err => { console.log(err) });
+  }
+  handleError = (msg, modal) => {
+    this.setState({ [modal]: {...this.state[modal], error: msg}})
+  }
+  fetchFromUri(uri) {
+    return axios
+      .get(`http://localhost:8000${uri}`)
+      .then(res => res.data)
+      .catch(err => console.log(err));
+  }
+  removeAllItems = () => {
+    this.props.saveMyList({})
+  }
+  removeItem = (group, item) => {
+    // TODO: Reload list in more performant way
+    const list = this.props.fetchMyList();
+    delete list[group][item]
+    if (Object.entries(list[group]).length === 0) {
+      delete list[group]
+    }
+    this.props.saveMyList(list);
     this.resolveList(list);
   }
   resolveList = async(list) => {
@@ -111,28 +142,6 @@ class PageMyList extends Component {
     }
     this.setState({isLoading: false})
   }
-  handleError = (msg, modal) => {
-    this.setState({ [modal]: {...this.state[modal], error: msg}})
-  }
-  fetchFromUri(uri) {
-    return axios
-      .get(`http://localhost:8000${uri}`)
-      .then(res => res.data)
-      .catch(err => console.log(err));
-  }
-  removeAllItems = () => {
-    this.props.saveMyList({})
-  }
-  removeItem = (group, item) => {
-    // TODO: Reload list in more performant way
-    const list = this.props.fetchMyList();
-    delete list[group][item]
-    if (Object.entries(list[group]).length === 0) {
-      delete list[group]
-    }
-    this.props.saveMyList(list);
-    this.resolveList(list);
-  }
   toggleModal = (modal)  => {
     this.setState({ [modal]: {...this.state[modal], isOpen: !this.state[modal]["isOpen"], error: ""} })
   }
@@ -148,11 +157,15 @@ class PageMyList extends Component {
           <main id="main" role="main">
             <div className="mylist__header">
               <h1 className="mylist__title">My List</h1>
-              <MyListDropdown removeAllItems={this.removeAllItems} />
+              <MyListDropdown
+                downloadCsv={this.downloadCsv}
+                emailList={() => this.toggleModal("email")}
+                removeAllItems={this.removeAllItems} />
             </div>
             <MyListExportActions
-              removeAllItems={this.removeAllItems}
-              emailList={() => this.toggleModal("email")}/>
+              downloadCsv={this.downloadCsv}
+              emailList={() => this.toggleModal("email")}
+              removeAllItems={this.removeAllItems} />
             <SavedItemList
               items={this.state.savedItems}
               isLoading={this.state.isLoading}

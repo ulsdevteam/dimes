@@ -41,7 +41,7 @@ const Dropdown = (props) => {
   )
 }
 
-export const MyListDropdown = ({ removeAllItems }) => (
+export const MyListDropdown = ({ downloadCsv, emailList, removeAllItems }) => (
   <Dropdown
     label="Actions"
     iconBefore="settings"
@@ -69,12 +69,12 @@ export const MyListDropdown = ({ removeAllItems }) => (
         {
           "label": "Email List",
           "iconBefore": "email",
-          "handleClick": null
+          "handleClick": emailList
         },
         {
           "label": "Download as .csv",
           "iconBefore": "get_app",
-          "handleClick": null
+          "handleClick": downloadCsv
         },
         {
           "label": "Remove All Items",
@@ -98,12 +98,12 @@ export const NavDropdown = () => (
         {
           "label": "Sign in to RACcess",
           "iconAfter": "east",
-          "handleClick": null
+          "href": "https://raccess.rockarch.org"
         },
         {
           "label": "My List",
           "iconAfter": "east",
-          "handleClick": null
+          "href": "/list"
         }
       ]
     } />
