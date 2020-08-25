@@ -18,7 +18,7 @@ NavItem.propTypes = {
 }
 
 export const Nav = ({ ariaLabel, children, className}) => (
-  <nav className={`nav ${className && className} : ""`} aria-label={ariaLabel}>
+  <nav className={`nav ${className ? className : ""}`} aria-label={ariaLabel}>
     <ul className="nav__list show-on-md-up">
       {children}
     </ul>
