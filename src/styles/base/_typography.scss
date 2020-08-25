@@ -315,3 +315,10 @@ small {
     float: none;
   }
 }
+
+.help-text {
+  font-family: $sans-serif-stack;
+  font-size: 13px;
+  font-style: italic;
+  color: $med-gray;
+}

@@ -4,7 +4,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
 import Button from "../Button";
-import {EmailInput, TextInput, TextAreaInput} from "../Inputs";
+import {DatePickerInput, EmailInput, TextInput, TextAreaInput} from "../Inputs";
 import MaterialIcon from "../MaterialIcon";
 import {ModalSavedItemList} from "../SavedItem";
 import "./styles.scss"
@@ -59,16 +59,12 @@ MyListModal.propTypes = {
 }
 
 export class EmailModal extends Component {
-  // TODO: should buttons be inputs instead?
-  // This would allow us to move the onClick handler for the button
-  // to the form as a onSubmit handler.
   constructor(props)  {
     super(props)
     this.state  = {
       "email": "",
       "subject":  "",
       "message": "",
-      "submitDisabled": true,
       "data": {},
     }
   }
@@ -96,11 +92,11 @@ export class EmailModal extends Component {
     );
   }
   handleChange = event => {
-    let name = event.target.name
-    this.setState({ [name]: event.target.value});
+    this.setState({ [event.target.name]: event.target.value});
   }
   handleCaptchaChange = value => {
-    this.setState({ submitDisabled: false })
+    // TODO: decide if we need this handler or not
+    console.log(value)
   }
   render() {
     return (
@@ -112,7 +108,7 @@ export class EmailModal extends Component {
         contentLabel="Email List"
         list={this.props.list}
         handleCaptchaChange={this.handleCaptchaChange}
-        submitError={this.props.submitError}
+        submitError={this.props.error}
         inputs={
           <React.Fragment>
             <EmailInput
@@ -148,6 +144,117 @@ export class EmailModal extends Component {
               type="submit"
               value="submit"
               label="Send List"
+              handleClick={this.handleSubmit} />
+            <Button
+              className="btn--gray btn--sm"
+              type="reset"
+              label="Cancel"
+              handleClick={this.props.toggleModal} />
+          </React.Fragment>
+        }
+      />
+    )
+  }
+}
+
+EmailModal.propTypes = {
+  appElement: PropTypes.object,
+  handleError: PropTypes.func.isRequired,
+  toggleModal: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  list: PropTypes.array.isRequired,
+}
+
+export class ReadingRoomRequestModal extends Component {
+  constructor(props)  {
+    super(props)
+    this.state  = {
+      "data": {},
+      "scheduledDate": new Date(),
+      "questions": "",
+      "notes": ""
+    }
+  }
+  componentDidMount() {
+    // TODO: what should we do if this request fails?
+    axios
+      .post("http://request-broker/api/process-request/parse", this.props.data)
+      .then(res => { this.setState({ data: res.data}) })
+      .catch(err => console.log(err))
+  }
+  handleSubmit = event => {
+    event.preventDefault();
+    const data = Object.assign({}, this.state.data, {
+      "scheduledDate": this.state.scheduledDate,
+      "questions": this.state.questions,
+      "notes": this.state.notes
+    });
+    axios
+      .post("http://request-broker/api/deliver-request/reading-room", data)
+      .then(res => { this.props.toggleModal(); })
+      .catch(err => {
+        let msg = err.response ? err.response : "An unknown error occurred."
+        this.props.handleError(msg, "readingRoom");
+      }
+    );
+  }
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value});
+  }
+  handleCaptchaChange = value => {
+    // TODO: decide if we need this handler or not
+    console.log(value)
+  }
+  render() {
+    return (
+      <MyListModal
+        appElement={this.props.appElement}
+        title="Request in Reading Room"
+        isOpen={this.props.isOpen}
+        toggleModal={this.props.toggleModal}
+        contentLabel="Email List"
+        list={this.props.list}
+        handleCaptchaChange={this.handleCaptchaChange}
+        submitError={this.props.error}
+        inputs={
+          <React.Fragment>
+            <DatePickerInput
+              id="scheduledDate"
+              name="scheduledDate"
+              className="modal-form__input"
+              label="Scheduled Date"
+              helpText="Enter the date of your research visit"
+              required={true}
+              value={this.state.scheduledDate}
+              handleChange={this.handleChange} />
+            <TextAreaInput
+              id="questions"
+              name="questions"
+              className="modal-form__input"
+              type="text"
+              label="Special Requests/Questions for RAC staff"
+              helpText="255 characters maximum"
+              rows={5}
+              value={this.state.questions}
+              handleChange={this.handleChange} />
+            <TextAreaInput
+              id="notes"
+              name="notes"
+              className="modal-form__input"
+              label="Notes for Personal Reference"
+              helpText="255 characters maximum"
+              rows={5}
+              value={this.state.notes}
+              handleChange={this.handleChange} />
+          </React.Fragment>
+        }
+        buttons={
+          <React.Fragment>
+            <Button
+              className="btn--orange btn--sm"
+              type="submit"
+              value="submit"
+              label={`Request ${this.props.list.length ? (this.props.list.length) : ""} Items`}
               handleClick={this.handleSubmit}
               disabled={this.state.submitDisabled} />
             <Button
@@ -162,7 +269,7 @@ export class EmailModal extends Component {
   }
 }
 
-EmailModal.propTypes = {
+ReadingRoomRequestModal.propTypes = {
   appElement: PropTypes.object,
   handleError: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,

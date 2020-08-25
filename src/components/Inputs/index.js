@@ -47,24 +47,26 @@ export const DatePickerInput = (props) => (
     <input
       type="date"
       id={props.id}
-      max={props.max}
-      min={props.min}
+      max={props.max && props.max.toISOString().substring(0, 10)}
+      min={props.min && props.min.toISOString().substring(0, 10)}
       name={props.id}
       onChange={props.handleChange}
-      defaultValue={props.defaultValue ? props.defaultValue : new Date()}
+      value={props.value ? props.value.toISOString().substring(0, 10) : new Date().toISOString().substring(0, 10)}
       required={props.required} />
+    {props.helpText && <p className="help-text">{props.helpText}</p>}
   </div>
 )
 
 DatePickerInput.propTypes = {
   className: PropTypes.string,
-  defaultValue: PropTypes.instanceOf(Date),
   handleChange: PropTypes.func,
+  helpText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   max: PropTypes.instanceOf(Date),
   min: PropTypes.instanceOf(Date),
-  required: PropTypes.bool
+  required: PropTypes.bool,
+  value: PropTypes.instanceOf(Date)
 };
 
 DatePickerInput.defaultProps = {
@@ -187,6 +189,7 @@ export const TextAreaInput = (props) => (
       value={props.value}
       onChange={props.handleChange} >
     </textarea>
+    {props.helpText && <p className="help-text">{props.helpText}</p>}
   </div>
 )
 
@@ -194,6 +197,7 @@ TextAreaInput.propTypes = {
   className: PropTypes.string,
   cols: PropTypes.number,
   handleChange: PropTypes.func,
+  helpText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   required: PropTypes.bool,
