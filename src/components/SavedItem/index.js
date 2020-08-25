@@ -11,7 +11,7 @@ const SavedItem = (props) => (
     <div className="saved-item__inputs">
       <CheckBoxInput
         className="checkbox--orange hide-label"
-        id={props.title}
+        id={props.uri}
         checked={true}
         label={props.title} />
     </div>
@@ -46,14 +46,14 @@ SavedItem.propTypes = {
   online: PropTypes.bool
 }
 
-const ModalSavedItem = ({ title }) => (
+const ModalSavedItem = ({ title, uri }) => (
   // TODO: styling for checkbox
   <li className="modal-saved-item">
-      <CheckBoxInput
-        className="checkbox--orange"
-        id={title}
-        checked={true}
-        label={title} />
+    <CheckBoxInput
+      className="checkbox--orange"
+      id={uri}
+      checked={true}
+      label={title} />
   </li>
 )
 
