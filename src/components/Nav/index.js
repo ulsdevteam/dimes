@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import MaterialIcon from "../MaterialIcon";
+import {NavDropdown} from "../Dropdown";
 import "./styles.scss";
+
 
 export const NavItem  = ({ className, href, icon, label}) => (
   <li className={`nav__item ${className}`}>
@@ -16,10 +18,11 @@ NavItem.propTypes = {
 }
 
 export const Nav = ({ ariaLabel, children, className}) => (
-  <nav className={`nav ${className && className}`} aria-label={ariaLabel}>
-    <ul className="nav__list">
+  <nav className={`nav ${className ? className : ""}`} aria-label={ariaLabel}>
+    <ul className="nav__list show-on-lg-up">
       {children}
     </ul>
+    <NavDropdown />
   </nav>)
 
 Nav.propTypes = {

@@ -1,3 +1,5 @@
+@import "../variables/vars";
+
 $transition-default: all 0.2s ease;
 
 @mixin visually-hidden {
@@ -25,9 +27,30 @@ $transition-default: all 0.2s ease;
   display: flex;
 }
 
-@mixin show-in-lg {
+.show-on-md-up {
+  display: none;
+  @media screen and (min-width: $break-md) {
+    display: block;
+  }
+}
+
+.hide-on-md-up {
+  display: block;
+  @media screen and (min-width: $break-md) {
+    display: none
+  }
+}
+
+.show-on-lg-up {
   display: none;
   @media screen and (min-width: $break-lg) {
     display: block;
+  }
+}
+
+.hide-on-lg-up {
+  display: block;
+  @media screen and (min-width: $break-lg) {
+    display: none;
   }
 }
