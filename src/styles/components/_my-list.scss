@@ -12,12 +12,10 @@
 }
 
 .mylist__export-actions {
-  @include show-in-lg;
   padding-bottom: 30px;
 }
 
 .mylist__sidebar {
-  @include show-in-lg;
   @include grid-column(4);
   background: #F8F8F7;
   float: right;

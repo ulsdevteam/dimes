@@ -27,12 +27,11 @@
   box-sizing: border-box;
   @media screen and (min-width: $break-md) {
     margin-top:16px;
-    @include grid-column(6);
   }
   @media screen and (min-width: $break-lg) {
     @include grid-column(7);
     margin-top:21px;
-    margin-left: 80px;
+    padding-left: 80px;
     & .subtitle {
       float: left;
       margin-top: 4px;

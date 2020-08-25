@@ -9,7 +9,7 @@ import {SavedItemList} from "../SavedItem";
 import "./styles.scss";
 
 const MyListExportActions = ({emailList, removeAllItems}) => (
-  <div className="mylist__export-actions">
+  <div className="mylist__export-actions show-on-lg-up">
     <Button
       className="btn--orange btn--sm"
       label="Email List"
@@ -33,7 +33,7 @@ MyListExportActions.propTypes = {
 
 const MyListSidebar = () => (
 // TODO: add onClick actions
-  <aside className="mylist__sidebar">
+  <aside className="mylist__sidebar show-on-lg-up">
     <Button
       className="btn--orange btn--lg"
       label="Schedule a Visit"

@@ -41,9 +41,16 @@ $transition-default: all 0.2s ease;
   }
 }
 
-@mixin show-in-lg {
+.show-on-lg-up {
   display: none;
   @media screen and (min-width: $break-lg) {
     display: block;
+  }
+}
+
+.hide-on-lg-up {
+  display: block;
+  @media screen and (min-width: $break-lg) {
+    display: none;
   }
 }
