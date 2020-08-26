@@ -89,7 +89,7 @@ export const NavDropdown = () => (
   <Dropdown
     iconBefore="menu"
     iconBeforeOpen="close"
-    className="nav-mobile hide-on-lg-up"
+    className="hide-on-lg-up"
     buttonClassName="btn nav-mobile__btn"
     itemClassName="btn--navy btn--mobile-dropdown dropdown__item--navy"
     listClassName="dropdown__list--mobile dropdown__list--navy"

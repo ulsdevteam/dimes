@@ -46,6 +46,10 @@
   background-color: $deep-navy;
   color: $pure-white;
   border: none;
+  &:hover {
+    background-color: $deep-blue;
+    transition: $transition-default;
+  }
   & .material-icons {
     font-size: 20px;
     line-height: 20px;
