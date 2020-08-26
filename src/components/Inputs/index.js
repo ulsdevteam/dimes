@@ -48,11 +48,11 @@ export const DatePickerInput = (props) => (
       type="date"
       id={props.id}
       aria-describedby={`desc-${props.id}`}
-      max={props.max && props.max.toISOString().substring(0, 10)}
-      min={props.min && props.min.toISOString().substring(0, 10)}
+      max={props.max}
+      min={props.min}
       name={props.id}
       onChange={props.handleChange}
-      value={props.value ? props.value.toISOString().substring(0, 10) : new Date().toISOString().substring(0, 10)}
+      value={props.value}
       required={props.required} />
     {props.helpText && <p className="help-text" aria-describedby={`desc-${props.id}`}>{props.helpText}</p>}
   </div>
@@ -64,14 +64,15 @@ DatePickerInput.propTypes = {
   helpText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  max: PropTypes.instanceOf(Date),
-  min: PropTypes.instanceOf(Date),
+  max: PropTypes.string,
+  min: PropTypes.string,
   required: PropTypes.bool,
-  value: PropTypes.instanceOf(Date)
+  value: PropTypes.string
 };
 
 DatePickerInput.defaultProps = {
-  min: new Date()
+  min: new Date().toISOString().substring(0, 10),
+  value: new Date().toISOString().substring(0, 10)
 }
 
 
