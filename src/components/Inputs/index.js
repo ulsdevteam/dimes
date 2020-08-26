@@ -10,7 +10,10 @@ const InputLabel = ({id, label, required}) => (
 
 InputLabel.propTypes = {
   id: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object
+  ]).isRequired,
   required: PropTypes.bool
 }
 
