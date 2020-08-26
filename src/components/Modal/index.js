@@ -169,7 +169,7 @@ export class ReadingRoomRequestModal extends Component {
     super(props)
     this.state  = {
       "data": {},
-      "scheduledDate": new Date(),
+      "scheduledDate": new Date().toISOString().substring(0, 10),
       "questions": "",
       "notes": ""
     }

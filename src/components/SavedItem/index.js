@@ -75,7 +75,7 @@ class SavedItemGroup extends Component {
   render() {
     return (
       <div className="saved-items__item-group">
-        <h3 className="item-group__title">{this.props.title}</h3>
+        <h2 className="item-group__title">{this.props.title}</h2>
         <div className="item-group__items">
           {this.listItems}
         </div>
