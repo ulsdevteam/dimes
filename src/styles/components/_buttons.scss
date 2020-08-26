@@ -31,7 +31,7 @@
   font-size: 10px;
   font-weight: 700;
   line-height: 16px;
-  padding: 6px 8px 8px 10px;
+  padding: 8px 10px;
   margin-right: 10px;
   transition: $transition-default;
   & .material-icons {
@@ -62,7 +62,7 @@
 .btn--blue {
   background: $deep-blue;
   color: $pure-white;
-  border: none;
+  border: 1px solid $deep-blue;
   &:hover {
     background: $dark-blue;
   }
@@ -71,7 +71,7 @@
 .btn--navy {
   background: $deep-navy;
   color: $pure-white;
-  border: none;
+  border: 1px solid $deep-navy;
   &:hover {
     background: $dark-blue;
     color: $off-white;
@@ -81,7 +81,7 @@
 .btn--orange {
   background: $burnt-orange;
   color: $pure-white;
-  border: none;
+  border: 1px solid $burnt-orange;
   &:hover {
     background: $med-brown;
     color: $off-white;

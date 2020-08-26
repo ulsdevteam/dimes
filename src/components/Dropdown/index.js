@@ -27,7 +27,7 @@ const Dropdown = (props) => {
   return (
     <div className={`dropdown ${className}`}>
       <button
-        className={`dropdown__button ${buttonClassName} ${isOpen ? "open" : "closed" }`}
+        className={`${buttonClassName} ${isOpen ? "open" : "closed" }`}
         {...buttonProps} >
           {isOpen ? (<MaterialIcon icon={openIcon} />) : (iconBefore && <MaterialIcon icon={iconBefore} />)}
           {label}
