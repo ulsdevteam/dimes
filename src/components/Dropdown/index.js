@@ -41,7 +41,7 @@ const Dropdown = (props) => {
   )
 }
 
-export const MyListDropdown = ({ downloadCsv, emailList, removeAllItems }) => (
+export const MyListDropdown = ({ downloadCsv, emailList, readingRoomRequest,  removeAllItems }) => (
   <Dropdown
     label="Actions"
     iconBefore="settings"
@@ -59,7 +59,7 @@ export const MyListDropdown = ({ downloadCsv, emailList, removeAllItems }) => (
         {
           "label": "Request in Reading Room",
           "iconBefore": "local_library",
-          "handleClick": null
+          "handleClick": readingRoomRequest
         },
         {
           "label": "Request Copies",

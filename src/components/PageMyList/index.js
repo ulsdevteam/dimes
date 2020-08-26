@@ -4,7 +4,7 @@ import axios from "axios";
 import Button from "../Button";
 import {MyListDropdown} from "../Dropdown";
 import {Helmet} from "react-helmet";
-import {EmailModal} from "../Modal";
+import {EmailModal, ReadingRoomRequestModal} from "../Modal";
 import {SavedItemList} from "../SavedItem";
 import "./styles.scss";
 
@@ -33,7 +33,7 @@ MyListExportActions.propTypes = {
   removeAllItems: PropTypes.func.isRequired
 }
 
-const MyListSidebar = () => (
+const MyListSidebar = ({ readingRoomRequest }) => (
 // TODO: add onClick actions
   <aside className="mylist__sidebar show-on-lg-up">
     <Button
@@ -43,7 +43,8 @@ const MyListSidebar = () => (
     <Button
       className="btn--orange btn--lg"
       label="Request in Reading Room"
-      iconBefore="local_library" />
+      iconBefore="local_library"
+      handleClick={() => readingRoomRequest()} />
     <Button
       className="btn--orange btn--lg"
       label="Request Copies"
@@ -59,6 +60,10 @@ class PageMyList extends Component {
       "savedItems": [],
       "isLoading": true,
       "email": {
+        "isOpen": false,
+        "error": ""
+      },
+      "readingRoom": {
         "isOpen": false,
         "error": ""
       }
@@ -147,7 +152,6 @@ class PageMyList extends Component {
   }
   render() {
     // TODO: add onClick handlers for actions
-    // TODO: move dropdown to main Dropdown file, create MyListDropdown component
     return (
       <React.Fragment>
         <Helmet>
@@ -158,24 +162,31 @@ class PageMyList extends Component {
             <div className="mylist__header">
               <h1 className="mylist__title">My List</h1>
               <MyListDropdown
-                downloadCsv={this.downloadCsv}
                 emailList={() => this.toggleModal("email")}
+                readingRoomRequest={() => this.toggleModal("readingRoom")}
                 removeAllItems={this.removeAllItems} />
             </div>
             <MyListExportActions
-              downloadCsv={this.downloadCsv}
-              emailList={() => this.toggleModal("email")}
-              removeAllItems={this.removeAllItems} />
+                downloadCsv={this.downloadCsv}
+                emailList={() => this.toggleModal("email")}
+                removeAllItems={this.removeAllItems} />
             <SavedItemList
               items={this.state.savedItems}
               isLoading={this.state.isLoading}
               removeItem={this.removeItem} />
           </main>
-          <MyListSidebar/>
+          <MyListSidebar
+              readingRoomRequest={() => this.toggleModal("readingRoom")} />
         </div>
         <EmailModal
           {...this.state.email}
           toggleModal={() => this.toggleModal("email")}
+          list={this.state.savedItems}
+          handleError={this.handleError}
+        />
+        <ReadingRoomRequestModal
+          {...this.state.readingRoom}
+          toggleModal={() => this.toggleModal("readingRoom")}
           list={this.state.savedItems}
           handleError={this.handleError}
         />
