@@ -88,13 +88,25 @@
     margin-bottom: 5px;
     float: left;
   }
-  & input, textarea {
+  & input, textarea, select {
     width: 100%;
     border: 1px solid $dark-gray;
     font-size: 18px;
     padding: 10px;
     box-sizing: border-box;
   }
+  & input[type=checkbox] {
+    width: unset;
+    float: left;
+  }
+  & label[for=costs] {
+    float: none;
+  }
+}
+
+.modal-form__input a {
+  font-family: $sans-serif-stack;
+  font-size: 14px;
 }
 
 // Hacky hacks because the Google ReCAPTCHA has a set width

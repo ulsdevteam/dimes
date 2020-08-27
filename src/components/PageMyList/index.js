@@ -4,7 +4,7 @@ import axios from "axios";
 import Button from "../Button";
 import {MyListDropdown} from "../Dropdown";
 import {Helmet} from "react-helmet";
-import {EmailModal, ReadingRoomRequestModal} from "../Modal";
+import {DuplicationRequestModal, EmailModal, ReadingRoomRequestModal} from "../Modal";
 import {SavedItemList} from "../SavedItem";
 import "./styles.scss";
 
@@ -33,13 +33,14 @@ MyListExportActions.propTypes = {
   removeAllItems: PropTypes.func.isRequired
 }
 
-const MyListSidebar = ({ readingRoomRequest }) => (
+const MyListSidebar = ({ duplicationRequest, readingRoomRequest, sendEmail }) => (
 // TODO: add onClick actions
   <aside className="mylist__sidebar show-on-lg-up">
     <Button
       className="btn--orange btn--lg"
       label="Schedule a Visit"
-      iconBefore="account_balance" />
+      iconBefore="account_balance"
+      handleClick={() => sendEmail()} />
     <Button
       className="btn--orange btn--lg"
       label="Request in Reading Room"
@@ -48,10 +49,15 @@ const MyListSidebar = ({ readingRoomRequest }) => (
     <Button
       className="btn--orange btn--lg"
       label="Request Copies"
-      iconBefore="content_copy" />
+      iconBefore="content_copy"
+      handleClick={() => duplicationRequest()} />
   </aside>)
 
-MyListSidebar.propTypes = {}
+MyListSidebar.propTypes = {
+  duplicationRequest: PropTypes.func.isRequired,
+  readingRoomRequest: PropTypes.func.isRequired,
+  sendEmail: PropTypes.func.isRequired
+}
 
 class PageMyList extends Component {
   constructor(props) {
@@ -64,6 +70,10 @@ class PageMyList extends Component {
         "error": ""
       },
       "readingRoom": {
+        "isOpen": false,
+        "error": ""
+      },
+      "duplication": {
         "isOpen": false,
         "error": ""
       }
@@ -147,6 +157,9 @@ class PageMyList extends Component {
     }
     this.setState({isLoading: false})
   }
+  sendEmail = () => {
+    window.open("mailto:archive@rockarch.org?subject=Scheduling a research appointment");
+  }
   toggleModal = (modal)  => {
     this.setState({ [modal]: {...this.state[modal], isOpen: !this.state[modal]["isOpen"], error: ""} })
   }
@@ -162,9 +175,11 @@ class PageMyList extends Component {
             <div className="mylist__header">
               <h1 className="mylist__title">My List</h1>
               <MyListDropdown
+                duplicationRequest={() => this.toggleModal("duplication")}
                 emailList={() => this.toggleModal("email")}
                 readingRoomRequest={() => this.toggleModal("readingRoom")}
-                removeAllItems={this.removeAllItems} />
+                removeAllItems={this.removeAllItems}
+                sendEmail={this.sendEmail} />
             </div>
             <MyListExportActions
                 downloadCsv={this.downloadCsv}
@@ -176,7 +191,9 @@ class PageMyList extends Component {
               removeItem={this.removeItem} />
           </main>
           <MyListSidebar
-              readingRoomRequest={() => this.toggleModal("readingRoom")} />
+              duplicationRequest={() => this.toggleModal("duplication")}
+              readingRoomRequest={() => this.toggleModal("readingRoom")}
+              sendEmail={this.sendEmail} />
         </div>
         <EmailModal
           {...this.state.email}
@@ -187,6 +204,12 @@ class PageMyList extends Component {
         <ReadingRoomRequestModal
           {...this.state.readingRoom}
           toggleModal={() => this.toggleModal("readingRoom")}
+          list={this.state.savedItems}
+          handleError={this.handleError}
+        />
+        <DuplicationRequestModal
+          {...this.state.duplication}
+          toggleModal={() => this.toggleModal("duplication")}
           list={this.state.savedItems}
           handleError={this.handleError}
         />
