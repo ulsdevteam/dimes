@@ -71,6 +71,7 @@
   border: 1px solid $deep-blue;
   &:hover {
     background: $dark-blue;
+    border: 1px solid $dark-blue;
   }
 }
 
@@ -80,6 +81,7 @@
   border: 1px solid $deep-navy;
   &:hover {
     background: $deep-blue;
+    border: 1px solid $deep-blue;
     color: $off-white;
   }
 }
@@ -90,6 +92,7 @@
   border: 1px solid $burnt-orange;
   &:hover {
     background: $med-brown;
+    border: 1px solid $med-brown;
     color: $off-white;
   }
   &:disabled {
