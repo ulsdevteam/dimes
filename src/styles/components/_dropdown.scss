@@ -45,6 +45,7 @@
   background-color: $deep-navy;
   color: $pure-white;
   border: none;
+  border-radius: 0;
   &:hover {
     background-color: $deep-blue;
     transition: $transition-default;
