@@ -91,7 +91,7 @@ export const NavDropdown = () => (
     iconBeforeOpen="close"
     className="hide-on-lg-up"
     buttonClassName="btn nav-mobile__btn"
-    itemClassName="btn--navy btn--mobile-dropdown dropdown__item--navy"
+    itemClassName="btn--navy btn--mobile-dropdown"
     listClassName="dropdown__list--mobile dropdown__list--navy"
     items={
       [
