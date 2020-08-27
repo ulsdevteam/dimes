@@ -13,6 +13,10 @@
   }
 }
 
+@mixin icon-margin {
+  margin: 0px 3px 3px 0px;
+}
+
 .btn {
   @include button-text;
   border-radius: 3px;
@@ -35,6 +39,7 @@
   margin-right: 10px;
   transition: $transition-default;
   & .material-icons {
+    @include icon-margin;
     font-size: 16px;
   }
 }
@@ -44,6 +49,7 @@
   line-height: 15px;
   padding: 13px 14px 15px 14px;
   & .material-icons {
+    @include icon-margin;
     font-size: 20px;
   }
 }
