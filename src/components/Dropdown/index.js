@@ -27,7 +27,7 @@ const Dropdown = (props) => {
   return (
     <div className={`dropdown ${className}`}>
       <button
-        className={`dropdown__button ${buttonClassName} ${isOpen ? "open" : "closed" }`}
+        className={`${buttonClassName} ${isOpen ? "open" : "closed" }`}
         {...buttonProps} >
           {isOpen ? (<MaterialIcon icon={openIcon} />) : (iconBefore && <MaterialIcon icon={iconBefore} />)}
           {label}
@@ -89,9 +89,9 @@ export const NavDropdown = () => (
   <Dropdown
     iconBefore="menu"
     iconBeforeOpen="close"
-    className="nav-mobile hide-on-lg-up"
+    className="hide-on-lg-up"
     buttonClassName="btn nav-mobile__btn"
-    itemClassName="btn--navy btn--mobile-dropdown dropdown__item--navy"
+    itemClassName="btn--navy btn--mobile-dropdown"
     listClassName="dropdown__list--mobile dropdown__list--navy"
     items={
       [

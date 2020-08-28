@@ -13,6 +13,10 @@
   }
 }
 
+@mixin icon-margin {
+  margin: 0px 3px 3px 0px;
+}
+
 .btn {
   @include button-text;
   border-radius: 3px;
@@ -31,10 +35,11 @@
   font-size: 10px;
   font-weight: 700;
   line-height: 16px;
-  padding: 6px 8px 8px 10px;
+  padding: 8px 10px;
   margin-right: 10px;
   transition: $transition-default;
   & .material-icons {
+    @include icon-margin;
     font-size: 16px;
   }
 }
@@ -44,6 +49,7 @@
   line-height: 15px;
   padding: 13px 14px 15px 14px;
   & .material-icons {
+    @include icon-margin;
     font-size: 20px;
   }
 }
@@ -62,18 +68,20 @@
 .btn--blue {
   background: $deep-blue;
   color: $pure-white;
-  border: none;
+  border: 1px solid $deep-blue;
   &:hover {
     background: $dark-blue;
+    border: 1px solid $dark-blue;
   }
 }
 
 .btn--navy {
   background: $deep-navy;
   color: $pure-white;
-  border: none;
+  border: 1px solid $deep-navy;
   &:hover {
-    background: $dark-blue;
+    background: $deep-blue;
+    border: 1px solid $deep-blue;
     color: $off-white;
   }
 }
@@ -81,9 +89,10 @@
 .btn--orange {
   background: $burnt-orange;
   color: $pure-white;
-  border: none;
+  border: 1px solid $burnt-orange;
   &:hover {
     background: $med-brown;
+    border: 1px solid $med-brown;
     color: $off-white;
   }
   &:disabled {
