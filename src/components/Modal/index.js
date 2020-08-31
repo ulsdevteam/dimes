@@ -1,13 +1,50 @@
 import React, { Component } from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import axios from "axios";
-import ReCAPTCHA from "react-google-recaptcha";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
 import Button from "../Button";
+import Captcha from "../Captcha";
 import {CheckBoxInput, DatePickerInput, EmailInput, SelectInput, SelectOption, TextInput, TextAreaInput} from "../Inputs";
 import MaterialIcon from "../MaterialIcon";
 import {ModalSavedItemList} from "../SavedItem";
 import "./styles.scss"
+
+
+const FormGroup = ({ component, error, label, type, name, rows}) => (
+  <div className="form-group">
+    <label htmlFor={name}>{label}</label>
+    <Field type={type} name={name} component={component} rows={rows} />
+    { error && <ErrorMessage name={name} component="div" className="modal-form__error" />}
+  </div>
+)
+
+FormGroup.propTypes = {
+  component: PropTypes.string,
+  error: PropTypes.bool,
+  label: PropTypes.string.isRequired,
+  type: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  rows: PropTypes.number,
+}
+
+
+const FormButtons = ({ isSubmitting, submitText, toggleModal }) => (
+  <div className="modal-form__buttons">
+    <button type="submit" disabled={isSubmitting} className="btn btn--orange btn--sm">
+      {submitText}
+    </button>
+    <button type="reset" className="btn btn--gray btn--sm" onClick={toggleModal}>
+      Cancel
+    </button>
+  </div>
+)
+
+FormButtons.propTypes = {
+  isSubmitting: PropTypes.bool,
+  submitText: PropTypes.string.isRequired,
+  toggleModal: PropTypes.func.isRequired
+}
 
 const MyListModal = (props) => (
   // TODO: replace captcha key
@@ -28,20 +65,7 @@ const MyListModal = (props) => (
         <ModalSavedItemList items={props.list} />
       </div>
       <div className="modal-form">
-        <form>
-          <div className="modal-form__input-group">
-            {props.inputs}
-          </div>
-          <div className="modal-form__captcha">
-            <ReCAPTCHA
-              sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-              onChange={props.handleCaptchaChange} />
-          </div>
-          <div className="modal-form__buttons">
-            {props.buttons}
-            {props.submitError && <p className="modal-error">{props.submitError}</p>}
-          </div>
-        </form>
+        {props.form}
       </div>
     </div>
   </Modal>
@@ -51,23 +75,11 @@ MyListModal.propTypes = {
   appElement: PropTypes.object,
   isOpen: PropTypes.bool.isRequired,
   toggleModal: PropTypes.func.isRequired,
-  handleCaptchaChange: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
-  list: PropTypes.array.isRequired,
-  inputs: PropTypes.node.isRequired,
-  buttons: PropTypes.node.isRequired
+  list: PropTypes.array.isRequired
 }
 
 export class EmailModal extends Component {
-  constructor(props)  {
-    super(props)
-    this.state  = {
-      "email": "",
-      "subject":  "",
-      "message": "",
-      "data": {},
-    }
-  }
   componentDidMount() {
     // TODO: what should we do if this request fails?
     axios
@@ -75,12 +87,11 @@ export class EmailModal extends Component {
       .then(res => { this.setState({ data: res.data}) })
       .catch(err => console.log(err))
   }
-  handleSubmit = event => {
-    event.preventDefault();
-    const data = Object.assign({}, this.state.data, {
-      "email": this.state.email,
-      "subject": this.state.subject,
-      "message": this.state.message
+  handleSubmit = (submitted) => {
+    const data = Object.assign({}, submitted, {
+      "email": submitted.email,
+      "subject": submitted.subject,
+      "message": submitted.message
     });
     axios
       .post("http://request-broker/api/deliver-request/email", data)
@@ -91,13 +102,6 @@ export class EmailModal extends Component {
       }
     );
   }
-  handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value});
-  }
-  handleCaptchaChange = value => {
-    // TODO: decide if we need this handler or not
-    console.log(value)
-  }
   render() {
     return (
       <MyListModal
@@ -106,50 +110,41 @@ export class EmailModal extends Component {
         isOpen={this.props.isOpen}
         toggleModal={this.props.toggleModal}
         list={this.props.list}
-        handleCaptchaChange={this.handleCaptchaChange}
-        submitError={this.props.error}
-        inputs={
-          <React.Fragment>
-            <EmailInput
-              id="email"
-              name="email"
-              className="modal-form__input"
-              label="Email Address"
-              required={true}
-              value={this.state.email}
-              handleChange={this.handleChange} />
-            <TextInput
-              id="subject"
-              name="subject"
-              className="modal-form__input"
-              type="text"
-              label="Subject Line"
-              value={this.state.subject}
-              handleChange={this.handleChange} />
-            <TextAreaInput
-              id="message"
-              name="message"
-              className="modal-form__input"
-              label="Message"
-              rows={5}
-              value={this.state.message}
-              handleChange={this.handleChange} />
-          </React.Fragment>
-        }
-        buttons={
-          <React.Fragment>
-            <Button
-              className="btn--orange btn--sm"
-              type="submit"
-              value="submit"
-              label="Send List"
-              handleClick={this.handleSubmit} />
-            <Button
-              className="btn--gray btn--sm"
-              type="reset"
-              label="Cancel"
-              handleClick={this.props.toggleModal} />
-          </React.Fragment>
+        form={
+          <Formik
+            initialValues={{email: "", subject: "", message: "", recaptcha: ""}}
+            validate={values => {
+              const errors = {};
+              if (!values.email) {
+                errors.email = 'This field is required.';
+              } else if (
+                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+              ) {
+                errors.email = 'Invalid email address.';
+              }
+              if (!values.recaptcha) {
+                console.log("here")
+                errors.recaptcha = 'This field is required.';
+              }
+              console.log(values)
+              return errors;
+            }}
+            onSubmit={(values, { setSubmitting }) => {
+              this.handleSubmit(values);
+              setSubmitting(false);
+            }}
+          >
+          {({ isSubmitting, setFieldValue }) => (
+            <Form>
+              <FormGroup label="Email *" name="email" type="email" error={true} />
+              <FormGroup label="Subject" name="subject" type="text" />
+              <FormGroup label="Message" name="message" component="textarea" rows={5} />
+              <Field component={Captcha} name="recaptcha" className="modal-form__captcha" handleCaptchaChange={(response) => setFieldValue("recaptcha", response)} />
+              <ErrorMessage name="recaptcha" component="div" className="modal-form__error" />
+              <FormButtons submitText="Send List" toggleModal={this.props.toggleModal} isSubmitting={isSubmitting} />
+            </Form>
+          )}
+          </Formik>
         }
       />
     )
