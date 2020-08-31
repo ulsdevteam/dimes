@@ -123,10 +123,8 @@ export class EmailModal extends Component {
                 errors.email = 'Invalid email address.';
               }
               if (!values.recaptcha) {
-                console.log("here")
                 errors.recaptcha = 'This field is required.';
               }
-              console.log(values)
               return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
