@@ -16,7 +16,6 @@ const FocusError = () => {
     if (isSubmitting && !isValidating) {
       let keys = Object.keys(errors);
       if (keys.length > 0) {
-        console.log(keys)
         const selector = `[name=${keys[0]}]`;
         const errorElement = document.querySelector(selector);
         if (errorElement) {
