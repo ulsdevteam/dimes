@@ -101,12 +101,11 @@
   float: left;
   &[for=costs] {
     float: none;
+    & a {
+      font-family: $sans-serif-stack;
+      font-size: 14px;
+    }
   }
-}
-
-.modal-form__input a {
-  font-family: $sans-serif-stack;
-  font-size: 14px;
 }
 
 // Hacky hacks because the Google ReCAPTCHA has a set width
