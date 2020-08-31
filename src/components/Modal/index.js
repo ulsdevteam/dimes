@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import React, { Component, useEffect } from 'react';
+import { Formik, Form, Field, ErrorMessage, useFormikContext } from 'formik';
 import axios from "axios";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
@@ -9,15 +9,37 @@ import {ModalSavedItemList} from "../SavedItem";
 import "./styles.scss"
 
 
+const FocusError = () => {
+  const { errors, isSubmitting, isValidating } = useFormikContext();
+
+  useEffect(() => {
+    if (isSubmitting && !isValidating) {
+      let keys = Object.keys(errors);
+      if (keys.length > 0) {
+        console.log(keys)
+        const selector = `[name=${keys[0]}]`;
+        const errorElement = document.querySelector(selector);
+        if (errorElement) {
+          errorElement.focus();
+        }
+      }
+    }
+  }, [errors, isSubmitting, isValidating]);
+
+  return null;
+};
+
+
 const FormGroup = (props) => {
   const { children, component, errors, helpText, label, name, required, rows, touched, type } = props;
   return (
     <div className="form-group">
       { type !== "checkbox" && <label htmlFor={name}>{label}</label> }
       <Field
-        id={name}
+        className={ errors && errors[name] && touched[name] ? "is-invalid" : null }
         type={type}
         name={name}
+        id={name}
         component={component}
         rows={rows}
         children={children}
@@ -155,6 +177,7 @@ export class EmailModal extends Component {
               <Field component={Captcha} name="recaptcha" className="modal-form__captcha" handleCaptchaChange={(response) => setFieldValue("recaptcha", response)} />
               <ErrorMessage id="recaptcha-error" name="recaptcha" component="div" className="modal-form__error" />
               <FormButtons submitText="Send List" toggleModal={this.props.toggleModal} isSubmitting={isSubmitting} />
+              <FocusError />
             </Form>
           )}
           </Formik>
@@ -219,12 +242,13 @@ export class ReadingRoomRequestModal extends Component {
           >
           {({ errors, isSubmitting, setFieldValue, touched }) => (
             <Form>
-              <FormGroup label="Scheduled Date *" helpText="Enter the date of your research visit" name="scheduledDate" type="date" errors={errors} touched={touched} />
+              <FormGroup label="Scheduled Date *" helpText="Enter the date of your research visit" name="scheduledDate" type="date" required={true} errors={errors} touched={touched} />
               <FormGroup label="Special Requests/Questions for RAC staff" helpText="255 characters maximum" name="questions" component="textarea" rows={5} />
               <FormGroup label="Notes for Personal Reference" helpText="255 characters maximum" name="notes" component="textarea" rows={5} />
               <Field component={Captcha} name="recaptcha" className="modal-form__captcha" handleCaptchaChange={(response) => setFieldValue("recaptcha", response)} />
               <ErrorMessage id="recaptcha-error" name="recaptcha" component="div" className="modal-form__error" />
               <FormButtons submitText={`Request ${this.props.list.length ? (this.props.list.length) : ""} Items`} toggleModal={this.props.toggleModal} isSubmitting={isSubmitting} />
+              <FocusError />
             </Form>
           )}
           </Formik>
@@ -304,7 +328,9 @@ export class DuplicationRequestModal extends Component {
                   <option value="Photocopy">Photocopy</option>,
                   <option value="TIFF">TIFF</option>
                 ]}
-                errors={errors} touched={touched} />
+                required={true}
+                errors={errors}
+                touched={touched} />
               <FormGroup label="Description of Materials" helpText="Please describe the materials you want reproduced" name="description" component="textarea" rows={5} />
               <FormGroup label="Special Requests/Questions for RAC staff" helpText="255 characters maximum" name="questions" component="textarea" rows={5} />
               <FormGroup label="Notes for Personal Reference" helpText="255 characters maximum" name="notes" component="textarea" rows={5} />
@@ -312,10 +338,13 @@ export class DuplicationRequestModal extends Component {
                 label={<>I agree to pay the duplication costs for this request. See our <a href="https://rockarch.org/collections/access-and-request-materials/#duplication-services-and-fee-schedule">fee schedule</a></>}
                 name="costs"
                 type="checkbox"
-                errors={errors} touched={touched} />
+                required={true}
+                errors={errors}
+                touched={touched} />
               <Field component={Captcha} name="recaptcha" className="modal-form__captcha" handleCaptchaChange={(response) => setFieldValue("recaptcha", response)} />
               <ErrorMessage id="captcha-error" name="recaptcha" component="div" className="modal-form__error" />
               <FormButtons submitText={`Request ${this.props.list.length ? (this.props.list.length) : ""} Items`} toggleModal={this.props.toggleModal} isSubmitting={isSubmitting} />
+              <FocusError />
             </Form>
           )}
           </Formik>

@@ -108,6 +108,10 @@
   }
 }
 
+.modal-form .is-invalid {
+    border: 1px solid $burnt-orange;
+}
+
 .modal-form__buttons {
   margin: 20px 0;
 }
