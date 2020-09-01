@@ -246,11 +246,11 @@ export class DuplicationRequestModal extends Component {
                 name="format"
                 component="select"
                 children={[
-                  <option value="">Select a format</option>,
-                  <option value="JPEG">JPEG</option>,
-                  <option value="PDF">PDF</option>,
-                  <option value="Photocopy">Photocopy</option>,
-                  <option value="TIFF">TIFF</option>]}
+                  <option key="1" value="">Select a format</option>,
+                  <option key="2" value="JPEG">JPEG</option>,
+                  <option key="3" value="PDF">PDF</option>,
+                  <option key="4" value="Photocopy">Photocopy</option>,
+                  <option key="5" value="TIFF">TIFF</option>]}
                 required={true}
                 errors={errors}
                 touched={touched} />
