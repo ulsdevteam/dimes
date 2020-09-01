@@ -1,89 +1,15 @@
-import React, { Component, useEffect } from 'react';
-import { Formik, Form, Field, ErrorMessage, useFormikContext } from 'formik';
-import axios from "axios";
+import React, { Component } from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import PropTypes from "prop-types";
 import Modal from "react-modal";
 import Captcha from "../Captcha";
+import { FocusError, FormButtons, FormGroup } from "../Form";
 import MaterialIcon from "../MaterialIcon";
-import {ModalSavedItemList} from "../SavedItem";
+import { ModalSavedItemList } from "../SavedItem";
 import "./styles.scss"
 
 
-const FocusError = () => {
-  const { errors, isSubmitting, isValidating } = useFormikContext();
-
-  useEffect(() => {
-    if (isSubmitting && !isValidating) {
-      let keys = Object.keys(errors);
-      if (keys.length > 0) {
-        const selector = `[name=${keys[0]}]`;
-        const errorElement = document.querySelector(selector);
-        if (errorElement) {
-          errorElement.focus();
-        }
-      }
-    }
-  }, [errors, isSubmitting, isValidating]);
-
-  return null;
-};
-
-
-const FormGroup = (props) => {
-  const { children, component, errors, helpText, label, name, required, rows, touched, type } = props;
-  return (
-    <div className="form-group">
-      { type !== "checkbox" && <label htmlFor={name}>{label}</label> }
-      <Field
-        className={ errors && errors[name] && touched[name] ? "is-invalid" : null }
-        type={type}
-        name={name}
-        id={name}
-        component={component}
-        rows={rows}
-        children={children}
-        aria-invalid={errors && errors[name] && touched[name] ? 'true' : null}
-        aria-describedby={errors && errors[name] && touched[name] ? `${name}-error` : null}
-        aria-required={required} />
-      { type === "checkbox" && <label htmlFor={name}>{label}</label> }
-      { helpText && <p className="help-text" aria-describedby={`desc-${name}`}>{helpText}</p> }
-      <ErrorMessage id={`${name}-error`} name={name} component="div" className="modal-form__error" />
-    </div>
-)}
-
-FormGroup.propTypes = {
-  children: PropTypes.array,
-  component: PropTypes.string,
-  hasErrorMsg: PropTypes.bool,
-  errors: PropTypes.object,
-  label: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  required: PropTypes.bool,
-  rows: PropTypes.number,
-  touched: PropTypes.object,
-  type: PropTypes.string,
-}
-
-
-const FormButtons = ({ isSubmitting, submitText, toggleModal }) => (
-  <div className="modal-form__buttons">
-    <button type="submit" disabled={isSubmitting} className="btn btn--orange btn--sm">
-      {submitText}
-    </button>
-    <button type="reset" className="btn btn--gray btn--sm" onClick={toggleModal}>
-      Cancel
-    </button>
-  </div>
-)
-
-FormButtons.propTypes = {
-  isSubmitting: PropTypes.bool,
-  submitText: PropTypes.string.isRequired,
-  toggleModal: PropTypes.func.isRequired
-}
-
 const MyListModal = (props) => (
-  // TODO: replace captcha key
   <Modal
     appElement={props.appElement ? props.appElement : Modal.setAppElement("#root")}
     isOpen={props.isOpen}
@@ -117,26 +43,7 @@ MyListModal.propTypes = {
 
 export class EmailModal extends Component {
   componentDidMount() {
-    // TODO: what should we do if this request fails?
-    axios
-      .post("http://request-broker/api/process-request/email", this.props.data)
-      .then(res => { this.setState({ data: res.data}) })
-      .catch(err => console.log(err))
-  }
-  handleSubmit = (submitted) => {
-    const data = Object.assign({}, submitted, {
-      "email": submitted.email,
-      "subject": submitted.subject,
-      "message": submitted.message
-    });
-    axios
-      .post("http://request-broker/api/deliver-request/email", data)
-      .then(res => { this.props.toggleModal(); })
-      .catch(err => {
-        let msg = err.response ? err.response : "An unknown error occurred."
-        this.props.handleError(msg, "email");
-      }
-    );
+    this.props.loadListData("http://request-broker/api/process-request/email");
   }
   render() {
     return (
@@ -164,18 +71,41 @@ export class EmailModal extends Component {
               return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
-              this.handleSubmit(values);
+              this.props.handleFormSubmit("http://request-broker/api/deliver-request/email", values);
               setSubmitting(false);
             }}
           >
           {({ errors, isSubmitting, setFieldValue, touched }) => (
             <Form>
-              <FormGroup label="Email *" name="email" type="email" required={true} errors={errors} touched={touched} />
-              <FormGroup label="Subject" name="subject" type="text" />
-              <FormGroup label="Message" name="message" component="textarea" rows={5} />
-              <Field component={Captcha} name="recaptcha" className="modal-form__captcha" handleCaptchaChange={(response) => setFieldValue("recaptcha", response)} />
-              <ErrorMessage id="recaptcha-error" name="recaptcha" component="div" className="modal-form__error" />
-              <FormButtons submitText="Send List" toggleModal={this.props.toggleModal} isSubmitting={isSubmitting} />
+              <FormGroup
+                label="Email *"
+                name="email"
+                type="email"
+                required={true}
+                errors={errors}
+                touched={touched} />
+              <FormGroup
+                label="Subject"
+                name="subject"
+                type="text" />
+              <FormGroup
+                label="Message"
+                name="message"
+                component="textarea"
+                rows={5} />
+              <Field
+                component={Captcha}
+                name="recaptcha"
+                handleCaptchaChange={(response) => setFieldValue("recaptcha", response)} />
+              <ErrorMessage
+                id="recaptcha-error"
+                name="recaptcha"
+                component="div"
+                className="modal-form__error" />
+              <FormButtons
+                submitText="Send List"
+                toggleModal={this.props.toggleModal}
+                isSubmitting={isSubmitting} />
               <FocusError />
             </Form>
           )}
@@ -188,34 +118,16 @@ export class EmailModal extends Component {
 
 EmailModal.propTypes = {
   appElement: PropTypes.object,
-  handleError: PropTypes.func.isRequired,
-  toggleModal: PropTypes.func.isRequired,
+  handleFormSubmit: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   list: PropTypes.array.isRequired,
+  loadListData: PropTypes.func.isRequired,
+  toggleModal: PropTypes.func.isRequired,
 }
 
 export class ReadingRoomRequestModal extends Component {
   componentDidMount() {
-    // TODO: what should we do if this request fails?
-    axios
-      .post("http://request-broker/api/process-request/parse", this.props.data)
-      .then(res => { this.setState({ data: res.data}) })
-      .catch(err => console.log(err))
-  }
-  handleSubmit = (submitted) => {
-    const data = Object.assign({}, submitted, {
-      "scheduledDate": submitted.scheduledDate,
-      "questions": submitted.questions,
-      "notes": submitted.notes
-    });
-    axios
-      .post("http://request-broker/api/deliver-request/reading-room", data)
-      .then(res => { this.props.toggleModal(); })
-      .catch(err => {
-        let msg = err.response ? err.response : "An unknown error occurred."
-        this.props.handleError(msg, "readingRoom");
-      }
-    );
+    this.props.loadListData("http://request-broker/api/process-request/parse")
   }
   render() {
     return (
@@ -235,18 +147,45 @@ export class ReadingRoomRequestModal extends Component {
               return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
-              this.handleSubmit(values);
+              this.props.handleFormSubmit("http://request-broker/api/deliver-request/reading-room", values);
               setSubmitting(false);
             }}
           >
           {({ errors, isSubmitting, setFieldValue, touched }) => (
             <Form>
-              <FormGroup label="Scheduled Date *" helpText="Enter the date of your research visit" name="scheduledDate" type="date" required={true} errors={errors} touched={touched} />
-              <FormGroup label="Special Requests/Questions for RAC staff" helpText="255 characters maximum" name="questions" component="textarea" rows={5} />
-              <FormGroup label="Notes for Personal Reference" helpText="255 characters maximum" name="notes" component="textarea" rows={5} />
-              <Field component={Captcha} name="recaptcha" className="modal-form__captcha" handleCaptchaChange={(response) => setFieldValue("recaptcha", response)} />
-              <ErrorMessage id="recaptcha-error" name="recaptcha" component="div" className="modal-form__error" />
-              <FormButtons submitText={`Request ${this.props.list.length ? (this.props.list.length) : ""} Items`} toggleModal={this.props.toggleModal} isSubmitting={isSubmitting} />
+              <FormGroup
+                label="Scheduled Date *"
+                helpText="Enter the date of your research visit"
+                name="scheduledDate"
+                type="date"
+                required={true}
+                errors={errors}
+                touched={touched} />
+              <FormGroup
+                label="Special Requests/Questions for RAC staff"
+                helpText="255 characters maximum"
+                name="questions"
+                component="textarea"
+                rows={5} />
+              <FormGroup
+                label="Notes for Personal Reference"
+                helpText="255 characters maximum"
+                name="notes"
+                component="textarea"
+                rows={5} />
+              <Field
+                component={Captcha}
+                name="recaptcha"
+                handleCaptchaChange={(response) => setFieldValue("recaptcha", response)} />
+              <ErrorMessage
+                id="recaptcha-error"
+                name="recaptcha"
+                component="div"
+                className="modal-form__error" />
+              <FormButtons
+                submitText={`Request ${this.props.list.length ? (this.props.list.length) : ""} Items`}
+                toggleModal={this.props.toggleModal}
+                isSubmitting={isSubmitting} />
               <FocusError />
             </Form>
           )}
@@ -259,37 +198,17 @@ export class ReadingRoomRequestModal extends Component {
 
 ReadingRoomRequestModal.propTypes = {
   appElement: PropTypes.object,
-  handleError: PropTypes.func.isRequired,
-  toggleModal: PropTypes.func.isRequired,
+  handleFormSubmit: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   list: PropTypes.array.isRequired,
+  loadListData: PropTypes.func.isRequired,
+  toggleModal: PropTypes.func.isRequired,
 }
 
 
 export class DuplicationRequestModal extends Component {
   componentDidMount() {
-    // TODO: what should we do if this request fails?
-    axios
-      .post("http://request-broker/api/process-request/parse", this.props.data)
-      .then(res => { this.setState({ data: res.data}) })
-      .catch(err => console.log(err))
-  }
-  handleSubmit = (submitted) => {
-    const data = Object.assign({}, submitted, {
-      "format": submitted.format,
-      "description": submitted.description,
-      "questions": submitted.questions,
-      "notes": submitted.notes,
-      "costs": submitted.costs
-    });
-    axios
-      .post("http://request-broker/api/deliver-request/duplication", data)
-      .then(res => { this.props.toggleModal(); })
-      .catch(err => {
-        let msg = err.response ? err.response : "An unknown error occurred."
-        this.props.handleError(msg, "duplication");
-      }
-    );
+    this.props.loadListData("http://request-broker/api/process-request/parse")
   }
   render() {
     return (
@@ -301,7 +220,13 @@ export class DuplicationRequestModal extends Component {
         list={this.props.list}
         form={
           <Formik
-            initialValues={{format: "", description: "Entire folder", questions: "", notes: "", costs: false, recaptcha: ""}}
+            initialValues={{
+              format: "",
+              description: "Entire folder",
+              questions: "",
+              notes: "",
+              costs: false,
+              recaptcha: ""}}
             validate={values => {
               const errors = {};
               if (!values.format) errors.format = 'Please select your desired duplication format.';
@@ -310,7 +235,7 @@ export class DuplicationRequestModal extends Component {
               return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
-              this.handleSubmit(values);
+              this.props.handleFormSubmit("http://request-broker/api/deliver-request/duplication", values);
               setSubmitting(false);
             }}
           >
@@ -325,14 +250,28 @@ export class DuplicationRequestModal extends Component {
                   <option value="JPEG">JPEG</option>,
                   <option value="PDF">PDF</option>,
                   <option value="Photocopy">Photocopy</option>,
-                  <option value="TIFF">TIFF</option>
-                ]}
+                  <option value="TIFF">TIFF</option>]}
                 required={true}
                 errors={errors}
                 touched={touched} />
-              <FormGroup label="Description of Materials" helpText="Please describe the materials you want reproduced" name="description" component="textarea" rows={5} />
-              <FormGroup label="Special Requests/Questions for RAC staff" helpText="255 characters maximum" name="questions" component="textarea" rows={5} />
-              <FormGroup label="Notes for Personal Reference" helpText="255 characters maximum" name="notes" component="textarea" rows={5} />
+              <FormGroup
+                label="Description of Materials"
+                helpText="Please describe the materials you want reproduced"
+                name="description"
+                component="textarea"
+                rows={5} />
+              <FormGroup
+                label="Special Requests/Questions for RAC staff"
+                helpText="255 characters maximum"
+                name="questions"
+                component="textarea"
+                rows={5} />
+              <FormGroup
+                label="Notes for Personal Reference"
+                helpText="255 characters maximum"
+                name="notes"
+                component="textarea"
+                rows={5} />
               <FormGroup
                 label={<>I agree to pay the duplication costs for this request. See our <a href="https://rockarch.org/collections/access-and-request-materials/#duplication-services-and-fee-schedule">fee schedule</a></>}
                 name="costs"
@@ -340,9 +279,19 @@ export class DuplicationRequestModal extends Component {
                 required={true}
                 errors={errors}
                 touched={touched} />
-              <Field component={Captcha} name="recaptcha" className="modal-form__captcha" handleCaptchaChange={(response) => setFieldValue("recaptcha", response)} />
-              <ErrorMessage id="captcha-error" name="recaptcha" component="div" className="modal-form__error" />
-              <FormButtons submitText={`Request ${this.props.list.length ? (this.props.list.length) : ""} Items`} toggleModal={this.props.toggleModal} isSubmitting={isSubmitting} />
+              <Field
+                component={Captcha}
+                name="recaptcha"
+                handleCaptchaChange={(response) => setFieldValue("recaptcha", response)} />
+              <ErrorMessage
+                id="captcha-error"
+                name="recaptcha"
+                component="div"
+                className="modal-form__error" />
+              <FormButtons
+                submitText={`Request ${this.props.list.length ? (this.props.list.length) : ""} Items`}
+                toggleModal={this.props.toggleModal}
+                isSubmitting={isSubmitting} />
               <FocusError />
             </Form>
           )}
@@ -355,8 +304,9 @@ export class DuplicationRequestModal extends Component {
 
 DuplicationRequestModal.propTypes = {
   appElement: PropTypes.object,
-  handleError: PropTypes.func.isRequired,
-  toggleModal: PropTypes.func.isRequired,
+  handleFormSubmit: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   list: PropTypes.array.isRequired,
+  loadListData: PropTypes.func.isRequired,
+  toggleModal: PropTypes.func.isRequired,
 }

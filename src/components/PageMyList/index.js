@@ -66,16 +66,13 @@ class PageMyList extends Component {
       "savedItems": [],
       "isLoading": true,
       "email": {
-        "isOpen": false,
-        "error": ""
+        "isOpen": false
       },
       "readingRoom": {
-        "isOpen": false,
-        "error": ""
+        "isOpen": false
       },
       "duplication": {
-        "isOpen": false,
-        "error": ""
+        "isOpen": false
       }
     }
   }
@@ -91,8 +88,19 @@ class PageMyList extends Component {
       .then(res => { console.log(res.data) })
       .catch(err => { console.log(err) });
   }
-  handleError = (msg, modal) => {
-    this.setState({ [modal]: {...this.state[modal], error: msg}})
+  handleFormSubmit = (uri, submitted) => {
+    axios
+      .post(uri, submitted)
+      .then(res => { this.props.toggleModal(); })
+      .catch(err => { console.log(err) }
+    );
+  }
+  loadListData = uri => {
+    // TODO: what should we do if this request fails?
+    axios
+      .post(uri, this.state.savedItems)
+      .then(res => { this.setState({ data: res.data}) })
+      .catch(err => console.log(err))
   }
   fetchFromUri(uri) {
     return axios
@@ -198,20 +206,23 @@ class PageMyList extends Component {
         <EmailModal
           {...this.state.email}
           toggleModal={() => this.toggleModal("email")}
+          handleFormSubmit={this.handleFormSubmit}
+          loadListData={this.loadListData}
           list={this.state.savedItems}
-          handleError={this.handleError}
         />
         <ReadingRoomRequestModal
           {...this.state.readingRoom}
           toggleModal={() => this.toggleModal("readingRoom")}
+          handleFormSubmit={this.handleFormSubmit}
+          loadListData={this.loadListData}
           list={this.state.savedItems}
-          handleError={this.handleError}
         />
         <DuplicationRequestModal
           {...this.state.duplication}
           toggleModal={() => this.toggleModal("duplication")}
+          handleFormSubmit={this.handleFormSubmit}
+          loadListData={this.loadListData}
           list={this.state.savedItems}
-          handleError={this.handleError}
         />
       </React.Fragment>
     );
