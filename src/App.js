@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import SkipLink from "./components/SkipLink";
 import PageAgent from "./components/PageAgent";
 import PageRecord from "./components/PageRecord";
 import PageDigitalObject from "./components/PageDigitalObject";
@@ -39,26 +40,29 @@ class App extends Component {
   render() {
     return (
         <React.Fragment>
+          <SkipLink />
           <Header myListCount={this.state.myListCount} />
-          <div className="wrapper">
-            <Switch>
-              <Route path="/list/" component={() =>
-                <PageMyList
-                  fetchMyList={this.fetchMyList}
-                  saveMyList={this.saveMyList} />
-              } />
-              <Route path="/search/" component={PageSearch} />
-              <Route path="/records/" component={() =>
-                <PageRecord
-                  fetchMyList={this.fetchMyList}
-                  saveMyList={this.saveMyList} />
+          <main id="main">
+            <div className="wrapper">
+              <Switch>
+                <Route path="/list/" component={() =>
+                  <PageMyList
+                    fetchMyList={this.fetchMyList}
+                    saveMyList={this.saveMyList} />
                 } />
-              <Route path="/agents/:id" component={PageAgent} />
-              <Route path="/view/" component={PageDigitalObject} />
-              <Route exact path="/" component={PageHome} />
-              <Route path="*" component={PageNotFound} />
-            </Switch>
-          </div>
+                <Route path="/search/" component={PageSearch} />
+                <Route path="/records/" component={() =>
+                  <PageRecord
+                    fetchMyList={this.fetchMyList}
+                    saveMyList={this.saveMyList} />
+                  } />
+                <Route path="/agents/:id" component={PageAgent} />
+                <Route path="/view/" component={PageDigitalObject} />
+                <Route exact path="/" component={PageHome} />
+                <Route path="*" component={PageNotFound} />
+              </Switch>
+            </div>
+          </main>
         <Footer/>
       </React.Fragment>
     );
