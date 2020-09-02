@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import queryString from "query-string";
 import {Helmet} from "react-helmet";
-import Search from "./Search";
+import SearchForm from "./SearchForm";
 import TileList from "./Tile";
 
 class PageSearch extends Component {
@@ -47,7 +47,7 @@ class PageSearch extends Component {
         </Helmet>
         <div className="container--full-width">
           <div className="search-bar">
-            <Search className="search-form--results" />
+            <SearchForm className="search-form--results" />
           </div>
           <main id="main" role="main" className="search-results">
             <h1 className="search__title">{`Search Results ${this.state.query && `for “${this.state.query}”` }`}</h1>

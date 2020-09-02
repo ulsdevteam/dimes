@@ -6,7 +6,7 @@ import "./styles.scss";
 
 
 // TODO: add onClick handler to Search button
-const Search = ({ className }) => {
+const SearchForm = ({ className }) => {
   return (
   <form role="search" action="/search" method="get">
     <div className={`${className}`}>
@@ -37,8 +37,8 @@ const Search = ({ className }) => {
     </div>
   </form>)}
 
-Search.propTypes = {
+SearchForm.propTypes = {
   className: PropTypes.string,
 }
 
-export default Search;
+export default SearchForm;
