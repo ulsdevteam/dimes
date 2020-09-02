@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
 import queryString from "query-string";
-import {Helmet} from "react-helmet";
-import SearchForm from "./SearchForm";
-import TileList from "./Tile";
+import { Helmet } from "react-helmet";
+import Button from "../Button";
+import { SelectInput, SelectOption } from "../Inputs"
+import SearchForm from "../SearchForm";
+import TileList from "../Tile";
+import "./styles.scss"
 
 class PageSearch extends Component {
   constructor(props) {
@@ -16,6 +19,7 @@ class PageSearch extends Component {
       startItem: 0,
       endItem: 0,
       resultsCount: 0,
+      showFacets: false,
     };
   };
   componentDidMount() {
@@ -60,6 +64,9 @@ class PageSearch extends Component {
   parseParams = (params) => {
     return queryString.parse(params);
   }
+  toggleFacets = () => {
+    this.setState({showFacets: !this.state.showFacets});
+  }
   render() {
     // TODO: replace with search component
     // TODO: perform search without page reload
@@ -75,8 +82,24 @@ class PageSearch extends Component {
           <main id="main" role="main" className="search-results">
             <h1 className="search__title">{`Search Results ${this.state.query && `for “${this.state.query}”` }`}</h1>
             <p className="results__summary">
-              {`${this.state.startItem === this.state.endItem ? this.state.startItem : `${this.state.startItem}-${this.state.endItem}`} of ${this.state.resultsCount} results`}
+              {`${this.state.startItem === this.state.endItem ?
+                this.state.startItem :
+                `${this.state.startItem}-${this.state.endItem}`} of ${this.state.resultsCount} results`}
             </p>
+            <div class="search__controls">
+              <Button
+                onClick={this.toggleFacets}
+                label="Filters"
+                iconBefore="filter_alt"
+                className="btn--filter" />
+              <div className="select__sort--wrapper">
+                <SelectInput className="hide-label select__sort" id="sort" label="Sort search results">
+                  <SelectOption value="" label="Sort by relevance" />
+                  <SelectOption value="title" label="Sort by title" />
+                  <SelectOption value="creator" label="Sort by creator" />
+                </SelectInput>
+              </div>
+            </div>
             { this.state.inProgress ? (<p>Searching</p>) : (<TileList items={this.state.items} />)}
           </main>
         </div>

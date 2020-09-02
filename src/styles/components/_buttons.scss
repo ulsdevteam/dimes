@@ -160,3 +160,15 @@
     margin-right: 15px;
   }
 }
+
+.btn--filter {
+  padding: 12px 16px;
+  background: $pale-blue;
+  border: 1px solid $light-blue;
+  font-size: 14px;
+  text-transform: none;
+  letter-spacing: unset;
+  & .material-icons {
+    font-size: 18px;
+  }
+}
