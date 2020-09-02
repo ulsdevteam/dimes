@@ -7,14 +7,14 @@ const HitCount = ({ hit_count }) => (
 )
 
 const TypeLabel = ({ type }) => (
-  <div className="tile__type-label">{type}</div>
+  <div className={`tile__type-label ${type}`}></div>
 )
 
-const Tile = ({date, hit_count, title, type, uri}) => (
+const Tile = ({ category, date, hit_count, title, type, uri }) => (
   <li className="tile">
     <a className="tile__link" href={uri}>
       {hit_count ? (<HitCount hit_count={hit_count} />) : null}
-      {type ? (<TypeLabel type={type} />) : null }
+      {type ? (<TypeLabel type={category} />) : null }
       <h2 className="tile__title">{title}</h2>
       <p className="tile__date">{date}</p>
     </a>
