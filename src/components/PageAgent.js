@@ -6,49 +6,31 @@ import TileList from "./Tile";
 import AgentAttributeList from "./AgentAttribute";
 import "./Button/styles.scss";
 
-class AgentDescription extends Component {
-  render() {
-    if (!this.props.attributes) {
-      return null;
-    }
-    return (
-      <div className="agent__description">
-        <h2 className="agent__section-title">Summary</h2>
-        <AgentAttributeList items={this.props.attributes} />
-      </div>
-    )
-  }
-}
+const AgentDescription = ({ attributes }) => (
+  attributes ?
+  (<div className="agent__description">
+    <h2 className="agent__section-title">Summary</h2>
+    <AgentAttributeList items={this.props.attributes} />
+  </div>) : (null)
+)
 
-class AgentRelatedCollections extends Component {
-  // TODO: add href to search more button
-  render() {
-    if (!this.props.collections) {
-      return null;
-    }
-    return (
-      <div className="agent__related">
-        <h2 className="agent__section-title">Related Collections</h2>
-        <TileList items={this.props.collections} />
-        <a href="/search/" className="btn btn--search-more">Search More Related Collections</a>
-      </div>
-    )
-  }
-}
+const AgentRelatedCollections = ({ collections }) => (
+// TODO: add href to search more button
+  collections ?
+  (<div className="agent__related">
+    <h2 className="agent__section-title">Related Collections</h2>
+    <TileList items={this.props.collections} />
+    <a href="/search/" className="btn btn--search-more">Search More Related Collections</a>
+  </div>) : (null)
+)
 
-class AgentSidebar extends Component {
-  render() {
-    if (!this.props.agents) {
-      return null;
-    }
-    return (
-      <div className="agent__sidebar">
-        <h2 className="agent__section-title">Related People and Organizations</h2>
-        <TileList items={this.props.agents} />
-      </div>
-    )
-  }
-}
+const AgentSidebar = ({ agents }) => (
+  agents ?
+  (<div className="agent__sidebar">
+    <h2 className="agent__section-title">Related People and Organizations</h2>
+    <TileList items={this.props.agents} />
+  </div>) : (null)
+)
 
 class PageAgent extends Component {
   constructor(props) {
@@ -103,7 +85,7 @@ class PageAgent extends Component {
       return (<PageNotFound />)
     }
     return (
-      <div>
+      <React.Fragment>
         <Helmet>
           <title>{ this.state.agent.title }</title>
         </Helmet>
@@ -119,7 +101,7 @@ class PageAgent extends Component {
           </main>
           <AgentSidebar related={this.state.agent.agents} />
         </div>
-      </div>
+      </React.Fragment>
     )
   }
 }

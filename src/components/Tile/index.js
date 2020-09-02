@@ -2,47 +2,31 @@ import React, { Component } from "react";
 import "./styles.scss";
 
 
-class HitCount extends Component {
-  render() {
-    return (
-      <div className="tile__hit-count">{this.props.hit_count} matches</div>
-    )
-  }
-}
+const HitCount = ({ hits }) => (
+  <div className="tile__hit-count">{hits} matches</div>
+)
 
-class TypeLabel extends Component {
-  render() {
-    return (
-      <div className="tile__type-label">{this.props.type}</div>
-    )
-  }
-}
+const TypeLabel = ({ type }) => (
+  <div className="tile__type-label">{type}</div>
+)
 
-class Tile extends Component {
-  render() {
-    return (
-      <li className="tile">
-        <a className="tile__link" href={this.props.uri}>
-          {this.props.hit_count ? (<HitCount hit_count={this.props.hit_count} />) : null}
-          {this.props.type ? (<TypeLabel type={this.props.type} />) : null }
-          <div className="tile__title">{this.props.title}</div>
-          <div className="tile__date">{this.props.date}</div>
-        </a>
-      </li>
-    )
-  }
-}
+const Tile = ({date, hits, title, type, uri}) => (
+  <li className="tile">
+    <a className="tile__link" href={uri}>
+      {hits ? (<HitCount hits={hits} />) : null}
+      {type ? (<TypeLabel type={type} />) : null }
+      <div className="tile__title">{title}</div>
+      <div className="tile__date">{date}</div>
+    </a>
+  </li>)
 
 class TileList extends Component {
   listItems = (items) => {
     return items.map((item) =>
       <Tile
         key={item.uri}
-        hit_count={item.hit_count}
-        title={item.title}
-        type={item.type}
-        date={item.dates?.length && item.dates[0].expression}
-        uri={item.uri} />
+        {...item}
+        date={item.dates?.length && item.dates[0].expression} />
     );
   }
   render() {

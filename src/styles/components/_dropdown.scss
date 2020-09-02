@@ -14,6 +14,7 @@
   border-radius: 3px;
   padding: 20px 0px;
   width: 270px;
+  transition: $transition-default;
   &.open {
     display: block;
     z-index: 999;
@@ -26,4 +27,51 @@
 .dropdown__list--orange {
   background-color: $burnt-orange;
   color: $pure-white;
+}
+
+.mylist__actions {
+  margin-top: 40px;
+  margin-bottom: 30px;
+  display: block;
+  float: right;
+  @media screen and (min-width: $break-lg) {
+    display: none;
+  }
+}
+
+.nav-mobile__btn {
+  margin: 5px;
+  padding: 15px;
+  background-color: $deep-navy;
+  color: $pure-white;
+  border: none;
+  border-radius: 0;
+  &:hover {
+    background-color: $deep-blue;
+    transition: $transition-default;
+  }
+  & .material-icons {
+    font-size: 20px;
+    line-height: 20px;
+  }
+}
+
+.dropdown__list--mobile {
+  @extend .dropdown__list;
+  width: 240px;
+  position: fixed;
+  right: 0;
+  top: 50px;
+  height: 100%;
+  margin-top: 20px;
+  border-radius: 0;
+}
+
+.dropdown__list--navy {
+  background: $deep-navy;
+}
+
+.btn--mobile-dropdown  {
+  @extend .btn--dropdown;
+  padding: 12px 24px;
 }

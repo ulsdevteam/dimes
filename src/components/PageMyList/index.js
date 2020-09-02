@@ -2,62 +2,61 @@ import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import axios from "axios";
 import Button from "../Button";
-import Dropdown from "../Dropdown";
+import {MyListDropdown} from "../Dropdown";
 import {Helmet} from "react-helmet";
-import SavedItemList from "../SavedItem";
+import {DuplicationRequestModal, EmailModal, ReadingRoomRequestModal} from "../Modal";
+import {SavedItemList} from "../SavedItem";
 import "./styles.scss";
 
-class MyListExportActions extends Component {
-  // TODO: add onClick actions
-  render() {
-    return (
-      <div className="mylist__export-actions">
-        <Button
-          className="btn--orange btn--sm"
-          label="Email List"
-          iconBefore="email" />
-        <Button
-          className="btn--orange btn--sm"
-          label="Download as .CSV"
-          iconBefore="get_app" />
-        <Button
-          className="btn--gray btn--sm"
-          label="Remove All Items"
-          iconBefore="delete"
-          onClick={() => this.props.removeAllItems()} />
-      </div>
-    )
-  }
-}
+const MyListExportActions = ({downloadCsv, emailList, removeAllItems}) => (
+  <div className="mylist__export-actions show-on-lg-up">
+    <Button
+      className="btn--orange btn--sm"
+      label="Email List"
+      iconBefore="email"
+      handleClick={emailList} />
+    <Button
+      className="btn--orange btn--sm"
+      label="Download as .CSV"
+      iconBefore="get_app"
+      handleClick={downloadCsv} />
+    <Button
+      className="btn--gray btn--sm"
+      label="Remove All Items"
+      iconBefore="delete"
+      handleClick={() => removeAllItems()} />
+  </div>)
 
 MyListExportActions.propTypes = {
+  downloadCsv: PropTypes.func.isRequired,
+  emailList: PropTypes.func.isRequired,
   removeAllItems: PropTypes.func.isRequired
 }
 
-class MyListSidebar extends Component  {
-  // TODO: add onClick actions
-  render() {
-    return (
-      <aside className="mylist__sidebar">
-        <Button
-          className="btn--orange btn--lg"
-          label="Schedule a Visit"
-          iconBefore="account_balance" />
-        <Button
-          className="btn--orange btn--lg"
-          label="Request in Reading Room"
-          iconBefore="local_library" />
-        <Button
-          className="btn--orange btn--lg"
-          label="Request Copies"
-          iconBefore="content_copy" />
-      </aside>
-    )
-  }
-}
+const MyListSidebar = ({ duplicationRequest, readingRoomRequest, sendEmail }) => (
+// TODO: add onClick actions
+  <aside className="mylist__sidebar show-on-lg-up">
+    <Button
+      className="btn--orange btn--lg"
+      label="Schedule a Visit"
+      iconBefore="account_balance"
+      handleClick={() => sendEmail()} />
+    <Button
+      className="btn--orange btn--lg"
+      label="Request in Reading Room"
+      iconBefore="local_library"
+      handleClick={() => readingRoomRequest()} />
+    <Button
+      className="btn--orange btn--lg"
+      label="Request Copies"
+      iconBefore="content_copy"
+      handleClick={() => duplicationRequest()} />
+  </aside>)
 
 MyListSidebar.propTypes = {
-
+  duplicationRequest: PropTypes.func.isRequired,
+  readingRoomRequest: PropTypes.func.isRequired,
+  sendEmail: PropTypes.func.isRequired
 }
 
 class PageMyList extends Component {
@@ -65,12 +64,53 @@ class PageMyList extends Component {
     super(props);
     this.state = {
       "savedItems": [],
-      "isLoading": true
+      "isLoading": true,
+      "email": {
+        "isOpen": false,
+        "error": ""
+      },
+      "readingRoom": {
+        "isOpen": false,
+        "error": ""
+      },
+      "duplication": {
+        "isOpen": false,
+        "error": ""
+      }
     }
   }
   componentDidMount() {
     // TODO: resolve error with state update on unmounted component
     const list = this.props.fetchMyList();
+    this.resolveList(list);
+  }
+  downloadCsv = () => {
+    // TODO: what should happen if there are errors?
+    axios
+      .post("http://request-broker/api/download-csv/", this.state.savedItems)
+      .then(res => { console.log(res.data) })
+      .catch(err => { console.log(err) });
+  }
+  handleError = (msg, modal) => {
+    this.setState({ [modal]: {...this.state[modal], error: msg}})
+  }
+  fetchFromUri(uri) {
+    return axios
+      .get(`http://localhost:8000${uri}`)
+      .then(res => res.data)
+      .catch(err => console.log(err));
+  }
+  removeAllItems = () => {
+    this.props.saveMyList({})
+  }
+  removeItem = (group, item) => {
+    // TODO: Reload list in more performant way
+    const list = this.props.fetchMyList();
+    delete list[group][item]
+    if (Object.entries(list[group]).length === 0) {
+      delete list[group]
+    }
+    this.props.saveMyList(list);
     this.resolveList(list);
   }
   resolveList = async(list) => {
@@ -117,24 +157,11 @@ class PageMyList extends Component {
     }
     this.setState({isLoading: false})
   }
-  fetchFromUri(uri) {
-    return axios
-      .get(`http://localhost:8000${uri}`)
-      .then(res => res.data)
-      .catch(err => console.log(err));
+  sendEmail = () => {
+    window.open("mailto:archive@rockarch.org?subject=Scheduling a research appointment");
   }
-  removeAllItems = () => {
-    this.props.saveMyList({})
-  }
-  removeItem = (group, item) => {
-    // TODO: Reload list in more performant way
-    const list = this.props.fetchMyList();
-    delete list[group][item]
-    if (Object.entries(list[group]).length === 0) {
-      delete list[group]
-    }
-    this.props.saveMyList(list);
-    this.resolveList(list);
+  toggleModal = (modal)  => {
+    this.setState({ [modal]: {...this.state[modal], isOpen: !this.state[modal]["isOpen"], error: ""} })
   }
   render() {
     // TODO: add onClick handlers for actions
@@ -147,56 +174,45 @@ class PageMyList extends Component {
           <main id="main" role="main">
             <div className="mylist__header">
               <h1 className="mylist__title">My List</h1>
-              <Dropdown
-                label="Actions"
-                iconBefore="settings"
-                className="mylist__actions"
-                buttonClassName="btn btn--orange btn--md"
-                itemClassName="dropdown__item--orange"
-                listClassName="dropdown__list--orange"
-                items={
-                  [
-                    {
-                      "label": "Schedule a Visit",
-                      "iconBefore": "account_balance",
-                      "onClick": null
-                    },
-                    {
-                      "label": "Request in Reading Room",
-                      "iconBefore": "local_library",
-                      "onClick": null
-                    },
-                    {
-                      "label": "Request Copies",
-                      "iconBefore": "content_copy",
-                      "onClick": null
-                    },
-                    {
-                      "label": "Email List",
-                      "iconBefore": "email",
-                      "onClick": null
-                    },
-                    {
-                      "label": "Download as .csv",
-                      "iconBefore": "get_app",
-                      "onClick": null
-                    },
-                    {
-                      "label": "Remove All Items",
-                      "iconBefore": "delete",
-                      "onClick": this.removeAllItems
-                    }
-                  ]
-                } />
+              <MyListDropdown
+                duplicationRequest={() => this.toggleModal("duplication")}
+                emailList={() => this.toggleModal("email")}
+                readingRoomRequest={() => this.toggleModal("readingRoom")}
+                removeAllItems={this.removeAllItems}
+                sendEmail={this.sendEmail} />
             </div>
-            <MyListExportActions removeAllItems={this.removeAllItems} />
+            <MyListExportActions
+                downloadCsv={this.downloadCsv}
+                emailList={() => this.toggleModal("email")}
+                removeAllItems={this.removeAllItems} />
             <SavedItemList
               items={this.state.savedItems}
               isLoading={this.state.isLoading}
               removeItem={this.removeItem} />
           </main>
-          <MyListSidebar/>
+          <MyListSidebar
+              duplicationRequest={() => this.toggleModal("duplication")}
+              readingRoomRequest={() => this.toggleModal("readingRoom")}
+              sendEmail={this.sendEmail} />
         </div>
+        <EmailModal
+          {...this.state.email}
+          toggleModal={() => this.toggleModal("email")}
+          list={this.state.savedItems}
+          handleError={this.handleError}
+        />
+        <ReadingRoomRequestModal
+          {...this.state.readingRoom}
+          toggleModal={() => this.toggleModal("readingRoom")}
+          list={this.state.savedItems}
+          handleError={this.handleError}
+        />
+        <DuplicationRequestModal
+          {...this.state.duplication}
+          toggleModal={() => this.toggleModal("duplication")}
+          list={this.state.savedItems}
+          handleError={this.handleError}
+        />
       </React.Fragment>
     );
   }

@@ -319,3 +319,10 @@ small {
 .search__title {
   @include page-title;
 }
+
+.help-text {
+  font-family: $sans-serif-stack;
+  font-size: 13px;
+  font-style: italic;
+  color: $med-gray;
+}

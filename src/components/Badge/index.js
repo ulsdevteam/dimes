@@ -1,16 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import "./styles.scss"
 
-class Badge extends Component {
-  render() {
-    return (
-      <span className={this.props.className}>
-        {this.props.icon && this.props.icon} {this.props.label}
-      </span>
-    )
-  }
-}
+const Badge = ({ className, icon, label }) => (
+  <span className={className}>
+    {icon && icon} {label}
+  </span>)
 
 Badge.propTypes = {
   label: PropTypes.string.isRequired,

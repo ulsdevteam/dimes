@@ -2,21 +2,30 @@
 
 .nav {
   text-align: right;
+  float: right;
   text-transform: uppercase;
-  @include grid-column(5);
-  @media screen and (min-width: $break-md) {
-    @include grid-column(6);
-    float: right;
-  }
+  @include grid-column(1);
+  margin-left: 0;
+  height: 60px;
+  box-sizing: border-box;
   @media screen and (min-width: $break-lg) {
-    @include grid-column(4);
+    @include grid-column(5);
+    border: none;
     float: right;
   }
 }
 
-.nav__list {margin: 0;}
+.nav__list {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  @media screen and (min-width: $break-lg) {
+    margin-right: -15px;
+  }
+}
 .nav__item {
   display: inline-block;
+  border-left: 1px solid $med-dark-gray;
   &:hover {
     background-color: $deep-blue;
     transition: $transition-default
