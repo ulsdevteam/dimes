@@ -11,7 +11,11 @@ class PageSearch extends Component {
     this.state = {
       inProgress: false,
       items: [],
-      query: this.parseParams(this.props.location.search).query
+      query: this.parseParams(this.props.location.search).query,
+      pageSize: 100,
+      startItem: 0,
+      endItem: 0,
+      resultsCount: 0,
     };
   };
   componentDidMount() {
@@ -22,10 +26,29 @@ class PageSearch extends Component {
   toggleInProgress = () => {
     this.setState({inProgress: !this.state.inProgress});
   };
+  calculateStartItem = results => {
+    var startItem = 0;
+    const offset = this.parseParams(this.props.location.search).offset;
+    if (offset) startItem = offset;
+    if (results.count) startItem = 1
+    return startItem;
+  }
+  calculateEndItem = results => {
+    var endItem = results.count
+    const offset = this.parseParams(this.props.location.search).offset;
+    if (offset) endItem = offset + this.state.pageSize;
+    return endItem;
+  }
   executeSearch = params =>  {
     axios
       .get(`http://localhost:8000/search/${params}`)
-      .then(res => {res.data.results.forEach(r => this.fetchFromUri(r.uri, r.hit_count)); this.toggleInProgress();})
+      .then(res => {
+        res.data.results.forEach(r => this.fetchFromUri(r.uri, r.hit_count));
+        this.setState({startItem: this.calculateStartItem(res.data)})
+        this.setState({endItem: this.calculateEndItem(res.data)})
+        this.setState({resultsCount: res.data.count})
+        this.toggleInProgress();
+      })
       .catch(err => console.log(err));
   };
   fetchFromUri = (uri, hit_count) => {
@@ -51,6 +74,9 @@ class PageSearch extends Component {
           </div>
           <main id="main" role="main" className="search-results">
             <h1 className="search__title">{`Search Results ${this.state.query && `for “${this.state.query}”` }`}</h1>
+            <p className="results__summary">
+              {`${this.state.startItem === this.state.endItem ? this.state.startItem : `${this.state.startItem}-${this.state.endItem}`} of ${this.state.resultsCount} results`}
+            </p>
             { this.state.inProgress ? (<p>Searching</p>) : (<TileList items={this.state.items} />)}
           </main>
         </div>
