@@ -41,9 +41,11 @@ class PageSearch extends Component {
         <Helmet>
           <title>Search Results</title>
         </Helmet>
-        <div className="container search">
-          <Search className="search--results" />
-          <main id="main" role="main">
+        <div className="container--full-width">
+          <div className="search-bar">
+            <Search className="search-form--results" />
+          </div>
+          <main id="main" role="main" class="search-results">
             <h1 className="search__title">Search Results</h1>
             { this.state.inProgress ? (<p>Searching</p>) : (<TileList items={this.state.items} />)}
           </main>

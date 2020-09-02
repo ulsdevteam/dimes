@@ -6,7 +6,7 @@ input[type=search] {
   font-size: 18px;
 }
 
-.search--home {
+.search-form--home {
   @include grid-column(12);
   display: flex;
   justify-content: center;
@@ -19,12 +19,21 @@ input[type=search] {
   }
 }
 
-.search--results {
+.search-bar {
   width: 100%;
-  display: flex;
-  justify-content: center;
   background-color: $pale-blue;
   padding: 24px 0px;
+}
+
+.search-results, .search-form--results {
+  margin: 0px 30px;
+  @media screen and (min-width: $break-lg) {
+    margin: 0px 80px;
+  }
+}
+
+.search-form--results {
+  max-width: 700px;
 }
 
 .input-group__search {
@@ -47,6 +56,7 @@ input[type=search] {
 .select__search--wrapper {
   position: relative;
   display: none;
+  box-sizing: border-box;
   @media screen and (min-width: $break-md) {
     display: inline-block;
   }

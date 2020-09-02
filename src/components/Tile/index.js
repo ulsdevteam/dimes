@@ -2,21 +2,21 @@ import React, { Component } from "react";
 import "./styles.scss";
 
 
-const HitCount = ({ hits }) => (
-  <div className="tile__hit-count">{hits} matches</div>
+const HitCount = ({ hit_count }) => (
+  <div className="tile__hit-count">{hit_count} matches</div>
 )
 
 const TypeLabel = ({ type }) => (
   <div className="tile__type-label">{type}</div>
 )
 
-const Tile = ({date, hits, title, type, uri}) => (
+const Tile = ({date, hit_count, title, type, uri}) => (
   <li className="tile">
     <a className="tile__link" href={uri}>
-      {hits ? (<HitCount hits={hits} />) : null}
+      {hit_count ? (<HitCount hit_count={hit_count} />) : null}
       {type ? (<TypeLabel type={type} />) : null }
-      <div className="tile__title">{title}</div>
-      <div className="tile__date">{date}</div>
+      <h2 className="tile__title">{title}</h2>
+      <p className="tile__date">{date}</p>
     </a>
   </li>)
 

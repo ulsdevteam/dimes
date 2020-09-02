@@ -19,8 +19,8 @@ const Search = ({ className }) => (
           type="search"
         />
         <div className="select__search--wrapper">
-          <SelectInput className="hide-label select__search" id="type" label="Choose a search category">
-          <SelectOption label="Everything" />
+          <SelectInput className="hide-label select__search" id="category" label="Choose a search category">
+          <SelectOption value="" label="Everything" />
           <SelectOption label="Collections" />
           <SelectOption label="People" />
           <SelectOption label="Organizations" />
