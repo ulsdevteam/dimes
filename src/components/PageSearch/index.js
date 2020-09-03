@@ -15,7 +15,7 @@ class PageSearch extends Component {
       inProgress: false,
       items: [],
       query: this.parseParams(this.props.location.search).query,
-      pageSize: 100,
+      pageSize: 50,
       startItem: 0,
       endItem: 0,
       resultsCount: 0,
@@ -30,26 +30,36 @@ class PageSearch extends Component {
   toggleInProgress = () => {
     this.setState({inProgress: !this.state.inProgress});
   };
-  calculateStartItem = results => {
-    var startItem = 0;
-    const offset = this.parseParams(this.props.location.search).offset;
+  startItem = (results, offset) => {
+    var startItem = this.state.startItem;
     if (offset) startItem = offset;
     if (results.count) startItem = 1
     return startItem;
   }
-  calculateEndItem = results => {
+  endItem = (results, offset) => {
     var endItem = results.count
-    const offset = this.parseParams(this.props.location.search).offset;
+    if (results.count > this.state.pageSize) endItem = this.state.pageSize;
     if (offset) endItem = offset + this.state.pageSize;
     return endItem;
+  }
+  pageSize = (results, limit) => {
+    if (limit) {
+      return limit
+    } else if (results.next) {
+      return this.parseParams(queryString.extract(results.next)).limit
+    } else {
+      return this.state.pageSize;
+    }
   }
   executeSearch = params =>  {
     axios
       .get(`http://localhost:8000/search/${params}`)
       .then(res => {
         res.data.results.forEach(r => this.fetchFromUri(r.uri, r.hit_count));
-        this.setState({startItem: this.calculateStartItem(res.data)})
-        this.setState({endItem: this.calculateEndItem(res.data)})
+        const params = this.parseParams(this.props.location.search);
+        this.setState({pageSize: this.pageSize(res.data, params.limit)})
+        this.setState({startItem: this.startItem(res.data, params.offset)})
+        this.setState({endItem: this.endItem(res.data, params.offset)})
         this.setState({resultsCount: res.data.count})
         this.toggleInProgress();
       })
@@ -86,7 +96,7 @@ class PageSearch extends Component {
                 this.state.startItem :
                 `${this.state.startItem}-${this.state.endItem}`} of ${this.state.resultsCount} results`}
             </p>
-            <div class="search__controls">
+            <div className="search__controls">
               <Button
                 onClick={this.toggleFacets}
                 label="Filters"
