@@ -22,9 +22,9 @@ const SearchForm = ({ className }) => {
         <div className="select__search--wrapper">
           <SelectInput className="hide-label select__search" id="category" label="Choose a search category">
           <SelectOption value="" label="Everything" />
-          <SelectOption label="Collections" />
-          <SelectOption label="People" />
-          <SelectOption label="Organizations" />
+          <SelectOption value="collection" label="Collections" />
+          <SelectOption value="person" label="People" />
+          <SelectOption value="organization" label="Organizations" />
           </SelectInput>
         </div>
         <Button
