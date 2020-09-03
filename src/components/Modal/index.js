@@ -71,7 +71,7 @@ export class EmailModal extends Component {
               return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
-              this.props.handleFormSubmit("http://request-broker/api/deliver-request/email", values);
+              this.props.handleFormSubmit("http://request-broker/api/deliver-request/email", values, "email");
               setSubmitting(false);
             }}
           >
@@ -147,7 +147,7 @@ export class ReadingRoomRequestModal extends Component {
               return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
-              this.props.handleFormSubmit("http://request-broker/api/deliver-request/reading-room", values);
+              this.props.handleFormSubmit("http://request-broker/api/deliver-request/reading-room", values, "readingRoom");
               setSubmitting(false);
             }}
           >
@@ -237,7 +237,7 @@ export class DuplicationRequestModal extends Component {
               return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
-              this.props.handleFormSubmit("http://request-broker/api/deliver-request/duplication", values);
+              this.props.handleFormSubmit("http://request-broker/api/deliver-request/duplication", values, "duplication");
               setSubmitting(false);
             }}
           >

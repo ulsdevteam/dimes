@@ -88,10 +88,12 @@ class PageMyList extends Component {
       .then(res => { console.log(res.data) })
       .catch(err => { console.log(err) });
   }
-  handleFormSubmit = (uri, submitted) => {
+  handleFormSubmit = (uri, submitted, modal) => {
+    // TODO: remove toggleModal, which is just here for testing purposes.
+    this.toggleModal(modal);
     axios
       .post(uri, submitted)
-      .then(res => { this.props.toggleModal(); })
+      .then(res => { this.toggleModal(modal); })
       .catch(err => { console.log(err) }
     );
   }
