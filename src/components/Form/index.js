@@ -24,7 +24,7 @@ export const FocusError = () => {
 
 
 export const FormGroup = (props) => {
-  const { children, component, errors, helpText, label, name, required, rows, touched, type } = props;
+  const { children, component, errors, helpText, maxLength, label, name, required, rows, touched, type } = props;
   return (
     <div className="form-group">
       { type !== "checkbox" && <label htmlFor={name}>{label}</label> }
@@ -37,6 +37,7 @@ export const FormGroup = (props) => {
         component={component}
         rows={rows}
         children={children}
+        maxLength={maxLength}
         aria-invalid={errors && errors[name] && touched[name] ? 'true' : null}
         aria-describedby={errors && errors[name] && touched[name] ? `${name}-error` : null}
         aria-required={required} />

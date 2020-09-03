@@ -165,12 +165,14 @@ export class ReadingRoomRequestModal extends Component {
                 label="Special Requests/Questions for RAC staff"
                 helpText="255 characters maximum"
                 name="questions"
+                maxLength={255}
                 component="textarea"
                 rows={5} />
               <FormGroup
                 label="Notes for Personal Reference"
                 helpText="255 characters maximum"
                 name="notes"
+                maxLength={255}
                 component="textarea"
                 rows={5} />
               <Field
@@ -256,19 +258,22 @@ export class DuplicationRequestModal extends Component {
                 touched={touched} />
               <FormGroup
                 label="Description of Materials"
-                helpText="Please describe the materials you want reproduced"
+                helpText="Please describe the materials you want reproduced. 255 characters maximum."
                 name="description"
+                maxLength={255}
                 component="textarea"
                 rows={5} />
               <FormGroup
                 label="Special Requests/Questions for RAC staff"
-                helpText="255 characters maximum"
+                helpText="255 characters maximum."
+                maxLength={255}
                 name="questions"
                 component="textarea"
                 rows={5} />
               <FormGroup
                 label="Notes for Personal Reference"
-                helpText="255 characters maximum"
+                helpText="255 characters maximum."
+                maxLength={255}
                 name="notes"
                 component="textarea"
                 rows={5} />
