@@ -25,6 +25,19 @@ export const FocusError = () => {
 
 export const FormGroup = (props) => {
   const { children, component, errors, helpText, maxLength, label, name, required, rows, touched, type } = props;
+  const describedBy = () => {
+    if (helpText) {
+      if (errors && errors[name] && touched[name]) {
+        return `${name}-error desc-${name}`
+      } else {
+        return `desc-${name}`
+      }
+    } else {
+      if (errors && errors[name] && touched[name]) {
+        return `${name}-error`
+      }
+    }
+  }
   return (
     <div className="form-group">
       { type !== "checkbox" && <label htmlFor={name}>{label}</label> }
@@ -39,10 +52,10 @@ export const FormGroup = (props) => {
         children={children}
         maxLength={maxLength}
         aria-invalid={errors && errors[name] && touched[name] ? 'true' : null}
-        aria-describedby={errors && errors[name] && touched[name] ? `${name}-error` : null}
+        aria-describedby={describedBy()}
         aria-required={required} />
       { type === "checkbox" && <label htmlFor={name}>{label}</label> }
-      { helpText && <p className="help-text" aria-describedby={`desc-${name}`}>{helpText}</p> }
+      { helpText && <p className="help-text" id={`desc-${name}`}>{helpText}</p> }
       <ErrorMessage id={`${name}-error`} name={name} component="div" className="modal-form__error" />
     </div>
 )}
