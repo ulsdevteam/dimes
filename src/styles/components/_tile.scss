@@ -84,28 +84,19 @@
   &::after {
     vertical-align: middle;
   }
-  &.collections {
+  &.collection {
     &::before {
      content: "bookmark";
     }
-    &::after {
-      content: "collection";
-    }
   }
-  &.people {
+  &.person {
     &::before {
       content: "person";
     }
-    &::after {
-      content: "person";
-    }
   }
-  &.organizations {
+  &.organization {
     &::before {
       content: "account_balance";
-    }
-    &::after {
-      content: "organization";
     }
   }
 }

@@ -7,7 +7,7 @@ const HitCount = ({ hit_count }) => (
 )
 
 const TypeLabel = ({ type }) => (
-  <div className={`tile__type-label ${type}`}></div>
+  <div className={`tile__type-label ${type}`}>{type}</div>
 )
 
 const Tile = ({ category, date, hit_count, title, type, uri }) => (
