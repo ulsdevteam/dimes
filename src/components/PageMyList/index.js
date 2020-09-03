@@ -158,11 +158,12 @@ class PageMyList extends Component {
               "parentRef": `/collections/${fetchedItem.ancestors[0].identifier}`,
               "online": fetchedItem.online,
               "lastRequested": value.lastRequested ? value.lastRequested : null,
-              "saved": value.saved
+              "saved": value.saved,
+              "inRequest": true
             })
           }
         }
-        this.setState({ savedItems: [...this.state.savedItems, resolved] })
+        this.setState({ savedItems: [...this.state.savedItems, resolved] });
       }
     }
     this.setState({isLoading: false})
@@ -172,6 +173,10 @@ class PageMyList extends Component {
   }
   toggleModal = (modal)  => {
     this.setState({ [modal]: {...this.state[modal], isOpen: !this.state[modal]["isOpen"], error: ""} })
+  }
+  toggleInRequest = (groupUri, itemUri) => {
+    console.log(groupUri, itemUri)
+    // this.setState({ savedItems: items})
   }
   render() {
     // TODO: add onClick handlers for actions
@@ -198,7 +203,8 @@ class PageMyList extends Component {
             <SavedItemList
               items={this.state.savedItems}
               isLoading={this.state.isLoading}
-              removeItem={this.removeItem} />
+              removeItem={this.removeItem}
+              toggleInRequest={this.toggleInRequest} />
           </main>
           <MyListSidebar
               duplicationRequest={() => this.toggleModal("duplication")}

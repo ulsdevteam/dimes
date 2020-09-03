@@ -12,8 +12,9 @@ const SavedItem = (props) => (
       <CheckBoxInput
         className="checkbox--orange hide-label"
         id={props.uri}
-        checked={true}
-        label={props.title} />
+        checked={props.inRequest}
+        label={props.title}
+        handleChange={props.toggleInRequest} />
     </div>
     <div className="saved-item__item-description">
       <h3 className="saved-item__title">{props.title}</h3>
@@ -69,7 +70,8 @@ class SavedItemGroup extends Component {
       <SavedItem
         key={index}
         {...item}
-        handleClick={() => this.props.removeItem(this.props.groupUri, item.uri)} />
+        handleClick={() => this.props.removeItem(this.props.groupUri, item.uri)}
+        toggleInRequest={() => this.props.toggleInRequest(this.props.groupUri, item.uri)} />
     );
   }
   render() {
@@ -123,7 +125,8 @@ export class SavedItemList extends Component {
         key={item.title}
         {...item}
         groupUri={item.uri}
-        removeItem={this.props.removeItem} />
+        removeItem={this.props.removeItem}
+        toggleInRequest={this.props.toggleInRequest} />
     )) : (<p className="saved-items__empty">No saved items.</p>)
   }
   render() {
