@@ -96,7 +96,7 @@ class PageMyList extends Component {
   }
   fetchFromUri(uri) {
     return axios
-      .get(`http://localhost:8000${uri}`)
+      .get(`http://10.0.1.90:8010${uri}`)
       .then(res => res.data)
       .catch(err => console.log(err));
   }

@@ -53,7 +53,7 @@ class PageSearch extends Component {
   }
   executeSearch = params =>  {
     axios
-      .get(`http://localhost:8000/search/${params}`)
+      .get(`http://10.0.1.90:8010/search/${params}`)
       .then(res => {
         res.data.results.forEach(r => this.fetchFromUri(r.uri, r.hit_count));
         const params = this.parseParams(this.props.location.search);
@@ -67,7 +67,7 @@ class PageSearch extends Component {
   };
   fetchFromUri = (uri, hit_count) => {
     axios
-      .get(`http://localhost:8000${uri}`)
+      .get(`http://10.0.1.90:8010${uri}`)
       .then(res => {res.data.hit_count = hit_count; this.setState({items: [...this.state.items, res.data]});})
       .catch(err => console.log(err));
   }

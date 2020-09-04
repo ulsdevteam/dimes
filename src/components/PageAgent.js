@@ -44,7 +44,7 @@ class PageAgent extends Component {
   };
   componentDidMount() {
     axios
-      .get(`http://localhost:8000/agents/${this.props.match.params.id}`)
+      .get(`http://10.0.1.90:8010/agents/${this.props.match.params.id}`)
       .then(res => {
         this.setState({ agent: res.data });
         this.fetchCollections();
@@ -54,7 +54,7 @@ class PageAgent extends Component {
   };
   fetchCollections = () => {
     axios
-      .get(`http://localhost:8000/collections/?query=${this.state.agent.title}&limit=6&ancestors__isnull=true`)
+      .get(`http://10.0.1.90:8010/collections/?query=${this.state.agent.title}&limit=6&ancestors__isnull=true`)
       .then(res => this.setState({collections: res.data.results}))
       .catch(err => console.log(err));
   }
