@@ -13,7 +13,7 @@ const TypeLabel = ({ type }) => (
 const Tile = ({ category, date, hit_count, title, type, uri }) => (
   <li className="tile">
     <a className="tile__link" href={uri}>
-      {hit_count && type == "collection" ? (<HitCount hit_count={hit_count} />) : null}
+      {hit_count && type === "collection" ? (<HitCount hit_count={hit_count} />) : null}
       {type ? (<TypeLabel type={category} />) : null }
       <h2 className="tile__title">{title}</h2>
       <p className="tile__date">{date}</p>
