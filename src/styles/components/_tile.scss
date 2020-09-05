@@ -80,6 +80,7 @@
     @extend .material-icons;
     font-size: 12px;
     padding-right: 6px;
+    float: left;
   }
   &::after {
     vertical-align: middle;
