@@ -60,10 +60,13 @@ MyListSidebar.propTypes = {
 }
 
 class PageMyList extends Component {
+  _isMounted = false;
   constructor(props) {
     super(props);
     this.state = {
-      "savedItems": [],
+      "savedList": [],
+      "modalList": [],
+      "submitList": [],
       "isLoading": true,
       "email": {
         "isOpen": false
@@ -76,18 +79,28 @@ class PageMyList extends Component {
       }
     }
   }
-  componentDidMount() {
-    // TODO: resolve error with state update on unmounted component
-    const list = this.props.fetchMyList();
-    this.resolveList(list);
+  async componentDidMount() {
+    this._isMounted = true;
+    const list = await this.props.fetchMyList();
+    const resolved = await this.resolveList(list);
+    if (this._isMounted) {
+      this.setState({savedList: resolved})
+      this.setState({isLoading: false})
+    }
   }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
   downloadCsv = () => {
     // TODO: what should happen if there are errors?
     axios
-      .post("http://request-broker/api/download-csv/", this.state.savedItems)
+      .post("http://request-broker/api/download-csv/", this.state.savedList)
       .then(res => { console.log(res.data) })
       .catch(err => { console.log(err) });
   }
+
   handleFormSubmit = (uri, submitted, modal) => {
     // TODO: remove toggleModal, which is just here for testing purposes.
     this.toggleModal(modal);
@@ -97,16 +110,18 @@ class PageMyList extends Component {
       .catch(err => { console.log(err) }
     );
   }
+
   loadListData = uri => {
     // TODO: what should we do if this request fails?
     axios
-      .post(uri, this.state.savedItems)
+      .post(uri, this.state.savedList)
       .then(res => { this.setState({ data: res.data}) })
       .catch(err => console.log(err))
   }
+
   fetchFromUri(uri) {
     return axios
-      .get(`http://localhost:8000${uri}`)
+      .get(`${process.env.REACT_APP_ARGO_BASEURL}${uri}`)
       .then(res => res.data)
       .catch(err => console.log(err));
   }
@@ -124,6 +139,7 @@ class PageMyList extends Component {
     this.resolveList(list);
   }
   resolveList = async(list) => {
+    var resolvedList = [];
     for (const [uri, items] of Object.entries(list)) {
       const fetchedGroup = await this.fetchFromUri(uri);
       if (fetchedGroup) {
@@ -163,10 +179,10 @@ class PageMyList extends Component {
             })
           }
         }
-        this.setState({ savedItems: [...this.state.savedItems, resolved] });
+        resolvedList.push(resolved)
       }
     }
-    this.setState({isLoading: false})
+    return resolvedList;
   }
   sendEmail = () => {
     window.open("mailto:archive@rockarch.org?subject=Scheduling a research appointment");
@@ -176,7 +192,7 @@ class PageMyList extends Component {
   }
   toggleInRequest = (groupUri, itemUri) => {
     console.log(groupUri, itemUri)
-    // this.setState({ savedItems: items})
+    // this.setState({ savedList: items})
   }
   render() {
     // TODO: add onClick handlers for actions
@@ -201,7 +217,7 @@ class PageMyList extends Component {
                 emailList={() => this.toggleModal("email")}
                 removeAllItems={this.removeAllItems} />
             <SavedItemList
-              items={this.state.savedItems}
+              items={this.state.savedList}
               isLoading={this.state.isLoading}
               removeItem={this.removeItem}
               toggleInRequest={this.toggleInRequest} />
@@ -216,21 +232,21 @@ class PageMyList extends Component {
           toggleModal={() => this.toggleModal("email")}
           handleFormSubmit={this.handleFormSubmit}
           loadListData={this.loadListData}
-          list={this.state.savedItems}
+          list={this.state.modalList}
         />
         <ReadingRoomRequestModal
           {...this.state.readingRoom}
           toggleModal={() => this.toggleModal("readingRoom")}
           handleFormSubmit={this.handleFormSubmit}
           loadListData={this.loadListData}
-          list={this.state.savedItems}
+          list={this.state.modalList}
         />
         <DuplicationRequestModal
           {...this.state.duplication}
           toggleModal={() => this.toggleModal("duplication")}
           handleFormSubmit={this.handleFormSubmit}
           loadListData={this.loadListData}
-          list={this.state.savedItems}
+          list={this.state.modalList}
         />
       </React.Fragment>
     );
