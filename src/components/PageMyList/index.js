@@ -66,7 +66,6 @@ class PageMyList extends Component {
     this.state = {
       "savedList": [],
       "modalList": [],
-      "submitList": [],
       "isLoading": true,
       "email": {
         "isOpen": false
@@ -77,7 +76,7 @@ class PageMyList extends Component {
       "duplication": {
         "isOpen": false
       }
-    }
+    };
   }
   async componentDidMount() {
     this._isMounted = true;
@@ -85,22 +84,43 @@ class PageMyList extends Component {
     const resolved = await this.resolveList(list);
     if (this._isMounted) {
       this.setState({savedList: resolved})
+      this.setState({modalList: resolved})
       this.setState({isLoading: false})
     }
   }
-
   componentWillUnmount() {
     this._isMounted = false;
   }
-
   downloadCsv = () => {
     // TODO: what should happen if there are errors?
     axios
-      .post("http://request-broker/api/download-csv/", this.state.savedList)
+      .post(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/download-csv/`, this.state.savedList)
       .then(res => { console.log(res.data) })
       .catch(err => { console.log(err) });
   }
+  /**
+  * Sets isChecked attribute based on checkbox input
+  * Updates modalList by filtering out any list items that are not checked
+  */
+  handleSavedListChange = (e) => {
+    var updatedSavedList = []
+    for (const g of this.state.savedList) {
+      if (g.items.filter(i => {return i.uri === e.target.id}).length) {
+        var newGroup = {...g}
+        newGroup.items.filter(i => {return i.uri === e.target.id})[0].isChecked = e.target.checked
+        updatedSavedList.push(newGroup);
+      } else {
+        updatedSavedList.push(g);
+      }
+    }
+    this.setState({savedList: updatedSavedList})
 
+    var filtered = [...this.state.savedList]
+    for (var group of filtered) {
+      group.items = group.items.filter(i => {return i.isChecked === true})
+    }
+    this.setState({modalList: filtered})
+  }
   handleFormSubmit = (uri, submitted, modal) => {
     // TODO: remove toggleModal, which is just here for testing purposes.
     this.toggleModal(modal);
@@ -110,15 +130,6 @@ class PageMyList extends Component {
       .catch(err => { console.log(err) }
     );
   }
-
-  loadListData = uri => {
-    // TODO: what should we do if this request fails?
-    axios
-      .post(uri, this.state.savedList)
-      .then(res => { this.setState({ data: res.data}) })
-      .catch(err => console.log(err))
-  }
-
   fetchFromUri(uri) {
     return axios
       .get(`${process.env.REACT_APP_ARGO_BASEURL}${uri}`)
@@ -138,6 +149,7 @@ class PageMyList extends Component {
     this.props.saveMyList(list);
     this.resolveList(list);
   }
+  /** Fetches data about list items from canonical source */
   resolveList = async(list) => {
     var resolvedList = [];
     for (const [uri, items] of Object.entries(list)) {
@@ -175,7 +187,8 @@ class PageMyList extends Component {
               "online": fetchedItem.online,
               "lastRequested": value.lastRequested ? value.lastRequested : null,
               "saved": value.saved,
-              "inRequest": true
+              "isChecked": true,
+              "archivesspace_uri": fetchedItem.external_identifiers.filter(i => {return i.source === "archivesspace"})[0].identifier
             })
           }
         }
@@ -189,10 +202,6 @@ class PageMyList extends Component {
   }
   toggleModal = (modal)  => {
     this.setState({ [modal]: {...this.state[modal], isOpen: !this.state[modal]["isOpen"], error: ""} })
-  }
-  toggleInRequest = (groupUri, itemUri) => {
-    console.log(groupUri, itemUri)
-    // this.setState({ savedList: items})
   }
   render() {
     // TODO: add onClick handlers for actions
@@ -219,8 +228,8 @@ class PageMyList extends Component {
             <SavedItemList
               items={this.state.savedList}
               isLoading={this.state.isLoading}
-              removeItem={this.removeItem}
-              toggleInRequest={this.toggleInRequest} />
+              handleChange={this.handleSavedListChange}
+              removeItem={this.removeItem} />
           </main>
           <MyListSidebar
               duplicationRequest={() => this.toggleModal("duplication")}
@@ -231,21 +240,18 @@ class PageMyList extends Component {
           {...this.state.email}
           toggleModal={() => this.toggleModal("email")}
           handleFormSubmit={this.handleFormSubmit}
-          loadListData={this.loadListData}
           list={this.state.modalList}
         />
         <ReadingRoomRequestModal
           {...this.state.readingRoom}
           toggleModal={() => this.toggleModal("readingRoom")}
           handleFormSubmit={this.handleFormSubmit}
-          loadListData={this.loadListData}
           list={this.state.modalList}
         />
         <DuplicationRequestModal
           {...this.state.duplication}
           toggleModal={() => this.toggleModal("duplication")}
           handleFormSubmit={this.handleFormSubmit}
-          loadListData={this.loadListData}
           list={this.state.modalList}
         />
       </React.Fragment>
