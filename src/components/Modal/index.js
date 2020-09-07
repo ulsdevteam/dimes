@@ -42,20 +42,38 @@ MyListModal.propTypes = {
 }
 
 export class EmailModal extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      formList: []
+    }
+  }
   componentDidMount() {
-    this.props.loadListData("http://request-broker/api/process-request/email");
+    this.constructSubmitList(this.props.list);
+  }
+  constructSubmitList = (list) => {
+    var formList = []
+    for (const group of list) {
+      for (const item of group.items) {
+        if (item.isChecked) {
+          formList.push(item.archivesspace_uri)
+        }
+      }
+    }
+    this.setState({formList: formList})
   }
   render() {
     return (
       <MyListModal
         appElement={this.props.appElement}
         title="Email List"
+        handleSavedListChange={this.constructSubmitList}
         isOpen={this.props.isOpen}
         toggleModal={this.props.toggleModal}
         list={this.props.list}
         form={
           <Formik
-            initialValues={{email: "", subject: "", message: "", recaptcha: ""}}
+            initialValues={{email: "", subject: "", message: "", items: this.props.list, recaptcha: ""}}
             validate={values => {
               const errors = {};
               if (!values.email) {
@@ -68,10 +86,14 @@ export class EmailModal extends Component {
               if (!values.recaptcha) {
                 errors.recaptcha = 'Please complete this field.';
               }
+              if (!values.items) {
+                errors.items = 'You have not selected any items to submit';
+              }
               return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
-              this.props.handleFormSubmit("http://request-broker/api/deliver-request/email", values, "email");
+              this.props.handleFormSubmit(
+                `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/deliver-request/email`, values, "email");
               setSubmitting(false);
             }}
           >
@@ -121,14 +143,10 @@ EmailModal.propTypes = {
   handleFormSubmit: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   list: PropTypes.array.isRequired,
-  loadListData: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
 }
 
 export class ReadingRoomRequestModal extends Component {
-  componentDidMount() {
-    this.props.loadListData("http://request-broker/api/process-request/parse")
-  }
   render() {
     return (
       <MyListModal
@@ -147,7 +165,7 @@ export class ReadingRoomRequestModal extends Component {
               return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
-              this.props.handleFormSubmit("http://request-broker/api/deliver-request/reading-room", values, "readingRoom");
+              this.props.handleFormSubmit(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/deliver-request/reading-room`, values, "readingRoom");
               setSubmitting(false);
             }}
           >
@@ -203,15 +221,11 @@ ReadingRoomRequestModal.propTypes = {
   handleFormSubmit: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   list: PropTypes.array.isRequired,
-  loadListData: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
 }
 
 
 export class DuplicationRequestModal extends Component {
-  componentDidMount() {
-    this.props.loadListData("http://request-broker/api/process-request/parse")
-  }
   render() {
     return (
       <MyListModal
@@ -237,7 +251,7 @@ export class DuplicationRequestModal extends Component {
               return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
-              this.props.handleFormSubmit("http://request-broker/api/deliver-request/duplication", values, "duplication");
+              this.props.handleFormSubmit(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/deliver-request/duplication`, values, "duplication");
               setSubmitting(false);
             }}
           >
@@ -312,6 +326,5 @@ DuplicationRequestModal.propTypes = {
   handleFormSubmit: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   list: PropTypes.array.isRequired,
-  loadListData: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
 }
