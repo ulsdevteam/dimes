@@ -50,18 +50,20 @@ SavedItem.propTypes = {
   uri: PropTypes.string
 }
 
-const ModalSavedItem = ({ title, uri }) => (
+const ModalSavedItem = ({ handleChange, title, uri }) => (
   // TODO: styling for checkbox
   <li className="modal-saved-item">
     <CheckBoxInput
       className="checkbox--orange"
       id={uri}
       checked={true}
-      label={title} />
+      label={title}
+      handleChange={handleChange} />
   </li>
 )
 
 ModalSavedItem.propTypes = {
+  handleChange: PropTypes.func,
   title: PropTypes.string.isRequired
 }
 
@@ -94,6 +96,7 @@ SavedItemGroup.propTypes = {
 const ModalSavedItemGroup = props => {
   const listItems = props.items.map((item, index) =>
     <ModalSavedItem
+      handleChange={props.handleChange}
       key={index}
       {...item} />
   );
@@ -108,6 +111,7 @@ const ModalSavedItemGroup = props => {
 }
 
 ModalSavedItemGroup.propTypes = {
+  handleChange: PropTypes.func,
   items: PropTypes.array.isRequired,
   title: PropTypes.string.isRequired,
 }
@@ -143,7 +147,8 @@ export const ModalSavedItemList = props => {
       <ModalSavedItemGroup
         key={item.title}
         {...item}
-        groupUri={item.uri} />
+        groupUri={item.uri}
+        handleChange={props.handleChange} />
     )) : (<p className="saved-items__empty">No saved items.</p>)
   }
   return (
@@ -154,5 +159,6 @@ export const ModalSavedItemList = props => {
 }
 
 ModalSavedItemList.propTypes = {
+  handleChange: PropTypes.func,
   items: PropTypes.array.isRequired
 }
