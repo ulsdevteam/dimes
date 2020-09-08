@@ -174,8 +174,8 @@ SelectInput.propTypes = {
   required: PropTypes.bool
 }
 
-export const SelectOption = ({ label, value }) => (
-  <option value={value}>
+export const SelectOption = ({ label, selectedValue, value }) => (
+  <option value={value} selected={selectedValue === value && "selected"}>
     {label}
   </option>
 )

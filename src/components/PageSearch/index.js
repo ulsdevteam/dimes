@@ -14,12 +14,13 @@ class PageSearch extends Component {
     this.state = {
       inProgress: false,
       items: [],
-      query: this.parseParams(this.props.location.search).query,
+      query: "",
       pageSize: 50,
       startItem: 0,
       endItem: 0,
       resultsCount: 0,
       showFacets: false,
+      sort: ""
     };
   };
   componentDidMount() {
@@ -57,6 +58,8 @@ class PageSearch extends Component {
       .then(res => {
         this.setState({items: []})
         res.data.results.forEach(r => this.fetchFromUri(r.uri, r.hit_count));
+        this.setState({sort: params.sort})
+        this.setState({query: params.query})
         this.setState({pageSize: this.pageSize(res.data, params.limit)})
         this.setState({startItem: this.startItem(res.data, params.offset)})
         this.setState({endItem: this.endItem(res.data, params.offset)})
@@ -73,7 +76,7 @@ class PageSearch extends Component {
   }
   handleSortChange = (event) => {
     var params = this.parseParams(this.props.location.search)
-    params.sort = event.target.value
+    event.target.value ? params.sort = event.target.value : delete params["sort"]
     this.props.history.push(`${window.location.pathname}?${queryString.stringify(params)}`)
     this.executeSearch(params);
   }
@@ -113,10 +116,10 @@ class PageSearch extends Component {
                   className="hide-label select__sort"
                   handleChange={this.handleSortChange}
                   id="sort"
-                  label="Sort search results">
-                    <SelectOption value="" label="Sort by relevance" />
-                    <SelectOption value="title" label="Sort by title" />
-                    <SelectOption value="creator" label="Sort by creator name" />
+                  label="Sort search results" >
+                    <SelectOption value="" label="Sort by relevance" selectedValue={this.state.sort} />
+                    <SelectOption value="title" label="Sort by title" selectedValue={this.state.sort} />
+                    <SelectOption value="creator" label="Sort by creator name" selectedValue={this.state.sort} />
                 </SelectInput>
               </div>
             </div>
