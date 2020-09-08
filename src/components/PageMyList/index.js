@@ -80,13 +80,11 @@
     }
     async componentDidMount() {
       this._isMounted = true;
-      const list = await this.props.fetchMyList();
+      const list = this.props.fetchMyList();
       const resolved = await this.resolveList(list);
+      const submitList = this.constructSubmitList(resolved);
       if (this._isMounted) {
-        this.setState({savedList: resolved})
-        this.setState({modalList: resolved})
-        const submitList = this.constructSubmitList(this.state.modalList)
-        this.setState({submitList: submitList})
+        this.setState({savedList: resolved, modalList: resolved, submitList: submitList})
         this.setState({isLoading: false})
       }
     }
@@ -150,15 +148,15 @@
     removeAllItems = () => {
       this.props.saveMyList({})
     }
-    removeItem = (group, item) => {
-      // TODO: Reload list in more performant way
+    removeItem = (groupUri, itemUri) => {
+      // TODO: find a way to call this without triggering a component refresh
+      // This happens because we set myListCount at the app level
       const list = this.props.fetchMyList();
-      delete list[group][item]
-      if (Object.entries(list[group]).length === 0) {
-        delete list[group]
+      delete list[groupUri][itemUri]
+      if (Object.entries(list[groupUri]).length === 0) {
+        delete list[groupUri]
       }
       this.props.saveMyList(list);
-      this.resolveList(list);
     }
     /** Returns a list with all unchecked items removed */
     removeUnchecked = (list) => {
