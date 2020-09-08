@@ -160,6 +160,7 @@ export const SelectInput = (props) => (
     <select
       name={props.id}
       id={props.id}
+      value={props.selectedValue}
       onChange={props.handleChange}>
         {props.children}
     </select>
@@ -174,8 +175,8 @@ SelectInput.propTypes = {
   required: PropTypes.bool
 }
 
-export const SelectOption = ({ label, selectedValue, value }) => (
-  <option value={value} selected={selectedValue === value && "selected"}>
+export const SelectOption = ({ label, value }) => (
+  <option value={value} >
     {label}
   </option>
 )

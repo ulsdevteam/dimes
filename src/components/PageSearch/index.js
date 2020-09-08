@@ -116,10 +116,11 @@ class PageSearch extends Component {
                   className="hide-label select__sort"
                   handleChange={this.handleSortChange}
                   id="sort"
-                  label="Sort search results" >
-                    <SelectOption value="" label="Sort by relevance" selectedValue={this.state.sort} />
-                    <SelectOption value="title" label="Sort by title" selectedValue={this.state.sort} />
-                    <SelectOption value="creator" label="Sort by creator name" selectedValue={this.state.sort} />
+                  label="Sort search results"
+                  selectedValue={this.state.sort} >
+                    <SelectOption value="" label="Sort by relevance" />
+                    <SelectOption value="title" label="Sort by title" />
+                    <SelectOption value="creator" label="Sort by creator name" />
                 </SelectInput>
               </div>
             </div>
