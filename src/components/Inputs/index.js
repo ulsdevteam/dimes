@@ -78,7 +78,6 @@ DatePickerInput.propTypes = {
 
 DatePickerInput.defaultProps = {
   min: new Date().toISOString().substring(0, 10),
-  value: new Date().toISOString().substring(0, 10)
 }
 
 

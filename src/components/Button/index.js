@@ -19,7 +19,7 @@ const Button = (props) => (
 Button.propTypes = {
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
   className: PropTypes.string,
-  handleClick: PropTypes.func.isRequired,
+  handleClick: PropTypes.func,
   ariaLabel: PropTypes.string,
   iconAfter: PropTypes.string,
   iconBefore: PropTypes.string,

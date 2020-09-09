@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
-import axios from "axios";
-import ReCAPTCHA from "react-google-recaptcha";
+import React from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import PropTypes from "prop-types";
 import Modal from "react-modal";
-import Button from "../Button";
-import {CheckBoxInput, DatePickerInput, EmailInput, SelectInput, SelectOption, TextInput, TextAreaInput} from "../Inputs";
+import Captcha from "../Captcha";
+import { FocusError, FormButtons, FormGroup } from "../Form";
 import MaterialIcon from "../MaterialIcon";
-import {ModalSavedItemList} from "../SavedItem";
+import { ModalSavedItemList } from "../SavedItem";
 import "./styles.scss"
 
+
 const MyListModal = (props) => (
-  // TODO: replace captcha key
   <Modal
     appElement={props.appElement ? props.appElement : Modal.setAppElement("#root")}
     isOpen={props.isOpen}
@@ -25,23 +24,10 @@ const MyListModal = (props) => (
     </div>
     <div className="modal-body">
       <div className="modal-list">
-        <ModalSavedItemList items={props.list} />
+        <ModalSavedItemList items={props.list} handleChange={props.handleChange} />
       </div>
       <div className="modal-form">
-        <form>
-          <div className="modal-form__input-group">
-            {props.inputs}
-          </div>
-          <div className="modal-form__captcha">
-            <ReCAPTCHA
-              sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-              onChange={props.handleCaptchaChange} />
-          </div>
-          <div className="modal-form__buttons">
-            {props.buttons}
-            {props.submitError && <p className="modal-error">{props.submitError}</p>}
-          </div>
-        </form>
+        {props.form}
       </div>
     </div>
   </Modal>
@@ -49,364 +35,283 @@ const MyListModal = (props) => (
 
 MyListModal.propTypes = {
   appElement: PropTypes.object,
+  handleChange: PropTypes.func,
   isOpen: PropTypes.bool.isRequired,
   toggleModal: PropTypes.func.isRequired,
-  handleCaptchaChange: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
-  list: PropTypes.array.isRequired,
-  inputs: PropTypes.node.isRequired,
-  buttons: PropTypes.node.isRequired
+  list: PropTypes.array.isRequired
 }
 
-export class EmailModal extends Component {
-  constructor(props)  {
-    super(props)
-    this.state  = {
-      "email": "",
-      "subject":  "",
-      "message": "",
-      "data": {},
+export const EmailModal = props => (
+  <MyListModal
+    appElement={props.appElement}
+    title="Email List"
+    handleChange={props.handleChange}
+    isOpen={props.isOpen}
+    toggleModal={props.toggleModal}
+    list={props.list}
+    form={
+      <Formik
+        initialValues={{email: "", subject: "", message: "", items: props.submitList, recaptcha: ""}}
+        validate={values => {
+          const errors = {};
+          if (!values.email) {
+            errors.email = 'An email address is required.';
+          } else if (
+            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+          ) {
+            errors.email = 'Invalid email address provided.';
+          }
+          if (!values.recaptcha) {
+            errors.recaptcha = 'Please complete this field.';
+          }
+          return errors;
+        }}
+        onSubmit={(values, { setSubmitting }) => {
+          this.props.handleFormSubmit(
+            `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/deliver-request/email`, values, "email");
+          setSubmitting(false);
+        }}
+      >
+      {({ errors, isSubmitting, setFieldValue, touched }) => (
+        <Form>
+          <Field
+            type="hidden"
+            name="items"
+            value={props.submitList} />
+          <FormGroup
+            label="Email *"
+            name="email"
+            type="email"
+            required={true}
+            errors={errors}
+            touched={touched} />
+          <FormGroup
+            label="Subject"
+            name="subject"
+            type="text" />
+          <FormGroup
+            label="Message"
+            name="message"
+            component="textarea"
+            rows={5} />
+          <Field
+            component={Captcha}
+            name="recaptcha"
+            handleCaptchaChange={(response) => setFieldValue("recaptcha", response)} />
+          <ErrorMessage
+            id="recaptcha-error"
+            name="recaptcha"
+            component="div"
+            className="modal-form__error" />
+          <FormButtons
+            submitText="Send List"
+            toggleModal={props.toggleModal}
+            isSubmitting={isSubmitting} />
+          <FocusError />
+        </Form>
+      )}
+      </Formik>
     }
-  }
-  componentDidMount() {
-    // TODO: what should we do if this request fails?
-    axios
-      .post("http://request-broker/api/process-request/email", this.props.data)
-      .then(res => { this.setState({ data: res.data}) })
-      .catch(err => console.log(err))
-  }
-  handleSubmit = event => {
-    event.preventDefault();
-    const data = Object.assign({}, this.state.data, {
-      "email": this.state.email,
-      "subject": this.state.subject,
-      "message": this.state.message
-    });
-    axios
-      .post("http://request-broker/api/deliver-request/email", data)
-      .then(res => { this.props.toggleModal(); })
-      .catch(err => {
-        let msg = err.response ? err.response : "An unknown error occurred."
-        this.props.handleError(msg, "email");
-      }
-    );
-  }
-  handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value});
-  }
-  handleCaptchaChange = value => {
-    // TODO: decide if we need this handler or not
-    console.log(value)
-  }
-  render() {
-    return (
-      <MyListModal
-        appElement={this.props.appElement}
-        title="Email List"
-        isOpen={this.props.isOpen}
-        toggleModal={this.props.toggleModal}
-        list={this.props.list}
-        handleCaptchaChange={this.handleCaptchaChange}
-        submitError={this.props.error}
-        inputs={
-          <React.Fragment>
-            <EmailInput
-              id="email"
-              name="email"
-              className="modal-form__input"
-              label="Email Address"
-              required={true}
-              value={this.state.email}
-              handleChange={this.handleChange} />
-            <TextInput
-              id="subject"
-              name="subject"
-              className="modal-form__input"
-              type="text"
-              label="Subject Line"
-              value={this.state.subject}
-              handleChange={this.handleChange} />
-            <TextAreaInput
-              id="message"
-              name="message"
-              className="modal-form__input"
-              label="Message"
-              rows={5}
-              value={this.state.message}
-              handleChange={this.handleChange} />
-          </React.Fragment>
-        }
-        buttons={
-          <React.Fragment>
-            <Button
-              className="btn--orange btn--sm"
-              type="submit"
-              value="submit"
-              label="Send List"
-              handleClick={this.handleSubmit} />
-            <Button
-              className="btn--gray btn--sm"
-              type="reset"
-              label="Cancel"
-              handleClick={this.props.toggleModal} />
-          </React.Fragment>
-        }
-      />
-    )
-  }
-}
+  />
+)
 
 EmailModal.propTypes = {
   appElement: PropTypes.object,
-  handleError: PropTypes.func.isRequired,
-  toggleModal: PropTypes.func.isRequired,
+  handleChange: PropTypes.func,
+  handleFormSubmit: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   list: PropTypes.array.isRequired,
+  submitList: PropTypes.array.isRequired,
+  toggleModal: PropTypes.func.isRequired,
 }
 
-export class ReadingRoomRequestModal extends Component {
-  constructor(props)  {
-    super(props)
-    this.state  = {
-      "data": {},
-      "scheduledDate": new Date().toISOString().substring(0, 10),
-      "questions": "",
-      "notes": ""
+export const ReadingRoomRequestModal = props => (
+  <MyListModal
+    appElement={props.appElement}
+    title="Request in Reading Room"
+    handleChange={props.handleChange}
+    isOpen={props.isOpen}
+    toggleModal={props.toggleModal}
+    list={props.list}
+    form={
+      <Formik
+        initialValues={{scheduledDate: "", questions: "", notes: "", items: props.submitList, recaptcha: ""}}
+        validate={values => {
+          const errors = {};
+          if (!values.scheduledDate) errors.scheduledDate = 'Please provide the date of your research visit.';
+          if (!values.recaptcha) errors.recaptcha = 'Please complete this field.';
+          return errors;
+        }}
+        onSubmit={(values, { setSubmitting }) => {
+          this.props.handleFormSubmit(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/deliver-request/reading-room`, values, "readingRoom");
+          setSubmitting(false);
+        }}
+      >
+      {({ errors, isSubmitting, setFieldValue, touched }) => (
+        <Form>
+          <Field
+            type="hidden"
+            name="items"
+            value={props.submitList} />
+          <FormGroup
+            label="Scheduled Date *"
+            helpText="Enter the date of your research visit"
+            name="scheduledDate"
+            type="date"
+            required={true}
+            errors={errors}
+            touched={touched} />
+          <FormGroup
+            label="Special Requests/Questions for RAC staff"
+            helpText="255 characters maximum"
+            name="questions"
+            maxLength={255}
+            component="textarea"
+            rows={5} />
+          <FormGroup
+            label="Notes for Personal Reference"
+            helpText="255 characters maximum"
+            name="notes"
+            maxLength={255}
+            component="textarea"
+            rows={5} />
+          <Field
+            component={Captcha}
+            name="recaptcha"
+            handleCaptchaChange={(response) => setFieldValue("recaptcha", response)} />
+          <ErrorMessage
+            id="recaptcha-error"
+            name="recaptcha"
+            component="div"
+            className="modal-form__error" />
+          <FormButtons
+            submitText={`Request ${props.list.length ? (props.list.length) : ""} Items`}
+            toggleModal={props.toggleModal}
+            isSubmitting={isSubmitting} />
+          <FocusError />
+        </Form>
+      )}
+      </Formik>
     }
-  }
-  componentDidMount() {
-    // TODO: what should we do if this request fails?
-    axios
-      .post("http://request-broker/api/process-request/parse", this.props.data)
-      .then(res => { this.setState({ data: res.data}) })
-      .catch(err => console.log(err))
-  }
-  handleSubmit = event => {
-    event.preventDefault();
-    const data = Object.assign({}, this.state.data, {
-      "scheduledDate": this.state.scheduledDate,
-      "questions": this.state.questions,
-      "notes": this.state.notes
-    });
-    axios
-      .post("http://request-broker/api/deliver-request/reading-room", data)
-      .then(res => { this.props.toggleModal(); })
-      .catch(err => {
-        let msg = err.response ? err.response : "An unknown error occurred."
-        this.props.handleError(msg, "readingRoom");
-      }
-    );
-  }
-  handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value});
-  }
-  handleCaptchaChange = value => {
-    // TODO: decide if we need this handler or not
-    console.log(value)
-  }
-  render() {
-    return (
-      <MyListModal
-        appElement={this.props.appElement}
-        title="Request in Reading Room"
-        isOpen={this.props.isOpen}
-        toggleModal={this.props.toggleModal}
-
-        list={this.props.list}
-        handleCaptchaChange={this.handleCaptchaChange}
-        submitError={this.props.error}
-        inputs={
-          <React.Fragment>
-            <DatePickerInput
-              id="scheduledDate"
-              name="scheduledDate"
-              className="modal-form__input"
-              label="Scheduled Date"
-              helpText="Enter the date of your research visit"
-              required={true}
-              value={this.state.scheduledDate}
-              handleChange={this.handleChange} />
-            <TextAreaInput
-              id="questions"
-              name="questions"
-              className="modal-form__input"
-              label="Special Requests/Questions for RAC staff"
-              helpText="255 characters maximum"
-              rows={5}
-              value={this.state.questions}
-              handleChange={this.handleChange} />
-            <TextAreaInput
-              id="notes"
-              name="notes"
-              className="modal-form__input"
-              label="Notes for Personal Reference"
-              helpText="255 characters maximum"
-              rows={5}
-              value={this.state.notes}
-              handleChange={this.handleChange} />
-          </React.Fragment>
-        }
-        buttons={
-          <React.Fragment>
-            <Button
-              className="btn--orange btn--sm"
-              type="submit"
-              value="submit"
-              label={`Request ${this.props.list.length ? (this.props.list.length) : ""} Items`}
-              handleClick={this.handleSubmit}
-              disabled={this.state.submitDisabled} />
-            <Button
-              className="btn--gray btn--sm"
-              type="reset"
-              label="Cancel"
-              handleClick={this.props.toggleModal} />
-          </React.Fragment>
-        }
-      />
-    )
-  }
-}
+  />
+)
 
 ReadingRoomRequestModal.propTypes = {
   appElement: PropTypes.object,
-  handleError: PropTypes.func.isRequired,
-  toggleModal: PropTypes.func.isRequired,
+  handleChange: PropTypes.func,
+  handleFormSubmit: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   list: PropTypes.array.isRequired,
+  submitList: PropTypes.array.isRequired,
+  toggleModal: PropTypes.func.isRequired,
 }
 
 
-export class DuplicationRequestModal extends Component {
-  constructor(props)  {
-    super(props)
-    this.state  = {
-      "data": {},
-      "format": "jpeg",
-      "description": "Entire folder",
-      "questions": "",
-      "notes": "",
-      "costs": false
+export const DuplicationRequestModal = props => (
+  <MyListModal
+    appElement={props.appElement}
+    title="Request Copies"
+    handleChange={props.handleChange}
+    isOpen={props.isOpen}
+    toggleModal={props.toggleModal}
+    list={props.list}
+    form={
+      <Formik
+        initialValues={{
+          format: "",
+          description: "Entire folder",
+          questions: "",
+          notes: "",
+          costs: false,
+          items: props.submitList,
+          recaptcha: ""}}
+        validate={values => {
+          const errors = {};
+          if (!values.format) errors.format = 'Please select your desired duplication format.';
+          if (!values.recaptcha) errors.recaptcha = 'Please complete this field.';
+          if (!values.costs) errors.costs = "We cannot process your request unless you agree to pay the costs of reproduction.";
+          return errors;
+        }}
+        onSubmit={(values, { setSubmitting }) => {
+          this.props.handleFormSubmit(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/deliver-request/duplication`, values, "duplication");
+          setSubmitting(false);
+        }}
+      >
+      {({ errors, isSubmitting, setFieldValue, touched }) => (
+        <Form>
+          <Field
+            type="hidden"
+            name="items"
+            value={props.submitList} />
+          <FormGroup
+            label="Format *"
+            name="format"
+            component="select"
+            children={[
+              <option key="1" value="">Select a format</option>,
+              <option key="2" value="JPEG">JPEG</option>,
+              <option key="3" value="PDF">PDF</option>,
+              <option key="4" value="Photocopy">Photocopy</option>,
+              <option key="5" value="TIFF">TIFF</option>]}
+            required={true}
+            errors={errors}
+            touched={touched} />
+          <FormGroup
+            label="Description of Materials"
+            helpText="Please describe the materials you want reproduced. 255 characters maximum."
+            name="description"
+            maxLength={255}
+            component="textarea"
+            rows={5} />
+          <FormGroup
+            label="Special Requests/Questions for RAC staff"
+            helpText="255 characters maximum."
+            maxLength={255}
+            name="questions"
+            component="textarea"
+            rows={5} />
+          <FormGroup
+            label="Notes for Personal Reference"
+            helpText="255 characters maximum."
+            maxLength={255}
+            name="notes"
+            component="textarea"
+            rows={5} />
+          <FormGroup
+            label={<>I agree to pay the duplication costs for this request. See our <a href="https://rockarch.org/collections/access-and-request-materials/#duplication-services-and-fee-schedule">fee schedule</a></>}
+            name="costs"
+            type="checkbox"
+            required={true}
+            errors={errors}
+            touched={touched} />
+          <Field
+            component={Captcha}
+            name="recaptcha"
+            handleCaptchaChange={(response) => setFieldValue("recaptcha", response)} />
+          <ErrorMessage
+            id="captcha-error"
+            name="recaptcha"
+            component="div"
+            className="modal-form__error" />
+          <FormButtons
+            submitText={`Request ${props.list.length ? (props.list.length) : ""} Items`}
+            toggleModal={props.toggleModal}
+            isSubmitting={isSubmitting} />
+          <FocusError />
+        </Form>
+      )}
+      </Formik>
     }
-  }
-  componentDidMount() {
-    // TODO: what should we do if this request fails?
-    axios
-      .post("http://request-broker/api/process-request/parse", this.props.data)
-      .then(res => { this.setState({ data: res.data}) })
-      .catch(err => console.log(err))
-  }
-  handleSubmit = event => {
-    event.preventDefault();
-    const data = Object.assign({}, this.state.data, {
-      "format": this.state.format,
-      "description": this.state.description,
-      "questions": this.state.questions,
-      "notes": this.state.notes,
-      "costs": this.state.costs
-    });
-    axios
-      .post("http://request-broker/api/deliver-request/duplication", data)
-      .then(res => { this.props.toggleModal(); })
-      .catch(err => {
-        let msg = err.response ? err.response : "An unknown error occurred."
-        this.props.handleError(msg, "duplication");
-      }
-    );
-  }
-  handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value});
-  }
-  handleCaptchaChange = value => {
-    // TODO: decide if we need this handler or not
-    console.log(value)
-  }
-  render() {
-    return (
-      <MyListModal
-        appElement={this.props.appElement}
-        title="Request Copies"
-        isOpen={this.props.isOpen}
-        toggleModal={this.props.toggleModal}
-        list={this.props.list}
-        handleCaptchaChange={this.handleCaptchaChange}
-        submitError={this.props.error}
-        inputs={
-          <React.Fragment>
-            <SelectInput
-              id="format"
-              name="format"
-              className="modal-form__input"
-              label="Format"
-              required={true}
-              value={this.state.format}
-              handleChange={this.handleChange} >
-                <SelectOption label="JPEG" />
-                <SelectOption label="PDF" />
-                <SelectOption label="Photocopy" />
-                <SelectOption label="TIFF" />
-            </SelectInput>
-            <TextAreaInput
-              id="description"
-              name="description"
-              className="modal-form__input"
-              label="Description of Materials"
-              helpText="Please describe the materials you want reproduced"
-              rows={5}
-              value={this.state.description}
-              handleChange={this.handleChange} />
-            <TextAreaInput
-              id="questions"
-              name="questions"
-              className="modal-form__input"
-              label="Special Requests/Questions for RAC staff"
-              helpText="255 characters maximum"
-              rows={5}
-              value={this.state.questions}
-              handleChange={this.handleChange} />
-            <TextAreaInput
-              id="notes"
-              name="notes"
-              className="modal-form__input"
-              label="Notes for Personal Reference"
-              helpText="255 characters maximum"
-              rows={5}
-              value={this.state.notes}
-              handleChange={this.handleChange} />
-            <CheckBoxInput
-              id="costs"
-              name="costs"
-              className="modal-form__input"
-              label={<>I agree to pay the duplication costs for this request. See our <a href="https://rockarch.org/collections/access-and-request-materials/#duplication-services-and-fee-schedule">fee schedule</a></>}
-              required={true}
-              checked={this.state.costs}
-              handleChange={this.handleChange} />
-          </React.Fragment>
-        }
-        buttons={
-          <React.Fragment>
-            <Button
-              className="btn--orange btn--sm"
-              type="submit"
-              value="submit"
-              label={`Request ${this.props.list.length ? (this.props.list.length) : ""} Items`}
-              handleClick={this.handleSubmit}
-              disabled={this.state.submitDisabled} />
-            <Button
-              className="btn--gray btn--sm"
-              type="reset"
-              label="Cancel"
-              handleClick={this.props.toggleModal} />
-          </React.Fragment>
-        }
-      />
-    )
-  }
-}
+  />
+)
 
 DuplicationRequestModal.propTypes = {
   appElement: PropTypes.object,
-  handleError: PropTypes.func.isRequired,
-  toggleModal: PropTypes.func.isRequired,
+  handleChange: PropTypes.func,
+  handleFormSubmit: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   list: PropTypes.array.isRequired,
+  submitList: PropTypes.array.isRequired,
+  toggleModal: PropTypes.func.isRequired,
 }
