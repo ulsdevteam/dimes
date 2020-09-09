@@ -159,7 +159,7 @@ export const SelectInput = (props) => (
     <select
       name={props.id}
       id={props.id}
-      value={props.selectedValue}
+      defaultValue={props.defaultValue}
       onChange={props.handleChange}>
         {props.children}
     </select>

@@ -117,7 +117,7 @@ class PageSearch extends Component {
                   handleChange={this.handleSortChange}
                   id="sort"
                   label="Sort search results"
-                  selectedValue={this.state.sort} >
+                  defaultValue={this.state.sort} >
                     <SelectOption value="" label="Sort by relevance" />
                     <SelectOption value="title" label="Sort by title" />
                     <SelectOption value="creator" label="Sort by creator name" />
