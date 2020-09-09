@@ -4,6 +4,7 @@ import queryString from "query-string";
 import { Helmet } from "react-helmet";
 import Button from "../Button";
 import { SelectInput, SelectOption } from "../Inputs"
+import { FacetModal } from "../Modal";
 import SearchForm from "../SearchForm";
 import TileList from "../Tile";
 import "./styles.scss"
@@ -20,6 +21,9 @@ class PageSearch extends Component {
       endItem: 0,
       resultsCount: 0,
       showFacets: false,
+      facetModal: {
+        isOpen: false
+      }
     };
   };
   componentDidMount() {
@@ -74,8 +78,8 @@ class PageSearch extends Component {
   parseParams = (params) => {
     return queryString.parse(params);
   }
-  toggleFacets = () => {
-    this.setState({showFacets: !this.state.showFacets});
+  toggleFacetModal = () => {
+    this.setState({facetModal: {...this.state.facetModal, isOpen: !this.state.facetModal.isOpen}})
   }
   render() {
     // TODO: replace with search component
@@ -98,7 +102,7 @@ class PageSearch extends Component {
             </p>
             <div className="search__controls">
               <Button
-                onClick={this.toggleFacets}
+                handleClick={() => this.toggleFacetModal()}
                 label="Filters"
                 iconBefore="filter_alt"
                 className="btn--filter" />
@@ -113,6 +117,9 @@ class PageSearch extends Component {
             { this.state.inProgress ? (<p>Searching</p>) : (<TileList items={this.state.items} />)}
           </div>
         </div>
+        <FacetModal
+          isOpen={this.state.facetModal.isOpen}
+          toggleModal={this.toggleFacetModal} />
       </React.Fragment>
     )
   }

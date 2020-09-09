@@ -2,8 +2,10 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import PropTypes from "prop-types";
 import Modal from "react-modal";
+import Button from "../Button";
 import Captcha from "../Captcha";
 import { FocusError, FormButtons, FormGroup } from "../Form";
+import { CheckBoxInput, YearInput } from "../Inputs";
 import MaterialIcon from "../MaterialIcon";
 import { ModalSavedItemList } from "../SavedItem";
 import "./styles.scss"
@@ -315,3 +317,43 @@ DuplicationRequestModal.propTypes = {
   submitList: PropTypes.array.isRequired,
   toggleModal: PropTypes.func.isRequired,
 }
+
+export const FacetModal = props => (
+  <Modal
+    appElement={props.appElement ? props.appElement : Modal.setAppElement("#root")}
+    isOpen={props.isOpen}
+    onRequestClose={props.toggleModal}
+    className="modal-content--facet"
+    overlayClassName="modal-overlay--facet"
+    closeTimeoutMS={200} >
+    <div className="modal-header--facets">
+      <h2 className="modal-header__title">Filter Search Results</h2>
+      <button className="modal-header__button" aria-label="Close" onClick={props.toggleModal}>
+        <MaterialIcon icon="close"/>
+      </button>
+    </div>
+    <div className="modal-body">
+      <div className="facet">
+        <CheckBoxInput id="online" className="facet__input" label="Show me digital materials only" />
+      </div>
+      <div className="facet">
+        <h3 className="facet__title">Date Range</h3>
+        <YearInput id="startYear" label="Start Year" className="hide-label" />
+        <YearInput id="endYear" label="End Year" className="hide-label" />
+        <Button className="btn--sm btn--blue" label="apply"/>
+      </div>
+      <div className="facet">
+        <h3 className="facet__title">Format</h3>
+      </div>
+      <div className="facet">
+        <h3 className="facet__title">People (Creator)</h3>
+      </div>
+      <div className="facet">
+        <h3 className="facet__title">Organization (Creator)</h3>
+      </div>
+      <div className="facet">
+        <h3 className="facet__title">Subject</h3>
+      </div>
+    </div>
+  </Modal>
+)

@@ -1,0 +1,21 @@
+@import "../styles";
+
+.facet {
+  font-family: $sans-serif-stack;
+  font-size: 14px;
+  border-top: 1px solid $light-blue;
+  padding: 20px 40px 30px 40px;
+}
+
+.facet__title {
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 900;
+  margin-top: 0;
+}
+
+.facet input[type=number] {
+  padding: 7px 12px;
+  float: left;
+  margin-right: 13px;
+}
