@@ -2,29 +2,27 @@ import React, { Component } from "react";
 import "./styles.scss";
 
 
-const HitCount = ({ hits }) => (
-  <div className="tile__hit-count">{hits} matches</div>
+const HitCount = ({ hit_count }) => (
+  <div className="tile__hit-count">{hit_count} matches</div>
 )
 
 const TypeLabel = ({ type }) => (
-  <div className="tile__type-label">{type}</div>
+  <div className={`tile__type-label ${type}`}>{type}</div>
 )
 
-const Tile = ({date, hits, title, type, uri}) => (
+const Tile = ({ category, date, hit_count, title, type, uri }) => (
   <li className="tile">
     <a className="tile__link" href={uri}>
-      {hits ? (<HitCount hits={hits} />) : null}
-      {type ? (<TypeLabel type={type} />) : null }
-      <div className="tile__title">{title}</div>
-      <div className="tile__date">{date}</div>
+      {hit_count && type === "collection" ? (<HitCount hit_count={hit_count} />) : null}
+      {type ? (<TypeLabel type={category} />) : null }
+      <h2 className="tile__title">{title}</h2>
+      <p className="tile__date">{date}</p>
     </a>
   </li>)
 
 class TileList extends Component {
-  constructor(props) {
-    super(props);
-    const items = this.props.items
-    this.listItems = items.map((item) =>
+  listItems = (items) => {
+    return items.map((item) =>
       <Tile
         key={item.uri}
         {...item}
@@ -34,7 +32,7 @@ class TileList extends Component {
   render() {
     return (
       <ul className="tile-list">
-        {this.listItems}
+        {this.listItems(this.props.items)}
       </ul>
     )
   }

@@ -42,7 +42,7 @@ class App extends Component {
         <React.Fragment>
           <SkipLink />
           <Header myListCount={this.state.myListCount} />
-          <main id="main">
+          <main id="main" role="main">
             <div className="wrapper">
               <Switch>
                 <Route path="/list/" component={() =>

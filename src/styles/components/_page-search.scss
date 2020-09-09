@@ -1,0 +1,29 @@
+@import "../styles";
+@import "inputs";
+
+.select__sort--wrapper {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  margin-left: 16px;
+}
+
+.select__sort--wrapper::after {
+  font-family: 'Material Icons';
+  content: "unfold_more";
+  font-size: 20px;
+  top: 12px;
+  right: 22px;
+  position: absolute;
+}
+
+.select__sort select {
+  @include input-text;
+  font-size: 14px;
+  background-color: $pure-white;
+  border-radius: 0px;
+  border: 1px solid $dark-gray;
+  padding: 0px 15px;
+  height: 45px;
+  width: 200px;
+}

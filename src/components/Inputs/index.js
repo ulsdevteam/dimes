@@ -174,7 +174,7 @@ SelectInput.propTypes = {
 }
 
 export const SelectOption = ({ label, value }) => (
-  <option value={value ? value : label.toLowerCase()}>
+  <option value={value}>
     {label}
   </option>
 )

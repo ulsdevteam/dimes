@@ -10,7 +10,7 @@ const AgentDescription = ({ attributes }) => (
   attributes ?
   (<div className="agent__description">
     <h2 className="agent__section-title">Summary</h2>
-    <AgentAttributeList items={this.props.attributes} />
+    <AgentAttributeList items={attributes} />
   </div>) : (null)
 )
 
@@ -19,7 +19,7 @@ const AgentRelatedCollections = ({ collections }) => (
   collections ?
   (<div className="agent__related">
     <h2 className="agent__section-title">Related Collections</h2>
-    <TileList items={this.props.collections} />
+    <TileList items={collections} />
     <a href="/search/" className="btn btn--search-more">Search More Related Collections</a>
   </div>) : (null)
 )
