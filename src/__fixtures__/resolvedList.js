@@ -1,4 +1,4 @@
-export const items = [
+export const resolvedList = [
   {
     "title": "Cary Reich papers",
     "uri": "/collections/qkxsgwnspzw9nh8htnoaiserc4/",
