@@ -98,7 +98,7 @@ class PageSearch extends Component {
           <div className="search-bar">
             <SearchForm className="search-form--results" />
           </div>
-          <main id="main" role="main" className="search-results">
+          <div className="search-results">
             <h1 className="search__title">{`Search Results ${this.state.query && `for “${this.state.query}”` }`}</h1>
             <p className="results__summary">
               {`${this.state.startItem === this.state.endItem ?
@@ -125,7 +125,7 @@ class PageSearch extends Component {
               </div>
             </div>
             { this.state.inProgress ? (<p>Searching</p>) : (<TileList items={this.state.items} />)}
-          </main>
+          </div>
         </div>
       </React.Fragment>
     )

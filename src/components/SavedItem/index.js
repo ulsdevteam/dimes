@@ -1,19 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from "prop-types";
 import Button from "../Button";
 import { CheckBoxInput } from "../Inputs";
 import "./styles.scss";
 
-const SavedItem = (props) => (
+
 // TODO: styling for checkbox
-// TODO: onClick handlers for buttons
+const SavedItem = props => (
   <div className="saved-item">
     <div className="saved-item__inputs">
       <CheckBoxInput
         className="checkbox--orange hide-label"
         id={props.uri}
-        checked={true}
-        label={props.title} />
+        checked={props.isChecked}
+        label={props.title}
+        handleChange={e => props.handleChange(e)} />
     </div>
     <div className="saved-item__item-description">
       <h3 className="saved-item__title">{props.title}</h3>
@@ -31,133 +32,133 @@ const SavedItem = (props) => (
           label="Remove"
           className="btn btn--gray btn--sm"
           iconBefore="delete"
-          handlerClick={props.handleClick} />
+          handleClick={props.handleClick} />
       </div>
     </div>
   </div>)
 
 SavedItem.propTypes = {
-  title: PropTypes.string,
   date: PropTypes.string,
   description: PropTypes.string,
+  handleClick: PropTypes.func,
+  isChecked: PropTypes.bool,
+  lastRequested: PropTypes.instanceOf(Date),
+  online: PropTypes.bool,
   parent: PropTypes.string,
   parentRef: PropTypes.string,
-  lastRequested: PropTypes.instanceOf(Date),
-  online: PropTypes.bool
+  title: PropTypes.string,
+  uri: PropTypes.string
 }
 
-const ModalSavedItem = ({ title, uri }) => (
+const ModalSavedItem = ({ handleChange, title, uri }) => (
   // TODO: styling for checkbox
   <li className="modal-saved-item">
     <CheckBoxInput
       className="checkbox--orange"
       id={uri}
       checked={true}
-      label={title} />
+      label={title}
+      handleChange={handleChange} />
   </li>
 )
 
 ModalSavedItem.propTypes = {
+  handleChange: PropTypes.func,
   title: PropTypes.string.isRequired
 }
 
-class SavedItemGroup extends Component {
-  constructor(props) {
-    super(props);
-    const items = this.props.items
-    this.listItems = items.map((item, index) =>
-      <SavedItem
-        key={index}
-        {...item}
-        handleClick={() => this.props.removeItem(this.props.groupUri, item.uri)} />
-    );
-  }
-  render() {
-    return (
-      <div className="saved-items__item-group">
-        <h2 className="item-group__title">{this.props.title}</h2>
-        <div className="item-group__items">
-          {this.listItems}
-        </div>
+const SavedItemGroup = props => {
+  const listItems = props.items.map((item, index) =>
+    <SavedItem
+      key={index}
+      {...item}
+      handleChange={props.handleChange}
+      handleClick={() => props.removeItem(props.groupUri, item.uri)} />
+  );
+  return (
+    <div className="saved-items__item-group">
+      <h2 className="item-group__title">{props.title}</h2>
+      <div className="item-group__items">
+        {listItems}
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 SavedItemGroup.propTypes = {
-  title: PropTypes.string.isRequired,
-  items: PropTypes.array.isRequired
+  groupUri: PropTypes.string,
+  handleChange: PropTypes.func,
+  items: PropTypes.array.isRequired,
+  removeItem: PropTypes.func,
+  title: PropTypes.string.isRequired
 }
 
-class ModalSavedItemGroup extends Component {
-  constructor(props) {
-    super(props);
-    const items = this.props.items
-    this.listItems = items.map((item, index) =>
-      <ModalSavedItem
-        key={index}
-        {...item} />
-    );
-  }
-  render() {
-    return (
-      <div className="modal-saved-items__item-group">
-        <h3 className="modal-item-group__title">{this.props.title}</h3>
-        <ul className="modal-item-group__items">
-          {this.listItems}
-        </ul>
-      </div>
-    )
-  }
+const ModalSavedItemGroup = props => {
+  const listItems = props.items.map((item, index) =>
+    <ModalSavedItem
+      handleChange={props.handleChange}
+      key={index}
+      {...item} />
+  );
+  return (
+    <div className="modal-saved-items__item-group">
+      <h3 className="modal-item-group__title">{props.title}</h3>
+      <ul className="modal-item-group__items">
+        {listItems}
+      </ul>
+    </div>
+  )
 }
 
 ModalSavedItemGroup.propTypes = {
+  handleChange: PropTypes.func,
+  items: PropTypes.array.isRequired,
   title: PropTypes.string.isRequired,
-  items: PropTypes.array.isRequired
 }
 
-export class SavedItemList extends Component {
-  groupItems = items => {
+export const SavedItemList = props => {
+  const groupItems = items => {
     return items.length ? (items.map((item) =>
       <SavedItemGroup
         key={item.title}
         {...item}
         groupUri={item.uri}
-        removeItem={this.props.removeItem} />
+        removeItem={props.removeItem}
+        handleChange={props.handleChange} />
     )) : (<p className="saved-items__empty">No saved items.</p>)
   }
-  render() {
-    return (
-      <div className="saved-items">
-        {this.props.isLoading ? <p className="saved-items__loading">Loading...</p> : this.groupItems(this.props.items)}
-      </div>
-    )
-  }
+  return (
+    <div className="saved-items">
+      {props.isLoading ? <p className="saved-items__loading">Loading...</p> : groupItems(props.items)}
+    </div>
+  )
 }
 
 SavedItemList.propTypes = {
+  handleChange: PropTypes.func,
   isLoading: PropTypes.bool.isRequired,
-  items: PropTypes.array.isRequired
+  items: PropTypes.array.isRequired,
+  removeItem: PropTypes.func
 }
 
-export class ModalSavedItemList extends Component {
-  groupItems = items => {
+export const ModalSavedItemList = props => {
+  const groupItems = items => {
     return items.length ? (items.map((item) =>
       <ModalSavedItemGroup
         key={item.title}
         {...item}
-        groupUri={item.uri} />
+        groupUri={item.uri}
+        handleChange={props.handleChange} />
     )) : (<p className="saved-items__empty">No saved items.</p>)
   }
-  render() {
-    return (
-      <div className="modal-saved-items">
-        {this.groupItems(this.props.items)}
-      </div>
-    )
-  }
+  return (
+    <div className="modal-saved-items">
+      {groupItems(props.items)}
+    </div>
+  )
 }
 
 ModalSavedItemList.propTypes = {
+  handleChange: PropTypes.func,
   items: PropTypes.array.isRequired
 }
