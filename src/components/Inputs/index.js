@@ -159,6 +159,7 @@ export const SelectInput = (props) => (
     <select
       name={props.id}
       id={props.id}
+      defaultValue={props.defaultValue}
       onChange={props.handleChange}>
         {props.children}
     </select>
@@ -231,6 +232,7 @@ export const TextInput = (props) => (
       size={props.size}
       required={props.required}
       onChange={props.handleChange}
+      defaultValue={props.defaultValue}
       value={props.value} />
    </div>
 )

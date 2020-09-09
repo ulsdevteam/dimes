@@ -6,7 +6,7 @@ import "./styles.scss";
 
 
 // TODO: add onClick handler to Search button
-const SearchForm = ({ className }) => {
+const SearchForm = ({ category, className, query }) => {
   return (
   <form role="search" action="/search" method="get">
     <div className={`${className}`}>
@@ -17,14 +17,19 @@ const SearchForm = ({ className }) => {
           id="query"
           placeholder="Search..."
           size={60}
+          defaultValue={query}
           type="search"
         />
         <div className="select__search--wrapper">
-          <SelectInput className="hide-label select__search" id="category" label="Choose a search category">
-          <SelectOption value="" label="Everything" />
-          <SelectOption value="collection" label="Collections" />
-          <SelectOption value="person" label="People" />
-          <SelectOption value="organization" label="Organizations" />
+          <SelectInput
+            className="hide-label select__search"
+            id="category"
+            label="Choose a search category"
+            defaultValue={category} >
+              <SelectOption value="" label="Everything" />
+              <SelectOption value="collection" label="Collections" />
+              <SelectOption value="person" label="People" />
+              <SelectOption value="organization" label="Organizations" />
           </SelectInput>
         </div>
         <Button
