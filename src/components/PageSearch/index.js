@@ -15,21 +15,18 @@ class PageSearch extends Component {
     this.state = {
       inProgress: false,
       items: [],
-      query: this.parseParams(this.props.location.search).query,
-      category: this.parseParams(this.props.location.search).category,
+      params: this.parseParams(this.props.location.search),
       pageSize: 50,
       startItem: 0,
       endItem: 0,
       resultsCount: 0,
       facetIsOpen: false,
       facetData: [],
-      sort: ""
     };
   };
   componentDidMount() {
-    const params = this.parseParams(this.props.location.search)
-    this.executeSearch(params)
-    this.excecuteFacetsSearch(this.props.location.search)
+    this.executeSearch(this.state.params)
+    this.excecuteFacetsSearch(this.state.params)
   };
   startItem = (results, offset) => {
     var startItem = this.state.startItem;
@@ -54,19 +51,18 @@ class PageSearch extends Component {
   }
   excecuteFacetsSearch = params =>  {
     axios
-      .get(`http://10.0.1.90:8010/facets/${params}`)
+      .get(`http://10.0.1.90:8010/facets/${queryString.stringify(params)}`)
       .then(res => {this.setState({ facetData: res.data})})
       .catch(err => console.log(err));
   };
   executeSearch = params =>  {
-    this.setState({inProgress: true});
+    this.setState({ inProgress: true });
+    this.setState({ params: params })
     axios
       .get(`http://10.0.1.90:8010/search/?${queryString.stringify(params)}`)
       .then(res => {
         this.setState({items: []})
         res.data.results.forEach(r => this.fetchFromUri(r.uri, r.hit_count));
-        this.setState({sort: params.sort})
-        this.setState({query: params.query})
         this.setState({pageSize: this.pageSize(res.data, params.limit)})
         this.setState({startItem: this.startItem(res.data, params.offset)})
         this.setState({endItem: this.endItem(res.data, params.offset)})
@@ -102,10 +98,10 @@ class PageSearch extends Component {
         </Helmet>
         <div className="container--full-width">
           <div className="search-bar">
-            <SearchForm className="search-form--results" query={this.state.query} category={this.state.category} />
+            <SearchForm className="search-form--results" query={this.state.params.query} category={this.state.params.category} />
           </div>
           <div className="search-results">
-            <h1 className="search__title">{`Search Results ${this.state.query && `for “${this.state.query}”` }`}</h1>
+            <h1 className="search__title">{`Search Results ${this.state.params.query && `for “${this.state.params.query}”` }`}</h1>
             <p className="results__summary">
               {`${this.state.startItem === this.state.endItem ?
                 this.state.startItem :
@@ -123,7 +119,7 @@ class PageSearch extends Component {
                   handleChange={this.handleSortChange}
                   id="sort"
                   label="Sort search results"
-                  defaultValue={this.state.sort} >
+                  defaultValue={this.state.params.sort} >
                     <SelectOption value="" label="Sort by relevance" />
                     <SelectOption value="title" label="Sort by title" />
                     <SelectOption value="creator" label="Sort by creator name" />

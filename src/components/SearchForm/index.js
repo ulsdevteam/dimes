@@ -6,8 +6,7 @@ import "./styles.scss";
 
 
 // TODO: add onClick handler to Search button
-const SearchForm = ({ category, className, query }) => {
-  return (
+const SearchForm = ({ category, className, query }) => (
   <form role="search" action="/search" method="get">
     <div className={`${className}`}>
       <div className="input-group__search">
@@ -40,7 +39,7 @@ const SearchForm = ({ category, className, query }) => {
         />
       </div>
     </div>
-  </form>)}
+  </form>)
 
 SearchForm.propTypes = {
   className: PropTypes.string,
