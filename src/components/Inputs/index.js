@@ -266,12 +266,14 @@ export const YearInput = (props) => (
       name={props.name ? props.name : props.id}
       onChange={props.handleChange}
       value={props.value}
+      defaultValue={props.defaultValue}
       required={props.required} />
   </div>
 )
 
 YearInput.propTypes = {
   className: PropTypes.string,
+  defaultValue: PropTypes.number,
   handleChange: PropTypes.func,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
@@ -281,8 +283,3 @@ YearInput.propTypes = {
   required: PropTypes.bool,
   value: PropTypes.number
 };
-
-YearInput.defaultProps = {
-  max: new Date().getFullYear(),
-  min: 0
-}

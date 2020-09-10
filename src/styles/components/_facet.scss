@@ -10,12 +10,20 @@
 .facet__title {
   text-transform: uppercase;
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 700;
   margin-top: 0;
+}
+
+.facet__input {
+  margin: 6px 0px;
 }
 
 .facet input[type=number] {
   padding: 7px 12px;
+  width: 80px;
   float: left;
   margin-right: 13px;
+  border-radius: 3px;
+  border: 1px solid $dark-gray;
+  box-sizing: border-box;
 }

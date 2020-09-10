@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import Modal from "react-modal";
 import Button from "../Button";
 import Captcha from "../Captcha";
+import Facet from "../Facet";
 import { FocusError, FormButtons, FormGroup } from "../Form";
 import { CheckBoxInput, YearInput } from "../Inputs";
 import MaterialIcon from "../MaterialIcon";
@@ -318,42 +319,40 @@ DuplicationRequestModal.propTypes = {
   toggleModal: PropTypes.func.isRequired,
 }
 
-export const FacetModal = props => (
-  <Modal
-    appElement={props.appElement ? props.appElement : Modal.setAppElement("#root")}
-    isOpen={props.isOpen}
-    onRequestClose={props.toggleModal}
-    className="modal-content--facet"
-    overlayClassName="modal-overlay--facet"
-    closeTimeoutMS={200} >
-    <div className="modal-header--facets">
-      <h2 className="modal-header__title">Filter Search Results</h2>
-      <button className="modal-header__button" aria-label="Close" onClick={props.toggleModal}>
-        <MaterialIcon icon="close"/>
-      </button>
-    </div>
-    <div className="modal-body">
-      <div className="facet">
-        <CheckBoxInput id="online" className="facet__input" label="Show me digital materials only" />
+export const FacetModal = props => {
+  const genreData = props.data.find(i => i.genre) && props.data.find(i => i.genre).genre;
+  const creatorData = props.data.find(i => i.creator) && props.data.find(i => i.creator).creator;
+  const termData = props.data.find(i => i.term) && props.data.find(i => i.term).term;
+  const onlineCount = (props.data.find(i => i.online) && props.data.find(i => i.online).online.doc_count) || 0;
+  const startYear = (props.data.find(i => i.startYear) && props.data.find(i => i.startYear).startYear) || 0;
+  const endYear = (props.data.find(i => i.endYear) && props.data.find(i => i.endYear).endYear) || 0;
+  return (
+    <Modal
+      appElement={props.appElement ? props.appElement : Modal.setAppElement("#root")}
+      isOpen={props.isOpen}
+      onRequestClose={props.toggleModal}
+      className="modal-content--facet"
+      overlayClassName="modal-overlay--facet"
+      closeTimeoutMS={200} >
+      <div className="modal-header--facets">
+        <h2 className="modal-header__title">Filter Search Results</h2>
+        <button className="modal-header__button" aria-label="Close" onClick={props.toggleModal}>
+          <MaterialIcon icon="close"/>
+        </button>
       </div>
-      <div className="facet">
-        <h3 className="facet__title">Date Range</h3>
-        <YearInput id="startYear" label="Start Year" className="hide-label" />
-        <YearInput id="endYear" label="End Year" className="hide-label" />
-        <Button className="btn--sm btn--blue" label="apply"/>
+      <div className="modal-body">
+        <Facet>
+          <CheckBoxInput id="online" className="facet__input" checked={false} label={`Show me digital materials only (${onlineCount})`} />
+        </Facet>
+        <Facet title="Date Range">
+          <YearInput id="startYear" label="Start Year" className="hide-label" defaultValue={startYear} />
+          <YearInput id="endYear" label="End Year" className="hide-label" defaultValue={endYear} />
+          <Button className="btn--sm btn--blue" label="apply"/>
+        </Facet>
+        <Facet title="Format" items={genreData} />
+        <Facet title="Creator" items={creatorData} />
+        <Facet title="Subject" items={termData} />
       </div>
-      <div className="facet">
-        <h3 className="facet__title">Format</h3>
-      </div>
-      <div className="facet">
-        <h3 className="facet__title">People (Creator)</h3>
-      </div>
-      <div className="facet">
-        <h3 className="facet__title">Organization (Creator)</h3>
-      </div>
-      <div className="facet">
-        <h3 className="facet__title">Subject</h3>
-      </div>
-    </div>
-  </Modal>
-)
+    </Modal>
+  )
+}

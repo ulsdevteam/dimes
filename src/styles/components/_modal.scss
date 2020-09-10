@@ -1,11 +1,6 @@
 @import "../styles";
 
-
-.modal-overlay--facet {
-  transform: translateX(-100px);
-  transition: $transition-default;
-}
-
+// TODO: add custom classes for these
 .modal-overlay--facet.ReactModal__Overlay--after-open {
   opacity: 1;
   transform: translateX(0px);
@@ -13,7 +8,7 @@
 
 .modal-overlay--facet.ReactModal__Overlay--before-close {
   opacity: 0;
-  transform: translateX(-100px);
+  transform: translateX(-400px);
 }
 
 .modal-overlay, .modal-overlay--facet {
@@ -24,6 +19,11 @@
   bottom: 0px;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1000;
+}
+
+.modal-overlay--facet {
+  transform: translateX(-400px);
+  transition: $transition-default;
 }
 
 .modal-content {
@@ -44,8 +44,7 @@
   top: 0;
   left: 0;
   width: 420px;
-  // right: $modal-content-margin;
-  // bottom: $modal-content-margin;
+  min-height: 100%;
   border: 1px solid $dark-gray;
   background: $pale-blue;
   border-radius: 3px;

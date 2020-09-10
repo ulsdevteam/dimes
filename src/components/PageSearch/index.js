@@ -20,19 +20,13 @@ class PageSearch extends Component {
       startItem: 0,
       endItem: 0,
       resultsCount: 0,
-      showFacets: false,
-      facetModal: {
-        isOpen: false
-      }
+      facetIsOpen: false,
+      facetData: []
     };
   };
   componentDidMount() {
-    this.toggleInProgress()
-    this.parseParams(this.props.location.search)
     this.executeSearch(this.props.location.search)
-  };
-  toggleInProgress = () => {
-    this.setState({inProgress: !this.state.inProgress});
+    this.excecuteFacetsSearch(this.props.location.search)
   };
   startItem = (results, offset) => {
     var startItem = this.state.startItem;
@@ -55,7 +49,14 @@ class PageSearch extends Component {
       return this.state.pageSize;
     }
   }
+  excecuteFacetsSearch = params =>  {
+    axios
+      .get(`http://10.0.1.90:8010/facets/${params}`)
+      .then(res => {this.setState({ facetData: res.data})})
+      .catch(err => console.log(err));
+  };
   executeSearch = params =>  {
+    this.setState({inProgress: true});
     axios
       .get(`http://10.0.1.90:8010/search/${params}`)
       .then(res => {
@@ -65,7 +66,7 @@ class PageSearch extends Component {
         this.setState({startItem: this.startItem(res.data, params.offset)})
         this.setState({endItem: this.endItem(res.data, params.offset)})
         this.setState({resultsCount: res.data.count})
-        this.toggleInProgress();
+        this.setState({inProgress: false});
       })
       .catch(err => console.log(err));
   };
@@ -79,7 +80,7 @@ class PageSearch extends Component {
     return queryString.parse(params);
   }
   toggleFacetModal = () => {
-    this.setState({facetModal: {...this.state.facetModal, isOpen: !this.state.facetModal.isOpen}})
+    this.setState({ facetIsOpen: !this.state.facetIsOpen })
   }
   render() {
     // TODO: replace with search component
@@ -118,8 +119,9 @@ class PageSearch extends Component {
           </div>
         </div>
         <FacetModal
-          isOpen={this.state.facetModal.isOpen}
-          toggleModal={this.toggleFacetModal} />
+          isOpen={this.state.facetIsOpen}
+          toggleModal={this.toggleFacetModal}
+          data={this.state.facetData} />
       </React.Fragment>
     )
   }
