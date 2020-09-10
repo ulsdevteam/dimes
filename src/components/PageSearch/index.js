@@ -14,7 +14,8 @@ class PageSearch extends Component {
     this.state = {
       inProgress: false,
       items: [],
-      query: "",
+      query: this.parseParams(this.props.location.search).query,
+      category: this.parseParams(this.props.location.search).category,
       pageSize: 50,
       startItem: 0,
       endItem: 0,
@@ -87,7 +88,6 @@ class PageSearch extends Component {
     this.setState({showFacets: !this.state.showFacets});
   }
   render() {
-    // TODO: replace with search component
     // TODO: perform search without page reload
     return (
       <React.Fragment>
@@ -96,7 +96,7 @@ class PageSearch extends Component {
         </Helmet>
         <div className="container--full-width">
           <div className="search-bar">
-            <SearchForm className="search-form--results" />
+            <SearchForm className="search-form--results" query={this.state.query} category={this.state.category} />
           </div>
           <div className="search-results">
             <h1 className="search__title">{`Search Results ${this.state.query && `for “${this.state.query}”` }`}</h1>

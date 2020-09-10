@@ -232,6 +232,7 @@ export const TextInput = (props) => (
       size={props.size}
       required={props.required}
       onChange={props.handleChange}
+      defaultValue={props.defaultValue}
       value={props.value} />
    </div>
 )
