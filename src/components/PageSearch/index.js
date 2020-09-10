@@ -16,16 +16,19 @@ class PageSearch extends Component {
       inProgress: false,
       items: [],
       query: this.parseParams(this.props.location.search).query,
+      category: this.parseParams(this.props.location.search).category,
       pageSize: 50,
       startItem: 0,
       endItem: 0,
       resultsCount: 0,
       facetIsOpen: false,
-      facetData: []
+      facetData: [],
+      sort: ""
     };
   };
   componentDidMount() {
-    this.executeSearch(this.props.location.search)
+    const params = this.parseParams(this.props.location.search)
+    this.executeSearch(params)
     this.excecuteFacetsSearch(this.props.location.search)
   };
   startItem = (results, offset) => {
@@ -58,10 +61,12 @@ class PageSearch extends Component {
   executeSearch = params =>  {
     this.setState({inProgress: true});
     axios
-      .get(`http://10.0.1.90:8010/search/${params}`)
+      .get(`http://10.0.1.90:8010/search/?${queryString.stringify(params)}`)
       .then(res => {
+        this.setState({items: []})
         res.data.results.forEach(r => this.fetchFromUri(r.uri, r.hit_count));
-        const params = this.parseParams(this.props.location.search);
+        this.setState({sort: params.sort})
+        this.setState({query: params.query})
         this.setState({pageSize: this.pageSize(res.data, params.limit)})
         this.setState({startItem: this.startItem(res.data, params.offset)})
         this.setState({endItem: this.endItem(res.data, params.offset)})
@@ -76,6 +81,12 @@ class PageSearch extends Component {
       .then(res => {res.data.hit_count = hit_count; this.setState({items: [...this.state.items, res.data]});})
       .catch(err => console.log(err));
   }
+  handleSortChange = (event) => {
+    var params = this.parseParams(this.props.location.search)
+    event.target.value ? params.sort = event.target.value : delete params["sort"]
+    this.props.history.push(`${window.location.pathname}?${queryString.stringify(params)}`)
+    this.executeSearch(params);
+  }
   parseParams = (params) => {
     return queryString.parse(params);
   }
@@ -83,7 +94,6 @@ class PageSearch extends Component {
     this.setState({ facetIsOpen: !this.state.facetIsOpen })
   }
   render() {
-    // TODO: replace with search component
     // TODO: perform search without page reload
     return (
       <React.Fragment>
@@ -92,7 +102,7 @@ class PageSearch extends Component {
         </Helmet>
         <div className="container--full-width">
           <div className="search-bar">
-            <SearchForm className="search-form--results" />
+            <SearchForm className="search-form--results" query={this.state.query} category={this.state.category} />
           </div>
           <div className="search-results">
             <h1 className="search__title">{`Search Results ${this.state.query && `for “${this.state.query}”` }`}</h1>
@@ -108,10 +118,15 @@ class PageSearch extends Component {
                 iconBefore="filter_alt"
                 className="btn--filter" />
               <div className="select__sort--wrapper">
-                <SelectInput className="hide-label select__sort" id="sort" label="Sort search results">
-                  <SelectOption value="" label="Sort by relevance" />
-                  <SelectOption value="title" label="Sort by title" />
-                  <SelectOption value="creator" label="Sort by creator" />
+                <SelectInput
+                  className="hide-label select__sort"
+                  handleChange={this.handleSortChange}
+                  id="sort"
+                  label="Sort search results"
+                  defaultValue={this.state.sort} >
+                    <SelectOption value="" label="Sort by relevance" />
+                    <SelectOption value="title" label="Sort by title" />
+                    <SelectOption value="creator" label="Sort by creator name" />
                 </SelectInput>
               </div>
             </div>
