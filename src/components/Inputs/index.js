@@ -175,7 +175,7 @@ SelectInput.propTypes = {
 }
 
 export const SelectOption = ({ label, value }) => (
-  <option value={value}>
+  <option value={value} >
     {label}
   </option>
 )
