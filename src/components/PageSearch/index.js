@@ -21,7 +21,7 @@ class PageSearch extends Component {
       endItem: 0,
       resultsCount: 0,
       facetIsOpen: false,
-      facetData: [],
+      facetData: {},
     };
   };
   componentDidMount() {
@@ -51,7 +51,7 @@ class PageSearch extends Component {
   }
   excecuteFacetsSearch = params =>  {
     axios
-      .get(`http://10.0.1.90:8010/facets/${queryString.stringify(params)}`)
+      .get(`${process.env.REACT_APP_ARGO_BASEURL}/facets/?${queryString.stringify(params)}`)
       .then(res => {this.setState({ facetData: res.data})})
       .catch(err => console.log(err));
   };
@@ -59,7 +59,7 @@ class PageSearch extends Component {
     this.setState({ inProgress: true });
     this.setState({ params: params })
     axios
-      .get(`http://10.0.1.90:8010/search/?${queryString.stringify(params)}`)
+      .get(`${process.env.REACT_APP_ARGO_BASEURL}/search/?${queryString.stringify(params)}`)
       .then(res => {
         this.setState({items: []})
         res.data.results.forEach(r => this.fetchFromUri(r.uri, r.hit_count));
@@ -73,7 +73,7 @@ class PageSearch extends Component {
   };
   fetchFromUri = (uri, hit_count) => {
     axios
-      .get(`http://10.0.1.90:8010${uri}`)
+      .get(`${process.env.REACT_APP_ARGO_BASEURL}${uri}`)
       .then(res => {res.data.hit_count = hit_count; this.setState({items: [...this.state.items, res.data]});})
       .catch(err => console.log(err));
   }
