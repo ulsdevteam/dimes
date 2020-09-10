@@ -320,12 +320,12 @@ DuplicationRequestModal.propTypes = {
 }
 
 export const FacetModal = props => {
-  const genreData = props.data.find(i => i.genre) && props.data.find(i => i.genre).genre;
-  const creatorData = props.data.find(i => i.creator) && props.data.find(i => i.creator).creator;
-  const termData = props.data.find(i => i.term) && props.data.find(i => i.term).term;
-  const onlineCount = (props.data.find(i => i.online) && props.data.find(i => i.online).online.doc_count) || 0;
-  const startYear = (props.data.find(i => i.startYear) && props.data.find(i => i.startYear).startYear) || 0;
-  const endYear = (props.data.find(i => i.endYear) && props.data.find(i => i.endYear).endYear) || 0;
+  const genreData = props.data.format;
+  const creatorData = props.data.creator;
+  const subjectData = props.data.subject;
+  const onlineCount = props.data.online && props.data.online.doc_count;
+  const startYear = props.data.min_date && props.data.min_date.value_as_string;
+  const endYear = props.data.max_date && props.data.max_date.value_as_string;
   return (
     <Modal
       appElement={props.appElement ? props.appElement : Modal.setAppElement("#root")}
@@ -351,7 +351,7 @@ export const FacetModal = props => {
         </Facet>
         <Facet title="Format" items={genreData} />
         <Facet title="Creator" items={creatorData} />
-        <Facet title="Subject" items={termData} />
+        <Facet title="Subject" items={subjectData} />
       </div>
     </Modal>
   )
