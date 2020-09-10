@@ -320,12 +320,6 @@ DuplicationRequestModal.propTypes = {
 }
 
 export const FacetModal = props => {
-  const genreData = props.data.format;
-  const creatorData = props.data.creator;
-  const subjectData = props.data.subject;
-  const onlineCount = props.data.online && props.data.online.doc_count;
-  const startYear = props.data.min_date && props.data.min_date.value_as_string;
-  const endYear = props.data.max_date && props.data.max_date.value_as_string;
   return (
     <Modal
       appElement={props.appElement ? props.appElement : Modal.setAppElement("#root")}
@@ -342,16 +336,28 @@ export const FacetModal = props => {
       </div>
       <div className="modal-body">
         <Facet>
-          <CheckBoxInput id="online" className="facet__input" checked={false} label={`Show me digital materials only (${onlineCount})`} />
+          <CheckBoxInput
+            id="online"
+            className="facet__input"
+            checked={false}
+            label={`Show me digital materials only (${props.data.online && props.data.online.doc_count})`} />
         </Facet>
         <Facet title="Date Range">
-          <YearInput id="startYear" label="Start Year" className="hide-label" defaultValue={startYear} />
-          <YearInput id="endYear" label="End Year" className="hide-label" defaultValue={endYear} />
+          <YearInput
+            id="startYear"
+            label="Start Year"
+            className="hide-label"
+            defaultValue={props.data.min_date && props.data.min_date.value_as_string} />
+          <YearInput
+            id="endYear"
+            label="End Year"
+            className="hide-label"
+            defaultValue={props.data.max_date && props.data.max_date.value_as_string} />
           <Button className="btn--sm btn--blue" label="apply"/>
         </Facet>
-        <Facet title="Format" items={genreData} />
-        <Facet title="Creator" items={creatorData} />
-        <Facet title="Subject" items={subjectData} />
+        <Facet title="Format" items={props.data.format} />
+        <Facet title="Creator" items={props.data.creator} />
+        <Facet title="Subject" items={props.data.subject} />
       </div>
     </Modal>
   )
