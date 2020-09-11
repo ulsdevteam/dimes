@@ -55,6 +55,7 @@ class PageSearch extends Component {
       .catch(err => console.log(err));
   };
   executeSearch = params =>  {
+    this.props.history.push(`${window.location.pathname}?${queryString.stringify(params)}`)
     this.setState({ inProgress: true });
     this.setState({ params: params })
     axios
@@ -81,7 +82,6 @@ class PageSearch extends Component {
     var params = {...this.state.params}
     params.start_date__gte = startYear
     params.end_date__lte = endYear
-    this.props.history.push(`${window.location.pathname}?${queryString.stringify(params)}`)
     this.executeSearch(params);
   }
   /** Pushes changes to facet checkboxes to url and executes search */
@@ -98,13 +98,11 @@ class PageSearch extends Component {
     } else {
       Array.isArray(params[k]) ? delete params[k][params[k].indexOf(event.target.name)] : delete params[k]
     }
-    this.props.history.push(`${window.location.pathname}?${queryString.stringify(params)}`)
     this.executeSearch(params);
   }
   handleSortChange = (event) => {
     var params = {...this.state.params}
     event.target.value ? params.sort = event.target.value : delete params["sort"]
-    this.props.history.push(`${window.location.pathname}?${queryString.stringify(params)}`)
     this.executeSearch(params);
   }
   parseParams = (params) => {
