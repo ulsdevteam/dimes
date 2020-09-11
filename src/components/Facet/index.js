@@ -3,22 +3,31 @@ import { CheckBoxInput } from "../Inputs";
 import "./styles.scss";
 
 
-const FacetItem = ({ count, handleChange, label }) => (
+const FacetItem = ({ checked, count, handleChange, label, paramKey }) => (
   <CheckBoxInput
     className="facet__input"
     id={label}
     label={`${label} (${count})`}
-    checked={false}
-    handleChange={handleChange} />
+    checked={checked}
+    handleChange={e => handleChange(e, paramKey)} />
 )
 
-const Facet = ({ children, handleChange, items, title }) => {
+const Facet = ({ children, handleChange, items, paramKey, params, title }) => {
   const facetValues = items ?? [];
+  const isChecked = key => {
+    if (Array.isArray(params)) {
+      return params.includes(key)
+    } else {
+      return params === key
+    }
+  }
   const facetItems = facetValues.map((v) =>
      <FacetItem
        key={v.key}
        label={v.key}
+       checked={isChecked(v.key)}
        count={v.doc_count}
+       paramKey={paramKey}
        handleChange={handleChange} />
   )
   return (

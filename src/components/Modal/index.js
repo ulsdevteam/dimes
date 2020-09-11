@@ -320,6 +320,8 @@ DuplicationRequestModal.propTypes = {
 }
 
 export const FacetModal = props => {
+  const startYear = props.params.start_date__gte ? props.params.start_date__gte : (props.data.min_date && props.data.min_date.value_as_string);
+  const endYear = props.params.end_date__lte ? props.params.end_date__lte : (props.data.max_date && props.data.max_date.value_as_string);
   return (
     <Modal
       appElement={props.appElement ? props.appElement : Modal.setAppElement("#root")}
@@ -338,8 +340,10 @@ export const FacetModal = props => {
         <Facet>
           <CheckBoxInput
             id="online"
+            name="true"
             className="facet__input"
-            checked={false}
+            checked={props.params.online === "true"}
+            handleChange={e => props.handleChange(e, "online")}
             label={`Show me digital materials only (${props.data.online && props.data.online.doc_count})`} />
         </Facet>
         <Facet title="Date Range">
@@ -347,17 +351,32 @@ export const FacetModal = props => {
             id="startYear"
             label="Start Year"
             className="hide-label"
-            defaultValue={props.data.min_date && props.data.min_date.value_as_string} />
+            defaultValue={startYear} />
           <YearInput
             id="endYear"
             label="End Year"
             className="hide-label"
-            defaultValue={props.data.max_date && props.data.max_date.value_as_string} />
+            defaultValue={endYear} />
           <Button className="btn--sm btn--blue" label="apply"/>
         </Facet>
-        <Facet title="Format" items={props.data.format} />
-        <Facet title="Creator" items={props.data.creator} />
-        <Facet title="Subject" items={props.data.subject} />
+        <Facet
+          handleChange={props.handleChange}
+          items={props.data.format}
+          paramKey="genre"
+          params={props.params.genre}
+          title="Format" />
+        <Facet
+          handleChange={props.handleChange}
+          items={props.data.creator}
+          paramKey="creator"
+          params={props.params.creator}
+          title="Creator" />
+        <Facet
+          handleChange={props.handleChange}
+          items={props.data.subject}
+          paramKey="subject"
+          params={props.params.subject}
+          title="Subject" />
       </div>
     </Modal>
   )

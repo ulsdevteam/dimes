@@ -77,6 +77,24 @@ class PageSearch extends Component {
       .then(res => {res.data.hit_count = hit_count; this.setState({items: [...this.state.items, res.data]});})
       .catch(err => console.log(err));
   }
+  /** Pushes changes to facet checkboxes to url and executes search */
+  handleFacetChange = (event, k) => {
+    var params = {...this.state.params}
+    if (event.target.checked) {
+      if (Array.isArray(params[k])) {
+        params[k].push(event.target.name)
+      } else if (params[k]) {
+        params[k] = [params[k], event.target.name]
+      } else {
+        params[k] = event.target.name;
+      }
+    } else {
+      Array.isArray(params[k]) ? delete params[k][params[k].indexOf(event.target.name)] : delete params[k]
+    }
+    this.props.history.push(`${window.location.pathname}?${queryString.stringify(params)}`)
+    this.executeSearch(params);
+    this.excecuteFacetsSearch(params)
+  }
   handleSortChange = (event) => {
     var params = this.parseParams(this.props.location.search)
     event.target.value ? params.sort = event.target.value : delete params["sort"]
@@ -132,7 +150,9 @@ class PageSearch extends Component {
         <FacetModal
           isOpen={this.state.facetIsOpen}
           toggleModal={this.toggleFacetModal}
-          data={this.state.facetData} />
+          data={this.state.facetData}
+          params={this.state.params}
+          handleChange={this.handleFacetChange} />
       </React.Fragment>
     )
   }
