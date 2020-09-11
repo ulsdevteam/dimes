@@ -77,6 +77,14 @@ class PageSearch extends Component {
       .then(res => {res.data.hit_count = hit_count; this.setState({items: [...this.state.items, res.data]});})
       .catch(err => console.log(err));
   }
+  handleDateFacetChange = (startYear, endYear) => {
+    var params = {...this.state.params}
+    params.start_date__gte = startYear
+    params.end_date__lte = endYear
+    this.props.history.push(`${window.location.pathname}?${queryString.stringify(params)}`)
+    this.executeSearch(params);
+    this.excecuteFacetsSearch(params)
+  }
   /** Pushes changes to facet checkboxes to url and executes search */
   handleFacetChange = (event, k) => {
     var params = {...this.state.params}
@@ -96,7 +104,7 @@ class PageSearch extends Component {
     this.excecuteFacetsSearch(params)
   }
   handleSortChange = (event) => {
-    var params = this.parseParams(this.props.location.search)
+    var params = {...this.state.params}
     event.target.value ? params.sort = event.target.value : delete params["sort"]
     this.props.history.push(`${window.location.pathname}?${queryString.stringify(params)}`)
     this.executeSearch(params);
@@ -152,7 +160,8 @@ class PageSearch extends Component {
           toggleModal={this.toggleFacetModal}
           data={this.state.facetData}
           params={this.state.params}
-          handleChange={this.handleFacetChange} />
+          handleChange={this.handleFacetChange}
+          handleDateChange={this.handleDateFacetChange} />
       </React.Fragment>
     )
   }

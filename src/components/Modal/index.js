@@ -1,5 +1,5 @@
-import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import React, { useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
 import Button from "../Button";
@@ -320,8 +320,10 @@ DuplicationRequestModal.propTypes = {
 }
 
 export const FacetModal = props => {
-  const startYear = props.params.start_date__gte ? props.params.start_date__gte : (props.data.min_date && props.data.min_date.value_as_string);
-  const endYear = props.params.end_date__lte ? props.params.end_date__lte : (props.data.max_date && props.data.max_date.value_as_string);
+  const startDate = props.params.start_date__gte ? props.params.start_date__gte : (props.data.min_date && props.data.min_date.value_as_string);
+  const endDate = props.params.end_date__lte ? props.params.end_date__lte : (props.data.max_date && props.data.max_date.value_as_string);
+  const [startYear, setStartYear] = useState(startDate);
+  const [endYear, setEndYear] = useState(endDate);
   return (
     <Modal
       appElement={props.appElement ? props.appElement : Modal.setAppElement("#root")}
@@ -351,13 +353,15 @@ export const FacetModal = props => {
             id="startYear"
             label="Start Year"
             className="hide-label"
-            defaultValue={startYear} />
+            handleChange={e => {setStartYear(e.target.value)}}
+            defaultValue={startDate} />
           <YearInput
             id="endYear"
             label="End Year"
             className="hide-label"
-            defaultValue={endYear} />
-          <Button className="btn--sm btn--blue" label="apply"/>
+            handleChange={e => {setEndYear(e.target.value)}}
+            defaultValue={endDate} />
+          <Button className="btn--sm btn--blue" label="apply" handleClick={() => {props.handleDateChange(startYear, endYear)}}/>
         </Facet>
         <Facet
           handleChange={props.handleChange}
