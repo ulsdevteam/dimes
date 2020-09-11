@@ -26,7 +26,7 @@ class TileList extends Component {
       <Tile
         key={item.uri}
         {...item}
-        date={item.dates?.length && item.dates[0].expression} />
+        date={item.dates?.length ? item.dates.map(d => d.expression).join(", ") : null} />
     );
   }
   render() {
