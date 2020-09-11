@@ -14,6 +14,15 @@
   margin-top: 0;
 }
 
+.facet__items {
+  max-height: 115px;
+  overflow: hidden;
+  transition: $transition-default;
+  &.open {
+    max-height: none;
+  }
+}
+
 .facet__input {
   margin: 6px 0px;
 }
@@ -26,4 +35,12 @@
   border-radius: 3px;
   border: 1px solid $dark-gray;
   box-sizing: border-box;
+}
+
+.facet__show-hide {
+  font-family: $sans-serif-stack;
+  font-size: 12px;
+  font-weight: normal;
+  color: $deep-navy;
+  text-decoration: underline;
 }
