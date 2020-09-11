@@ -5,7 +5,7 @@ import "./styles.scss";
 
 const ShowHideMore = ({id, isOpen, toggleOpen}) => {
   return (
-    <a className="facet__show-hide" onClick={() => toggleOpen(isOpen)} >{isOpen ? "show less" : "show all"}</a>
+    <button className="facet__show-hide" onClick={() => toggleOpen(isOpen)} >{isOpen ? "show less" : "show all"}</button>
   )
 }
 
