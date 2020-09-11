@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
@@ -320,10 +320,16 @@ DuplicationRequestModal.propTypes = {
 }
 
 export const FacetModal = props => {
-  const startDate = props.params.start_date__gte ? props.params.start_date__gte : (props.data.min_date && props.data.min_date.value_as_string);
-  const endDate = props.params.end_date__lte ? props.params.end_date__lte : (props.data.max_date && props.data.max_date.value_as_string);
-  const [startYear, setStartYear] = useState(startDate);
-  const [endYear, setEndYear] = useState(endDate);
+  var [startYear, setStartYear] = useState(0);
+  var [endYear, setEndYear] = useState(0);
+
+  useEffect(() => {
+    const startDate = (props.params.start_date__gte ? props.params.start_date__gte : (props.data.min_date && props.data.min_date.value_as_string)) || "";
+    const endDate = (props.params.end_date__lte ? props.params.end_date__lte : (props.data.max_date && props.data.max_date.value_as_string)) || "";
+    setStartYear(startDate);
+    setEndYear(endDate);
+  }, [props.params.start_date__gte, props.params.end_date__lte, props.data.min_date, props.data.max_date] );
+
   return (
     <Modal
       appElement={props.appElement ? props.appElement : Modal.setAppElement("#root")}
@@ -354,13 +360,13 @@ export const FacetModal = props => {
             label="Start Year"
             className="hide-label"
             handleChange={e => {setStartYear(e.target.value)}}
-            defaultValue={startDate} />
+            value={startYear} />
           <YearInput
             id="endYear"
             label="End Year"
             className="hide-label"
             handleChange={e => {setEndYear(e.target.value)}}
-            defaultValue={endDate} />
+            value={endYear} />
           <Button className="btn--sm btn--blue" label="apply" handleClick={() => {props.handleDateChange(startYear, endYear)}}/>
         </Facet>
         <Facet

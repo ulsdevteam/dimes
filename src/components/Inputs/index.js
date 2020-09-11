@@ -275,7 +275,7 @@ export const YearInput = (props) => (
 
 YearInput.propTypes = {
   className: PropTypes.string,
-  defaultValue: PropTypes.number,
+  defaultValue: PropTypes.string,
   handleChange: PropTypes.func,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
@@ -283,5 +283,8 @@ YearInput.propTypes = {
   min: PropTypes.number,
   name: PropTypes.string,
   required: PropTypes.bool,
-  value: PropTypes.number
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ])
 };

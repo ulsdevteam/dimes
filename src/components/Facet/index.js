@@ -41,12 +41,15 @@ const Facet = ({ children, handleChange, items, paramKey, params, title }) => {
        handleChange={handleChange} />
   )
   return (
-    <div className="facet">
-      {title && <h3 className="facet__title">{title}</h3>}
-      {children && children}
-      {facetItems && <div className={`facet__items${isOpen ? " open": ""}`}>{facetItems}</div>}
-      {facetItems.length > 5 && <ShowHideMore id={paramKey} isOpen={isOpen} toggleOpen={toggleOpen} />}
-    </div>
+    facetItems.length || children ?
+    (
+      <div className="facet">
+        {title && <h3 className="facet__title">{title}</h3>}
+        {children && children}
+        {facetItems && <div className={`facet__items${isOpen ? " open": ""}`}>{facetItems}</div>}
+        {facetItems.length > 5 && <ShowHideMore id={paramKey} isOpen={isOpen} toggleOpen={toggleOpen} />}
+      </div>
+    ) : null
   )
 }
 
