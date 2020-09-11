@@ -26,7 +26,6 @@ class PageSearch extends Component {
   };
   componentDidMount() {
     this.executeSearch(this.state.params)
-    this.excecuteFacetsSearch(this.state.params)
   };
   startItem = (results, offset) => {
     var startItem = this.state.startItem;
@@ -68,6 +67,7 @@ class PageSearch extends Component {
         this.setState({endItem: this.endItem(res.data, params.offset)})
         this.setState({resultsCount: res.data.count})
         this.setState({inProgress: false});
+        this.excecuteFacetsSearch(params);
       })
       .catch(err => console.log(err));
   };
@@ -83,7 +83,6 @@ class PageSearch extends Component {
     params.end_date__lte = endYear
     this.props.history.push(`${window.location.pathname}?${queryString.stringify(params)}`)
     this.executeSearch(params);
-    this.excecuteFacetsSearch(params)
   }
   /** Pushes changes to facet checkboxes to url and executes search */
   handleFacetChange = (event, k) => {
@@ -101,7 +100,6 @@ class PageSearch extends Component {
     }
     this.props.history.push(`${window.location.pathname}?${queryString.stringify(params)}`)
     this.executeSearch(params);
-    this.excecuteFacetsSearch(params)
   }
   handleSortChange = (event) => {
     var params = {...this.state.params}
