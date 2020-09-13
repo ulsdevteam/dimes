@@ -182,16 +182,18 @@
           for (const [key, value] of Object.entries(items)) {
             const fetchedItem = await this.fetchFromUri(key)
             if (fetchedItem) {
-              const description = fetchedItem.notes && fetchedItem.notes.map(n => {
-                if (n.title === "Scope and Contents") {
-                  n.subnotes && n.subnotes.map(s => s.content)
+              let description = fetchedItem.notes && fetchedItem.notes.forEach(function(e) {
+                if (e.title === "Scope and Contents") {
+                  e.subnotes.forEach(function(s) {
+                    description = description.concat(s.content)
+                  });
                 }
-              }).join(", ")
+              });
               resolved.items.push({
                 "title": fetchedItem.title,
                 "uri": fetchedItem.uri,
                 "date": fetchedItem.dates && fetchedItem.dates.map(d => d.expression).join(", "),
-                "description": description,
+                "description": description && description.join(", "),
                 "parent": fetchedItem.ancestors[0].title,
                 "parentRef": `/collections/${fetchedItem.ancestors[0].identifier}`,
                 "online": fetchedItem.online,
