@@ -59,6 +59,7 @@
   right: unset;
   width: 420px;
   height: 100vh;
+  border-radius: 0px;
   border: 1px solid $dark-gray;
   background: $pale-blue;
 }
@@ -70,8 +71,9 @@
   right: 0;
   width: 420px;
   height: 100vh;
+  border-radius: 0px;
   border: 1px solid $dark-gray;
-  background: $pale-blue;
+  background: $pure-white;
 }
 
 .modal-header {
