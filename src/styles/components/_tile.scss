@@ -48,12 +48,6 @@
   &:hover {
     text-decoration: none;
   }
-  @media screen and (min-width: $break-md) {
-    min-height: 120px;
-  }
-  @media screen and (min-width: $break-lg) {
-    min-height: 130px;
-  }
 }
 
 .tile__title  {
