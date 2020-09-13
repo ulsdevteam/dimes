@@ -81,7 +81,7 @@ class PageSearch extends Component {
   }
   handleHitCountClick = uri => {
     axios
-      .get(`${process.env.REACT_APP_ARGO_BASEURL}${uri}/?query=${this.state.params.query}`)
+      .get(`${process.env.REACT_APP_ARGO_BASEURL}${uri}/?${queryString.stringify(this.state.params)}`)
       .then(res => {
         this.setState({ hitsData: res.data })
         this.toggleHitsModal();
