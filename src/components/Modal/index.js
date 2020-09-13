@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import Modal from "react-modal";
 import Button from "../Button";
 import Captcha from "../Captcha";
+import CollectionHits from "../CollectionHits";
 import Facet from "../Facet";
 import { FocusError, FormButtons, FormGroup } from "../Form";
 import { CheckBoxInput, YearInput } from "../Inputs";
@@ -336,9 +337,13 @@ export const FacetModal = props => {
       isOpen={props.isOpen}
       onRequestClose={props.toggleModal}
       className="modal-content--facet"
-      overlayClassName="modal-overlay--facet"
+      overlayClassName={{
+        base: "modal-overlay--facet slide--right",
+        afterOpen: "slide--right--after-open",
+        beforeClose: "slide--right--before-close"
+      }}
       closeTimeoutMS={200} >
-      <div className="modal-header--facets">
+      <div className="modal-header--search">
         <h2 className="modal-header__title">Filter Search Results</h2>
         <button className="modal-header__button" aria-label="Close" onClick={props.toggleModal}>
           <MaterialIcon icon="close"/>
@@ -387,6 +392,32 @@ export const FacetModal = props => {
           paramKey="subject"
           params={props.params.subject}
           title="Subject" />
+      </div>
+    </Modal>
+  )
+}
+
+export const CollectionHitsModal = props => {
+  return (
+    <Modal
+      appElement={props.appElement ? props.appElement : Modal.setAppElement("#root")}
+      isOpen={props.isOpen}
+      onRequestClose={props.toggleModal}
+      className="modal-content--hits"
+      overlayClassName={{
+        base: "modal-overlay--hits slide--left",
+        afterOpen: "slide--left--after-open",
+        beforeClose: "slide--left--before-close"
+      }}
+      closeTimeoutMS={200} >
+      <div className="modal-header--search">
+        <h2 className="modal-header__title">Inside This Collection</h2>
+        <button className="modal-header__button" aria-label="Close" onClick={props.toggleModal}>
+          <MaterialIcon icon="close"/>
+        </button>
+      </div>
+      <div className="modal-body">
+        <CollectionHits collection={props.data} />
       </div>
     </Modal>
   )

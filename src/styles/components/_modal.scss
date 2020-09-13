@@ -1,29 +1,42 @@
 @import "../styles";
 
-// TODO: add custom classes for these
-.modal-overlay--facet.ReactModal__Overlay--after-open {
+.modal-overlay, .modal-overlay--facet, .modal-overlay--hits {
+  position: fixed;
+  top: 0px;
+  left: 0;
+  right: 0px;
+  bottom: 0px;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  transition: $transition-default;
+}
+
+.slide--right {
+  transform: translateX(-400px);
+}
+
+.slide--right--after-open {
   opacity: 1;
   transform: translateX(0px);
 }
 
-.modal-overlay--facet.ReactModal__Overlay--before-close {
+.slide--right--before-close {
   opacity: 0;
   transform: translateX(-400px);
 }
 
-.modal-overlay, .modal-overlay--facet {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  right: -500px;
-  bottom: 0px;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1000;
+.slide--left {
+  transform: translateX(400px);
 }
 
-.modal-overlay--facet {
-  transform: translateX(-400px);
-  transition: $transition-default;
+.slide--left--after-open {
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+.slide--left--before-close {
+  opacity: 0;
+  transform: translateX(400px);
 }
 
 .modal-content {
@@ -40,16 +53,25 @@
 }
 
 .modal-content--facet {
-  position: absolute;
+  @extend .modal-content;
   top: 0;
   left: 0;
+  right: unset;
   width: 420px;
   height: 100vh;
   border: 1px solid $dark-gray;
   background: $pale-blue;
-  border-radius: 3px;
-  overflow: auto;
-  outline: none;
+}
+
+.modal-content--hits {
+  @extend .modal-content;
+  left: unset;
+  top: 0;
+  right: 0;
+  width: 420px;
+  height: 100vh;
+  border: 1px solid $dark-gray;
+  background: $pale-blue;
 }
 
 .modal-header {
@@ -61,10 +83,13 @@
   width: calc(100% - #{$modal-content-margin});
 }
 
-.modal-header--facets {
+.modal-header--search {
   color: $deep-navy;
   background-color: none;
   padding: 30px 30px 40px 30px;
+  float: left;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .modal-header__title {
@@ -72,6 +97,7 @@
   font-size: 20px;
   float: left;
   margin: 0;
+  padding: 0;
   border-bottom: none;
 }
 
