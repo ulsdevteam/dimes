@@ -2,22 +2,22 @@ import React, { Component } from "react";
 import "./styles.scss";
 
 
-const HitCount = ({ hit_count }) => (
-  <div className="tile__hit-count">{hit_count} matches</div>
+export const HitCount = ({ handleClick, hit_count }) => (
+  <button className="tile__hit-count" onClick={handleClick}>{hit_count} matches</button>
 )
 
 const CategoryLabel = ({ category }) => (
   <div className={`tile__type-label ${category}`}>{category}</div>
 )
 
-const Tile = ({ category, date, hit_count, title, uri }) => (
+const Tile = ({ category, date, handleHitCountClick, hit_count, title, uri }) => (
   <li className="tile">
+    {hit_count && category === "collection" ? (<HitCount hit_count={hit_count} handleClick={() => handleHitCountClick(uri)} />) : null}
+    {category ? (<CategoryLabel category={category} />) : null }
     <a className="tile__link" href={uri}>
-      {hit_count && category === "collection" ? (<HitCount hit_count={hit_count} />) : null}
-      {category ? (<CategoryLabel type={category} />) : null }
       <h2 className="tile__title">{title}</h2>
-      <p className="tile__date">{date}</p>
     </a>
+    <p className="tile__date">{date}</p>
   </li>)
 
 class TileList extends Component {
@@ -26,6 +26,7 @@ class TileList extends Component {
       <Tile
         key={item.uri}
         {...item}
+        handleHitCountClick={this.props.handleHitCountClick}
         date={item.dates?.length ? item.dates.map(d => d.expression).join(", ") : null} />
     );
   }
