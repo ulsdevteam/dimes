@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "./styles.scss";
 
 
@@ -20,23 +20,19 @@ const Tile = ({ category, date, handleHitCountClick, hit_count, title, uri }) =>
     <p className="tile__date">{date}</p>
   </li>)
 
-class TileList extends Component {
-  listItems = (items) => {
-    return items.map((item) =>
-      <Tile
-        key={item.uri}
-        {...item}
-        handleHitCountClick={this.props.handleHitCountClick}
-        date={item.dates?.length ? item.dates.map(d => d.expression).join(", ") : null} />
-    );
-  }
-  render() {
-    return (
-      <ul className="tile-list">
-        {this.listItems(this.props.items)}
-      </ul>
-    )
-  }
+const TileList = props => {
+  const listItems = props.items.map((item) =>
+    <Tile
+      key={item.uri}
+      {...item}
+      handleHitCountClick={props.handleHitCountClick}
+      date={item.dates?.length ? item.dates.map(d => d.expression).join(", ") : null} />
+  );
+  return (
+    <ul className="tile-list">
+      {listItems}
+    </ul>
+  )
 }
 
 export default TileList;
