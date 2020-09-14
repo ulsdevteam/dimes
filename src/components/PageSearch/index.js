@@ -4,6 +4,7 @@ import queryString from "query-string";
 import { Helmet } from "react-helmet";
 import Button from "../Button";
 import { SelectInput, SelectOption } from "../Inputs"
+import { FacetModal } from "../Modal";
 import SearchForm from "../SearchForm";
 import TileList from "../Tile";
 import "./styles.scss"
@@ -14,23 +15,17 @@ class PageSearch extends Component {
     this.state = {
       inProgress: false,
       items: [],
-      query: this.parseParams(this.props.location.search).query,
-      category: this.parseParams(this.props.location.search).category,
+      params: this.parseParams(this.props.location.search),
       pageSize: 50,
       startItem: 0,
       endItem: 0,
       resultsCount: 0,
-      showFacets: false,
-      sort: ""
+      facetIsOpen: false,
+      facetData: {},
     };
   };
   componentDidMount() {
-    this.setState({inProgress: true})
-    const params = this.parseParams(this.props.location.search)
-    this.executeSearch(params)
-  };
-  toggleInProgress = () => {
-    this.setState({inProgress: !this.state.inProgress});
+    this.executeSearch(this.state.params)
   };
   startItem = (results, offset) => {
     var startItem = this.state.startItem;
@@ -53,39 +48,68 @@ class PageSearch extends Component {
       return this.state.pageSize;
     }
   }
-  executeSearch = params =>  {
+  excecuteFacetsSearch = params =>  {
     axios
-      .get(`http://10.0.1.90:8010/search/?${queryString.stringify(params)}`)
+      .get(`${process.env.REACT_APP_ARGO_BASEURL}/facets/?${queryString.stringify(params)}`)
+      .then(res => {this.setState({ facetData: res.data})})
+      .catch(err => console.log(err));
+  };
+  executeSearch = params =>  {
+    this.props.history.push(`${window.location.pathname}?${queryString.stringify(params)}`)
+    this.setState({ inProgress: true });
+    this.setState({ params: params })
+    axios
+      .get(`${process.env.REACT_APP_ARGO_BASEURL}/search/?${queryString.stringify(params)}`)
       .then(res => {
         this.setState({items: []})
         res.data.results.forEach(r => this.fetchFromUri(r.uri, r.hit_count));
-        this.setState({sort: params.sort})
-        this.setState({query: params.query})
         this.setState({pageSize: this.pageSize(res.data, params.limit)})
         this.setState({startItem: this.startItem(res.data, params.offset)})
         this.setState({endItem: this.endItem(res.data, params.offset)})
         this.setState({resultsCount: res.data.count})
-        this.setState({inProgress: false})
+        this.setState({inProgress: false});
+        this.excecuteFacetsSearch(params);
       })
       .catch(err => console.log(err));
   };
   fetchFromUri = (uri, hit_count) => {
     axios
-      .get(`http://10.0.1.90:8010${uri}`)
+      .get(`${process.env.REACT_APP_ARGO_BASEURL}${uri}`)
       .then(res => {res.data.hit_count = hit_count; this.setState({items: [...this.state.items, res.data]});})
       .catch(err => console.log(err));
   }
+  handleDateFacetChange = (startYear, endYear) => {
+    var params = {...this.state.params}
+    params.start_date__gte = startYear
+    params.end_date__lte = endYear
+    this.executeSearch(params);
+  }
+  /** Pushes changes to facet checkboxes to url and executes search */
+  handleFacetChange = (event, k) => {
+    var params = {...this.state.params}
+    if (event.target.checked) {
+      if (Array.isArray(params[k])) {
+        params[k].push(event.target.name)
+      } else if (params[k]) {
+        params[k] = [params[k], event.target.name]
+      } else {
+        params[k] = event.target.name;
+      }
+    } else {
+      Array.isArray(params[k]) ? delete params[k][params[k].indexOf(event.target.name)] : delete params[k]
+    }
+    this.executeSearch(params);
+  }
   handleSortChange = (event) => {
-    var params = this.parseParams(this.props.location.search)
+    var params = {...this.state.params}
     event.target.value ? params.sort = event.target.value : delete params["sort"]
-    this.props.history.push(`${window.location.pathname}?${queryString.stringify(params)}`)
     this.executeSearch(params);
   }
   parseParams = (params) => {
     return queryString.parse(params);
   }
-  toggleFacets = () => {
-    this.setState({showFacets: !this.state.showFacets});
+  toggleFacetModal = () => {
+    this.setState({ facetIsOpen: !this.state.facetIsOpen })
   }
   render() {
     // TODO: perform search without page reload
@@ -96,10 +120,10 @@ class PageSearch extends Component {
         </Helmet>
         <div className="container--full-width">
           <div className="search-bar">
-            <SearchForm className="search-form--results" query={this.state.query} category={this.state.category} />
+            <SearchForm className="search-form--results" query={this.state.params.query} category={this.state.params.category} />
           </div>
           <div className="search-results">
-            <h1 className="search__title">{`Search Results ${this.state.query && `for “${this.state.query}”` }`}</h1>
+            <h1 className="search__title">{`Search Results ${this.state.params.query && `for “${this.state.params.query}”` }`}</h1>
             <p className="results__summary">
               {`${this.state.startItem === this.state.endItem ?
                 this.state.startItem :
@@ -107,7 +131,7 @@ class PageSearch extends Component {
             </p>
             <div className="search__controls">
               <Button
-                onClick={this.toggleFacets}
+                handleClick={() => this.toggleFacetModal()}
                 label="Filters"
                 iconBefore="filter_alt"
                 className="btn--filter" />
@@ -117,7 +141,7 @@ class PageSearch extends Component {
                   handleChange={this.handleSortChange}
                   id="sort"
                   label="Sort search results"
-                  defaultValue={this.state.sort} >
+                  defaultValue={this.state.params.sort} >
                     <SelectOption value="" label="Sort by relevance" />
                     <SelectOption value="title" label="Sort by title" />
                     <SelectOption value="creator" label="Sort by creator name" />
@@ -127,6 +151,13 @@ class PageSearch extends Component {
             { this.state.inProgress ? (<p>Searching</p>) : (<TileList items={this.state.items} />)}
           </div>
         </div>
+        <FacetModal
+          isOpen={this.state.facetIsOpen}
+          toggleModal={this.toggleFacetModal}
+          data={this.state.facetData}
+          params={this.state.params}
+          handleChange={this.handleFacetChange}
+          handleDateChange={this.handleDateFacetChange} />
       </React.Fragment>
     )
   }

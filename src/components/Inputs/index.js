@@ -23,7 +23,7 @@ export const CheckBoxInput = (props) => (
     <input
       type="checkbox"
       id={props.id}
-      name={props.id}
+      name={props.name ? props.name : props.id}
       onChange={props.handleChange}
       defaultChecked={props.checked}
       required={props.required} />
@@ -40,6 +40,7 @@ CheckBoxInput.propTypes = {
     PropTypes.string,
     PropTypes.element
   ]).isRequired,
+  name: PropTypes.string,
   required: PropTypes.bool
 };
 
@@ -264,25 +265,26 @@ export const YearInput = (props) => (
       id={props.id}
       max={props.max}
       min={props.min}
-      name={props.id}
+      name={props.name ? props.name : props.id}
       onChange={props.handleChange}
       value={props.value}
+      defaultValue={props.defaultValue}
       required={props.required} />
   </div>
 )
 
 YearInput.propTypes = {
   className: PropTypes.string,
+  defaultValue: PropTypes.string,
   handleChange: PropTypes.func,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   max: PropTypes.number,
   min: PropTypes.number,
+  name: PropTypes.string,
   required: PropTypes.bool,
-  value: PropTypes.number
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ])
 };
-
-YearInput.defaultProps = {
-  max: new Date().getFullYear(),
-  min: 0
-}

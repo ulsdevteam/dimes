@@ -1,0 +1,49 @@
+@import "../styles";
+
+.facet {
+  font-family: $sans-serif-stack;
+  font-size: 14px;
+  border-top: 1px solid $light-blue;
+  padding: 20px 40px 30px 40px;
+}
+
+.facet__title {
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 0;
+}
+
+.facet__items {
+  max-height: 115px;
+  overflow: hidden;
+  transition: $transition-default;
+  &.open {
+    max-height: none;
+  }
+}
+
+.facet__input {
+  margin: 6px 0px;
+}
+
+.facet input[type=number] {
+  padding: 7px 12px;
+  width: 80px;
+  float: left;
+  margin-right: 13px;
+  border-radius: 3px;
+  border: 1px solid $dark-gray;
+  box-sizing: border-box;
+}
+
+.facet__show-hide {
+  font-family: $sans-serif-stack;
+  font-size: 12px;
+  font-weight: normal;
+  color: $deep-navy;
+  text-decoration: underline;
+  appearance: none;
+  border: none;
+  background: none;
+}
