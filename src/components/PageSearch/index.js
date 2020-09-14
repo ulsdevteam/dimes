@@ -61,8 +61,7 @@ class PageSearch extends Component {
     axios
       .get(`${process.env.REACT_APP_ARGO_BASEURL}/search/?${queryString.stringify(params)}`)
       .then(res => {
-        this.setState({items: []})
-        res.data.results.forEach(r => this.fetchFromUri(r.uri, r.hit_count));
+        this.setState({items: res.data.results})
         this.setState({pageSize: this.pageSize(res.data, params.limit)})
         this.setState({startItem: this.startItem(res.data, params.offset)})
         this.setState({endItem: this.endItem(res.data, params.offset)})
@@ -72,12 +71,6 @@ class PageSearch extends Component {
       })
       .catch(err => console.log(err));
   };
-  fetchFromUri = (uri, hit_count) => {
-    axios
-      .get(`${process.env.REACT_APP_ARGO_BASEURL}${uri}`)
-      .then(res => {res.data.hit_count = hit_count; this.setState({items: [...this.state.items, res.data]});})
-      .catch(err => console.log(err));
-  }
   handleDateFacetChange = (startYear, endYear) => {
     var params = {...this.state.params}
     params.start_date__gte = startYear
@@ -112,7 +105,6 @@ class PageSearch extends Component {
     this.setState({ facetIsOpen: !this.state.facetIsOpen })
   }
   render() {
-    // TODO: perform search without page reload
     return (
       <React.Fragment>
         <Helmet>
@@ -120,7 +112,11 @@ class PageSearch extends Component {
         </Helmet>
         <div className="container--full-width">
           <div className="search-bar">
-            <SearchForm className="search-form--results" query={this.state.params.query} category={this.state.params.category} />
+            <SearchForm
+              className="search-form--results"
+              query={this.state.params.query}
+              category={this.state.params.category}
+             />
           </div>
           <div className="search-results">
             <h1 className="search__title">{`Search Results ${this.state.params.query && `for “${this.state.params.query}”` }`}</h1>

@@ -18,6 +18,7 @@ const SearchForm = ({ category, className, query }) => (
           size={60}
           defaultValue={query}
           type="search"
+          required={true}
         />
         <div className="select__search--wrapper">
           <SelectInput
