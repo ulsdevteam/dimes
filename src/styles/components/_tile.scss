@@ -2,9 +2,12 @@
 @import "./material-icon";
 
 .tile-list {
+  float: left;
   display: flex;
   flex-wrap: wrap;
   padding: 0;
+  margin-top: 40px;
+  width: calc(100% + (#{$gutters-default}) * 2);
   margin-left: -$gutters-default;
   margin-right: -$gutters-default;
 }

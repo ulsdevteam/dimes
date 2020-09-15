@@ -1,6 +1,52 @@
 @import "../styles";
 @import "inputs";
 
+.results__header {
+  display: flex;
+  flex-wrap: wrap;
+  @media screen and (min-width: $break-lg) {
+    flex-wrap: nowrap;
+    align-items: flex-end;
+  }
+}
+
+.results__summary {
+  width: 100%;
+  @media screen and (min-width: $break-lg) {
+    width: unset;
+    order: 1;
+    text-align: right;
+    margin-bottom: 0;
+  }
+}
+
+.results__controls {
+  width: 100%;
+  @media screen and (min-width: $break-md) {
+    width: 60%;
+  }
+  @media screen and (min-width: $break-lg) {
+    width: unset;
+    order: 0;
+    flex-grow: 1;
+  }
+}
+
+.results__pagination {
+  width: 100%;
+  @media screen and (min-width: $break-md) {
+    width: 40%;
+    text-align: right;
+    align-self: flex-end;
+  }
+  @media screen and (min-width: $break-lg) {
+    width: unset;
+    order: 2;
+    margin-left: 10px;
+  }
+}
+
+
 .select__sort--wrapper {
   position: relative;
   display: inline-block;
