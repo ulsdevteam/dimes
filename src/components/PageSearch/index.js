@@ -97,7 +97,7 @@ class PageSearch extends Component {
     console.log(data)
     let offset = Math.ceil(data.selected * this.state.pageSize);
     let params = {...this.state.params}
-    params.offset = offset
+    if (offset > 0) {params.offset = offset} else {delete params.offset}
     this.executeSearch(params)
   };
   handleSortChange = (event) => {
