@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import Button from "../Button";
 import { SelectInput, SelectOption } from "../Inputs"
 import { FacetModal } from "../Modal";
+import { SearchPagination } from "../Pagination";
 import SearchForm from "../SearchForm";
 import TileList from "../Tile";
 import "./styles.scss"
@@ -15,7 +16,9 @@ class PageSearch extends Component {
     this.state = {
       inProgress: false,
       items: [],
+      offset: 0,
       params: this.parseParams(this.props.location.search),
+      pageCount: 0,
       pageSize: 40,
       startItem: 0,
       endItem: 0,
@@ -56,6 +59,8 @@ class PageSearch extends Component {
         this.setState({startItem: this.startItem(res.data, params.offset)})
         this.setState({endItem: this.endItem(res.data, params.offset)})
         this.setState({resultsCount: res.data.count})
+        this.setState({offset: params.offset})
+        this.setState({pageCount: Math.ceil(res.data.count / this.state.pageSize)})
         this.setState({inProgress: false});
         this.excecuteFacetsSearch(params);
       })
@@ -83,6 +88,13 @@ class PageSearch extends Component {
     }
     this.executeSearch(params);
   }
+  handlePageClick = (data) => {
+    console.log(data)
+    let offset = Math.ceil(data.selected * this.state.pageSize);
+    let params = {...this.state.params}
+    params.offset = offset
+    this.executeSearch(params)
+  };
   handleSortChange = (event) => {
     var params = {...this.state.params}
     event.target.value ? params.sort = event.target.value : delete params["sort"]
@@ -133,6 +145,14 @@ class PageSearch extends Component {
                     <SelectOption value="creator" label="Sort by creator name" />
                 </SelectInput>
               </div>
+            </div>
+            <div className="search__pagination">
+              <SearchPagination
+                offset={this.state.offset}
+                pageSize={this.state.pageSize}
+                pageCount={this.state.pageCount}
+                handlePageClick={this.handlePageClick}
+              />
             </div>
             { this.state.inProgress ? (<p>Searching</p>) : (<TileList items={this.state.items} />)}
           </div>
