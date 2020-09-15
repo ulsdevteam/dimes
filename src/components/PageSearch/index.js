@@ -28,7 +28,7 @@ class PageSearch extends Component {
     };
   };
   componentDidMount() {
-    let params = this.parseParams(this.props.location.search)
+    let params = queryString.parse(this.props.location.search)
     params.limit = this.state.pageSize
     this.executeSearch(params)
   };
@@ -73,6 +73,7 @@ class PageSearch extends Component {
     var params = {...this.state.params}
     params.start_date__gte = startYear
     params.end_date__lte = endYear
+    delete params.offset
     this.executeSearch(params);
   }
   /** Pushes changes to facet checkboxes to url and executes search */
@@ -89,6 +90,7 @@ class PageSearch extends Component {
     } else {
       Array.isArray(params[k]) ? delete params[k][params[k].indexOf(event.target.name)] : delete params[k]
     }
+    delete params.offset
     this.executeSearch(params);
   }
   handlePageClick = (data) => {
@@ -101,10 +103,8 @@ class PageSearch extends Component {
   handleSortChange = (event) => {
     var params = {...this.state.params}
     event.target.value ? params.sort = event.target.value : delete params["sort"]
+    delete params.offset
     this.executeSearch(params);
-  }
-  parseParams = (params) => {
-    return queryString.parse(params);
   }
   toggleFacetModal = () => {
     this.setState({ facetIsOpen: !this.state.facetIsOpen })
