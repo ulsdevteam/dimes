@@ -4,7 +4,7 @@ import queryString from "query-string";
 import { Helmet } from "react-helmet";
 import Button from "../Button";
 import { SelectInput, SelectOption } from "../Inputs"
-import { FacetModal } from "../Modal";
+import { CollectionHitsModal, FacetModal } from "../Modal";
 import { SearchPagination } from "../Pagination";
 import SearchForm from "../SearchForm";
 import TileList from "../Tile";
@@ -23,6 +23,8 @@ class PageSearch extends Component {
       startItem: 0,
       endItem: 0,
       resultsCount: 0,
+      hitsIsOpen: false,
+      hitsData: {},
       facetIsOpen: false,
       facetData: {},
     };
@@ -76,6 +78,15 @@ class PageSearch extends Component {
     delete params.offset
     this.executeSearch(params);
   }
+  handleHitCountClick = uri => {
+    axios
+      .get(`${process.env.REACT_APP_ARGO_BASEURL}${uri}/?${queryString.stringify(this.state.params)}`)
+      .then(res => {
+        this.setState({ hitsData: res.data })
+        this.toggleHitsModal();
+      })
+      .catch(err => console.log(err))
+  }
   /** Pushes changes to facet checkboxes to url and executes search */
   handleFacetChange = (event, k) => {
     var params = {...this.state.params}
@@ -108,6 +119,9 @@ class PageSearch extends Component {
   }
   toggleFacetModal = () => {
     this.setState({ facetIsOpen: !this.state.facetIsOpen })
+  }
+  toggleHitsModal = () => {
+    this.setState({ hitsIsOpen: !this.state.hitsIsOpen })
   }
   render() {
     return (
@@ -159,7 +173,9 @@ class PageSearch extends Component {
                 />
               </div>
             </div>
-            { this.state.inProgress ? (<p>Searching</p>) : (<TileList items={this.state.items} />)}
+            { this.state.inProgress ?
+              (<p>Searching</p>) :
+              (<TileList items={this.state.items} handleHitCountClick={this.handleHitCountClick}/>)}
           </div>
         </div>
         <FacetModal
@@ -169,6 +185,10 @@ class PageSearch extends Component {
           params={this.state.params}
           handleChange={this.handleFacetChange}
           handleDateChange={this.handleDateFacetChange} />
+        <CollectionHitsModal
+          isOpen={this.state.hitsIsOpen}
+          toggleModal={this.toggleHitsModal}
+          data={this.state.hitsData} />
       </React.Fragment>
     )
   }

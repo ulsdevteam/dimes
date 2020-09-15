@@ -8,28 +8,24 @@ class PageRecord extends Component {
     // This is example data to test myList functionality
     const exampleData = [
       {
-        "uri": "/objects/wjhfxgo5jdzsysz72cbypcyhp3/",
-        "group": "/collections/qkxsgwnspzw9nh8htnoaiserc4/"
+        "uri": "/objects/MzLg8JcyXmM2BBeakxnARq/",
+        "group": "/collections/ndQQPbTBCnVGhKs3U2VReD/"
       },
       {
-        "uri": "/objects/qckuiz9z5hb358esjsyuxqxfx4/",
-        "group": "/collections/qkxsgwnspzw9nh8htnoaiserc4/"
+        "uri": "/objects/FA9AL9XqUNqQW3nNrfJVW5/",
+        "group": "/collections/ndQQPbTBCnVGhKs3U2VReD/"
       },
       {
-        "uri": "/objects/jahav8ukco7ztxjdy2xc4poa95/",
-        "group": "/collections/qkxsgwnspzw9nh8htnoaiserc4/"
+        "uri": "/objects/4Mfz4GgZ2v4MYvBDqeX4AB/",
+        "group": "/collections/ndQQPbTBCnVGhKs3U2VReD/"
       },
       {
-        "uri": "/objects/rq6x9jtb24qpps7oujdrsdiou3/",
-        "group": "/collections/qkxsgwnspzw9nh8htnoaiserc4/"
+        "uri": "/objects/7F4SoSV2kFsprCuexMUtnk/",
+        "group": "/collections/ndQQPbTBCnVGhKs3U2VReD/"
       },
       {
-        "uri": "/objects/u8ihqyop5p4vxpq7oxg236f9y4/",
-        "group": "/collections/rf8ifduv77hwzspm5eqow4ycw4/"
-      },
-      {
-        "uri": "/objects/s294v2qnsoo6ufn4qrdqjh3po4/",
-        "group": "/collections/qkxsgwnspzw9nh8htnoaiserc4/"
+        "uri": "/objects/ZYBLHUh9Y5Zd9JHdutqmod/",
+        "group": "/collections/ndQQPbTBCnVGhKs3U2VReD/"
       }
     ]
     this.requestButtons = exampleData.map((item, idx) =>

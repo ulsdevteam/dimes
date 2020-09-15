@@ -51,12 +51,6 @@
   &:hover {
     text-decoration: none;
   }
-  @media screen and (min-width: $break-md) {
-    min-height: 120px;
-  }
-  @media screen and (min-width: $break-lg) {
-    min-height: 130px;
-  }
 }
 
 .tile__title  {
@@ -110,10 +104,12 @@
   float: right;
   background: $red-orange;
   border-radius: 0 0 2px 2px;
+  border: none;
   padding: 7px 8px 5px 8px;
   margin-right: -2px;
-  margin-top: -34px;
+  margin-top: -26px;
+  cursor: pointer;
   @media screen and (min-width: $break-md) {
-    margin-top: -42px;
+    margin-top: -32px;
   }
 }

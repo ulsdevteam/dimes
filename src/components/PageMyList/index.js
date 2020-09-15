@@ -182,25 +182,18 @@
           for (const [key, value] of Object.entries(items)) {
             const fetchedItem = await this.fetchFromUri(key)
             if (fetchedItem) {
-              let dates = []
-              fetchedItem["dates"].forEach(function(e) {
-                  dates = dates.concat(e.expression);
+              let description = fetchedItem.notes && fetchedItem.notes.forEach(function(e) {
+                if (e.title === "Scope and Contents") {
+                  e.subnotes.forEach(function(s) {
+                    description = description.concat(s.content)
+                  });
+                }
               });
-              let description = []
-              if (fetchedItem.notes) {
-                fetchedItem.notes.forEach(function(e) {
-                  if (e.title === "Scope and Contents") {
-                    e.subnotes.forEach(function(s) {
-                      description = description.concat(s.content)
-                    })
-                  }
-                });
-              }
               resolved.items.push({
                 "title": fetchedItem.title,
                 "uri": fetchedItem.uri,
-                "date": dates.join(", "),
-                "description": description.join(", "),
+                "date": fetchedItem.dates && fetchedItem.dates.map(d => d.expression).join(", "),
+                "description": description && description.join(", "),
                 "parent": fetchedItem.ancestors[0].title,
                 "parentRef": `/collections/${fetchedItem.ancestors[0].identifier}`,
                 "online": fetchedItem.online,
