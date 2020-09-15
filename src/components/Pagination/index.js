@@ -1,5 +1,6 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
+import PropTypes from "prop-types";
 import "./styles.scss";
 
 export const SearchPagination = props => (
@@ -20,3 +21,11 @@ export const SearchPagination = props => (
     activeClassName={'page__active'}
   />
 )
+
+SearchPagination.propTypes = {
+  handlePageClick: PropTypes.func.isRequired,
+  offset: PropTypes.number.isRequired,
+  pageCount: PropTypes.number.isRequired,
+  pageSize: PropTypes.number.isRequired,
+
+}
