@@ -16,7 +16,7 @@ class PageSearch extends Component {
       inProgress: false,
       items: [],
       params: this.parseParams(this.props.location.search),
-      pageSize: 50,
+      pageSize: 40,
       startItem: 0,
       endItem: 0,
       resultsCount: 0,
@@ -39,15 +39,6 @@ class PageSearch extends Component {
     if (offset) endItem = offset + this.state.pageSize;
     return endItem;
   }
-  pageSize = (results, limit) => {
-    if (limit) {
-      return limit
-    } else if (results.next) {
-      return this.parseParams(queryString.extract(results.next)).limit
-    } else {
-      return this.state.pageSize;
-    }
-  }
   excecuteFacetsSearch = params =>  {
     axios
       .get(`${process.env.REACT_APP_ARGO_BASEURL}/facets/?${queryString.stringify(params)}`)
@@ -62,7 +53,6 @@ class PageSearch extends Component {
       .get(`${process.env.REACT_APP_ARGO_BASEURL}/search/?${queryString.stringify(params)}`)
       .then(res => {
         this.setState({items: res.data.results})
-        this.setState({pageSize: this.pageSize(res.data, params.limit)})
         this.setState({startItem: this.startItem(res.data, params.offset)})
         this.setState({endItem: this.endItem(res.data, params.offset)})
         this.setState({resultsCount: res.data.count})
