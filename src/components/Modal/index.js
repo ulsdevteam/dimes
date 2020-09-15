@@ -398,7 +398,7 @@ export const FacetModal = props => {
 }
 
 FacetModal.propTypes = {
-  appElement: PropTypes.object.isRequired,
+  appElement: PropTypes.object,
   data: PropTypes.object.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleDateChange: PropTypes.func.isRequired,
@@ -434,7 +434,7 @@ export const CollectionHitsModal = props => {
 }
 
 FacetModal.propTypes = {
-  appElement: PropTypes.object.isRequired,
+  appElement: PropTypes.object,
   data: PropTypes.object.isRequired,
   isOpen: PropTypes.bool.isRequired,
   toggleModal: PropTypes.func.isRequired,

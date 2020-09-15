@@ -24,7 +24,7 @@ export const SearchPagination = props => (
 
 SearchPagination.propTypes = {
   handlePageClick: PropTypes.func.isRequired,
-  offset: PropTypes.number.isRequired,
+  offset: PropTypes.number,
   pageCount: PropTypes.number.isRequired,
   pageSize: PropTypes.number.isRequired,
 

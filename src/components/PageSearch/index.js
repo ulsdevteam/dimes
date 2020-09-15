@@ -17,7 +17,7 @@ class PageSearch extends Component {
       inProgress: false,
       items: [],
       offset: 0,
-      params: {},
+      params: {query: "", category: ""},
       pageCount: 0,
       pageSize: 40,
       startItem: 0,
