@@ -11,11 +11,9 @@ export const SearchSkeleton = () => (
           <div className="tile__type-label">
             <Skeleton />
           </div>
-          <a className="tile__link">
-            <h2 className="tile__title">
-              <Skeleton />
-            </h2>
-          </a>
+          <h2 className="tile__title">
+            <Skeleton />
+          </h2>
           <p className="tile__date">
             <Skeleton />
           </p>
