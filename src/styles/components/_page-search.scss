@@ -16,6 +16,13 @@
     width: unset;
     order: 1;
     text-align: right;
+  }
+}
+
+.results__summary--text {
+  font-family: inherit;
+  min-width: 225px;
+  @media screen and (min-width: $break-lg) {
     margin-bottom: 0;
   }
 }
