@@ -3,12 +3,8 @@ import { render } from "react-dom";
 import {
   CheckBoxInput,
   DatePickerInput,
-  EmailInput,
-  RadioGroup,
-  RadioInput,
   SelectInput,
   SelectOption,
-  TextAreaInput,
   TextInput,
   YearInput } from "..";
 
@@ -24,25 +20,6 @@ it('renders without crashing', () => {
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  render(<EmailInput label="Email" id="1" />, div);
-});
-
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  render(
-    <RadioGroup label="Select an option">
-      <RadioInput label="Foo" id="1" />
-      <RadioInput label="Bar" id="2" />
-    </RadioGroup>, div);
-});
-
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  render(<RadioInput label="Foo" id="1" />, div);
-});
-
-it('renders without crashing', () => {
-  const div = document.createElement('div');
   render(
     <SelectInput label="Select an option" id="1">
       <SelectOption label="Foo" />
@@ -53,11 +30,6 @@ it('renders without crashing', () => {
 it('renders without crashing', () => {
   const div = document.createElement('div');
   render(<SelectOption label="Foo" id="1" />, div);
-});
-
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  render(<TextAreaInput label="Foo" id="1" />, div);
 });
 
 it('renders without crashing', () => {
