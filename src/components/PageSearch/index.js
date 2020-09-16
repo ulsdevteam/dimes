@@ -176,6 +176,21 @@ class PageSearch extends Component {
             { this.state.inProgress ?
               (<p>Searching</p>) :
               (<TileList items={this.state.items} handleHitCountClick={this.handleHitCountClick}/>)}
+              <div className="results__footer">
+                <p className="results__summary">
+                  {`${this.state.startItem === this.state.endItem ?
+                    this.state.startItem :
+                    `${this.state.startItem}-${this.state.endItem}`} of ${this.state.resultsCount} results`}
+                </p>
+                <div className="results__pagination">
+                  <SearchPagination
+                    offset={this.state.offset}
+                    pageSize={this.state.pageSize}
+                    pageCount={this.state.pageCount}
+                    handlePageClick={this.handlePageClick}
+                  />
+              </div>
+            </div>
           </div>
         </div>
         <FacetModal
