@@ -11,11 +11,11 @@ export const SearchSkeleton = () => (
           <div className="tile__type-label">
             <Skeleton />
           </div>
-          <p className="tile__link">
+          <a className="tile__link">
             <h2 className="tile__title">
               <Skeleton />
             </h2>
-          </p>
+          </a>
           <p className="tile__date">
             <Skeleton />
           </p>
@@ -30,7 +30,7 @@ export const MyListSkeleton = () => (
     {Array(3)
     .fill()
     .map((item, index) => (
-      <div className="saved-items__item-group">
+      <div key={index} className="saved-items__item-group">
         <h2 className="item-group__title">
           <Skeleton />
         </h2>
