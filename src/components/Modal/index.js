@@ -397,6 +397,16 @@ export const FacetModal = props => {
   )
 }
 
+FacetModal.propTypes = {
+  appElement: PropTypes.object,
+  data: PropTypes.object.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleDateChange: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  params: PropTypes.object.isRequired,
+  toggleModal: PropTypes.func.isRequired,
+}
+
 export const CollectionHitsModal = props => {
   return (
     <Modal
@@ -421,4 +431,11 @@ export const CollectionHitsModal = props => {
       </div>
     </Modal>
   )
+}
+
+FacetModal.propTypes = {
+  appElement: PropTypes.object,
+  data: PropTypes.object.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  toggleModal: PropTypes.func.isRequired,
 }

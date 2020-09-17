@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import Button from "../Button";
 import { SelectInput, SelectOption } from "../Inputs"
 import { CollectionHitsModal, FacetModal } from "../Modal";
+import { SearchPagination } from "../Pagination";
 import SearchForm from "../SearchForm";
 import TileList from "../Tile";
 import "./styles.scss"
@@ -15,8 +16,10 @@ class PageSearch extends Component {
     this.state = {
       inProgress: false,
       items: [],
-      params: this.parseParams(this.props.location.search),
-      pageSize: 50,
+      offset: 0,
+      params: {query: "", category: ""},
+      pageCount: 0,
+      pageSize: 40,
       startItem: 0,
       endItem: 0,
       resultsCount: 0,
@@ -27,28 +30,22 @@ class PageSearch extends Component {
     };
   };
   componentDidMount() {
-    this.executeSearch(this.state.params)
+    let params = queryString.parse(this.props.location.search)
+    params.limit = this.state.pageSize
+    this.executeSearch(params)
   };
   startItem = (results, offset) => {
     var startItem = this.state.startItem;
-    if (offset) startItem = offset;
-    if (results.count) startItem = 1
+    if (results.count) startItem = 1;
+    if (offset > 0) startItem = offset;
     return startItem;
   }
   endItem = (results, offset) => {
     var endItem = results.count
     if (results.count > this.state.pageSize) endItem = this.state.pageSize;
-    if (offset) endItem = offset + this.state.pageSize;
+    if (offset) endItem = Math.ceil(Number(offset) + Number(this.state.pageSize));
+    if (endItem > results.count) endItem = results.count
     return endItem;
-  }
-  pageSize = (results, limit) => {
-    if (limit) {
-      return limit
-    } else if (results.next) {
-      return this.parseParams(queryString.extract(results.next)).limit
-    } else {
-      return this.state.pageSize;
-    }
   }
   excecuteFacetsSearch = params =>  {
     axios
@@ -64,10 +61,11 @@ class PageSearch extends Component {
       .get(`${process.env.REACT_APP_ARGO_BASEURL}/search/?${queryString.stringify(params)}`)
       .then(res => {
         this.setState({items: res.data.results})
-        this.setState({pageSize: this.pageSize(res.data, params.limit)})
         this.setState({startItem: this.startItem(res.data, params.offset)})
         this.setState({endItem: this.endItem(res.data, params.offset)})
         this.setState({resultsCount: res.data.count})
+        this.setState({offset: params.offset})
+        this.setState({pageCount: Math.ceil(res.data.count / this.state.pageSize)})
         this.setState({inProgress: false});
         this.excecuteFacetsSearch(params);
       })
@@ -77,6 +75,7 @@ class PageSearch extends Component {
     var params = {...this.state.params}
     params.start_date__gte = startYear
     params.end_date__lte = endYear
+    delete params.offset
     this.executeSearch(params);
   }
   handleHitCountClick = uri => {
@@ -102,15 +101,21 @@ class PageSearch extends Component {
     } else {
       Array.isArray(params[k]) ? delete params[k][params[k].indexOf(event.target.name)] : delete params[k]
     }
+    delete params.offset
     this.executeSearch(params);
   }
+  handlePageClick = (data) => {
+    console.log(data)
+    let offset = Math.ceil(data.selected * this.state.pageSize);
+    let params = {...this.state.params}
+    if (offset > 0) {params.offset = offset} else {delete params.offset}
+    this.executeSearch(params)
+  };
   handleSortChange = (event) => {
     var params = {...this.state.params}
     event.target.value ? params.sort = event.target.value : delete params["sort"]
+    delete params.offset
     this.executeSearch(params);
-  }
-  parseParams = (params) => {
-    return queryString.parse(params);
   }
   toggleFacetModal = () => {
     this.setState({ facetIsOpen: !this.state.facetIsOpen })
@@ -132,35 +137,60 @@ class PageSearch extends Component {
               category={this.state.params.category}
              />
           </div>
-          <div className="search-results">
-            <h1 className="search__title">{`Search Results ${this.state.params.query && `for “${this.state.params.query}”` }`}</h1>
-            <p className="results__summary">
-              {`${this.state.startItem === this.state.endItem ?
-                this.state.startItem :
-                `${this.state.startItem}-${this.state.endItem}`} of ${this.state.resultsCount} results`}
-            </p>
-            <div className="search__controls">
-              <Button
-                handleClick={() => this.toggleFacetModal()}
-                label="Filters"
-                iconBefore="filter_alt"
-                className="btn--filter" />
-              <div className="select__sort--wrapper">
-                <SelectInput
-                  className="hide-label select__sort"
-                  handleChange={this.handleSortChange}
-                  id="sort"
-                  label="Sort search results"
-                  defaultValue={this.state.params.sort} >
-                    <SelectOption value="" label="Sort by relevance" />
-                    <SelectOption value="title" label="Sort by title" />
-                    <SelectOption value="creator" label="Sort by creator name" />
-                </SelectInput>
+          <div className="results">
+            <h1 className="results__title">{`Search Results ${this.state.params.query && `for “${this.state.params.query}”` }`}</h1>
+            <div className="results__header">
+              <p className="results__summary">
+                {`${this.state.startItem === this.state.endItem ?
+                  this.state.startItem :
+                  `${this.state.startItem}-${this.state.endItem}`} of ${this.state.resultsCount} results`}
+              </p>
+              <div className="results__controls">
+                <Button
+                  handleClick={() => this.toggleFacetModal()}
+                  label="Filters"
+                  iconBefore="filter_alt"
+                  className="btn--filter" />
+                <div className="select__sort--wrapper">
+                  <SelectInput
+                    className="hide-label select__sort"
+                    handleChange={this.handleSortChange}
+                    id="sort"
+                    label="Sort search results"
+                    defaultValue={this.state.params.sort} >
+                      <SelectOption value="" label="Sort by relevance" />
+                      <SelectOption value="title" label="Sort by title" />
+                      <SelectOption value="creator" label="Sort by creator name" />
+                  </SelectInput>
+                </div>
+              </div>
+              <div className="results__pagination">
+                <SearchPagination
+                  offset={this.state.offset}
+                  pageSize={this.state.pageSize}
+                  pageCount={this.state.pageCount}
+                  handlePageClick={this.handlePageClick}
+                />
               </div>
             </div>
             { this.state.inProgress ?
               (<p>Searching</p>) :
               (<TileList items={this.state.items} handleHitCountClick={this.handleHitCountClick}/>)}
+              <div className="results__footer">
+                <p className="results__summary">
+                  {`${this.state.startItem === this.state.endItem ?
+                    this.state.startItem :
+                    `${this.state.startItem}-${this.state.endItem}`} of ${this.state.resultsCount} results`}
+                </p>
+                <div className="results__pagination">
+                  <SearchPagination
+                    offset={this.state.offset}
+                    pageSize={this.state.pageSize}
+                    pageCount={this.state.pageCount}
+                    handlePageClick={this.handlePageClick}
+                  />
+              </div>
+            </div>
           </div>
         </div>
         <FacetModal
