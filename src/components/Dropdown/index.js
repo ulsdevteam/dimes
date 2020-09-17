@@ -48,7 +48,7 @@ export const MyListDropdown = ({ downloadCsv, duplicationRequest, emailList, rea
     className="mylist__actions"
     buttonClassName="btn btn--orange btn--md"
     itemClassName="btn--orange btn--dropdown dropdown__item--orange"
-    listClassName="dropdown__list--orange"
+    listClassName="dropdown__list--orange dropdown__list--slide-down"
     items={
       [
         {
@@ -92,7 +92,7 @@ export const NavDropdown = () => (
     className="hide-on-lg-up"
     buttonClassName="btn nav-mobile__btn"
     itemClassName="btn--navy btn--mobile-dropdown"
-    listClassName="dropdown__list--mobile dropdown__list--navy"
+    listClassName="dropdown__list--mobile dropdown__list--navy dropdown__list--slide-left"
     items={
       [
         {
