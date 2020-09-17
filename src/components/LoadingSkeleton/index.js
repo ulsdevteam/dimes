@@ -8,15 +8,9 @@ export const SearchSkeleton = () => (
       .map((item, index) => (
         <li className="tile" key={index}>
           <Skeleton />
-          <div className="tile__type-label">
-            <Skeleton />
-          </div>
           <h2 className="tile__title">
-            <Skeleton />
+            <Skeleton count={3}/>
           </h2>
-          <p className="tile__date">
-            <Skeleton />
-          </p>
         </li>
       )
     )}
