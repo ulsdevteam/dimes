@@ -1,17 +1,32 @@
 @import "../styles";
 @import "inputs";
 
-.results__header {
+.results__header, .results__footer {
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
+  @media screen and (min-width: $break-md) {
+    align-items: flex-end;
+  }
   @media screen and (min-width: $break-lg) {
     flex-wrap: nowrap;
     align-items: flex-end;
   }
 }
 
+.results__footer {
+  margin-bottom: 30px;
+  @media screen and (min-width: $break-lg) {
+    justify-content: flex-end;
+  }
+}
+
 .results__summary {
   width: 100%;
+  @media screen and (min-width: $break-md) {
+    width: 50%;
+    order: 0;
+  }
   @media screen and (min-width: $break-lg) {
     width: unset;
     order: 1;
@@ -30,7 +45,7 @@
 .results__controls {
   width: 100%;
   @media screen and (min-width: $break-md) {
-    width: 60%;
+    order: 2
   }
   @media screen and (min-width: $break-lg) {
     width: unset;
@@ -42,7 +57,9 @@
 .results__pagination {
   width: 100%;
   @media screen and (min-width: $break-md) {
-    width: 40%;
+    width: 50%;
+    order: 1;
+    margin-bottom: 10px;
     text-align: right;
     align-self: flex-end;
   }
@@ -50,6 +67,7 @@
     width: unset;
     order: 2;
     margin-left: 10px;
+    margin-bottom: 0px;
   }
 }
 
