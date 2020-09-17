@@ -11,6 +11,9 @@ export const SearchSkeleton = () => (
           <h2 className="tile__title">
             <Skeleton count={3}/>
           </h2>
+          <p className="tile__date">
+            <Skeleton />
+          </p>
         </li>
       )
     )}
