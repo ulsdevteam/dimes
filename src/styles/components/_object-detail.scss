@@ -1,0 +1,16 @@
+@import "../styles";
+
+
+.object__detail {
+  background-color: $pale-blue;
+  width: 100%;
+  @media screen and (min-width: $break-lg) {
+    width: 33%;
+  }
+}
+
+.object__title {
+  font-family: $sans-serif-stack;
+  font-size: 28px;
+  color: $deep-navy;
+}

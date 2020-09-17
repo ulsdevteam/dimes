@@ -5,9 +5,11 @@ import Header from "./components/Header";
 import SkipLink from "./components/SkipLink";
 import PageAgent from "./components/PageAgent";
 import PageRecord from "./components/PageRecord";
+import PageCollection from "./components/PageCollection";
 import PageDigitalObject from "./components/PageDigitalObject";
 import PageHome from "./components/PageHome";
 import PageMyList from "./components/PageMyList";
+import PageObject from "./components/PageObject";
 import PageSearch from "./components/PageSearch";
 import PageNotFound from "./components/PageNotFound";
 
@@ -56,6 +58,8 @@ class App extends Component {
                     fetchMyList={this.fetchMyList}
                     saveMyList={this.saveMyList} />
                   } />
+                <Route path="/collections/:id" component={PageCollection} />
+                <Route path="/objects/:id" component={PageObject} />
                 <Route path="/agents/:id" component={PageAgent} />
                 <Route path="/view/" component={PageDigitalObject} />
                 <Route exact path="/" component={PageHome} />
