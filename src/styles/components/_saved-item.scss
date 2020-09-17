@@ -5,7 +5,7 @@
 .saved-items__empty,
 .modal-saved-items__item-group {
   @include grid-column(12);
-  border-top: 1px dotted $faded-navy;
+  border-top: 1px dotted $deep-navy;
 }
 
 .saved-items__empty {
