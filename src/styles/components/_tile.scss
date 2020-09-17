@@ -14,7 +14,8 @@
 
 .tile {
   @include grid-column(12);
-  display: inline-block;
+  display: flex;
+  flex-wrap: wrap;
   box-sizing: border-box;
   background: $off-white;
   border: 1px solid $orange-gray;
@@ -22,6 +23,7 @@
   border-radius: 4px;
   padding: 26px 20px;
   margin-bottom: $gutters-default;
+  position: relative;
   &:hover {
     border: 2px solid $red-orange;
     padding: 25px 19px;
@@ -46,18 +48,24 @@
   }
 }
 
-.tile__link  {
-  display: block;
-  &:hover {
-    text-decoration: none;
-  }
-}
-
 .tile__title  {
   @include tile-title-text;
-  margin-top: 8px !important;
-  margin-bottom: 0;
+  float: left;
+  width: 100%;
   border-bottom: none;
+  order: 2;
+  &:hover {
+    text-decoration: none;
+    color: $dark-gray;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
   @media screen and (min-width: $break-lg) {
     margin-top: 10px !important;
   }
@@ -66,6 +74,7 @@
 .tile__date {
   @include tile-date-text;
   margin-top: 8px;
+  order: 3;
   @media screen and (min-width: $break-lg) {
     margin-top: 10px;
   }
@@ -73,6 +82,7 @@
 
 .tile__type-label {
   @include tile-type-label-text;
+  order: 0;
   &::before {
     @extend .material-icons;
     font-size: 12px;
@@ -101,19 +111,18 @@
 
 .tile__hit-count {
   @include tile-hit-count-text;
-  float: right;
+  position: relative;
+  order: 1;
+  top: -32px;
+  right: -70px;
+  height: 25px;
   background: $red-orange;
   border-radius: 0 0 2px 2px;
   border: none;
   padding: 7px 8px 5px 8px;
-  margin-right: -2px;
-  margin-top: -26px;
   cursor: pointer;
   transition: $transition-default;
   &:hover {
     background: $med-brown;
-  }
-  @media screen and (min-width: $break-md) {
-    margin-top: -32px;
   }
 }

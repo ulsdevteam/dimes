@@ -12,11 +12,9 @@ const CategoryLabel = ({ category }) => (
 
 const Tile = ({ category, date, handleHitCountClick, hit_count, title, uri }) => (
   <li className="tile">
-    {hit_count && category === "collection" ? (<HitCount hit_count={hit_count} handleClick={() => handleHitCountClick(uri)} />) : null}
+    <a className="tile__title" href={uri}>{title}</a>
     {category ? (<CategoryLabel category={category} />) : null }
-    <a className="tile__link" href={uri}>
-      <h2 className="tile__title">{title}</h2>
-    </a>
+    {hit_count && category === "collection" ? (<HitCount hit_count={hit_count} handleClick={() => handleHitCountClick(uri)} />) : null}
     <p className="tile__date">{date}</p>
   </li>)
 
