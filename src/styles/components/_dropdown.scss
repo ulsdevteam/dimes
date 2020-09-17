@@ -15,12 +15,31 @@
   padding: 20px 0px;
   width: 270px;
   transition: $transition-default;
+  z-index: -999;
   &.open {
-    display: block;
+    opacity: 1;
     z-index: 999;
   }
   &.closed {
-    display: none;
+    opacity: 0;
+  }
+}
+
+.dropdown__list--slide-left {
+  &.open {
+    transform: translateX(0px);
+  }
+  &.closed {
+    transform: translateX(270px);
+  }
+}
+
+.dropdown__list--slide-down {
+  &.open {
+    transform: translateY(0px);
+  }
+  &.closed {
+    transform: translateY(-5px);
   }
 }
 
