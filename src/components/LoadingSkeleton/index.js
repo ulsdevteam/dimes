@@ -58,3 +58,21 @@ export const MyListSkeleton = () => (
   )}
   </React.Fragment>
 )
+
+
+export const AgentAttributeSkeleton = () => (
+  <div className="agent__attributes">
+    {Array(4)
+      .fill()
+      .map((item, index) => (
+        <div key={index} className="agent-attribute">
+          <p className="agent-attribute__label">
+            <Skeleton />
+          </p>
+          <p className="agent-attribute__value">
+            <Skeleton />
+          </p>
+        </div>
+      ))}
+  </div>
+)

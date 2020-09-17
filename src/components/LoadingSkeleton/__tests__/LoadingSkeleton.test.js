@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { SearchSkeleton, MyListSkeleton } from '..';
+import { AgentAttributeSkeleton, SearchSkeleton, MyListSkeleton } from '..';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
@@ -10,4 +10,9 @@ it('renders without crashing', () => {
 it('renders without crashing', () => {
   const div = document.createElement('div');
   render(<MyListSkeleton />, div);
+});
+
+it('renders without crashing', () => {
+  const div = document.createElement('div');
+  render(<AgentAttributeSkeleton />, div);
 });
