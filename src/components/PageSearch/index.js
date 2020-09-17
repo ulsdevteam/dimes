@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
 import queryString from "query-string";
+import Skeleton from 'react-loading-skeleton';
 import { Helmet } from "react-helmet";
 import Button from "../Button";
 import { SelectInput, SelectOption } from "../Inputs"
+import { SearchSkeleton } from "../LoadingSkeleton";
 import { CollectionHitsModal, FacetModal } from "../Modal";
 import { SearchPagination } from "../Pagination";
 import SearchForm from "../SearchForm";
@@ -140,11 +142,13 @@ class PageSearch extends Component {
           <div className="results">
             <h1 className="results__title">{`Search Results ${this.state.params.query && `for “${this.state.params.query}”` }`}</h1>
             <div className="results__header">
-              <p className="results__summary">
-                {`${this.state.startItem === this.state.endItem ?
+              <div className="results__summary">
+                <p className="results__summary--text">
+                {this.state.inProgress ? (<Skeleton />) : (`${this.state.startItem === this.state.endItem ?
                   this.state.startItem :
-                  `${this.state.startItem}-${this.state.endItem}`} of ${this.state.resultsCount} results`}
-              </p>
+                  `${this.state.startItem}-${this.state.endItem}`} of ${this.state.resultsCount} results`)}
+                </p>
+              </div>
               <div className="results__controls">
                 <Button
                   handleClick={() => this.toggleFacetModal()}
@@ -165,16 +169,18 @@ class PageSearch extends Component {
                 </div>
               </div>
               <div className="results__pagination">
-                <SearchPagination
-                  offset={this.state.offset}
-                  pageSize={this.state.pageSize}
-                  pageCount={this.state.pageCount}
-                  handlePageClick={this.handlePageClick}
-                />
+                {this.state.inProgress ?
+                  (<Skeleton />) :
+                  (<SearchPagination
+                    offset={this.state.offset}
+                    pageSize={this.state.pageSize}
+                    pageCount={this.state.pageCount}
+                    handlePageClick={this.handlePageClick}
+                  />)}
               </div>
             </div>
             { this.state.inProgress ?
-              (<p>Searching</p>) :
+              (<SearchSkeleton />) :
               (<TileList items={this.state.items} handleHitCountClick={this.handleHitCountClick}/>)}
               <div className="results__footer">
                 <p className="results__summary">

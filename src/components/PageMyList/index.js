@@ -1,11 +1,11 @@
   import React, { Component } from 'react';
   import PropTypes from "prop-types";
   import axios from "axios";
+  import { Helmet } from "react-helmet";
   import Button from "../Button";
-  import {MyListDropdown} from "../Dropdown";
-  import {Helmet} from "react-helmet";
-  import {DuplicationRequestModal, EmailModal, ReadingRoomRequestModal} from "../Modal";
-  import {SavedItemList} from "../SavedItem";
+  import { MyListDropdown } from "../Dropdown";
+  import { DuplicationRequestModal, EmailModal, ReadingRoomRequestModal } from "../Modal";
+  import { SavedItemList } from "../SavedItem";
   import "./styles.scss";
 
   const MyListExportActions = ({downloadCsv, emailList, removeAllItems}) => (

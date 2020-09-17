@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 import Button from "../Button";
 import { CheckBoxInput } from "../Inputs";
+import { MyListSkeleton } from "../LoadingSkeleton";
 import "./styles.scss";
 
 
@@ -129,7 +130,7 @@ export const SavedItemList = props => {
   }
   return (
     <div className="saved-items">
-      {props.isLoading ? <p className="saved-items__loading">Loading...</p> : groupItems(props.items)}
+      {props.isLoading ? <MyListSkeleton /> : groupItems(props.items)}
     </div>
   )
 }

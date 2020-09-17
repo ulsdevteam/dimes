@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
+import Skeleton from "react-loading-skeleton";
 import PageNotFound from "./PageNotFound";
+import { AgentAttributeSkeleton, SearchSkeleton } from "./LoadingSkeleton";
 import TileList from "./Tile";
 import AgentAttributeList from "./AgentAttribute";
 import "./Button/styles.scss";
@@ -37,6 +39,7 @@ class PageAgent extends Component {
     super(props);
     this.state = {
       found: true,
+      isLoading: true,
       agent: {},
       collections: null,
       attributes: null
@@ -49,6 +52,7 @@ class PageAgent extends Component {
         this.setState({ agent: res.data });
         this.fetchCollections();
         this.parseAgentAttributes();
+        this.setState({ isLoading: false })
       })
       .catch(err => this.setState({ found: false }));
   };
@@ -80,7 +84,6 @@ class PageAgent extends Component {
   }
   render() {
     // TODO: add href to Back to Search button
-    // TODO: CSS animation to make addition of related collections and agent attributes less jerky
     if (!this.state.found) {
       return (<PageNotFound />)
     }
@@ -91,13 +94,13 @@ class PageAgent extends Component {
         </Helmet>
         <div className="container agent">
           <nav>
-            <a href="/search" className="btn btn--back">Back to Search</a>
+            <a href="/search" className="btn btn--back"><span className="material-icons">keyboard_arrow_left</span>Back to Search</a>
           </nav>
           <main id="main" role="main">
-            <h1 className="agent__title">{ this.state.agent.title }</h1>
-            <p className="agent__subtitle">{ this.state.agent.description }</p>
-            <AgentDescription attributes={this.state.attributes} />
-            <AgentRelatedCollections collections={this.state.collections} />
+            <h1 className="agent__title">{ this.state.agent.title || <Skeleton />}</h1>
+            <p className="agent__subtitle">{ this.state.isLoading? (<Skeleton />) : (this.state.agent.description) }</p>
+            {this.state.isLoading ? (<AgentAttributeSkeleton />) : (<AgentDescription attributes={this.state.attributes} />)}
+            {this.state.isLoading ? (<SearchSkeleton />) : (<AgentRelatedCollections collections={this.state.collections} />) }
           </main>
           <AgentSidebar related={this.state.agent.agents} />
         </div>
