@@ -1,8 +1,13 @@
 @import "../styles";
 
 .collection__detail {
-  background-color: $pale-blue;
+  background-color: $off-white;
   width: 100%;
+  padding: 0px 30px 50px 30px;
+  box-sizing: border-box;
+  @media screen and (min-width: $break-md) {
+    padding: 0px 40px 50px 40px;
+  }
   @media screen and (min-width: $break-lg) {
     width: 33%;
   }
