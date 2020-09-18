@@ -40,10 +40,19 @@ const CollectionDetail = ({ collection, isLoading }) => {
     return note ? note.subnotes.map(s => s.content).join("\r\n") : null
   }
 
+  /** Boolean indicator for the presence of access and use notes */
+  const hasAccessAndUse = collection => {
+    const access = collection.notes && collection.notes.filter(n => {return n.title === "Conditions Governing Access"}).length
+    const use = collection.notes && collection.notes.filter(n => {return n.title === "Conditions Governing Use"}).length
+    return access || use
+  }
+
   return (
   <div className="collection__detail">
     <nav>
-      <a href="/search" className="btn btn--back"><span className="material-icons">keyboard_arrow_left</span>Back to Search</a>
+      <a href="/search" className="btn btn--back">
+        <span className="material-icons">keyboard_arrow_left</span>Back to Search
+      </a>
     </nav>
     <h1 className="collection__title">{collection.title || <Skeleton />}</h1>
     <Accordion className="accordion" preExpanded={["summary"]} allowZeroExpanded={true}>
@@ -69,29 +78,33 @@ const CollectionDetail = ({ collection, isLoading }) => {
             }
         </AccordionItemPanel>
       </AccordionItem>
-      <AccordionItem className="accordion__item" uuid="accessAndUse">
-        <AccordionItemHeading className="accordion__heading" aria-level={2}>
-          <AccordionItemButton className="accordion__button">Access and Use</AccordionItemButton>
-        </AccordionItemHeading>
-        <AccordionItemPanel className="accordion__panel">
-          <PanelTextSection
-            title="Access"
-            text={noteText("Conditions Governing Access")} />
-          <PanelTextSection
-            title="Reproduction and Duplication"
-            text={noteText("Conditions Governing Use")} />
-        </AccordionItemPanel>
-      </AccordionItem>
-      <AccordionItem className="accordion__item" uuid="relatedTerms">
-        <AccordionItemHeading className="accordion__heading" aria-level={2}>
-          <AccordionItemButton className="accordion__button">Related Terms</AccordionItemButton>
-        </AccordionItemHeading>
-        <AccordionItemPanel className="accordion__panel">
-          <PanelListSection
-            title="Subjects"
-            listData={collection.terms} />
-        </AccordionItemPanel>
-      </AccordionItem>
+      { hasAccessAndUse(collection) ?
+        (<AccordionItem className="accordion__item" uuid="accessAndUse">
+          <AccordionItemHeading className="accordion__heading" aria-level={2}>
+            <AccordionItemButton className="accordion__button">Access and Use</AccordionItemButton>
+          </AccordionItemHeading>
+          <AccordionItemPanel className="accordion__panel">
+            <PanelTextSection
+              title="Access"
+              text={noteText("Conditions Governing Access")} />
+            <PanelTextSection
+              title="Reproduction and Duplication"
+              text={noteText("Conditions Governing Use")} />
+          </AccordionItemPanel>
+        </AccordionItem>) :
+        (null)}
+      { collection.terms && collection.terms.length ?
+        (<AccordionItem className="accordion__item" uuid="relatedTerms">
+            <AccordionItemHeading className="accordion__heading" aria-level={2}>
+              <AccordionItemButton className="accordion__button">Related Terms</AccordionItemButton>
+            </AccordionItemHeading>
+            <AccordionItemPanel className="accordion__panel">
+              <PanelListSection
+                title="Subjects"
+                listData={collection.terms} />
+            </AccordionItemPanel>
+          </AccordionItem>) :
+        (null)}
     </Accordion>
   </div>
   )
