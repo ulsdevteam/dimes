@@ -1,35 +1,31 @@
-// TODO: align colors between RAC website and DIMES. There are many close matches.
-
 
 // Colors
 $burnt-orange: #D8531E;
+$red-brown: #A75C39; //tile label text
 $med-brown: #9E3C0F;
-$deep-brown: #662700;
+$deep-brown: #662700; //NOT USED
 
 $red-orange: #F16943;
-$faded-orange: #F39452;
-$light-orange: #FFE5E5;
+$faded-orange: #F39452; //h4
+$light-orange: #FFE5E5; //modal form error
 
 $deep-navy: #192E49;
 $faded-navy: rgba(25,45,73,0.5);
+$dark-blue: #113768; //button hover
+$deep-blue: #1A5096;
 $light-blue: #C6D2DE;
 $pale-blue: #EBEFF4;
-$deep-blue: #1A5096;
-$dark-blue: #113768;
 
-
-$dim-gray: #626262; //placeholder text
-$lighter-gray: #EDEDEB;
-$light-gray: rgba(0,0,0,0.15);
-$light-grayish-yellow: #F8F8F7; //DIMES Homepage background
-$light-med-gray: #A9A9A9;
-$med-gray: #5B5B5B;
-$med-dark-gray: #525252;
+$light-gray: rgba(0,0,0,0.15); //box shadow
 $dark-gray: #2F2F2F;
-$orange-gray: #BCBAB4;
+$med-gray: #5B5B5B;
+$light-med-gray: #A9A9A9; //button border
+$orange-gray: #BCBAB4; //tile border
 $neutral-sand: #E3E1DD;
+$lighter-gray: #EDEDEB; //button hover
 $off-white: #F6F6F4;
 $pure-white: #FFFFFF;
+
 
 // Layout
 $content-width: 1440px;
