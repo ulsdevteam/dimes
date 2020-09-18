@@ -130,6 +130,7 @@
       const filtered = this.removeUnchecked(this.state.savedList)
       this.setState({modalList: filtered})
     }
+
     handleFormSubmit = (uri, submitted, modal) => {
       // TODO: remove toggleModal, which is just here for testing purposes.
       this.toggleModal(modal);
@@ -139,12 +140,22 @@
         .catch(err => { console.log(err) }
       );
     }
+
     fetchFromUri = uri => {
       return axios
         .get(`${process.env.REACT_APP_ARGO_BASEURL}${uri}`)
         .then(res => res.data)
         .catch(err => console.log(err));
     }
+
+    refreshList = async() => {
+      const list = this.props.fetchMyList();
+      const resolved = await this.resolveList(list);
+      const submitList = this.constructSubmitList(resolved);
+      this.setState({savedList: resolved, modalList: resolved, submitList: submitList})
+      this.setState({isLoading: false})
+    }
+
     removeAllItems = () => {
       this.props.saveMyList({})
     }
@@ -241,7 +252,8 @@
                 items={this.state.savedList}
                 isLoading={this.state.isLoading}
                 handleChange={this.handleSavedListChange}
-                removeItem={this.props.removeItem} />
+                removeItem={this.props.removeItem}
+                refreshList={this.refreshList} />
             </main>
             <MyListSidebar
                 duplicationRequest={() => this.toggleModal("duplication")}
