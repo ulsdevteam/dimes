@@ -17,7 +17,7 @@
 
 .mylist__sidebar {
   @include grid-column(4);
-  background: #F8F8F7;
+  background: $off-white;
   float: right;
   margin-left: 45px;
   margin-right: -45px;

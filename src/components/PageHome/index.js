@@ -4,8 +4,8 @@ import SearchForm from "../SearchForm";
 import "./styles.scss";
 
 const PageHome = () => (
-// TODO: implement page background-color $light-grayish-yellow
-  <div className="container">
+// TODO: implement page background-color $off-white
+  <div className="container--full-width home">
     <Hero />
     <SearchForm className="search-form--home"/>
   </div>)
