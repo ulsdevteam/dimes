@@ -10,6 +10,7 @@ class PageCollection extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      isLoading: true,
       found: true,
       collection: { title: "" },
       params: {}
@@ -22,6 +23,7 @@ class PageCollection extends Component {
       .get(`${process.env.REACT_APP_ARGO_BASEURL}/collections/${this.props.match.params.id}`)
       .then(res => {
         this.setState({ collection: res.data });
+        this.setState({ isLoading: false });
       })
       .catch(err => this.setState({ found: false }));
   };
@@ -35,8 +37,8 @@ class PageCollection extends Component {
           <title>{ this.state.collection.title }</title>
         </Helmet>
         <div className="container--full-width">
-          <CollectionDetail collection={this.state.collection} />
-          <CollectionContext collection={this.state.collection} />
+          <CollectionDetail collection={this.state.collection} isLoading={this.state.isLoading} />
+          <CollectionContext collection={this.state.collection} isLoading={this.state.isLoading} />
         </div>
       </React.Fragment>
     )

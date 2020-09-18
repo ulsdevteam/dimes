@@ -1,0 +1,52 @@
+@import "../styles";
+@import "./material-icon";
+
+.accordion {
+  font-family: $sans-serif-stack;
+}
+
+.accordion__heading {
+  border-bottom: 1px dotted $deep-navy;
+}
+
+.accordion__button {
+  font-family: inherit;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: $deep-navy;
+  padding: 12px 0px;
+  &::after {
+    @extend .material-icons;
+    content: "keyboard_arrow_down";
+    float: right;
+  }
+  &[aria-expanded=true] {
+    &::after {
+      content: "keyboard_arrow_up";
+    }
+  }
+}
+
+.panel__heading {
+  font-family: inherit;
+  font-size: 12px;
+  color: $dark-gray;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+}
+
+.panel__text {
+  font-family: inherit;
+  font-size: 15px;
+  color: $dark-gray;
+  line-height: 25px;
+}
+
+.panel__list--unstyled {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0;
+  font-family: inherit;
+}
