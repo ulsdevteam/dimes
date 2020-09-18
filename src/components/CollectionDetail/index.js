@@ -7,6 +7,7 @@ import {
     AccordionItemButton,
     AccordionItemPanel,
 } from 'react-accessible-accordion';
+import { DetailSkeleton } from "../LoadingSkeleton";
 import "./styles.scss";
 
 
@@ -16,10 +17,7 @@ const PanelTextSection = props => (
       <h3 className="panel__heading">{props.title}</h3>
       <p className="panel__text">{props.text}</p>
     </>) :
-    (<>
-      <h3 className="panel__heading"><Skeleton /></h3>
-      <p className="panel__text"><Skeleton /></p>
-    </>)
+    (null)
 )
 
 const PanelListSection = props =>  (
@@ -31,16 +29,11 @@ const PanelListSection = props =>  (
           <li key={index} className="panel__text">{item.title}</li>))}
         </ul>
       </>) :
-      (<>
-        <h3 className="panel__heading"><Skeleton /></h3>
-        <ul className="panel__list--unstyled">
-          <li><Skeleton /></li>
-        </ul>
-      </>)
+      (null)
   )
 
 // TODO: add params to back button href
-const CollectionDetail = ({ collection }) => {
+const CollectionDetail = ({ collection, isLoading }) => {
   /** Helper function to return text from a note by title */
   const noteText = noteTitle => {
     let note = collection.notes && collection.notes.filter(n => {return n.title === noteTitle})[0]
@@ -59,15 +52,21 @@ const CollectionDetail = ({ collection }) => {
           <AccordionItemButton className="accordion__button">Summary</AccordionItemButton>
         </AccordionItemHeading>
         <AccordionItemPanel className="accordion__panel">
-          <PanelListSection
-            title="Creators"
-            listData={collection.creators} />
-          <PanelTextSection
-            title="Dates"
-            text={collection.dates && collection.dates.map(d => d.expression).join(", ")} />
-          <PanelTextSection
-            title="Description"
-            text={noteText("Scope and Contents")} />
+          {isLoading ?
+            (<DetailSkeleton />) :
+            (<>
+              <PanelListSection
+              title="Creators"
+              listData={collection.creators} />
+              <PanelTextSection
+                title="Dates"
+                text={collection.dates && collection.dates.map(d => d.expression).join(", ")} />
+              <PanelTextSection
+                title="Description"
+                text={noteText("Scope and Contents")} />
+              </>
+              )
+            }
         </AccordionItemPanel>
       </AccordionItem>
       <AccordionItem className="accordion__item" uuid="accessAndUse">

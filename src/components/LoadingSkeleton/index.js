@@ -76,3 +76,15 @@ export const AgentAttributeSkeleton = () => (
       ))}
   </div>
 )
+
+
+export const DetailSkeleton = () => (
+  <>
+    <h3 className="panel__heading"><Skeleton /></h3>
+    <ul className="panel__list--unstyled">
+      <li><Skeleton /></li>
+    </ul>
+    <h3 className="panel__heading"><Skeleton /></h3>
+    <p className="panel__text"><Skeleton /></p>
+  </>
+)
