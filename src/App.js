@@ -43,13 +43,8 @@ class App extends Component {
   }
 
   removeItem = (itemUri, groupUri) => {
-    // TODO: find a way to call this without triggering a component refresh
-    // This happens because we set myListCount at the app level
     var list = this.fetchMyList();
-    console.log(list)
-    console.log(groupUri, itemUri)
     delete list[groupUri][itemUri]
-    console.log(list)
     if (Object.entries(list[groupUri]).length === 0) {
       delete list[groupUri]
     }

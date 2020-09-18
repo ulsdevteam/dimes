@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Skeleton from "react-loading-skeleton";
 import {
     Accordion,
@@ -158,6 +159,15 @@ const RecordsDetail = ({ isLoading, isSaved, records, removeItem, saveItem, togg
     </Accordion>
   </div>
   )
+}
+
+RecordsDetail.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  isSaved: PropTypes.bool.isRequired,
+  records: PropTypes.object.isRequired,
+  removeItem: PropTypes.func.isRequired,
+  saveItem: PropTypes.func.isRequired,
+  toggleSaved: PropTypes.func.isRequired
 }
 
 export default RecordsDetail;

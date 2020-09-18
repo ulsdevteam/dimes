@@ -13,7 +13,6 @@ const SearchForm = props => {
   useEffect(() => {
     setCategory(props.category);
     setQuery(props.query);
-    console.log(props.category)
   }, [props.category, props.query] );
 
   return (
