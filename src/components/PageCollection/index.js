@@ -3,7 +3,7 @@ import axios from "axios";
 import queryString from "query-string";
 import { Helmet } from "react-helmet";
 import CollectionContext from "../CollectionContext";
-import CollectionDetail from "../CollectionDetail";
+import RecordsDetail from "../RecordsDetail";
 import PageNotFound from "../PageNotFound";
 
 class PageCollection extends Component {
@@ -37,7 +37,7 @@ class PageCollection extends Component {
           <title>{ this.state.collection.title }</title>
         </Helmet>
         <div className="container--full-width">
-          <CollectionDetail collection={this.state.collection} isLoading={this.state.isLoading} />
+          <RecordsDetail records={this.state.collection} isLoading={this.state.isLoading} />
           <CollectionContext collection={this.state.collection} isLoading={this.state.isLoading} />
         </div>
       </React.Fragment>
