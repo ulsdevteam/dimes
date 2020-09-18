@@ -2,15 +2,17 @@
 
 
 .object__detail {
-  background-color: $pale-blue;
+  font-family: $sans-serif-stack;
+  background-color: $light-grayish-yellow;
   width: 100%;
+  box-sizing: border-box;
   @media screen and (min-width: $break-lg) {
     width: 33%;
   }
 }
 
 .object__title {
-  font-family: $sans-serif-stack;
+  font-family: inherit;
   font-size: 28px;
   color: $deep-navy;
 }
