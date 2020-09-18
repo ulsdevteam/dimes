@@ -12,6 +12,29 @@ import { DetailSkeleton } from "../LoadingSkeleton";
 import "./styles.scss";
 
 
+const AddButton = ({ className, isSaved, saveItem, item, removeItem, toggleSaved }) => (
+  isSaved ? (
+    <Button
+      className={`${className} saved`}
+      label="Remove from List"
+      iconAfter="remove_circle_outline"
+      handleClick={() => {
+        removeItem(item.uri, item.group.identifier);
+        toggleSaved(item);
+      }} />
+  ) : (
+    <Button
+      className={className}
+      label="Add to List"
+      iconAfter="add_circle_outline"
+      handleClick={() => {
+        saveItem(item.uri, item.group.identifier);
+        toggleSaved(item);
+      }} />
+  )
+)
+
+
 const PanelFoundInSection = ({ ancestors }) => (
   ancestors ?
     (<>
@@ -49,7 +72,7 @@ const PanelTextSection = props => (
 )
 
 // TODO: add params to back button href
-const RecordsDetail = ({ isLoading, records }) => {
+const RecordsDetail = ({ isLoading, isSaved, records, removeItem, saveItem, toggleSaved }) => {
   /** Helper function to return text from a note by title */
   const noteText = noteTitle => {
     let note = records.notes && records.notes.filter(n => {return n.title === noteTitle})[0]
@@ -72,7 +95,13 @@ const RecordsDetail = ({ isLoading, records }) => {
     </nav>
     <h1 className="records__title">{records.title || <Skeleton />}</h1>
     {records.type === "object" ?
-      (<Button className="add-btn--lg" label="Add to List" iconAfter="add_circle_outline" />) :
+      (<AddButton
+        className="add-btn--lg"
+        isSaved={isSaved}
+        item={records}
+        removeItem={removeItem}
+        saveItem={saveItem}
+        toggleSaved={toggleSaved} /> ) :
       (null)
     }
     <Accordion className="accordion" preExpanded={["summary"]} allowZeroExpanded={true}>

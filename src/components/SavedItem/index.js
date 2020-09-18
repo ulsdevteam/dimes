@@ -74,7 +74,7 @@ const SavedItemGroup = props => {
       key={index}
       {...item}
       handleChange={props.handleChange}
-      handleClick={() => props.removeItem(props.groupUri, item.uri)} />
+      handleClick={() => props.removeItem(item.uri, props.groupUri)} />
   );
   return (
     <div className="saved-items__item-group">

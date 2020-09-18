@@ -24,6 +24,9 @@
 .add-btn {
   @extend .btn--md;
   @extend .btn--orange;
+  &.saved {
+    @extend .btn--gray;
+  }
 }
 
 .add-btn--lg {
