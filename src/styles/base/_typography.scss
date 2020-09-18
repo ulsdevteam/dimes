@@ -214,7 +214,7 @@ small {
   @include tile-text;
   font-weight: 700;
   font-size: 18px;
-  color: #2F2F2F;
+  color: $dark-gray;
   line-height: 22px;
 }
 
@@ -222,14 +222,14 @@ small {
   @include tile-text;
   font-weight: 400;
   font-size: 15px;
-  color: #2F2F2F;
+  color: $dark-gray;
 }
 
 @mixin tile-hit-count-text  {
   @include tile-text;
   font-size: 11px;
   line-height: 11px;
-  color: #FFFFFF;
+  color: $pure-white;
 }
 
 @mixin tile-type-label-text {
