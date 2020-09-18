@@ -1,6 +1,8 @@
 @import "../styles";
+@import "./material-icon";
+@import "./buttons";
 
-.collection__detail {
+.records__detail {
   background-color: $light-grayish-yellow;
   width: 100%;
   padding: 0px 30px 50px 30px;
@@ -13,8 +15,60 @@
   }
 }
 
-.collection__title {
+.records__title {
   font-family: $sans-serif-stack;
   font-size: 28px;
   color: $deep-navy;
+}
+
+.add-btn {
+  @extend .btn--md;
+  @extend .btn--orange;
+}
+
+.add-btn--lg {
+  @extend .add-btn;
+  padding: 10px;
+  margin-bottom: 40px;
+  width: 100%;
+  @media screen and (min-width: $break-md) {
+    width: unset;
+  }
+}
+
+.found-in {
+  font-family: $sans-serif-stack;
+  font-size: 13px;
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0;
+}
+
+.found-in__collection {
+  padding-left: 30px;
+  text-indent: -15px;
+  &::before {
+    @extend .material-icons;
+    content: "bookmark";
+    margin-right: 5px;
+    width: 10px;
+  }
+}
+
+.found-in__subcollection {
+  padding-left: 30px;
+  text-indent: -15px;
+  &::before {
+    @extend .material-icons;
+    content: "subdirectory_arrow_right";
+    margin-right: 5px;
+    width: 10px;
+  }
+}
+
+.found-in__link {
+  font-family: inherit;
+  color: inherit;
+  font-size: inherit;
+  font-weight: normal;
 }

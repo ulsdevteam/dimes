@@ -7,9 +7,37 @@ import {
     AccordionItemButton,
     AccordionItemPanel,
 } from 'react-accessible-accordion';
+import Button from "../Button";
 import { DetailSkeleton } from "../LoadingSkeleton";
 import "./styles.scss";
 
+
+const PanelFoundInSection = ({ ancestors }) => (
+  ancestors ?
+    (<>
+      <h3 className="panel__heading">Found In</h3>
+      <ul className="found-in">
+        {ancestors.reverse().map((item, index) => (
+          <li className={(index < 1) ? "found-in__collection" : "found-in__subcollection"} key={index}>
+            <a className="found-in__link" href={item.uri}>{item.title}</a>
+          </li>
+        ))}
+      </ul>
+    </>) :
+    (null)
+)
+
+const PanelListSection = props =>  (
+  props.listData ?
+    (<>
+      <h3 className="panel__heading">{props.title}</h3>
+      <ul className="panel__list--unstyled">
+        {props.listData.map((item, index) => (
+        <li key={index} className="panel__text">{item.title}</li>))}
+      </ul>
+    </>) :
+    (null)
+)
 
 const PanelTextSection = props => (
   props.text ?
@@ -19,18 +47,6 @@ const PanelTextSection = props => (
     </>) :
     (null)
 )
-
-const PanelListSection = props =>  (
-    props.listData ?
-      (<>
-        <h3 className="panel__heading">{props.title}</h3>
-        <ul className="panel__list--unstyled">
-          {props.listData.map((item, index) => (
-          <li key={index} className="panel__text">{item.title}</li>))}
-        </ul>
-      </>) :
-      (null)
-  )
 
 // TODO: add params to back button href
 const RecordsDetail = ({ isLoading, records }) => {
@@ -48,13 +64,17 @@ const RecordsDetail = ({ isLoading, records }) => {
   }
 
   return (
-  <div className="collection__detail">
+  <div className="records__detail">
     <nav>
       <a href="/search" className="btn btn--back">
         <span className="material-icons">keyboard_arrow_left</span>Back to Search
       </a>
     </nav>
-    <h1 className="collection__title">{records.title || <Skeleton />}</h1>
+    <h1 className="records__title">{records.title || <Skeleton />}</h1>
+    {records.type === "object" ?
+      (<Button className="add-btn--lg" label="Add to List" iconAfter="add_circle_outline" />) :
+      (null)
+    }
     <Accordion className="accordion" preExpanded={["summary"]} allowZeroExpanded={true}>
       <AccordionItem className="accordion__item" uuid="summary">
         <AccordionItemHeading className="accordion__heading" aria-level={2}>
@@ -70,6 +90,7 @@ const RecordsDetail = ({ isLoading, records }) => {
               <PanelTextSection
                 title="Dates"
                 text={records.dates && records.dates.map(d => d.expression).join(", ")} />
+              <PanelFoundInSection ancestors={records.ancestors} />
               <PanelTextSection
                 title="Description"
                 text={noteText("Scope and Contents")} />
