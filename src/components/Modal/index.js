@@ -427,13 +427,13 @@ export const CollectionHitsModal = props => {
         </button>
       </div>
       <div className="modal-body">
-        <CollectionHits collection={props.data} />
+        <CollectionHits collection={props.data} isLoading={props.isLoading} />
       </div>
     </Modal>
   )
 }
 
-FacetModal.propTypes = {
+CollectionHitsModal.propTypes = {
   appElement: PropTypes.object,
   data: PropTypes.object.isRequired,
   isOpen: PropTypes.bool.isRequired,
