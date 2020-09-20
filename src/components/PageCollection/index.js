@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import queryString from "query-string";
 import { Helmet } from "react-helmet";
-import CollectionContext from "../CollectionContext";
+import RecordsContext from "../RecordsContext";
 import CollectionDetail from "../CollectionDetail";
 import PageNotFound from "../PageNotFound";
 
@@ -38,7 +38,7 @@ class PageCollection extends Component {
         </Helmet>
         <div className="container--full-width">
           <CollectionDetail collection={this.state.collection} isLoading={this.state.isLoading} />
-          <CollectionContext collection={this.state.collection} isLoading={this.state.isLoading} />
+          <RecordsContext records={this.state.collection} isLoading={this.state.isLoading} />
         </div>
       </React.Fragment>
     )

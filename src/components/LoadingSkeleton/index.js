@@ -88,3 +88,34 @@ export const DetailSkeleton = () => (
     <p className="panel__text"><Skeleton /></p>
   </>
 )
+
+export const CollectionHitsSkeleton = () => {
+  const collectionInfoSkeleton = (
+    <div className="collection-hits__info">
+      {Array(3)
+        .fill()
+        .map((item, index) => (
+          <React.Fragment key={index}>
+            <h3 className="collection-hits__title"><Skeleton /></h3>
+            <p className="collection-hits__text"><Skeleton /></p>
+          </React.Fragment>
+        ))}
+    </div>
+  )
+  const childHitsSkeleton = (
+    Array(4)
+    .fill()
+    .map((item, index) => (
+      <div key={index} className="collection-child">
+        <p className="collection-child__title">
+          <Skeleton />
+        </p>
+      </div>
+    ))
+  )
+  return (
+  <>
+    {collectionInfoSkeleton}
+    {childHitsSkeleton}
+  </>
+)}
