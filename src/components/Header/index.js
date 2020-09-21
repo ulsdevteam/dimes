@@ -12,7 +12,7 @@ const Header = ({ myListCount }) => (
         </div>
         <Nav ariaLabel="Main">
           <NavItem href="#" label="Sign in to RACcess" icon="arrow_right_alt" />
-          <NavItem href="list" label={`My List${myListCount > 0  ? ` (${myListCount})` : ""}`} icon="arrow_right_alt" />
+          <NavItem href="/list/" label={`My List${myListCount > 0  ? ` (${myListCount})` : ""}`} icon="arrow_right_alt" />
         </Nav>
       </div>
     </div>

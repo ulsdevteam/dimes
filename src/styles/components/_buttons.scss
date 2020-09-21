@@ -47,7 +47,7 @@
 .btn--md  {
   font-size: 12px;
   line-height: 15px;
-  padding: 13px 14px 15px 14px;
+  padding: 13px 14px;
   & .material-icons {
     @include icon-margin;
     font-size: 20px;
@@ -170,5 +170,24 @@
   letter-spacing: unset;
   & .material-icons {
     font-size: 18px;
+  }
+}
+
+.btn-add {
+  @extend .btn--md;
+  @extend .btn--orange;
+  font-weight: 700;
+  &.saved {
+    @extend .btn--gray;
+  }
+}
+
+.btn-add--lg {
+  @extend .btn-add;
+  padding: 10px;
+  margin-bottom: 40px;
+  width: 100%;
+  @media screen and (min-width: $break-md) {
+    width: unset;
   }
 }

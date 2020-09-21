@@ -3,7 +3,7 @@ import axios from "axios";
 import queryString from "query-string";
 import { Helmet } from "react-helmet";
 import ObjectContext from "../ObjectContext";
-import ObjectDetail from "../ObjectDetail";
+import RecordsDetail from "../RecordsDetail";
 import PageNotFound from "../PageNotFound";
 
 class PageObject extends Component {
@@ -35,7 +35,7 @@ class PageObject extends Component {
           <title>{ this.state.object.title }</title>
         </Helmet>
         <div className="container--full-width">
-          <ObjectDetail object={this.state.object} />
+          <RecordsDetail records={this.state.object} />
           <ObjectContext object={this.state.object} />
         </div>
       </React.Fragment>

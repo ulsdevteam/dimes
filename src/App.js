@@ -4,12 +4,10 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import SkipLink from "./components/SkipLink";
 import PageAgent from "./components/PageAgent";
-import PageRecord from "./components/PageRecord";
-import PageCollection from "./components/PageCollection";
+import PageRecords from "./components/PageRecords";
 import PageDigitalObject from "./components/PageDigitalObject";
 import PageHome from "./components/PageHome";
 import PageMyList from "./components/PageMyList";
-import PageObject from "./components/PageObject";
 import PageSearch from "./components/PageSearch";
 import PageNotFound from "./components/PageNotFound";
 
@@ -20,17 +18,21 @@ class App extends Component {
       "myListCount": 0
     }
   }
+
   componentDidMount() {
     this.setMyListCount()
   }
+
   fetchMyList() {
-    var existing = localStorage.getItem("savedItems");
+    var existing = localStorage.getItem(`${process.env.REACT_APP_LOCALSTORAGE_KEY}`);
     return existing ? JSON.parse(existing) : {};
   }
+
   saveMyList = list => {
-    localStorage.setItem("savedItems", JSON.stringify(list));
+    localStorage.setItem(`${process.env.REACT_APP_LOCALSTORAGE_KEY}`, JSON.stringify(list));
     this.setMyListCount()
   }
+
   setMyListCount = data => {
     var list = data ? data : this.fetchMyList()
     var count = 0
@@ -39,6 +41,16 @@ class App extends Component {
     }
     this.setState({ "myListCount": count })
   }
+
+  removeItem = (itemUri, groupUri) => {
+    var list = this.fetchMyList();
+    delete list[groupUri][itemUri]
+    if (Object.entries(list[groupUri]).length === 0) {
+      delete list[groupUri]
+    }
+    this.saveMyList(list);
+  }
+
   render() {
     return (
         <React.Fragment>
@@ -47,19 +59,21 @@ class App extends Component {
           <main id="main" role="main">
             <div className="wrapper">
               <Switch>
-                <Route path="/list/" component={() =>
+                <Route path="/list/" render={(props) =>
                   <PageMyList
+                    {...props}
                     fetchMyList={this.fetchMyList}
+                    removeItem={this.removeItem}
                     saveMyList={this.saveMyList} />
                 } />
                 <Route path="/search/" component={PageSearch} />
-                <Route path="/records/" component={() =>
-                  <PageRecord
+                <Route path="/:type(collections|objects)/:id" render={(props) =>
+                  <PageRecords
+                    {...props}
                     fetchMyList={this.fetchMyList}
-                    saveMyList={this.saveMyList} />
-                  } />
-                <Route path="/collections/:id" component={PageCollection} />
-                <Route path="/objects/:id" component={PageObject} />
+                    removeItem={this.removeItem}
+                    saveMyList={this.saveMyList}/>
+                } />
                 <Route path="/agents/:id" component={PageAgent} />
                 <Route path="/view/" component={PageDigitalObject} />
                 <Route exact path="/" component={PageHome} />
