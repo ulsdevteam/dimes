@@ -97,7 +97,7 @@ const RecordsDetail = ({ isLoading, isSaved, records, removeItem, saveItem, togg
     <h1 className="records__title">{records.title || <Skeleton />}</h1>
     {records.type === "object" ?
       (<AddButton
-        className="add-btn--lg"
+        className="btn-add--lg"
         isSaved={isSaved}
         item={records}
         removeItem={removeItem}

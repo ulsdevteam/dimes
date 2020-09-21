@@ -21,24 +21,6 @@
   color: $deep-navy;
 }
 
-.add-btn {
-  @extend .btn--md;
-  @extend .btn--orange;
-  &.saved {
-    @extend .btn--gray;
-  }
-}
-
-.add-btn--lg {
-  @extend .add-btn;
-  padding: 10px;
-  margin-bottom: 40px;
-  width: 100%;
-  @media screen and (min-width: $break-md) {
-    width: unset;
-  }
-}
-
 .found-in {
   font-family: $sans-serif-stack;
   font-size: 13px;

@@ -172,3 +172,21 @@
     font-size: 18px;
   }
 }
+
+.btn-add {
+  @extend .btn--md;
+  @extend .btn--orange;
+  &.saved {
+    @extend .btn--gray;
+  }
+}
+
+.btn-add--lg {
+  @extend .btn-add;
+  padding: 10px;
+  margin-bottom: 40px;
+  width: 100%;
+  @media screen and (min-width: $break-md) {
+    width: unset;
+  }
+}
