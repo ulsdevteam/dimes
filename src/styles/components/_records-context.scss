@@ -50,11 +50,11 @@
   margin-bottom: 12px;
   border: 2px solid $orange-gray;
   border-radius: 3px;
-  box-shadow: 0 0 4px rgba(0,0,0,0.15);
+  box-shadow: 0 0 4px $light-gray;
   &:hover {
     border-color: $red-orange;
   }
-  &.active {
+  &:focus-within {
     border-color: $deep-navy;
   }
 }
@@ -65,6 +65,18 @@
   background: none;
   text-align: left;
   font-weight: 500;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
 }
 
 .child__title--object {
