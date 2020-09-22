@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import queryString from "query-string";
 import { Helmet } from "react-helmet";
-import CollectionContext from "../CollectionContext";
+import RecordsContext from "../RecordsContext";
 import RecordsDetail from "../RecordsDetail";
 import PageNotFound from "../PageNotFound";
 
@@ -64,10 +64,13 @@ class PageCollection extends Component {
             records={this.state.records}
             isLoading={this.state.isLoading}
             isSaved={this.state.isSaved}
+            params={this.state.params}
             removeItem={this.props.removeItem}
             saveItem={this.saveItem}
             toggleSaved={this.toggleSaved} />
-          <CollectionContext collection={this.state.records} isLoading={this.state.isLoading} />
+          <RecordsContext
+            records={this.state.records}
+            isLoading={this.state.isLoading} />
         </div>
       </React.Fragment>
     )

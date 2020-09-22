@@ -38,7 +38,7 @@ const RecordsChildList = ({ children }) => {
 
 const RecordsContext = ({ records }) => (
   records.children ?
-  (<div className="context">
+  (<div className="records__context">
     <h2 className="context__title">Collection Context</h2>
     <h3 className="collection__title">{records.title}</h3>
     <p className="collection__date">{records.dates[0].expression}</p>

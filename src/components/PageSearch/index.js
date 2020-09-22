@@ -183,7 +183,10 @@ class PageSearch extends Component {
             </div>
             { this.state.inProgress ?
               (<SearchSkeleton />) :
-              (<TileList items={this.state.items} handleHitCountClick={this.handleHitCountClick}/>)}
+              (<TileList
+                items={this.state.items}
+                handleHitCountClick={this.handleHitCountClick}
+                params={this.state.params} />)}
               <div className="results__footer">
                 <p className="results__summary">
                   {`${this.state.startItem === this.state.endItem ?

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import queryString from "query-string";
 import Skeleton from "react-loading-skeleton";
 import {
     Accordion,
@@ -73,7 +74,7 @@ const PanelTextSection = props => (
 )
 
 // TODO: add params to back button href
-const RecordsDetail = ({ isLoading, isSaved, records, removeItem, saveItem, toggleSaved }) => {
+const RecordsDetail = ({ isLoading, isSaved, records, removeItem, params, saveItem, toggleSaved }) => {
   /** Helper function to return text from a note by title */
   const noteText = noteTitle => {
     let note = records.notes && records.notes.filter(n => {return n.title === noteTitle})[0]
@@ -90,7 +91,7 @@ const RecordsDetail = ({ isLoading, isSaved, records, removeItem, saveItem, togg
   return (
   <div className="records__detail">
     <nav>
-      <a href="/search" className="btn btn--back">
+      <a href={`/search?${queryString.stringify(params)}`} className="btn btn--back">
         <span className="material-icons">keyboard_arrow_left</span>Back to Search
       </a>
     </nav>
