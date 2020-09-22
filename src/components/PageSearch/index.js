@@ -109,7 +109,6 @@ class PageSearch extends Component {
     this.executeSearch(params);
   }
   handlePageClick = (data) => {
-    console.log(data)
     let offset = Math.ceil(data.selected * this.state.pageSize);
     let params = {...this.state.params}
     if (offset > 0) {params.offset = offset} else {delete params.offset}

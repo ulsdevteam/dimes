@@ -130,6 +130,7 @@
       const filtered = this.removeUnchecked(this.state.savedList)
       this.setState({modalList: filtered})
     }
+
     handleFormSubmit = (uri, submitted, modal) => {
       // TODO: remove toggleModal, which is just here for testing purposes.
       this.toggleModal(modal);
@@ -139,25 +140,26 @@
         .catch(err => { console.log(err) }
       );
     }
+
     fetchFromUri = uri => {
       return axios
         .get(`${process.env.REACT_APP_ARGO_BASEURL}${uri}`)
         .then(res => res.data)
         .catch(err => console.log(err));
     }
+
+    refreshList = async() => {
+      const list = this.props.fetchMyList();
+      const resolved = await this.resolveList(list);
+      const submitList = this.constructSubmitList(resolved);
+      this.setState({savedList: resolved, modalList: resolved, submitList: submitList})
+      this.setState({isLoading: false})
+    }
+
     removeAllItems = () => {
       this.props.saveMyList({})
     }
-    removeItem = (groupUri, itemUri) => {
-      // TODO: find a way to call this without triggering a component refresh
-      // This happens because we set myListCount at the app level
-      const list = this.props.fetchMyList();
-      delete list[groupUri][itemUri]
-      if (Object.entries(list[groupUri]).length === 0) {
-        delete list[groupUri]
-      }
-      this.props.saveMyList(list);
-    }
+
     /** Returns a list with all unchecked items removed */
     removeUnchecked = (list) => {
       var filteredList = [];
@@ -168,6 +170,7 @@
       }
       return filteredList;
     }
+
     /** Returns data about list items fetched from canonical source */
     resolveList = async(list) => {
       var resolvedList = [];
@@ -182,20 +185,15 @@
           for (const [key, value] of Object.entries(items)) {
             const fetchedItem = await this.fetchFromUri(key)
             if (fetchedItem) {
-              let description = fetchedItem.notes && fetchedItem.notes.forEach(function(e) {
-                if (e.title === "Scope and Contents") {
-                  e.subnotes.forEach(function(s) {
-                    description = description.concat(s.content)
-                  });
-                }
-              });
+              let note = fetchedItem.notes && fetchedItem.notes.filter(n => {return n.title === "Scope and Contents"})[0];
+              const description = note && note.subnotes ? note.subnotes.map(s => s.content).join("\r\n") : null
               resolved.items.push({
                 "title": fetchedItem.title,
                 "uri": fetchedItem.uri,
                 "date": fetchedItem.dates && fetchedItem.dates.map(d => d.expression).join(", "),
-                "description": description && description.join(", "),
+                "description": description,
                 "parent": fetchedItem.ancestors[0].title,
-                "parentRef": `/collections/${fetchedItem.ancestors[0].identifier}`,
+                "parentRef": fetchedItem.ancestors[0].uri,
                 "online": fetchedItem.online,
                 "lastRequested": value.lastRequested ? value.lastRequested : null,
                 "saved": value.saved,
@@ -254,7 +252,8 @@
                 items={this.state.savedList}
                 isLoading={this.state.isLoading}
                 handleChange={this.handleSavedListChange}
-                removeItem={this.removeItem} />
+                removeItem={this.props.removeItem}
+                refreshList={this.refreshList} />
             </main>
             <MyListSidebar
                 duplicationRequest={() => this.toggleModal("duplication")}

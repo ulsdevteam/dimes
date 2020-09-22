@@ -22,8 +22,8 @@ CollectionHitsInfo.propTypes = {
 const CollectionHits = ({ collection, isLoading }) => {
   const collectionChildHits = collection.children && collection.children.map((child, idx) =>
     <div className="collection-child" key={idx}>
-      {child.hit_count ? (<HitCount hit_count={child.hit_count} />) : null}
       <a href={child.uri} className="collection-child__title">{child.title}</a>
+      {child.hit_count ? (<HitCount hit_count={child.hit_count} />) : null}
     </div>
   )
   return (

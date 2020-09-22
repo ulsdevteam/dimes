@@ -74,7 +74,7 @@ const SavedItemGroup = props => {
       key={index}
       {...item}
       handleChange={props.handleChange}
-      handleClick={() => props.removeItem(props.groupUri, item.uri)} />
+      handleClick={() => {props.removeItem(item.uri, props.groupUri); props.refreshList()}} />
   );
   return (
     <div className="saved-items__item-group">
@@ -125,7 +125,8 @@ export const SavedItemList = props => {
         {...item}
         groupUri={item.uri}
         removeItem={props.removeItem}
-        handleChange={props.handleChange} />
+        handleChange={props.handleChange}
+        refreshList={props.refreshList} />
     )) : (<p className="saved-items__empty">No saved items.</p>)
   }
   return (
