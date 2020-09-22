@@ -427,7 +427,10 @@ export const CollectionHitsModal = props => {
         </button>
       </div>
       <div className="modal-body">
-        <CollectionHits collection={props.data} isLoading={props.isLoading} />
+        <CollectionHits
+          collection={props.data}
+          isLoading={props.isLoading}
+          params={props.params} />
       </div>
     </Modal>
   )

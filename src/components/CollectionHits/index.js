@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import queryString from "query-string";
 import { CollectionHitsSkeleton } from "../LoadingSkeleton";
 import { HitCount } from "../Tile";
 import "./styles.scss"
@@ -19,10 +20,10 @@ CollectionHitsInfo.propTypes = {
   collection: PropTypes.object.isRequired
 }
 
-const CollectionHits = ({ collection, isLoading }) => {
+const CollectionHits = ({ collection, isLoading, params }) => {
   const collectionChildHits = collection.children && collection.children.map((child, idx) =>
     <div className="collection-child" key={idx}>
-      <a href={child.uri} className="collection-child__title">{child.title}</a>
+      <a href={`${child.uri}/?${queryString.stringify(params)}`} className="collection-child__title">{child.title}</a>
       {child.hit_count ? (<HitCount hit_count={child.hit_count} />) : null}
     </div>
   )

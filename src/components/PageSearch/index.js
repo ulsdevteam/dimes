@@ -215,7 +215,8 @@ class PageSearch extends Component {
           isLoading={this.state.hitsIsLoading}
           isOpen={this.state.hitsIsOpen}
           toggleModal={this.toggleHitsModal}
-          data={this.state.hitsData} />
+          data={this.state.hitsData}
+          params={this.state.params} />
       </React.Fragment>
     )
   }
