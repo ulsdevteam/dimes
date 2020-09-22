@@ -1,1 +1,73 @@
 @import "../styles";
+
+.context {
+  font-family: $sans-serif-stack;
+  width: 100%;
+  float: left;
+  padding: 40px 30px;
+  box-sizing: border-box;
+  @media screen and (min-width: $break-lg) {
+    width: 66%;
+  }
+}
+
+.context__title {
+  font-family: $sans-serif-stack;
+  font-size: 24px;
+  color: $deep-navy;
+  border-bottom: 1px dotted $deep-navy;
+  margin-top: 0;
+}
+
+.collection__title {
+  font-size: 21px;
+  color: $dark-gray;
+  margin-bottom: 0;
+}
+
+.collection__text {
+  font-size: 16px;
+}
+
+.child__list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.child__list-item {
+  position: relative;
+  padding: 20px;
+}
+
+.child__list-item--object {
+  border-bottom: 1px solid $neutral-sand;
+  &.active {
+    background: $off-white;
+  }
+}
+
+.child__list-item--collection {
+  margin-bottom: 12px;
+  border: 2px solid $orange-gray;
+  border-radius: 3px;
+}
+
+.child__title {
+  appearance: none;
+  border: none;
+  background: none;
+  text-align: left;
+  font-weight: 500;
+}
+
+.child__title--object {
+  font-size: 16px;
+}
+
+.child__title--collection {
+  font-size: 18px;
+}
+
+.child__text {
+  font-size: 14px;
+}
