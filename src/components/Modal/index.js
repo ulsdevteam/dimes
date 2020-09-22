@@ -325,8 +325,8 @@ export const FacetModal = props => {
   var [endYear, setEndYear] = useState(0);
 
   useEffect(() => {
-    const startDate = (props.params.start_date__gte ? props.params.start_date__gte : (props.data.min_date && props.data.min_date.value_as_string)) || "";
-    const endDate = (props.params.end_date__lte ? props.params.end_date__lte : (props.data.max_date && props.data.max_date.value_as_string)) || "";
+    const startDate = (props.params.start_date__gte ? props.params.start_date__gte : (props.data.min_date && props.data.min_date.value)) || "";
+    const endDate = (props.params.end_date__lte ? props.params.end_date__lte : (props.data.max_date && props.data.max_date.value)) || "";
     setStartYear(startDate);
     setEndYear(endDate);
   }, [props.params.start_date__gte, props.params.end_date__lte, props.data.min_date, props.data.max_date] );
