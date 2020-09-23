@@ -1,34 +1,37 @@
 import React from "react";
+import axios from "axios";
 import { HitCount } from "../Tile";
 import "./styles.scss";
 
 
-const RecordsChild = ({ child, loadChildren }) => (
+const RecordsChild = ({ child, handleRecordsChange }) => (
   <li className={`child__list-item child__list-item--${child.type}`}>
-    <button className={`child__title child__title--${child.type}`} onClick={loadChildren}>{child.title}</button>
+    <button className={`child__title child__title--${child.type}`} onClick={handleRecordsChange}>{child.title}</button>
     <p className="child__text">{child.dates}</p>
     <p className="child__text">{child.description}</p>
     {child.hit_count ? (<HitCount hit_count={child.hit_count} />) : null}
   </li>
 )
 
-/** List of unresolved children */
-const RecordsChildList = ({ children }) => {
-  const loadChildren = parent => {
+const RecordsChildList = ({ children, setActiveRecords }) => {
+  const handleRecordsChange = parent => {
     console.log(parent)
-    // resolve parent
-    // Show parent.children if any
-    // Show details in detail pane
-    // load data
+    axios
+      .get(`${process.env.REACT_APP_ARGO_BASEURL}/${parent.uri}`)
+      .then(res => {
+        setActiveRecords(res.data);
+      })
+      .catch(e => console.log(e))
   }
+
   const listData = children.map(child => (
-    // TODO: resolve child here?
     <RecordsChild
       key={child.uri}
       child={child}
-      loadChildren={() => loadChildren(child)} />
+      handleRecordsChange={() => handleRecordsChange(child)} />
     )
   )
+
   return (
     <ul className="child__list">
       {listData}
@@ -36,14 +39,14 @@ const RecordsChildList = ({ children }) => {
   )
 }
 
-const RecordsContext = ({ records }) => (
+const RecordsContext = ({ records, setActiveRecords }) => (
   records.children ?
   (<div className="records__context">
     <h2 className="context__title">Collection Context</h2>
     <h3 className="collection__title">{records.title}</h3>
     <p className="collection__date">{records.dates[0].expression}</p>
     <p className="collection__text">{records.description}</p>
-    <RecordsChildList children={records.children} />
+    <RecordsChildList children={records.children} setActiveRecords={setActiveRecords} />
   </div>) :
   (null)
 )

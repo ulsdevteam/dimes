@@ -46,6 +46,10 @@ class PageCollection extends Component {
     return list[item.group.identifier] && list[item.group.identifier][item.uri]
   }
 
+  setActiveRecords = records => {
+    this.setState({ records: records })
+  }
+
   toggleSaved = item => {
     this.setState({ isSaved: !this.state.isSaved })
   }
@@ -70,7 +74,8 @@ class PageCollection extends Component {
             toggleSaved={this.toggleSaved} />
           <RecordsContext
             records={this.state.records}
-            isLoading={this.state.isLoading} />
+            isLoading={this.state.isLoading}
+            setActiveRecords={this.setActiveRecords} />
         </div>
       </React.Fragment>
     )
