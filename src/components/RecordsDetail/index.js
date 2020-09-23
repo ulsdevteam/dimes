@@ -37,14 +37,14 @@ const AddButton = ({ className, isSaved, saveItem, item, removeItem, toggleSaved
 )
 
 
-const PanelFoundInSection = ({ ancestors }) => (
+const PanelFoundInSection = ({ ancestors, params }) => (
   ancestors ?
     (<>
       <h3 className="panel__heading">Found In</h3>
       <ul className="found-in">
         {ancestors.reverse().map((item, index) => (
           <li className={(index < 1) ? "found-in__collection" : "found-in__subcollection"} key={index}>
-            <a className="found-in__link" href={item.uri}>{item.title}</a>
+            <a className="found-in__link" href={`${item.uri}/?${queryString.stringify(params)}`}>{item.title}</a>
           </li>
         ))}
       </ul>
@@ -121,7 +121,7 @@ const RecordsDetail = ({ isLoading, isSaved, records, removeItem, params, saveIt
               <PanelTextSection
                 title="Dates"
                 text={records.dates && records.dates.map(d => d.expression).join(", ")} />
-              <PanelFoundInSection ancestors={records.ancestors} />
+              <PanelFoundInSection ancestors={records.ancestors} params={params} />
               <PanelTextSection
                 title="Description"
                 text={noteText("Scope and Contents")} />
