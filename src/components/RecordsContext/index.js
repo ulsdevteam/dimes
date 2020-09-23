@@ -9,7 +9,7 @@ const RecordsChild = ({ child, handleRecordsChange }) => (
   <li className={`child__list-item child__list-item--${child.type}`}>
     <button className={`child__title child__title--${child.type}`} onClick={handleRecordsChange}>{child.title}</button>
     <p className="child__text">{child.dates}</p>
-    <p className="child__text">{child.description}</p>
+    <p className="child__text child__description">{child.description}</p>
     {child.hit_count ? (<HitCount className="hit-count--records-context" hitCount={child.hit_count} />) : null}
   </li>
 )
