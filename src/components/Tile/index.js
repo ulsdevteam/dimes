@@ -1,12 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import queryString from "query-string";
+import HitCount from "../HitCount";
 import "./styles.scss";
 
-
-export const HitCount = ({ handleClick, hit_count }) => (
-  <button className="tile__hit-count" onClick={handleClick}>{hit_count} matches</button>
-)
 
 const CategoryLabel = ({ category }) => (
   <div className={`tile__type-label ${category}`}>{category}</div>
@@ -17,7 +14,7 @@ const Tile = ({ category, date, handleHitCountClick, hit_count, params, title, u
     <a className="tile__title" href={`${uri}/?${queryString.stringify(params)}`}>{title}</a>
     {category ? (<CategoryLabel category={category} />) : null }
     {hit_count && category === "collection" ?
-      (<HitCount hit_count={hit_count} handleClick={() => handleHitCountClick(uri)} />) :
+      (<HitCount className="hit-count--tile" hitCount={hit_count} handleClick={() => handleHitCountClick(uri)} />) :
       (null)
     }
     <p className="tile__date">{date}</p>

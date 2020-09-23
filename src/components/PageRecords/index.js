@@ -21,7 +21,7 @@ class PageCollection extends Component {
     const params = queryString.parse(this.props.location.search);
     this.setState({ params: params })
     axios
-      .get(`${process.env.REACT_APP_ARGO_BASEURL}/${this.props.match.params.type}/${this.props.match.params.id}`)
+      .get(`${process.env.REACT_APP_ARGO_BASEURL}/${this.props.match.params.type}/${this.props.match.params.id}?${queryString.stringify(params)}`)
       .then(res => {
         this.setState({ records: res.data });
         this.setState({ isSaved: this.isSaved(res.data)})
@@ -75,6 +75,7 @@ class PageCollection extends Component {
           <RecordsContext
             records={this.state.records}
             isLoading={this.state.isLoading}
+            params={this.state.params}
             setActiveRecords={this.setActiveRecords} />
         </div>
       </React.Fragment>

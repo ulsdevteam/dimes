@@ -109,21 +109,3 @@
     }
   }
 }
-
-.tile__hit-count {
-  @include tile-hit-count-text;
-  position: absolute;
-  order: 1;
-  top: 0;
-  right: 20px;
-  height: 25px;
-  background: $red-orange;
-  border-radius: 0 0 2px 2px;
-  border: none;
-  padding: 7px 8px 5px 8px;
-  cursor: pointer;
-  transition: $transition-default;
-  &:hover {
-    background: $med-brown;
-  }
-}

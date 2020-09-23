@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
-import { HitCount } from "../Tile";
+import queryString from "query-string";
+import HitCount from "../HitCount";
 import "./styles.scss";
 
 
@@ -9,15 +10,15 @@ const RecordsChild = ({ child, handleRecordsChange }) => (
     <button className={`child__title child__title--${child.type}`} onClick={handleRecordsChange}>{child.title}</button>
     <p className="child__text">{child.dates}</p>
     <p className="child__text">{child.description}</p>
-    {child.hit_count ? (<HitCount hit_count={child.hit_count} />) : null}
+    {child.hit_count ? (<HitCount className="hit-count--records-context" hitCount={child.hit_count} />) : null}
   </li>
 )
 
-const RecordsChildList = ({ children, setActiveRecords }) => {
+const RecordsChildList = ({ children, params, setActiveRecords }) => {
   const handleRecordsChange = parent => {
     console.log(parent)
     axios
-      .get(`${process.env.REACT_APP_ARGO_BASEURL}/${parent.uri}`)
+      .get(`${process.env.REACT_APP_ARGO_BASEURL}/${parent.uri}?${queryString.stringify(params)}`)
       .then(res => {
         setActiveRecords(res.data);
       })
@@ -39,14 +40,17 @@ const RecordsChildList = ({ children, setActiveRecords }) => {
   )
 }
 
-const RecordsContext = ({ records, setActiveRecords }) => (
+const RecordsContext = ({ params, records, setActiveRecords }) => (
   records.children ?
   (<div className="records__context">
     <h2 className="context__title">Collection Context</h2>
     <h3 className="collection__title">{records.title}</h3>
     <p className="collection__date">{records.dates[0].expression}</p>
     <p className="collection__text">{records.description}</p>
-    <RecordsChildList children={records.children} setActiveRecords={setActiveRecords} />
+    <RecordsChildList
+      children={records.children}
+      params={params}
+      setActiveRecords={setActiveRecords} />
   </div>) :
   (null)
 )
