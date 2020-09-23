@@ -11,6 +11,7 @@ import {
 } from 'react-accessible-accordion';
 import Button from "../Button";
 import { DetailSkeleton } from "../LoadingSkeleton";
+import { dateString, hasAccessAndUse, noteText } from "../Helpers";
 import "./styles.scss";
 
 
@@ -73,22 +74,7 @@ const PanelTextSection = props => (
     (null)
 )
 
-// TODO: add params to back button href
-const RecordsDetail = ({ isLoading, isSaved, records, removeItem, params, saveItem, toggleSaved }) => {
-  /** Helper function to return text from a note by title */
-  const noteText = noteTitle => {
-    let note = records.notes && records.notes.filter(n => {return n.title === noteTitle})[0]
-    return note ? note.subnotes.map(s => s.content).join("\r\n") : null
-  }
-
-  /** Boolean indicator for the presence of access and use notes */
-  const hasAccessAndUse = collection => {
-    const access = records.notes && records.notes.filter(n => {return n.title === "Conditions Governing Access"}).length
-    const use = records.notes && records.notes.filter(n => {return n.title === "Conditions Governing Use"}).length
-    return access || use
-  }
-
-  return (
+const RecordsDetail = ({ isLoading, isSaved, records, removeItem, params, saveItem, toggleSaved }) => (
   <div className="records__detail">
     <nav>
       <a href={`/search?${queryString.stringify(params)}`} className="btn btn--back">
@@ -120,17 +106,17 @@ const RecordsDetail = ({ isLoading, isSaved, records, removeItem, params, saveIt
                 listData={records.creators} />
               <PanelTextSection
                 title="Dates"
-                text={records.dates && records.dates.map(d => d.expression).join(", ")} />
+                text={dateString(records.dates)}/>
               <PanelFoundInSection ancestors={records.ancestors} params={params} />
               <PanelTextSection
                 title="Description"
-                text={noteText("Scope and Contents")} />
+                text={noteText(records.notes, "Scope and Contents")} />
               </>
               )
             }
         </AccordionItemPanel>
       </AccordionItem>
-      { hasAccessAndUse(records) ?
+      { hasAccessAndUse(records.notes) ?
         (<AccordionItem className="accordion__item" uuid="accessAndUse">
           <AccordionItemHeading className="accordion__heading" aria-level={2}>
             <AccordionItemButton className="accordion__button">Access and Use</AccordionItemButton>
@@ -138,10 +124,10 @@ const RecordsDetail = ({ isLoading, isSaved, records, removeItem, params, saveIt
           <AccordionItemPanel className="accordion__panel">
             <PanelTextSection
               title="Access"
-              text={noteText("Conditions Governing Access")} />
+              text={noteText(records.notes, "Conditions Governing Access")} />
             <PanelTextSection
               title="Reproduction and Duplication"
-              text={noteText("Conditions Governing Use")} />
+              text={noteText(records.notes, "Conditions Governing Use")} />
           </AccordionItemPanel>
         </AccordionItem>) :
         (null)}
@@ -159,8 +145,7 @@ const RecordsDetail = ({ isLoading, isSaved, records, removeItem, params, saveIt
         (null)}
     </Accordion>
   </div>
-  )
-}
+)
 
 RecordsDetail.propTypes = {
   isLoading: PropTypes.bool.isRequired,
