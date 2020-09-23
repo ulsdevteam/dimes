@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import queryString from "query-string";
 import HitCount from "../HitCount";
+import { dateString } from "../Helpers";
 import "./styles.scss";
 
 
@@ -16,7 +17,6 @@ const RecordsChild = ({ child, handleRecordsChange }) => (
 
 const RecordsChildList = ({ children, params, setActiveRecords }) => {
   const handleRecordsChange = parent => {
-    console.log(parent)
     axios
       .get(`${process.env.REACT_APP_ARGO_BASEURL}/${parent.uri}?${queryString.stringify(params)}`)
       .then(res => {
@@ -40,19 +40,21 @@ const RecordsChildList = ({ children, params, setActiveRecords }) => {
   )
 }
 
-const RecordsContext = ({ params, records, setActiveRecords }) => (
+const RecordsContext = ({ params, records, setActiveRecords }) => {
+  var collection = (records.ancestors && records.ancestors.length) ? records.ancestors.slice(-1)[0] : records;
+  return (
   records.children ?
   (<div className="records__context">
     <h2 className="context__title">Collection Context</h2>
-    <h3 className="collection__title">{records.title}</h3>
-    <p className="collection__date">{records.dates[0].expression}</p>
-    <p className="collection__text">{records.description}</p>
+    <h3 className="collection__title">{collection.title}</h3>
+    <p className="collection__date">{Array.isArray(collection.dates) ? dateString(collection.dates) : collection.dates }</p>
+    <p className="collection__text collection__description">{collection.description}</p>
     <RecordsChildList
       children={records.children}
       params={params}
       setActiveRecords={setActiveRecords} />
   </div>) :
   (null)
-)
+)}
 
 export default RecordsContext;
