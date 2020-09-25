@@ -17,6 +17,7 @@ class PageCollection extends Component {
       params: {}
     }
   }
+
   componentDidMount() {
     const params = queryString.parse(this.props.location.search);
     this.setState({ params: params })
@@ -30,6 +31,9 @@ class PageCollection extends Component {
       .catch(err => this.setState({ found: false }));
   };
 
+  /** Saves item to MyList
+  * Items are saved within an object corresponding to a top-level collection
+  */
   saveItem = (itemUri, groupUri) => {
     var list = this.props.fetchMyList()
     if (!list[groupUri]) {
@@ -43,7 +47,7 @@ class PageCollection extends Component {
 
   isSaved = item => {
     const list = this.props.fetchMyList()
-    return list[item.group.identifier] && list[item.group.identifier][item.uri]
+    return list[item.group.identifier] && list[item.group.identifier][item.uri] ? true : false
   }
 
   setActiveRecords = records => {

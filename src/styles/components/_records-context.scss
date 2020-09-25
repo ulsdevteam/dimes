@@ -31,12 +31,27 @@
 
 .child__list {
   list-style: none;
+  transition: $transition-default;
+  opacity: 1;
+  &.hidden {
+    opacity: 0;
+    transform: translateY(-20px);
+    height: 0;
+    transition: $transition-default;
+  }
+}
+
+.child__list--full-width {
+  @extend .child__list;
   padding-left: 0;
 }
 
 .child__list-item {
   position: relative;
   padding: 20px;
+  &.active {
+    border-color: $deep-navy;
+  }
 }
 
 .child__list-item--object {
@@ -53,9 +68,6 @@
   box-shadow: 0 0 4px $light-gray;
   &:hover {
     border-color: $red-orange;
-  }
-  &:focus-within {
-    border-color: $deep-navy;
   }
 }
 

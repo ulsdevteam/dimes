@@ -116,3 +116,19 @@ export const CollectionHitsSkeleton = () => {
     {childHitsSkeleton}
   </>
 )}
+
+export const RecordsChildSkeleton = () => (
+  <ul className="child__list">
+    {Array(4)
+      .fill()
+      .map((item, index) => (
+        <li key={index}>
+          <div className="child__list-item child__list-item--collection">
+            <button className="child__title child__title--collection"><Skeleton /></button>
+            <p className="child__text"><Skeleton /></p>
+            <p className="child__text child__description"><Skeleton /></p>
+          </div>
+        </li>
+      ))}
+  </ul>
+)
