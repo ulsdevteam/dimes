@@ -74,19 +74,19 @@ const PanelTextSection = props => (
     (null)
 )
 
-const RecordsDetail = ({ isLoading, isSaved, records, removeItem, params, saveItem, toggleSaved }) => (
+const RecordsDetail = ({ activeRecords, isLoading, isSaved, removeItem, params, saveItem, toggleSaved }) => (
   <div className="records__detail">
     <nav>
       <a href={`/search?${queryString.stringify(params)}`} className="btn btn--back">
         <span className="material-icons">keyboard_arrow_left</span>Back to Search
       </a>
     </nav>
-    <h1 className="records__title">{records.title || <Skeleton />}</h1>
-    {records.type === "object" ?
+    <h1 className="records__title">{isLoading ? <Skeleton /> : activeRecords.title }</h1>
+    {activeRecords.type === "object" ?
       (<AddButton
         className="btn-add--lg"
         isSaved={isSaved}
-        item={records}
+        item={activeRecords}
         removeItem={removeItem}
         saveItem={saveItem}
         toggleSaved={toggleSaved} /> ) :
@@ -103,20 +103,20 @@ const RecordsDetail = ({ isLoading, isSaved, records, removeItem, params, saveIt
             (<>
               <PanelListSection
                 title="Creators"
-                listData={records.creators} />
+                listData={activeRecords.creators} />
               <PanelTextSection
                 title="Dates"
-                text={dateString(records.dates)}/>
-              <PanelFoundInSection ancestors={records.ancestors} params={params} />
+                text={dateString(activeRecords.dates)}/>
+              <PanelFoundInSection ancestors={activeRecords.ancestors} params={params} />
               <PanelTextSection
                 title="Description"
-                text={noteText(records.notes, "Scope and Contents")} />
+                text={noteText(activeRecords.notes, "Scope and Contents")} />
               </>
               )
             }
         </AccordionItemPanel>
       </AccordionItem>
-      { hasAccessAndUse(records.notes) ?
+      { hasAccessAndUse(activeRecords.notes) ?
         (<AccordionItem className="accordion__item" uuid="accessAndUse">
           <AccordionItemHeading className="accordion__heading" aria-level={2}>
             <AccordionItemButton className="accordion__button">Access and Use</AccordionItemButton>
@@ -124,14 +124,14 @@ const RecordsDetail = ({ isLoading, isSaved, records, removeItem, params, saveIt
           <AccordionItemPanel className="accordion__panel">
             <PanelTextSection
               title="Access"
-              text={noteText(records.notes, "Conditions Governing Access")} />
+              text={noteText(activeRecords.notes, "Conditions Governing Access")} />
             <PanelTextSection
               title="Reproduction and Duplication"
-              text={noteText(records.notes, "Conditions Governing Use")} />
+              text={noteText(activeRecords.notes, "Conditions Governing Use")} />
           </AccordionItemPanel>
         </AccordionItem>) :
         (null)}
-      { records.terms && records.terms.length ?
+      { activeRecords.terms && activeRecords.terms.length ?
         (<AccordionItem className="accordion__item" uuid="relatedTerms">
             <AccordionItemHeading className="accordion__heading" aria-level={2}>
               <AccordionItemButton className="accordion__button">Related Terms</AccordionItemButton>
@@ -139,7 +139,7 @@ const RecordsDetail = ({ isLoading, isSaved, records, removeItem, params, saveIt
             <AccordionItemPanel className="accordion__panel">
               <PanelListSection
                 title="Subjects"
-                listData={records.terms} />
+                listData={activeRecords.terms} />
             </AccordionItemPanel>
           </AccordionItem>) :
         (null)}
@@ -148,9 +148,9 @@ const RecordsDetail = ({ isLoading, isSaved, records, removeItem, params, saveIt
 )
 
 RecordsDetail.propTypes = {
+  activeRecords: PropTypes.object.isRequired,
   isLoading: PropTypes.bool.isRequired,
   isSaved: PropTypes.bool.isRequired,
-  records: PropTypes.object.isRequired,
   removeItem: PropTypes.func.isRequired,
   saveItem: PropTypes.func.isRequired,
   toggleSaved: PropTypes.func.isRequired

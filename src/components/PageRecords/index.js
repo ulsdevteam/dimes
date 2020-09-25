@@ -13,7 +13,8 @@ class PageCollection extends Component {
       isLoading: true,
       isSaved: false,
       found: true,
-      records: { title: "" },
+      collection: { title: "" },
+      activeRecords: { title: "" },
       params: {}
     }
   }
@@ -24,7 +25,8 @@ class PageCollection extends Component {
     axios
       .get(`${process.env.REACT_APP_ARGO_BASEURL}/${this.props.match.params.type}/${this.props.match.params.id}?${queryString.stringify(params)}`)
       .then(res => {
-        this.setState({ records: res.data });
+        this.setState({ collection: res.data })
+        this.setState({ activeRecords: res.data });
         this.setState({ isSaved: this.isSaved(res.data)})
         this.setState({ isLoading: false });
       })
@@ -51,7 +53,11 @@ class PageCollection extends Component {
   }
 
   setActiveRecords = records => {
-    this.setState({ records: records })
+    this.setState({ activeRecords: records })
+  }
+
+  toggleIsLoading = () => {
+    this.setState({ isLoading: !this.state.isLoading })
   }
 
   toggleSaved = item => {
@@ -65,11 +71,11 @@ class PageCollection extends Component {
     return (
       <React.Fragment>
         <Helmet>
-          <title>{ this.state.records.title }</title>
+          <title>{ this.state.activeRecords.title }</title>
         </Helmet>
         <div className="container--full-width">
           <RecordsDetail
-            records={this.state.records}
+            activeRecords={this.state.activeRecords}
             isLoading={this.state.isLoading}
             isSaved={this.state.isSaved}
             params={this.state.params}
@@ -77,10 +83,11 @@ class PageCollection extends Component {
             saveItem={this.saveItem}
             toggleSaved={this.toggleSaved} />
           <RecordsContext
-            records={this.state.records}
+            records={this.state.collection}
             isLoading={this.state.isLoading}
             params={this.state.params}
-            setActiveRecords={this.setActiveRecords} />
+            setActiveRecords={this.setActiveRecords}
+            toggleIsLoading={this.toggleIsLoading} />
         </div>
       </React.Fragment>
     )
