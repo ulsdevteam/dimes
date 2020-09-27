@@ -14,6 +14,9 @@
   }
   @media screen and (min-width: $break-lg) {
     width: 33%;
+    max-height: 100vh;
+    position: sticky;
+    top: 0;
   }
 }
 
