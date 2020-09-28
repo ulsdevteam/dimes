@@ -83,9 +83,9 @@ class PageCollection extends Component {
             saveItem={this.saveItem}
             toggleSaved={this.toggleSaved} />
           <RecordsContext
-            records={this.state.collection}
             isLoading={this.state.isLoading}
             params={this.state.params}
+            parent={this.state.collection}
             setActiveRecords={this.setActiveRecords}
             toggleIsLoading={this.toggleIsLoading} />
         </div>
