@@ -38,6 +38,7 @@
 .child__list {
   list-style: none;
   transition: $transition-default;
+  padding-left: 20px;
   &.hidden {
     display: none;
     height: 0;
@@ -45,7 +46,7 @@
   }
 }
 
-.child__list--full-width {
+.child__list--top-level {
   @extend .child__list;
   padding-left: 0;
 }

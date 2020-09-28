@@ -132,6 +132,7 @@ const RecordsContext = ({ isContextShown, params, parent, setActiveRecords, togg
     <p className="collection__text collection__description">{collection.description}</p>
     <RecordsContextList
       children={parent.children}
+      className="child__list--top-level"
       parent={parent}
       params={params}
       setActiveRecords={setActiveRecords}
