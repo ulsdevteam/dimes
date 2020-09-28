@@ -32,10 +32,8 @@
 .child__list {
   list-style: none;
   transition: $transition-default;
-  opacity: 1;
   &.hidden {
-    opacity: 0;
-    transform: translateY(-20px);
+    display: none;
     height: 0;
     transition: $transition-default;
   }
