@@ -2,14 +2,17 @@ import React, { Component } from "react";
 import axios from "axios";
 import queryString from "query-string";
 import { Helmet } from "react-helmet";
+import ContextSwitcher from "../ContextSwitcher";
 import RecordsContext from "../RecordsContext";
 import RecordsDetail from "../RecordsDetail";
 import PageNotFound from "../PageNotFound";
+
 
 class PageCollection extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      isContextShown: false,
       isLoading: true,
       isSaved: false,
       found: true,
@@ -56,6 +59,10 @@ class PageCollection extends Component {
     this.setState({ activeRecords: records })
   }
 
+  toggleIsContextShown = () => {
+    this.setState({ isContextShown: !this.state.isContextShown })
+  }
+
   toggleIsLoading = () => {
     this.setState({ isLoading: !this.state.isLoading })
   }
@@ -76,6 +83,7 @@ class PageCollection extends Component {
         <div className="container--full-width">
           <RecordsDetail
             activeRecords={this.state.activeRecords}
+            isContextShown={this.state.isContextShown}
             isLoading={this.state.isLoading}
             isSaved={this.state.isSaved}
             params={this.state.params}
@@ -83,11 +91,15 @@ class PageCollection extends Component {
             saveItem={this.saveItem}
             toggleSaved={this.toggleSaved} />
           <RecordsContext
+            isContextShown={this.state.isContextShown}
             isLoading={this.state.isLoading}
             params={this.state.params}
             parent={this.state.collection}
             setActiveRecords={this.setActiveRecords}
             toggleIsLoading={this.toggleIsLoading} />
+          <ContextSwitcher
+            isContextShown={this.state.isContextShown}
+            toggleIsContextShown={this.toggleIsContextShown} />
         </div>
       </React.Fragment>
     )

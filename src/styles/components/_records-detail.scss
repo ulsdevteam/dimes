@@ -9,6 +9,12 @@
   padding: 0px 30px 50px 30px;
   box-sizing: border-box;
   float: left;
+  &.hidden {
+    display: none;
+    @media screen and (min-width: $break-lg) {
+      display: unset;
+    }
+  }
   @media screen and (min-width: $break-md) {
     padding: 0px 40px 50px 40px;
   }

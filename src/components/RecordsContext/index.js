@@ -113,19 +113,19 @@ class RecordsContextList extends Component {
 
   render() {
     return (
-      <ul className={`child__list ${this.props.className && this.props.className}`}>
+      <ul className={`child__list ${this.props.className ? this.props.className : ""}`}>
         {this.childList(this.state.children)}
       </ul>
     )
   }
 }
 
-const RecordsContext = ({ params, parent, setActiveRecords, toggleIsLoading }) => {
+const RecordsContext = ({ isContextShown, params, parent, setActiveRecords, toggleIsLoading }) => {
   const collection = (parent.ancestors && parent.ancestors.length) ? parent.ancestors.slice(0)[0] : parent;
 
   return (
   parent.children ?
-  (<div className="records__context">
+  (<div className={`records__context ${isContextShown ? null : "hidden"}`}>
     <h2 className="context__title">Collection Context</h2>
     <h3 className="collection__title">{collection.title}</h3>
     <p className="collection__date">{Array.isArray(collection.dates) ? dateString(collection.dates) : collection.dates }</p>
