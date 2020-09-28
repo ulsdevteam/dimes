@@ -19,8 +19,8 @@ class RecordsChild extends Component {
   handleClick = item => {
     const {params, parent, setActiveRecords, setParent, toggleActiveChild, toggleIsLoading} = this.props
     const isActive = toggleActiveChild(item);
+    toggleIsLoading();
     if (isActive) {
-      toggleIsLoading();
       // Only fetch children if this is a collection and we haven't already fetched them.
       if (item.type === "collection" && !this.state.itemChildren.length) {
         this.setState({ isChildrenLoading: true })
@@ -36,7 +36,13 @@ class RecordsChild extends Component {
         })
         .catch(e => console.log(e))
     } else {
-      setActiveRecords(parent);
+      axios
+        .get(`${process.env.REACT_APP_ARGO_BASEURL}/${parent.uri}?${queryString.stringify(params)}`)
+        .then(res => {
+          setParent(res.data);
+          toggleIsLoading();
+        })
+        .catch(e => console.log(e))
     }
   }
 
@@ -107,7 +113,7 @@ class RecordsContextList extends Component {
 
   render() {
     return (
-      <ul className={`child__list--full-width ${this.props.className && this.props.className}`}>
+      <ul className={`child__list ${this.props.className && this.props.className}`}>
         {this.childList(this.state.children)}
       </ul>
     )
