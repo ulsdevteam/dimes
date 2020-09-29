@@ -11,5 +11,7 @@ const items = [
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  render(<TileList items={items} />, div);
+  render(<TileList
+            handleHitCountClick={function(){}}
+            items={items} />, div);
 });

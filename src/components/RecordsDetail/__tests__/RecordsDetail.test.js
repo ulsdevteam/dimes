@@ -8,9 +8,9 @@ import { object } from '../../../__fixtures__/object';
 it('renders without crashing', () => {
   const div = document.createElement('div');
   render(<RecordsDetail
+            activeRecords={collectionWithChildHits}
             isLoading={false}
             isSaved={false}
-            records={collectionWithChildHits}
             removeItem={function(){}}
             saveItem={function(){}}
             toggleSaved={function(){}} />, div);
@@ -19,9 +19,9 @@ it('renders without crashing', () => {
 it('renders without crashing', () => {
   const div = document.createElement('div');
   render(<RecordsDetail
+          activeRecords={object}
           isLoading={false}
           isSaved={true}
-          records={object}
           removeItem={function(){}}
           saveItem={function(){}}
           toggleSaved={function(){}}/>, div);

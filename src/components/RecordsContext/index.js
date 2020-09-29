@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import axios from "axios";
 import queryString from "query-string";
 import HitCount from "../HitCount";
@@ -72,6 +73,16 @@ class RecordsChild extends Component {
   }
 }
 
+RecordsChild.propTypes = {
+    parent: PropTypes.object.isRequired,
+    item: PropTypes.object.isRequired,
+    params: PropTypes.object,
+    toggleActiveChild: PropTypes.func.isRequired,
+    setActiveRecords: PropTypes.func.isRequired,
+    setParent: PropTypes.func.isRequired,
+    toggleIsLoading: PropTypes.func.isRequired
+}
+
 class RecordsContextList extends Component {
   constructor(props) {
     super(props)
@@ -120,6 +131,16 @@ class RecordsContextList extends Component {
   }
 }
 
+RecordsContextList.propTypes = {
+  children: PropTypes.array,
+  className: PropTypes.string,
+  parent: PropTypes.object.isRequired,
+  params: PropTypes.object,
+  setActiveRecords: PropTypes.func.isRequired,
+  toggleIsLoading: PropTypes.func.isRequired
+}
+
+
 const RecordsContext = ({ isContextShown, params, parent, setActiveRecords, toggleIsLoading }) => {
   const collection = (parent.ancestors && parent.ancestors.length) ? parent.ancestors.slice(0)[0] : parent;
 
@@ -140,5 +161,13 @@ const RecordsContext = ({ isContextShown, params, parent, setActiveRecords, togg
   </div>) :
   (null)
 )}
+
+RecordsContext.propTypes = {
+  isContextShown: PropTypes.bool.isRequired,
+  params: PropTypes.object,
+  parent: PropTypes.object.isRequired,
+  setActiveRecords: PropTypes.func.isRequired,
+  toggleIsLoading: PropTypes.func.isRequired
+}
 
 export default RecordsContext;
