@@ -85,3 +85,15 @@ export const DetailSkeleton = () => (
     <p className="panel__text"><Skeleton /></p>
   </>
 )
+
+export const FoundInItemSkeleton = () => (
+  <>
+    {Array(3)
+      .fill()
+      .map((item, index) => (
+        <li className="found-in__subcollection" key={index}>
+          <p className="found-in__link"><Skeleton /></p>
+        </li>
+      ))}
+  </>
+)

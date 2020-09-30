@@ -10,6 +10,8 @@ class PageCollection extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      ancestors: {},
+      isAncestorsLoading: true,
       isLoading: true,
       isSaved: false,
       found: true,
@@ -26,6 +28,13 @@ class PageCollection extends Component {
         this.setState({ records: res.data });
         this.setState({ isSaved: this.isSaved(res.data)})
         this.setState({ isLoading: false });
+      })
+      .catch(err => this.setState({ found: false }));
+    axios
+      .get(`${process.env.REACT_APP_ARGO_BASEURL}/${this.props.match.params.type}/${this.props.match.params.id}/ancestors`)
+      .then(res => {
+        this.setState({ ancestors: res.data });
+        this.setState({ isAncestorsLoading: false });
       })
       .catch(err => this.setState({ found: false }));
   };
@@ -61,7 +70,9 @@ class PageCollection extends Component {
         </Helmet>
         <div className="container--full-width">
           <RecordsDetail
+            ancestors={this.state.ancestors}
             records={this.state.records}
+            isAncestorsLoading={this.state.isAncestorsLoading}
             isLoading={this.state.isLoading}
             isSaved={this.state.isSaved}
             removeItem={this.props.removeItem}

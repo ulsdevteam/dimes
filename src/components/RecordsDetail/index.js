@@ -9,7 +9,7 @@ import {
     AccordionItemPanel,
 } from 'react-accessible-accordion';
 import Button from "../Button";
-import { DetailSkeleton } from "../LoadingSkeleton";
+import { DetailSkeleton, FoundInItemSkeleton } from "../LoadingSkeleton";
 import "./styles.scss";
 
 
@@ -36,16 +36,23 @@ const AddButton = ({ className, isSaved, saveItem, item, removeItem, toggleSaved
 )
 
 
-const PanelFoundInSection = ({ ancestors }) => (
-  ancestors ?
+const FoundInItem = ({ className, item }) => (
+  <>
+  <li className={className}>
+    <a className="found-in__link" href={item.uri}>{item.title}</a>
+  </li>
+  {item.child ? (<FoundInItem item={item.child} className="found-in__subcollection" />) : null}
+  </>
+)
+
+const PanelFoundInSection = ({ ancestors, isLoading }) => (
+  ancestors.title ?
     (<>
       <h3 className="panel__heading">Found In</h3>
       <ul className="found-in">
-        {ancestors.reverse().map((item, index) => (
-          <li className={(index < 1) ? "found-in__collection" : "found-in__subcollection"} key={index}>
-            <a className="found-in__link" href={item.uri}>{item.title}</a>
-          </li>
-        ))}
+      {isLoading ?
+        (<FoundInItemSkeleton/>) :
+        (<FoundInItem item={ancestors} className="found-in__collection" />)}
       </ul>
     </>) :
     (null)
@@ -73,7 +80,7 @@ const PanelTextSection = props => (
 )
 
 // TODO: add params to back button href
-const RecordsDetail = ({ isLoading, isSaved, records, removeItem, saveItem, toggleSaved }) => {
+const RecordsDetail = ({ ancestors, isAncestorsLoading, isLoading, isSaved, records, removeItem, saveItem, toggleSaved }) => {
   /** Helper function to return text from a note by title */
   const noteText = noteTitle => {
     let note = records.notes && records.notes.filter(n => {return n.title === noteTitle})[0]
@@ -120,7 +127,9 @@ const RecordsDetail = ({ isLoading, isSaved, records, removeItem, saveItem, togg
               <PanelTextSection
                 title="Dates"
                 text={records.dates && records.dates.map(d => d.expression).join(", ")} />
-              <PanelFoundInSection ancestors={records.ancestors} />
+              <PanelFoundInSection
+                ancestors={ancestors}
+                isLoading={isAncestorsLoading} />
               <PanelTextSection
                 title="Description"
                 text={noteText("Scope and Contents")} />
@@ -162,6 +171,8 @@ const RecordsDetail = ({ isLoading, isSaved, records, removeItem, saveItem, togg
 }
 
 RecordsDetail.propTypes = {
+  ancestors: PropTypes.object.isRequired,
+  isAncestorsLoading: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
   isSaved: PropTypes.bool.isRequired,
   records: PropTypes.object.isRequired,
