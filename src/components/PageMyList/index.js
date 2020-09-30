@@ -184,6 +184,7 @@
           }
           for (const [key, value] of Object.entries(items)) {
             const fetchedItem = await this.fetchFromUri(key)
+            const fetchedAncestors = await this.fetchFromUri(`${key}/ancestors/`)
             if (fetchedItem) {
               let note = fetchedItem.notes && fetchedItem.notes.filter(n => {return n.title === "Scope and Contents"})[0];
               const description = note && note.subnotes ? note.subnotes.map(s => s.content).join("\r\n") : null
@@ -192,8 +193,8 @@
                 "uri": fetchedItem.uri,
                 "date": fetchedItem.dates && fetchedItem.dates.map(d => d.expression).join(", "),
                 "description": description,
-                "parent": fetchedItem.ancestors[0].title,
-                "parentRef": fetchedItem.ancestors[0].uri,
+                "parent": fetchedAncestors.title,
+                "parentRef": fetchedAncestors.uri,
                 "online": fetchedItem.online,
                 "lastRequested": value.lastRequested ? value.lastRequested : null,
                 "saved": value.saved,
