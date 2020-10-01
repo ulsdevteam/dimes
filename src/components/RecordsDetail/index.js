@@ -75,7 +75,7 @@ const PanelTextSection = props => (
 )
 
 const RecordsDetail = ({ activeRecords, isContentShown, isLoading, isSaved, removeItem, params, saveItem, toggleSaved }) => (
-  <div className={`records__detail ${isContentShown ? "hidden" : null}`}>
+  <div className={`records__detail ${isContentShown ? "hidden" : ""}`}>
     <nav>
       <a href={`/search?${queryString.stringify(params)}`} className="btn btn--back">
         <span className="material-icons">keyboard_arrow_left</span>Back to Search

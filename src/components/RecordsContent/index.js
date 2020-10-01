@@ -146,7 +146,7 @@ const RecordsContent = ({ isContentShown, params, parent, setActiveRecords, togg
 
   return (
   parent.children ?
-  (<div className={`records__content ${isContentShown ? null : "hidden"}`}>
+  (<div className={`records__content ${isContentShown ? "" : "hidden"}`}>
     <h2 className="content__title">Collection Content</h2>
     <h3 className="collection__title">{collection.title}</h3>
     <p className="collection__date">{Array.isArray(collection.dates) ? dateString(collection.dates) : collection.dates }</p>
