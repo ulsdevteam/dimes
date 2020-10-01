@@ -12,6 +12,8 @@ class PageCollection extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      ancestors: {},
+      isAncestorsLoading: true,
       isContentShown: false,
       isLoading: true,
       isSaved: false,
@@ -32,6 +34,13 @@ class PageCollection extends Component {
         this.setState({ activeRecords: res.data });
         this.setState({ isSaved: this.isSaved(res.data)})
         this.setState({ isLoading: false });
+      })
+      .catch(err => this.setState({ found: false }));
+    axios
+      .get(`${process.env.REACT_APP_ARGO_BASEURL}/${this.props.match.params.type}/${this.props.match.params.id}/ancestors`)
+      .then(res => {
+        this.setState({ ancestors: res.data });
+        this.setState({ isAncestorsLoading: false });
       })
       .catch(err => this.setState({ found: false }));
   };
@@ -85,6 +94,9 @@ class PageCollection extends Component {
             isContentShown={this.state.isContentShown}
             toggleIsContentShown={this.toggleIsContentShown} />
           <RecordsDetail
+            ancestors={this.state.ancestors}
+            records={this.state.records}
+            isAncestorsLoading={this.state.isAncestorsLoading}
             activeRecords={this.state.activeRecords}
             isContentShown={this.state.isContentShown}
             isLoading={this.state.isLoading}

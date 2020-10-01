@@ -10,7 +10,7 @@ import {
     AccordionItemPanel,
 } from 'react-accessible-accordion';
 import Button from "../Button";
-import { DetailSkeleton } from "../LoadingSkeleton";
+import { DetailSkeleton, FoundInItemSkeleton } from "../LoadingSkeleton";
 import { dateString, hasAccessAndUse, noteText } from "../Helpers";
 import "./styles.scss";
 
@@ -38,16 +38,23 @@ const AddButton = ({ className, isSaved, saveItem, item, removeItem, toggleSaved
 )
 
 
-const PanelFoundInSection = ({ ancestors, params }) => (
-  ancestors ?
+const FoundInItem = ({ className, item }) => (
+  <>
+  <li className={className}>
+    <a className="found-in__link" href={item.uri}>{item.title}</a>
+  </li>
+  {item.child ? (<FoundInItem item={item.child} className="found-in__subcollection" />) : null}
+  </>
+)
+
+const PanelFoundInSection = ({ ancestors, isLoading }) => (
+  ancestors.title ?
     (<>
       <h3 className="panel__heading">Found In</h3>
       <ul className="found-in">
-        {ancestors.reverse().map((item, index) => (
-          <li className={(index < 1) ? "found-in__collection" : "found-in__subcollection"} key={index}>
-            <a className="found-in__link" href={`${item.uri}/?${queryString.stringify(params)}`}>{item.title}</a>
-          </li>
-        ))}
+      {isLoading ?
+        (<FoundInItemSkeleton/>) :
+        (<FoundInItem item={ancestors} className="found-in__collection" />)}
       </ul>
     </>) :
     (null)
@@ -74,7 +81,7 @@ const PanelTextSection = props => (
     (null)
 )
 
-const RecordsDetail = ({ activeRecords, isContentShown, isLoading, isSaved, removeItem, params, saveItem, toggleSaved }) => (
+const RecordsDetail = ({ activeRecords, ancestors, isAncestorsLoading, isContentShown, isLoading, isSaved, removeItem, params, saveItem, toggleSaved }) => (
   <div className={`records__detail ${isContentShown ? "hidden" : ""}`}>
     <nav>
       <a href={`/search?${queryString.stringify(params)}`} className="btn btn--back">
@@ -106,8 +113,10 @@ const RecordsDetail = ({ activeRecords, isContentShown, isLoading, isSaved, remo
                 listData={activeRecords.creators} />
               <PanelTextSection
                 title="Dates"
-                text={dateString(activeRecords.dates)}/>
-              <PanelFoundInSection ancestors={activeRecords.ancestors} params={params} />
+                text={dateString(activeRecords.dates)} />
+              <PanelFoundInSection
+                ancestors={ancestors}
+                isLoading={isAncestorsLoading} />
               <PanelTextSection
                 title="Description"
                 text={noteText(activeRecords.notes, "Scope and Contents")} />
@@ -149,8 +158,12 @@ const RecordsDetail = ({ activeRecords, isContentShown, isLoading, isSaved, remo
 
 RecordsDetail.propTypes = {
   activeRecords: PropTypes.object.isRequired,
+  ancestors: PropTypes.object.isRequired,
+  isAncestorsLoading: PropTypes.bool.isRequired,
+  isContentShown: PropTypes.bool,
   isLoading: PropTypes.bool.isRequired,
   isSaved: PropTypes.bool.isRequired,
+  params: PropTypes.object.isRequired,
   removeItem: PropTypes.func.isRequired,
   saveItem: PropTypes.func.isRequired,
   toggleSaved: PropTypes.func.isRequired
