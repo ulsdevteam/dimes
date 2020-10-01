@@ -61,7 +61,7 @@ class RecordsChild extends Component {
         {(this.state.itemChildren && this.state.itemChildren.length) ?
           (<RecordsContentList
             children={this.state.itemChildren}
-            className={!item.isActive && "hidden"}
+            className={!item.isActive ? "hidden" : ""}
             parent={item}
             params={params}
             setActiveRecords={setActiveRecords}
