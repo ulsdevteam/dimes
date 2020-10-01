@@ -4,25 +4,25 @@ import Button from "../Button";
 import "./styles.scss"
 
 
-const ContextSwitcher = ({isContextShown, toggleIsContextShown}) => {
+const ContextSwitcher = ({isContentShown, toggleIsContentShown}) => {
   return (
   <div className="toggle-wrapper">
     <Button
-      className={`toggle-context ${isContextShown? null : "toggle-context--active"}`}
-      iconBefore={isContextShown ? "west" : null}
+      className={`toggle-context ${isContentShown? null : "toggle-context--active"}`}
+      iconBefore={isContentShown ? "west" : null}
       label="Collection Details"
-      handleClick={toggleIsContextShown} />
+      handleClick={toggleIsContentShown} />
     <Button
-      className={`toggle-context ${isContextShown ? "toggle-context--active" : ""}`}
+      className={`toggle-context ${isContentShown ? "toggle-context--active" : ""}`}
       label="Collection Content"
-      iconAfter={isContextShown ? null : "east"}
-      handleClick={toggleIsContextShown} />
+      iconAfter={isContentShown ? null : "east"}
+      handleClick={toggleIsContentShown} />
   </div>
 )}
 
 ContextSwitcher.propTypes = {
-  isContextShown: PropTypes.bool.isRequired,
-  toggleIsContextShown: PropTypes.func.isRequired,
+  isContentShown: PropTypes.bool.isRequired,
+  toggleIsContentShown: PropTypes.func.isRequired,
 }
 
 export default ContextSwitcher

@@ -81,6 +81,9 @@ class PageCollection extends Component {
           <title>{ this.state.activeRecords.title }</title>
         </Helmet>
         <div className="container--full-width">
+          <ContextSwitcher
+            isContentShown={this.state.isContentShown}
+            toggleIsContentShown={this.toggleIsContentShown} />
           <RecordsDetail
             activeRecords={this.state.activeRecords}
             isContentShown={this.state.isContentShown}
@@ -97,9 +100,6 @@ class PageCollection extends Component {
             parent={this.state.collection}
             setActiveRecords={this.setActiveRecords}
             toggleIsLoading={this.toggleIsLoading} />
-          <ContextSwitcher
-            isContentShown={this.state.isContentShown}
-            toggleIsContentShown={this.toggleIsContentShown} />
         </div>
       </React.Fragment>
     )

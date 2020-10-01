@@ -5,6 +5,6 @@ import ContextSwitcher from "..";
 it('renders without crashing', () => {
   const div = document.createElement('div');
   render(<ContextSwitcher
-            isContextShown={false}
-            toggleIsContextShown={function(){}} />, div);
+            isContentShown={false}
+            toggleIsContentShown={function(){}} />, div);
 });
