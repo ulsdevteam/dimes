@@ -69,6 +69,7 @@ input[type=search] {
   top: 20px;
   right: 22px;
   position: absolute;
+  pointer-events: none;
 }
 
 .select__search select {
