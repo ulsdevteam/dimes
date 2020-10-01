@@ -54,6 +54,9 @@
 .child__list-item {
   position: relative;
   padding: 20px;
+  &:focus-within {
+    border-color: $deep-navy;
+  }
   &.active {
     border-color: $deep-navy;
   }
@@ -61,6 +64,9 @@
 
 .child__list-item--object {
   border-bottom: 1px solid $neutral-sand;
+  &:focus-within {
+    background: $off-white;
+  }
   &.active {
     background: $off-white;
   }
