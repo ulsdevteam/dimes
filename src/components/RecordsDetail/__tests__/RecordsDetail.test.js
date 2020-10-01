@@ -11,9 +11,10 @@ it('renders without crashing', () => {
   render(<RecordsDetail
             ancestors={{}}
             isAncestorsLoading={false}
+            activeRecords={collectionWithChildHits}
             isLoading={false}
             isSaved={false}
-            records={collectionWithChildHits}
+            params={{}}
             removeItem={function(){}}
             saveItem={function(){}}
             toggleSaved={function(){}} />, div);
@@ -24,9 +25,10 @@ it('renders without crashing', () => {
   render(<RecordsDetail
           ancestors={ancestors}
           isAncestorsLoading={false}
+          activeRecords={object}
           isLoading={false}
           isSaved={true}
-          records={object}
+          params={{}}
           removeItem={function(){}}
           saveItem={function(){}}
           toggleSaved={function(){}}/>, div);

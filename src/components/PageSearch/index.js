@@ -25,6 +25,7 @@ class PageSearch extends Component {
       startItem: 0,
       endItem: 0,
       resultsCount: 0,
+      hitsIsLoading: false,
       hitsIsOpen: false,
       hitsData: {},
       facetIsOpen: false,
@@ -81,11 +82,12 @@ class PageSearch extends Component {
     this.executeSearch(params);
   }
   handleHitCountClick = uri => {
+    this.setState({ hitsIsLoading: true }, () => this.toggleHitsModal())
     axios
       .get(`${process.env.REACT_APP_ARGO_BASEURL}${uri}/?${queryString.stringify(this.state.params)}`)
       .then(res => {
         this.setState({ hitsData: res.data })
-        this.toggleHitsModal();
+        this.setState({ hitsIsLoading: false })
       })
       .catch(err => console.log(err))
   }
@@ -123,6 +125,7 @@ class PageSearch extends Component {
   }
   toggleHitsModal = () => {
     this.setState({ hitsIsOpen: !this.state.hitsIsOpen })
+    this.setState({ hitsData: {} })
   }
   render() {
     return (
@@ -180,7 +183,10 @@ class PageSearch extends Component {
             </div>
             { this.state.inProgress ?
               (<SearchSkeleton />) :
-              (<TileList items={this.state.items} handleHitCountClick={this.handleHitCountClick}/>)}
+              (<TileList
+                items={this.state.items}
+                handleHitCountClick={this.handleHitCountClick}
+                params={this.state.params} />)}
               <div className="results__footer">
                 <p className="results__summary">
                   {`${this.state.startItem === this.state.endItem ?
@@ -206,9 +212,11 @@ class PageSearch extends Component {
           handleChange={this.handleFacetChange}
           handleDateChange={this.handleDateFacetChange} />
         <CollectionHitsModal
+          isLoading={this.state.hitsIsLoading}
           isOpen={this.state.hitsIsOpen}
           toggleModal={this.toggleHitsModal}
-          data={this.state.hitsData} />
+          data={this.state.hitsData}
+          params={this.state.params} />
       </React.Fragment>
     )
   }

@@ -1,10 +1,14 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { AgentAttributeSkeleton,
-         DetailSkeleton,
-         FoundInItemSkeleton,
-         SearchSkeleton,
-         MyListSkeleton } from '..';
+import {
+  AgentAttributeSkeleton,
+  CollectionHitsSkeleton,
+  DetailSkeleton,
+  FoundInItemSkeleton,
+  RecordsChildSkeleton,
+  SearchSkeleton,
+  MyListSkeleton
+} from '..';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
@@ -28,5 +32,15 @@ it('renders without crashing', () => {
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
+  render(<CollectionHitsSkeleton />, div);
+});
+
+it('renders without crashing', () => {
+  const div = document.createElement('div');
   render(<FoundInItemSkeleton />, div);
+});
+
+it('renders without crashing', () => {
+  const div = document.createElement('div');
+  render(<RecordsChildSkeleton />, div);
 });

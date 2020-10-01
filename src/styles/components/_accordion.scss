@@ -17,10 +17,15 @@
   letter-spacing: 2px;
   color: $deep-navy;
   padding: 12px 0px;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
   &::after {
     @extend .material-icons;
     content: "keyboard_arrow_down";
     float: right;
+    line-height: 12px;
   }
   &[aria-expanded=true] {
     &::after {

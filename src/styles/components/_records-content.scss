@@ -1,0 +1,122 @@
+@import "../styles";
+
+.records__content {
+  font-family: $sans-serif-stack;
+  width: 100%;
+  float: left;
+  padding: 40px 30px;
+  box-sizing: border-box;
+  &.hidden {
+    display: none;
+    @media screen and (min-width: $break-lg) {
+      display: unset;
+    }
+  }
+  @media screen and (min-width: $break-lg) {
+    width: 66%;
+  }
+}
+
+.content__title {
+  font-family: $sans-serif-stack;
+  font-size: 24px;
+  color: $deep-navy;
+  border-bottom: 1px dotted $deep-navy;
+  margin-top: 0;
+}
+
+.collection__title {
+  font-size: 21px;
+  color: $dark-gray;
+  margin-bottom: 0;
+}
+
+.collection__text {
+  font-size: 16px;
+}
+
+.child__list {
+  list-style: none;
+  transition: $transition-default;
+  padding-left: 20px;
+  &.hidden {
+    display: none;
+    height: 0;
+    transition: $transition-default;
+  }
+}
+
+.child__list--top-level {
+  @extend .child__list;
+  padding-left: 0;
+}
+
+.child__list-item {
+  position: relative;
+  padding: 20px;
+  &:focus-within {
+    border-color: $deep-navy;
+  }
+  &.active {
+    border-color: $deep-navy;
+  }
+}
+
+.child__list-item--object {
+  border-bottom: 1px solid $neutral-sand;
+  &:focus-within {
+    background: $off-white;
+  }
+  &.active {
+    background: $off-white;
+  }
+}
+
+.child__list-item--collection {
+  margin-bottom: 12px;
+  border: 2px solid $orange-gray;
+  border-radius: 3px;
+  box-shadow: 0 0 4px $light-gray;
+  &:hover {
+    border-color: $red-orange;
+  }
+}
+
+.child__title {
+  appearance: none;
+  border: none;
+  background: none;
+  text-align: left;
+  font-weight: 500;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+.child__title--object {
+  font-size: 16px;
+}
+
+.child__title--collection {
+  font-size: 18px;
+}
+
+.child__text {
+  font-size: 14px;
+}
+
+.child__description, .collection__description {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
