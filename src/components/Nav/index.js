@@ -6,8 +6,8 @@ import "./styles.scss";
 
 
 export const NavItem  = ({ className, href, icon, label}) => (
-  <li className={`nav__item ${className}`}>
-    <a className={`nav__link ${className}`} href={href}>{label} {icon && <MaterialIcon icon={icon} />}</a>
+  <li className={`nav__item ${className ? className : ""}`}>
+    <a className={`nav__link ${className ? className : ""}`} href={href}>{label} {icon && <MaterialIcon icon={icon} />}</a>
   </li>)
 
 NavItem.propTypes = {
