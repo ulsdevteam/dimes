@@ -3,7 +3,7 @@ import axios from "axios";
 import queryString from "query-string";
 import { Helmet } from "react-helmet";
 import ContextSwitcher from "../ContextSwitcher";
-import RecordsContext from "../RecordsContext";
+import RecordsContent from "../RecordsContent";
 import RecordsDetail from "../RecordsDetail";
 import PageNotFound from "../PageNotFound";
 
@@ -12,7 +12,7 @@ class PageCollection extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isContextShown: false,
+      isContentShown: false,
       isLoading: true,
       isSaved: false,
       found: true,
@@ -59,8 +59,8 @@ class PageCollection extends Component {
     this.setState({ activeRecords: records })
   }
 
-  toggleIsContextShown = () => {
-    this.setState({ isContextShown: !this.state.isContextShown })
+  toggleIsContentShown = () => {
+    this.setState({ isContentShown: !this.state.isContentShown })
   }
 
   toggleIsLoading = () => {
@@ -83,23 +83,23 @@ class PageCollection extends Component {
         <div className="container--full-width">
           <RecordsDetail
             activeRecords={this.state.activeRecords}
-            isContextShown={this.state.isContextShown}
+            isContentShown={this.state.isContentShown}
             isLoading={this.state.isLoading}
             isSaved={this.state.isSaved}
             params={this.state.params}
             removeItem={this.props.removeItem}
             saveItem={this.saveItem}
             toggleSaved={this.toggleSaved} />
-          <RecordsContext
-            isContextShown={this.state.isContextShown}
+          <RecordsContent
+            isContentShown={this.state.isContentShown}
             isLoading={this.state.isLoading}
             params={this.state.params}
             parent={this.state.collection}
             setActiveRecords={this.setActiveRecords}
             toggleIsLoading={this.toggleIsLoading} />
           <ContextSwitcher
-            isContextShown={this.state.isContextShown}
-            toggleIsContextShown={this.toggleIsContextShown} />
+            isContentShown={this.state.isContentShown}
+            toggleIsContentShown={this.toggleIsContentShown} />
         </div>
       </React.Fragment>
     )

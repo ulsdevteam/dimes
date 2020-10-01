@@ -55,11 +55,11 @@ class RecordsChild extends Component {
           <button className={`child__title child__title--${item.type}`} onClick={() => this.handleClick(item)}>{item.title}</button>
           <p className="child__text">{item.dates}</p>
           <p className="child__text child__description">{item.description}</p>
-          {this.state.hit_count ? (<HitCount className="hit-count--records-context" hitCount={item.hit_count} />) : null}
+          {this.state.hit_count ? (<HitCount className="hit-count--records-" hitCount={item.hit_count} />) : null}
         </div>
         {this.state.isChildrenLoading ? <RecordsChildSkeleton/> : null}
         {(this.state.itemChildren && this.state.itemChildren.length) ?
-          (<RecordsContextList
+          (<RecordsContentList
             children={this.state.itemChildren}
             className={!item.isActive && "hidden"}
             parent={item}
@@ -83,7 +83,7 @@ RecordsChild.propTypes = {
     toggleIsLoading: PropTypes.func.isRequired
 }
 
-class RecordsContextList extends Component {
+class RecordsContentList extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -131,7 +131,7 @@ class RecordsContextList extends Component {
   }
 }
 
-RecordsContextList.propTypes = {
+RecordsContentList.propTypes = {
   children: PropTypes.array,
   className: PropTypes.string,
   parent: PropTypes.object.isRequired,
@@ -141,17 +141,17 @@ RecordsContextList.propTypes = {
 }
 
 
-const RecordsContext = ({ isContextShown, params, parent, setActiveRecords, toggleIsLoading }) => {
+const RecordsContent = ({ isContentShown, params, parent, setActiveRecords, toggleIsLoading }) => {
   const collection = (parent.ancestors && parent.ancestors.length) ? parent.ancestors.slice(0)[0] : parent;
 
   return (
   parent.children ?
-  (<div className={`records__context ${isContextShown ? null : "hidden"}`}>
-    <h2 className="context__title">Collection Context</h2>
+  (<div className={`records__content ${isContentShown ? null : "hidden"}`}>
+    <h2 className="content__title">Collection Content</h2>
     <h3 className="collection__title">{collection.title}</h3>
     <p className="collection__date">{Array.isArray(collection.dates) ? dateString(collection.dates) : collection.dates }</p>
     <p className="collection__text collection__description">{collection.description}</p>
-    <RecordsContextList
+    <RecordsContentList
       children={parent.children}
       className="child__list--top-level"
       parent={parent}
@@ -162,12 +162,12 @@ const RecordsContext = ({ isContextShown, params, parent, setActiveRecords, togg
   (null)
 )}
 
-RecordsContext.propTypes = {
-  isContextShown: PropTypes.bool.isRequired,
+RecordsContent.propTypes = {
+  isContentShown: PropTypes.bool.isRequired,
   params: PropTypes.object,
   parent: PropTypes.object.isRequired,
   setActiveRecords: PropTypes.func.isRequired,
   toggleIsLoading: PropTypes.func.isRequired
 }
 
-export default RecordsContext;
+export default RecordsContent;
