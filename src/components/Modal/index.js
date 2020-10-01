@@ -325,8 +325,8 @@ export const FacetModal = props => {
   var [endYear, setEndYear] = useState(0);
 
   useEffect(() => {
-    const startDate = (props.params.start_date__gte ? props.params.start_date__gte : (props.data.min_date && props.data.min_date.value_as_string)) || "";
-    const endDate = (props.params.end_date__lte ? props.params.end_date__lte : (props.data.max_date && props.data.max_date.value_as_string)) || "";
+    const startDate = (props.params.start_date__gte ? props.params.start_date__gte : (props.data.min_date && props.data.min_date.value)) || "";
+    const endDate = (props.params.end_date__lte ? props.params.end_date__lte : (props.data.max_date && props.data.max_date.value)) || "";
     setStartYear(startDate);
     setEndYear(endDate);
   }, [props.params.start_date__gte, props.params.end_date__lte, props.data.min_date, props.data.max_date] );
@@ -427,13 +427,16 @@ export const CollectionHitsModal = props => {
         </button>
       </div>
       <div className="modal-body">
-        <CollectionHits collection={props.data} />
+        <CollectionHits
+          collection={props.data}
+          isLoading={props.isLoading}
+          params={props.params} />
       </div>
     </Modal>
   )
 }
 
-FacetModal.propTypes = {
+CollectionHitsModal.propTypes = {
   appElement: PropTypes.object,
   data: PropTypes.object.isRequired,
   isOpen: PropTypes.bool.isRequired,
