@@ -7,7 +7,7 @@
 // TODO: consider using relative units instead of pixels
 
 p, a {
-  font-family: $serif-stack;
+  font-family: inherit;
   font-weight: $font-weight-normal;
   font-size: 16px;
   line-height: 26px;
@@ -30,7 +30,7 @@ em, i {
 }
 
 h1 {
-  font-family: $serif-stack;
+  font-family: inherit;
   font-weight: $font-weight-bold;
   font-size: 32px;
   color: $dark-gray;
@@ -43,7 +43,7 @@ h1 {
 }
 
 h2, h3, h4, h5, h6 {
-  font-family: $sans-serif-stack;
+  font-family: inherit;
   font-weight: $font-weight-bold;
   color: $deep-navy;
   margin: 0px;
@@ -97,7 +97,7 @@ a {
 }
 
 ul {
-  font-family: $serif-stack;
+  font-family: inherit;
   line-height: 23px;
   @media screen and (min-width: $break-lg) {
     font-size: 17px;

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import queryString from "query-string";
 import Skeleton from "react-loading-skeleton";
 import {
     Accordion,
@@ -10,6 +11,7 @@ import {
 } from 'react-accessible-accordion';
 import Button from "../Button";
 import { DetailSkeleton } from "../LoadingSkeleton";
+import { dateString, hasAccessAndUse, noteText } from "../Helpers";
 import "./styles.scss";
 
 
@@ -36,14 +38,14 @@ const AddButton = ({ className, isSaved, saveItem, item, removeItem, toggleSaved
 )
 
 
-const PanelFoundInSection = ({ ancestors }) => (
+const PanelFoundInSection = ({ ancestors, params }) => (
   ancestors ?
     (<>
       <h3 className="panel__heading">Found In</h3>
       <ul className="found-in">
         {ancestors.reverse().map((item, index) => (
           <li className={(index < 1) ? "found-in__collection" : "found-in__subcollection"} key={index}>
-            <a className="found-in__link" href={item.uri}>{item.title}</a>
+            <a className="found-in__link" href={`${item.uri}/?${queryString.stringify(params)}`}>{item.title}</a>
           </li>
         ))}
       </ul>
@@ -72,34 +74,19 @@ const PanelTextSection = props => (
     (null)
 )
 
-// TODO: add params to back button href
-const RecordsDetail = ({ isLoading, isSaved, records, removeItem, saveItem, toggleSaved }) => {
-  /** Helper function to return text from a note by title */
-  const noteText = noteTitle => {
-    let note = records.notes && records.notes.filter(n => {return n.title === noteTitle})[0]
-    return note ? note.subnotes.map(s => s.content).join("\r\n") : null
-  }
-
-  /** Boolean indicator for the presence of access and use notes */
-  const hasAccessAndUse = collection => {
-    const access = records.notes && records.notes.filter(n => {return n.title === "Conditions Governing Access"}).length
-    const use = records.notes && records.notes.filter(n => {return n.title === "Conditions Governing Use"}).length
-    return access || use
-  }
-
-  return (
-  <div className="records__detail">
+const RecordsDetail = ({ activeRecords, isContentShown, isLoading, isSaved, removeItem, params, saveItem, toggleSaved }) => (
+  <div className={`records__detail ${isContentShown ? "hidden" : ""}`}>
     <nav>
-      <a href="/search" className="btn btn--back">
+      <a href={`/search?${queryString.stringify(params)}`} className="btn btn--back">
         <span className="material-icons">keyboard_arrow_left</span>Back to Search
       </a>
     </nav>
-    <h1 className="records__title">{records.title || <Skeleton />}</h1>
-    {records.type === "object" ?
+    <h1 className="records__title">{isLoading ? <Skeleton /> : activeRecords.title }</h1>
+    {activeRecords.type === "object" ?
       (<AddButton
         className="btn-add--lg"
         isSaved={isSaved}
-        item={records}
+        item={activeRecords}
         removeItem={removeItem}
         saveItem={saveItem}
         toggleSaved={toggleSaved} /> ) :
@@ -116,20 +103,20 @@ const RecordsDetail = ({ isLoading, isSaved, records, removeItem, saveItem, togg
             (<>
               <PanelListSection
                 title="Creators"
-                listData={records.creators} />
+                listData={activeRecords.creators} />
               <PanelTextSection
                 title="Dates"
-                text={records.dates && records.dates.map(d => d.expression).join(", ")} />
-              <PanelFoundInSection ancestors={records.ancestors} />
+                text={dateString(activeRecords.dates)}/>
+              <PanelFoundInSection ancestors={activeRecords.ancestors} params={params} />
               <PanelTextSection
                 title="Description"
-                text={noteText("Scope and Contents")} />
+                text={noteText(activeRecords.notes, "Scope and Contents")} />
               </>
               )
             }
         </AccordionItemPanel>
       </AccordionItem>
-      { hasAccessAndUse(records) ?
+      { hasAccessAndUse(activeRecords.notes) ?
         (<AccordionItem className="accordion__item" uuid="accessAndUse">
           <AccordionItemHeading className="accordion__heading" aria-level={2}>
             <AccordionItemButton className="accordion__button">Access and Use</AccordionItemButton>
@@ -137,14 +124,14 @@ const RecordsDetail = ({ isLoading, isSaved, records, removeItem, saveItem, togg
           <AccordionItemPanel className="accordion__panel">
             <PanelTextSection
               title="Access"
-              text={noteText("Conditions Governing Access")} />
+              text={noteText(activeRecords.notes, "Conditions Governing Access")} />
             <PanelTextSection
               title="Reproduction and Duplication"
-              text={noteText("Conditions Governing Use")} />
+              text={noteText(activeRecords.notes, "Conditions Governing Use")} />
           </AccordionItemPanel>
         </AccordionItem>) :
         (null)}
-      { records.terms && records.terms.length ?
+      { activeRecords.terms && activeRecords.terms.length ?
         (<AccordionItem className="accordion__item" uuid="relatedTerms">
             <AccordionItemHeading className="accordion__heading" aria-level={2}>
               <AccordionItemButton className="accordion__button">Related Terms</AccordionItemButton>
@@ -152,19 +139,18 @@ const RecordsDetail = ({ isLoading, isSaved, records, removeItem, saveItem, togg
             <AccordionItemPanel className="accordion__panel">
               <PanelListSection
                 title="Subjects"
-                listData={records.terms} />
+                listData={activeRecords.terms} />
             </AccordionItemPanel>
           </AccordionItem>) :
         (null)}
     </Accordion>
   </div>
-  )
-}
+)
 
 RecordsDetail.propTypes = {
+  activeRecords: PropTypes.object.isRequired,
   isLoading: PropTypes.bool.isRequired,
   isSaved: PropTypes.bool.isRequired,
-  records: PropTypes.object.isRequired,
   removeItem: PropTypes.func.isRequired,
   saveItem: PropTypes.func.isRequired,
   toggleSaved: PropTypes.func.isRequired
