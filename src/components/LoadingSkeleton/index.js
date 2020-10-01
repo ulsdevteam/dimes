@@ -86,6 +86,18 @@ export const DetailSkeleton = () => (
   </>
 )
 
+export const FoundInItemSkeleton = () => (
+  <>
+    {Array(3)
+      .fill()
+      .map((item, index) => (
+        <li className="found-in__subcollection" key={index}>
+          <p className="found-in__link"><Skeleton /></p>
+        </li>
+      ))}
+  </>
+)
+
 export const CollectionHitsSkeleton = () => {
   const collectionInfoSkeleton = (
     <div className="collection-hits__info">

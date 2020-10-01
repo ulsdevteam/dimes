@@ -4,6 +4,7 @@ import {
   AgentAttributeSkeleton,
   CollectionHitsSkeleton,
   DetailSkeleton,
+  FoundInItemSkeleton,
   RecordsChildSkeleton,
   SearchSkeleton,
   MyListSkeleton
@@ -32,6 +33,11 @@ it('renders without crashing', () => {
 it('renders without crashing', () => {
   const div = document.createElement('div');
   render(<CollectionHitsSkeleton />, div);
+});
+
+it('renders without crashing', () => {
+  const div = document.createElement('div');
+  render(<FoundInItemSkeleton />, div);
 });
 
 it('renders without crashing', () => {
