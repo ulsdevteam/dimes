@@ -23,18 +23,18 @@ const SavedItem = props => (
       {props.description && <p className="saved-item__description">{props.description}</p>}
       {props.parent && <p className="saved-item__found-in">Found in: <a href={props.parentRef}>{props.parent}</a></p>}
       {props.lastRequested && <p className="saved-item__last-requested">Last requested on: {props.lastRequested}</p>}
-      <div className="saved-item__buttons">
-        {props.online &&
-          <Button
-            label="View Online"
-            className="btn btn--blue btn--sm"
-            iconAfter="visibility" />}
+    </div>
+    <div className="saved-item__buttons">
+      {props.online &&
         <Button
-          label="Remove"
-          className="btn btn--gray btn--sm"
-          iconBefore="delete"
-          handleClick={props.handleClick} />
-      </div>
+          label="View Online"
+          className="btn btn--blue btn--sm"
+          iconAfter="visibility" />}
+      <Button
+        label="Remove"
+        className="btn btn--gray btn--sm"
+        iconBefore="delete"
+        handleClick={props.handleClick} />
     </div>
   </div>)
 

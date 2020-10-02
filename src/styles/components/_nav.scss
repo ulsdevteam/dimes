@@ -26,6 +26,7 @@
 .nav__item {
   display: inline-block;
   border-left: 1px solid $med-gray;
+  position: relative;
   &:hover {
     background-color: $deep-blue;
     transition: $transition-default
@@ -37,4 +38,12 @@
 }
 .nav__link {
   @include secondary-header-nav-link;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
 }
