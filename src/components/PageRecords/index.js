@@ -16,7 +16,6 @@ class PageCollection extends Component {
       isAncestorsLoading: true,
       isContentShown: false,
       isLoading: true,
-      isSaved: false,
       found: true,
       collection: { title: "" },
       activeRecords: { title: "" },
@@ -32,7 +31,6 @@ class PageCollection extends Component {
       .then(res => {
         this.setState({ collection: res.data })
         this.setState({ activeRecords: res.data });
-        this.setState({ isSaved: this.isSaved(res.data)})
         this.setState({ isLoading: false });
       })
       .catch(err => this.setState({ found: false }));
@@ -45,25 +43,6 @@ class PageCollection extends Component {
       .catch(err => this.setState({ found: false }));
   };
 
-  /** Saves item to MyList
-  * Items are saved within an object corresponding to a top-level collection
-  */
-  saveItem = (itemUri, groupUri) => {
-    var list = this.props.fetchMyList()
-    if (!list[groupUri]) {
-      list[groupUri] = {}
-    }
-    if (!list[groupUri][itemUri]) {
-      list[groupUri][itemUri] = {"saved": Date.now()}
-      this.props.saveMyList(list)
-    }
-  }
-
-  isSaved = item => {
-    const list = this.props.fetchMyList()
-    return list[item.group.identifier] && list[item.group.identifier][item.uri] ? true : false
-  }
-
   setActiveRecords = records => {
     this.setState({ activeRecords: records })
   }
@@ -74,10 +53,6 @@ class PageCollection extends Component {
 
   toggleIsLoading = () => {
     this.setState({ isLoading: !this.state.isLoading })
-  }
-
-  toggleSaved = item => {
-    this.setState({ isSaved: !this.state.isSaved })
   }
 
   render() {
@@ -94,17 +69,13 @@ class PageCollection extends Component {
             isContentShown={this.state.isContentShown}
             toggleIsContentShown={this.toggleIsContentShown} />
           <RecordsDetail
-            ancestors={this.state.ancestors}
-            records={this.state.records}
-            isAncestorsLoading={this.state.isAncestorsLoading}
             activeRecords={this.state.activeRecords}
+            ancestors={this.state.ancestors}
             isContentShown={this.state.isContentShown}
             isLoading={this.state.isLoading}
-            isSaved={this.state.isSaved}
+            isAncestorsLoading={this.state.isAncestorsLoading}
             params={this.state.params}
-            removeItem={this.props.removeItem}
-            saveItem={this.saveItem}
-            toggleSaved={this.toggleSaved} />
+            records={this.state.records} />
           <RecordsContent
             isContentShown={this.state.isContentShown}
             isLoading={this.state.isLoading}
