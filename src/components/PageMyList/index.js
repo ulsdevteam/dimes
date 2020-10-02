@@ -4,6 +4,7 @@
   import { Helmet } from "react-helmet";
   import Button from "../Button";
   import { MyListDropdown } from "../Dropdown";
+  import { fetchMyList, removeItem, saveMyList } from "../MyListHelpers";
   import { DuplicationRequestModal, EmailModal, ReadingRoomRequestModal } from "../Modal";
   import { SavedItemList } from "../SavedItem";
   import "./styles.scss";
@@ -78,9 +79,10 @@
         }
       };
     }
+
     async componentDidMount() {
       this._isMounted = true;
-      const list = this.props.fetchMyList();
+      const list = fetchMyList();
       const resolved = await this.resolveList(list);
       const submitList = this.constructSubmitList(resolved);
       if (this._isMounted) {
@@ -88,9 +90,11 @@
         this.setState({isLoading: false})
       }
     }
+
     componentWillUnmount() {
       this._isMounted = false;
     }
+
     /** Returns a list of ArchivesSpace URIs for checked items in list */
     constructSubmitList = (list) => {
       var submitList = [];
@@ -101,6 +105,7 @@
       }
       return submitList
     }
+
     downloadCsv = () => {
       // TODO: what should happen if there are errors?
       axios
@@ -108,6 +113,7 @@
         .then(res => { console.log(res.data) })
         .catch(err => { console.log(err) });
     }
+
     /**
     * Sets isChecked attribute on modalList based on checkbox input.
     * Updates submitList by filtering unchecked items.
@@ -119,6 +125,7 @@
       const submitList = this.constructSubmitList(updatedModalList)
       this.setState({submitList: submitList})
     }
+
     /**
     * Sets isChecked attribute on savedList based on checkbox input.
     * Updates modalList by filtering out unchecked items.
@@ -149,7 +156,7 @@
     }
 
     refreshList = async() => {
-      const list = this.props.fetchMyList();
+      const list = fetchMyList();
       const resolved = await this.resolveList(list);
       const submitList = this.constructSubmitList(resolved);
       this.setState({savedList: resolved, modalList: resolved, submitList: submitList})
@@ -157,7 +164,13 @@
     }
 
     removeAllItems = () => {
-      this.props.saveMyList({})
+      saveMyList({});
+      this.refreshList();
+    }
+
+    removeSingleItem = item => {
+      removeItem(item);
+      this.refreshList();
     }
 
     /** Returns a list with all unchecked items removed */
@@ -208,9 +221,11 @@
       }
       return resolvedList;
     }
+
     sendEmail = () => {
       window.open("mailto:archive@rockarch.org?subject=Scheduling a research appointment");
     }
+
     /** Returns list with isChecked attributes set based on checkbox input. */
     setIsChecked = (e, list) => {
       var updatedList = []
@@ -225,9 +240,11 @@
       }
       return updatedList
     }
+
     toggleModal = (modal)  => {
       this.setState({ [modal]: {...this.state[modal], isOpen: !this.state[modal]["isOpen"], error: ""} })
     }
+
     render() {
       return (
         <React.Fragment>
@@ -253,8 +270,7 @@
                 items={this.state.savedList}
                 isLoading={this.state.isLoading}
                 handleChange={this.handleSavedListChange}
-                removeItem={this.props.removeItem}
-                refreshList={this.refreshList} />
+                removeSingleItem={this.removeSingleItem} />
             </main>
             <MyListSidebar
                 duplicationRequest={() => this.toggleModal("duplication")}
@@ -288,10 +304,6 @@
         </React.Fragment>
       );
     }
-  }
-
-  PageMyList.propTypes = {
-    fetchMyList: PropTypes.func.isRequired
   }
 
   export default PageMyList;
