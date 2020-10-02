@@ -3,8 +3,10 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import queryString from "query-string";
 import HitCount from "../HitCount";
+import ListToggleButton from "../ListToggleButton";
 import { RecordsChildSkeleton } from "../LoadingSkeleton";
 import { dateString } from "../Helpers";
+import { fetchMyList, isItemSaved, removeItem, saveItem } from "../MyListHelpers";
 import "./styles.scss";
 
 
@@ -13,8 +15,19 @@ class RecordsChild extends Component {
     super(props)
     this.state = {
       isChildrenLoading: false,
+      isSaved: false,
       itemChildren: [],
+      itemData: {}
     }
+  }
+
+  componentDidMount() {
+    axios
+      .get(`${process.env.REACT_APP_ARGO_BASEURL}/${this.props.item.uri}?${queryString.stringify(this.props.params)}`)
+      .then(res => {
+        this.setState({ itemData: res.data })
+        this.setState({ isSaved: isItemSaved(res.data)})
+      })
   }
 
   handleClick = item => {
@@ -47,6 +60,13 @@ class RecordsChild extends Component {
     }
   }
 
+  toggleSaved = item => {
+    const list = fetchMyList();
+    const saved = isItemSaved(item, list)
+    saved ? removeItem(item) : saveItem(item)
+    this.setState({isSaved: !this.state.isSaved})
+  }
+
   render() {
     const {item, params, setActiveRecords, setParent, toggleIsLoading} = this.props;
     return (
@@ -56,6 +76,13 @@ class RecordsChild extends Component {
           <p className="child__text">{item.dates}</p>
           <p className="child__text child__description">{item.description}</p>
           {this.state.hit_count ? (<HitCount className="hit-count--records-" hitCount={item.hit_count} />) : null}
+          {item.type === "object" ?
+            (<ListToggleButton
+              className="btn-add--sm"
+              isSaved={this.state.isSaved}
+              item={item}
+              toggleSaved={() => this.toggleSaved(this.state.itemData)} />) :
+            (null)}
         </div>
         {this.state.isChildrenLoading ? <RecordsChildSkeleton/> : null}
         {(this.state.itemChildren && this.state.itemChildren.length) ?
@@ -106,6 +133,7 @@ class RecordsContentList extends Component {
 
   childList = children => {
     const {parent, params, setActiveRecords, toggleIsLoading} = this.props;
+    // TODO: needs isSaved prop
     return (
       children.map(child => (
         <RecordsChild
@@ -137,7 +165,7 @@ RecordsContentList.propTypes = {
   parent: PropTypes.object.isRequired,
   params: PropTypes.object,
   setActiveRecords: PropTypes.func.isRequired,
-  toggleIsLoading: PropTypes.func.isRequired
+  toggleIsLoading: PropTypes.func.isRequired,
 }
 
 
@@ -167,7 +195,7 @@ RecordsContent.propTypes = {
   params: PropTypes.object,
   parent: PropTypes.object.isRequired,
   setActiveRecords: PropTypes.func.isRequired,
-  toggleIsLoading: PropTypes.func.isRequired
+  toggleIsLoading: PropTypes.func.isRequired,
 }
 
 export default RecordsContent;

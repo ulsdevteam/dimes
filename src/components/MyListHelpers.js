@@ -36,7 +36,6 @@ export const saveItem = item => {
 
 /** Indicates whether or not an item is present in My List */
 export const isItemSaved = (item, list) => {
-  console.log(item, list)
-  console.log(list[item.group.identifier] && list[item.group.identifier][item.uri] ? true : false)
+  list = list ? list : fetchMyList();
   return list[item.group.identifier] && list[item.group.identifier][item.uri] ? true : false
 }
