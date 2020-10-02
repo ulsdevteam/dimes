@@ -10,6 +10,7 @@ import PageHome from "./components/PageHome";
 import PageMyList from "./components/PageMyList";
 import PageSearch from "./components/PageSearch";
 import PageNotFound from "./components/PageNotFound";
+import { fetchMyList } from "./components/MyListHelpers";
 
 class App extends Component {
   constructor(props) {
@@ -23,32 +24,13 @@ class App extends Component {
     this.setMyListCount()
   }
 
-  fetchMyList() {
-    var existing = localStorage.getItem(`${process.env.REACT_APP_LOCALSTORAGE_KEY}`);
-    return existing ? JSON.parse(existing) : {};
-  }
-
-  saveMyList = list => {
-    localStorage.setItem(`${process.env.REACT_APP_LOCALSTORAGE_KEY}`, JSON.stringify(list));
-    this.setMyListCount()
-  }
-
   setMyListCount = data => {
-    var list = data ? data : this.fetchMyList()
+    var list = data ? data : fetchMyList()
     var count = 0
     for (const [ , value] of Object.entries(list)) {
       count += Object.keys(value).length
     }
     this.setState({ "myListCount": count })
-  }
-
-  removeItem = (itemUri, groupUri) => {
-    var list = this.fetchMyList();
-    delete list[groupUri][itemUri]
-    if (Object.entries(list[groupUri]).length === 0) {
-      delete list[groupUri]
-    }
-    this.saveMyList(list);
   }
 
   render() {
@@ -60,19 +42,12 @@ class App extends Component {
             <div className="wrapper">
               <Switch>
                 <Route path="/list/" render={(props) =>
-                  <PageMyList
-                    {...props}
-                    fetchMyList={this.fetchMyList}
-                    removeItem={this.removeItem}
-                    saveMyList={this.saveMyList} />
+                  <PageMyList {...props} />
                 } />
                 <Route path="/search/" component={PageSearch} />
                 <Route path="/:type(collections|objects)/:id" render={(props) =>
                   <PageRecords
-                    {...props}
-                    fetchMyList={this.fetchMyList}
-                    removeItem={this.removeItem}
-                    saveMyList={this.saveMyList}/>
+                    {...props} />
                 } />
                 <Route path="/agents/:id" component={PageAgent} />
                 <Route path="/view/" component={PageDigitalObject} />
