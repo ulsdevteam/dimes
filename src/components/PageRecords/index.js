@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import axios from "axios";
 import queryString from "query-string";
 import { Helmet } from "react-helmet";
@@ -8,7 +9,7 @@ import RecordsDetail from "../RecordsDetail";
 import PageNotFound from "../PageNotFound";
 
 
-class PageCollection extends Component {
+class PageRecords extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -56,6 +57,7 @@ class PageCollection extends Component {
   }
 
   render() {
+    const { savedList, toggleInList } = this.props;
     if (!this.state.found) {
       return (<PageNotFound />)
     }
@@ -71,17 +73,19 @@ class PageCollection extends Component {
           <RecordsDetail
             activeRecords={this.state.activeRecords}
             ancestors={this.state.ancestors}
+            isAncestorsLoading={this.state.isAncestorsLoading}
             isContentShown={this.state.isContentShown}
             isLoading={this.state.isLoading}
-            isAncestorsLoading={this.state.isAncestorsLoading}
             params={this.state.params}
-            records={this.state.records} />
+            savedList={savedList}
+            toggleInList={toggleInList} />
           <RecordsContent
             isContentShown={this.state.isContentShown}
-            isLoading={this.state.isLoading}
             params={this.state.params}
             parent={this.state.collection}
+            savedList={savedList}
             setActiveRecords={this.setActiveRecords}
+            toggleInList={toggleInList}
             toggleIsLoading={this.toggleIsLoading} />
         </div>
       </React.Fragment>
@@ -89,4 +93,9 @@ class PageCollection extends Component {
   }
 }
 
-export default PageCollection;
+PageRecords.propTypes = {
+  savedList: PropTypes.object.isRequired,
+  toggleInList: PropTypes.func.isRequired,
+}
+
+export default PageRecords;

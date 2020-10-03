@@ -68,14 +68,13 @@ ModalSavedItem.propTypes = {
   title: PropTypes.string.isRequired
 }
 
-const SavedItemGroup = ({ handleChange, items, removeSingleItem, title, uri }) => {
-
+const SavedItemGroup = ({ handleChange, items, toggleInList, title, uri }) => {
   const listItems = items.map((item, index) =>
     <SavedItem
       key={index}
       {...item}
       handleChange={handleChange}
-      handleClick={() => removeSingleItem({...item, "group": {...item.group, identifier: uri}})} />
+      handleClick={() => toggleInList({...item, "group": {...item.group, identifier: uri}})} />
   )
 
   return (
@@ -91,7 +90,7 @@ const SavedItemGroup = ({ handleChange, items, removeSingleItem, title, uri }) =
 SavedItemGroup.propTypes = {
   handleChange: PropTypes.func,
   items: PropTypes.array.isRequired,
-  removeSingleItem: PropTypes.func.isRequired,
+  toggleInList: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   uri: PropTypes.string.isRequired,
 }
@@ -119,16 +118,18 @@ ModalSavedItemGroup.propTypes = {
   title: PropTypes.string.isRequired,
 }
 
-export const SavedItemList = ({ handleChange, isLoading, items, removeSingleItem }) => {
+export const SavedItemList = ({ handleChange, isLoading, items, toggleInList }) => {
+
   const groupItems = items => {
     return items.length ? (items.map((item) =>
       <SavedItemGroup
         key={item.title}
         {...item}
         handleChange={handleChange}
-        removeSingleItem={removeSingleItem} />
+        toggleInList={toggleInList} />
     )) : (<p className="saved-items__empty">No saved items.</p>)
   }
+
   return (
     <div className="saved-items">
       {isLoading ? <MyListSkeleton /> : groupItems(items)}
@@ -140,7 +141,7 @@ SavedItemList.propTypes = {
   handleChange: PropTypes.func,
   isLoading: PropTypes.bool.isRequired,
   items: PropTypes.array.isRequired,
-  removeSingleItem: PropTypes.func
+  toggleInList: PropTypes.func.isRequired,
 }
 
 export const ModalSavedItemList = ({ handleChange, items }) => {

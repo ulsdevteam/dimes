@@ -12,7 +12,7 @@ import {
 import ListToggleButton from "../ListToggleButton";
 import { DetailSkeleton, FoundInItemSkeleton } from "../LoadingSkeleton";
 import { dateString, hasAccessAndUse, noteText } from "../Helpers";
-import { fetchMyList, isItemSaved, removeItem, saveItem } from "../MyListHelpers";
+import { isItemSaved } from "../MyListHelpers";
 import "./styles.scss";
 
 
@@ -59,25 +59,16 @@ const PanelTextSection = ({ text, title }) => (
     (null)
 )
 
-const RecordsDetail = ({ activeRecords, ancestors, isAncestorsLoading, isContentShown, isLoading, params }) => {
+const RecordsDetail = ({ activeRecords, ancestors, isAncestorsLoading, isContentShown, isLoading, params, savedList, toggleInList }) => {
 
   var [isSaved, setIsSaved] = useState(() => {
-    const list = fetchMyList();
-    return !isLoading && isItemSaved(activeRecords, list)
+    return !isLoading && isItemSaved(activeRecords, savedList)
   })
 
   useEffect(() => {
-    const list = fetchMyList();
-    const saved = !isLoading && isItemSaved(activeRecords, list)
+    const saved = !isLoading && isItemSaved(activeRecords, savedList)
     setIsSaved(saved)
-  }, [isLoading, activeRecords])
-
-  const toggleSaved = item => {
-    const list = fetchMyList();
-    const saved = isItemSaved(item, list)
-    saved ? removeItem(item) : saveItem(item)
-    setIsSaved(!saved)
-  }
+  }, [isLoading, activeRecords, savedList])
 
   return (
   <div className={`records__detail ${isContentShown ? "hidden" : ""}`}>
@@ -92,7 +83,7 @@ const RecordsDetail = ({ activeRecords, ancestors, isAncestorsLoading, isContent
         className="btn-add--lg"
         isSaved={isSaved}
         item={activeRecords}
-        toggleSaved={toggleSaved} /> ) :
+        toggleSaved={toggleInList} /> ) :
       (null)
     }
     <Accordion className="accordion" preExpanded={["summary"]} allowZeroExpanded={true}>
@@ -158,7 +149,9 @@ RecordsDetail.propTypes = {
   isAncestorsLoading: PropTypes.bool.isRequired,
   isContentShown: PropTypes.bool,
   isLoading: PropTypes.bool.isRequired,
-  params: PropTypes.object.isRequired
+  params: PropTypes.object.isRequired,
+  savedList: PropTypes.object.isRequired,
+  toggleInList: PropTypes.func.isRequired,
 }
 
 export default RecordsDetail;

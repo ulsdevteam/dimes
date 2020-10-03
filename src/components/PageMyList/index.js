@@ -4,7 +4,6 @@
   import { Helmet } from "react-helmet";
   import Button from "../Button";
   import { MyListDropdown } from "../Dropdown";
-  import { fetchMyList, removeItem, saveMyList } from "../MyListHelpers";
   import { DuplicationRequestModal, EmailModal, ReadingRoomRequestModal } from "../Modal";
   import { SavedItemList } from "../SavedItem";
   import "./styles.scss";
@@ -80,19 +79,14 @@
       };
     }
 
-    async componentDidMount() {
-      this._isMounted = true;
-      const list = fetchMyList();
-      const resolved = await this.resolveList(list);
-      const submitList = this.constructSubmitList(resolved);
-      if (this._isMounted) {
+    async componentDidUpdate(nextProps, nextState) {
+      if (nextProps.savedList !== this.props.savedList) {
+        this.setState({isLoading: true})
+        const resolved = await this.resolveList(this.props.savedList)
+        const submitList = this.constructSubmitList(resolved);
         this.setState({savedList: resolved, modalList: resolved, submitList: submitList})
         this.setState({isLoading: false})
       }
-    }
-
-    componentWillUnmount() {
-      this._isMounted = false;
     }
 
     /** Returns a list of ArchivesSpace URIs for checked items in list */
@@ -155,24 +149,6 @@
         .catch(err => console.log(err));
     }
 
-    refreshList = async() => {
-      const list = fetchMyList();
-      const resolved = await this.resolveList(list);
-      const submitList = this.constructSubmitList(resolved);
-      this.setState({savedList: resolved, modalList: resolved, submitList: submitList})
-      this.setState({isLoading: false})
-    }
-
-    removeAllItems = () => {
-      saveMyList({});
-      this.refreshList();
-    }
-
-    removeSingleItem = item => {
-      removeItem(item);
-      this.refreshList();
-    }
-
     /** Returns a list with all unchecked items removed */
     removeUnchecked = (list) => {
       var filteredList = [];
@@ -185,7 +161,7 @@
     }
 
     /** Returns data about list items fetched from canonical source */
-    resolveList = async(list) => {
+    resolveList = async (list) => {
       var resolvedList = [];
       for (const [uri, items] of Object.entries(list)) {
         const fetchedGroup = await this.fetchFromUri(uri);
@@ -219,7 +195,7 @@
           resolvedList.push(resolved)
         }
       }
-      return resolvedList;
+      return resolvedList
     }
 
     sendEmail = () => {
@@ -259,18 +235,18 @@
                   duplicationRequest={() => this.toggleModal("duplication")}
                   emailList={() => this.toggleModal("email")}
                   readingRoomRequest={() => this.toggleModal("readingRoom")}
-                  removeAllItems={this.removeAllItems}
+                  removeAllItems={this.props.removeAllItems}
                   sendEmail={this.sendEmail} />
               </div>
               <MyListExportActions
                   downloadCsv={this.downloadCsv}
                   emailList={() => this.toggleModal("email")}
-                  removeAllItems={this.removeAllItems} />
+                  removeAllItems={this.props.removeAllItems} />
               <SavedItemList
                 items={this.state.savedList}
                 isLoading={this.state.isLoading}
                 handleChange={this.handleSavedListChange}
-                removeSingleItem={this.removeSingleItem} />
+                toggleInList={this.props.toggleInList} />
             </main>
             <MyListSidebar
                 duplicationRequest={() => this.toggleModal("duplication")}
@@ -304,6 +280,12 @@
         </React.Fragment>
       );
     }
+  }
+
+  PageMyList.propTypes = {
+    removeAllItems: PropTypes.func.isRequired,
+    savedList: PropTypes.object.isRequired,
+    toggleInList: PropTypes.func.isRequired,
   }
 
   export default PageMyList;

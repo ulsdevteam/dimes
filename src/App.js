@@ -10,27 +10,46 @@ import PageHome from "./components/PageHome";
 import PageMyList from "./components/PageMyList";
 import PageSearch from "./components/PageSearch";
 import PageNotFound from "./components/PageNotFound";
-import { fetchMyList } from "./components/MyListHelpers";
+import { fetchMyList, isItemSaved, removeItem, saveItem, saveMyList } from "./components/MyListHelpers";
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      "myListCount": 0
+      myListCount: 0,
+      savedList: {}
     }
   }
 
   componentDidMount() {
-    this.setMyListCount()
+    this.setState({savedList: fetchMyList()})
   }
 
-  setMyListCount = data => {
+  componentDidUpdate(nextProps, nextState) {
+    if (nextState.savedList !== this.state.savedList) {
+      this.setState({myListCount: this.countMyList(this.state.savedList)})
+    }
+  }
+
+  countMyList = data => {
     var list = data ? data : fetchMyList()
     var count = 0
     for (const [ , value] of Object.entries(list)) {
       count += Object.keys(value).length
     }
-    this.setState({ "myListCount": count })
+    return count
+  }
+
+  removeAllItems = () => {
+    saveMyList({});
+    this.setState({ savedList: {} })
+  }
+
+  toggleInList = item => {
+    const saved = isItemSaved(item, this.state.savedList)
+    saved ? removeItem(item) : saveItem(item)
+    this.setState({savedList: fetchMyList()})
+    return !saved
   }
 
   render() {
@@ -42,12 +61,18 @@ class App extends Component {
             <div className="wrapper">
               <Switch>
                 <Route path="/list/" render={(props) =>
-                  <PageMyList {...props} />
+                  <PageMyList
+                    {...props}
+                    removeAllItems={this.removeAllItems}
+                    savedList={this.state.savedList}
+                    toggleInList={this.toggleInList} />
                 } />
                 <Route path="/search/" component={PageSearch} />
                 <Route path="/:type(collections|objects)/:id" render={(props) =>
                   <PageRecords
-                    {...props} />
+                    {...props}
+                    savedList={this.state.savedList}
+                    toggleInList={this.toggleInList} />
                 } />
                 <Route path="/agents/:id" component={PageAgent} />
                 <Route path="/view/" component={PageDigitalObject} />
