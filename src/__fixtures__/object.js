@@ -3,6 +3,10 @@ export const object = {
     "title": "Volunteer Urban Consulting Group, Inc.",
     "type": "object",
     "category": "collection",
+    "group": {
+        "identifier": "/collections/VvejLsGzHeTofJzz7ewUwH",
+        "title": "Rockefeller Brothers Fund records"
+    },
     "external_identifiers": [
         {
             "identifier": "/repositories/2/archival_objects/25993",

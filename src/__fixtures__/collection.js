@@ -3,6 +3,10 @@ export const collectionWithChildHits = {
     "title": "Cary Reich papers",
     "type": "collection",
     "category": "collection",
+    "group": {
+        "identifier": "/collections/WakaW9sdM6GG8cJ7xXbZcN",
+        "title": "Cary Reich papers"
+    },
     "external_identifiers": [
         {
             "identifier": "/repositories/2/resources/17",
