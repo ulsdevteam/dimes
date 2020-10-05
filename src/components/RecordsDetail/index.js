@@ -119,7 +119,7 @@ const RecordsDetail = ({ activeRecords, ancestors, isAncestorsLoading, isContent
                 isLoading={isAncestorsLoading} />
               <PanelTextSection
                 title="Description"
-                text={noteText("abstract") || noteText("scopecontent")} />
+                text={noteText(activeRecords.notes, "abstract") || noteText(activeRecords.notes, "scopecontent")} />
               </>
               )
             }
