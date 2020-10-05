@@ -190,7 +190,7 @@ export const ReadingRoomRequestModal = props => (
             component="div"
             className="modal-form__error" />
           <FormButtons
-            submitText={`Request ${props.list.length ? (props.list.length) : ""} Items`}
+            submitText={`Request ${props.submitList.length ? (props.submitList.length) : ""} ${props.submitList.length > 1 ? "Items" : "Item"}`}
             toggleModal={props.toggleModal}
             isSubmitting={isSubmitting} />
           <FocusError />
@@ -299,7 +299,7 @@ export const DuplicationRequestModal = props => (
             component="div"
             className="modal-form__error" />
           <FormButtons
-            submitText={`Request ${props.list.length ? (props.list.length) : ""} Items`}
+            submitText={`Request ${props.submitList.length ? (props.submitList.length) : ""} ${props.submitList.length > 1 ? "Items" : "Item"}`}
             toggleModal={props.toggleModal}
             isSubmitting={isSubmitting} />
           <FocusError />
