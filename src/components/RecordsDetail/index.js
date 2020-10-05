@@ -119,7 +119,7 @@ const RecordsDetail = ({ activeRecords, ancestors, isAncestorsLoading, isContent
                 isLoading={isAncestorsLoading} />
               <PanelTextSection
                 title="Description"
-                text={noteText(activeRecords.notes, "Scope and Contents")} />
+                text={noteText("abstract") || noteText("scopecontent")} />
               </>
               )
             }
@@ -133,10 +133,10 @@ const RecordsDetail = ({ activeRecords, ancestors, isAncestorsLoading, isContent
           <AccordionItemPanel className="accordion__panel">
             <PanelTextSection
               title="Access"
-              text={noteText(activeRecords.notes, "Conditions Governing Access")} />
+              text={noteText(activeRecords.notes, "accessrestrict")} />
             <PanelTextSection
               title="Reproduction and Duplication"
-              text={noteText(activeRecords.notes, "Conditions Governing Use")} />
+              text={noteText(activeRecords.notes, "userestrict")} />
           </AccordionItemPanel>
         </AccordionItem>) :
         (null)}
