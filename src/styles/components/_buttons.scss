@@ -191,3 +191,14 @@
     width: unset;
   }
 }
+
+.btn-add--sm {
+  @extend .btn-add;
+  font-size: 10px;
+  padding: 8px;
+  @media screen and (min-width: $break-md) {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+}
