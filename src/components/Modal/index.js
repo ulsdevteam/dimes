@@ -351,13 +351,15 @@ export const FacetModal = props => {
       </div>
       <div className="modal-body">
         <Facet>
-          <CheckBoxInput
-            id="online"
-            name="true"
-            className="facet__input"
-            checked={props.params.online === "true"}
-            handleChange={e => props.handleChange(e, "online")}
-            label={`Show me digital materials only (${props.data.online && props.data.online.doc_count})`} />
+          <div className="facet__input">
+            <CheckBoxInput
+              id="online"
+              name="true"
+              className="checkbox--blue"
+              checked={props.params.online === "true"}
+              handleChange={e => props.handleChange(e, "online")}
+              label={`Show me digital materials only (${props.data.online && props.data.online.doc_count})`} />
+          </div>
         </Facet>
         <Facet title="Date Range">
           <YearInput

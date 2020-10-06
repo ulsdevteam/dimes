@@ -47,7 +47,16 @@
   margin-bottom: 15px;
 }
 
-.saved-item__inputs, .modal-saved-item__inputs {
+.saved-item__inputs {
+  float: left;
+  padding: 1px;
+  margin: 0 15px;
+  width: 18px;
+  height: 18px;
+  overflow: hidden
+}
+
+.modal-saved-item__inputs {
   @include grid-column(1);
 }
 
