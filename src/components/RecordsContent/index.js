@@ -79,7 +79,7 @@ class RecordsChild extends Component {
           <button className={`child__title child__title--${item.type}`} onClick={() => this.handleClick(item)}>{item.title}</button>
           <p className="child__text">{item.dates}</p>
           <p className="child__text child__description">{item.description}</p>
-          {this.state.hit_count ? (<HitCount className="hit-count--records-" hitCount={item.hit_count} />) : null}
+          {item.hit_count ? (<HitCount className="hit-count--records-" hitCount={item.hit_count} />) : null}
           {item.type === "object" ?
             (<ListToggleButton
               className="btn-add--sm"
