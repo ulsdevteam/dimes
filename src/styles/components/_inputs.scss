@@ -57,11 +57,8 @@ label {
 .checkbox:not(:checked) + label,
 .checkbox:checked + label {
   position: relative;
-  padding-left: 1.95em;
+  padding-left: 30px;
   cursor: pointer;
-  &.hide-label {
-    content: ""
-  }
 }
 
 /* checkbox aspect */
