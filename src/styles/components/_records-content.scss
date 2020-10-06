@@ -1,5 +1,4 @@
 @import "../styles";
-@import "./buttons";
 
 .records__content {
   font-family: $sans-serif-stack;
@@ -125,15 +124,4 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.btn-add--sm {
-  @extend .btn-add;
-  font-size: 10px;
-  padding: 8px;
-  @media screen and (min-width: $break-md) {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-  }
 }
