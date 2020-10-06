@@ -14,13 +14,11 @@
 }
 
 @mixin icon-margin-right { // adds margin to align icon to the left of button the label
-  margin-right: 3px;
-  margin-bottom: 3px;
+  margin: 0px 3px 3px 0px;
 }
 
 @mixin icon-margin-left { // adds margin to align icon to the right of the button label
-  margin-left: 3px;
-  margin-bottom: 3px;
+  margin: 0px 00px 3px 3px;
 }
 
 .btn {
@@ -45,6 +43,7 @@
   margin-right: 10px;
   transition: $transition-default;
   & .material-icons {
+    @include icon-margin-right;
     font-size: 16px;
   }
 }
@@ -54,6 +53,7 @@
   line-height: 15px;
   padding: 13px 14px;
   & .material-icons {
+    @include icon-margin-right;
     font-size: 20px;
   }
 }
@@ -126,9 +126,6 @@
   @extend .btn--gray;
   @extend .btn--sm;
   margin-top: 20px;
-  & .material-icons {
-    @include icon-margin-right;
-  }
   @media screen and (min-width: $break-md)  {
     margin-top: 30px;
   }
