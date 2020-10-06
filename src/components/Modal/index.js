@@ -72,7 +72,6 @@ export const EmailModal = props => (
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
-          console.log(values)
           props.handleFormSubmit(
             `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/deliver-request/email`, values, "email");
           setSubmitting(false);
