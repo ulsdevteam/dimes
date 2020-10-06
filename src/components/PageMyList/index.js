@@ -217,8 +217,11 @@
       return updatedList
     }
 
-    toggleModal = (modal)  => {
+    toggleModal = async (modal)  => {
       this.setState({ [modal]: {...this.state[modal], isOpen: !this.state[modal]["isOpen"], error: ""} })
+      const resolved = await this.resolveList(this.props.savedList)
+      const submitList = this.constructSubmitList(resolved);
+      this.setState({submitList: submitList})
     }
 
     render() {
