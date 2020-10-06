@@ -68,17 +68,18 @@ ModalSavedItem.propTypes = {
   title: PropTypes.string.isRequired
 }
 
-const SavedItemGroup = props => {
-  const listItems = props.items.map((item, index) =>
+const SavedItemGroup = ({ handleChange, items, toggleInList, title, uri }) => {
+  const listItems = items.map((item, index) =>
     <SavedItem
       key={index}
       {...item}
-      handleChange={props.handleChange}
-      handleClick={() => {props.removeItem(item.uri, props.groupUri); props.refreshList()}} />
-  );
+      handleChange={handleChange}
+      handleClick={() => toggleInList({...item, "group": {...item.group, identifier: uri}})} />
+  )
+
   return (
     <div className="saved-items__item-group">
-      <h2 className="item-group__title">{props.title}</h2>
+      <h2 className="item-group__title">{title}</h2>
       <div className="item-group__items">
         {listItems}
       </div>
@@ -87,23 +88,23 @@ const SavedItemGroup = props => {
 }
 
 SavedItemGroup.propTypes = {
-  groupUri: PropTypes.string,
   handleChange: PropTypes.func,
   items: PropTypes.array.isRequired,
-  removeItem: PropTypes.func,
-  title: PropTypes.string.isRequired
+  toggleInList: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  uri: PropTypes.string.isRequired,
 }
 
-const ModalSavedItemGroup = props => {
-  const listItems = props.items.map((item, index) =>
+const ModalSavedItemGroup = ({ handleChange, items, title }) => {
+  const listItems = items.map((item, index) =>
     <ModalSavedItem
-      handleChange={props.handleChange}
+      handleChange={handleChange}
       key={index}
       {...item} />
   );
   return (
     <div className="modal-saved-items__item-group">
-      <h3 className="modal-item-group__title">{props.title}</h3>
+      <h3 className="modal-item-group__title">{title}</h3>
       <ul className="modal-item-group__items">
         {listItems}
       </ul>
@@ -117,21 +118,21 @@ ModalSavedItemGroup.propTypes = {
   title: PropTypes.string.isRequired,
 }
 
-export const SavedItemList = props => {
+export const SavedItemList = ({ handleChange, isLoading, items, toggleInList }) => {
+
   const groupItems = items => {
     return items.length ? (items.map((item) =>
       <SavedItemGroup
         key={item.title}
         {...item}
-        groupUri={item.uri}
-        removeItem={props.removeItem}
-        handleChange={props.handleChange}
-        refreshList={props.refreshList} />
+        handleChange={handleChange}
+        toggleInList={toggleInList} />
     )) : (<p className="saved-items__empty">No saved items.</p>)
   }
+
   return (
     <div className="saved-items">
-      {props.isLoading ? <MyListSkeleton /> : groupItems(props.items)}
+      {isLoading ? <MyListSkeleton /> : groupItems(items)}
     </div>
   )
 }
@@ -140,22 +141,22 @@ SavedItemList.propTypes = {
   handleChange: PropTypes.func,
   isLoading: PropTypes.bool.isRequired,
   items: PropTypes.array.isRequired,
-  removeItem: PropTypes.func
+  toggleInList: PropTypes.func.isRequired,
 }
 
-export const ModalSavedItemList = props => {
+export const ModalSavedItemList = ({ handleChange, items }) => {
   const groupItems = items => {
     return items.length ? (items.map((item) =>
       <ModalSavedItemGroup
         key={item.title}
         {...item}
         groupUri={item.uri}
-        handleChange={props.handleChange} />
+        handleChange={handleChange} />
     )) : (<p className="saved-items__empty">No saved items.</p>)
   }
   return (
     <div className="modal-saved-items">
-      {groupItems(props.items)}
+      {groupItems(items)}
     </div>
   )
 }

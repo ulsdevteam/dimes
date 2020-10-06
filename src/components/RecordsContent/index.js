@@ -3,8 +3,10 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import queryString from "query-string";
 import HitCount from "../HitCount";
+import ListToggleButton from "../ListToggleButton";
 import { RecordsChildSkeleton } from "../LoadingSkeleton";
 import { dateString } from "../Helpers";
+import { isItemSaved } from "../MyListHelpers";
 import "./styles.scss";
 
 
@@ -13,7 +15,24 @@ class RecordsChild extends Component {
     super(props)
     this.state = {
       isChildrenLoading: false,
+      isSaved: false,
       itemChildren: [],
+      itemData: {}
+    }
+  }
+
+  componentDidMount() {
+    axios
+      .get(`${process.env.REACT_APP_ARGO_BASEURL}/${this.props.item.uri}?${queryString.stringify(this.props.params)}`)
+      .then(res => {
+        this.setState({ itemData: res.data })
+        this.setState({ isSaved: isItemSaved(res.data, this.props.savedList)})
+      })
+  }
+
+  componentDidUpdate(nextProps, nextState) {
+    if (nextProps.savedList !== this.state.savedList && nextState.itemData !== this.state.itemData) {
+      this.setState({ isSaved: isItemSaved(this.state.itemData, this.props.savedList)})
     }
   }
 
@@ -47,8 +66,13 @@ class RecordsChild extends Component {
     }
   }
 
+  toggleSaved = item => {
+    this.props.toggleInList(item);
+    this.setState({isSaved: !this.state.isSaved})
+  }
+
   render() {
-    const {item, params, setActiveRecords, setParent, toggleIsLoading} = this.props;
+    const {item, params, savedList, setActiveRecords, setParent, toggleInList, toggleIsLoading} = this.props;
     return (
       <li>
         <div className={`child__list-item child__list-item--${item.type} ${item.isActive ? "active" : ""}`} >
@@ -56,6 +80,13 @@ class RecordsChild extends Component {
           <p className="child__text">{item.dates}</p>
           <p className="child__text child__description">{item.description}</p>
           {this.state.hit_count ? (<HitCount className="hit-count--records-" hitCount={item.hit_count} />) : null}
+          {item.type === "object" ?
+            (<ListToggleButton
+              className="btn-add--sm"
+              isSaved={this.state.isSaved}
+              item={this.state.itemData}
+              toggleSaved={this.toggleSaved} />) :
+            (null)}
         </div>
         {this.state.isChildrenLoading ? <RecordsChildSkeleton /> : null}
         {(this.state.itemChildren && this.state.itemChildren.length) ?
@@ -64,8 +95,10 @@ class RecordsChild extends Component {
             className={`${!item.isActive ? "hidden" : ""} ${this.state.itemChildren[0].type === "object" ? "child__list--bottom-level": ""}`}
             parent={item}
             params={params}
+            savedList={savedList}
             setActiveRecords={setActiveRecords}
             setParent={setParent}
+            toggleInList={toggleInList}
             toggleIsLoading={toggleIsLoading} />) :
           (null)}
       </li>
@@ -78,8 +111,10 @@ RecordsChild.propTypes = {
     item: PropTypes.object.isRequired,
     params: PropTypes.object,
     toggleActiveChild: PropTypes.func.isRequired,
+    savedList: PropTypes.object.isRequired,
     setActiveRecords: PropTypes.func.isRequired,
     setParent: PropTypes.func.isRequired,
+    toggleInList: PropTypes.func.isRequired,
     toggleIsLoading: PropTypes.func.isRequired
 }
 
@@ -105,7 +140,8 @@ class RecordsContentList extends Component {
   }
 
   childList = children => {
-    const {parent, params, setActiveRecords, toggleIsLoading} = this.props;
+    const {parent, params, savedList, setActiveRecords, toggleInList, toggleIsLoading} = this.props;
+
     return (
       children.map(child => (
         <RecordsChild
@@ -113,9 +149,11 @@ class RecordsContentList extends Component {
           parent={parent}
           item={child}
           params={params}
-          toggleActiveChild={this.toggleActiveChild}
+          savedList={savedList}
           setActiveRecords={setActiveRecords}
           setParent={this.setParent}
+          toggleActiveChild={this.toggleActiveChild}
+          toggleInList={toggleInList}
           toggleIsLoading={toggleIsLoading} />
         )
       )
@@ -136,12 +174,15 @@ RecordsContentList.propTypes = {
   className: PropTypes.string,
   parent: PropTypes.object.isRequired,
   params: PropTypes.object,
+  savedList: PropTypes.object.isRequired,
   setActiveRecords: PropTypes.func.isRequired,
-  toggleIsLoading: PropTypes.func.isRequired
+  toggleInList: PropTypes.func.isRequired,
+  toggleIsLoading: PropTypes.func.isRequired,
 }
 
 
-const RecordsContent = ({ isContentShown, params, parent, setActiveRecords, toggleIsLoading }) => {
+const RecordsContent = props => {
+  const { isContentShown, params, parent, savedList, setActiveRecords, toggleInList, toggleIsLoading } = props;
   const collection = (parent.ancestors && parent.ancestors.length) ? parent.ancestors.slice(0)[0] : parent;
 
   return (
@@ -156,7 +197,9 @@ const RecordsContent = ({ isContentShown, params, parent, setActiveRecords, togg
       className="child__list--top-level"
       parent={parent}
       params={params}
+      savedList={savedList}
       setActiveRecords={setActiveRecords}
+      toggleInList={toggleInList}
       toggleIsLoading={toggleIsLoading} />
   </div>) :
   (null)
@@ -166,8 +209,10 @@ RecordsContent.propTypes = {
   isContentShown: PropTypes.bool.isRequired,
   params: PropTypes.object,
   parent: PropTypes.object.isRequired,
+  savedList: PropTypes.object.isRequired,
   setActiveRecords: PropTypes.func.isRequired,
-  toggleIsLoading: PropTypes.func.isRequired
+  toggleInList: PropTypes.func.isRequired,
+  toggleIsLoading: PropTypes.func.isRequired,
 }
 
 export default RecordsContent;
