@@ -13,8 +13,12 @@
   }
 }
 
-@mixin icon-margin {
+@mixin icon-margin-right { // adds margin to align icon to the left of button the label
   margin: 0px 3px 3px 0px;
+}
+
+@mixin icon-margin-left { // adds margin to align icon to the right of the button label
+  margin: 0px 00px 3px 3px;
 }
 
 .btn {
@@ -39,7 +43,7 @@
   margin-right: 10px;
   transition: $transition-default;
   & .material-icons {
-    @include icon-margin;
+    @include icon-margin-right;
     font-size: 16px;
   }
 }
@@ -49,7 +53,7 @@
   line-height: 15px;
   padding: 13px 14px;
   & .material-icons {
-    @include icon-margin;
+    @include icon-margin-right;
     font-size: 20px;
   }
 }
@@ -169,6 +173,7 @@
   text-transform: none;
   letter-spacing: unset;
   & .material-icons {
+    @include icon-margin-right;
     font-size: 18px;
   }
 }
@@ -177,6 +182,9 @@
   @extend .btn--md;
   @extend .btn--orange;
   font-weight: 700;
+  & .material-icons {
+    @include icon-margin-left;
+  }
   &.saved {
     @extend .btn--gray;
   }
@@ -184,10 +192,21 @@
 
 .btn-add--lg {
   @extend .btn-add;
-  padding: 10px;
+  padding: 8px 10px;
   margin-bottom: 40px;
   width: 100%;
   @media screen and (min-width: $break-md) {
     width: unset;
+  }
+}
+
+.btn-add--sm {
+  @extend .btn-add;
+  font-size: 10px;
+  padding: 8px 10px;
+  @media screen and (min-width: $break-md) {
+    position: absolute;
+    right: 20px;
+    top: 20px;
   }
 }

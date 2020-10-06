@@ -7,5 +7,8 @@ import { resolvedList } from '../../../__fixtures__/resolvedList';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  render(<SavedItemList items={resolvedList} isLoading={true} />, div);
+  render(<SavedItemList
+          items={resolvedList}
+          isLoading={true}
+          toggleInList={function(){}} />, div);
 });
