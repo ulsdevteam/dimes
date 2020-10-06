@@ -64,6 +64,20 @@
   }
 }
 
+.child__list--bottom-level {
+  background-color: $pure-white;
+  margin-top: -15px;
+  margin-bottom: 15px;
+  padding-left: 0px;
+  border-left: 3px solid $deep-navy;
+  border-right: 3px solid $deep-navy;
+  border-bottom: 3px solid $deep-navy;
+  border-radius: 0 0 3px 3px;
+  &::before {
+    content: none;
+  }
+}
+
 .child__list li {
   position: relative;
 }
@@ -84,20 +98,17 @@
 .child__list-item {
   position: relative;
   padding: 20px;
-  &:focus-within {
-    border-color: $deep-navy;
-  }
-  &.active {
+  &:focus-within, &.active {
     border-color: $deep-navy;
   }
 }
 
 .child__list-item--object {
   border-bottom: 1px solid $neutral-sand;
-  &:focus-within {
-    background: $off-white;
+  &:first-child {
+    border-top: 1px solid $neutral-sand;
   }
-  &.active {
+  &:focus-within, &:hover, .active {
     background: $off-white;
   }
 }
@@ -119,6 +130,9 @@
   &:hover {
     border-color: $red-orange;
   }
+  &:hover.active {
+    border-color: inherit;
+  }
 }
 
 // removes before pseudo element from top-level children
@@ -134,6 +148,7 @@
   background: none;
   text-align: left;
   font-weight: 500;
+  padding: 0;
   cursor: pointer;
   &:focus {
     outline: none;

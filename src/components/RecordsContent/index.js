@@ -57,11 +57,11 @@ class RecordsChild extends Component {
           <p className="child__text child__description">{item.description}</p>
           {this.state.hit_count ? (<HitCount className="hit-count--records-" hitCount={item.hit_count} />) : null}
         </div>
-        {this.state.isChildrenLoading ? <RecordsChildSkeleton/> : null}
+        {this.state.isChildrenLoading ? <RecordsChildSkeleton /> : null}
         {(this.state.itemChildren && this.state.itemChildren.length) ?
           (<RecordsContentList
             children={this.state.itemChildren}
-            className={!item.isActive ? "hidden" : ""}
+            className={`${!item.isActive ? "hidden" : ""} ${this.state.itemChildren[0].type === "object" ? "child__list--bottom-level": ""}`}
             parent={item}
             params={params}
             setActiveRecords={setActiveRecords}
