@@ -39,6 +39,16 @@
   list-style: none;
   transition: $transition-default;
   padding-left: 20px;
+  position: relative;
+  &::before {
+    content: "";
+    background: $orange-gray;
+    width: 3px;
+    height: 100%;
+    position: absolute;
+    left: 8px;
+    top: -12px;
+  }
   &.hidden {
     display: none;
     height: 0;
@@ -49,6 +59,26 @@
 .child__list--top-level {
   @extend .child__list;
   padding-left: 0;
+  &::before {
+    content: none
+  }
+}
+
+.child__list li {
+  position: relative;
+}
+
+// trims left border to the correct length
+.child__list li:last-of-type {
+  &::before {
+    content: "";
+    width: 3px;
+    background-color: #FFFFFF;
+    height: calc(100% - 29px);
+    position: absolute;
+    top: 29px;
+    left: -12px;
+  }
 }
 
 .child__list-item {
@@ -74,11 +104,27 @@
 
 .child__list-item--collection {
   margin-bottom: 12px;
-  border: 2px solid $orange-gray;
+  border: 3px solid $orange-gray;
   border-radius: 3px;
   box-shadow: 0 0 4px $light-gray;
+  &::before {
+    content: "";
+    width: 9px;
+    height: 3px;
+    border-bottom: 3px solid $orange-gray;
+    position: absolute;
+    top: 20px;
+    left: -12px;
+  }
   &:hover {
     border-color: $red-orange;
+  }
+}
+
+// removes before pseudo element from top-level children
+.child__list--top-level > li > .child__list-item--collection {
+  &::before {
+    content: none;
   }
 }
 
