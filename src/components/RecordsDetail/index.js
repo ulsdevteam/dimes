@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import queryString from "query-string";
 import Skeleton from "react-loading-skeleton";
@@ -9,41 +9,19 @@ import {
     AccordionItemButton,
     AccordionItemPanel,
 } from 'react-accessible-accordion';
-import Button from "../Button";
+import ListToggleButton from "../ListToggleButton";
 import { DetailSkeleton, FoundInItemSkeleton } from "../LoadingSkeleton";
 import { dateString, hasAccessAndUse, noteText } from "../Helpers";
+import { isItemSaved } from "../MyListHelpers";
 import "./styles.scss";
-
-
-const AddButton = ({ className, isSaved, saveItem, item, removeItem, toggleSaved }) => (
-  isSaved ? (
-    <Button
-      className={`${className} saved`}
-      label="Remove from List"
-      iconAfter="remove_circle_outline"
-      handleClick={() => {
-        removeItem(item.uri, item.group.identifier);
-        toggleSaved(item);
-      }} />
-  ) : (
-    <Button
-      className={className}
-      label="Add to List"
-      iconAfter="add_circle_outline"
-      handleClick={() => {
-        saveItem(item.uri, item.group.identifier);
-        toggleSaved(item);
-      }} />
-  )
-)
 
 
 const FoundInItem = ({ className, item }) => (
   <>
-  <li className={className}>
-    <a className="found-in__link" href={item.uri}>{item.title}</a>
-  </li>
-  {item.child ? (<FoundInItem item={item.child} className="found-in__subcollection" />) : null}
+    <li className={className}>
+      <a className="found-in__link" href={item.uri}>{item.title}</a>
+    </li>
+    {item.child ? (<FoundInItem item={item.child} className="found-in__subcollection" />) : null}
   </>
 )
 
@@ -60,28 +38,39 @@ const PanelFoundInSection = ({ ancestors, isLoading }) => (
     (null)
 )
 
-const PanelListSection = props =>  (
-  props.listData ?
+const PanelListSection = ({ listData, title }) =>  (
+  listData ?
     (<>
-      <h3 className="panel__heading">{props.title}</h3>
+      <h3 className="panel__heading">{title}</h3>
       <ul className="panel__list--unstyled">
-        {props.listData.map((item, index) => (
+        {listData.map((item, index) => (
         <li key={index} className="panel__text">{item.title}</li>))}
       </ul>
     </>) :
     (null)
 )
 
-const PanelTextSection = props => (
-  props.text ?
+const PanelTextSection = ({ text, title }) => (
+  text ?
     (<>
-      <h3 className="panel__heading">{props.title}</h3>
-      <p className="panel__text">{props.text}</p>
+      <h3 className="panel__heading">{title}</h3>
+      <p className="panel__text">{text}</p>
     </>) :
     (null)
 )
 
-const RecordsDetail = ({ activeRecords, ancestors, isAncestorsLoading, isContentShown, isLoading, isSaved, removeItem, params, saveItem, toggleSaved }) => (
+const RecordsDetail = ({ activeRecords, ancestors, isAncestorsLoading, isContentShown, isLoading, params, savedList, toggleInList }) => {
+
+  var [isSaved, setIsSaved] = useState(() => {
+    return !isLoading && isItemSaved(activeRecords, savedList)
+  })
+
+  useEffect(() => {
+    const saved = !isLoading && isItemSaved(activeRecords, savedList)
+    setIsSaved(saved)
+  }, [isLoading, activeRecords, savedList])
+
+  return (
   <div className={`records__detail ${isContentShown ? "hidden" : ""}`}>
     <nav>
       <a href={`/search?${queryString.stringify(params)}`} className="btn btn--back">
@@ -90,13 +79,11 @@ const RecordsDetail = ({ activeRecords, ancestors, isAncestorsLoading, isContent
     </nav>
     <h1 className="records__title">{isLoading ? <Skeleton /> : activeRecords.title }</h1>
     {activeRecords.type === "object" ?
-      (<AddButton
+      (<ListToggleButton
         className="btn-add--lg"
         isSaved={isSaved}
         item={activeRecords}
-        removeItem={removeItem}
-        saveItem={saveItem}
-        toggleSaved={toggleSaved} /> ) :
+        toggleSaved={toggleInList} /> ) :
       (null)
     }
     <Accordion className="accordion" preExpanded={["summary"]} allowZeroExpanded={true}>
@@ -154,7 +141,7 @@ const RecordsDetail = ({ activeRecords, ancestors, isAncestorsLoading, isContent
         (null)}
     </Accordion>
   </div>
-)
+)}
 
 RecordsDetail.propTypes = {
   activeRecords: PropTypes.object.isRequired,
@@ -162,11 +149,9 @@ RecordsDetail.propTypes = {
   isAncestorsLoading: PropTypes.bool.isRequired,
   isContentShown: PropTypes.bool,
   isLoading: PropTypes.bool.isRequired,
-  isSaved: PropTypes.bool.isRequired,
   params: PropTypes.object.isRequired,
-  removeItem: PropTypes.func.isRequired,
-  saveItem: PropTypes.func.isRequired,
-  toggleSaved: PropTypes.func.isRequired
+  savedList: PropTypes.object.isRequired,
+  toggleInList: PropTypes.func.isRequired,
 }
 
 export default RecordsDetail;

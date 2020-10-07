@@ -70,6 +70,9 @@
   &.active {
     background: $off-white;
   }
+  & .child__text {
+    width: 70%;
+  }
 }
 
 .child__list-item--collection {
@@ -87,8 +90,9 @@
   border: none;
   background: none;
   text-align: left;
-  font-weight: 500;
+  font-weight: 700;
   cursor: pointer;
+  padding: 0;
   &:focus {
     outline: none;
   }
@@ -104,6 +108,7 @@
 
 .child__title--object {
   font-size: 16px;
+  width: 80%;
 }
 
 .child__title--collection {
