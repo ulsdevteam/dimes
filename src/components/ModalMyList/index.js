@@ -69,7 +69,9 @@ export const EmailModal = props => (
         }}
         onSubmit={(values, { setSubmitting }) => {
           props.handleFormSubmit(
-            `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/deliver-request/email`, values, "email");
+            `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/deliver-request/email`,
+            values,
+            "email");
           setSubmitting(false);
         }}
       >
@@ -144,7 +146,10 @@ export const ReadingRoomRequestModal = props => (
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
-          props.handleFormSubmit(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/deliver-request/reading-room`, values, "readingRoom");
+          props.handleFormSubmit(
+            `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/deliver-request/reading-room`,
+            values,
+            "readingRoom");
           setSubmitting(false);
         }}
       >
@@ -234,7 +239,10 @@ export const DuplicationRequestModal = props => (
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
-          props.handleFormSubmit(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/deliver-request/duplication`, values, "duplication");
+          props.handleFormSubmit(
+            `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/deliver-request/duplication`,
+            values,
+            "duplication");
           setSubmitting(false);
         }}
       >
