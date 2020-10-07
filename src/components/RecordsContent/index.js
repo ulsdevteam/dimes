@@ -88,11 +88,11 @@ class RecordsChild extends Component {
               toggleSaved={this.toggleSaved} />) :
             (null)}
         </div>
-        {this.state.isChildrenLoading ? <RecordsChildSkeleton/> : null}
+        {this.state.isChildrenLoading ? <RecordsChildSkeleton /> : null}
         {(this.state.itemChildren && this.state.itemChildren.length) ?
           (<RecordsContentList
             children={this.state.itemChildren}
-            className={!item.isActive ? "hidden" : ""}
+            className={`${!item.isActive ? "hidden" : ""} ${this.state.itemChildren[0].type === "object" ? "child__list--bottom-level": ""}`}
             parent={item}
             params={params}
             savedList={savedList}
