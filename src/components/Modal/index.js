@@ -72,7 +72,7 @@ export const EmailModal = props => (
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
-          this.props.handleFormSubmit(
+          props.handleFormSubmit(
             `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/deliver-request/email`, values, "email");
           setSubmitting(false);
         }}
@@ -148,7 +148,7 @@ export const ReadingRoomRequestModal = props => (
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
-          this.props.handleFormSubmit(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/deliver-request/reading-room`, values, "readingRoom");
+          props.handleFormSubmit(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/deliver-request/reading-room`, values, "readingRoom");
           setSubmitting(false);
         }}
       >
@@ -190,7 +190,7 @@ export const ReadingRoomRequestModal = props => (
             component="div"
             className="modal-form__error" />
           <FormButtons
-            submitText={`Request ${props.list.length ? (props.list.length) : ""} Items`}
+            submitText={`Request ${props.submitList.length ? (props.submitList.length) : "0"} ${props.submitList.length !== 1 ? "Items" : "Item"}`}
             toggleModal={props.toggleModal}
             isSubmitting={isSubmitting} />
           <FocusError />
@@ -238,7 +238,7 @@ export const DuplicationRequestModal = props => (
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
-          this.props.handleFormSubmit(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/deliver-request/duplication`, values, "duplication");
+          props.handleFormSubmit(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/deliver-request/duplication`, values, "duplication");
           setSubmitting(false);
         }}
       >
@@ -299,7 +299,7 @@ export const DuplicationRequestModal = props => (
             component="div"
             className="modal-form__error" />
           <FormButtons
-            submitText={`Request ${props.list.length ? (props.list.length) : ""} Items`}
+            submitText={`Request ${props.submitList.length ? (props.submitList.length) : "0"} ${props.submitList.length !== 1 ? "Items" : "Item"}`}
             toggleModal={props.toggleModal}
             isSubmitting={isSubmitting} />
           <FocusError />
