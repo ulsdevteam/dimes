@@ -1,0 +1,18 @@
+.modal-content--confirm {
+  font-family: $sans-serif-stack;
+  position: absolute;
+  top: $confirm-modal-content-margin;
+  left: $confirm-modal-content-margin;
+  right: $confirm-modal-content-margin;
+  bottom: $confirm-modal-content-margin;
+  border: 1px solid $dark-gray;
+  background: rgb(255, 255, 255);
+  border-radius: 3px;
+  overflow: auto;
+  outline: none;
+}
+
+.modal-message {
+  padding: 20px;
+  font-size: 18px;
+}
