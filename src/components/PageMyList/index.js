@@ -5,6 +5,7 @@
   import Button from "../Button";
   import { MyListDropdown } from "../Dropdown";
   import { DuplicationRequestModal, EmailModal, ReadingRoomRequestModal } from "../ModalMyList";
+  import ModalConfirm from "../ModalConfirm";
   import { SavedItemList } from "../SavedItem";
   import "./styles.scss";
 
@@ -63,18 +64,23 @@
     constructor(props) {
       super(props);
       this.state = {
-        "savedList": [],
-        "modalList": [],
-        "submitList": [],
-        "isLoading": true,
-        "email": {
-          "isOpen": false
+        savedList: [],
+        modalList: [],
+        submitList: [],
+        isLoading: true,
+        email: {
+          isOpen: false
         },
-        "readingRoom": {
-          "isOpen": false
+        readingRoom: {
+          isOpen: false
         },
-        "duplication": {
-          "isOpen": false
+        duplication: {
+          isOpen: false
+        },
+        confirm: {
+          isOpen: false,
+          title: "",
+          message: ""
         }
       };
     }
@@ -132,14 +138,60 @@
       this.setState({modalList: filtered})
     }
 
+    handleConfirmData = (title, message) => {
+      this.setState({ confirm: { ...this.state.confirm, title: title, message: message } })
+    }
+
     handleFormSubmit = (uri, submitted, modal) => {
       // TODO: remove toggleModal, which is just here for testing purposes.
       this.toggleModal(modal);
       axios
         .post(uri, submitted)
-        .then(res => { this.toggleModal(modal); })
-        .catch(err => { console.log(err) }
-      );
+        .then(res => {
+          this.toggleModal(modal);
+          const title = modal === "email" ? "Email Sent" : "Requests Delivered"
+          var message = ""
+          if (modal === "email") {
+            message = `Selected items in your list have been emailed to ${submitted.email}`
+          } else if (modal === "duplication") {
+            message = ["Your requests have been submitted to ",
+                       <a href='https://raccess.rockarch.org'>RACcess</a>, "."]
+          } else {
+            message = ["Your requests have been submitted to ",
+                       <a href='https://raccess.rockarch.org'>RACcess</a>, ".",
+                       <br/ >, <br />,
+                       "Requests to access archival records in the Reading Room are processed between 10am-3pm on days when the Rockefeller Archive Center is open."]
+          }
+          this.handleConfirmData(title, message);
+        })
+        .catch(err => {
+          console.log(err)
+          /** the following lines commented out for testing purposes only */
+          // const title = "Error submitting request"
+          // const message = `There was an error submitting your request. The error message was: ${err.toString()}`
+          // this.handleConfirmData(title, message);
+          /** end commnted code */
+        })
+        .then(() => {
+          /** added for testing purposes ONLY, should be removed once Request Broker is in place */
+          const title = modal === "email" ? "Email Sent" : "Requests Delivered"
+          var message = ""
+          if (modal === "email") {
+            message = `Selected items in your list have been emailed to ${submitted.email}`
+          } else if (modal === "duplication") {
+            message = ["Your requests have been submitted to ",
+                       <a href='https://raccess.rockarch.org'>RACcess</a>, "."]
+          } else {
+            message = ["Your requests have been submitted to ",
+                       <a href='https://raccess.rockarch.org'>RACcess</a>, ".",
+                       <br/ >, <br />,
+                       "Requests to access archival records in the Reading Room are processed between 10am-3pm on days when the Rockefeller Archive Center is open."]
+          }
+          this.handleConfirmData(title, message);
+          /** end testing code */
+          this.toggleModal("confirm")
+        });
+
     }
 
     fetchFromUri = uri => {
@@ -279,6 +331,10 @@
             handleFormSubmit={this.handleFormSubmit}
             list={this.state.modalList}
             submitList={this.state.submitList}
+          />
+          <ModalConfirm
+            {...this.state.confirm}
+            toggleModal={() => this.toggleModal("confirm")}
           />
         </React.Fragment>
       );
