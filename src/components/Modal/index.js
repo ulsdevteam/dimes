@@ -284,13 +284,13 @@ export const DuplicationRequestModal = props => (
             rows={5} />
           <FormGroup
             label={<>
-              I agree to pay the duplication costs for this request. See our
+              I agree to pay the duplication costs for this request. See our&nbsp;
               <a target="_blank"
-                 rel="noopener noreferrer"
-                 title="opens in a new window"
-                 href="https://rockarch.org/collections/access-and-request-materials/#duplication-services-and-fee-schedule">
-                 fee schedule
-              </a></>}
+                rel="noopener noreferrer"
+                title="opens in a new window"
+                href="https://rockarch.org/collections/access-and-request-materials/#duplication-services-and-fee-schedule">
+                fee schedule
+              </a>.</>}
             name="costs"
             type="checkbox"
             required={true}
