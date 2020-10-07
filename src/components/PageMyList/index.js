@@ -4,7 +4,7 @@
   import { Helmet } from "react-helmet";
   import Button from "../Button";
   import { MyListDropdown } from "../Dropdown";
-  import { DuplicationRequestModal, EmailModal, ReadingRoomRequestModal } from "../Modal";
+  import { DuplicationRequestModal, EmailModal, ReadingRoomRequestModal } from "../ModalMyList";
   import { SavedItemList } from "../SavedItem";
   import "./styles.scss";
 
