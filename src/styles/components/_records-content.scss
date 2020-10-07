@@ -6,12 +6,6 @@
   float: left;
   padding: 40px 30px;
   box-sizing: border-box;
-  &.hidden {
-    display: none;
-    @media screen and (min-width: $break-lg) {
-      display: unset;
-    }
-  }
   @media screen and (min-width: $break-lg) {
     width: 66%;
   }
@@ -39,11 +33,6 @@
   list-style: none;
   transition: $transition-default;
   padding-left: 20px;
-  &.hidden {
-    display: none;
-    height: 0;
-    transition: $transition-default;
-  }
 }
 
 .child__list--top-level {
