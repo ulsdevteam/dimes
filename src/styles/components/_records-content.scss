@@ -1,4 +1,5 @@
 @import "../styles";
+@import "./material-icon";
 
 .records__content {
   font-family: $sans-serif-stack;
@@ -121,6 +122,15 @@
   border: 3px solid $orange-gray;
   border-radius: 3px;
   box-shadow: 0 0 4px $light-gray;
+  &::after {
+    @extend .material-icons;
+    content: "expand_more";
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: $orange-gray;
+    pointer-events: none;
+  }
   &::before {
     content: "";
     width: 9px;
@@ -132,9 +142,27 @@
   }
   &:hover {
     border-color: $red-orange;
+    &::after {
+      color: $red-orange;
+    }
   }
   &:hover.active {
     border-color: inherit;
+    &::after {
+      color: inherit;
+    }
+  }
+}
+
+.child__list-item--collection.active {
+  &::after {
+    @extend .material-icons;
+    content: "expand_less";
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: $deep-navy;
+    pointer-events: none;
   }
 }
 
@@ -152,7 +180,8 @@
   text-align: left;
   font-weight: 700;
   cursor: pointer;
-  padding: 0;
+  padding-left: 0;
+  padding-right: 20px;
   &:focus {
     outline: none;
   }
