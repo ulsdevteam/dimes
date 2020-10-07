@@ -190,7 +190,7 @@ export const ReadingRoomRequestModal = props => (
             component="div"
             className="modal-form__error" />
           <FormButtons
-            submitText={`Request ${props.submitList.length ? (props.submitList.length) : "0"} ${props.submitList.length > 1 ? "Items" : "Item"}`}
+            submitText={`Request ${props.submitList.length ? (props.submitList.length) : "0"} ${props.submitList.length !== 1 ? "Items" : "Item"}`}
             toggleModal={props.toggleModal}
             isSubmitting={isSubmitting} />
           <FocusError />
