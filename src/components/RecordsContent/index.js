@@ -49,7 +49,8 @@ class RecordsChild extends Component {
   }
 
   render() {
-    const {handleObjectClick, item, params, savedList, setActiveRecords, toggleInList, toggleIsLoading } = this.props;
+    const { ariaLevel, handleObjectClick, item, params, savedList,
+            setActiveRecords, toggleInList, toggleIsLoading } = this.props;
     return (item.type === "object" ?
       (<div className={`child__list-item child__list-item--${item.type} ${item.isActive ? "active" : ""}`} >
         <button className={`child__title child__title--${item.type}`} onClick={() => handleObjectClick(item)}>{item.title}</button>
@@ -63,7 +64,7 @@ class RecordsChild extends Component {
           toggleSaved={this.toggleSaved} />
       </div>) :
       (<AccordionItem uuid={item.uri}>
-        <AccordionItemHeading className={`child__list-item child__list-item--${item.type} ${item.isActive ? "active" : ""}`} >
+        <AccordionItemHeading aria-level={ariaLevel} className={`child__list-item child__list-item--${item.type} ${item.isActive ? "active" : ""}`} >
           <AccordionItemButton className={`child__title child__title--${item.type}`}>
           {item.title}
           <p className="child__text">{item.dates}</p>
@@ -75,6 +76,7 @@ class RecordsChild extends Component {
         {(item.children) ?
           (<AccordionItemPanel>
             <RecordsContentList
+              ariaLevel={ariaLevel+1}
               children={item.children}
               parent={this.state.itemData}
               params={params}
@@ -170,12 +172,14 @@ class RecordsContentList extends Component {
   }
 
   childList = children => {
-    const {parent, params, savedList, setActiveRecords, toggleInList, toggleIsLoading} = this.props;
+    const { ariaLevel, parent, params, savedList, setActiveRecords,
+            toggleInList, toggleIsLoading } = this.props;
 
     return (
       children.map(child => (
         <RecordsChild
           key={child.uri}
+          ariaLevel={ariaLevel}
           handleObjectClick={this.handleObjectClick}
           item={child}
           params={params}
@@ -203,6 +207,7 @@ class RecordsContentList extends Component {
 }
 
 RecordsContentList.propTypes = {
+  ariaLevel: PropTypes.number.isRequired,
   children: PropTypes.array,
   className: PropTypes.string,
   parent: PropTypes.object.isRequired,
@@ -226,6 +231,7 @@ const RecordsContent = props => {
     <p className="collection__date">{Array.isArray(collection.dates) ? dateString(collection.dates) : collection.dates }</p>
     <p className="collection__text collection__description">{collection.description}</p>
     <RecordsContentList
+      ariaLevel={3}
       children={parent.children}
       className="child__list--top-level"
       parent={parent}
