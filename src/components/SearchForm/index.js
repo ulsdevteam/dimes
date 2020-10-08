@@ -6,7 +6,6 @@ import { TextInput } from "../Inputs";
 import "./styles.scss";
 
 
-// TODO: add onClick handler to Search button
 const SearchForm = props => {
   var [category, setCategory] = useState(props.category);
   var [query, setQuery] = useState(props.query);
