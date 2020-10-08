@@ -169,16 +169,9 @@ export const ReadingRoomRequestModal = props => (
             errors={errors}
             touched={touched} />
           <FormGroup
-            label="Special Requests/Questions for RAC staff"
+            label="Message for RAC staff"
             helpText="255 characters maximum"
             name="questions"
-            maxLength={255}
-            component="textarea"
-            rows={5} />
-          <FormGroup
-            label="Notes for Personal Reference"
-            helpText="255 characters maximum"
-            name="notes"
             maxLength={255}
             component="textarea"
             rows={5} />
@@ -278,17 +271,10 @@ export const DuplicationRequestModal = props => (
             component="textarea"
             rows={5} />
           <FormGroup
-            label="Special Requests/Questions for RAC staff"
+            label="Message for RAC staff"
             helpText="255 characters maximum."
             maxLength={255}
             name="questions"
-            component="textarea"
-            rows={5} />
-          <FormGroup
-            label="Notes for Personal Reference"
-            helpText="255 characters maximum."
-            maxLength={255}
-            name="notes"
             component="textarea"
             rows={5} />
           <FormGroup
