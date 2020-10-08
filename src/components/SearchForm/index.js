@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+import Select from "react-select";
 import Button from "../Button"
 import PropTypes from "prop-types";
-import { SelectInput, SelectOption, TextInput } from "../Inputs";
+import { TextInput } from "../Inputs";
 import "./styles.scss";
 
 
@@ -15,9 +16,26 @@ const SearchForm = props => {
     setQuery(props.query);
   }, [props.category, props.query] );
 
+  const selectOptions = [
+    { value: "", label: "Everything" },
+    { value: "collection", label: "Collections" },
+    { value: "person", label: "People" },
+    { value: "organization", label: "Organizations"}
+  ]
+
+  /** Removes existing styling */
+  const selectStyles = {
+    option: () => ({}),
+    control: () => ({}),
+    dropdownIndicator: () => ({}),
+    indicatorsContainer: () => ({}),
+    indicatorSeparator: () => ({}),
+    valueContainer: () => ({}),
+  }
+
   return (
   <form role="search" action="/search" method="get">
-    <div className={`${props.className}`}>
+    <div className={props.className}>
       <div className="input-group__search">
         <TextInput
           className="hide-label input__search"
@@ -26,23 +44,22 @@ const SearchForm = props => {
           placeholder="Search..."
           size={60}
           value={query}
-          handleChange={e => {setQuery(e.target.value)}}
+          handleChange={e => setQuery(e.target.value)}
           type="search"
           required={true}
         />
-        <div className="select__search--wrapper">
-          <SelectInput
-            className="hide-label select__search"
-            id="category"
-            label="Choose a search category"
-            value={category}
-            handleChange={e => {setCategory(e.target.value)}} >
-              <SelectOption value="" label="Everything" />
-              <SelectOption value="collection" label="Collections" />
-              <SelectOption value="person" label="People" />
-              <SelectOption value="organization" label="Organizations" />
-          </SelectInput>
-        </div>
+        <Select
+          aria-label="Choose a search category"
+          className="select__search--wrapper"
+          classNamePrefix="select__search"
+          defaultValue={{ value: "", label: "Everything" }}
+          isSearchable={false}
+          name="category"
+          onChange={e => setCategory(e)}
+          options={selectOptions}
+          styles={selectStyles}
+          value={(selectOptions ? selectOptions.find(option => option.value === category) : '')}
+        />
         <Button
           className="btn--search"
           type="submit"
