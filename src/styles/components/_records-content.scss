@@ -68,12 +68,12 @@
   }
 }
 
-.child__list li {
+.child__list-accordion {
   position: relative;
 }
 
 // trims left border to the correct length
-.child__list li:last-of-type {
+.child__list-accordion:last-of-type {
   &::before {
     content: "";
     width: 3px;
@@ -154,7 +154,7 @@
 }
 
 // removes before pseudo element from top-level children
-.child__list--top-level > li > .child__list-item--collection {
+.child__list--top-level > div > .child__list-item--collection {
   &::before {
     content: none;
   }
