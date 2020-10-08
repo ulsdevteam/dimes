@@ -27,7 +27,6 @@ const ModalMyList = (props) => (
         <ModalSavedItemList items={props.list} handleChange={props.handleChange} />
       </div>
       <div className="modal-form">
-        {props.formIntro && <div className="modal-form__intro">{props.formIntro}</div>}
         {props.form}
       </div>
     </div>
@@ -216,98 +215,103 @@ export const DuplicationRequestModal = props => (
     toggleModal={props.toggleModal}
     list={props.list}
     formIntro={[
-      <strong>Please note:</strong>,
-      " if you want a cost estimate for your order, email an archivist at ",
-      <a href="mailto:archive@rockarch.org">archive@rockarch.org</a>, "."]}
+      ]}
     form={
-      <Formik
-        initialValues={{
-          format: "",
-          description: "Entire folder",
-          questions: "",
-          notes: "",
-          costs: false,
-          items: props.submitList,
-          recaptcha: ""}}
-        validate={values => {
-          const errors = {};
-          if (!values.format) errors.format = 'Please select your desired duplication format.';
-          if (!values.recaptcha) errors.recaptcha = 'Please complete this field.';
-          if (!values.costs) errors.costs = "We cannot process your request unless you agree to pay the costs of reproduction.";
-          return errors;
-        }}
-        onSubmit={(values, { setSubmitting }) => {
-          props.handleFormSubmit(
-            `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/deliver-request/duplication`,
-            values,
-            "duplication");
-          setSubmitting(false);
-        }}
-      >
-      {({ errors, isSubmitting, setFieldValue, touched }) => (
-        <Form>
-          <Field
-            type="hidden"
-            name="items"
-            value={props.submitList} />
-          <FormGroup
-            label="Format *"
-            name="format"
-            component="select"
-            children={[
-              <option key="1" value="">Select a format</option>,
-              <option key="2" value="JPEG">JPEG</option>,
-              <option key="3" value="PDF">PDF</option>,
-              <option key="4" value="Photocopy">Photocopy</option>,
-              <option key="5" value="TIFF">TIFF</option>]}
-            required={true}
-            errors={errors}
-            touched={touched} />
-          <FormGroup
-            label="Description of Materials"
-            helpText="Please describe the materials you want reproduced. 255 characters maximum."
-            name="description"
-            maxLength={255}
-            component="textarea"
-            rows={5} />
-          <FormGroup
-            label="Message for RAC staff"
-            helpText="255 characters maximum."
-            maxLength={255}
-            name="questions"
-            component="textarea"
-            rows={5} />
-          <FormGroup
-            label={[
-              "I agree to pay the duplication costs for this request. See our ",
-              <a target="_blank"
-                rel="noopener noreferrer"
-                title="opens in a new window"
-                href="https://rockarch.org/collections/access-and-request-materials/#duplication-services-and-fee-schedule">
-                fee schedule
-              </a>, "."]}
-            name="costs"
-            type="checkbox"
-            required={true}
-            errors={errors}
-            touched={touched} />
-          <Field
-            component={Captcha}
-            name="recaptcha"
-            handleCaptchaChange={(response) => setFieldValue("recaptcha", response)} />
-          <ErrorMessage
-            id="captcha-error"
-            name="recaptcha"
-            component="div"
-            className="modal-form__error" />
-          <FormButtons
-            submitText={`Request ${props.submitList.length ? (props.submitList.length) : "0"} ${props.submitList.length !== 1 ? "Items" : "Item"}`}
-            toggleModal={props.toggleModal}
-            isSubmitting={isSubmitting} />
-          <FocusError />
-        </Form>
-      )}
-      </Formik>
+      <>
+        <div className="modal-form__intro">
+          <strong>Please note:</strong> if you want a cost estimate for your order, email an archivist at <a href="mailto:archive@rockarch.org">archive@rockarch.org</a>.
+        </div>
+        <Formik
+          initialValues={{
+            format: "",
+            description: "Entire folder",
+            questions: "",
+            notes: "",
+            costs: false,
+            items: props.submitList,
+            recaptcha: ""}}
+          validate={values => {
+            const errors = {};
+            if (!values.format) errors.format = 'Please select your desired duplication format.';
+            if (!values.recaptcha) errors.recaptcha = 'Please complete this field.';
+            if (!values.costs) errors.costs = "We cannot process your request unless you agree to pay the costs of reproduction.";
+            return errors;
+          }}
+          onSubmit={(values, { setSubmitting }) => {
+            props.handleFormSubmit(
+              `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/deliver-request/duplication`,
+              values,
+              "duplication");
+            setSubmitting(false);
+          }}
+        >
+        {({ errors, isSubmitting, setFieldValue, touched }) => (
+          <Form>
+            <Field
+              type="hidden"
+              name="items"
+              value={props.submitList} />
+            <div className="select__modal">
+              <FormGroup
+                label="Format *"
+                name="format"
+                component="select"
+                children={[
+                  <option key="1" value="">Select a format</option>,
+                  <option key="2" value="JPEG">JPEG</option>,
+                  <option key="3" value="PDF">PDF</option>,
+                  <option key="4" value="Photocopy">Photocopy</option>,
+                  <option key="5" value="TIFF">TIFF</option>]}
+                required={true}
+                errors={errors}
+                touched={touched} />
+            </div>
+            <FormGroup
+              label="Description of Materials"
+              helpText="Please describe the materials you want reproduced. 255 characters maximum."
+              name="description"
+              maxLength={255}
+              component="textarea"
+              rows={5} />
+            <FormGroup
+              label="Message for RAC staff"
+              helpText="255 characters maximum."
+              maxLength={255}
+              name="questions"
+              component="textarea"
+              rows={5} />
+            <FormGroup
+              label={[
+                "I agree to pay the duplication costs for this request. See our ",
+                <a target="_blank"
+                  rel="noopener noreferrer"
+                  title="opens in a new window"
+                  href="https://rockarch.org/collections/access-and-request-materials/#duplication-services-and-fee-schedule">
+                  fee schedule
+                </a>, "."]}
+              name="costs"
+              type="checkbox"
+              required={true}
+              errors={errors}
+              touched={touched} />
+            <Field
+              component={Captcha}
+              name="recaptcha"
+              handleCaptchaChange={(response) => setFieldValue("recaptcha", response)} />
+            <ErrorMessage
+              id="captcha-error"
+              name="recaptcha"
+              component="div"
+              className="modal-form__error" />
+            <FormButtons
+              submitText={`Request ${props.submitList.length ? (props.submitList.length) : "0"} ${props.submitList.length !== 1 ? "Items" : "Item"}`}
+              toggleModal={props.toggleModal}
+              isSubmitting={isSubmitting} />
+            <FocusError />
+          </Form>
+        )}
+        </Formik>
+      </>
     }
   />
 )

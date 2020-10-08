@@ -28,7 +28,7 @@
   margin-bottom: 10px;
 }
 
-.modal-form input, textarea, select {
+.modal-form input, .modal-form textarea, .modal-form select {
   width: 100%;
   border: 1px solid $dark-gray;
   padding: 10px;
@@ -37,7 +37,20 @@
     width: unset;
     float: left;
   }
+}
 
+.select__modal {
+  position: relative;
+}
+
+.select__modal::after {
+  font-family: 'Material Icons';
+  content: "unfold_more";
+  font-size: 20px;
+  bottom: 8px;
+  right: 10px;
+  position: absolute;
+  pointer-events: none;
 }
 
 .modal-form label {
