@@ -63,8 +63,14 @@ class RecordsChild extends Component {
           item={this.state.itemData}
           toggleSaved={this.toggleSaved} />
       </div>) :
-      (<AccordionItem uuid={item.uri} className="child__list-accordion">
-        <AccordionItemHeading aria-level={ariaLevel} className={`child__list-item child__list-item--${item.type} ${item.isActive ? "active" : ""}`} >
+      (<AccordionItem uuid={item.uri} className={`child__list-accordion ${item.children && item.children[0].type === "object" ? "child__list-accordion--bottom-level": ""}`}>
+        <AccordionItemHeading
+          aria-level={ariaLevel}
+          className={
+            `child__list-item child__list-item--${item.type}
+            ${item.children && item.children[0].type === "object" ? "child__list-item--bottom-level": ""}
+            ${item.isActive ? " active" : ""}`
+          } >
           <AccordionItemButton className={`child__title child__title--${item.type}`}>
           {item.title}
           <p className="child__text">{item.dates}</p>
@@ -78,7 +84,7 @@ class RecordsChild extends Component {
             <RecordsContentList
               ariaLevel={ariaLevel+1}
               children={item.children}
-              className={item.children[0].type === "object" ? "child__list--bottom-level": ""}
+              className={`${item.children[0].type === "object" ? "child__list--bottom-level": ""}${item.isActive ? " active" : ""}`}
               parent={this.state.itemData}
               params={params}
               savedList={savedList}
