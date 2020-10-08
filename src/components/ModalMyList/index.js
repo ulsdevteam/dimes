@@ -27,6 +27,7 @@ const ModalMyList = (props) => (
         <ModalSavedItemList items={props.list} handleChange={props.handleChange} />
       </div>
       <div className="modal-form">
+        {props.formIntro && <div className="modal-form__intro">{props.formIntro}</div>}
         {props.form}
       </div>
     </div>
@@ -221,6 +222,10 @@ export const DuplicationRequestModal = props => (
     isOpen={props.isOpen}
     toggleModal={props.toggleModal}
     list={props.list}
+    formIntro={[
+      <strong>Please note:</strong>,
+      " if you want a cost estimate for your order, email an archivist at ",
+      <a href="mailto:archive@rockarch.org">archive@rockarch.org</a>, "."]}
     form={
       <Formik
         initialValues={{
