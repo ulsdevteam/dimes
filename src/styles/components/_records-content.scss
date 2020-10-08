@@ -107,6 +107,7 @@
 
 .child__list-item--object {
   border-bottom: 1px solid $neutral-sand;
+  display: flex;
   &:first-child {
     border-top: 1px solid $neutral-sand;
   }
@@ -177,6 +178,15 @@
   }
 }
 
+.child__description {
+  flex-grow: 2
+}
+
+.child__buttons {
+  flex-basis: 40%;
+  text-align: right;
+}
+
 .child__title {
   appearance: none;
   border: none;
@@ -201,7 +211,6 @@
 
 .child__title--object {
   font-size: 16px;
-  width: 80%;
 }
 
 .child__title--collection {
@@ -212,7 +221,7 @@
   font-size: 14px;
 }
 
-.child__description, .collection__description {
+.text--truncate {
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
