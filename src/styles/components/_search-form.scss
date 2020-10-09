@@ -108,3 +108,7 @@ input[type=search] {
     color: $burnt-orange;
   }
 }
+
+.select__search__option--is-focused {
+  background: $lighter-gray;
+}
