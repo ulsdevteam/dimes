@@ -84,6 +84,10 @@ input[type=search] {
   box-sizing: border-box;
 }
 
+.select__search__control--is-focused {
+  outline: $dark-gray solid 1px;
+}
+
 .select__search__menu {
   border-radius: 0 !important;
   top: -8px !important;
