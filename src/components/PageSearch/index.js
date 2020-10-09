@@ -96,7 +96,7 @@ class PageSearch extends Component {
       .then(res => {
         this.setState({ hitsChildren: [...this.state.hitsChildren].concat(res.data.results) })
         this.state.hitsChildrenIsLoading && this.setState({ hitsChildrenIsLoading: false })
-        res.data.next && this.getPage(res.data.next)
+        res.data.next && this.getChildrenPage(res.data.next)
       })
       .catch(err => console.log(err))
   }
