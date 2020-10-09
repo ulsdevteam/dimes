@@ -26,6 +26,9 @@ export const collectionWithChildHits = {
             "type": "cubic_feet"
         }
     ],
+    "formats": [
+      "documents"
+    ],
     "dates": [
         {
             "expression": "1950s-1980s (Bulk 1982)",
