@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import queryString from "query-string";
 import { Helmet } from "react-helmet";
 import Skeleton from "react-loading-skeleton";
 import PageNotFound from "./PageNotFound";
@@ -16,13 +17,12 @@ const AgentDescription = ({ attributes }) => (
   </div>) : (null)
 )
 
-const AgentRelatedCollections = ({ collections }) => (
-// TODO: add href to search more button
+const AgentRelatedCollections = ({ agentTitle, collections }) => (
   collections ?
   (<div className="agent__related">
     <h2 className="agent__section-title">Related Collections</h2>
     <TileList items={collections} />
-    <a href="/search/" className="btn btn--search-more">Search More Related Collections</a>
+    <a href={`/search/?query=${agentTitle}&category=collection`} className="btn btn--search-more">Search More Related Collections</a>
   </div>) : (null)
 )
 
@@ -42,10 +42,13 @@ class PageAgent extends Component {
       isLoading: true,
       agent: {},
       collections: null,
-      attributes: null
+      attributes: null,
+      params: {}
     };
   };
   componentDidMount() {
+    const params = queryString.parse(this.props.location.search);
+    this.setState({ params: params })
     axios
       .get(`${process.env.REACT_APP_ARGO_BASEURL}/agents/${this.props.match.params.id}`)
       .then(res => {
@@ -58,7 +61,7 @@ class PageAgent extends Component {
   };
   fetchCollections = () => {
     axios
-      .get(`${process.env.REACT_APP_ARGO_BASEURL}/collections/?query=${this.state.agent.title}&limit=6&ancestors__isnull=true`)
+      .get(`${process.env.REACT_APP_ARGO_BASEURL}/search/?query=${this.state.agent.title}&category=collection&limit=8`)
       .then(res => this.setState({collections: res.data.results}))
       .catch(err => console.log(err));
   }
@@ -83,7 +86,6 @@ class PageAgent extends Component {
     this.setState({attributes: items});
   }
   render() {
-    // TODO: add href to Back to Search button
     if (!this.state.found) {
       return (<PageNotFound />)
     }
@@ -94,13 +96,15 @@ class PageAgent extends Component {
         </Helmet>
         <div className="container agent">
           <nav>
-            <a href="/search" className="btn btn--back"><span className="material-icons">keyboard_arrow_left</span>Back to Search</a>
+            <a href={`/search?${queryString.stringify(this.state.params)}`} className="btn btn--back">
+              <span className="material-icons">keyboard_arrow_left</span>Back to Search
+            </a>
           </nav>
           <main id="main" role="main">
             <h1 className="agent__title">{ this.state.agent.title || <Skeleton />}</h1>
             <p className="agent__subtitle">{ this.state.isLoading? (<Skeleton />) : (this.state.agent.description) }</p>
             {this.state.isLoading ? (<AgentAttributeSkeleton />) : (<AgentDescription attributes={this.state.attributes} />)}
-            {this.state.isLoading ? (<SearchSkeleton />) : (<AgentRelatedCollections collections={this.state.collections} />) }
+            {this.state.isLoading ? (<SearchSkeleton />) : (<AgentRelatedCollections agentTitle={this.state.agent.title} collections={this.state.collections} />) }
           </main>
           <AgentSidebar related={this.state.agent.agents} />
         </div>
