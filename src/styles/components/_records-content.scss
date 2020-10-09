@@ -7,12 +7,6 @@
   float: left;
   padding: 40px 30px;
   box-sizing: border-box;
-  &.hidden {
-    display: none;
-    @media screen and (min-width: $break-lg) {
-      display: unset;
-    }
-  }
   @media screen and (min-width: $break-lg) {
     width: 66%;
   }
@@ -50,11 +44,6 @@
     left: 8px;
     top: -12px;
   }
-  &.hidden {
-    display: none;
-    height: 0;
-    transition: $transition-default;
-  }
 }
 
 .child__list--top-level {
@@ -67,24 +56,36 @@
 
 .child__list--bottom-level {
   background-color: $pure-white;
-  margin-top: -15px;
-  margin-bottom: 15px;
+  // margin-top: -15px;
+  // margin-bottom: 15px;
   padding-left: 0px;
-  border-left: 3px solid $deep-navy;
-  border-right: 3px solid $deep-navy;
-  border-bottom: 3px solid $deep-navy;
-  border-radius: 0 0 3px 3px;
+  // border-left: 3px solid $deep-navy;
+  // border-right: 3px solid $deep-navy;
+  // border-bottom: 3px solid $deep-navy;
+  // border-radius: 0 0 3px 3px;
   &::before {
     content: none;
   }
 }
 
-.child__list li {
+.child__list-accordion {
   position: relative;
+  border-radius: 3px;
+}
+
+.child__list-accordion--bottom-level {
+  border: 3px solid $orange-gray;
+  margin-bottom: 15px;
+  &:hover {
+    border-color: $red-orange;
+  }
+  &:focus-within {
+    border-color: $deep-navy;
+  }
 }
 
 // trims left border to the correct length
-.child__list li:last-of-type {
+.child__list-accordion:last-of-type {
   &::before {
     content: "";
     width: 3px;
@@ -164,8 +165,13 @@
   }
 }
 
+.child__list-item--bottom-level {
+  border: 0;
+  margin-bottom: 0;
+}
+
 // removes before pseudo element from top-level children
-.child__list--top-level > li > .child__list-item--collection {
+.child__list--top-level > div > .child__list-item--collection {
   &::before {
     content: none;
   }
