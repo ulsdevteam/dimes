@@ -62,7 +62,7 @@ const SearchForm = props => {
         <Button
           className="btn--search"
           type="submit"
-          aria-label="Submit search"
+          ariaLabel="Submit search"
           iconBefore="search"
         />
       </div>
