@@ -154,11 +154,13 @@
           if (modal === "email") {
             message = `Selected items in your list have been emailed to ${submitted.email}`
           } else if (modal === "duplication") {
-            message = ["Your requests have been submitted to ",
-                       <a href='https://raccess.rockarch.org'>RACcess</a>, "."]
+            message = ["Your requests have been submitted to",
+                       <a href='https://raccess.rockarch.org'>RACcess</a>, ". ",
+                       "You can track their status using your RACcess account."]
           } else {
             message = ["Your requests have been submitted to ",
-                       <a href='https://raccess.rockarch.org'>RACcess</a>, ".",
+                       <a href='https://raccess.rockarch.org'>RACcess</a>, ". ",
+                       "You can track their status using your RACcess account.",
                        <br/ >, <br />,
                        "Requests to access archival records in the Reading Room are processed between 10am-3pm on days when the Rockefeller Archive Center is open."]
           }
@@ -170,7 +172,7 @@
           // const title = "Error submitting request"
           // const message = `There was an error submitting your request. The error message was: ${err.toString()}`
           // this.handleConfirmData(title, message);
-          /** end commnted code */
+          /** end commented code */
         })
         .then(() => {
           /** added for testing purposes ONLY, should be removed once Request Broker is in place */
@@ -180,10 +182,12 @@
             message = `Selected items in your list have been emailed to ${submitted.email}`
           } else if (modal === "duplication") {
             message = ["Your requests have been submitted to ",
-                       <a href='https://raccess.rockarch.org'>RACcess</a>, "."]
+                       <a href='https://raccess.rockarch.org'>RACcess</a>, ". ",
+                       "You can track their status using your RACcess account."]
           } else {
             message = ["Your requests have been submitted to ",
-                       <a href='https://raccess.rockarch.org'>RACcess</a>, ".",
+                       <a href='https://raccess.rockarch.org'>RACcess</a>, ". ",
+                       "You can track their status using your RACcess account.",
                        <br/ >, <br />,
                        "Requests to access archival records in the Reading Room are processed between 10am-3pm on days when the Rockefeller Archive Center is open."]
           }
