@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import queryString from "query-string";
-import { CollectionHitsSkeleton } from "../LoadingSkeleton";
+import { CollectionHitsChildrenSkeleton, CollectionHitsCollectionSkeleton } from "../LoadingSkeleton";
 import HitCount from "../HitCount";
 import "./styles.scss"
 
@@ -20,25 +20,27 @@ CollectionHitsInfo.propTypes = {
   collection: PropTypes.object.isRequired
 }
 
-const CollectionHits = ({ collection, isLoading, params }) => {
-  const collectionChildHits = collection.children && collection.children.map((child, idx) =>
+const CollectionHits = ({ children, collection, isChildrenLoading, isCollectionLoading, params }) => {
+  const collectionChildHits = children && children.map((child, idx) =>
     <div className="collection-child" key={idx}>
       <a href={`${child.uri}/?${queryString.stringify(params)}`} className="collection-child__title">{child.title}</a>
       {child.hit_count ? (<HitCount className="hit-count--collection-modal" hitCount={child.hit_count} />) : null}
     </div>
   )
   return (
-    isLoading ?
-    (<CollectionHitsSkeleton />) :
-    (<>
-      <CollectionHitsInfo collection={collection} />
-      {collectionChildHits}
-    </>)
+    <>
+      {isCollectionLoading ? (<CollectionHitsCollectionSkeleton />) : (<CollectionHitsInfo collection={collection} />)}
+      {isChildrenLoading ? (<CollectionHitsChildrenSkeleton />) : (collectionChildHits)}
+    </>
   )
 }
 
 CollectionHits.propTypes = {
-  collection: PropTypes.object.isRequired
+  children: PropTypes.array.isRequired,
+  collection: PropTypes.object.isRequired,
+  isChildrenLoading: PropTypes.bool.isRequired,
+  isCollectionLoading: PropTypes.bool.isRequired,
+  params: PropTypes.object.isRequired,
 }
 
 export default CollectionHits;

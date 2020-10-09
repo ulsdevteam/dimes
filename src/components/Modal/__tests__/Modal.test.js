@@ -5,6 +5,7 @@ import { CollectionHitsModal, DuplicationRequestModal, EmailModal, FacetModal, R
 import { resolvedList } from '../../../__fixtures__/resolvedList';
 import { submitList } from '../../../__fixtures__/submitList';
 import { collectionWithChildHits } from '../../../__fixtures__/collection';
+import { children } from '../../../__fixtures__/children';
 import { facet } from '../../../__fixtures__/facet';
 
 it('renders without crashing', () => {
@@ -47,10 +48,15 @@ it('renders without crashing', () => {
   const div = document.createElement('div');
   render(<CollectionHitsModal
       appElement={div}
+      collection={collectionWithChildHits}
+      children={children}
+      isChildrenLoading={true}
+      isCollectionLoading={true}
       isOpen={true}
-      data={collectionWithChildHits}
+      params={{}}
       toggleModal={function(){}} />, div);
 });
+
 
 it('renders without crashing', () => {
   const div = document.createElement('div');

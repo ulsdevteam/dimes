@@ -435,8 +435,10 @@ export const CollectionHitsModal = props => {
       </div>
       <div className="modal-body">
         <CollectionHits
-          collection={props.data}
-          isLoading={props.isLoading}
+          collection={props.collection}
+          children={props.children}
+          isChildrenLoading={props.isChildrenLoading}
+          isCollectionLoading={props.isCollectionLoading}
           params={props.params} />
       </div>
     </Modal>
@@ -445,7 +447,11 @@ export const CollectionHitsModal = props => {
 
 CollectionHitsModal.propTypes = {
   appElement: PropTypes.object,
-  data: PropTypes.object.isRequired,
+  children: PropTypes.array.isRequired,
+  collection: PropTypes.object.isRequired,
+  isChildrenLoading: PropTypes.bool.isRequired,
+  isCollectionLoading: PropTypes.bool.isRequired,
   isOpen: PropTypes.bool.isRequired,
+  params: PropTypes.object.isRequired,
   toggleModal: PropTypes.func.isRequired,
 }
