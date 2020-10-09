@@ -25,37 +25,66 @@ const FoundInItem = ({ className, item }) => (
   </>
 )
 
+const PanelExtentSection = ({ extents }) => (
+  extents ? (
+  <div className="panel__section">
+    <h3 className="panel__heading">Size</h3>
+    <ul className="panel__list--unstyled">
+      {extents.map((e, index) => (
+      <li key={index} className="panel__text">{`${e.value} ${e.type.replace("_", " ")}`}</li>))}
+    </ul>
+  </div>) :
+  (null)
+)
+
+const PanelFormatSection = ({ formats }) => {
+  const displayFormats = formats.filter(f => (
+    f !== "documents"
+  ))
+  return (
+    displayFormats.length ? (
+      <div className="panel__section">
+        <h3 className="panel__heading">Formats</h3>
+        <ul className="panel__list--unstyled">
+          {displayFormats.map((format, index) => (
+          <li key={index} className="panel__text">{format}</li>))}
+        </ul>
+      </div>) :
+    (null)
+  )
+}
+
 const PanelFoundInSection = ({ ancestors, isLoading }) => (
   ancestors.title ?
-    (<>
+    (<div className="panel__section">
       <h3 className="panel__heading">Found In</h3>
       <ul className="found-in">
       {isLoading ?
         (<FoundInItemSkeleton/>) :
         (<FoundInItem item={ancestors} className="found-in__collection" />)}
       </ul>
-    </>) :
+    </div>) :
     (null)
 )
 
 const PanelListSection = ({ listData, title }) =>  (
   listData ?
-    (<>
+    (<div className="panel__section">
       <h3 className="panel__heading">{title}</h3>
       <ul className="panel__list--unstyled">
         {listData.map((item, index) => (
         <li key={index} className="panel__text">{item.title}</li>))}
       </ul>
-    </>) :
+    </div>) :
     (null)
 )
 
 const PanelTextSection = ({ text, title }) => (
   text ?
-    (<>
+    (<div className="panel__section">
       <h3 className="panel__heading">{title}</h3>
       <p className="panel__text">{text}</p>
-    </>) :
+    </div>) :
     (null)
 )
 
@@ -101,6 +130,12 @@ const RecordsDetail = ({ activeRecords, ancestors, isAncestorsLoading, isContent
               <PanelTextSection
                 title="Dates"
                 text={dateString(activeRecords.dates)} />
+              <div className="panel__section--flex">
+                <PanelExtentSection
+                  extents={activeRecords.extents} />
+                <PanelFormatSection
+                  formats={activeRecords.formats} />
+              </div>
               <PanelFoundInSection
                 ancestors={ancestors}
                 isLoading={isAncestorsLoading} />

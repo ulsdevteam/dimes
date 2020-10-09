@@ -33,6 +33,17 @@
   color: $deep-navy;
 }
 
+.panel__section--flex {
+  display: flex;
+  justify-content: flex-start;
+  & .panel__section:not(:first-of-type) {
+    margin-left: 30px;
+    @media screen and (min-width: $break-md) {
+      margin-left: 40px;
+    }
+  }
+}
+
 .found-in {
   font-family: $sans-serif-stack;
   font-size: 13px;
