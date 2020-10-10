@@ -22,30 +22,19 @@ class RecordsChild extends Component {
     super(props)
     this.state = {
       isSaved: false,
-      itemData: {}
     }
   }
 
-  componentDidMount() {
-    /** fetching the full data may not be necessary with new child endpoint */
-    axios
-      .get(`${process.env.REACT_APP_ARGO_BASEURL}/${this.props.item.uri}?${queryString.stringify(this.props.params)}`)
-      .then(res => {
-        this.setState({ itemData: res.data })
-        this.setState({ isSaved: isItemSaved(res.data, this.props.savedList)})
-      })
-  }
-
   componentDidUpdate(nextProps, nextState) {
-    if (nextProps.savedList !== this.props.savedList && this.state.itemData.group) {
-      this.setState({ isSaved: isItemSaved(this.state.itemData, this.props.savedList)})
+    if (nextProps.savedList !== this.props.savedList && this.props.item.group) {
+      this.setState({ isSaved: isItemSaved(this.props.item, this.props.savedList)})
     }
   }
 
   toggleSaved = item => {
     this.props.toggleInList(item);
     this.setState({isSaved: !this.state.isSaved})
-    this.props.setActiveRecords(this.state.itemData)
+    this.props.setActiveRecords(item)
   }
 
   render() {
@@ -60,7 +49,7 @@ class RecordsChild extends Component {
         <ListToggleButton
           className="btn-add--sm"
           isSaved={this.state.isSaved}
-          item={this.state.itemData}
+          item={this.props.item}
           toggleSaved={this.toggleSaved} />
       </div>) :
       (<AccordionItem uuid={item.uri} className={`child__list-accordion ${item.children && item.children[0].type === "object" ? "child__list-accordion--bottom-level": ""}`}>
@@ -85,7 +74,7 @@ class RecordsChild extends Component {
               ariaLevel={ariaLevel+1}
               children={item.children}
               className={`${item.children[0].type === "object" ? "child__list--bottom-level": ""}${item.isActive ? " active" : ""}`}
-              parent={this.state.itemData}
+              parent={this.props.item}
               params={params}
               savedList={savedList}
               setActiveRecords={setActiveRecords}
@@ -113,14 +102,28 @@ class RecordsContentList extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      children: props.children
+      children: []
     }
   }
 
-  addChildren = (item, children) => {
-    const updatedChildren = this.state.children.map(child => (
-      child.uri === item.uri ? { ...child, children: children } : child
-    ))
+  componentDidUpdate(prevProps) {
+    if (prevProps.children !== this.props.children) {
+      this.setState({ children: this.props.children})
+    }
+  }
+
+  appendChildren = (item, newChildren) => {
+    const updatedChildren = this.state.children.map(child => {
+      if (child.uri === item.uri) {
+        if (child.children) {
+          return {...child, children: [...child.children].concat(newChildren)}
+        } else {
+          return {...child, children: newChildren}
+        }
+      } else {
+        return child;
+      }
+    })
     this.setState({ children: updatedChildren })
   }
 
@@ -141,21 +144,35 @@ class RecordsContentList extends Component {
     this.setState({ children: updatedChildren})
   }
 
+  getChildrenPage = (uri, item) => {
+    axios
+      .get(uri)
+      .then(res => {
+        this.appendChildren(item, res.data.results);
+        this.state.children.find(c => c.uri === item.uri).isChildrenLoading && this.toggleChildrenLoading(item);
+        res.data.next && this.getChildrenPage(res.data.next, item)
+      })
+      .catch(e => console.log(e))
+  }
+
   /** Handles clicks on accordion items.
   * Fetches children if necessary, and sets activeRecords to self or parent
   */
   handleCollectionClick = uuidList => {
     if (uuidList.length) {
       for (const uuid of uuidList) {
-        const item = this.state.children.filter(c => {return c.uri === uuid})[0]
+        this.props.toggleIsLoading()
+        const item = this.state.children.find(c => c.uri === uuid)
+        // TODO: this is where we do the page fetch business!
         if (!item.children) {
           this.toggleChildrenLoading(item);
-          this.props.toggleIsLoading();
+          const childrenParams = {...this.props.params, limit: 5}
+          this.getChildrenPage(
+            `${process.env.REACT_APP_ARGO_BASEURL}/${item.uri}/children?${queryString.stringify(childrenParams)}`,
+            item)
           axios
             .get(`${process.env.REACT_APP_ARGO_BASEURL}/${item.uri}?${queryString.stringify(this.props.params)}`)
             .then(res => {
-              this.addChildren(item, res.data.children);
-              this.toggleChildrenLoading(item);
               this.props.setActiveRecords(res.data);
             })
             .catch(e => console.log(e))

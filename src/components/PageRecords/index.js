@@ -13,13 +13,13 @@ class PageRecords extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      activeRecords: {},
       ancestors: {},
+      collection: {children: []},
+      found: true,
       isAncestorsLoading: true,
       isContentShown: false,
       isLoading: true,
-      found: true,
-      collection: { title: "" },
-      activeRecords: { title: "" },
       params: {}
     }
   }
@@ -33,6 +33,11 @@ class PageRecords extends Component {
         this.setState({ collection: res.data })
         this.setState({ activeRecords: res.data });
         this.setState({ isLoading: false });
+        const childrenParams = {...params, limit: 5}
+        this.getChildrenPage(
+          `${process.env.REACT_APP_ARGO_BASEURL}/${this.props.match.params.type}/${this.props.match.params.id}/children/?${queryString.stringify(childrenParams)}`,
+          true
+        )
       })
       .catch(err => this.setState({ found: false }));
     axios
@@ -43,6 +48,26 @@ class PageRecords extends Component {
       })
       .catch(err => this.setState({ found: false }));
   };
+
+  getChildrenPage = (uri, reset) => {
+    axios
+      .get(uri)
+      .then(res => {
+        // TODO: Once children have been removed as a field from Collections, this if statement will
+        // no longer be necessary, and we can just use the else logic.
+        if (reset) {
+          this.setState(
+            {collection: {...this.state.collection, children: res.data.results}},
+            res.data.next && this.getChildrenPage(res.data.next))
+        } else {
+          this.setState(
+            {collection: {...this.state.collection, children: [...this.state.collection.children].concat(res.data.results)}},
+            res.data.next && this.getChildrenPage(res.data.next)
+          )
+        }
+      })
+      .catch(err => console.log(err))
+  }
 
   setActiveRecords = records => {
     this.setState({ activeRecords: records })
