@@ -42,15 +42,19 @@ class RecordsChild extends Component {
             setActiveRecords, toggleInList, toggleIsLoading } = this.props;
     return (item.type === "object" ?
       (<div className={`child__list-item child__list-item--${item.type} ${item.isActive ? "active" : ""}`} >
-        <button className={`child__title child__title--${item.type}`} onClick={() => handleObjectClick(item)}>{item.title}</button>
-        <p className="child__text">{item.dates}</p>
-        <p className="child__text child__description">{item.description}</p>
-        {item.hit_count ? (<HitCount className="hit-count--records-" hitCount={item.hit_count} />) : null}
-        <ListToggleButton
-          className="btn-add--sm"
-          isSaved={this.state.isSaved}
-          item={this.props.item}
-          toggleSaved={this.toggleSaved} />
+        <div className="child__description">
+          <button className={`child__title child__title--${item.type}`} onClick={() => handleObjectClick(item)}>{item.title}</button>
+          <p className="child__text">{item.dates}</p>
+          <p className="child__text text--truncate">{item.description}</p>
+          {item.hit_count ? (<HitCount className="hit-count--records-" hitCount={item.hit_count} />) : null}
+        </div>
+        <div className="child__buttons">
+          <ListToggleButton
+            className="btn-add--sm"
+            isSaved={this.state.isSaved}
+            item={this.props.item}
+            toggleSaved={this.toggleSaved} />
+        </div>
       </div>) :
       (<AccordionItem uuid={item.uri} className={`child__list-accordion ${item.children && item.children[0].type === "object" ? "child__list-accordion--bottom-level": ""}`}>
         <AccordionItemHeading
@@ -63,7 +67,7 @@ class RecordsChild extends Component {
           <AccordionItemButton className={`child__title child__title--${item.type}`}>
           {item.title}
           <p className="child__text">{item.dates}</p>
-          <p className="child__text child__description">{item.description}</p>
+          <p className="child__text text--truncate">{item.description}</p>
           {item.hit_count ? (<HitCount className="hit-count--records-" hitCount={item.hit_count} />) : null}
           </AccordionItemButton>
         </AccordionItemHeading>
@@ -253,7 +257,7 @@ const RecordsContent = props => {
     <h2 className="content__title">Collection Content</h2>
     <h3 className="collection__title">{collection.title}</h3>
     <p className="collection__date">{Array.isArray(collection.dates) ? dateString(collection.dates) : collection.dates }</p>
-    <p className="collection__text collection__description">{collection.description}</p>
+    <p className="collection__text text--truncate">{collection.description}</p>
     <RecordsContentList
       ariaLevel={3}
       children={parent.children}
