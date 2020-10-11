@@ -34,12 +34,12 @@ class RecordsChild extends Component {
   toggleSaved = item => {
     this.props.toggleInList(item);
     this.setState({isSaved: !this.state.isSaved})
-    this.props.setActiveRecords(item)
+    this.props.setActiveRecords(item.uri)
   }
 
   render() {
     const { ariaLevel, handleObjectClick, item, params, savedList,
-            setActiveRecords, toggleInList, toggleIsLoading } = this.props;
+            setActiveRecords, toggleInList } = this.props;
     return (item.type === "object" ?
       (<div className={`child__list-item child__list-item--${item.type} ${item.isActive ? "active" : ""}`} >
         <div className="child__description">
@@ -82,8 +82,7 @@ class RecordsChild extends Component {
               params={params}
               savedList={savedList}
               setActiveRecords={setActiveRecords}
-              toggleInList={toggleInList}
-              toggleIsLoading={toggleIsLoading} />
+              toggleInList={toggleInList} />
           </AccordionItemPanel>) :
           (null)}
       </AccordionItem>)
@@ -99,7 +98,6 @@ RecordsChild.propTypes = {
     setActiveRecords: PropTypes.func.isRequired,
     savedList: PropTypes.object.isRequired,
     toggleInList: PropTypes.func.isRequired,
-    toggleIsLoading: PropTypes.func.isRequired,
 }
 
 class RecordsContentList extends Component {
@@ -165,43 +163,27 @@ class RecordsContentList extends Component {
   handleCollectionClick = uuidList => {
     if (uuidList.length) {
       for (const uuid of uuidList) {
-        this.props.toggleIsLoading()
         const item = this.state.children.find(c => c.uri === uuid)
-        // TODO: this is where we do the page fetch business!
         if (!item.children) {
           this.toggleChildrenLoading(item);
           const childrenParams = {...this.props.params, limit: 5}
           this.getChildrenPage(
             `${process.env.REACT_APP_ARGO_BASEURL}/${item.uri}/children?${queryString.stringify(childrenParams)}`,
             item)
-          axios
-            .get(`${process.env.REACT_APP_ARGO_BASEURL}/${item.uri}?${queryString.stringify(this.props.params)}`)
-            .then(res => {
-              this.props.setActiveRecords(res.data);
-            })
-            .catch(e => console.log(e))
-            .then(() => this.props.toggleIsLoading())
+          this.props.setActiveRecords(item.uri)
         }
       }
     } else {
-      this.props.setActiveRecords(this.props.parent);
+      this.props.setActiveRecords(this.props.parent.uri);
     }
   }
 
   handleObjectClick = item => {
-    this.props.toggleIsLoading();
-    axios
-      .get(`${process.env.REACT_APP_ARGO_BASEURL}/${item.uri}?${queryString.stringify(this.props.params)}`)
-      .then(res => {
-        this.props.setActiveRecords(res.data);
-      })
-      .catch(e => console.log(e))
-      .then(() => this.props.toggleIsLoading());
+    this.props.setActiveRecords(item.uri)
   }
 
   childList = children => {
-    const { ariaLevel, parent, params, savedList, setActiveRecords,
-            toggleInList, toggleIsLoading } = this.props;
+    const { ariaLevel, parent, params, savedList, setActiveRecords, toggleInList } = this.props;
 
     return (
       children.map(child => (
@@ -214,8 +196,7 @@ class RecordsContentList extends Component {
           parent={parent}
           savedList={savedList}
           setActiveRecords={setActiveRecords}
-          toggleInList={toggleInList}
-          toggleIsLoading={toggleIsLoading} />
+          toggleInList={toggleInList} />
         )
       )
     )
@@ -243,43 +224,41 @@ RecordsContentList.propTypes = {
   savedList: PropTypes.object.isRequired,
   setActiveRecords: PropTypes.func.isRequired,
   toggleInList: PropTypes.func.isRequired,
-  toggleIsLoading: PropTypes.func.isRequired,
 }
 
 
 const RecordsContent = props => {
-  const { isContentShown, params, parent, savedList, setActiveRecords, toggleInList, toggleIsLoading } = props;
-  const collection = (parent.ancestors && parent.ancestors.length) ? parent.ancestors.slice(0)[0] : parent;
+  const { children, collection, isContentShown, params, parent, savedList, setActiveRecords, toggleInList } = props;
 
   return (
-  parent.children ?
+  children ?
   (<div className={`records__content ${isContentShown ? "" : "hidden"}`}>
     <h2 className="content__title">Collection Content</h2>
     <h3 className="collection__title">{collection.title}</h3>
-    <p className="collection__date">{Array.isArray(collection.dates) ? dateString(collection.dates) : collection.dates }</p>
+    <p className="collection__date">{dateString(collection.dates)}</p>
     <p className="collection__text text--truncate">{collection.description}</p>
     <RecordsContentList
       ariaLevel={3}
-      children={parent.children}
       className="child__list--top-level"
+      children={children}
       parent={parent}
       params={params}
       savedList={savedList}
       setActiveRecords={setActiveRecords}
-      toggleInList={toggleInList}
-      toggleIsLoading={toggleIsLoading} />
+      toggleInList={toggleInList} />
   </div>) :
   (null)
 )}
 
 RecordsContent.propTypes = {
+  children: PropTypes.array.isRequired,
+  collection: PropTypes.object.isRequired,
   isContentShown: PropTypes.bool.isRequired,
   params: PropTypes.object,
   parent: PropTypes.object.isRequired,
   savedList: PropTypes.object.isRequired,
   setActiveRecords: PropTypes.func.isRequired,
   toggleInList: PropTypes.func.isRequired,
-  toggleIsLoading: PropTypes.func.isRequired,
 }
 
 export default RecordsContent;

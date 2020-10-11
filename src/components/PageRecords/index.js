@@ -13,72 +13,65 @@ class PageRecords extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      activeRecords: {},
+      item: {},
       ancestors: {},
-      collection: {children: []},
+      children: [],
       found: true,
       isAncestorsLoading: true,
+      isChildrenLoading: true,
       isContentShown: false,
-      isLoading: true,
+      isItemLoading: true,
       params: {}
     }
   }
 
   componentDidMount() {
+    const itemUrl = `${process.env.REACT_APP_ARGO_BASEURL}/${this.props.match.params.type}/${this.props.match.params.id}`
     const params = queryString.parse(this.props.location.search);
+    const childrenParams = {...params, limit: 5}
     this.setState({ params: params })
     axios
-      .get(`${process.env.REACT_APP_ARGO_BASEURL}/${this.props.match.params.type}/${this.props.match.params.id}?${queryString.stringify(params)}`)
+      .get(`${itemUrl}?${queryString.stringify(params)}`)
       .then(res => {
-        this.setState({ collection: res.data })
-        this.setState({ activeRecords: res.data });
-        this.setState({ isLoading: false });
-        const childrenParams = {...params, limit: 5}
-        this.getChildrenPage(
-          `${process.env.REACT_APP_ARGO_BASEURL}/${this.props.match.params.type}/${this.props.match.params.id}/children/?${queryString.stringify(childrenParams)}`,
-          true
-        )
+        this.setState({ item: res.data });
+        this.setState({ isItemLoading: false });
       })
       .catch(err => this.setState({ found: false }));
     axios
-      .get(`${process.env.REACT_APP_ARGO_BASEURL}/${this.props.match.params.type}/${this.props.match.params.id}/ancestors`)
+      .get(`${itemUrl}/ancestors`)
       .then(res => {
         this.setState({ ancestors: res.data });
         this.setState({ isAncestorsLoading: false });
       })
       .catch(err => this.setState({ found: false }));
+    this.getPage(`${itemUrl}/children/?${queryString.stringify(childrenParams)}`)
   };
 
-  getChildrenPage = (uri, reset) => {
+  getPage = uri => {
     axios
       .get(uri)
       .then(res => {
-        // TODO: Once children have been removed as a field from Collections, this if statement will
-        // no longer be necessary, and we can just use the else logic.
-        if (reset) {
-          this.setState(
-            {collection: {...this.state.collection, children: res.data.results}},
-            res.data.next && this.getChildrenPage(res.data.next))
-        } else {
-          this.setState(
-            {collection: {...this.state.collection, children: [...this.state.collection.children].concat(res.data.results)}},
-            res.data.next && this.getChildrenPage(res.data.next)
-          )
+          this.setState({ children: [...this.state.children].concat(res.data.results)});
+          this.state.isChildrenLoading && this.setState({ isChildrenLoading: false });
+          res.data.next && this.getPage(res.data.next)
         }
-      })
+      )
       .catch(err => console.log(err))
   }
 
-  setActiveRecords = records => {
-    this.setState({ activeRecords: records })
+  setActiveRecords = uri => {
+    this.setState({isItemLoading: true})
+    axios
+      .get(`${process.env.REACT_APP_ARGO_BASEURL}/${uri}?${queryString.stringify(this.state.params)}`)
+      .then(res => {
+        this.setState({ item: res.data })
+      })
+      .catch(e => console.log(e))
+      .then(() => this.setState({isItemLoading: false}));
   }
 
   toggleIsContentShown = () => {
     this.setState({ isContentShown: !this.state.isContentShown })
-  }
-
-  toggleIsLoading = () => {
-    this.setState({ isLoading: !this.state.isLoading })
   }
 
   render() {
@@ -89,25 +82,27 @@ class PageRecords extends Component {
     return (
       <React.Fragment>
         <Helmet>
-          <title>{ this.state.activeRecords.title }</title>
+          <title>{ this.state.item.title }</title>
         </Helmet>
         <div className="container--full-width">
           <ContextSwitcher
             isContentShown={this.state.isContentShown}
             toggleIsContentShown={this.toggleIsContentShown} />
           <RecordsDetail
-            activeRecords={this.state.activeRecords}
             ancestors={this.state.ancestors}
             isAncestorsLoading={this.state.isAncestorsLoading}
             isContentShown={this.state.isContentShown}
-            isLoading={this.state.isLoading}
+            isItemLoading={this.state.isItemLoading}
+            item={this.state.item}
             params={this.state.params}
             savedList={savedList}
             toggleInList={toggleInList} />
           <RecordsContent
+            children={this.state.children}
+            collection={this.state.ancestors.length ? this.state.ancestors.slice(0)[0] : this.state.item}
             isContentShown={this.state.isContentShown}
             params={this.state.params}
-            parent={this.state.collection}
+            parent={this.state.item}
             savedList={savedList}
             setActiveRecords={this.setActiveRecords}
             toggleInList={toggleInList}
