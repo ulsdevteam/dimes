@@ -118,9 +118,9 @@ class RecordsContentList extends Component {
     const updatedChildren = this.state.children.map(child => {
       if (child.uri === item.uri) {
         if (child.children) {
-          return {...child, children: [...child.children].concat(newChildren)}
+          return {...child, children: [...child.children].concat(newChildren), isChildrenLoading: false}
         } else {
-          return {...child, children: newChildren}
+          return {...child, children: newChildren, isChildrenLoading: false}
         }
       } else {
         return child;
@@ -151,7 +151,6 @@ class RecordsContentList extends Component {
       .get(uri)
       .then(res => {
         this.appendChildren(item, res.data.results);
-        this.state.children.find(c => c.uri === item.uri).isChildrenLoading && this.toggleChildrenLoading(item);
         res.data.next && this.getChildrenPage(res.data.next, item)
       })
       .catch(e => console.log(e))
