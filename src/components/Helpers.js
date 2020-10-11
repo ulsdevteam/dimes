@@ -1,6 +1,6 @@
 
 export const dateString = dates => {
-  return dates && dates.map(d => d.expression).join(", ")
+  return dates && typeof(dates) === "string" ? dates : dates && dates.map(d => d.expression).join(", ")
 }
 
 
