@@ -11,7 +11,6 @@ import {
 } from 'react-accessible-accordion';
 import HitCount from "../HitCount";
 import ListToggleButton from "../ListToggleButton";
-import { RecordsChildSkeleton } from "../LoadingSkeleton";
 import { dateString } from "../Helpers";
 import { isItemSaved } from "../MyListHelpers";
 import "./styles.scss";
@@ -71,7 +70,6 @@ class RecordsChild extends Component {
           {item.hit_count ? (<HitCount className="hit-count--records-" hitCount={item.hit_count} />) : null}
           </AccordionItemButton>
         </AccordionItemHeading>
-        {item.isChildrenLoading ? <RecordsChildSkeleton/> : null}
         {(item.children) ?
           (<AccordionItemPanel>
             <RecordsContentList
@@ -118,9 +116,9 @@ class RecordsContentList extends Component {
     const updatedChildren = this.state.children.map(child => {
       if (child.uri === item.uri) {
         if (child.children) {
-          return {...child, children: [...child.children].concat(newChildren), isChildrenLoading: false}
+          return {...child, children: [...child.children].concat(newChildren)}
         } else {
-          return {...child, children: newChildren, isChildrenLoading: false}
+          return {...child, children: newChildren}
         }
       } else {
         return child;
@@ -136,14 +134,6 @@ class RecordsContentList extends Component {
     ))
     this.setState({children: updated})
     return toggled;
-  }
-
-  toggleChildrenLoading = item => {
-    const updatedChildren = this.state.children.map(child => {
-      return (
-      child.uri === item.uri ? {...child, isChildrenLoading: !child.isChildrenLoading} : child
-    )})
-    this.setState({ children: updatedChildren})
   }
 
   getChildrenPage = (uri, item) => {
@@ -164,7 +154,6 @@ class RecordsContentList extends Component {
       for (const uuid of uuidList) {
         const item = this.state.children.find(c => c.uri === uuid)
         if (!item.children) {
-          this.toggleChildrenLoading(item);
           const childrenParams = {...this.props.params, limit: 5}
           this.getChildrenPage(
             `${process.env.REACT_APP_ARGO_BASEURL}/${item.uri}/children?${queryString.stringify(childrenParams)}`,
