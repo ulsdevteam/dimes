@@ -16,6 +16,7 @@ class PageRecords extends Component {
       item: {},
       ancestors: {},
       children: [],
+      collection: {},
       found: true,
       isAncestorsLoading: true,
       isChildrenLoading: true,
@@ -35,6 +36,7 @@ class PageRecords extends Component {
       .then(res => {
         this.setState({ item: res.data });
         this.setState({ isItemLoading: false });
+        this.setState({ collection: res.data })
       })
       .catch(err => this.setState({ found: false }));
     axios
@@ -42,6 +44,7 @@ class PageRecords extends Component {
       .then(res => {
         this.setState({ ancestors: res.data });
         this.setState({ isAncestorsLoading: false });
+        res.data.length && this.setState({ ancestors: res.data.slice(0)[0] })
       })
       .catch(err => this.setState({ found: false }));
     this.getPage(`${itemUrl}/children/?${queryString.stringify(childrenParams)}`)
@@ -61,13 +64,22 @@ class PageRecords extends Component {
 
   setActiveRecords = uri => {
     this.setState({isItemLoading: true})
+    this.setState({isAncestorsLoading: true})
+    const itemUrl = `${process.env.REACT_APP_ARGO_BASEURL}/${uri}`
     axios
-      .get(`${process.env.REACT_APP_ARGO_BASEURL}/${uri}?${queryString.stringify(this.state.params)}`)
+      .get(`${itemUrl}?${queryString.stringify(this.state.params)}`)
       .then(res => {
         this.setState({ item: res.data })
       })
       .catch(e => console.log(e))
       .then(() => this.setState({isItemLoading: false}));
+    axios
+      .get(`${itemUrl}/ancestors?${queryString.stringify(this.state.params)}`)
+      .then(res => {
+        this.setState({ ancestors: res.data })
+      })
+      .catch(e => console.log(e))
+      .then(() => this.setState({isAncestorsLoading: false}));
   }
 
   toggleIsContentShown = () => {
@@ -99,7 +111,7 @@ class PageRecords extends Component {
             toggleInList={toggleInList} />
           <RecordsContent
             children={this.state.children}
-            collection={this.state.ancestors.length ? this.state.ancestors.slice(0)[0] : this.state.item}
+            collection={this.state.collection}
             isContentShown={this.state.isContentShown}
             params={this.state.params}
             parent={this.state.item}
