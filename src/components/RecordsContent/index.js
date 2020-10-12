@@ -30,6 +30,10 @@ class RecordsChild extends Component {
     }
   }
 
+  handleObjectClick = item => {
+    this.props.setActiveRecords(item.uri)
+  }
+
   toggleSaved = item => {
     this.props.toggleInList(item);
     this.setState({isSaved: !this.state.isSaved})
@@ -37,12 +41,12 @@ class RecordsChild extends Component {
   }
 
   render() {
-    const { ariaLevel, handleObjectClick, item, params, savedList,
+    const { ariaLevel, item, params, savedList,
             setActiveRecords, toggleInList } = this.props;
     return (item.type === "object" ?
       (<div className={`child__list-item child__list-item--${item.type} ${item.isActive ? "active" : ""}`} >
         <div className="child__description">
-          <button className={`child__title child__title--${item.type}`} onClick={() => handleObjectClick(item)}>{item.title}</button>
+          <button className={`child__title child__title--${item.type}`} onClick={() => this.handleObjectClick(item)}>{item.title}</button>
           <p className="child__text">{item.dates}</p>
           <p className="child__text text--truncate">{item.description}</p>
           {item.hit_count ? (<HitCount className="hit-count--records-" hitCount={item.hit_count} />) : null}
@@ -55,7 +59,10 @@ class RecordsChild extends Component {
             toggleSaved={this.toggleSaved} />
         </div>
       </div>) :
-      (<AccordionItem uuid={item.uri} className={`child__list-accordion ${item.children && item.children[0].type === "object" ? "child__list-accordion--bottom-level": ""}`}>
+      (<AccordionItem
+        uuid={item.uri}
+        className={`child__list-accordion ${item.children && item.children[0].type === "object" ? "child__list-accordion--bottom-level": ""}`}
+        onClick={(e) => console.log(e.target.ariaExpanded)} >
         <AccordionItemHeading
           aria-level={ariaLevel}
           className={
@@ -89,7 +96,6 @@ class RecordsChild extends Component {
 }
 
 RecordsChild.propTypes = {
-    handleObjectClick: PropTypes.func.isRequired,
     item: PropTypes.object.isRequired,
     params: PropTypes.object,
     parent: PropTypes.object.isRequired,
@@ -166,10 +172,6 @@ class RecordsContentList extends Component {
     }
   }
 
-  handleObjectClick = item => {
-    this.props.setActiveRecords(item.uri)
-  }
-
   childList = children => {
     const { ariaLevel, parent, params, savedList, setActiveRecords, toggleInList } = this.props;
     return (
@@ -177,7 +179,6 @@ class RecordsContentList extends Component {
         <RecordsChild
           key={child.uri}
           ariaLevel={ariaLevel}
-          handleObjectClick={this.handleObjectClick}
           item={child}
           params={params}
           parent={parent}
