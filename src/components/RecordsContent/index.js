@@ -106,8 +106,8 @@ class RecordsContentList extends Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.children !== this.props.children) {
+  componentDidUpdate(prevState) {
+    if (prevState.children.length !== this.state.children.length) {
       this.setState({ children: this.props.children})
     }
   }
@@ -140,7 +140,7 @@ class RecordsContentList extends Component {
     axios
       .get(uri)
       .then(res => {
-        this.appendChildren(item, res.data.results);
+        this.appendChildren(item, res.data.results)
         res.data.next && this.getChildrenPage(res.data.next, item)
       })
       .catch(e => console.log(e))
@@ -172,7 +172,6 @@ class RecordsContentList extends Component {
 
   childList = children => {
     const { ariaLevel, parent, params, savedList, setActiveRecords, toggleInList } = this.props;
-
     return (
       children.map(child => (
         <RecordsChild
