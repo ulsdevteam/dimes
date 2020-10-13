@@ -27,6 +27,10 @@ class PageRecords extends Component {
   }
 
   componentDidMount() {
+    window.onpopstate = () => {
+      this.setState({...this.props.location.state})
+      this.setState({ isItemLoading: false });
+    }
     const itemUrl = `${process.env.REACT_APP_ARGO_BASEURL}/${this.props.match.params.type}/${this.props.match.params.id}`
     const params = queryString.parse(this.props.location.search);
     const childrenParams = {...params, limit: 5}
@@ -62,6 +66,7 @@ class PageRecords extends Component {
       .catch(err => console.log(err))
   }
 
+  /** Updates state with item found at URL. */
   setActiveRecords = uri => {
     this.setState({isItemLoading: true})
     this.setState({isAncestorsLoading: true})
@@ -69,7 +74,8 @@ class PageRecords extends Component {
     axios
       .get(`${itemUrl}?${queryString.stringify(this.state.params)}`)
       .then(res => {
-        this.setState({ item: res.data })
+        this.setState({ item: res.data });
+        this.setUrl(`${uri}?${queryString.stringify(this.state.params)}`, res.data);
       })
       .catch(e => console.log(e))
       .then(() => this.setState({isItemLoading: false}));
@@ -80,6 +86,11 @@ class PageRecords extends Component {
       })
       .catch(e => console.log(e))
       .then(() => this.setState({isAncestorsLoading: false}));
+  }
+
+  /** Pushes a URL and state into browser history */
+  setUrl = (uri, itemData) => {
+    this.props.history.push(uri, {...this.state, item: itemData})
   }
 
   toggleIsContentShown = () => {

@@ -30,8 +30,8 @@ class RecordsChild extends Component {
     }
   }
 
-  handleObjectClick = item => {
-    this.props.setActiveRecords(item.uri)
+  handleItemClick = uri => {
+    this.props.setActiveRecords(uri)
   }
 
   toggleSaved = item => {
@@ -41,12 +41,11 @@ class RecordsChild extends Component {
   }
 
   render() {
-    const { ariaLevel, item, params, savedList,
-            setActiveRecords, toggleInList } = this.props;
+    const { ariaLevel, item, params, savedList, setActiveRecords, toggleInList } = this.props;
     return (item.type === "object" ?
       (<div className={`child__list-item child__list-item--${item.type} ${item.isActive ? "active" : ""}`} >
         <div className="child__description">
-          <button className={`child__title child__title--${item.type}`} onClick={() => this.handleObjectClick(item)}>{item.title}</button>
+          <button className={`child__title child__title--${item.type}`} onClick={() => this.handleItemClick(item.uri)}>{item.title}</button>
           <p className="child__text">{item.dates}</p>
           <p className="child__text text--truncate">{item.description}</p>
           {item.hit_count ? (<HitCount className="hit-count--records-" hitCount={item.hit_count} />) : null}
@@ -63,6 +62,7 @@ class RecordsChild extends Component {
         uuid={item.uri}
         className={`child__list-accordion ${item.children && item.children[0].type === "object" ? "child__list-accordion--bottom-level": ""}`} >
         <AccordionItemHeading
+          onClick={() => this.handleItemClick(item.uri)}
           aria-level={ariaLevel}
           className={
             `child__list-item child__list-item--${item.type}
@@ -163,11 +163,8 @@ class RecordsContentList extends Component {
           this.getChildrenPage(
             `${process.env.REACT_APP_ARGO_BASEURL}/${item.uri}/children?${queryString.stringify(childrenParams)}`,
             item)
-          this.props.setActiveRecords(item.uri)
         }
       }
-    } else {
-      this.props.setActiveRecords(this.props.parent.uri);
     }
   }
 
