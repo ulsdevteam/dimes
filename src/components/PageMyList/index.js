@@ -136,6 +136,9 @@
 
       const filtered = this.removeUnchecked(this.state.savedList)
       this.setState({modalList: filtered})
+
+      const submitList = this.constructSubmitList(filtered)
+      this.setState({submitList: submitList})
     }
 
     handleConfirmData = (title, message) => {
@@ -211,7 +214,7 @@
       for (const group of list) {
         var newGroup = {...group}
         newGroup.items = group.items.filter(i => {return i.isChecked})
-        filteredList.push(newGroup);
+        newGroup.items.length && filteredList.push(newGroup);
       }
       return filteredList;
     }
@@ -275,9 +278,10 @@
 
     toggleModal = async (modal)  => {
       this.setState({ [modal]: {...this.state[modal], isOpen: !this.state[modal]["isOpen"], error: ""} })
-      const resolved = await this.resolveList(this.props.savedList)
-      const submitList = this.constructSubmitList(resolved);
-      this.setState({submitList: submitList})
+      if (this.state[modal].isOpen) {
+        const submitList = this.constructSubmitList(this.state.savedList);
+        this.setState({submitList: submitList})
+      }
     }
 
     render() {
