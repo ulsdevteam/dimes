@@ -61,8 +61,7 @@ class RecordsChild extends Component {
       </div>) :
       (<AccordionItem
         uuid={item.uri}
-        className={`child__list-accordion ${item.children && item.children[0].type === "object" ? "child__list-accordion--bottom-level": ""}`}
-        onClick={(e) => console.log(e.target.ariaExpanded)} >
+        className={`child__list-accordion ${item.children && item.children[0].type === "object" ? "child__list-accordion--bottom-level": ""}`} >
         <AccordionItemHeading
           aria-level={ariaLevel}
           className={
