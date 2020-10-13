@@ -10,11 +10,11 @@ import { object } from '../../../__fixtures__/object';
 it('renders without crashing', () => {
   const div = document.createElement('div');
   render(<RecordsDetail
-            activeRecords={collectionWithChildHits}
             ancestors={{}}
             isAncestorsLoading={false}
             isContentShown={false}
-            isLoading={false}
+            isItemLoading={false}
+            item={collectionWithChildHits}
             params={{}}
             savedList={{}}
             toggleInList={function(){}} />, div);
@@ -23,11 +23,11 @@ it('renders without crashing', () => {
 it('renders without crashing', () => {
   const div = document.createElement('div');
   render(<RecordsDetail
-          activeRecords={object}
           ancestors={ancestors}
           isAncestorsLoading={false}
           isContentShown={true}
-          isLoading={false}
+          isItemLoading={false}
+          item={object}
           params={{}}
           savedList={{}}
           toggleInList={function(){}} />, div);
