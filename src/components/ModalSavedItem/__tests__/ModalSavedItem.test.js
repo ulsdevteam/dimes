@@ -8,6 +8,5 @@ it('renders without crashing', () => {
   const div = document.createElement('div');
   render(<ModalSavedItemList
           items={resolvedList}
-          isLoading={true}
-          toggleInList={function(){}} />, div);
+          handleChange={function(){}} />, div);
 });
