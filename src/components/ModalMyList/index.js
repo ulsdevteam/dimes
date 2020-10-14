@@ -5,7 +5,7 @@ import Modal from "react-modal";
 import Captcha from "../Captcha";
 import { FocusError, FormButtons, FormGroup } from "../Form";
 import MaterialIcon from "../MaterialIcon";
-import { ModalSavedItemList } from "../SavedItem";
+import { ModalSavedItemList } from "../ModalSavedItem";
 import "./styles.scss"
 
 
