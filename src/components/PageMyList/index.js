@@ -261,6 +261,17 @@
       return updatedList
     }
 
+    /** Checks or unchecks all items in list, depending on value passed to function
+    * value: boolean
+    */
+    toggleList = value => {
+      const updatedList = this.state.modalList.map(g => {
+        const updatedGroupItems = g.items.map(i => ({...i, isChecked: value}))
+        return {...g, items: updatedGroupItems}
+      })
+      this.setState({ modalList: updatedList })
+    }
+
     toggleModal = async (modal)  => {
       this.setState({ [modal]: {...this.state[modal], isOpen: !this.state[modal]["isOpen"], error: ""} })
       const resolved = await this.resolveList(this.props.savedList)
@@ -301,27 +312,30 @@
           </div>
           <EmailModal
             {...this.state.email}
-            toggleModal={() => this.toggleModal("email")}
             handleChange={this.handleModalListChange}
             handleFormSubmit={this.handleFormSubmit}
             list={this.state.modalList}
             submitList={this.state.submitList}
+            toggleList={this.toggleList}
+            toggleModal={() => this.toggleModal("email")}
           />
           <ReadingRoomRequestModal
             {...this.state.readingRoom}
-            toggleModal={() => this.toggleModal("readingRoom")}
             handleChange={this.handleModalListChange}
             handleFormSubmit={this.handleFormSubmit}
             list={this.state.modalList}
             submitList={this.state.submitList}
+            toggleList={this.toggleList}
+            toggleModal={() => this.toggleModal("readingRoom")}
           />
           <DuplicationRequestModal
             {...this.state.duplication}
-            toggleModal={() => this.toggleModal("duplication")}
             handleChange={this.handleModalListChange}
             handleFormSubmit={this.handleFormSubmit}
             list={this.state.modalList}
             submitList={this.state.submitList}
+            toggleList={this.toggleList}
+            toggleModal={() => this.toggleModal("duplication")}
           />
           <ModalConfirm
             {...this.state.confirm}

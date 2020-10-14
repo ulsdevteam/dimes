@@ -5,6 +5,9 @@
   @include grid-column(12);
   border-top: 1px dotted $faded-navy;
   font-family: $sans-serif-stack;
+  &:first-of-type {
+    margin-top: 20px;
+  }
 }
 
 .modal-item-group__items {

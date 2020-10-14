@@ -4,13 +4,13 @@ import { CheckBoxInput } from "../Inputs";
 import "./styles.scss";
 
 
-const ModalSavedItem = ({ handleChange, title, uri }) => (
+const ModalSavedItem = ({ handleChange, isChecked, title, uri }) => (
   // TODO: styling for checkbox
   <li className="modal-saved-item">
     <CheckBoxInput
       className="checkbox--orange"
       id={uri}
-      checked={true}
+      checked={isChecked}
       label={title}
       handleChange={handleChange} />
   </li>
