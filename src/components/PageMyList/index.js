@@ -126,18 +126,6 @@
       this.setState({submitList: submitList})
     }
 
-    /**
-    * Sets isChecked attribute on savedList based on checkbox input.
-    * Updates modalList by filtering out unchecked items.
-    */
-    handleSavedListChange = (e) => {
-      const updatedSavedList = this.setIsChecked(e, this.state.savedList)
-      this.setState({savedList: updatedSavedList})
-
-      const filtered = this.removeUnchecked(this.state.savedList)
-      this.setState({modalList: filtered})
-    }
-
     handleConfirmData = (title, message) => {
       this.setState({ confirm: { ...this.state.confirm, title: title, message: message } })
     }
@@ -304,7 +292,6 @@
               <SavedItemList
                 items={this.state.savedList}
                 isLoading={this.state.isLoading}
-                handleChange={this.handleSavedListChange}
                 toggleInList={this.props.toggleInList} />
             </main>
             <MyListSidebar

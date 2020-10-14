@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import Button from "../Button";
-import { CheckBoxInput } from "../Inputs";
 import { MyListSkeleton } from "../LoadingSkeleton";
 import "./styles.scss";
 
@@ -9,14 +8,6 @@ import "./styles.scss";
 // TODO: styling for checkbox
 const SavedItem = props => (
   <div className="saved-item">
-    <div className="saved-item__inputs">
-      <CheckBoxInput
-        className="checkbox--orange hide-label"
-        id={props.uri}
-        checked={props.isChecked}
-        label={props.title}
-        handleChange={e => props.handleChange(e)} />
-    </div>
     <div className="saved-item__item-description">
       <h3 className="saved-item__title">{props.title}</h3>
       {props.date !== props.title && <p className="saved-item__date">{props.date}</p>}
