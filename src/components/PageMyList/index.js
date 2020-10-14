@@ -9,7 +9,7 @@
   import { SavedItemList } from "../SavedItem";
   import "./styles.scss";
 
-  const MyListExportActions = ({downloadCsv, emailList, removeAllItems}) => (
+  const MyListExportActions = ({ confirmDeleteAll, downloadCsv, emailList }) => (
     <div className="mylist__export-actions show-on-lg-up">
       <Button
         className="btn--orange btn--sm"
@@ -25,13 +25,13 @@
         className="btn--gray btn--sm"
         label="Remove All Items"
         iconBefore="delete"
-        handleClick={() => removeAllItems()} />
+        handleClick={() => confirmDeleteAll()} />
     </div>)
 
   MyListExportActions.propTypes = {
+    confirmDeleteAll: PropTypes.func.isRequired,
     downloadCsv: PropTypes.func.isRequired,
     emailList: PropTypes.func.isRequired,
-    removeAllItems: PropTypes.func.isRequired
   }
 
   const MyListSidebar = ({ duplicationRequest, readingRoomRequest, sendEmail }) => (
@@ -68,20 +68,15 @@
         modalList: [],
         submitList: [],
         isLoading: true,
-        email: {
-          isOpen: false
-        },
-        readingRoom: {
-          isOpen: false
-        },
-        duplication: {
-          isOpen: false
-        },
+        email: {isOpen: false},
+        readingRoom: {isOpen: false},
+        duplication: {isOpen: false},
         confirm: {
           isOpen: false,
           title: "",
           message: ""
-        }
+        },
+        confirmDeleteAll: {isOpen: false}
       };
     }
 
@@ -297,9 +292,9 @@
                   sendEmail={this.sendEmail} />
               </div>
               <MyListExportActions
+                  confirmDeleteAll={() => this.toggleModal("confirmDeleteAll")}
                   downloadCsv={this.downloadCsv}
-                  emailList={() => this.toggleModal("email")}
-                  removeAllItems={this.props.removeAllItems} />
+                  emailList={() => this.toggleModal("email")} />
               <SavedItemList
                 items={this.state.savedList}
                 isLoading={this.state.isLoading}
@@ -340,6 +335,19 @@
           <ModalConfirm
             {...this.state.confirm}
             toggleModal={() => this.toggleModal("confirm")}
+          />
+          <ModalConfirm
+            {...this.state.confirmDeleteAll}
+            message={
+              <>Are you sure you want to remove all the items from your list?
+              <div className="confirm-buttons">
+                <Button className="btn--sm btn--orange" label="Remove" handleClick={() => {this.props.removeAllItems(); this.toggleModal("confirmDeleteAll");}} />
+                <Button className="btn--sm btn--gray" label="Cancel" handleClick={() => this.toggleModal("confirmDeleteAll")}/>
+              </div>
+              </>
+            }
+            title="Confirm delete all"
+            toggleModal={() => this.toggleModal("confirmDeleteAll")}
           />
         </React.Fragment>
       );
