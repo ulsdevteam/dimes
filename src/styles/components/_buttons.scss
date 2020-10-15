@@ -122,6 +122,16 @@
   }
 }
 
+.btn--dark-gray {
+  background: $light-med-gray;
+  color: $pure-white;
+  border: 1px solid $light-med-gray;
+  &:hover {
+    background: $orange-gray;
+    color: $pure-white;
+  }
+}
+
 .btn--back {
   @extend .btn--gray;
   @extend .btn--sm;
@@ -186,7 +196,7 @@
     @include icon-margin-left;
   }
   &.saved {
-    @extend .btn--gray;
+    @extend .btn--dark-gray;
   }
 }
 
@@ -206,8 +216,24 @@
   padding: 8px 10px;
   z-index: 999;
   @media screen and (min-width: $break-md) {
-    position: absolute;
-    right: 20px;
-    top: 20px;
+    position: relative;
   }
+}
+
+@mixin launch-button {
+  @extend .btn--md;
+  position: relative;
+  font-size: 10px;
+  padding: 8px 10px;
+  margin-right: 10px;
+}
+
+.btn-launch--blue {
+  @mixin launch-button;
+  @extend .btn--blue;
+}
+
+.btn-launch--orange {
+  @mixin launch-button;
+  @extend .orange;
 }

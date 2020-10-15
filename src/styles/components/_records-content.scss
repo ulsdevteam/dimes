@@ -176,6 +176,10 @@
 .child__buttons {
   flex-basis: 300px;
   text-align: right;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: flex-end;
 }
 
 .child__title {
