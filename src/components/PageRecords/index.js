@@ -4,6 +4,7 @@ import axios from "axios";
 import queryString from "query-string";
 import { Helmet } from "react-helmet";
 import ContextSwitcher from "../ContextSwitcher";
+import ModalViewer from "../ModalViewer";
 import RecordsContent from "../RecordsContent";
 import RecordsDetail from "../RecordsDetail";
 import PageNotFound from "../PageNotFound";
@@ -22,6 +23,7 @@ class PageRecords extends Component {
       isChildrenLoading: true,
       isContentShown: false,
       isItemLoading: true,
+      isViewerShown: false,
       params: {}
     }
   }
@@ -97,6 +99,10 @@ class PageRecords extends Component {
     this.setState({ isContentShown: !this.state.isContentShown })
   }
 
+  toggleViewer = () => {
+    this.setState({ isViewerShown: !this.state.isViewerShown })
+  }
+
   render() {
     const { savedList, toggleInList } = this.props;
     if (!this.state.found) {
@@ -119,7 +125,8 @@ class PageRecords extends Component {
             item={this.state.item}
             params={this.state.params}
             savedList={savedList}
-            toggleInList={toggleInList} />
+            toggleInList={toggleInList}
+            toggleViewer={this.toggleViewer} />
           <RecordsContent
             children={this.state.children}
             collection={this.state.collection}
@@ -129,8 +136,14 @@ class PageRecords extends Component {
             savedList={savedList}
             setActiveRecords={this.setActiveRecords}
             toggleInList={toggleInList}
-            toggleIsLoading={this.toggleIsLoading} />
+            toggleIsLoading={this.toggleIsLoading}
+            toggleViewer={this.toggleViewer} />
         </div>
+        <ModalViewer
+          isOpen={this.state.isViewerShown}
+          manifestUri={this.state.item.uri}
+          title={this.state.item.title}
+          toggleModal={this.toggleViewer} />
       </React.Fragment>
     )
   }

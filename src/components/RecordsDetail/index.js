@@ -89,7 +89,7 @@ const PanelTextSection = ({ text, title }) => (
     (null)
 )
 
-const RecordsDetail = ({ ancestors, isAncestorsLoading, isContentShown, isItemLoading, item, params, savedList, toggleInList }) => {
+const RecordsDetail = ({ ancestors, isAncestorsLoading, isContentShown, isItemLoading, item, params, savedList, toggleInList, toggleViewer }) => {
 
   var [isSaved, setIsSaved] = useState(() => {
     return !isItemLoading && isItemSaved(item, savedList)
@@ -120,7 +120,7 @@ const RecordsDetail = ({ ancestors, isAncestorsLoading, isContentShown, isItemLo
           label="View Online"
           iconAfter="visibility"
           className="btn-launch--orange"
-          handleClick={() => alert(`Launching Viewer for ${item.title}`)}
+          handleClick={() => toggleViewer()}
           uri={item.uri} />
         <Button
           className="btn-download--orange"
