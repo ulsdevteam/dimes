@@ -11,6 +11,7 @@ import {
 } from 'react-accessible-accordion';
 import Button from "../Button";
 import ListToggleButton from "../ListToggleButton";
+import MaterialIcon from "../MaterialIcon";
 import { DetailSkeleton, FoundInItemSkeleton } from "../LoadingSkeleton";
 import { dateString, hasAccessAndUse, noteText } from "../Helpers";
 import { isItemSaved } from "../MyListHelpers";
@@ -89,7 +90,7 @@ const PanelTextSection = ({ text, title }) => (
     (null)
 )
 
-const RecordsDetail = ({ ancestors, isAncestorsLoading, isContentShown, isItemLoading, item, params, savedList, toggleInList, toggleViewer }) => {
+const RecordsDetail = ({ ancestors, isAncestorsLoading, isContentShown, isItemLoading, item, params, savedList, toggleInList }) => {
 
   var [isSaved, setIsSaved] = useState(() => {
     return !isItemLoading && isItemSaved(item, savedList)
@@ -116,12 +117,8 @@ const RecordsDetail = ({ ancestors, isAncestorsLoading, isContentShown, isItemLo
           isSaved={isSaved}
           item={item}
           toggleSaved={toggleInList} />
-        <Button
-          label="View Online"
-          iconAfter="visibility"
-          className="btn-launch--orange"
-          handleClick={() => toggleViewer()}
-          uri={item.uri} />
+        <a className="btn btn-launch--orange"
+          href={`${item.uri}/view`}>View Online <MaterialIcon icon="visibility" /></a>
         <Button
           className="btn-download--orange"
           handleClick={() => alert(`Downloading file for ${item.uri}`)}

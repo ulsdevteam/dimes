@@ -229,6 +229,9 @@
   font-size: 9px;
   padding: 8px 10px;
   margin-right: 10px;
+  &:hover {
+    color: $pure-white;
+  }
 }
 
 .btn-launch--blue {

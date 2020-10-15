@@ -9,9 +9,9 @@ import {
     AccordionItemButton,
     AccordionItemPanel,
 } from 'react-accessible-accordion';
-import Button from "../Button";
 import HitCount from "../HitCount";
 import ListToggleButton from "../ListToggleButton";
+import MaterialIcon from "../MaterialIcon";
 import { dateString } from "../Helpers";
 import { isItemSaved } from "../MyListHelpers";
 import "./styles.scss";
@@ -42,7 +42,7 @@ class RecordsChild extends Component {
   }
 
   render() {
-    const { ariaLevel, item, params, savedList, setActiveRecords, toggleInList, toggleViewer } = this.props;
+    const { ariaLevel, item, params, savedList, setActiveRecords, toggleInList } = this.props;
     return (item.type === "object" ?
       (<div className={`child__list-item child__list-item--${item.type} ${item.isActive ? "active" : ""}`} >
         <div className="child__description">
@@ -53,12 +53,8 @@ class RecordsChild extends Component {
         </div>
         <div className={`child__buttons ${item.online ? "expanded" : ""}`}>
           {item.online ? (
-            <Button
-              label="View Online"
-              iconAfter="visibility"
-              className="btn-launch--blue"
-              handleClick={() => toggleViewer()}
-              uri={item.uri} />) :
+            <a className="btn btn-launch--blue"
+              href={`${item.uri}/view`}>View Online <MaterialIcon icon="visibility" /></a>) :
             (null)
           }
           <ListToggleButton
@@ -111,7 +107,6 @@ RecordsChild.propTypes = {
     setActiveRecords: PropTypes.func.isRequired,
     savedList: PropTypes.object.isRequired,
     toggleInList: PropTypes.func.isRequired,
-    toggleViewer: PropTypes.func.isRequired
 }
 
 class RecordsContentList extends Component {
@@ -180,7 +175,7 @@ class RecordsContentList extends Component {
   }
 
   childList = children => {
-    const { ariaLevel, parent, params, savedList, setActiveRecords, toggleInList, toggleViewer } = this.props;
+    const { ariaLevel, parent, params, savedList, setActiveRecords, toggleInList } = this.props;
     return (
       children.map(child => (
         <RecordsChild
@@ -191,8 +186,7 @@ class RecordsContentList extends Component {
           parent={parent}
           savedList={savedList}
           setActiveRecords={setActiveRecords}
-          toggleInList={toggleInList}
-          toggleViewer={toggleViewer} />
+          toggleInList={toggleInList} />
         )
       )
     )
@@ -220,13 +214,12 @@ RecordsContentList.propTypes = {
   savedList: PropTypes.object.isRequired,
   setActiveRecords: PropTypes.func.isRequired,
   toggleInList: PropTypes.func.isRequired,
-  toggleViewer: PropTypes.func.isRequired,
 }
 
 
 const RecordsContent = props => {
   const { children, collection, isContentShown, params, parent, savedList,
-          setActiveRecords, toggleInList, toggleViewer } = props;
+          setActiveRecords, toggleInList } = props;
 
   return (
   children ?
@@ -243,8 +236,7 @@ const RecordsContent = props => {
       params={params}
       savedList={savedList}
       setActiveRecords={setActiveRecords}
-      toggleInList={toggleInList}
-      toggleViewer={toggleViewer} />
+      toggleInList={toggleInList} />
   </div>) :
   (null)
 )}
@@ -258,7 +250,6 @@ RecordsContent.propTypes = {
   savedList: PropTypes.object.isRequired,
   setActiveRecords: PropTypes.func.isRequired,
   toggleInList: PropTypes.func.isRequired,
-  toggleViewer: PropTypes.func.isRequired,
 }
 
 export default RecordsContent;
