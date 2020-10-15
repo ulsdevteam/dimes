@@ -111,9 +111,17 @@ class RecordsContentList extends Component {
     }
   }
 
-  componentDidUpdate(prevState) {
-    if (prevState.children.length !== this.state.children.length) {
-      this.setState({ children: this.props.children})
+  /** Saves children to state, so that they can be managed. This is necessary
+  * because react-accessible-accordion does not appear to support loading data
+  * into an accordion panel once it has been opened. Instead, it prefers that
+  * state for the entire accordion be managed at once. This creates some complicated
+  * anti-patterns in our code.
+  */
+  static getDerivedStateFromProps(props, state) {
+    if (props.children.length !== state.children.length) {
+      return {children: props.children}
+    } else {
+      return null
     }
   }
 
