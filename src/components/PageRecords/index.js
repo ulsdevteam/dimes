@@ -119,8 +119,7 @@ class PageRecords extends Component {
             item={this.state.item}
             params={this.state.params}
             savedList={savedList}
-            toggleInList={toggleInList}
-            toggleViewer={this.toggleViewer} />
+            toggleInList={toggleInList} />
           <RecordsContent
             children={this.state.children}
             collection={this.state.collection}
@@ -130,8 +129,7 @@ class PageRecords extends Component {
             savedList={savedList}
             setActiveRecords={this.setActiveRecords}
             toggleInList={toggleInList}
-            toggleIsLoading={this.toggleIsLoading}
-            toggleViewer={this.toggleViewer} />
+            toggleIsLoading={this.toggleIsLoading} />
         </div>
       </React.Fragment>
     )
