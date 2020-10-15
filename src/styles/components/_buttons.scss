@@ -212,28 +212,39 @@
 
 .btn-add--sm {
   @extend .btn-add;
-  font-size: 10px;
+  font-size: 9px;
   padding: 8px 10px;
   z-index: 999;
   @media screen and (min-width: $break-md) {
     position: relative;
+  }
+  &.detail {
+    margin-bottom: 10px;
   }
 }
 
 @mixin launch-button {
   @extend .btn--md;
   position: relative;
-  font-size: 10px;
+  font-size: 9px;
   padding: 8px 10px;
   margin-right: 10px;
 }
 
 .btn-launch--blue {
-  @mixin launch-button;
+  @include launch-button;
   @extend .btn--blue;
 }
 
 .btn-launch--orange {
-  @mixin launch-button;
-  @extend .orange;
+  @include launch-button;
+  @extend .btn--orange;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.btn-download--orange {
+  @include launch-button;
+  @extend .btn--orange;
+  margin-bottom: 10px;
 }

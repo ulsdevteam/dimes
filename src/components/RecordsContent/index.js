@@ -9,8 +9,8 @@ import {
     AccordionItemButton,
     AccordionItemPanel,
 } from 'react-accessible-accordion';
+import Button from "../Button";
 import HitCount from "../HitCount";
-import LaunchViewerButton from "../LaunchViewerButton";
 import ListToggleButton from "../ListToggleButton";
 import { dateString } from "../Helpers";
 import { isItemSaved } from "../MyListHelpers";
@@ -51,11 +51,16 @@ class RecordsChild extends Component {
           <p className="child__text text--truncate">{item.description}</p>
           {item.hit_count ? (<HitCount className="hit-count--records-" hitCount={item.hit_count} />) : null}
         </div>
-        <div className={`child__buttons${item.online ? "expanded" : ""}`}>
+        <div className={`child__buttons ${item.online ? "expanded" : ""}`}>
           {item.online ? (
-          <LaunchViewerButton
-            className="btn-launch--blue"
-            uri={item.uri} />) : (null)}
+            <Button
+              label="View Online"
+              iconAfter="visibility"
+              className="btn-launch--blue"
+              handleClick={() => alert(`Launching Viewer for ${item.title}`)}
+              uri={item.uri} />) :
+            (null)
+          }
           <ListToggleButton
             className="btn-add--sm"
             isSaved={this.state.isSaved}
