@@ -102,6 +102,7 @@
 .child__list-item--object {
   border-bottom: 1px solid $neutral-sand;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   &:first-child {
     border-top: 1px solid $neutral-sand;
@@ -175,11 +176,15 @@
 }
 
 .child__buttons {
-  flex-basis: 300px;
+  width: 100%;
   display: flex;
   flex-wrap: nowrap;
   align-items: flex-start;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  @media screen and (min-width: $break-md) {
+    width: unset;
+    justify-content: flex-end;
+  }
 }
 
 .child__title {

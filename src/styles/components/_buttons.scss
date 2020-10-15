@@ -188,10 +188,16 @@
   }
 }
 
-.btn-add {
+@mixin records-btn {
   @extend .btn--md;
   @extend .btn--orange;
+  font-size: 9px;
   font-weight: 700;
+  padding: 8px 10px;
+  z-index: 999;
+  &:hover {
+    color: $pure-white;
+  }
   & .material-icons {
     @include icon-margin-left;
   }
@@ -200,54 +206,46 @@
   }
 }
 
-.btn-add--lg {
-  @extend .btn-add;
-  padding: 8px 10px;
-  margin-bottom: 40px;
+.btn-add--content {
+  @include records-btn;
+  @media screen and (min-width: $break-md) {
+    position: relative;
+  }
+}
+
+.btn-launch--content {
+  @include records-btn;
+  @extend .btn--blue;
+  margin-right: 10px;
+}
+
+@mixin records-detail-btn {
+  @include records-btn;
   width: 100%;
+  font-size: 10px;
+  margin-bottom: 10px;
+  text-align: center;
   @media screen and (min-width: $break-md) {
     width: unset;
   }
 }
 
-.btn-add--sm {
-  @extend .btn-add;
-  font-size: 9px;
-  padding: 8px 10px;
-  z-index: 999;
-  @media screen and (min-width: $break-md) {
-    position: relative;
-  }
-  &.detail {
-    margin-bottom: 10px;
-  }
+.btn-add--detail {
+  @include records-detail-btn;
 }
 
-@mixin launch-button {
-  @extend .btn--md;
-  position: relative;
-  font-size: 9px;
-  padding: 8px 10px;
-  margin-right: 10px;
-  &:hover {
-    color: $pure-white;
-  }
-}
-
-.btn-launch--blue {
-  @include launch-button;
-  @extend .btn--blue;
-}
-
-.btn-launch--orange {
-  @include launch-button;
+.btn-launch--detail {
+  @include records-detail-btn;
   @extend .btn--orange;
-  margin-left: 10px;
-  margin-bottom: 10px;
+  box-sizing: border-box;
+  @media screen and (min-width: $break-md) {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 }
 
-.btn-download--orange {
-  @include launch-button;
+.btn-download--detail {
+  @include records-detail-btn;
   @extend .btn--orange;
   margin-bottom: 10px;
 }

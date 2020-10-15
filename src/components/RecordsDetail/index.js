@@ -113,14 +113,14 @@ const RecordsDetail = ({ ancestors, isAncestorsLoading, isContentShown, isItemLo
       (item.online ? (
         <>
         <ListToggleButton
-          className="btn-add--sm detail"
+          className="btn-add--detail"
           isSaved={isSaved}
           item={item}
           toggleSaved={toggleInList} />
-        <a className="btn btn-launch--orange"
+        <a className="btn btn-launch--detail"
           href={`${item.uri}/view`}>View Online <MaterialIcon icon="visibility" /></a>
         <Button
-          className="btn-download--orange"
+          className="btn-download--detail"
           handleClick={() => alert(`Downloading file for ${item.uri}`)}
           iconAfter="get_app"
           label="Download"
@@ -128,7 +128,7 @@ const RecordsDetail = ({ ancestors, isAncestorsLoading, isContentShown, isItemLo
         </>
       ) :
       (<ListToggleButton
-        className="btn-add--lg"
+        className="btn-add--detail"
         isSaved={isSaved}
         item={item}
         toggleSaved={toggleInList} />)
