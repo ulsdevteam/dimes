@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import Button from "../Button";
+import MaterialIcon from "../MaterialIcon";
 import { MyListSkeleton } from "../LoadingSkeleton";
 import "./styles.scss";
 
@@ -8,24 +9,24 @@ import "./styles.scss";
 // TODO: styling for checkbox
 const SavedItem = props => (
   <div className="saved-item">
-    <div className="saved-item__item-description">
-      <h3 className="saved-item__title">{props.title}</h3>
-      {props.date !== props.title && <p className="saved-item__date">{props.date}</p>}
-      {props.description && <p className="saved-item__description">{props.description}</p>}
-      {props.parent && <p className="saved-item__found-in">Found in: <a href={props.parentRef}>{props.parent}</a></p>}
-      {props.lastRequested && <p className="saved-item__last-requested">Last requested on: {props.lastRequested}</p>}
-    </div>
-    <div className="saved-item__buttons">
-      {props.online &&
+    <div className="saved-item__row">
+      <div className="saved-item__item-description">
+        <h3 className="saved-item__title">{props.title}</h3>
+        {props.date !== props.title && <p className="saved-item__date">{props.date}</p>}
+        {props.description && <p className="saved-item__description">{props.description}</p>}
+        {props.parent && <p className="saved-item__found-in">Found in: <a href={props.parentRef}>{props.parent}</a></p>}
+        {props.lastRequested && <p className="saved-item__last-requested">Last requested on: {props.lastRequested}</p>}
+      </div>
+      <div className="saved-item__buttons">
+        {props.online &&
+          <a className="btn btn--blue btn--sm"
+            href={`${props.uri}/view`}>View Online <MaterialIcon icon="visibility" /></a>}
         <Button
-          label="View Online"
-          className="btn btn--blue btn--sm"
-          iconAfter="visibility" />}
-      <Button
-        label="Remove"
-        className="btn btn--gray btn--sm"
-        iconBefore="delete"
-        handleClick={props.handleClick} />
+          label="Remove"
+          className="btn btn--gray btn--sm"
+          iconBefore="delete"
+          handleClick={props.handleClick} />
+      </div>
     </div>
   </div>)
 

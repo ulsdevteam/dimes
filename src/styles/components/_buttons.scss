@@ -190,7 +190,6 @@
 
 @mixin records-btn {
   @extend .btn--md;
-  @extend .btn--orange;
   font-size: 9px;
   font-weight: 700;
   padding: 8px 10px;
@@ -208,6 +207,7 @@
 
 .btn-add--content {
   @include records-btn;
+  @extend .btn--orange;
   @media screen and (min-width: $break-md) {
     position: relative;
   }
@@ -221,6 +221,7 @@
 
 @mixin records-detail-btn {
   @include records-btn;
+  @extend .btn--orange;
   width: 100%;
   font-size: 10px;
   margin-bottom: 10px;
