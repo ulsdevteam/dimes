@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { LiveMessage } from "react-aria-live";
 import PropTypes from "prop-types";
 import axios from "axios";
 import queryString from "query-string";
@@ -20,7 +21,8 @@ class PageRecords extends Component {
       found: true,
       collection: { title: "" },
       activeRecords: { title: "" },
-      params: {}
+      params: {},
+      updateMessage: ""
     }
   }
 
@@ -46,6 +48,7 @@ class PageRecords extends Component {
 
   setActiveRecords = records => {
     this.setState({ activeRecords: records })
+    this.setState({ updateMessage: `Details under heading 1 have been updated to describe the selected records titled ${records.title}`})
   }
 
   toggleIsContentShown = () => {
@@ -63,6 +66,7 @@ class PageRecords extends Component {
     }
     return (
       <React.Fragment>
+        <LiveMessage message={this.state.updateMessage} aria-live="polite" />
         <Helmet>
           <title>{ this.state.activeRecords.title }</title>
         </Helmet>
