@@ -25,24 +25,29 @@ class PageSearch extends Component {
       startItem: 0,
       endItem: 0,
       resultsCount: 0,
-      hitsIsLoading: false,
+      hitsChildren: [],
+      hitsChildrenIsLoading: false,
+      hitsCollection: {},
+      hitsCollectionIsLoading: false,
       hitsIsOpen: false,
-      hitsData: {},
       facetIsOpen: false,
       facetData: {},
     };
   };
+
   componentDidMount() {
     let params = queryString.parse(this.props.location.search)
     params.limit = this.state.pageSize
     this.executeSearch(params)
   };
+
   startItem = (results, offset) => {
     var startItem = this.state.startItem;
     if (results.count) startItem = 1;
     if (offset > 0) startItem = offset;
     return startItem;
   }
+
   endItem = (results, offset) => {
     var endItem = results.count
     if (results.count > this.state.pageSize) endItem = this.state.pageSize;
@@ -50,12 +55,14 @@ class PageSearch extends Component {
     if (endItem > results.count) endItem = results.count
     return endItem;
   }
+
   excecuteFacetsSearch = params =>  {
     axios
       .get(`${process.env.REACT_APP_ARGO_BASEURL}/facets/?${queryString.stringify(params)}`)
       .then(res => {this.setState({ facetData: res.data})})
       .catch(err => console.log(err));
   };
+
   executeSearch = params =>  {
     this.props.history.push(`${window.location.pathname}?${queryString.stringify(params)}`)
     this.setState({ inProgress: true });
@@ -74,6 +81,7 @@ class PageSearch extends Component {
       })
       .catch(err => console.log(err));
   };
+
   handleDateFacetChange = (startYear, endYear) => {
     var params = {...this.state.params}
     params.start_date__gte = startYear
@@ -81,16 +89,31 @@ class PageSearch extends Component {
     delete params.offset
     this.executeSearch(params);
   }
-  handleHitCountClick = uri => {
-    this.setState({ hitsIsLoading: true }, () => this.toggleHitsModal())
+
+  getChildrenPage = uri => {
     axios
-      .get(`${process.env.REACT_APP_ARGO_BASEURL}${uri}/?${queryString.stringify(this.state.params)}`)
+      .get(uri)
       .then(res => {
-        this.setState({ hitsData: res.data })
-        this.setState({ hitsIsLoading: false })
+        this.setState({ hitsChildren: [...this.state.hitsChildren].concat(res.data.results) })
+        this.state.hitsChildrenIsLoading && this.setState({ hitsChildrenIsLoading: false })
+        res.data.next && this.getChildrenPage(res.data.next)
       })
       .catch(err => console.log(err))
   }
+
+  handleHitCountClick = uri => {
+    this.setState({ hitsChildrenIsLoading: true, hitsCollectionIsLoading: true, hitsChildren: []}, () => this.toggleHitsModal())
+    axios
+      .get(`${process.env.REACT_APP_ARGO_BASEURL}${uri}/?${queryString.stringify(this.state.params)}`)
+      .then(res => {
+        this.setState({ hitsCollection: res.data })
+        this.setState({ hitsCollectionIsLoading: false })
+      })
+      .catch(err => console.log(err))
+    const filteredParams = {...this.state.params, limit: 5}
+    this.getChildrenPage(`${process.env.REACT_APP_ARGO_BASEURL}${uri}/children/?limit=5&${queryString.stringify(filteredParams)}`)
+  }
+
   /** Pushes changes to facet checkboxes to url and executes search */
   handleFacetChange = (event, k) => {
     var params = {...this.state.params}
@@ -108,25 +131,30 @@ class PageSearch extends Component {
     delete params.offset
     this.executeSearch(params);
   }
+
   handlePageClick = (data) => {
     let offset = Math.ceil(data.selected * this.state.pageSize);
     let params = {...this.state.params}
     if (offset > 0) {params.offset = offset} else {delete params.offset}
     this.executeSearch(params)
   };
+
   handleSortChange = (event) => {
     var params = {...this.state.params}
     event.target.value ? params.sort = event.target.value : delete params["sort"]
     delete params.offset
     this.executeSearch(params);
   }
+
   toggleFacetModal = () => {
     this.setState({ facetIsOpen: !this.state.facetIsOpen })
   }
+
   toggleHitsModal = () => {
     this.setState({ hitsIsOpen: !this.state.hitsIsOpen })
     this.setState({ hitsData: {} })
   }
+
   render() {
     return (
       <React.Fragment>
@@ -212,11 +240,13 @@ class PageSearch extends Component {
           handleChange={this.handleFacetChange}
           handleDateChange={this.handleDateFacetChange} />
         <CollectionHitsModal
-          isLoading={this.state.hitsIsLoading}
+          children={this.state.hitsChildren}
+          collection={this.state.hitsCollection}
+          isCollectionLoading={this.state.hitsCollectionIsLoading}
+          isChildrenLoading={this.state.hitsChildrenIsLoading}
           isOpen={this.state.hitsIsOpen}
-          toggleModal={this.toggleHitsModal}
-          data={this.state.hitsData}
-          params={this.state.params} />
+          params={this.state.params}
+          toggleModal={this.toggleHitsModal} />
       </React.Fragment>
     )
   }
