@@ -9,11 +9,12 @@ it('renders without crashing', () => {
   const div = document.createElement('div');
   render(<EmailModal
       appElement={div}
+      handleChange={function(){}}
       handleFormSubmit={function(){}}
       isOpen={true}
       list={resolvedList}
-      loadListData={function(){}}
       submitList={submitList}
+      toggleList={function(){}}
       toggleModal={function(){}} />, div);
 });
 
@@ -21,11 +22,12 @@ it('renders without crashing', () => {
   const div = document.createElement('div');
   render(<ReadingRoomRequestModal
       appElement={div}
+      handleChange={function(){}}
       handleFormSubmit={function(){}}
       isOpen={true}
       list={resolvedList}
-      loadListData={function(){}}
       submitList={submitList}
+      toggleList={function(){}}
       toggleModal={function(){}} />, div);
 });
 
@@ -33,10 +35,11 @@ it('renders without crashing', () => {
   const div = document.createElement('div');
   render(<DuplicationRequestModal
       appElement={div}
+      handleChange={function(){}}
       handleFormSubmit={function(){}}
       isOpen={true}
       list={resolvedList}
-      loadListData={function(){}}
       submitList={submitList}
+      toggleList={function(){}}
       toggleModal={function(){}} />, div);
 });

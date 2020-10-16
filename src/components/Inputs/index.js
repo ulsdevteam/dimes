@@ -25,7 +25,7 @@ export const CheckBoxInput = (props) => (
       id={props.id}
       name={props.name ? props.name : props.id}
       onChange={props.handleChange}
-      defaultChecked={props.checked}
+      checked={props.checked}
       required={props.required} />
     <InputLabel {...props} />
   </div>

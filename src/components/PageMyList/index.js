@@ -9,7 +9,7 @@
   import { SavedItemList } from "../SavedItem";
   import "./styles.scss";
 
-  const MyListExportActions = ({downloadCsv, emailList, removeAllItems}) => (
+  const MyListExportActions = ({ confirmDeleteAll, downloadCsv, emailList }) => (
     <div className="mylist__export-actions show-on-lg-up">
       <Button
         className="btn--orange btn--sm"
@@ -25,13 +25,13 @@
         className="btn--gray btn--sm"
         label="Remove All Items"
         iconBefore="delete"
-        handleClick={() => removeAllItems()} />
+        handleClick={() => confirmDeleteAll()} />
     </div>)
 
   MyListExportActions.propTypes = {
+    confirmDeleteAll: PropTypes.func.isRequired,
     downloadCsv: PropTypes.func.isRequired,
     emailList: PropTypes.func.isRequired,
-    removeAllItems: PropTypes.func.isRequired
   }
 
   const MyListSidebar = ({ duplicationRequest, readingRoomRequest, sendEmail }) => (
@@ -65,23 +65,17 @@
       super(props);
       this.state = {
         savedList: [],
-        modalList: [],
         submitList: [],
         isLoading: true,
-        email: {
-          isOpen: false
-        },
-        readingRoom: {
-          isOpen: false
-        },
-        duplication: {
-          isOpen: false
-        },
+        email: {isOpen: false},
+        readingRoom: {isOpen: false},
+        duplication: {isOpen: false},
         confirm: {
           isOpen: false,
           title: "",
           message: ""
-        }
+        },
+        confirmDeleteAll: {isOpen: false}
       };
     }
 
@@ -90,7 +84,7 @@
         this.setState({isLoading: true})
         const resolved = await this.resolveList(this.props.savedList)
         const submitList = this.constructSubmitList(resolved);
-        this.setState({savedList: resolved, modalList: resolved, submitList: submitList})
+        this.setState({savedList: resolved, submitList: submitList})
         this.setState({isLoading: false})
       }
     }
@@ -115,29 +109,14 @@
     }
 
     /**
-    * Sets isChecked attribute on modalList based on checkbox input.
+    * Sets isChecked attribute on savedList based on checkbox input.
     * Updates submitList by filtering unchecked items.
     */
     handleModalListChange = (e) => {
-      const updatedModalList = this.setIsChecked(e, this.state.modalList)
-      this.setState({modalList: updatedModalList})
+      const updatedList = this.setIsChecked(e, this.state.savedList)
+      this.setState({savedList: updatedList})
 
-      const submitList = this.constructSubmitList(updatedModalList)
-      this.setState({submitList: submitList})
-    }
-
-    /**
-    * Sets isChecked attribute on savedList based on checkbox input.
-    * Updates modalList by filtering out unchecked items.
-    */
-    handleSavedListChange = (e) => {
-      const updatedSavedList = this.setIsChecked(e, this.state.savedList)
-      this.setState({savedList: updatedSavedList})
-
-      const filtered = this.removeUnchecked(this.state.savedList)
-      this.setState({modalList: filtered})
-
-      const submitList = this.constructSubmitList(filtered)
+      const submitList = this.constructSubmitList(updatedList)
       this.setState({submitList: submitList})
     }
 
@@ -240,8 +219,8 @@
                 "online": fetchedItem.online,
                 "lastRequested": value.lastRequested ? value.lastRequested : null,
                 "saved": value.saved,
-                "isChecked": true,
-                "archivesspace_uri": fetchedItem.external_identifiers.filter(i => {return i.source === "archivesspace"})[0].identifier
+                "isChecked": false,
+                "archivesspace_uri": fetchedItem.external_identifiers.find(i => i.source === "archivesspace").identifier
               })
             }
           }
@@ -270,11 +249,26 @@
       return updatedList
     }
 
-    toggleModal = async (modal)  => {
+    /** Checks or unchecks all items in list, depending on value passed to function
+    * value: boolean
+    */
+    toggleList = value => {
+      const updatedList = this.state.savedList.map(g => {
+        const updatedGroupItems = g.items.map(i => ({...i, isChecked: value}))
+        return {...g, items: updatedGroupItems}
+      })
+      this.setState({ savedList: updatedList })
+      const submitList = this.constructSubmitList(updatedList);
+      this.setState({submitList: submitList})
+    }
+
+    /** Toggles modals. When modals are closed, resets savedList and submitList
+    * to original state
+    */
+    toggleModal = modal  => {
       this.setState({ [modal]: {...this.state[modal], isOpen: !this.state[modal]["isOpen"], error: ""} })
       if (this.state[modal].isOpen) {
-        const submitList = this.constructSubmitList(this.state.savedList);
-        this.setState({submitList: submitList})
+        this.toggleList(false)
       }
     }
 
@@ -296,13 +290,12 @@
                   sendEmail={this.sendEmail} />
               </div>
               <MyListExportActions
+                  confirmDeleteAll={() => this.toggleModal("confirmDeleteAll")}
                   downloadCsv={this.downloadCsv}
-                  emailList={() => this.toggleModal("email")}
-                  removeAllItems={this.props.removeAllItems} />
+                  emailList={() => this.toggleModal("email")} />
               <SavedItemList
                 items={this.state.savedList}
                 isLoading={this.state.isLoading}
-                handleChange={this.handleSavedListChange}
                 toggleInList={this.props.toggleInList} />
             </main>
             <MyListSidebar
@@ -312,31 +305,47 @@
           </div>
           <EmailModal
             {...this.state.email}
-            toggleModal={() => this.toggleModal("email")}
             handleChange={this.handleModalListChange}
             handleFormSubmit={this.handleFormSubmit}
-            list={this.state.modalList}
+            list={this.state.savedList}
             submitList={this.state.submitList}
+            toggleList={this.toggleList}
+            toggleModal={() => this.toggleModal("email")}
           />
           <ReadingRoomRequestModal
             {...this.state.readingRoom}
-            toggleModal={() => this.toggleModal("readingRoom")}
             handleChange={this.handleModalListChange}
             handleFormSubmit={this.handleFormSubmit}
-            list={this.state.modalList}
+            list={this.state.savedList}
             submitList={this.state.submitList}
+            toggleList={this.toggleList}
+            toggleModal={() => this.toggleModal("readingRoom")}
           />
           <DuplicationRequestModal
             {...this.state.duplication}
-            toggleModal={() => this.toggleModal("duplication")}
             handleChange={this.handleModalListChange}
             handleFormSubmit={this.handleFormSubmit}
-            list={this.state.modalList}
+            list={this.state.savedList}
             submitList={this.state.submitList}
+            toggleList={this.toggleList}
+            toggleModal={() => this.toggleModal("duplication")}
           />
           <ModalConfirm
             {...this.state.confirm}
             toggleModal={() => this.toggleModal("confirm")}
+          />
+          <ModalConfirm
+            {...this.state.confirmDeleteAll}
+            message={
+              <>Are you sure you want to remove all the items from your list?
+              <div className="confirm-buttons">
+                <Button className="btn--sm btn--orange" label="Remove" handleClick={() => {this.props.removeAllItems(); this.toggleModal("confirmDeleteAll");}} />
+                <Button className="btn--sm btn--gray" label="Cancel" handleClick={() => this.toggleModal("confirmDeleteAll")}/>
+              </div>
+              </>
+            }
+            title="Confirm delete all"
+            toggleModal={() => this.toggleModal("confirmDeleteAll")}
           />
         </React.Fragment>
       );

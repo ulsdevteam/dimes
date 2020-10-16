@@ -1,12 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import PropTypes from "prop-types";
+import Button from "../Button";
 import Modal from "react-modal";
 import Captcha from "../Captcha";
 import { FocusError, FormButtons, FormGroup } from "../Form";
 import MaterialIcon from "../MaterialIcon";
-import { ModalSavedItemList } from "../SavedItem";
+import { ModalSavedItemList } from "../ModalSavedItem";
 import "./styles.scss"
+
+
+const ModalToggleListButton = ({items, toggleList}) => {
+
+  /** Returns false if any items are unchecked */
+  const allSelected = items => {
+    return items.filter(g => g.items.filter(i => !i.isChecked).length).length ? false : true
+  }
+
+  const [deselect, setDeselect] = useState(allSelected(items));
+
+  useEffect(() => {
+    setDeselect(allSelected(items))
+  }, [items])
+
+  return (
+    <Button
+      className="btn--sm btn--gray"
+      handleClick={() => toggleList(!deselect)}
+      label={deselect ? "Deselect all" : "Select all"} />
+  )
+}
+
 
 
 const ModalMyList = (props) => (
@@ -24,6 +48,7 @@ const ModalMyList = (props) => (
     </div>
     <div className="modal-body">
       <div className="modal-list">
+        <ModalToggleListButton items={props.list} toggleList={props.toggleList} />
         <ModalSavedItemList items={props.list} handleChange={props.handleChange} />
       </div>
       <div className="modal-form">
@@ -48,6 +73,7 @@ export const EmailModal = props => (
     title="Email List"
     handleChange={props.handleChange}
     isOpen={props.isOpen}
+    toggleList={props.toggleList}
     toggleModal={props.toggleModal}
     list={props.list}
     form={
@@ -130,6 +156,7 @@ EmailModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   list: PropTypes.array.isRequired,
   submitList: PropTypes.array.isRequired,
+  toggleList: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
 }
 
@@ -139,6 +166,7 @@ export const ReadingRoomRequestModal = props => (
     title="Request in Reading Room"
     handleChange={props.handleChange}
     isOpen={props.isOpen}
+    toggleList={props.toggleList}
     toggleModal={props.toggleModal}
     list={props.list}
     form={
@@ -214,6 +242,7 @@ ReadingRoomRequestModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   list: PropTypes.array.isRequired,
   submitList: PropTypes.array.isRequired,
+  toggleList: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
 }
 
@@ -224,6 +253,7 @@ export const DuplicationRequestModal = props => (
     title="Request Copies"
     handleChange={props.handleChange}
     isOpen={props.isOpen}
+    toggleList={props.toggleList}
     toggleModal={props.toggleModal}
     list={props.list}
     formIntro={[
@@ -342,5 +372,6 @@ DuplicationRequestModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   list: PropTypes.array.isRequired,
   submitList: PropTypes.array.isRequired,
+  toggleList: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
 }

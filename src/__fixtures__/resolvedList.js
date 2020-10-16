@@ -6,6 +6,7 @@ export const resolvedList = [
       {
         "date": "undated",
         "description": "Architect and business partnter of Wallace Harrison.",
+        "isChecked": false,
         "lastRequested": null,
         "online": true,
         "parent": "Interview Transcripts and Subject Files",
@@ -17,6 +18,7 @@ export const resolvedList = [
       {
         "date": "undated",
         "description": "",
+        "isChecked": false,
         "lastRequested": null,
         "online": undefined,
         "parent": "Interview Transcripts and Subject Files",
@@ -34,6 +36,7 @@ export const resolvedList = [
       {
         "date": "1958-1960",
         "description": "",
+        "isChecked": false,
         "lastRequested": null,
         "online": undefined,
         "parent": "Young Women's Christian Association - National Board",

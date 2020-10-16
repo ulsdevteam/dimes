@@ -2,8 +2,7 @@
 
 .saved-items__item-group,
 .saved-items__loading,
-.saved-items__empty,
-.modal-saved-items__item-group {
+.saved-items__empty {
   @include grid-column(12);
   border-top: 1px dotted $faded-navy;
   font-family: $sans-serif-stack;
@@ -12,14 +11,7 @@
 .saved-items__empty {
   font-family: $sans-serif-stack;
   padding: 20px 0px;
-}
-
-.modal-item-group__items {
-  list-style: none;
-  padding-left: 0;
-  font-size: 15px;
-  font-weight: 700;
-  color: $dark-gray;
+  margin-top: 20px
 }
 
 .item-group__title {
@@ -31,12 +23,6 @@
   padding: 0;
 }
 
-.modal-item-group__title {
-  @extend .item-group__title;
-  font-size: 15px;
-  margin: 20px 0px;
-}
-
 .saved-item {
   @include grid-column(12);
   margin-bottom: 40px;
@@ -44,15 +30,11 @@
   position: relative;
 }
 
-.modal-saved-item {
-  margin-bottom: 15px;
-}
-
 .saved-item__inputs, .modal-saved-item__inputs {
   @include grid-column(1);
 }
 
-.saved-item__item-description, .modal-saved-item__item-description  {
+.saved-item__item-description  {
   @include grid-column(11);
   @media screen and (min-width: $break-lg) {
     @include grid-column(9);
