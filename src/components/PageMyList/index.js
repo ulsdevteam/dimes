@@ -136,6 +136,9 @@
 
       const filtered = this.removeUnchecked(this.state.savedList)
       this.setState({modalList: filtered})
+
+      const submitList = this.constructSubmitList(filtered)
+      this.setState({submitList: submitList})
     }
 
     handleConfirmData = (title, message) => {
@@ -181,15 +184,9 @@
           if (modal === "email") {
             message = `Selected items in your list have been emailed to ${submitted.email}`
           } else if (modal === "duplication") {
-            message = ["Your requests have been submitted to ",
-                       <a href='https://raccess.rockarch.org'>RACcess</a>, ". ",
-                       "You can track their status using your RACcess account."]
+            message = <>Your requests have been submitted to <a href='https://raccess.rockarch.org'>RACcess</a>. You can track their status using your RACcess account.</>
           } else {
-            message = ["Your requests have been submitted to ",
-                       <a href='https://raccess.rockarch.org'>RACcess</a>, ". ",
-                       "You can track their status using your RACcess account.",
-                       <br/ >, <br />,
-                       "Requests to access archival records in the Reading Room are processed between 10am-3pm on days when the Rockefeller Archive Center is open."]
+            message = <>Your requests have been submitted to <a href='https://raccess.rockarch.org'>RACcess</a>. You can track their status using your RACcess account.<br/ ><br />Requests to access archival records in the Reading Room are processed between 10am-3pm on days when the Rockefeller Archive Center is open.</>
           }
           this.handleConfirmData(title, message);
           /** end testing code */
@@ -211,7 +208,7 @@
       for (const group of list) {
         var newGroup = {...group}
         newGroup.items = group.items.filter(i => {return i.isChecked})
-        filteredList.push(newGroup);
+        newGroup.items.length && filteredList.push(newGroup);
       }
       return filteredList;
     }
@@ -275,9 +272,10 @@
 
     toggleModal = async (modal)  => {
       this.setState({ [modal]: {...this.state[modal], isOpen: !this.state[modal]["isOpen"], error: ""} })
-      const resolved = await this.resolveList(this.props.savedList)
-      const submitList = this.constructSubmitList(resolved);
-      this.setState({submitList: submitList})
+      if (this.state[modal].isOpen) {
+        const submitList = this.constructSubmitList(this.state.savedList);
+        this.setState({submitList: submitList})
+      }
     }
 
     render() {

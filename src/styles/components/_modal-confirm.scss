@@ -19,6 +19,13 @@
 }
 
 .modal-message {
-  padding: 20px;
+  padding: 40px;
+  box-sizing: border-box;
   font-size: 18px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  @media screen and (min-width: $break-lg) {
+    align-items: center;
+  }
 }
