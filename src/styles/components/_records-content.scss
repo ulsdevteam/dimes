@@ -110,6 +110,9 @@
   &:focus-within, &:hover, .active {
     background: $off-white;
   }
+  @media screen and (min-width: $break-lg) {
+    flex-wrap: nowrap;
+  }
 }
 
 .child__list-item--collection {
@@ -178,10 +181,9 @@
 .child__buttons {
   width: 100%;
   display: flex;
-  flex-wrap: nowrap;
   align-items: flex-start;
-  justify-content: flex-start;
-  @media screen and (min-width: $break-md) {
+  flex-shrink: 0;
+  @media screen and (min-width: $break-lg) {
     width: unset;
     justify-content: flex-end;
   }
