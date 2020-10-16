@@ -262,11 +262,13 @@
       this.setState({submitList: submitList})
     }
 
-    toggleModal = async (modal)  => {
+    /** Toggles modals. When modals are closed, resets savedList and submitList
+    * to original state
+    */
+    toggleModal = modal  => {
       this.setState({ [modal]: {...this.state[modal], isOpen: !this.state[modal]["isOpen"], error: ""} })
       if (this.state[modal].isOpen) {
-        const submitList = this.constructSubmitList(this.state.savedList);
-        this.setState({submitList: submitList})
+        this.toggleList(false)
       }
     }
 
