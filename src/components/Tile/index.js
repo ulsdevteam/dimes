@@ -14,7 +14,7 @@ const Tile = ({ category, date, handleHitCountClick, hit_count, params, title, u
     <a className="tile__title" href={`${uri}/?${queryString.stringify(params)}`}>{title}</a>
     {category ? (<CategoryLabel category={category} />) : null }
     {hit_count && category === "collection" ?
-      (<HitCount className="hit-count--tile" hitCount={hit_count} handleClick={() => handleHitCountClick(uri)} />) :
+      (<HitCount className="hit-count--tile" hitCount={hit_count} handleClick={() => {handleHitCountClick && handleHitCountClick(uri)}} />) :
       (null)
     }
     <p className="tile__date">{date}</p>

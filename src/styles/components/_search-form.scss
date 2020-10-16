@@ -1,5 +1,6 @@
 @import "../styles";
 @import "inputs";
+@import "material-icon";
 
 input[type=search] {
   @include input-text;
@@ -57,23 +58,22 @@ input[type=search] {
   position: relative;
   display: none;
   box-sizing: border-box;
+  cursor: pointer;
   @media screen and (min-width: $break-md) {
     display: inline-block;
   }
 }
 
-.select__search--wrapper::after {
-  font-family: 'Material Icons';
-  content: "expand_more";
-  font-size: 20px;
+.select__search__indicator {
   top: 20px;
   right: 22px;
   position: absolute;
   pointer-events: none;
 }
 
-.select__search select {
+.select__search__control {
   @include input-text;
+  font-size: 16px;
   background-color: $pure-white;
   border-radius: 0px;
   border-top: 1px solid $dark-gray;
@@ -81,4 +81,38 @@ input[type=search] {
   padding: 20px;
   height: 62px;
   width: 180px;
+  box-sizing: border-box;
+}
+
+.select__search__control--is-focused {
+  outline: $dark-gray solid 1px;
+}
+
+.select__search__menu {
+  border-radius: 0 !important;
+  top: -8px !important;
+  padding-top: 4px !important;
+  border: 1px solid $dark-gray !important;
+}
+
+.select__search__option {
+  font-family: $sans-serif-stack;
+  font-size: 16px;
+  padding: 16px 18px;
+  position: relative;
+}
+
+.select__search__option--is-selected {
+  &::after {
+    @extend .material-icons;
+    font-size: 20px;
+    content: "check";
+    position: absolute;
+    right: 18px;
+    color: $burnt-orange;
+  }
+}
+
+.select__search__option--is-focused {
+  background: $lighter-gray;
 }

@@ -1,13 +1,12 @@
 import React from 'react';
 import {render} from 'react-dom';
-import {SavedItemList} from '..';
+import {ModalSavedItemList} from '..';
 
 import { resolvedList } from '../../../__fixtures__/resolvedList';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  render(<SavedItemList
+  render(<ModalSavedItemList
           items={resolvedList}
-          isLoading={true}
-          toggleInList={function(){}} />, div);
+          handleChange={function(){}} />, div);
 });

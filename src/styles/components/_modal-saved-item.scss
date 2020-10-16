@@ -1,0 +1,45 @@
+@import "../styles";
+@import "./saved-item";
+
+.modal-saved-items__item-group {
+  @include grid-column(12);
+  border-top: 1px dotted $faded-navy;
+  font-family: $sans-serif-stack;
+  &:first-of-type {
+    margin-top: 20px;
+  }
+}
+
+.modal-item-group__items {
+  list-style: none;
+  padding-left: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: $dark-gray;
+}
+
+.modal-item-group__title {
+  @extend .item-group__title;
+  font-size: 15px;
+  margin: 20px 0px;
+}
+
+.modal-saved-item {
+  margin-bottom: 15px;
+}
+
+.modal-saved-item__inputs {
+  @include grid-column(1);
+}
+
+.modal-saved-item__item-description  {
+  @include grid-column(11);
+  @media screen and (min-width: $break-lg) {
+    @include grid-column(9);
+  }
+}
+
+.modal-saved-item__title {
+  @extend .saved-item__title;
+  font-size: 14px;
+}

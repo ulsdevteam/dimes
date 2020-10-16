@@ -1,6 +1,6 @@
 
 export const dateString = dates => {
-  return dates && dates.map(d => d.expression).join(", ")
+  return dates && typeof(dates) === "string" ? dates : dates && dates.map(d => d.expression).join(", ")
 }
 
 
@@ -12,8 +12,8 @@ export const hasAccessAndUse = notes => {
 }
 
 
-/** Returns text for a specific note by title */
-export const noteText = (notes, noteTitle) => {
-  let note = notes && notes.filter(n => {return n.title === noteTitle})[0]
+/** Returns text for a specific note by type */
+export const noteText = (notes, noteType) => {
+  let note = notes && notes.filter(n => {return n.type === noteType})[0]
   return note ? note.subnotes.map(s => s.content).join("\r\n") : null
 }

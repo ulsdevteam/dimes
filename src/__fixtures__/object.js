@@ -25,6 +25,10 @@ export const object = {
             "type": "folder"
         }
     ],
+    "formats": [
+      "documents",
+      "audio"
+    ],
     "dates": [
         {
             "expression": "1978-1982",

@@ -25,50 +25,79 @@ const FoundInItem = ({ className, item }) => (
   </>
 )
 
-const PanelFoundInSection = ({ ancestors, isLoading }) => (
+const PanelExtentSection = ({ extents }) => (
+  extents ? (
+  <div className="panel__section">
+    <h3 className="panel__heading">Size</h3>
+    <ul className="panel__list--unstyled">
+      {extents.map((e, index) => (
+      <li key={index} className="panel__text">{`${e.value} ${e.type.replace("_", " ")}`}</li>))}
+    </ul>
+  </div>) :
+  (null)
+)
+
+const PanelFormatSection = ({ formats }) => {
+  const displayFormats = formats.filter(f => (
+    f !== "documents"
+  ))
+  return (
+    displayFormats.length ? (
+      <div className="panel__section">
+        <h3 className="panel__heading">Formats</h3>
+        <ul className="panel__list--unstyled">
+          {displayFormats.map((format, index) => (
+          <li key={index} className="panel__text">{format}</li>))}
+        </ul>
+      </div>) :
+    (null)
+  )
+}
+
+const PanelFoundInSection = ({ ancestors, isItemLoading }) => (
   ancestors.title ?
-    (<>
+    (<div className="panel__section">
       <h3 className="panel__heading">Found In</h3>
       <ul className="found-in">
-      {isLoading ?
+      {isItemLoading ?
         (<FoundInItemSkeleton/>) :
         (<FoundInItem item={ancestors} className="found-in__collection" />)}
       </ul>
-    </>) :
+    </div>) :
     (null)
 )
 
 const PanelListSection = ({ listData, title }) =>  (
   listData ?
-    (<>
+    (<div className="panel__section">
       <h3 className="panel__heading">{title}</h3>
       <ul className="panel__list--unstyled">
         {listData.map((item, index) => (
         <li key={index} className="panel__text">{item.title}</li>))}
       </ul>
-    </>) :
+    </div>) :
     (null)
 )
 
 const PanelTextSection = ({ text, title }) => (
   text ?
-    (<>
+    (<div className="panel__section">
       <h3 className="panel__heading">{title}</h3>
       <p className="panel__text">{text}</p>
-    </>) :
+    </div>) :
     (null)
 )
 
-const RecordsDetail = ({ activeRecords, ancestors, isAncestorsLoading, isContentShown, isLoading, params, savedList, toggleInList }) => {
+const RecordsDetail = ({ ancestors, isAncestorsLoading, isContentShown, isItemLoading, item, params, savedList, toggleInList }) => {
 
   var [isSaved, setIsSaved] = useState(() => {
-    return !isLoading && isItemSaved(activeRecords, savedList)
+    return !isItemLoading && isItemSaved(item, savedList)
   })
 
   useEffect(() => {
-    const saved = !isLoading && isItemSaved(activeRecords, savedList)
+    const saved = !isItemLoading && isItemSaved(item, savedList)
     setIsSaved(saved)
-  }, [isLoading, activeRecords, savedList])
+  }, [isItemLoading, item, savedList])
 
   return (
   <div className={`records__detail ${isContentShown ? "hidden" : ""}`}>
@@ -77,12 +106,12 @@ const RecordsDetail = ({ activeRecords, ancestors, isAncestorsLoading, isContent
         <span className="material-icons">keyboard_arrow_left</span>Back to Search
       </a>
     </nav>
-    <h1 className="records__title">{isLoading ? <Skeleton /> : activeRecords.title }</h1>
-    {activeRecords.type === "object" ?
+    <h1 className="records__title" aria-live="polite">{isItemLoading ? <Skeleton /> : item.title }</h1>
+    {item.type === "object" ?
       (<ListToggleButton
         className="btn-add--lg"
         isSaved={isSaved}
-        item={activeRecords}
+        item={item}
         toggleSaved={toggleInList} /> ) :
       (null)
     }
@@ -92,27 +121,33 @@ const RecordsDetail = ({ activeRecords, ancestors, isAncestorsLoading, isContent
           <AccordionItemButton className="accordion__button">Summary</AccordionItemButton>
         </AccordionItemHeading>
         <AccordionItemPanel className="accordion__panel">
-          {isLoading ?
+          {isItemLoading ?
             (<DetailSkeleton />) :
             (<>
               <PanelListSection
                 title="Creators"
-                listData={activeRecords.creators} />
+                listData={item.creators} />
               <PanelTextSection
                 title="Dates"
-                text={dateString(activeRecords.dates)} />
+                text={dateString(item.dates)} />
+              <div className="panel__section--flex">
+                <PanelExtentSection
+                  extents={item.extents} />
+                <PanelFormatSection
+                  formats={item.formats} />
+              </div>
               <PanelFoundInSection
                 ancestors={ancestors}
-                isLoading={isAncestorsLoading} />
+                isItemLoading={isAncestorsLoading} />
               <PanelTextSection
                 title="Description"
-                text={noteText(activeRecords.notes, "Scope and Contents")} />
+                text={noteText(item.notes, "abstract") || noteText(item.notes, "scopecontent")} />
               </>
               )
             }
         </AccordionItemPanel>
       </AccordionItem>
-      { hasAccessAndUse(activeRecords.notes) ?
+      { hasAccessAndUse(item.notes) ?
         (<AccordionItem className="accordion__item" uuid="accessAndUse">
           <AccordionItemHeading className="accordion__heading" aria-level={2}>
             <AccordionItemButton className="accordion__button">Access and Use</AccordionItemButton>
@@ -120,14 +155,14 @@ const RecordsDetail = ({ activeRecords, ancestors, isAncestorsLoading, isContent
           <AccordionItemPanel className="accordion__panel">
             <PanelTextSection
               title="Access"
-              text={noteText(activeRecords.notes, "Conditions Governing Access")} />
+              text={noteText(item.notes, "accessrestrict")} />
             <PanelTextSection
               title="Reproduction and Duplication"
-              text={noteText(activeRecords.notes, "Conditions Governing Use")} />
+              text={noteText(item.notes, "userestrict")} />
           </AccordionItemPanel>
         </AccordionItem>) :
         (null)}
-      { activeRecords.terms && activeRecords.terms.length ?
+      { item.terms && item.terms.length ?
         (<AccordionItem className="accordion__item" uuid="relatedTerms">
             <AccordionItemHeading className="accordion__heading" aria-level={2}>
               <AccordionItemButton className="accordion__button">Related Terms</AccordionItemButton>
@@ -135,7 +170,7 @@ const RecordsDetail = ({ activeRecords, ancestors, isAncestorsLoading, isContent
             <AccordionItemPanel className="accordion__panel">
               <PanelListSection
                 title="Subjects"
-                listData={activeRecords.terms} />
+                listData={item.terms} />
             </AccordionItemPanel>
           </AccordionItem>) :
         (null)}
@@ -144,11 +179,11 @@ const RecordsDetail = ({ activeRecords, ancestors, isAncestorsLoading, isContent
 )}
 
 RecordsDetail.propTypes = {
-  activeRecords: PropTypes.object.isRequired,
+  item: PropTypes.object.isRequired,
   ancestors: PropTypes.object.isRequired,
   isAncestorsLoading: PropTypes.bool.isRequired,
   isContentShown: PropTypes.bool,
-  isLoading: PropTypes.bool.isRequired,
+  isItemLoading: PropTypes.bool.isRequired,
   params: PropTypes.object.isRequired,
   savedList: PropTypes.object.isRequired,
   toggleInList: PropTypes.func.isRequired,

@@ -2,7 +2,8 @@ import React from 'react';
 import { render } from 'react-dom';
 import {
   AgentAttributeSkeleton,
-  CollectionHitsSkeleton,
+  CollectionHitsChildrenSkeleton,
+  CollectionHitsCollectionSkeleton,
   DetailSkeleton,
   FoundInItemSkeleton,
   RecordsChildSkeleton,
@@ -32,7 +33,12 @@ it('renders without crashing', () => {
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  render(<CollectionHitsSkeleton />, div);
+  render(<CollectionHitsChildrenSkeleton />, div);
+});
+
+it('renders without crashing', () => {
+  const div = document.createElement('div');
+  render(<CollectionHitsCollectionSkeleton />, div);
 });
 
 it('renders without crashing', () => {

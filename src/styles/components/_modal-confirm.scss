@@ -1,0 +1,35 @@
+.modal-content--confirm {
+  font-family: $sans-serif-stack;
+  position: absolute;
+  top: $confirm-modal-content-margin;
+  left: $confirm-modal-content-margin;
+  right: $confirm-modal-content-margin;
+  bottom: $confirm-modal-content-margin;
+  border: 1px solid $dark-gray;
+  background: rgb(255, 255, 255);
+  border-radius: 3px;
+  overflow: auto;
+  outline: none;
+  @media screen and (min-width: $break-lg) {
+    top: $confirm-modal-content-margin-lg;
+    left: $confirm-modal-content-margin-lg;
+    right: $confirm-modal-content-margin-lg;
+    bottom: $confirm-modal-content-margin-lg;
+  }
+}
+
+.modal-message {
+  padding: 40px;
+  box-sizing: border-box;
+  font-size: 18px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  @media screen and (min-width: $break-lg) {
+    align-items: center;
+  }
+}
+
+.confirm-buttons {
+  margin-top: 20px;
+}
