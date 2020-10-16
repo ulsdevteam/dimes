@@ -204,6 +204,7 @@
   @extend .btn-add;
   font-size: 10px;
   padding: 8px 10px;
+  z-index: 999;
   @media screen and (min-width: $break-md) {
     position: absolute;
     right: 20px;

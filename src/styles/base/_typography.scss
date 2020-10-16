@@ -9,14 +9,10 @@
 p, a {
   font-family: inherit;
   font-weight: $font-weight-normal;
-  font-size: 16px;
-  line-height: 26px;
+  font-size: inherit;
+  line-height: inherit;
   margin: 0 0 10px 0;
   color: $dark-gray;
-  @media screen and (min-width: $break-lg) {
-    font-size: 17px;
-    line-height: 28px;
-  }
 }
 
 strong, b {

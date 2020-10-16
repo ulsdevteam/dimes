@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet";
 import Button from "../Button";
 import { SelectInput, SelectOption } from "../Inputs"
 import { SearchSkeleton } from "../LoadingSkeleton";
-import { CollectionHitsModal, FacetModal } from "../Modal";
+import { CollectionHitsModal, FacetModal } from "../ModalSearch";
 import { SearchPagination } from "../Pagination";
 import SearchForm from "../SearchForm";
 import TileList from "../Tile";
