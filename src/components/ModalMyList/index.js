@@ -1,12 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import PropTypes from "prop-types";
+import Button from "../Button";
 import Modal from "react-modal";
 import Captcha from "../Captcha";
 import { FocusError, FormButtons, FormGroup } from "../Form";
 import MaterialIcon from "../MaterialIcon";
-import { ModalSavedItemList } from "../SavedItem";
+import { ModalSavedItemList } from "../ModalSavedItem";
 import "./styles.scss"
+
+
+const ModalToggleListButton = ({items, toggleList}) => {
+
+  /** Returns false if any items are unchecked */
+  const allSelected = items => {
+    return items.filter(g => g.items.filter(i => !i.isChecked).length).length ? false : true
+  }
+
+  const [deselect, setDeselect] = useState(allSelected(items));
+
+  useEffect(() => {
+    setDeselect(allSelected(items))
+  }, [items])
+
+  return (
+    <Button
+      className="btn--sm btn--gray"
+      handleClick={() => toggleList(!deselect)}
+      label={deselect ? "Deselect all" : "Select all"} />
+  )
+}
+
 
 
 const ModalMyList = (props) => (
@@ -24,6 +48,7 @@ const ModalMyList = (props) => (
     </div>
     <div className="modal-body">
       <div className="modal-list">
+        <ModalToggleListButton items={props.list} toggleList={props.toggleList} />
         <ModalSavedItemList items={props.list} handleChange={props.handleChange} />
       </div>
       <div className="modal-form">
@@ -48,10 +73,12 @@ export const EmailModal = props => (
     title="Email List"
     handleChange={props.handleChange}
     isOpen={props.isOpen}
+    toggleList={props.toggleList}
     toggleModal={props.toggleModal}
     list={props.list}
     form={
       <Formik
+        enableReinitialize={true}
         initialValues={{email: "", subject: "", message: "", items: props.submitList, recaptcha: ""}}
         validate={values => {
           const errors = {};
@@ -62,9 +89,8 @@ export const EmailModal = props => (
           ) {
             errors.email = 'Invalid email address provided.';
           }
-          if (!values.recaptcha) {
-            errors.recaptcha = 'Please complete this field.';
-          }
+          if (!values.recaptcha) errors.recaptcha = 'Please complete this field.';
+          if (!values.items.length) errors.items = 'No items have been selected to submit.'
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
@@ -81,6 +107,11 @@ export const EmailModal = props => (
             type="hidden"
             name="items"
             value={props.submitList} />
+          <ErrorMessage
+            id="items-error"
+            name="items"
+            component="div"
+            className="modal-form__error" />
           <FormGroup
             label="Email *"
             name="email"
@@ -125,6 +156,7 @@ EmailModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   list: PropTypes.array.isRequired,
   submitList: PropTypes.array.isRequired,
+  toggleList: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
 }
 
@@ -134,15 +166,18 @@ export const ReadingRoomRequestModal = props => (
     title="Request in Reading Room"
     handleChange={props.handleChange}
     isOpen={props.isOpen}
+    toggleList={props.toggleList}
     toggleModal={props.toggleModal}
     list={props.list}
     form={
       <Formik
+        enableReinitialize={true}
         initialValues={{scheduledDate: "", questions: "", notes: "", items: props.submitList, recaptcha: ""}}
         validate={values => {
           const errors = {};
           if (!values.scheduledDate) errors.scheduledDate = 'Please provide the date of your research visit.';
           if (!values.recaptcha) errors.recaptcha = 'Please complete this field.';
+          if (!values.items.length) errors.items = 'No items have been selected to submit.'
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
@@ -159,6 +194,11 @@ export const ReadingRoomRequestModal = props => (
             type="hidden"
             name="items"
             value={props.submitList} />
+          <ErrorMessage
+            id="items-error"
+            name="items"
+            component="div"
+            className="modal-form__error" />
           <FormGroup
             label="Scheduled Date *"
             helpText="Enter the date of your research visit"
@@ -202,6 +242,7 @@ ReadingRoomRequestModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   list: PropTypes.array.isRequired,
   submitList: PropTypes.array.isRequired,
+  toggleList: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
 }
 
@@ -212,6 +253,7 @@ export const DuplicationRequestModal = props => (
     title="Request Copies"
     handleChange={props.handleChange}
     isOpen={props.isOpen}
+    toggleList={props.toggleList}
     toggleModal={props.toggleModal}
     list={props.list}
     formIntro={[
@@ -222,6 +264,7 @@ export const DuplicationRequestModal = props => (
           <strong>Please note:</strong> if you want a cost estimate for your order, email an archivist at <a href="mailto:archive@rockarch.org">archive@rockarch.org</a>.
         </div>
         <Formik
+          enableReinitialize={true}
           initialValues={{
             format: "",
             description: "Entire folder",
@@ -235,6 +278,7 @@ export const DuplicationRequestModal = props => (
             if (!values.format) errors.format = 'Please select your desired duplication format.';
             if (!values.recaptcha) errors.recaptcha = 'Please complete this field.';
             if (!values.costs) errors.costs = "We cannot process your request unless you agree to pay the costs of reproduction.";
+            if (!values.items.length) errors.items = 'No items have been selected to submit.'
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
@@ -251,6 +295,11 @@ export const DuplicationRequestModal = props => (
               type="hidden"
               name="items"
               value={props.submitList} />
+            <ErrorMessage
+              id="items-error"
+              name="items"
+              component="div"
+              className="modal-form__error" />
             <div className="select__modal">
               <FormGroup
                 label="Format *"
@@ -323,5 +372,6 @@ DuplicationRequestModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   list: PropTypes.array.isRequired,
   submitList: PropTypes.array.isRequired,
+  toggleList: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
 }

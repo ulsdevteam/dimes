@@ -10,7 +10,10 @@ import {
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  render(<CheckBoxInput label="Do you want to proceed?" id="1" />, div);
+  render(<CheckBoxInput
+    label="Do you want to proceed?"
+    id="1" checked={true}
+    handleChange={function(){}}/>, div);
 });
 
 it('renders without crashing', () => {
