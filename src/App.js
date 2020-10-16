@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { LiveAnnouncer } from "react-aria-live";
 import { Route, Switch } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -54,7 +55,7 @@ class App extends Component {
 
   render() {
     return (
-        <React.Fragment>
+        <LiveAnnouncer>
           <SkipLink />
           <Header myListCount={this.state.myListCount} />
           <main id="main" role="main">
@@ -82,7 +83,7 @@ class App extends Component {
             </div>
           </main>
         <Footer/>
-      </React.Fragment>
+      </LiveAnnouncer>
     );
   }
 }

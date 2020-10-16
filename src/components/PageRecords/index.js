@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { LiveMessage } from "react-aria-live";
 import PropTypes from "prop-types";
 import axios from "axios";
 import queryString from "query-string";
@@ -22,7 +23,8 @@ class PageRecords extends Component {
       isChildrenLoading: true,
       isContentShown: false,
       isItemLoading: true,
-      params: {}
+      params: {},
+      updateMessage: ""
     }
   }
 
@@ -75,6 +77,7 @@ class PageRecords extends Component {
       .get(`${itemUrl}?${queryString.stringify(this.state.params)}`)
       .then(res => {
         this.setState({ item: res.data });
+        this.setState({ updateMessage: `Details under heading 1 have been updated to describe the selected records titled ${res.data.title}`})
         this.setUrl(`${uri}?${queryString.stringify(this.state.params)}`, res.data);
       })
       .catch(e => console.log(e))
@@ -104,6 +107,7 @@ class PageRecords extends Component {
     }
     return (
       <React.Fragment>
+        <LiveMessage message={this.state.updateMessage} aria-live="polite" />
         <Helmet>
           <title>{ this.state.item.title }</title>
         </Helmet>
