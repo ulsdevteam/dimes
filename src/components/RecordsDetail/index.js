@@ -106,7 +106,7 @@ const RecordsDetail = ({ activeRecords, ancestors, isAncestorsLoading, isContent
         <span className="material-icons">keyboard_arrow_left</span>Back to Search
       </a>
     </nav>
-    <h1 className="records__title" aria-live="polite">{isLoading ? <Skeleton /> : activeRecords.title }</h1>
+    <h1 className="records__title">{isLoading ? <Skeleton /> : activeRecords.title }</h1>
     {activeRecords.type === "object" ?
       (<ListToggleButton
         className="btn-add--lg"
