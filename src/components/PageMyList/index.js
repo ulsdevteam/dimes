@@ -259,6 +259,8 @@
         return {...g, items: updatedGroupItems}
       })
       this.setState({ modalList: updatedList })
+      const submitList = this.constructSubmitList(updatedList);
+      this.setState({submitList: submitList})
     }
 
     toggleModal = async (modal)  => {
