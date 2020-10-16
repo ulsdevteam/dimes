@@ -18,7 +18,9 @@ const ModalSavedItem = ({ handleChange, isChecked, title, uri }) => (
 
 ModalSavedItem.propTypes = {
   handleChange: PropTypes.func,
-  title: PropTypes.string.isRequired
+  isChecked: PropTypes.bool.isRequired,
+  title: PropTypes.string.isRequired,
+  uri: PropTypes.string.isRequired,
 }
 
 const ModalSavedItemGroup = ({ handleChange, items, title }) => {
