@@ -78,6 +78,7 @@ export const EmailModal = props => (
     list={props.list}
     form={
       <Formik
+        enableReinitialize={true}
         initialValues={{email: "", subject: "", message: "", items: props.submitList, recaptcha: ""}}
         validate={values => {
           const errors = {};
@@ -88,9 +89,8 @@ export const EmailModal = props => (
           ) {
             errors.email = 'Invalid email address provided.';
           }
-          if (!values.recaptcha) {
-            errors.recaptcha = 'Please complete this field.';
-          }
+          if (!values.recaptcha) errors.recaptcha = 'Please complete this field.';
+          if (!values.items.length) errors.items = 'No items have been selected to submit.'
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
@@ -107,6 +107,11 @@ export const EmailModal = props => (
             type="hidden"
             name="items"
             value={props.submitList} />
+          <ErrorMessage
+            id="items-error"
+            name="items"
+            component="div"
+            className="modal-form__error" />
           <FormGroup
             label="Email *"
             name="email"
@@ -166,11 +171,13 @@ export const ReadingRoomRequestModal = props => (
     list={props.list}
     form={
       <Formik
+        enableReinitialize={true}
         initialValues={{scheduledDate: "", questions: "", notes: "", items: props.submitList, recaptcha: ""}}
         validate={values => {
           const errors = {};
           if (!values.scheduledDate) errors.scheduledDate = 'Please provide the date of your research visit.';
           if (!values.recaptcha) errors.recaptcha = 'Please complete this field.';
+          if (!values.items.length) errors.items = 'No items have been selected to submit.'
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
@@ -187,6 +194,11 @@ export const ReadingRoomRequestModal = props => (
             type="hidden"
             name="items"
             value={props.submitList} />
+          <ErrorMessage
+            id="items-error"
+            name="items"
+            component="div"
+            className="modal-form__error" />
           <FormGroup
             label="Scheduled Date *"
             helpText="Enter the date of your research visit"
@@ -252,6 +264,7 @@ export const DuplicationRequestModal = props => (
           <strong>Please note:</strong> if you want a cost estimate for your order, email an archivist at <a href="mailto:archive@rockarch.org">archive@rockarch.org</a>.
         </div>
         <Formik
+          enableReinitialize={true}
           initialValues={{
             format: "",
             description: "Entire folder",
@@ -265,6 +278,7 @@ export const DuplicationRequestModal = props => (
             if (!values.format) errors.format = 'Please select your desired duplication format.';
             if (!values.recaptcha) errors.recaptcha = 'Please complete this field.';
             if (!values.costs) errors.costs = "We cannot process your request unless you agree to pay the costs of reproduction.";
+            if (!values.items.length) errors.items = 'No items have been selected to submit.'
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
@@ -281,6 +295,11 @@ export const DuplicationRequestModal = props => (
               type="hidden"
               name="items"
               value={props.submitList} />
+            <ErrorMessage
+              id="items-error"
+              name="items"
+              component="div"
+              className="modal-form__error" />
             <div className="select__modal">
               <FormGroup
                 label="Format *"

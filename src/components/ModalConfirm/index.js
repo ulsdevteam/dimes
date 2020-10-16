@@ -30,7 +30,9 @@ ModalConfirm.propTypes = {
   appElement: PropTypes.object,
   handleChange: PropTypes.func,
   isOpen: PropTypes.bool.isRequired,
-  message: PropTypes.string.isRequired,
+  message: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object]).isRequired,
   title: PropTypes.string.isRequired,
   toggleModal: PropTypes.func.isRequired,
 }
