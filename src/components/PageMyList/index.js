@@ -65,7 +65,6 @@
       super(props);
       this.state = {
         savedList: [],
-        modalList: [],
         submitList: [],
         isLoading: true,
         email: {isOpen: false},
@@ -85,7 +84,7 @@
         this.setState({isLoading: true})
         const resolved = await this.resolveList(this.props.savedList)
         const submitList = this.constructSubmitList(resolved);
-        this.setState({savedList: resolved, modalList: resolved, submitList: submitList})
+        this.setState({savedList: resolved, submitList: submitList})
         this.setState({isLoading: false})
       }
     }
@@ -110,14 +109,14 @@
     }
 
     /**
-    * Sets isChecked attribute on modalList based on checkbox input.
+    * Sets isChecked attribute on savedList based on checkbox input.
     * Updates submitList by filtering unchecked items.
     */
     handleModalListChange = (e) => {
-      const updatedModalList = this.setIsChecked(e, this.state.modalList)
-      this.setState({modalList: updatedModalList})
+      const updatedList = this.setIsChecked(e, this.state.savedList)
+      this.setState({savedList: updatedList})
 
-      const submitList = this.constructSubmitList(updatedModalList)
+      const submitList = this.constructSubmitList(updatedList)
       this.setState({submitList: submitList})
     }
 
@@ -221,7 +220,7 @@
                 "lastRequested": value.lastRequested ? value.lastRequested : null,
                 "saved": value.saved,
                 "isChecked": false,
-                "archivesspace_uri": fetchedItem.external_identifiers.filter(i => {return i.source === "archivesspace"})[0].identifier
+                "archivesspace_uri": fetchedItem.external_identifiers.find(i => i.source === "archivesspace").identifier
               })
             }
           }
@@ -254,11 +253,11 @@
     * value: boolean
     */
     toggleList = value => {
-      const updatedList = this.state.modalList.map(g => {
+      const updatedList = this.state.savedList.map(g => {
         const updatedGroupItems = g.items.map(i => ({...i, isChecked: value}))
         return {...g, items: updatedGroupItems}
       })
-      this.setState({ modalList: updatedList })
+      this.setState({ savedList: updatedList })
       const submitList = this.constructSubmitList(updatedList);
       this.setState({submitList: submitList})
     }
@@ -306,7 +305,7 @@
             {...this.state.email}
             handleChange={this.handleModalListChange}
             handleFormSubmit={this.handleFormSubmit}
-            list={this.state.modalList}
+            list={this.state.savedList}
             submitList={this.state.submitList}
             toggleList={this.toggleList}
             toggleModal={() => this.toggleModal("email")}
@@ -315,7 +314,7 @@
             {...this.state.readingRoom}
             handleChange={this.handleModalListChange}
             handleFormSubmit={this.handleFormSubmit}
-            list={this.state.modalList}
+            list={this.state.savedList}
             submitList={this.state.submitList}
             toggleList={this.toggleList}
             toggleModal={() => this.toggleModal("readingRoom")}
@@ -324,7 +323,7 @@
             {...this.state.duplication}
             handleChange={this.handleModalListChange}
             handleFormSubmit={this.handleFormSubmit}
-            list={this.state.modalList}
+            list={this.state.savedList}
             submitList={this.state.submitList}
             toggleList={this.toggleList}
             toggleModal={() => this.toggleModal("duplication")}
