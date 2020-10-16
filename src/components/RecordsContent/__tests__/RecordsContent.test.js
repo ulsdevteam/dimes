@@ -3,11 +3,14 @@ import { render } from "react-dom";
 import RecordsContent from "..";
 
 import { collectionWithChildHits } from '../../../__fixtures__/collection';
+import { children } from '../../../__fixtures__/children';
 import { object } from '../../../__fixtures__/object';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
   render(<RecordsContent
+            children={children}
+            collection={collectionWithChildHits}
             isContentShown={true}
             params={{}}
             parent={collectionWithChildHits}
@@ -20,6 +23,8 @@ it('renders without crashing', () => {
 it('renders without crashing', () => {
   const div = document.createElement('div');
   render(<RecordsContent
+            children={children}
+            collection={collectionWithChildHits}
             isContentShown={false}
             params={{}}
             parent={object}
