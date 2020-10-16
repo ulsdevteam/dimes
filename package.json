@@ -21,13 +21,20 @@
     "react-paginate": "^6.5.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "react-select": "^3.1.0"
+    "react-select": "^3.1.0",
+    "universalviewer": "^4.0.0-pre.49"
   },
   "scripts": {
+    "copy": "yarn run copy-uv-assets && yarn run copy-uv-dist-umd && yarn run copy-uv-html && yarn run copy-uv-css",
+    "copy-uv-assets": "cp -R node_modules/universalviewer/dist/uv-assets ./public",
+    "copy-uv-dist-umd": "cp -R node_modules/universalviewer/dist/uv-dist-umd ./public",
+    "copy-uv-html": "cp -R node_modules/universalviewer/dist/uv.html ./public",
+    "copy-uv-css": "cp -R node_modules/universalviewer/dist/uv.css ./public",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postinstall": "yarn run copy"
   },
   "eslintConfig": {
     "extends": "react-app"

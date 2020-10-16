@@ -27,25 +27,25 @@
   @include grid-column(12);
   margin-bottom: 40px;
   float: left;
-  position: relative;
 }
 
-.saved-item__inputs, .modal-saved-item__inputs {
-  @include grid-column(1);
-}
-
-.saved-item__item-description  {
-  @include grid-column(11);
+.saved-item__row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
   @media screen and (min-width: $break-lg) {
-    @include grid-column(9);
+    flex-wrap: nowrap;
   }
 }
 
 .saved-item__buttons {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  width: 100%;
   @media screen and (min-width: $break-lg) {
-    position: absolute;
-    top: 0;
-    right: 0;
+    width: unset;
   }
 }
 

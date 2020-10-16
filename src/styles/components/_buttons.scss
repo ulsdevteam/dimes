@@ -76,6 +76,7 @@
   &:hover {
     background: $dark-blue;
     border: 1px solid $dark-blue;
+    color: $pure-white; //for links styled as buttons
   }
 }
 
@@ -119,6 +120,16 @@
   &:hover {
     background: $lighter-gray;
     color: $med-gray;
+  }
+}
+
+.btn--dark-gray {
+  background: $light-med-gray;
+  color: $pure-white;
+  border: 1px solid $light-med-gray;
+  &:hover {
+    background: $orange-gray;
+    color: $pure-white;
   }
 }
 
@@ -178,36 +189,65 @@
   }
 }
 
-.btn-add {
+@mixin records-btn {
   @extend .btn--md;
-  @extend .btn--orange;
+  font-size: 9px;
   font-weight: 700;
+  padding: 8px 10px;
+  z-index: 998;
+  &:hover {
+    color: $pure-white;
+  }
   & .material-icons {
     @include icon-margin-left;
   }
   &.saved {
-    @extend .btn--gray;
+    @extend .btn--dark-gray;
   }
 }
 
-.btn-add--lg {
-  @extend .btn-add;
-  padding: 8px 10px;
-  margin-bottom: 40px;
+.btn-add--content {
+  @include records-btn;
+  @extend .btn--orange;
+  @media screen and (min-width: $break-md) {
+    position: relative;
+  }
+}
+
+.btn-launch--content {
+  @include records-btn;
+  @extend .btn--blue;
+  margin-right: 10px;
+}
+
+@mixin records-detail-btn {
+  @include records-btn;
+  @extend .btn--orange;
   width: 100%;
+  font-size: 10px;
+  margin-bottom: 10px;
+  text-align: center;
   @media screen and (min-width: $break-md) {
     width: unset;
   }
 }
 
-.btn-add--sm {
-  @extend .btn-add;
-  font-size: 10px;
-  padding: 8px 10px;
-  z-index: 999;
+.btn-add--detail {
+  @include records-detail-btn;
+}
+
+.btn-launch--detail {
+  @include records-detail-btn;
+  @extend .btn--orange;
+  box-sizing: border-box;
   @media screen and (min-width: $break-md) {
-    position: absolute;
-    right: 20px;
-    top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
   }
+}
+
+.btn-download--detail {
+  @include records-detail-btn;
+  @extend .btn--orange;
+  margin-bottom: 10px;
 }

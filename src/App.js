@@ -69,6 +69,8 @@ class App extends Component {
                     toggleInList={this.toggleInList} />
                 } />
                 <Route path="/search/" component={PageSearch} />
+                <Route path="/:type(collections|objects)/:id/view/"
+                    component={PageDigitalObject} />
                 <Route path="/:type(collections|objects)/:id" render={(props) =>
                   <PageRecords
                     {...props}
@@ -76,7 +78,6 @@ class App extends Component {
                     toggleInList={this.toggleInList} />
                 } />
                 <Route path="/agents/:id" component={PageAgent} />
-                <Route path="/view/" component={PageDigitalObject} />
                 <Route exact path="/" component={PageHome} />
                 <Route path="*" component={PageNotFound} />
               </Switch>

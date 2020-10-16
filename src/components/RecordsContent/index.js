@@ -11,6 +11,7 @@ import {
 } from 'react-accessible-accordion';
 import HitCount from "../HitCount";
 import ListToggleButton from "../ListToggleButton";
+import MaterialIcon from "../MaterialIcon";
 import { dateString } from "../Helpers";
 import { isItemSaved } from "../MyListHelpers";
 import "./styles.scss";
@@ -46,13 +47,18 @@ class RecordsChild extends Component {
       (<div className={`child__list-item child__list-item--${item.type} ${item.isActive ? "active" : ""}`} >
         <div className="child__description">
           <button className={`child__title child__title--${item.type}`} onClick={() => this.handleItemClick(item.uri)}>{item.title}</button>
-          <p className="child__text">{item.dates}</p>
-          <p className="child__text text--truncate">{item.description}</p>
+          {item.dates === item.title ? (null) : (<p className="child__text">{item.dates}</p>)}
           {item.hit_count ? (<HitCount className="hit-count--records-" hitCount={item.hit_count} />) : null}
+          <p className="child__text text--truncate">{item.description}</p>
         </div>
-        <div className="child__buttons">
+        <div className={`child__buttons ${item.online ? "expanded" : ""}`}>
+          {item.online ? (
+            <a className="btn btn-launch--content"
+              href={`${item.uri}/view`}>View Online <MaterialIcon icon="visibility" /></a>) :
+            (null)
+          }
           <ListToggleButton
-            className="btn-add--sm"
+            className="btn-add--content"
             isSaved={this.state.isSaved}
             item={this.props.item}
             toggleSaved={this.toggleSaved} />
@@ -71,7 +77,7 @@ class RecordsChild extends Component {
           } >
           <AccordionItemButton className={`child__title child__title--${item.type}`}>
           {item.title}
-          <p className="child__text">{item.dates}</p>
+          {item.title === item.dates ? (null) : (<p className="child__text">{item.dates}</p>)}
           <p className="child__text text--truncate">{item.description}</p>
           {item.hit_count ? (<HitCount className="hit-count--records-" hitCount={item.hit_count} />) : null}
           </AccordionItemButton>
@@ -220,7 +226,8 @@ RecordsContentList.propTypes = {
 
 
 const RecordsContent = props => {
-  const { children, collection, isContentShown, params, parent, savedList, setActiveRecords, toggleInList } = props;
+  const { children, collection, isContentShown, params, parent, savedList,
+          setActiveRecords, toggleInList } = props;
 
   return (
   children ?
