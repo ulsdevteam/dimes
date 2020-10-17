@@ -105,7 +105,7 @@ const RecordsDetail = ({ ancestors, isAncestorsLoading, isContentShown, isItemLo
   <div className={`records__detail ${isContentShown ? "hidden" : ""}`}>
     <nav>
       <a href={`/search?${queryString.stringify(params)}`} className="btn btn--back">
-        <span className="material-icons">keyboard_arrow_left</span>Back to Search
+        <MaterialIcon icon="keyboard_arrow_left"/>Back to Search
       </a>
     </nav>
     <h1 className="records__title">{isItemLoading ? <Skeleton /> : item.title }</h1>
