@@ -110,7 +110,7 @@
   &:focus-within, &:hover, .active {
     background: $off-white;
   }
-  @media screen and (min-width: $break-lg) {
+  @media screen and (min-width: $break-md) {
     flex-wrap: nowrap;
   }
 }
@@ -183,7 +183,7 @@
   display: flex;
   align-items: flex-start;
   flex-shrink: 0;
-  @media screen and (min-width: $break-lg) {
+  @media screen and (min-width: $break-md) {
     width: unset;
     justify-content: flex-end;
   }
