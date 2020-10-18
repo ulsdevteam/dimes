@@ -50,7 +50,6 @@ class RecordsChild extends Component {
           <button className={`child__title child__title--${item.type}`} onClick={() => this.handleItemClick(item.uri)}>{item.title}</button>
           {item.dates === item.title ? (null) : (<p className="child__text">{item.dates}</p>)}
           {item.hit_count ? (<HitCount className="hit-count--records-" hitCount={item.hit_count} />) : null}
-          <p className="child__text text--truncate">{item.description}</p>
         </div>
         <div className="child__buttons">
           {item.online ? (
@@ -65,6 +64,7 @@ class RecordsChild extends Component {
             item={this.props.item}
             toggleSaved={this.toggleSaved} />
         </div>
+        <p className="child__text text--truncate">{item.description}</p>
       </div>) :
       (<AccordionItem
         uuid={item.uri}
