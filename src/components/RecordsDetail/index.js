@@ -39,17 +39,22 @@ const PanelExtentSection = ({ extents }) => (
   (null)
 )
 
-const PanelFormatSection = ({ formats }) => {
+const PanelFormatSection = ({ formats, notes }) => {
   const displayFormats = formats.filter(f => (
     f !== "documents"
   ))
+  const materialSpecificText = noteText(notes, "materialspec")
   return (
     displayFormats.length ? (
       <div className="panel__section">
         <h3 className="panel__heading">Formats</h3>
         <ul className="panel__list--unstyled">
-          {displayFormats.map((format, index) => (
-          <li key={index} className="panel__text">{format}</li>))}
+          {materialSpecificText ?
+            (<li>{materialSpecificText}</li>) :
+            (displayFormats.map((format, index) => (
+              <li key={index} className="panel__text">{format}</li>))
+            )
+          }
         </ul>
       </div>) :
     (null)
@@ -64,6 +69,18 @@ const PanelFoundInSection = ({ ancestors, isItemLoading }) => (
       {isItemLoading ?
         (<FoundInItemSkeleton/>) :
         (<FoundInItem item={ancestors} className="found-in__collection" />)}
+      </ul>
+    </div>) :
+    (null)
+)
+
+const PanelLinkedListSection = ({ listData, title }) =>  (
+  listData ?
+    (<div className="panel__section">
+      <h3 className="panel__heading">{title}</h3>
+      <ul className="panel__list--unstyled">
+        {listData.map((item, index) => (
+        <li key={index} className="panel__text"><a href={item.uri}>{item.title}</a></li>))}
       </ul>
     </div>) :
     (null)
@@ -85,7 +102,7 @@ const PanelTextSection = ({ text, title }) => (
   text ?
     (<div className="panel__section">
       <h3 className="panel__heading">{title}</h3>
-      <p className="panel__text">{text}</p>
+      <p className="panel__text--narrative">{text}</p>
     </div>) :
     (null)
 )
@@ -143,17 +160,18 @@ const RecordsDetail = ({ ancestors, isAncestorsLoading, isContentShown, isItemLo
           {isItemLoading ?
             (<DetailSkeleton />) :
             (<>
-              <PanelListSection
-                title="Creators"
-                listData={item.creators} />
-              <PanelTextSection
-                title="Dates"
-                text={dateString(item.dates)} />
               <div className="panel__section--flex">
+                <PanelLinkedListSection
+                  title="Creators"
+                  listData={item.creators} />
+                <PanelTextSection
+                  title="Dates"
+                  text={dateString(item.dates)} />
                 <PanelExtentSection
                   extents={item.extents} />
                 <PanelFormatSection
-                  formats={item.formats} />
+                  formats={item.formats}
+                  notes={item.notes} />
               </div>
               <PanelFoundInSection
                 ancestors={ancestors}
