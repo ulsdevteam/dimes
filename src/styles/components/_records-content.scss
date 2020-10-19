@@ -8,7 +8,7 @@
   padding: 40px 30px;
   box-sizing: border-box;
   @media screen and (min-width: $break-lg) {
-    width: 66%;
+    width: 60%;
   }
 }
 
@@ -102,11 +102,16 @@
 .child__list-item--object {
   border-bottom: 1px solid $neutral-sand;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   &:first-child {
     border-top: 1px solid $neutral-sand;
   }
   &:focus-within, &:hover, .active {
     background: $off-white;
+  }
+  @media screen and (min-width: $break-lg) {
+    flex-wrap: nowrap;
   }
 }
 
@@ -174,8 +179,14 @@
 }
 
 .child__buttons {
-  flex-basis: 300px;
-  text-align: right;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  @media screen and (min-width: $break-lg) {
+    width: unset;
+    justify-content: flex-end;
+  }
 }
 
 .child__title {

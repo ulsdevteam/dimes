@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { LiveAnnouncer } from "react-aria-live";
 import { Route, Switch } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -54,7 +55,7 @@ class App extends Component {
 
   render() {
     return (
-        <React.Fragment>
+        <LiveAnnouncer>
           <SkipLink />
           <Header myListCount={this.state.myListCount} />
           <main id="main" role="main">
@@ -68,6 +69,8 @@ class App extends Component {
                     toggleInList={this.toggleInList} />
                 } />
                 <Route path="/search/" component={PageSearch} />
+                <Route path="/:type(collections|objects)/:id/view/"
+                    component={PageDigitalObject} />
                 <Route path="/:type(collections|objects)/:id" render={(props) =>
                   <PageRecords
                     {...props}
@@ -75,14 +78,13 @@ class App extends Component {
                     toggleInList={this.toggleInList} />
                 } />
                 <Route path="/agents/:id" component={PageAgent} />
-                <Route path="/view/" component={PageDigitalObject} />
                 <Route exact path="/" component={PageHome} />
                 <Route path="*" component={PageNotFound} />
               </Switch>
             </div>
           </main>
         <Footer/>
-      </React.Fragment>
+      </LiveAnnouncer>
     );
   }
 }

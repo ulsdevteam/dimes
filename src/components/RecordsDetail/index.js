@@ -9,7 +9,9 @@ import {
     AccordionItemButton,
     AccordionItemPanel,
 } from 'react-accessible-accordion';
+import Button from "../Button";
 import ListToggleButton from "../ListToggleButton";
+import MaterialIcon from "../MaterialIcon";
 import { DetailSkeleton, FoundInItemSkeleton } from "../LoadingSkeleton";
 import { dateString, hasAccessAndUse, noteText } from "../Helpers";
 import { isItemSaved } from "../MyListHelpers";
@@ -106,14 +108,31 @@ const RecordsDetail = ({ ancestors, isAncestorsLoading, isContentShown, isItemLo
         <span className="material-icons">keyboard_arrow_left</span>Back to Search
       </a>
     </nav>
-    <h1 className="records__title" aria-live="polite">{isItemLoading ? <Skeleton /> : item.title }</h1>
+    <h1 className="records__title">{isItemLoading ? <Skeleton /> : item.title }</h1>
     {item.type === "object" ?
+      (item.online ? (
+        <>
+        <ListToggleButton
+          className="btn-add--detail"
+          isSaved={isSaved}
+          item={item}
+          toggleSaved={toggleInList} />
+        <a className="btn btn-launch--detail"
+          href={`${item.uri}/view`}>View Online <MaterialIcon icon="visibility" /></a>
+        <Button
+          className="btn-download--detail"
+          handleClick={() => alert(`Downloading file for ${item.uri}`)}
+          iconAfter="get_app"
+          label="Download"
+          uri={item.uri} />
+        </>
+      ) :
       (<ListToggleButton
-        className="btn-add--lg"
+        className="btn-add--detail"
         isSaved={isSaved}
         item={item}
-        toggleSaved={toggleInList} /> ) :
-      (null)
+        toggleSaved={toggleInList} />)
+      ): (null)
     }
     <Accordion className="accordion" preExpanded={["summary"]} allowZeroExpanded={true}>
       <AccordionItem className="accordion__item" uuid="summary">
