@@ -40,10 +40,9 @@
 .panel__section--flex {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   & .panel__section {
-  }
-  & .panel__section:not(:first-of-type) {
-    padding-left: 30px;
+    flex-shrink: 0;
   }
 }
 
