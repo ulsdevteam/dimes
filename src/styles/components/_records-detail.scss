@@ -41,9 +41,6 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  & .panel__section {
-    flex-shrink: 0;
-  }
 }
 
 .found-in {
