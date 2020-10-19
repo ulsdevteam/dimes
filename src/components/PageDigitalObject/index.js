@@ -2,8 +2,26 @@ import React from 'react';
 import Viewer from "../Viewer"
 
 
+const configs = {
+  id: "mirador",
+  selectedTheme: "dark",
+  window: {
+    allowClose: false,
+    allowMaximize: false,
+    defaultSideBarPanel: 'info',
+    defaultView: 'gallery',
+    sideBarOpenByDefault: true,
+  },
+  thumbnailNavigation: {
+    defaultPosition: 'off',
+  },
+  workspace: {
+    type: 'mosaic',
+  },
+}
+
 const PageDigitalObject = props => (
- <Viewer manifest="https://raciif-dev.s3.amazonaws.com/manifests/f430dec48d764f218c2147a846e28704" />
+ <Viewer config={configs} plugins={[]} />
 )
 
 export default PageDigitalObject;
