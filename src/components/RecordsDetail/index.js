@@ -18,9 +18,10 @@ import { isItemSaved } from "../MyListHelpers";
 import "./styles.scss";
 
 
-const FoundInItem = ({ className, item }) => (
+const FoundInItem = ({ className, item, topLevel }) => (
   <>
     <li className={className}>
+      <MaterialIcon icon={topLevel ? "archive_box" : "subdirectory_arrow_right"} />
       <a className="found-in__link" href={item.uri}>{item.title}</a>
     </li>
     {item.child ? (<FoundInItem item={item.child} className="found-in__subcollection" />) : null}
@@ -63,7 +64,7 @@ const PanelFoundInSection = ({ ancestors, isItemLoading }) => (
       <ul className="found-in">
       {isItemLoading ?
         (<FoundInItemSkeleton/>) :
-        (<FoundInItem item={ancestors} className="found-in__collection" />)}
+        (<FoundInItem item={ancestors} className="found-in__collection" topLevel={true} />)}
       </ul>
     </div>) :
     (null)
