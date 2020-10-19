@@ -110,9 +110,6 @@
   &:focus-within, &:hover, .active {
     background: $off-white;
   }
-  // @media screen and (min-width: $break-md) {
-  //   flex-wrap: nowrap;
-  // }
 }
 
 .child__list-item--collection {
