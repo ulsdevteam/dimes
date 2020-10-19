@@ -314,6 +314,7 @@ export const DuplicationRequestModal = props => (
                 required={true}
                 errors={errors}
                 touched={touched} />
+              <MaterialIcon icon="unfold_more" />
             </div>
             <FormGroup
               label="Description of Materials"

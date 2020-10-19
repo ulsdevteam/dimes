@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import MaterialIcon from "../MaterialIcon";
 import "./styles.scss";
 
 
@@ -92,6 +93,7 @@ export const SelectInput = (props) => (
       onChange={props.handleChange}>
         {props.children}
     </select>
+    <MaterialIcon icon="unfold_more" />
   </div>
 )
 
