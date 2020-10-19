@@ -43,14 +43,17 @@ const PanelFormatSection = ({ formats, notes }) => {
   const displayFormats = formats.filter(f => (
     f !== "documents"
   ))
-  const materialSpecificText = (noteText(notes, "physdesc") || "").concat("\n", noteText(notes, "materialspec" || ""))
+  const formatText = []
+  formatText.push(noteText(notes, "physdesc"))
+  formatText.push(noteText(notes, "materialspec"))
+  const filteredFormatText = formatText.filter(i => (i != null))
   return (
     displayFormats.length ? (
       <div className="panel__section">
         <h3 className="panel__heading">Formats</h3>
         <ul className="panel__list--unstyled">
-          {materialSpecificText && materialSpecificText !== "\nnull" ?
-            (<li className="panel__text">{materialSpecificText}</li>) :
+          {filteredFormatText.length ?
+            (<li className="panel__text">{filteredFormatText.join("\n")}</li>) :
             (displayFormats.map((format, index) => (
               <li key={index} className="panel__text">{format}</li>))
             )
