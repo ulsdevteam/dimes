@@ -167,6 +167,11 @@
   margin-bottom: 0;
 }
 
+.child__list--bottom-level > .child__list-accordion {
+    margin-left: 9px;
+    margin-right: 9px;
+}
+
 // removes before pseudo element from top-level children
 .child__list--top-level > div > .child__list-item--collection {
   &::before {
