@@ -1,5 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {
+  DatePicker,
+  DatePickerInput,
+  DatePickerMonth,
+  DatePickerTable,
+  DatePickerButton,
+  DatePickerCalendar} from "@reecelucas/react-datepicker";
+import MaterialIcon from "../MaterialIcon";
 import "./styles.scss";
 
 
@@ -49,38 +57,49 @@ CheckBoxInput.defaultProps = {
   checked: true,
 }
 
-export const DatePickerInput = (props) => (
-  <div className={props.className}>
-    <InputLabel {...props} />
-    <input
-      type="date"
+export const DateInput = (props) => (
+  <>
+  <DatePicker
+      className="dp__wrapper"
+      initialDate={new Date()}
+      minDate={new Date()}
+      onSelect={date => props.handleChange(date)}>
+    <label htmlFor={props.id}>{props.label}</label>
+    <DatePickerInput
+      className="dp__input"
+      dateFormat={'MM/dd/yyyy'}
       id={props.id}
-      aria-describedby={`desc-${props.id}`}
-      max={props.max}
-      min={props.min}
-      name={props.id}
-      onChange={props.handleChange}
-      value={props.value}
-      required={props.required} />
-    {props.helpText && <p className="help-text" aria-describedby={`desc-${props.id}`}>{props.helpText}</p>}
-  </div>
+      name={props.name} />
+    <DatePickerCalendar className="dp__calendar">
+      <div className="dp__top-bar">
+        <DatePickerButton
+          className="dp__button"
+          aria-label="Switch to the previous month."
+          updateMonth={({ prev }) => prev()} >
+          <MaterialIcon icon="west" />
+        </DatePickerButton>
+        <DatePickerMonth className="dp__month" />
+        <DatePickerButton
+          className="dp__button"
+          aria-label="Switch to the next month."
+          updateMonth={({ next }) => next()} >
+          <MaterialIcon icon="east" />
+        </DatePickerButton>
+      </div>
+      <DatePickerTable className="dp__table" />
+    </DatePickerCalendar>
+  </DatePicker>
+  {props.helpText && <p className="help-text" aria-describedby={`desc-${props.id}`}>{props.helpText}</p>}
+  </>
 )
 
-DatePickerInput.propTypes = {
+DateInput.propTypes = {
   className: PropTypes.string,
   handleChange: PropTypes.func,
   helpText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  max: PropTypes.string,
-  min: PropTypes.string,
-  required: PropTypes.bool,
-  value: PropTypes.string
 };
-
-DatePickerInput.defaultProps = {
-  min: new Date().toISOString().substring(0, 10),
-}
 
 export const SelectInput = (props) => (
   <div className={props.className} required={props.required}>

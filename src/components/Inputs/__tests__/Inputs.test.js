@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "react-dom";
 import {
   CheckBoxInput,
-  DatePickerInput,
+  DateInput,
   SelectInput,
   SelectOption,
   TextInput,
@@ -18,7 +18,7 @@ it('renders without crashing', () => {
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  render(<DatePickerInput label="Select a date" id="1" />, div);
+  render(<DateInput label="Select a date" id="1" />, div);
 });
 
 it('renders without crashing', () => {
