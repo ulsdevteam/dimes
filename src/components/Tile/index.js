@@ -2,12 +2,26 @@ import React from "react";
 import PropTypes from "prop-types";
 import queryString from "query-string";
 import HitCount from "../HitCount";
+import MaterialIcon from "../MaterialIcon";
 import "./styles.scss";
 
 
-const CategoryLabel = ({ category }) => (
-  <div className={`tile__type-label ${category}`}>{category}</div>
-)
+const CategoryLabel = ({ category }) => {
+  var icon = ""
+  switch(category) {
+    case "person":
+      icon = "person";
+      break;
+    case "organization":
+      icon = "account_balance";
+      break;
+    default:
+      icon = "archive_box"
+  }
+  return (
+    <div className={`tile__type-label ${category}`}><MaterialIcon icon={icon} />{category}</div>
+  )
+}
 
 const Tile = ({ category, date, handleHitCountClick, hit_count, params, title, uri }) => (
   <li className="tile">

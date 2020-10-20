@@ -78,10 +78,11 @@ class RecordsChild extends Component {
             ${item.isActive ? " active" : ""}`
           } >
           <AccordionItemButton className={`child__title child__title--${item.type}`}>
-          {item.title}
-          {item.title === item.dates ? (null) : (<p className="child__text">{item.dates}</p>)}
-          <p className="child__text text--truncate">{item.description}</p>
-          {item.hit_count ? (<HitCount className="hit-count--records-" hitCount={item.hit_count} />) : null}
+            {item.title}
+            {item.title === item.dates ? (null) : (<p className="child__text">{item.dates}</p>)}
+            <p className="child__text text--truncate">{item.description}</p>
+            {item.hit_count ? (<HitCount className="hit-count--records-" hitCount={item.hit_count} />) : null}
+            <MaterialIcon icon="expand_more" />
           </AccordionItemButton>
         </AccordionItemHeading>
         {(item.children) ?
