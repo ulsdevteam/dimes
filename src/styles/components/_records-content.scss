@@ -117,9 +117,7 @@
   border: 3px solid $orange-gray;
   border-radius: 3px;
   box-shadow: 0 0 4px $light-gray;
-  &::after {
-    @extend .material-icons;
-    content: "expand_more";
+  & .material-icons {
     position: absolute;
     top: 15px;
     right: 15px;
@@ -136,7 +134,7 @@
   }
   &:hover {
     border-color: $red-orange;
-    &::after {
+    & .material-icons {
       color: $red-orange;
     }
   }

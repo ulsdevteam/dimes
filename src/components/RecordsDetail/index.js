@@ -19,9 +19,10 @@ import { isItemSaved } from "../MyListHelpers";
 import "./styles.scss";
 
 
-const FoundInItem = ({ className, item }) => (
+const FoundInItem = ({ className, item, topLevel }) => (
   <>
     <li className={className}>
+      <MaterialIcon icon={topLevel ? "archive_box" : "subdirectory_arrow_right"} />
       <a className="found-in__link" href={item.uri}>{item.title}</a>
     </li>
     {item.child ? (<FoundInItem item={item.child} className="found-in__subcollection" />) : null}
@@ -72,7 +73,7 @@ const PanelFoundInSection = ({ ancestors, isItemLoading }) => (
       <ul className="found-in">
       {isItemLoading ?
         (<FoundInItemSkeleton/>) :
-        (<FoundInItem item={ancestors} className="found-in__collection" />)}
+        (<FoundInItem item={ancestors} className="found-in__collection" topLevel={true} />)}
       </ul>
     </div>) :
     (null)
@@ -130,7 +131,7 @@ const RecordsDetail = ({ ancestors, isAncestorsLoading, isContentShown, isItemLo
   <div className={`records__detail ${isContentShown ? "hidden" : ""}`}>
     <nav>
       <a href={`/search?${queryString.stringify(params)}`} className="btn btn--back">
-        <span className="material-icons">keyboard_arrow_left</span>Back to Search
+        <MaterialIcon icon="keyboard_arrow_left"/>Back to Search
       </a>
     </nav>
     <h1 className="records__title">{isItemLoading ? <Skeleton /> : item.title }</h1>

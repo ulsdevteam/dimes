@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@blueprintjs/core": "^3.34.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "formik": "^2.1.5",
+    "mirador": "^3.0.0-rc.7",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-accessible-accordion": "^3.3.3",
@@ -22,20 +24,13 @@
     "react-paginate": "^6.5.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "react-select": "^3.1.0",
-    "universalviewer": "^4.0.0-pre.49"
+    "react-select": "^3.1.0"
   },
   "scripts": {
-    "copy": "yarn run copy-uv-assets && yarn run copy-uv-dist-umd && yarn run copy-uv-html && yarn run copy-uv-css",
-    "copy-uv-assets": "cp -R node_modules/universalviewer/dist/uv-assets ./public",
-    "copy-uv-dist-umd": "cp -R node_modules/universalviewer/dist/uv-dist-umd ./public",
-    "copy-uv-html": "cp -R node_modules/universalviewer/dist/uv.html ./public",
-    "copy-uv-css": "cp -R node_modules/universalviewer/dist/uv.css ./public",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "postinstall": "yarn run copy"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"

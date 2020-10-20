@@ -89,6 +89,7 @@ class RecordsChild extends Component {
               <QueryHighlighter query={params.query} text={item.description} />
             </p>
             {item.hit_count ? (<HitCount className="hit-count--records-" hitCount={item.hit_count} />) : null}
+            <MaterialIcon icon="expand_more" />
           </AccordionItemButton>
         </AccordionItemHeading>
         {(item.children) ?

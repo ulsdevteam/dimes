@@ -79,12 +79,10 @@
   margin-left: 16px;
 }
 
-.select__sort--wrapper::after {
-  font-family: 'Material Icons';
-  content: "unfold_more";
+.select__sort--wrapper .material-icons {
   font-size: 20px;
   top: 12px;
-  right: 22px;
+  right: 10px;
   position: absolute;
   pointer-events: none;
 }
