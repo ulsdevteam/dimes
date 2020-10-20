@@ -110,9 +110,6 @@
   &:focus-within, &:hover, .active {
     background: $off-white;
   }
-  @media screen and (min-width: $break-lg) {
-    flex-wrap: nowrap;
-  }
 }
 
 .child__list-item--collection {
@@ -181,6 +178,12 @@
 
 .child__description {
   min-width: 0;
+  order: 1;
+  @media screen and (min-width: $break-md) {
+    order: unset;
+    flex-basis: 50%;
+    flex-grow: 2;
+  }
 }
 
 .child__buttons {
@@ -188,9 +191,12 @@
   display: flex;
   align-items: flex-start;
   flex-shrink: 0;
-  @media screen and (min-width: $break-lg) {
+  order: 3;
+  @media screen and (min-width: $break-md) {
     width: unset;
+    order: unset;
     justify-content: flex-end;
+    margin-bottom: 9px;
   }
 }
 
@@ -226,6 +232,10 @@
 
 .child__text {
   font-size: 14px;
+  order: 2;
+  @media screen and (min-width: $break-md) {
+    order: unset
+  }
 }
 
 .text--truncate {
