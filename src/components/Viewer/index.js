@@ -1,29 +1,17 @@
-import React, {
-  useRef,
-  useLayoutEffect
-} from "react";
-import { init } from "universalviewer";
+import React, { Component } from "react";
+import mirador from "mirador";
 
-const Viewer = ({manifest, width = '100vw', height = '100vh'}) => {
-  const el = useRef();
 
-  useLayoutEffect(() => {
+class Viewer extends Component {
+  componentDidMount() {
+    const { config, plugins } = this.props;
+    mirador.viewer(config, plugins);
+  }
 
-    const uv = init(el.current,
-      {
-        manifestUri: manifest
-      });
-
-    uv.on('created', () => {
-      uv.resize();
-    }, false);
-
-  }, [manifest]);
-
-  return <div ref={el} id="uv" className="uv" style={{
-    width: width,
-    height: height
-  }} />;
-};
+  render() {
+    const { config } = this.props;
+    return <div id={config.id} />;
+  }
+}
 
 export default Viewer
