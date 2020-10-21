@@ -12,6 +12,7 @@ import {
 import HitCount from "../HitCount";
 import ListToggleButton from "../ListToggleButton";
 import MaterialIcon from "../MaterialIcon";
+import QueryHighlighter from "../QueryHighlighter";
 import { dateString } from "../Helpers";
 import { isItemSaved } from "../MyListHelpers";
 import "./styles.scss";
@@ -43,26 +44,32 @@ class RecordsChild extends Component {
 
   render() {
     const { ariaLevel, item, params, savedList, setActiveRecords, toggleInList } = this.props;
+    const isMobile = window.innerWidth < 580;
     return (item.type === "object" ?
       (<div className={`child__list-item child__list-item--${item.type} ${item.isActive ? "active" : ""}`} >
         <div className="child__description">
-          <button className={`child__title child__title--${item.type}`} onClick={() => this.handleItemClick(item.uri)}>{item.title}</button>
+          <button className={`child__title child__title--${item.type}`} onClick={() => this.handleItemClick(item.uri)}>
+            <QueryHighlighter query={params.query} text={item.title} />
+          </button>
           {item.dates === item.title ? (null) : (<p className="child__text">{item.dates}</p>)}
           {item.hit_count ? (<HitCount className="hit-count--records-" hitCount={item.hit_count} />) : null}
-          <p className="child__text text--truncate">{item.description}</p>
         </div>
-        <div className={`child__buttons ${item.online ? "expanded" : ""}`}>
+        <div className="child__buttons">
           {item.online ? (
             <a className="btn btn-launch--content"
-              href={`${item.uri}/view`}>View Online <MaterialIcon icon="visibility" /></a>) :
+              href={`${item.uri}/view`}>{isMobile? "View" : "View Online"} <MaterialIcon icon="visibility" /></a>) :
             (null)
           }
           <ListToggleButton
             className="btn-add--content"
+            isMobile={isMobile}
             isSaved={this.state.isSaved}
             item={this.props.item}
             toggleSaved={this.toggleSaved} />
         </div>
+        <p className="child__text text--truncate">
+          <QueryHighlighter query={params.query} text={item.description} />
+        </p>
       </div>) :
       (<AccordionItem
         uuid={item.uri}
@@ -76,10 +83,13 @@ class RecordsChild extends Component {
             ${item.isActive ? " active" : ""}`
           } >
           <AccordionItemButton className={`child__title child__title--${item.type}`}>
-          {item.title}
-          {item.title === item.dates ? (null) : (<p className="child__text">{item.dates}</p>)}
-          <p className="child__text text--truncate">{item.description}</p>
-          {item.hit_count ? (<HitCount className="hit-count--records-" hitCount={item.hit_count} />) : null}
+            <QueryHighlighter query={params.query} text={item.title} />
+            {item.title === item.dates ? (null) : (<p className="child__text">{item.dates}</p>)}
+            <p className="child__text text--truncate">
+              <QueryHighlighter query={params.query} text={item.description} />
+            </p>
+            {item.hit_count ? (<HitCount className="hit-count--records-" hitCount={item.hit_count} />) : null}
+            <MaterialIcon icon="expand_more" />
           </AccordionItemButton>
         </AccordionItemHeading>
         {(item.children) ?

@@ -112,6 +112,7 @@ export const SelectInput = (props) => (
       onChange={props.handleChange}>
         {props.children}
     </select>
+    <MaterialIcon icon="unfold_more" />
   </div>
 )
 

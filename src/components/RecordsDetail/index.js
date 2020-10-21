@@ -12,15 +12,17 @@ import {
 import Button from "../Button";
 import ListToggleButton from "../ListToggleButton";
 import MaterialIcon from "../MaterialIcon";
+import QueryHighlighter from "../QueryHighlighter";
 import { DetailSkeleton, FoundInItemSkeleton } from "../LoadingSkeleton";
 import { dateString, hasAccessAndUse, noteText } from "../Helpers";
 import { isItemSaved } from "../MyListHelpers";
 import "./styles.scss";
 
 
-const FoundInItem = ({ className, item }) => (
+const FoundInItem = ({ className, item, topLevel }) => (
   <>
     <li className={className}>
+      <MaterialIcon icon={topLevel ? "archive_box" : "subdirectory_arrow_right"} />
       <a className="found-in__link" href={item.uri}>{item.title}</a>
     </li>
     {item.child ? (<FoundInItem item={item.child} className="found-in__subcollection" />) : null}
@@ -39,17 +41,25 @@ const PanelExtentSection = ({ extents }) => (
   (null)
 )
 
-const PanelFormatSection = ({ formats }) => {
+const PanelFormatSection = ({ formats, notes }) => {
   const displayFormats = formats.filter(f => (
     f !== "documents"
   ))
+  const formatText = []
+  formatText.push(noteText(notes, "physdesc"))
+  formatText.push(noteText(notes, "materialspec"))
+  const filteredFormatText = formatText.filter(i => (i != null))
   return (
     displayFormats.length ? (
       <div className="panel__section">
         <h3 className="panel__heading">Formats</h3>
         <ul className="panel__list--unstyled">
-          {displayFormats.map((format, index) => (
-          <li key={index} className="panel__text">{format}</li>))}
+          {filteredFormatText.length ?
+            (<li className="panel__text">{filteredFormatText.join("\n")}</li>) :
+            (displayFormats.map((format, index) => (
+              <li key={index} className="panel__text">{format}</li>))
+            )
+          }
         </ul>
       </div>) :
     (null)
@@ -63,7 +73,19 @@ const PanelFoundInSection = ({ ancestors, isItemLoading }) => (
       <ul className="found-in">
       {isItemLoading ?
         (<FoundInItemSkeleton/>) :
-        (<FoundInItem item={ancestors} className="found-in__collection" />)}
+        (<FoundInItem item={ancestors} className="found-in__collection" topLevel={true} />)}
+      </ul>
+    </div>) :
+    (null)
+)
+
+const PanelLinkedListSection = ({ listData, title }) =>  (
+  listData ?
+    (<div className="panel__section">
+      <h3 className="panel__heading">{title}</h3>
+      <ul className="panel__list--unstyled">
+        {listData.map((item, index) => (
+        <li key={index} className="panel__text"><a href={item.uri}>{item.title}</a></li>))}
       </ul>
     </div>) :
     (null)
@@ -81,14 +103,18 @@ const PanelListSection = ({ listData, title }) =>  (
     (null)
 )
 
-const PanelTextSection = ({ text, title }) => (
+const PanelTextSection = ({ params, text, title }) => {
+  const queryString = params && params.query ? (params.query) : ("")
+  return (
   text ?
     (<div className="panel__section">
       <h3 className="panel__heading">{title}</h3>
-      <p className="panel__text">{text}</p>
+      <p className="panel__text--narrative">
+        <QueryHighlighter query={queryString} text={text} />
+      </p>
     </div>) :
     (null)
-)
+)}
 
 const RecordsDetail = ({ ancestors, isAncestorsLoading, isContentShown, isItemLoading, item, params, savedList, toggleInList }) => {
 
@@ -105,7 +131,7 @@ const RecordsDetail = ({ ancestors, isAncestorsLoading, isContentShown, isItemLo
   <div className={`records__detail ${isContentShown ? "hidden" : ""}`}>
     <nav>
       <a href={`/search?${queryString.stringify(params)}`} className="btn btn--back">
-        <span className="material-icons">keyboard_arrow_left</span>Back to Search
+        <MaterialIcon icon="keyboard_arrow_left"/>Back to Search
       </a>
     </nav>
     <h1 className="records__title">{isItemLoading ? <Skeleton /> : item.title }</h1>
@@ -143,22 +169,24 @@ const RecordsDetail = ({ ancestors, isAncestorsLoading, isContentShown, isItemLo
           {isItemLoading ?
             (<DetailSkeleton />) :
             (<>
-              <PanelListSection
-                title="Creators"
-                listData={item.creators} />
-              <PanelTextSection
-                title="Dates"
-                text={dateString(item.dates)} />
               <div className="panel__section--flex">
+                <PanelLinkedListSection
+                  title="Creators"
+                  listData={item.creators} />
+                <PanelTextSection
+                  title="Dates"
+                  text={dateString(item.dates)} />
                 <PanelExtentSection
                   extents={item.extents} />
                 <PanelFormatSection
-                  formats={item.formats} />
+                  formats={item.formats}
+                  notes={item.notes} />
               </div>
               <PanelFoundInSection
                 ancestors={ancestors}
                 isItemLoading={isAncestorsLoading} />
               <PanelTextSection
+                params={params}
                 title="Description"
                 text={noteText(item.notes, "abstract") || noteText(item.notes, "scopecontent")} />
               </>

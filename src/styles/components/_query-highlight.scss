@@ -1,0 +1,18 @@
+@import "../styles";
+
+.query-highlight {
+  background-color: $peach-orange;
+}
+
+.query-highlight::before,
+.query-highlight::after {
+  @include visually-hidden;
+}
+
+.query-highlight::before {
+  content: " [highlight start] ";
+}
+
+.query-highlight::after {
+  content: " [highlight end] ";
+}
