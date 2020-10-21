@@ -5,6 +5,7 @@ import Button from "../Button";
 import Modal from "react-modal";
 import Captcha from "../Captcha";
 import { FocusError, FormButtons, FormGroup } from "../Form";
+import { DateInput } from "../Inputs";
 import MaterialIcon from "../MaterialIcon";
 import { ModalSavedItemList } from "../ModalSavedItem";
 import "./styles.scss"
@@ -27,7 +28,8 @@ const ModalToggleListButton = ({items, toggleList}) => {
     <Button
       className="btn--sm btn--gray"
       handleClick={() => toggleList(!deselect)}
-      label={deselect ? "Deselect all" : "Select all"} />
+      label={deselect ? "Deselect all items" : "Select all items"}
+      iconBefore={deselect ? "check_box_outline_blank" : "check_box"} />
   )
 }
 
@@ -172,12 +174,13 @@ export const ReadingRoomRequestModal = props => (
     form={
       <Formik
         enableReinitialize={true}
-        initialValues={{scheduledDate: "", questions: "", notes: "", items: props.submitList, recaptcha: ""}}
+        initialValues={{scheduledDate: new Date(), questions: "", notes: "", items: props.submitList, recaptcha: ""}}
         validate={values => {
           const errors = {};
           if (!values.scheduledDate) errors.scheduledDate = 'Please provide the date of your research visit.';
           if (!values.recaptcha) errors.recaptcha = 'Please complete this field.';
           if (!values.items.length) errors.items = 'No items have been selected to submit.'
+          console.log(errors)
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
@@ -199,14 +202,18 @@ export const ReadingRoomRequestModal = props => (
             name="items"
             component="div"
             className="modal-form__error" />
-          <FormGroup
+          <Field
+            component={DateInput}
+            handleChange={date => setFieldValue("scheduledDate", date)}
+            helpText="Enter the date of your research visit (mm/dd/yyyy)"
+            id="scheduledDate"
             label="Scheduled Date *"
-            helpText="Enter the date of your research visit"
+            type="date" />
+          <ErrorMessage
+            id="scheduledDate-error"
             name="scheduledDate"
-            type="date"
-            required={true}
-            errors={errors}
-            touched={touched} />
+            component="div"
+            className="modal-form__error" />
           <FormGroup
             label="Message for RAC staff"
             helpText="255 characters maximum"
