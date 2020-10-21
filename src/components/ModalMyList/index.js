@@ -28,7 +28,8 @@ const ModalToggleListButton = ({items, toggleList}) => {
     <Button
       className="btn--sm btn--gray"
       handleClick={() => toggleList(!deselect)}
-      label={deselect ? "Deselect all" : "Select all"} />
+      label={deselect ? "Deselect all items" : "Select all items"}
+      iconBefore={deselect ? "check_box_outline_blank" : "check_box"} />
   )
 }
 
