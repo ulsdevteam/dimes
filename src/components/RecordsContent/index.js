@@ -185,7 +185,7 @@ class RecordsContentList extends Component {
         if (!item.children) {
           const childrenParams = {...this.props.params, limit: 5}
           this.getChildrenPage(
-            `${process.env.REACT_APP_ARGO_BASEURL}/${item.uri}/children?${queryString.stringify(childrenParams)}`,
+            `${process.env.REACT_APP_ARGO_BASEURL}${item.uri}/children?${queryString.stringify(childrenParams)}`,
             item)
         }
       }

@@ -73,7 +73,8 @@ class PageRecords extends Component {
     if (uri !== this.state.item.uri) {
       this.setState({isItemLoading: true})
       this.setState({isAncestorsLoading: true})
-      const itemUrl = `${process.env.REACT_APP_ARGO_BASEURL}/${uri}`
+      const itemUrl = `${process.env.REACT_APP_ARGO_BASEURL}${uri}`
+      console.log(itemUrl)
       axios
         .get(`${itemUrl}?${queryString.stringify(this.state.params)}`)
         .then(res => {
