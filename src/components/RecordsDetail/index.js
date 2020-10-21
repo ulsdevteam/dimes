@@ -12,6 +12,7 @@ import {
 import Button from "../Button";
 import ListToggleButton from "../ListToggleButton";
 import MaterialIcon from "../MaterialIcon";
+import QueryHighlighter from "../QueryHighlighter";
 import { DetailSkeleton, FoundInItemSkeleton } from "../LoadingSkeleton";
 import { dateString, hasAccessAndUse, noteText } from "../Helpers";
 import { isItemSaved } from "../MyListHelpers";
@@ -102,14 +103,18 @@ const PanelListSection = ({ listData, title }) =>  (
     (null)
 )
 
-const PanelTextSection = ({ text, title }) => (
+const PanelTextSection = ({ params, text, title }) => {
+  const queryString = params && params.query ? (params.query) : ("")
+  return (
   text ?
     (<div className="panel__section">
       <h3 className="panel__heading">{title}</h3>
-      <p className="panel__text--narrative">{text}</p>
+      <p className="panel__text--narrative">
+        <QueryHighlighter query={queryString} text={text} />
+      </p>
     </div>) :
     (null)
-)
+)}
 
 const RecordsDetail = ({ ancestors, isAncestorsLoading, isContentShown, isItemLoading, item, params, savedList, toggleInList }) => {
 
@@ -181,6 +186,7 @@ const RecordsDetail = ({ ancestors, isAncestorsLoading, isContentShown, isItemLo
                 ancestors={ancestors}
                 isItemLoading={isAncestorsLoading} />
               <PanelTextSection
+                params={params}
                 title="Description"
                 text={noteText(item.notes, "abstract") || noteText(item.notes, "scopecontent")} />
               </>
