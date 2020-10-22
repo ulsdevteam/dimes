@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import queryString from "query-string";
 import { CollectionHitsChildrenSkeleton, CollectionHitsCollectionSkeleton } from "../LoadingSkeleton";
 import HitCount from "../HitCount";
+import { appendParams } from "../Helpers";
 import "./styles.scss"
 
 const CollectionHitsInfo = ({ collection }) => (
@@ -23,7 +23,7 @@ CollectionHitsInfo.propTypes = {
 const CollectionHits = ({ children, collection, isChildrenLoading, isCollectionLoading, params }) => {
   const collectionChildHits = children && children.map((child, idx) =>
     <div className="collection-child" key={idx}>
-      <a href={`${child.uri}/?${queryString.stringify(params)}`} className="collection-child__title">{child.title}</a>
+      <a href={appendParams(child.uri, params)} className="collection-child__title">{child.title}</a>
       {child.hit_count ? (<HitCount className="hit-count--collection-modal" hitCount={child.hit_count} />) : null}
     </div>
   )

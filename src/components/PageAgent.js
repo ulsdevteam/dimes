@@ -8,6 +8,7 @@ import { AgentAttributeSkeleton, SearchSkeleton } from "./LoadingSkeleton";
 import TileList from "./Tile";
 import AgentAttributeList from "./AgentAttribute";
 import "./Button/styles.scss";
+import { appendParams } from "./Helpers";
 
 const AgentDescription = ({ attributes }) => (
   attributes ?
@@ -96,7 +97,7 @@ class PageAgent extends Component {
         </Helmet>
         <div className="container agent">
           <nav>
-            <a href={`/search?${queryString.stringify(this.state.params)}`} className="btn btn--back">
+            <a href={appendParams("/search", this.state.params)} className="btn btn--back">
               <span className="material-icons">keyboard_arrow_left</span>Back to Search
             </a>
           </nav>
