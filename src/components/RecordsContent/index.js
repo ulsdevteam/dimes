@@ -51,7 +51,6 @@ class RecordsChild extends Component {
             <QueryHighlighter query={params.query} text={item.title} />
           </button>
           {item.dates === item.title ? (null) : (<p className="child__text">{item.dates}</p>)}
-          {item.hit_count ? (<HitCount className="hit-count--records-" hitCount={item.hit_count} />) : null}
         </div>
         <div className="child__buttons">
           {item.online ? (
@@ -69,6 +68,7 @@ class RecordsChild extends Component {
         <p className="child__text text--truncate">
           <QueryHighlighter query={params.query} text={item.description} />
         </p>
+        {item.hit_count ? (<HitCount className="hit-count--records-" hitCount={item.hit_count} />) : null}
       </div>) :
       (<AccordionItem
         uuid={item.uri}
