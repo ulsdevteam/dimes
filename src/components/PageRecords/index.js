@@ -54,10 +54,11 @@ class PageRecords extends Component {
         res.data.length && this.setState({ ancestors: res.data.slice(0)[0] })
       })
       .catch(err => this.setState({ found: false }));
-    this.getPage(appendParams(itemUrl, childrenParams))
+    this.getPage(appendParams(`${itemUrl}/children`, childrenParams))
   };
 
   getPage = uri => {
+    console.log(uri)
     axios
       .get(uri)
       .then(res => {
