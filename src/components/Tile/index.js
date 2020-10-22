@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import queryString from "query-string";
 import HitCount from "../HitCount";
 import MaterialIcon from "../MaterialIcon";
+import { appendParams } from "../Helpers";
 import "./styles.scss";
 
 
@@ -25,7 +25,7 @@ const CategoryLabel = ({ category }) => {
 
 const Tile = ({ category, date, handleHitCountClick, hit_count, params, title, uri }) => (
   <li className="tile">
-    <a className="tile__title" href={`${uri}/?${queryString.stringify(params)}`}>{title}</a>
+    <a className="tile__title" href={appendParams(uri, params)}>{title}</a>
     {category ? (<CategoryLabel category={category} />) : null }
     {hit_count && category === "collection" ?
       (<HitCount className="hit-count--tile" hitCount={hit_count} handleClick={() => {handleHitCountClick && handleHitCountClick(uri)}} />) :

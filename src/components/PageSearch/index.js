@@ -10,6 +10,7 @@ import { CollectionHitsModal, FacetModal } from "../ModalSearch";
 import { SearchPagination } from "../Pagination";
 import SearchForm from "../SearchForm";
 import TileList from "../Tile";
+import { appendParams } from "../Helpers";
 import "./styles.scss"
 
 class PageSearch extends Component {
@@ -58,17 +59,17 @@ class PageSearch extends Component {
 
   excecuteFacetsSearch = params =>  {
     axios
-      .get(`${process.env.REACT_APP_ARGO_BASEURL}/facets/?${queryString.stringify(params)}`)
+      .get(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}/facets/`, params))
       .then(res => {this.setState({ facetData: res.data})})
       .catch(err => console.log(err));
   };
 
   executeSearch = params =>  {
-    this.props.history.push(`${window.location.pathname}?${queryString.stringify(params)}`)
+    this.props.history.push(appendParams(window.location.pathname, params))
     this.setState({ inProgress: true });
     this.setState({ params: params })
     axios
-      .get(`${process.env.REACT_APP_ARGO_BASEURL}/search/?${queryString.stringify(params)}`)
+      .get(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}/search/`, params))
       .then(res => {
         this.setState({items: res.data.results})
         this.setState({startItem: this.startItem(res.data, params.offset)})
@@ -104,14 +105,14 @@ class PageSearch extends Component {
   handleHitCountClick = uri => {
     this.setState({ hitsChildrenIsLoading: true, hitsCollectionIsLoading: true, hitsChildren: []}, () => this.toggleHitsModal())
     axios
-      .get(`${process.env.REACT_APP_ARGO_BASEURL}${uri}/?${queryString.stringify(this.state.params)}`)
+      .get(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${uri}`, this.state.params))
       .then(res => {
         this.setState({ hitsCollection: res.data })
         this.setState({ hitsCollectionIsLoading: false })
       })
       .catch(err => console.log(err))
     const filteredParams = {...this.state.params, limit: 5}
-    this.getChildrenPage(`${process.env.REACT_APP_ARGO_BASEURL}${uri}/children/?limit=5&${queryString.stringify(filteredParams)}`)
+    this.getChildrenPage(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${uri}/children/`, filteredParams))
   }
 
   /** Pushes changes to facet checkboxes to url and executes search */

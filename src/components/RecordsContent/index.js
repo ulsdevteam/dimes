@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
-import queryString from "query-string";
 import {
     Accordion,
     AccordionItem,
@@ -13,7 +12,7 @@ import HitCount from "../HitCount";
 import ListToggleButton from "../ListToggleButton";
 import MaterialIcon from "../MaterialIcon";
 import QueryHighlighter from "../QueryHighlighter";
-import { dateString } from "../Helpers";
+import { appendParams, dateString } from "../Helpers";
 import { isItemSaved } from "../MyListHelpers";
 import "./styles.scss";
 
@@ -185,7 +184,7 @@ class RecordsContentList extends Component {
         if (!item.children) {
           const childrenParams = {...this.props.params, limit: 5}
           this.getChildrenPage(
-            `${process.env.REACT_APP_ARGO_BASEURL}${item.uri}/children?${queryString.stringify(childrenParams)}`,
+            appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${item.uri}/children`, childrenParams),
             item)
         }
       }

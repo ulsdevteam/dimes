@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import queryString from "query-string";
 import Skeleton from "react-loading-skeleton";
 import {
     Accordion,
@@ -14,18 +13,21 @@ import ListToggleButton from "../ListToggleButton";
 import MaterialIcon from "../MaterialIcon";
 import QueryHighlighter from "../QueryHighlighter";
 import { DetailSkeleton, FoundInItemSkeleton } from "../LoadingSkeleton";
-import { dateString, hasAccessAndUse, noteText } from "../Helpers";
+import { appendParams, dateString, hasAccessAndUse, noteText } from "../Helpers";
 import { isItemSaved } from "../MyListHelpers";
 import "./styles.scss";
 
 
-const FoundInItem = ({ className, item, topLevel }) => (
+const FoundInItem = ({ className, item, params, topLevel }) => (
   <>
     <li className={className}>
       <MaterialIcon icon={topLevel ? "archive_box" : "subdirectory_arrow_right"} />
-      <a className="found-in__link" href={item.uri}>{item.title}</a>
+      <a className="found-in__link" href={appendParams(item.uri, params)}>{item.title}</a>
     </li>
-    {item.child ? (<FoundInItem item={item.child} className="found-in__subcollection" />) : null}
+    {item.child ? (<FoundInItem
+                    item={item.child}
+                    className="found-in__subcollection"
+                    params={params} />) : null}
   </>
 )
 
@@ -66,14 +68,18 @@ const PanelFormatSection = ({ formats, notes }) => {
   )
 }
 
-const PanelFoundInSection = ({ ancestors, isItemLoading }) => (
+const PanelFoundInSection = ({ ancestors, isItemLoading, params }) => (
   ancestors.title ?
     (<div className="panel__section">
       <h3 className="panel__heading">Found In</h3>
       <ul className="found-in">
       {isItemLoading ?
         (<FoundInItemSkeleton/>) :
-        (<FoundInItem item={ancestors} className="found-in__collection" topLevel={true} />)}
+        (<FoundInItem
+            item={ancestors}
+            className="found-in__collection"
+            params={params}
+            topLevel={true} />)}
       </ul>
     </div>) :
     (null)
@@ -104,13 +110,13 @@ const PanelListSection = ({ listData, title }) =>  (
 )
 
 const PanelTextSection = ({ params, text, title }) => {
-  const queryString = params && params.query ? (params.query) : ("")
+  const parsedQuery = params && params.query ? (params.query) : ("")
   return (
   text ?
     (<div className="panel__section">
       <h3 className="panel__heading">{title}</h3>
       <p className="panel__text--narrative">
-        <QueryHighlighter query={queryString} text={text} />
+        <QueryHighlighter query={parsedQuery} text={text} />
       </p>
     </div>) :
     (null)
@@ -130,7 +136,7 @@ const RecordsDetail = ({ ancestors, isAncestorsLoading, isContentShown, isItemLo
   return (
   <div className={`records__detail ${isContentShown ? "hidden" : ""}`}>
     <nav>
-      <a href={`/search?${queryString.stringify(params)}`} className="btn btn--back">
+      <a href={appendParams("/search", params)} className="btn btn--back">
         <MaterialIcon icon="keyboard_arrow_left"/>Back to Search
       </a>
     </nav>
@@ -184,7 +190,8 @@ const RecordsDetail = ({ ancestors, isAncestorsLoading, isContentShown, isItemLo
               </div>
               <PanelFoundInSection
                 ancestors={ancestors}
-                isItemLoading={isAncestorsLoading} />
+                isItemLoading={isAncestorsLoading}
+                params={params} />
               <PanelTextSection
                 params={params}
                 title="Description"

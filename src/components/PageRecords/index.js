@@ -8,6 +8,7 @@ import ContextSwitcher from "../ContextSwitcher";
 import RecordsContent from "../RecordsContent";
 import RecordsDetail from "../RecordsDetail";
 import PageNotFound from "../PageNotFound";
+import { appendParams } from "../Helpers";
 
 
 class PageRecords extends Component {
@@ -38,7 +39,7 @@ class PageRecords extends Component {
     const childrenParams = {...params, limit: 5}
     this.setState({ params: params })
     axios
-      .get(`${itemUrl}?${queryString.stringify(params)}`)
+      .get(appendParams(itemUrl, params))
       .then(res => {
         this.setState({ item: res.data });
         this.setState({ isItemLoading: false });
@@ -53,7 +54,7 @@ class PageRecords extends Component {
         res.data.length && this.setState({ ancestors: res.data.slice(0)[0] })
       })
       .catch(err => this.setState({ found: false }));
-    this.getPage(`${itemUrl}/children/?${queryString.stringify(childrenParams)}`)
+    this.getPage(appendParams(itemUrl, childrenParams))
   };
 
   getPage = uri => {
@@ -76,16 +77,16 @@ class PageRecords extends Component {
       const itemUrl = `${process.env.REACT_APP_ARGO_BASEURL}${uri}`
       console.log(itemUrl)
       axios
-        .get(`${itemUrl}?${queryString.stringify(this.state.params)}`)
+        .get(appendParams(itemUrl, this.state.params))
         .then(res => {
           this.setState({ item: res.data });
           this.setState({ updateMessage: `Details under heading 1 have been updated to describe the selected records titled ${res.data.title}`})
-          this.setUrl(`${uri}?${queryString.stringify(this.state.params)}`, res.data);
+          this.setUrl(appendParams(uri, this.state.params), res.data);
         })
         .catch(e => console.log(e))
         .then(() => this.setState({isItemLoading: false}));
       axios
-        .get(`${itemUrl}/ancestors?${queryString.stringify(this.state.params)}`)
+        .get(appendParams(`${itemUrl}/ancestors`, this.state.params))
         .then(res => {
           this.setState({ ancestors: res.data })
         })
