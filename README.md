@@ -27,9 +27,17 @@ Or, if you want to remove all data
 
 ## Dev deployment
 
-To deploy in vSphere, run:
+Updated images are built each time a commit is pushed to base. To deploy in vSphere, first update the image by pulling the most recent version:
 
-    $ docker -H {vsphere host}{vsphere port} run -d -p 3001:80 rockarch/dimes:latest
+    $ docker -H {vsphere host}{vsphere port} --tlsverify pull rockarch/dimes:latest
+
+Then stop the running container:
+
+    $ docker -H {vsphere host}{vsphere port} --tlsverify stop rockarch/dimes:latest
+
+Finally, start the updated container:
+
+    $ docker -H {vsphere host}{vsphere port} --tlsverify run -d -p 3001:80 rockarch/dimes:latest
 
 DIMES will then be available at the vSphere host, port 3001.
 
