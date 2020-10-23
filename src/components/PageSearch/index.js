@@ -171,7 +171,7 @@ class PageSearch extends Component {
              />
           </div>
           <div className="results">
-            <h1 className="results__title">{`Search Results ${this.state.params.query && `for “${this.state.params.query}”` }`}</h1>
+            <h1 className="results__title">{`Search Results ${this.state.params.query && `for “${this.state.params.query.replace(/"([^"]+(?="))"/g, '$1')}”` }`}</h1>
             <div className="results__header">
               <div className="results__summary">
                 <p className="results__summary--text">
