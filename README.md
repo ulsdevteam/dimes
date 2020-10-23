@@ -25,6 +25,15 @@ Or, if you want to remove all data
     $ docker-compose down -v
 
 
+## Dev deployment
+
+To deploy in vSphere, run:
+
+    $ docker -H {vsphere host}{vsphere port} run -d -p 3001:80 rockarch/dimes:latest
+
+DIMES will then be available at the vSphere host, port 3001.
+
+
 ## License
 
 This code is released under an [MIT License](LICENSE).
