@@ -3,7 +3,7 @@ import Viewer from "../Viewer"
 
 
 const configs = {
-  id: "mirador",
+  id: "root",
   selectedTheme: "light",
   window: {
     allowClose: false,
