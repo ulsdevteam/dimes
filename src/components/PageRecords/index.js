@@ -18,7 +18,6 @@ class PageRecords extends Component {
       item: {},
       ancestors: {},
       children: [],
-      collection: {},
       found: true,
       isAncestorsLoading: true,
       isChildrenLoading: true,
@@ -38,24 +37,31 @@ class PageRecords extends Component {
     const params = queryString.parse(this.props.location.search);
     const childrenParams = {...params, limit: 5}
     this.setState({ params: params })
+    this.getItemData(itemUrl, params)
+    this.getPage(appendParams(`${itemUrl}/children`, childrenParams))
+  };
+
+  getItemData = (itemUrl, params) => {
+    this.setState({isItemLoading: true})
+    this.setState({isAncestorsLoading: true})
+    const itemPath = itemUrl.replace(`${process.env.REACT_APP_ARGO_BASEURL}`, "")
     axios
       .get(appendParams(itemUrl, params))
       .then(res => {
         this.setState({ item: res.data });
-        this.setState({ isItemLoading: false });
-        this.setState({ collection: res.data })
+        this.setState({ updateMessage: `Details under heading 1 have been updated to describe the selected records titled ${res.data.title}`})
+        this.setUrl(appendParams(itemPath, this.state.params), res.data);
       })
-      .catch(err => this.setState({ found: false }));
+      .catch(err => this.setState({ found: false }))
+      .then(() => this.setState({isItemLoading: false}));
     axios
-      .get(`${itemUrl}/ancestors`)
+      .get(appendParams(`${itemUrl}/ancestors`, params))
       .then(res => {
-        this.setState({ ancestors: res.data });
-        this.setState({ isAncestorsLoading: false });
-        res.data.length && this.setState({ ancestors: res.data.slice(0)[0] })
+        this.setState({ ancestors: res.data })
       })
-      .catch(err => this.setState({ found: false }));
-    this.getPage(appendParams(`${itemUrl}/children`, childrenParams))
-  };
+      .catch(e => console.log(e))
+      .then(() => this.setState({isAncestorsLoading: false}));
+  }
 
   getPage = uri => {
     console.log(uri)
@@ -65,36 +71,23 @@ class PageRecords extends Component {
           this.setState({ children: [...this.state.children].concat(res.data.results)});
           this.state.isChildrenLoading && this.setState({ isChildrenLoading: false });
           res.data.next && this.getPage(res.data.next)
-        }
-      )
-      .catch(err => console.log(err))
+      }
+    )
+    .catch(err => console.log(err))
+  }
+
+  /** Returns the first ancestor or the item if no ancestors are present */
+  parseCollection = () => {
+    return Object.keys(this.state.ancestors).length ? this.state.ancestors : this.state.item
   }
 
   /** Updates state with item found at URL. */
   setActiveRecords = uri => {
     if (uri !== this.state.item.uri) {
-      this.setState({isItemLoading: true})
-      this.setState({isAncestorsLoading: true})
       const itemUrl = `${process.env.REACT_APP_ARGO_BASEURL}${uri}`
-      console.log(itemUrl)
-      axios
-        .get(appendParams(itemUrl, this.state.params))
-        .then(res => {
-          this.setState({ item: res.data });
-          this.setState({ updateMessage: `Details under heading 1 have been updated to describe the selected records titled ${res.data.title}`})
-          this.setUrl(appendParams(uri, this.state.params), res.data);
-        })
-        .catch(e => console.log(e))
-        .then(() => this.setState({isItemLoading: false}));
-      axios
-        .get(appendParams(`${itemUrl}/ancestors`, this.state.params))
-        .then(res => {
-          this.setState({ ancestors: res.data })
-        })
-        .catch(e => console.log(e))
-        .then(() => this.setState({isAncestorsLoading: false}));
+      this.getItemData(itemUrl, this.state.params)
     }
-}
+  }
 
   /** Pushes a URL and state into browser history */
   setUrl = (uri, itemData) => {
@@ -107,6 +100,8 @@ class PageRecords extends Component {
 
   render() {
     const { savedList, toggleInList } = this.props;
+    const collection = this.parseCollection();
+    console.log(collection)
     if (!this.state.found) {
       return (<PageNotFound />)
     }
@@ -131,7 +126,7 @@ class PageRecords extends Component {
             toggleInList={toggleInList} />
           <RecordsContent
             children={this.state.children}
-            collection={this.state.collection}
+            collection={collection}
             isContentShown={this.state.isContentShown}
             params={this.state.params}
             parent={this.state.item}
