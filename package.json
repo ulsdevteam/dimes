@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@reecelucas/react-datepicker": "^2.0.0",
     "@blueprintjs/core": "^3.34.0",
+    "@reecelucas/react-datepicker": "^2.0.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -13,7 +13,6 @@
     "mirador": "^3.0.0-rc.7",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
-    "react-accessible-accordion": "^3.3.3",
     "react-accessible-dropdown-menu-hook": "^2.1.1",
     "react-aria-live": "^2.0.5",
     "react-dom": "^16.13.1",
