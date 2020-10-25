@@ -7,7 +7,7 @@ import {
     AccordionItemHeading,
     AccordionItemButton,
     AccordionItemPanel,
-} from 'react-accessible-accordion';
+} from "../Accordion";
 import HitCount from "../HitCount";
 import ListToggleButton from "../ListToggleButton";
 import MaterialIcon from "../MaterialIcon";
@@ -21,6 +21,7 @@ class RecordsChild extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      children: [],
       isSaved: false,
     }
   }
@@ -28,6 +29,25 @@ class RecordsChild extends Component {
   componentDidUpdate(nextProps, nextState) {
     if (nextProps.savedList !== this.props.savedList && this.props.item.group) {
       this.setState({ isSaved: isItemSaved(this.props.item, this.props.savedList)})
+    }
+  }
+
+  getChildrenPage = (uri, item) => {
+    axios
+      .get(uri)
+      .then(res => {
+        this.setState({ children: [...this.state.children].concat(res.data.results)})
+        res.data.next && this.getChildrenPage(res.data.next)
+      })
+      .catch(e => console.log(e))
+  }
+
+  handleCollectionClick = uri => {
+    this.props.setActiveRecords(uri)
+    if (!this.state.children.length) {
+      const childrenParams = {...this.props.params, limit: 5}
+      this.getChildrenPage(
+        appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${uri}/children`, childrenParams))
     }
   }
 
@@ -42,7 +62,8 @@ class RecordsChild extends Component {
   }
 
   render() {
-    const { ariaLevel, item, params, savedList, setActiveRecords, toggleInList } = this.props;
+    const { ariaLevel, item, params, preExpanded, savedList, setActiveRecords, toggleInList } = this.props;
+    const firstChildType = this.state.children.length && this.state.children[0].type
     const isMobile = window.innerWidth < 580;
     return (item.type === "object" ?
       (<div className={`child__list-item child__list-item--${item.type} ${item.isActive ? "active" : ""}`} >
@@ -71,14 +92,15 @@ class RecordsChild extends Component {
         {item.hit_count ? (<HitCount className="hit-count--records-" hitCount={item.hit_count} />) : null}
       </div>) :
       (<AccordionItem
+        preExpanded={preExpanded}
         uuid={item.uri}
-        className={`child__list-accordion ${item.children && item.children[0].type === "object" ? "child__list-accordion--bottom-level": ""}`} >
+        className={`child__list-accordion ${firstChildType === "object" ? "child__list-accordion--bottom-level": ""}`} >
         <AccordionItemHeading
-          onClick={() => this.handleItemClick(item.uri)}
+          onClick={() => this.handleCollectionClick(item.uri)}
           aria-level={ariaLevel}
           className={
             `child__list-item child__list-item--${item.type}
-            ${item.children && item.children[0].type === "object" ? "child__list-item--bottom-level": ""}
+            ${firstChildType === "object" ? "child__list-item--bottom-level": ""}
             ${item.isActive ? " active" : ""}`
           } >
           <AccordionItemButton className={`child__title child__title--${item.type}`}>
@@ -91,14 +113,14 @@ class RecordsChild extends Component {
             <MaterialIcon icon="expand_more" />
           </AccordionItemButton>
         </AccordionItemHeading>
-        {(item.children) ?
+        {(this.state.children.length) ?
           (<AccordionItemPanel>
             <RecordsContentList
               ariaLevel={ariaLevel+1}
-              children={item.children}
-              className={`${item.children[0].type === "object" ? "child__list--bottom-level": ""}${item.isActive ? " active" : ""}`}
-              parent={this.props.item}
+              children={this.state.children}
+              className={`${firstChildType === "object" ? "child__list--bottom-level": ""}${item.isActive ? " active" : ""}`}
               params={params}
+              preExpanded={preExpanded}
               savedList={savedList}
               setActiveRecords={setActiveRecords}
               toggleInList={toggleInList} />
@@ -112,87 +134,16 @@ class RecordsChild extends Component {
 RecordsChild.propTypes = {
     item: PropTypes.object.isRequired,
     params: PropTypes.object,
-    parent: PropTypes.object.isRequired,
+    preExpanded: PropTypes.array,
     setActiveRecords: PropTypes.func.isRequired,
     savedList: PropTypes.object.isRequired,
     toggleInList: PropTypes.func.isRequired,
 }
 
-class RecordsContentList extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      children: []
-    }
-  }
+export const RecordsContentList = props => {
 
-  /** Saves children to state, so that they can be managed. This is necessary
-  * because react-accessible-accordion does not appear to support loading data
-  * into an accordion panel once it has been opened. Instead, it prefers that
-  * state for the entire accordion be managed at once. This creates some complicated
-  * anti-patterns in our code.
-  */
-  static getDerivedStateFromProps(props, state) {
-    if (props.children.length !== state.children.length) {
-      return {children: props.children}
-    } else {
-      return null
-    }
-  }
-
-  appendChildren = (item, newChildren) => {
-    const updatedChildren = this.state.children.map(child => {
-      if (child.uri === item.uri) {
-        if (child.children) {
-          return {...child, children: [...child.children].concat(newChildren)}
-        } else {
-          return {...child, children: newChildren}
-        }
-      } else {
-        return child;
-      }
-    })
-    this.setState({ children: updatedChildren })
-  }
-
-  toggleActiveChild = item => {
-    const toggled = !item.isActive
-    const updated = this.state.children.map(child => (
-      { ...child, isActive: child.uri === item.uri ? toggled : false }
-    ))
-    this.setState({children: updated})
-    return toggled;
-  }
-
-  getChildrenPage = (uri, item) => {
-    axios
-      .get(uri)
-      .then(res => {
-        this.appendChildren(item, res.data.results)
-        res.data.next && this.getChildrenPage(res.data.next, item)
-      })
-      .catch(e => console.log(e))
-  }
-
-  /** Handles clicks on accordion items.
-  * Fetches children if necessary, and sets activeRecords to self or parent
-  */
-  handleCollectionClick = uuidList => {
-    if (uuidList.length) {
-      for (const uuid of uuidList) {
-        const item = this.state.children.find(c => c.uri === uuid)
-        if (!item.children) {
-          const childrenParams = {...this.props.params, limit: 5}
-          this.getChildrenPage(
-            appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${item.uri}/children`, childrenParams),
-            item)
-        }
-      }
-    }
-  }
-
-  childList = children => {
-    const { ariaLevel, parent, params, savedList, setActiveRecords, toggleInList } = this.props;
+  const childList = children => {
+    const { ariaLevel, params, preExpanded, savedList, setActiveRecords, toggleInList } = props;
     return (
       children.map(child => (
         <RecordsChild
@@ -200,7 +151,7 @@ class RecordsContentList extends Component {
           ariaLevel={ariaLevel}
           item={child}
           params={params}
-          parent={parent}
+          preExpanded={preExpanded}
           savedList={savedList}
           setActiveRecords={setActiveRecords}
           toggleInList={toggleInList} />
@@ -209,25 +160,21 @@ class RecordsContentList extends Component {
     )
   }
 
-  render() {
-    return (
-      <Accordion
-        allowMultipleExpanded={true}
-        allowZeroExpanded={true}
-        className={`child__list ${this.props.className ? this.props.className : ""}`}
-        onChange={(uuidList) => this.handleCollectionClick(uuidList)}>
-        {this.childList(this.state.children)}
-      </Accordion>
-    )
-  }
+  return (
+    <Accordion
+      className={`child__list ${props.className ? props.className : ""}`}
+      preExpanded={props.preExpanded} >
+      {childList(props.children)}
+    </Accordion>
+  )
 }
 
 RecordsContentList.propTypes = {
   ariaLevel: PropTypes.number.isRequired,
   children: PropTypes.array,
   className: PropTypes.string,
-  parent: PropTypes.object.isRequired,
   params: PropTypes.object,
+  preExpanded: PropTypes.array,
   savedList: PropTypes.object.isRequired,
   setActiveRecords: PropTypes.func.isRequired,
   toggleInList: PropTypes.func.isRequired,
@@ -235,35 +182,36 @@ RecordsContentList.propTypes = {
 
 
 const RecordsContent = props => {
-  const { children, collection, isContentShown, params, parent, savedList,
-          setActiveRecords, toggleInList } = props;
+  const { children, collection, isContentShown, params, preExpanded,
+          savedList, setActiveRecords, toggleInList } = props;
 
   return (
   children ?
-  (<div className={`records__content ${isContentShown ? "" : "hidden"}`}>
-    <h2 className="content__title">Collection Content</h2>
-    <h3 className="collection__title">{collection.title}</h3>
-    <p className="collection__date">{dateString(collection.dates)}</p>
-    <p className="collection__text text--truncate">{collection.description}</p>
-    <RecordsContentList
-      ariaLevel={3}
-      className="child__list--top-level"
-      children={children}
-      parent={parent}
-      params={params}
-      savedList={savedList}
-      setActiveRecords={setActiveRecords}
-      toggleInList={toggleInList} />
-  </div>) :
-  (null)
-)}
+    (<div className={`records__content ${isContentShown ? "" : "hidden"}`}>
+      <h2 className="content__title">Collection Content</h2>
+      <h3 className="collection__title">{collection.title}</h3>
+      <p className="collection__date">{dateString(collection.dates)}</p>
+      <p className="collection__text text--truncate">{collection.description}</p>
+      <RecordsContentList
+        ariaLevel={3}
+        className="child__list--top-level"
+        children={children}
+        params={params}
+        preExpanded={preExpanded}
+        savedList={savedList}
+        setActiveRecords={setActiveRecords}
+        toggleInList={toggleInList} />
+    </div>) :
+    (null)
+  )
+}
 
 RecordsContent.propTypes = {
   children: PropTypes.array.isRequired,
   collection: PropTypes.object.isRequired,
   isContentShown: PropTypes.bool.isRequired,
   params: PropTypes.object,
-  parent: PropTypes.object.isRequired,
+  preExpanded: PropTypes.array,
   savedList: PropTypes.object.isRequired,
   setActiveRecords: PropTypes.func.isRequired,
   toggleInList: PropTypes.func.isRequired,

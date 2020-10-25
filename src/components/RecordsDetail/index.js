@@ -7,7 +7,7 @@ import {
     AccordionItemHeading,
     AccordionItemButton,
     AccordionItemPanel,
-} from 'react-accessible-accordion';
+} from "../Accordion";
 import Button from "../Button";
 import ListToggleButton from "../ListToggleButton";
 import MaterialIcon from "../MaterialIcon";

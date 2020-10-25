@@ -15,7 +15,6 @@ class PageRecords extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      item: {},
       ancestors: {},
       children: [],
       found: true,
@@ -23,7 +22,9 @@ class PageRecords extends Component {
       isChildrenLoading: true,
       isContentShown: false,
       isItemLoading: true,
+      item: {},
       params: {},
+      preExpanded: [],
       updateMessage: ""
     }
   }
@@ -35,15 +36,15 @@ class PageRecords extends Component {
     }
     const itemUrl = `${process.env.REACT_APP_ARGO_BASEURL}/${this.props.match.params.type}/${this.props.match.params.id}`
     const params = queryString.parse(this.props.location.search);
-    const childrenParams = {...params, limit: 5}
     this.setState({ params: params })
-    this.getItemData(itemUrl, params)
-    this.getPage(appendParams(`${itemUrl}/children`, childrenParams))
+    this.getItemData(itemUrl, params, true)
   };
 
-  getItemData = (itemUrl, params) => {
+  /** Fetches item data, including ancestors and collection children */
+  getItemData = (itemUrl, params, initial=false) => {
     this.setState({isItemLoading: true})
     this.setState({isAncestorsLoading: true})
+    const childrenParams = {...params, limit: 5}
     const itemPath = itemUrl.replace(`${process.env.REACT_APP_ARGO_BASEURL}`, "")
     axios
       .get(appendParams(itemUrl, params))
@@ -58,13 +59,18 @@ class PageRecords extends Component {
       .get(appendParams(`${itemUrl}/ancestors`, params))
       .then(res => {
         this.setState({ ancestors: res.data })
+        if (initial) {
+          const collectionUrl = Object.keys(res.data).length ? res.data.uri : `/${this.props.match.params.type}/${this.props.match.params.id}`
+          this.getPage(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${collectionUrl}/children`, childrenParams))
+          this.preExpanded(res.data, [this.state.item.uri])
+        }
       })
       .catch(e => console.log(e))
       .then(() => this.setState({isAncestorsLoading: false}));
   }
 
+  /** Fetches paged content */
   getPage = uri => {
-    console.log(uri)
     axios
       .get(uri)
       .then(res => {
@@ -74,6 +80,11 @@ class PageRecords extends Component {
       }
     )
     .catch(err => console.log(err))
+  }
+
+  preExpanded = (ancestors, list) => {
+    Object.keys(ancestors).length && list.push(ancestors.uri)
+    return ancestors.child ? this.preExpanded(ancestors.child, list) : list
   }
 
   /** Returns the first ancestor or the item if no ancestors are present */
@@ -100,8 +111,6 @@ class PageRecords extends Component {
 
   render() {
     const { savedList, toggleInList } = this.props;
-    const collection = this.parseCollection();
-    console.log(collection)
     if (!this.state.found) {
       return (<PageNotFound />)
     }
@@ -126,10 +135,11 @@ class PageRecords extends Component {
             toggleInList={toggleInList} />
           <RecordsContent
             children={this.state.children}
-            collection={collection}
+            collection={this.parseCollection()}
             isContentShown={this.state.isContentShown}
             params={this.state.params}
             parent={this.state.item}
+            preExpanded={this.state.preExpanded}
             savedList={savedList}
             setActiveRecords={this.setActiveRecords}
             toggleInList={toggleInList}
