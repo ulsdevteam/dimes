@@ -273,44 +273,47 @@ form {
   }
 }
 
-section {
-  padding-top: 20px;
-  padding-bottom: 60px;
-  display: flex;
-  flex-wrap: wrap;
-  @media screen and (min-width: $break-md) {
-    padding-top: 30px;
-    padding-bottom: 80px;
-  }
-  @media screen and (min-width: $break-lg) {
-    padding-top: 40px;
-    padding-bottom: 100px;
-  }
-  &.border-top {
-    border: none;
-    border-top: 2px dotted rgba(47, 47, 47, 0.3);
-    width: 100%
-  }
-  .title {
-    margin-top: 20px;
-    margin-bottom: 30px;
-    @media screen and (min-width: $break-md) {
-      @include grid-column(3);
-      margin-top: 0px;
-    }
-    h2, h3, h4, h5 {
-      font-family: $sans-serif-stack;
-      font-weight: 900;
-      font-size: 18px;
-      text-transform: uppercase;
-      color: $deep-navy;
-      letter-spacing: 2px;
-      padding: 0px;
-      margin: 0px;
-      border-bottom: none;
-    }
-  }
-}
+// NOTE: use of these styles was causing wierd conflicts in Mirador. 
+// These should be targeted at a class, not a generic HTML element.
+//
+// section {
+//   padding-top: 20px;
+//   padding-bottom: 60px;
+//   display: flex;
+//   flex-wrap: wrap;
+//   @media screen and (min-width: $break-md) {
+//     padding-top: 30px;
+//     padding-bottom: 80px;
+//   }
+//   @media screen and (min-width: $break-lg) {
+//     padding-top: 40px;
+//     padding-bottom: 100px;
+//   }
+//   &.border-top {
+//     border: none;
+//     border-top: 2px dotted rgba(47, 47, 47, 0.3);
+//     width: 100%
+//   }
+//   .title {
+//     margin-top: 20px;
+//     margin-bottom: 30px;
+//     @media screen and (min-width: $break-md) {
+//       @include grid-column(3);
+//       margin-top: 0px;
+//     }
+//     h2, h3, h4, h5 {
+//       font-family: $sans-serif-stack;
+//       font-weight: 900;
+//       font-size: 18px;
+//       text-transform: uppercase;
+//       color: $deep-navy;
+//       letter-spacing: 2px;
+//       padding: 0px;
+//       margin: 0px;
+//       border-bottom: none;
+//     }
+//   }
+// }
 
 .section-block {
   display: flex;
