@@ -88,7 +88,7 @@ class RecordsChild extends Component {
     return (item.type === "object" ?
       (<div className={`child__list-item child__list-item--${item.type} ${item.isActive ? "active" : ""}`} >
         <div className="child__description">
-          <button id={`accordion__heading-${item.uri}`} ref={this.itemRef}
+          <button id={`accordion__heading-${item.uri}`}
                   className={`child__title child__title--${item.type}`}
                   onClick={() => this.handleItemClick(item.uri)}>
             <QueryHighlighter query={params.query} text={item.title} />
@@ -98,7 +98,8 @@ class RecordsChild extends Component {
         <div className="child__buttons">
           {item.online ? (
             <a className="btn btn-launch--content"
-              href={`${item.uri}/view`}>{isMobile? "View" : "View Online"} <MaterialIcon icon="visibility" /></a>) :
+               href={`${item.uri}/view`}>{isMobile? "View" : "View Online"}
+               <MaterialIcon icon="visibility" /></a>) :
             (null)
           }
           <ListToggleButton
@@ -111,21 +112,22 @@ class RecordsChild extends Component {
         <p className="child__text text--truncate">
           <QueryHighlighter query={params.query} text={item.description} />
         </p>
-        {item.hit_count ? (<HitCount className="hit-count--records-" hitCount={item.hit_count} />) : null}
+        {item.hit_count ? (<HitCount className="hit-count--records" hitCount={item.hit_count} />) : null}
       </div>) :
       (<AccordionItem
         preExpanded={preExpanded}
         uuid={item.uri}
         className={`child__list-accordion ${firstChildType === "object" ? "child__list-accordion--bottom-level": ""}`} >
         <AccordionItemHeading
-          onClick={() => this.handleCollectionClick(item.uri)}
           aria-level={ariaLevel}
           className={
             `child__list-item child__list-item--${item.type}
             ${firstChildType === "object" ? "child__list-item--bottom-level": ""}
             ${item.isActive ? " active" : ""}`
           } >
-          <AccordionItemButton className={`child__title child__title--${item.type}`} ref={this.itemRef}>
+          <AccordionItemButton
+              className={`child__title child__title--${item.type}`}
+              onClick={() => this.handleCollectionClick(item.uri)} >
             <QueryHighlighter query={params.query} text={item.title} />
             {item.title === item.dates ? (null) : (<p className="child__text">{item.dates}</p>)}
             <p className="child__text text--truncate">
