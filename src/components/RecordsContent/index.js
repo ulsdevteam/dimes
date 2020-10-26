@@ -8,7 +8,7 @@ import {
     AccordionItemButton,
     AccordionItemPanel,
 } from "../Accordion";
-import HitCount from "../HitCount";
+import { HitCountBadge } from "../HitCount";
 import ListToggleButton from "../ListToggleButton";
 import MaterialIcon from "../MaterialIcon";
 import QueryHighlighter from "../QueryHighlighter";
@@ -112,7 +112,7 @@ class RecordsChild extends Component {
         <p className="child__text text--truncate">
           <QueryHighlighter query={params.query} text={item.description} />
         </p>
-        {item.hit_count ? (<HitCount className="hit-count--records" hitCount={item.hit_count} />) : null}
+        {item.hit_count ? (<HitCountBadge className="hit-count--records" hitCount={item.hit_count} />) : null}
       </div>) :
       (<AccordionItem
         preExpanded={preExpanded}
@@ -133,7 +133,7 @@ class RecordsChild extends Component {
             <p className="child__text text--truncate">
               <QueryHighlighter query={params.query} text={item.description} />
             </p>
-            {item.hit_count ? (<HitCount className="hit-count--records-" hitCount={item.hit_count} />) : null}
+            {item.hit_count ? (<HitCountBadge className="hit-count--records-" hitCount={item.hit_count} />) : null}
             <MaterialIcon icon="expand_more" />
           </AccordionItemButton>
         </AccordionItemHeading>
