@@ -38,12 +38,12 @@ class RecordsChild extends Component {
       this.getChildrenPage(
         appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${this.props.item.uri}/children`, childrenParams))
     }
-    const targetItem = this.props.preExpanded.length && this.props.preExpanded[0]
-    const el = document.getElementById(`accordion__heading-${targetItem}`)
-    // TODO: use scrollTo with coordinates
-    this.props.item.uri === targetItem &&
-      el.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" } &&
-      el.focus())
+    const currentUrl = window.location.pathname
+    const el = document.getElementById(`accordion__heading-${currentUrl}`)
+    if (this.props.item.uri === currentUrl) {
+      el.scrollIntoView({ behavior: "smooth", block: "center" })
+      el.focus()
+    }
   }
 
   componentDidUpdate(nextProps, nextState) {
