@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import MaterialIcon from "../MaterialIcon";
+import classnames from "classnames";
 import "./styles.scss"
 
 
 const Button = (props) => (
   <button
     type={props.type}
-    className={`btn ${props.className}`}
+    className={classnames("btn", props.className)}
     onClick={props.handleClick}
     aria-label={props.ariaLabel}
     aria-haspopup={props.ariaHasPopup}
