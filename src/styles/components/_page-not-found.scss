@@ -1,0 +1,19 @@
+@import "../styles";
+
+.not-found {
+  height: 100%;
+  max-width: 80%;
+  font-family: $serif-stack;
+  text-align: center;
+  min-height: 60vh;
+  margin-top: 60px;
+}
+
+.not-found__icon > .material-icons {
+  font-size: 100px;
+}
+
+.not-found__text {
+  font-family: $sans-serif-stack;
+  font-size: 20px;
+}
