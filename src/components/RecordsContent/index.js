@@ -33,14 +33,14 @@ class RecordsChild extends Component {
   *     - apply focus to the item
   */
   componentDidMount() {
+    const currentUrl = window.location.pathname
     if (this.props.preExpanded.includes(this.props.item.uri)) {
       const childrenParams = {...this.props.params, limit: 5}
-      this.getChildrenPage(
+      this.props.item.uri.includes("collections") && this.getChildrenPage(
         appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${this.props.item.uri}/children`, childrenParams))
     }
-    const currentUrl = window.location.pathname
-    const el = document.getElementById(`accordion__heading-${currentUrl}`)
     if (this.props.item.uri === currentUrl) {
+      const el = document.getElementById(`accordion__heading-${currentUrl}`)
       el.scrollIntoView({ behavior: "smooth", block: "center" })
       el.focus()
     }

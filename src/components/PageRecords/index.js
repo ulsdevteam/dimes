@@ -62,7 +62,7 @@ class PageRecords extends Component {
         if (initial) {
           const itemUrl = `/${this.props.match.params.type}/${this.props.match.params.id}`
           const collectionUrl = Object.keys(res.data).length ? res.data.uri : itemUrl
-          this.getPage(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${collectionUrl}/children`, childrenParams))
+          collectionUrl.includes("collections") && this.getPage(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${collectionUrl}/children`, childrenParams))
           this.setState({ preExpanded: this.preExpanded(res.data, [itemUrl]) })
         }
       })
