@@ -23,23 +23,24 @@ const CategoryLabel = ({ category }) => {
   )
 }
 
-const Tile = ({ category, date, handleHitCountClick, hit_count, params, title, uri }) => (
+const Tile = ({ category, date, handleHitCountClick, hideHitCount, hit_count, params, title, uri }) => (
   <li className="tile">
     <a className="tile__title" href={appendParams(uri, params)}>{title}</a>
     {category ? (<CategoryLabel category={category} />) : null }
-    {hit_count && category === "collection" ?
+    {hit_count && category === "collection" && !hideHitCount ?
       (<HitCount className="hit-count--tile" hitCount={hit_count} handleClick={() => {handleHitCountClick && handleHitCountClick(uri)}} />) :
       (null)
     }
     <p className="tile__date">{date}</p>
   </li>)
 
-const TileList = ({ handleHitCountClick, items, params }) => {
+const TileList = ({ handleHitCountClick, hideHitCount, items, params }) => {
   const listItems = items.map((item) =>
     <Tile
       key={item.uri}
       {...item}
       handleHitCountClick={handleHitCountClick}
+      hideHitCount={hideHitCount}
       params={params}
       date={item.dates?.length ? item.dates.map(d => d.expression).join(", ") : null} />
   );
@@ -51,7 +52,7 @@ const TileList = ({ handleHitCountClick, items, params }) => {
 }
 
 TileList.propTypes = {
-  handleHitCountClick: PropTypes.func.isRequired,
+  handleHitCountClick: PropTypes.func,
   items: PropTypes.array.isRequired,
   params: PropTypes.object
 }
