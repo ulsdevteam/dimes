@@ -42,7 +42,7 @@ const SearchForm = props => {
           id="query"
           placeholder="Search..."
           size={60}
-          value={query}
+          value={query || ""}
           handleChange={e => setQuery(e.target.value)}
           type="search"
           required={true}
