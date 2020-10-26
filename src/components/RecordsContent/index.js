@@ -12,7 +12,7 @@ import { HitCountBadge } from "../HitCount";
 import ListToggleButton from "../ListToggleButton";
 import MaterialIcon from "../MaterialIcon";
 import QueryHighlighter from "../QueryHighlighter";
-import { appendParams, dateString } from "../Helpers";
+import { appendParams, dateString, noteText } from "../Helpers";
 import { isItemSaved } from "../MyListHelpers";
 import "./styles.scss";
 
@@ -215,7 +215,7 @@ const RecordsContent = props => {
       <h2 className="content__title">Collection Content</h2>
       <h3 className="collection__title">{collection.title}</h3>
       <p className="collection__date">{dateString(collection.dates)}</p>
-      <p className="collection__text text--truncate">{collection.description}</p>
+      <p className="collection__text text--truncate">{collection.description || noteText(collection.notes, "abstract") || noteText(collection.notes, "scopecontent")}</p>
       <RecordsContentList
         ariaLevel={3}
         className="child__list--top-level"
