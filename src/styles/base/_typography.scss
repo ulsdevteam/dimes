@@ -48,15 +48,12 @@ h2, h3, h4, h5, h6 {
 h2 {
   font-size: 21px;
   border-bottom: 1.5px dotted $faded-navy;
-  padding-bottom: 12px;
+  // padding-bottom: 12px; // NOTE: style conflicting with Mirador
   margin-bottom: 20px;
   margin-top: 60px;
   @media screen and (min-width: $break-lg) {
     margin-top: 0px;
     font-size: 28px;
-    &:not(:first-child) {
-      margin-top: 80px;
-    }
   }
 }
 
