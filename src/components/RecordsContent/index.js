@@ -26,6 +26,26 @@ class RecordsChild extends Component {
     }
   }
 
+  /** If this item is in the preExpanded list
+  *     - fetch its children and save to state
+  *  If this item matches the URL we're on
+  *     - scroll the item into view
+  *     - apply focus to the item
+  */
+  componentDidMount() {
+    if (this.props.preExpanded.includes(this.props.item.uri)) {
+      const childrenParams = {...this.props.params, limit: 5}
+      this.getChildrenPage(
+        appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${this.props.item.uri}/children`, childrenParams))
+    }
+    const targetItem = this.props.preExpanded.length && this.props.preExpanded[0]
+    const el = document.getElementById(`accordion__heading-${targetItem}`)
+    // TODO: use scrollTo with coordinates
+    this.props.item.uri === targetItem &&
+      el.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" } &&
+      el.focus())
+  }
+
   componentDidUpdate(nextProps, nextState) {
     if (nextProps.savedList !== this.props.savedList && this.props.item.group) {
       this.setState({ isSaved: isItemSaved(this.props.item, this.props.savedList)})
@@ -68,7 +88,9 @@ class RecordsChild extends Component {
     return (item.type === "object" ?
       (<div className={`child__list-item child__list-item--${item.type} ${item.isActive ? "active" : ""}`} >
         <div className="child__description">
-          <button className={`child__title child__title--${item.type}`} onClick={() => this.handleItemClick(item.uri)}>
+          <button id={`accordion__heading-${item.uri}`} ref={this.itemRef}
+                  className={`child__title child__title--${item.type}`}
+                  onClick={() => this.handleItemClick(item.uri)}>
             <QueryHighlighter query={params.query} text={item.title} />
           </button>
           {item.dates === item.title ? (null) : (<p className="child__text">{item.dates}</p>)}
@@ -103,7 +125,7 @@ class RecordsChild extends Component {
             ${firstChildType === "object" ? "child__list-item--bottom-level": ""}
             ${item.isActive ? " active" : ""}`
           } >
-          <AccordionItemButton className={`child__title child__title--${item.type}`}>
+          <AccordionItemButton className={`child__title child__title--${item.type}`} ref={this.itemRef}>
             <QueryHighlighter query={params.query} text={item.title} />
             {item.title === item.dates ? (null) : (<p className="child__text">{item.dates}</p>)}
             <p className="child__text text--truncate">

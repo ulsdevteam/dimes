@@ -60,9 +60,10 @@ class PageRecords extends Component {
       .then(res => {
         this.setState({ ancestors: res.data })
         if (initial) {
-          const collectionUrl = Object.keys(res.data).length ? res.data.uri : `/${this.props.match.params.type}/${this.props.match.params.id}`
+          const itemUrl = `/${this.props.match.params.type}/${this.props.match.params.id}`
+          const collectionUrl = Object.keys(res.data).length ? res.data.uri : itemUrl
           this.getPage(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${collectionUrl}/children`, childrenParams))
-          this.preExpanded(res.data, [this.state.item.uri])
+          this.setState({ preExpanded: this.preExpanded(res.data, [itemUrl]) })
         }
       })
       .catch(e => console.log(e))
