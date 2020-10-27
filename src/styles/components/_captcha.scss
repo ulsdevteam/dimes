@@ -1,6 +1,5 @@
 // Hacky hacks because the Google ReCAPTCHA has a set width
 .captcha {
-  float: left;
   margin: 10px 0px;
   max-width: 250px;
   @media screen and (min-width: 414px) {
