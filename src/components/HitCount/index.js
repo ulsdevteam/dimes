@@ -4,7 +4,7 @@ import "./styles.scss";
 
 
 export const HitCountButton = ({ className, handleClick, hitCount }) => (
-  <button className={`hit-count ${className}`} onClick={handleClick}>{hitCount} matches</button>
+  <button className={`hit-count ${className}`} onClick={handleClick}>{hitCount === 10000 ? `${hitCount}+` : hitCount} matches</button>
 )
 
 HitCountButton.propTypes = {
@@ -14,7 +14,7 @@ HitCountButton.propTypes = {
 }
 
 export const HitCountBadge = ({ className, handleClick, hitCount }) => (
-  <span className={`hit-count ${className}`} onClick={handleClick}>{hitCount} matches</span>
+  <span className={`hit-count ${className}`} onClick={handleClick}>{hitCount === 10000 ? `${hitCount}+` : hitCount} matches</span>
 )
 
 HitCountBadge.propTypes = {
