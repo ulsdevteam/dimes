@@ -15,6 +15,7 @@ import QueryHighlighter from "../QueryHighlighter";
 import { DetailSkeleton, FoundInItemSkeleton } from "../LoadingSkeleton";
 import { appendParams, dateString, hasAccessAndUse, noteText } from "../Helpers";
 import { isItemSaved } from "../MyListHelpers";
+import classnames from "classnames";
 import "./styles.scss";
 
 
@@ -24,10 +25,12 @@ const FoundInItem = ({ className, item, params, topLevel }) => (
       <MaterialIcon icon={topLevel ? "archive_box" : "subdirectory_arrow_right"} />
       <a className="found-in__link" href={appendParams(item.uri, params)}>{item.title}</a>
     </li>
-    {item.child ? (<FoundInItem
-                    item={item.child}
-                    className="found-in__subcollection"
-                    params={params} />) : null}
+    {item.child ?
+      (<FoundInItem
+        item={item.child}
+        className="found-in__subcollection"
+        params={params} />) :
+      (null)}
   </>
 )
 
@@ -134,7 +137,7 @@ const RecordsDetail = ({ ancestors, isAncestorsLoading, isContentShown, isItemLo
   }, [isItemLoading, item, savedList])
 
   return (
-  <div className={`records__detail ${isContentShown ? "hidden" : ""}`}>
+  <div className={classnames("records__detail", {"hidden": isContentShown})}>
     <nav>
       <a href={appendParams("/search", params)} className="btn btn--back">
         <MaterialIcon icon="keyboard_arrow_left"/>Back to Search

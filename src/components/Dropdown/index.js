@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import useDropdownMenu from 'react-accessible-dropdown-menu-hook';
 import MaterialIcon from "../MaterialIcon";
 import "../Button/styles.scss";
+import classnames from "classnames";
 import "./styles.scss";
 
 const Dropdown = (props) => {
@@ -19,13 +20,13 @@ const Dropdown = (props) => {
     <a
       key={idx}
       id={`menu-item-${idx}`}
-      className={`btn ${itemClassName}`}
+      className={classnames("btn", itemClassName)}
       onClick={item.handleClick}
       href={item.href}
       {...itemProps[idx]}>{item.iconBefore && <MaterialIcon icon={item.iconBefore} />}{item.label}{item.iconAfter && <MaterialIcon icon={item.iconAfter} />}</a>
   );
   return (
-    <div className={`dropdown ${className}`}>
+    <div className={classnames("dropdown", className)}>
       <button
         className={`${buttonClassName} ${isOpen ? "open" : "closed" }`}
         {...buttonProps} >
@@ -33,7 +34,7 @@ const Dropdown = (props) => {
           {label}
       </button>
       <div
-        className={`dropdown__list ${listClassName} ${isOpen ? "open" : "closed" }`}
+        className={classnames("dropdown__list", listClassName, { "open": isOpen, "closed": !isOpen})}
         role="menu" >
         {listItems}
       </div>

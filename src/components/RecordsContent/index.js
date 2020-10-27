@@ -14,6 +14,7 @@ import MaterialIcon from "../MaterialIcon";
 import QueryHighlighter from "../QueryHighlighter";
 import { appendParams, dateString, noteText } from "../Helpers";
 import { isItemSaved } from "../MyListHelpers";
+import classnames from "classnames";
 import "./styles.scss";
 
 
@@ -86,10 +87,10 @@ class RecordsChild extends Component {
     const firstChildType = this.state.children.length && this.state.children[0].type
     const isMobile = window.innerWidth < 580;
     return (item.type === "object" ?
-      (<div className={`child__list-item child__list-item--${item.type} ${item.isActive ? "active" : ""}`} >
+      (<div className={classnames("child__list-item", `child__list-item--${item.type}`)} >
         <div className="child__description">
           <button id={`accordion__heading-${item.uri}`}
-                  className={`child__title child__title--${item.type}`}
+                  className={classnames("child__title", `child__title--${item.type}`)}
                   onClick={() => this.handleItemClick(item.uri)}>
             <QueryHighlighter query={params.query} text={item.title} />
           </button>
@@ -117,14 +118,17 @@ class RecordsChild extends Component {
       (<AccordionItem
         preExpanded={preExpanded}
         uuid={item.uri}
-        className={`child__list-accordion ${firstChildType === "object" ? "child__list-accordion--bottom-level": ""}`} >
+        className={classnames(
+          "child__list-accordion",
+          {"child__list-accordion--bottom-level": firstChildType === "object"}
+        )} >
         <AccordionItemHeading
           aria-level={ariaLevel}
-          className={
-            `child__list-item child__list-item--${item.type}
-            ${firstChildType === "object" ? "child__list-item--bottom-level": ""}
-            ${item.isActive ? " active" : ""}`
-          } >
+          className={classnames(
+            "child__list-item",
+            `child__list-item--${item.type}`,
+            {"child__list-item--bottom-level": firstChildType === "object"},
+          )} >
           <AccordionItemButton
               className={`child__title child__title--${item.type}`}
               onClick={() => this.handleCollectionClick(item.uri)} >
@@ -141,8 +145,8 @@ class RecordsChild extends Component {
           (<AccordionItemPanel>
             <RecordsContentList
               ariaLevel={ariaLevel+1}
-              children={this.state.children}
-              className={`${firstChildType === "object" ? "child__list--bottom-level": ""}${item.isActive ? " active" : ""}`}
+              children={item.children}
+              className={classnames({"child__list--bottom-level": firstChildType === "object"})}
               params={params}
               preExpanded={preExpanded}
               savedList={savedList}
@@ -186,7 +190,7 @@ export const RecordsContentList = props => {
 
   return (
     <Accordion
-      className={`child__list ${props.className ? props.className : ""}`}
+      className={classnames("child__list", this.props.className)}
       preExpanded={props.preExpanded} >
       {childList(props.children)}
     </Accordion>
@@ -211,7 +215,7 @@ const RecordsContent = props => {
 
   return (
   children ?
-    (<div className={`records__content ${isContentShown ? "" : "hidden"}`}>
+    (<div className={classnames("records__content", {"hidden": !isContentShown})}>
       <h2 className="content__title">Collection Content</h2>
       <h3 className="collection__title">{collection.title}</h3>
       <p className="collection__date">{dateString(collection.dates)}</p>

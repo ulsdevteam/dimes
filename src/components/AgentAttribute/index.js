@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import "./styles.scss"
+import classnames from "classnames";
+import "./styles.scss";
 
 const AgentAttribute = ({ label, note, value }) => (
-  <div className={note ? "agent-attribute--full-width" : "agent-attribute"}>
+  <div className={classnames("agent-attribute", {"agent-attribute--full-width": note})}>
     <p className="agent-attribute__label">{label}</p>
     <p className="agent-attribute__value">{value}</p>
   </div>)
