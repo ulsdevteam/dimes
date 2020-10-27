@@ -202,18 +202,20 @@ export const ReadingRoomRequestModal = props => (
             name="items"
             component="div"
             className="modal-form__error" />
-          <Field
-            component={DateInput}
-            handleChange={date => setFieldValue("scheduledDate", date)}
-            helpText="Enter the date of your research visit (mm/dd/yyyy)"
-            id="scheduledDate"
-            label="Scheduled Date *"
-            type="date" />
-          <ErrorMessage
-            id="scheduledDate-error"
-            name="scheduledDate"
-            component="div"
-            className="modal-form__error" />
+          <div className="form-group">
+            <Field
+              component={DateInput}
+              handleChange={date => setFieldValue("scheduledDate", date)}
+              helpText="Enter the date of your research visit (mm/dd/yyyy)"
+              id="scheduledDate"
+              label="Scheduled Date *"
+              type="date" />
+            <ErrorMessage
+              id="scheduledDate-error"
+              name="scheduledDate"
+              component="div"
+              className="modal-form__error" />
+          </div>
           <FormGroup
             label="Message for RAC staff"
             helpText="255 characters maximum"
