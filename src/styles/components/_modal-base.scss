@@ -83,8 +83,7 @@
 .modal-body {
   font-family: $sans-serif-stack;
   float: left;
-  width: calc(100% - #{$modal-content-margin});
-  height: calc(100% - 60px);
+  height: calc(80vh - 52px);
   @media screen and (min-width: $break-lg) {
     width: 100%
   }
