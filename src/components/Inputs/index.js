@@ -8,6 +8,7 @@ import {
   DatePickerButton,
   DatePickerCalendar} from "@reecelucas/react-datepicker";
 import MaterialIcon from "../MaterialIcon";
+import classnames from "classnames";
 import "./styles.scss";
 
 
@@ -26,11 +27,11 @@ InputLabel.propTypes = {
 }
 
 
-export const CheckBoxInput = (props) => (
+export const CheckBoxInput = props => (
   <>
     <input
       type="checkbox"
-      className={`checkbox ${props.className ? props.className : ""}`}
+      className={classnames("checkbox", props.className)}
       id={props.id}
       name={props.name ? props.name : props.id}
       onChange={props.handleChange}
@@ -57,7 +58,7 @@ CheckBoxInput.defaultProps = {
   checked: true,
 }
 
-export const DateInput = (props) => (
+export const DateInput = props => (
   <>
   <DatePicker
       className="dp__wrapper"
@@ -101,7 +102,7 @@ DateInput.propTypes = {
   label: PropTypes.string.isRequired,
 };
 
-export const SelectInput = (props) => (
+export const SelectInput = props => (
   <div className={props.className} required={props.required}>
     <InputLabel {...props} />
     <select
@@ -135,7 +136,7 @@ SelectOption.propTypes = {
   value: PropTypes.string
 }
 
-export const TextInput = (props) => (
+export const TextInput = props => (
   <div className={props.className}>
     <InputLabel {...props} />
     <input
@@ -172,7 +173,7 @@ TextInput.defaultProps = {
   size: 10
 }
 
-export const YearInput = (props) => (
+export const YearInput = props => (
   <div className={props.className} >
     <InputLabel {...props} />
     <input

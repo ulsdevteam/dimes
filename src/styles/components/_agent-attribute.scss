@@ -20,6 +20,5 @@
 }
 
 .agent-attribute--full-width {
-  @extend .agent-attribute;
   @include grid-column(12);
 }

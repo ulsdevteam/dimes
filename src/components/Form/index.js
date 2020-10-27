@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Field, ErrorMessage, useFormikContext } from 'formik';
 import PropTypes from "prop-types";
+import classnames from "classnames";
 
 
 export const FocusError = () => {
@@ -8,7 +9,7 @@ export const FocusError = () => {
 
   useEffect(() => {
     if (isSubmitting && !isValidating) {
-      let keys = Object.keys(errors);
+      const keys = Object.keys(errors);
       if (keys.length > 0) {
         const selector = `[name=${keys[0]}]`;
         const errorElement = document.querySelector(selector);
@@ -18,7 +19,6 @@ export const FocusError = () => {
       }
     }
   }, [errors, isSubmitting, isValidating]);
-
   return null;
 };
 
@@ -43,7 +43,7 @@ export const FormGroup = (props) => {
       { type !== "checkbox" && <label htmlFor={name}>{label}</label> }
       <Field
         tabIndex="0"
-        className={ errors && errors[name] && touched[name] ? "is-invalid" : null }
+        className={classnames({"is-invalid": errors && errors[name] && touched[name]})}
         type={type}
         name={name}
         id={name}

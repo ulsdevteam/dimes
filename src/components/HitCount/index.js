@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classnames from "classnames";
 import "./styles.scss";
 
 
 const HitCount = ({ className, handleClick, hitCount }) => (
-  <button className={`hit-count ${className}`} onClick={handleClick}>{hitCount} matches</button>
+  <button className={classnames("hit-count", className)} onClick={handleClick}>{hitCount} matches</button>
 )
 
 HitCount.propTypes = {
