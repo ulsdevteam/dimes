@@ -50,7 +50,6 @@
 
 .select__modal {
   position: relative;
-  margin-bottom: 10px;
 }
 
 .select__modal .material-icons {
@@ -64,8 +63,6 @@
 .modal-form label {
   font-weight: 700;
   margin-bottom: 5px;
-  margin-top: 0px;
-  float: left;
   &[for=costs] {
     float: none;
     & a {
@@ -73,6 +70,11 @@
       font-size: 14px;
     }
   }
+}
+
+// font-weight for checkboxes
+.modal-form input[type=checkbox] + label {
+  font-weight: normal;
 }
 
 .modal-form .help-text {
@@ -100,8 +102,4 @@
   color: $dark-gray;
   margin: 10px 0px;
   padding: 10px;
-}
-
-input[type=checkbox] + label {
-  font-weight: normal;
 }
