@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import HitCount from "../HitCount";
 import MaterialIcon from "../MaterialIcon";
 import { appendParams } from "../Helpers";
+import classnames from "classnames";
 import "./styles.scss";
 
 
@@ -19,7 +20,7 @@ const CategoryLabel = ({ category }) => {
       icon = "archive_box"
   }
   return (
-    <div className={`tile__type-label ${category}`}><MaterialIcon icon={icon} />{category}</div>
+    <div className={classnames("tile__type-label", category)}><MaterialIcon icon={icon} />{category}</div>
   )
 }
 

@@ -1,11 +1,12 @@
 import React from "react"
 import PropTypes from "prop-types";
 import Button from "../Button";
+import classnames from "classnames";
 
 const ListToggleButton = ({ className, isMobile, isSaved, item, toggleSaved }) => (
   isSaved ? (
     <Button
-      className={`${className} saved`}
+      className={classnames("saved", className)}
       label={isMobile ? "Remove" : "Remove from List"}
       iconAfter="remove_circle_outline"
       handleClick={() => toggleSaved(item)} />

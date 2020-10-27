@@ -339,8 +339,14 @@
             message={
               <>Are you sure you want to remove all the items from your list?
               <div className="confirm-buttons">
-                <Button className="btn--sm btn--orange" label="Remove" handleClick={() => {this.props.removeAllItems(); this.toggleModal("confirmDeleteAll");}} />
-                <Button className="btn--sm btn--gray" label="Cancel" handleClick={() => this.toggleModal("confirmDeleteAll")}/>
+                <Button
+                  className="btn--sm btn--orange"
+                  label="Remove"
+                  handleClick={() => {this.props.removeAllItems(); this.toggleModal("confirmDeleteAll");}} />
+                <Button
+                  className="btn--sm btn--gray"
+                  label="Cancel"
+                  handleClick={() => this.toggleModal("confirmDeleteAll")}/>
               </div>
               </>
             }

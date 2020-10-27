@@ -38,9 +38,15 @@ const Footer = () => (
         <div className="container">
           <div className="footer-secondary__data">
             <ul className="footer-secondary__list">
-              <li className="footer-secondary__list-item"><a className="footer-secondary__link" href="https://github.com/RockefellerArchiveCenter/data/blob/master/LICENSE.md">Licensing for our descriptive metadata</a></li> {/*TODO: should this be on the docs site?*/}
-              <li className="footer-secondary__list-item"><a className="footer-secondary__link" href="https://github.com/RockefellerArchiveCenter/data/">Bulk data download</a></li>
-              <li className="footer-secondary__list-item"><a className="footer-secondary__link" href="take-down-policy">Take-down policy</a></li> {/*TODO: add take-down policy*/}
+              <li className="footer-secondary__list-item">
+                <a className="footer-secondary__link" href="https://github.com/RockefellerArchiveCenter/data/blob/master/LICENSE.md">Licensing for our descriptive metadata</a>
+              </li> {/*TODO: should this be on the docs site?*/}
+              <li className="footer-secondary__list-item">
+                <a className="footer-secondary__link" href="https://github.com/RockefellerArchiveCenter/data/">Bulk data download</a>
+              </li>
+              <li className="footer-secondary__list-item">
+                <a className="footer-secondary__link" href="take-down-policy">Take-down policy</a>
+              </li> {/*TODO: add take-down policy*/}
             </ul>
           </div>
         </div>

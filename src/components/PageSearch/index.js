@@ -103,7 +103,10 @@ class PageSearch extends Component {
   }
 
   handleHitCountClick = uri => {
-    this.setState({ hitsChildrenIsLoading: true, hitsCollectionIsLoading: true, hitsChildren: []}, () => this.toggleHitsModal())
+    this.setState(
+      { hitsChildrenIsLoading: true, hitsCollectionIsLoading: true, hitsChildren: []},
+      () => this.toggleHitsModal()
+    )
     axios
       .get(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${uri}`, this.state.params))
       .then(res => {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import ReCAPTCHA from "react-google-recaptcha";
+import classnames from "classnames";
 import "./styles.scss";
 
 // TODO: replace Captcha key
@@ -18,7 +19,7 @@ class Captcha extends Component {
 
   render() {
     return (
-      <div name="recaptcha" tabIndex="0" className={`captcha ${this.props.className && this.props.className}`}>
+      <div name="recaptcha" tabIndex="0" className={classnames("captcha", this.props.className)}>
         <ReCAPTCHA
           sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
           onChange={this.props.handleCaptchaChange}
