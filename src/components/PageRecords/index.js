@@ -15,16 +15,16 @@ class PageRecords extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      item: {},
       ancestors: {},
       children: [],
-      collection: {},
       found: true,
       isAncestorsLoading: true,
       isChildrenLoading: true,
       isContentShown: false,
       isItemLoading: true,
+      item: {},
       params: {},
+      preExpanded: [],
       updateMessage: ""
     }
   }
@@ -36,65 +36,70 @@ class PageRecords extends Component {
     }
     const itemUrl = `${process.env.REACT_APP_ARGO_BASEURL}/${this.props.match.params.type}/${this.props.match.params.id}`
     const params = queryString.parse(this.props.location.search);
-    const childrenParams = {...params, limit: 5}
     this.setState({ params: params })
+    this.getItemData(itemUrl, params, true)
+  };
+
+  /** Fetches item data, including ancestors and collection children */
+  getItemData = (itemUrl, params, initial=false) => {
+    this.setState({isItemLoading: true})
+    this.setState({isAncestorsLoading: true})
+    const childrenParams = {...params, limit: 5}
+    const itemPath = itemUrl.replace(`${process.env.REACT_APP_ARGO_BASEURL}`, "")
     axios
       .get(appendParams(itemUrl, params))
       .then(res => {
         this.setState({ item: res.data });
-        this.setState({ isItemLoading: false });
-        this.setState({ collection: res.data })
+        this.setState({ updateMessage: `Details under heading 1 have been updated to describe the selected records titled ${res.data.title}`})
+        this.setUrl(appendParams(itemPath, this.state.params), res.data);
       })
-      .catch(err => this.setState({ found: false }));
+      .catch(err => this.setState({ found: false }))
+      .then(() => this.setState({isItemLoading: false}));
     axios
-      .get(`${itemUrl}/ancestors`)
+      .get(appendParams(`${itemUrl}/ancestors`, params))
       .then(res => {
-        this.setState({ ancestors: res.data });
-        this.setState({ isAncestorsLoading: false });
-        res.data.length && this.setState({ ancestors: res.data.slice(0)[0] })
+        this.setState({ ancestors: res.data })
+        if (initial) {
+          const itemUrl = `/${this.props.match.params.type}/${this.props.match.params.id}`
+          const collectionUrl = Object.keys(res.data).length ? res.data.uri : itemUrl
+          collectionUrl.includes("collections") && this.getPage(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${collectionUrl}/children`, childrenParams))
+          this.setState({ preExpanded: this.preExpanded(res.data, [itemUrl]) })
+        }
       })
-      .catch(err => this.setState({ found: false }));
-    this.getPage(appendParams(`${itemUrl}/children`, childrenParams))
-  };
+      .catch(e => console.log(e))
+      .then(() => this.setState({isAncestorsLoading: false}));
+  }
 
+  /** Fetches paged content */
   getPage = uri => {
-    console.log(uri)
     axios
       .get(uri)
       .then(res => {
           this.setState({ children: [...this.state.children].concat(res.data.results)});
           this.state.isChildrenLoading && this.setState({ isChildrenLoading: false });
           res.data.next && this.getPage(res.data.next)
-        }
-      )
-      .catch(err => console.log(err))
+      }
+    )
+    .catch(err => console.log(err))
+  }
+
+  preExpanded = (ancestors, list) => {
+    Object.keys(ancestors).length && list.push(ancestors.uri)
+    return ancestors.child ? this.preExpanded(ancestors.child, list) : list
+  }
+
+  /** Returns the first ancestor or the item if no ancestors are present */
+  parseCollection = () => {
+    return Object.keys(this.state.ancestors).length ? this.state.ancestors : this.state.item
   }
 
   /** Updates state with item found at URL. */
   setActiveRecords = uri => {
     if (uri !== this.state.item.uri) {
-      this.setState({isItemLoading: true})
-      this.setState({isAncestorsLoading: true})
       const itemUrl = `${process.env.REACT_APP_ARGO_BASEURL}${uri}`
-      console.log(itemUrl)
-      axios
-        .get(appendParams(itemUrl, this.state.params))
-        .then(res => {
-          this.setState({ item: res.data });
-          this.setState({ updateMessage: `Details under heading 1 have been updated to describe the selected records titled ${res.data.title}`})
-          this.setUrl(appendParams(uri, this.state.params), res.data);
-        })
-        .catch(e => console.log(e))
-        .then(() => this.setState({isItemLoading: false}));
-      axios
-        .get(appendParams(`${itemUrl}/ancestors`, this.state.params))
-        .then(res => {
-          this.setState({ ancestors: res.data })
-        })
-        .catch(e => console.log(e))
-        .then(() => this.setState({isAncestorsLoading: false}));
+      this.getItemData(itemUrl, this.state.params)
     }
-}
+  }
 
   /** Pushes a URL and state into browser history */
   setUrl = (uri, itemData) => {
@@ -131,10 +136,11 @@ class PageRecords extends Component {
             toggleInList={toggleInList} />
           <RecordsContent
             children={this.state.children}
-            collection={this.state.collection}
+            collection={this.parseCollection()}
             isContentShown={this.state.isContentShown}
             params={this.state.params}
             parent={this.state.item}
+            preExpanded={this.state.preExpanded}
             savedList={savedList}
             setActiveRecords={this.setActiveRecords}
             toggleInList={toggleInList}

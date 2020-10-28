@@ -4,14 +4,22 @@ import classnames from "classnames";
 import "./styles.scss";
 
 
-const HitCount = ({ className, handleClick, hitCount }) => (
-  <button className={classnames("hit-count", className)} onClick={handleClick}>{hitCount} matches</button>
+export const HitCountButton = ({ className, handleClick, hitCount }) => (
+  <button className={classnames("hit-count", className)} onClick={handleClick}>{hitCount === 10000 ? `${hitCount}+` : hitCount} matches</button>
 )
 
-HitCount.propTypes = {
+HitCountButton.propTypes = {
   className: PropTypes.string,
   handleClick: PropTypes.func,
   hitCount: PropTypes.number.isRequired,
 }
 
-export default HitCount;
+export const HitCountBadge = ({ className, handleClick, hitCount }) => (
+  <span className={classnames("hit-count", className)} onClick={handleClick}>{hitCount === 10000 ? `${hitCount}+` : hitCount} matches</span>
+)
+
+HitCountBadge.propTypes = {
+  className: PropTypes.string,
+  handleClick: PropTypes.func,
+  hitCount: PropTypes.number.isRequired,
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import HitCount from "../HitCount";
+import { HitCountButton } from "../HitCount";
 import MaterialIcon from "../MaterialIcon";
 import { appendParams } from "../Helpers";
 import classnames from "classnames";
@@ -29,7 +29,7 @@ const Tile = ({ category, date, handleHitCountClick, hideHitCount, hit_count, pa
     <a className="tile__title" href={appendParams(uri, params)}>{title}</a>
     {category ? (<CategoryLabel category={category} />) : null }
     {hit_count && category === "collection" && !hideHitCount ?
-      (<HitCount className="hit-count--tile" hitCount={hit_count} handleClick={() => {handleHitCountClick && handleHitCountClick(uri)}} />) :
+      (<HitCountButton className="hit-count--tile" hitCount={hit_count} handleClick={() => {handleHitCountClick && handleHitCountClick(uri)}} />) :
       (null)
     }
     <p className="tile__date">{date}</p>
