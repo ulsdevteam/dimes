@@ -190,7 +190,7 @@ export const RecordsContentList = props => {
 
   return (
     <Accordion
-      className={classnames("child__list", this.props.className)}
+      className={classnames("child__list", props.className)}
       preExpanded={props.preExpanded} >
       {childList(props.children)}
     </Accordion>

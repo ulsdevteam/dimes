@@ -37,11 +37,6 @@ const configs = {
         overline: {
           color: '#ffffff',
         }
-      },
-      overrides: {
-        MuiDrawer: {
-          background: 'blue'
-        }
       }
     }
   },
@@ -56,10 +51,6 @@ const configs = {
     defaultView: 'single',
     hideWindowTitle: false,
     sideBarOpen: true,
-  },
-  workspace: {
-    type: 'none',
-    showZoomControls: true,
   },
   workspaceControlPanel: {
     enabled: false,
