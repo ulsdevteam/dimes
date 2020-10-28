@@ -130,15 +130,17 @@ export const EmailModal = props => (
             name="message"
             component="textarea"
             rows={5} />
-          <Field
-            component={Captcha}
-            name="recaptcha"
-            handleCaptchaChange={(response) => setFieldValue("recaptcha", response)} />
-          <ErrorMessage
-            id="recaptcha-error"
-            name="recaptcha"
-            component="div"
-            className="modal-form__error" />
+          <div className="form-group">
+            <Field
+              component={Captcha}
+              name="recaptcha"
+              handleCaptchaChange={(response) => setFieldValue("recaptcha", response)} />
+            <ErrorMessage
+              id="recaptcha-error"
+              name="recaptcha"
+              component="div"
+              className="modal-form__error" />
+          </div>
           <FormButtons
             submitText="Send List"
             toggleModal={props.toggleModal}
@@ -202,18 +204,20 @@ export const ReadingRoomRequestModal = props => (
             name="items"
             component="div"
             className="modal-form__error" />
-          <Field
-            component={DateInput}
-            handleChange={date => setFieldValue("scheduledDate", date)}
-            helpText="Enter the date of your research visit (mm/dd/yyyy)"
-            id="scheduledDate"
-            label="Scheduled Date *"
-            type="date" />
-          <ErrorMessage
-            id="scheduledDate-error"
-            name="scheduledDate"
-            component="div"
-            className="modal-form__error" />
+          <div className="form-group">
+            <Field
+              component={DateInput}
+              handleChange={date => setFieldValue("scheduledDate", date)}
+              helpText="Enter the date of your research visit (mm/dd/yyyy)"
+              id="scheduledDate"
+              label="Scheduled Date *"
+              type="date" />
+            <ErrorMessage
+              id="scheduledDate-error"
+              name="scheduledDate"
+              component="div"
+              className="modal-form__error" />
+          </div>
           <FormGroup
             label="Message for RAC staff"
             helpText="255 characters maximum"
@@ -221,15 +225,17 @@ export const ReadingRoomRequestModal = props => (
             maxLength={255}
             component="textarea"
             rows={5} />
-          <Field
-            component={Captcha}
-            name="recaptcha"
-            handleCaptchaChange={(response) => setFieldValue("recaptcha", response)} />
-          <ErrorMessage
-            id="recaptcha-error"
-            name="recaptcha"
-            component="div"
-            className="modal-form__error" />
+          <div className="form-group">
+            <Field
+              component={Captcha}
+              name="recaptcha"
+              handleCaptchaChange={(response) => setFieldValue("recaptcha", response)} />
+            <ErrorMessage
+              id="recaptcha-error"
+              name="recaptcha"
+              component="div"
+              className="modal-form__error" />
+          </div>
           <FormButtons
             submitText={`Request ${props.submitList.length ? (props.submitList.length) : "0"} ${props.submitList.length !== 1 ? "Items" : "Item"}`}
             toggleModal={props.toggleModal}
@@ -351,15 +357,17 @@ export const DuplicationRequestModal = props => (
               required={true}
               errors={errors}
               touched={touched} />
-            <Field
-              component={Captcha}
-              name="recaptcha"
-              handleCaptchaChange={(response) => setFieldValue("recaptcha", response)} />
-            <ErrorMessage
-              id="captcha-error"
-              name="recaptcha"
-              component="div"
-              className="modal-form__error" />
+            <div className="form-group">
+              <Field
+                component={Captcha}
+                name="recaptcha"
+                handleCaptchaChange={(response) => setFieldValue("recaptcha", response)} />
+              <ErrorMessage
+                id="captcha-error"
+                name="recaptcha"
+                component="div"
+                className="modal-form__error" />
+            </div>
             <FormButtons
               submitText={`Request ${props.submitList.length ? (props.submitList.length) : "0"} ${props.submitList.length !== 1 ? "Items" : "Item"}`}
               toggleModal={props.toggleModal}
