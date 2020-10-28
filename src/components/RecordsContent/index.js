@@ -123,7 +123,7 @@ class RecordsChild extends Component {
           {"child__list-accordion--bottom-level": firstChildType === "object"}
         )} >
         <AccordionItemHeading
-          aria-level={ariaLevel}
+          ariaLevel={ariaLevel}
           className={classnames(
             "child__list-item",
             `child__list-item--${item.type}`,
@@ -145,7 +145,7 @@ class RecordsChild extends Component {
           (<AccordionItemPanel>
             <RecordsContentList
               ariaLevel={ariaLevel+1}
-              children={item.children}
+              children={this.state.children}
               className={classnames({"child__list--bottom-level": firstChildType === "object"})}
               params={params}
               preExpanded={preExpanded}
