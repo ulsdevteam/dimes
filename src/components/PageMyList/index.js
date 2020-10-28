@@ -6,58 +6,10 @@
   import { MyListDropdown } from "../Dropdown";
   import { DuplicationRequestModal, EmailModal, ReadingRoomRequestModal } from "../ModalMyList";
   import ModalConfirm from "../ModalConfirm";
+  import MyListExportActions from "../MyListExportActions";
+  import MyListSidebar from "../MyListSidebar";
   import { SavedItemList } from "../SavedItem";
   import "./styles.scss";
-
-  const MyListExportActions = ({ confirmDeleteAll, downloadCsv, emailList }) => (
-    <div className="mylist__export-actions show-on-lg-up">
-      <Button
-        className="btn--orange btn--sm"
-        label="Email List"
-        iconBefore="email"
-        handleClick={emailList} />
-      <Button
-        className="btn--orange btn--sm"
-        label="Download as .CSV"
-        iconBefore="get_app"
-        handleClick={downloadCsv} />
-      <Button
-        className="btn--gray btn--sm"
-        label="Remove All Items"
-        iconBefore="delete"
-        handleClick={() => confirmDeleteAll()} />
-    </div>)
-
-  MyListExportActions.propTypes = {
-    confirmDeleteAll: PropTypes.func.isRequired,
-    downloadCsv: PropTypes.func.isRequired,
-    emailList: PropTypes.func.isRequired,
-  }
-
-  const MyListSidebar = ({ duplicationRequest, readingRoomRequest, sendEmail }) => (
-    <aside className="mylist__sidebar show-on-lg-up">
-      <Button
-        className="btn--orange btn--lg"
-        label="Schedule a Visit"
-        iconBefore="account_balance"
-        handleClick={() => sendEmail()} />
-      <Button
-        className="btn--orange btn--lg"
-        label="Request in Reading Room"
-        iconBefore="local_library"
-        handleClick={() => readingRoomRequest()} />
-      <Button
-        className="btn--orange btn--lg"
-        label="Request Copies"
-        iconBefore="content_copy"
-        handleClick={() => duplicationRequest()} />
-    </aside>)
-
-  MyListSidebar.propTypes = {
-    duplicationRequest: PropTypes.func.isRequired,
-    readingRoomRequest: PropTypes.func.isRequired,
-    sendEmail: PropTypes.func.isRequired
-  }
 
   class PageMyList extends Component {
     _isMounted = false;
