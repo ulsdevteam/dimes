@@ -31,9 +31,13 @@ Updated images are built each time a commit is pushed to base. To deploy in vSph
 
     $ docker -H {vsphere host}{vsphere port} --tlsverify pull rockarch/dimes:latest
 
+Get the ID of the running container
+
+    $ docker -H {vsphere host}{vsphere port} --tlsverify container ls
+
 Then stop the running container:
 
-    $ docker -H {vsphere host}{vsphere port} --tlsverify stop rockarch/dimes:latest
+    $ docker -H {vsphere host}{vsphere port} --tlsverify stop {container ID}
 
 Finally, start the updated container:
 
