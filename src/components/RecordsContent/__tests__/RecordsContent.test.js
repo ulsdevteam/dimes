@@ -12,12 +12,11 @@ it('renders without crashing', () => {
             children={children}
             collection={collectionWithChildHits}
             isContentShown={true}
+            myListCount={1}
             params={{}}
             preExpanded={[]}
-            savedList={{}}
             setActiveRecords={function(){}}
-            toggleInList={function(){}}
-            toggleIsLoading={function(){}} />, div);
+            toggleInList={function(){}} />, div);
 });
 
 it('renders without crashing', () => {
@@ -26,10 +25,9 @@ it('renders without crashing', () => {
             children={children}
             collection={collectionWithChildHits}
             isContentShown={false}
+            myListCount={0}
             params={{}}
             preExpanded={[]}
-            savedList={{}}
             setActiveRecords={function(){}}
-            toggleInList={function(){}}
-            toggleIsLoading={function(){}} />, div);
+            toggleInList={function(){}} />, div);
 });

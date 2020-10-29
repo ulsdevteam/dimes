@@ -18,38 +18,27 @@ class App extends Component {
     super(props)
     this.state = {
       myListCount: 0,
-      savedList: {}
     }
   }
 
   componentDidMount() {
-    this.setState({savedList: fetchMyList()})
-  }
-
-  componentDidUpdate(nextProps, nextState) {
-    if (nextState.savedList !== this.state.savedList) {
-      this.setState({myListCount: this.countMyList(this.state.savedList)})
-    }
+    this.setState({myListCount: this.countMyList()})
   }
 
   countMyList = data => {
     var list = data ? data : fetchMyList()
-    var count = 0
-    for (const [ , value] of Object.entries(list)) {
-      count += Object.keys(value).length
-    }
-    return count
+    return list.length
   }
 
-  removeAllItems = () => {
-    saveMyList({});
-    this.setState({ savedList: {} })
+  removeAllListItems = () => {
+    saveMyList([]);
+    this.setState({ myListCount: 0 })
   }
 
   toggleInList = item => {
-    const saved = isItemSaved(item, this.state.savedList)
+    const saved = isItemSaved(item)
     saved ? removeItem(item) : saveItem(item)
-    this.setState({savedList: fetchMyList()})
+    this.setState({ myListCount: this.countMyList() })
     return !saved
   }
 
@@ -64,8 +53,7 @@ class App extends Component {
                 <Route path="/list/" render={(props) =>
                   <PageMyList
                     {...props}
-                    removeAllItems={this.removeAllItems}
-                    savedList={this.state.savedList}
+                    removeAllListItems={this.removeAllListItems}
                     toggleInList={this.toggleInList} />
                 } />
                 <Route path="/search/" component={PageSearch} />
@@ -74,7 +62,7 @@ class App extends Component {
                 <Route path="/:type(collections|objects)/:id" render={(props) =>
                   <PageRecords
                     {...props}
-                    savedList={this.state.savedList}
+                    myListCount={this.state.myListCount}
                     toggleInList={this.toggleInList} />
                 } />
                 <Route path="/agents/:id" component={PageAgent} />

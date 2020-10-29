@@ -43,13 +43,12 @@ SavedItem.propTypes = {
   uri: PropTypes.string
 }
 
-const SavedItemGroup = ({ handleChange, items, toggleInList, title, uri }) => {
+const SavedItemGroup = ({ items, removeFromList, title, uri }) => {
   const listItems = items.map((item, index) =>
     <SavedItem
       key={index}
       {...item}
-      handleChange={handleChange}
-      handleClick={() => toggleInList({...item, "group": {...item.group, identifier: uri}})} />
+      handleClick={() => removeFromList(item)} />
   )
 
   return (
@@ -65,20 +64,18 @@ const SavedItemGroup = ({ handleChange, items, toggleInList, title, uri }) => {
 SavedItemGroup.propTypes = {
   handleChange: PropTypes.func,
   items: PropTypes.array.isRequired,
-  toggleInList: PropTypes.func.isRequired,
+  removeFromList: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
-  uri: PropTypes.string.isRequired,
 }
 
-export const SavedItemList = ({ handleChange, isLoading, items, toggleInList }) => {
+export const SavedItemList = ({ isLoading, items, removeFromList }) => {
 
   const groupItems = items => {
     return items.length ? (items.map((item) =>
       <SavedItemGroup
         key={item.title}
         {...item}
-        handleChange={handleChange}
-        toggleInList={toggleInList} />
+        removeFromList={removeFromList} />
     )) : (<p className="saved-items__empty">No saved items.</p>)
   }
 
@@ -90,8 +87,7 @@ export const SavedItemList = ({ handleChange, isLoading, items, toggleInList }) 
 }
 
 SavedItemList.propTypes = {
-  handleChange: PropTypes.func,
   isLoading: PropTypes.bool.isRequired,
   items: PropTypes.array.isRequired,
-  toggleInList: PropTypes.func.isRequired,
+  removeFromList: PropTypes.func.isRequired,
 }
