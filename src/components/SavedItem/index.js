@@ -46,6 +46,7 @@ const SavedItemGroup = ({ items, removeFromList, title, uri }) => {
   const listItems = items.map((item, index) =>
     <SavedItem
       key={index}
+      parentRef={item.parent_ref}
       {...item}
       handleClick={() => removeFromList(item)} />
   )
