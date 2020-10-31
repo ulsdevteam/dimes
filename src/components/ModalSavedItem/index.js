@@ -5,7 +5,6 @@ import "./styles.scss";
 
 
 const ModalSavedItem = ({ handleChange, isChecked, title, uri }) => (
-  // TODO: styling for checkbox
   <li className="modal-saved-item">
     <CheckBoxInput
       className="checkbox--orange"

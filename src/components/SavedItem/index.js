@@ -6,7 +6,6 @@ import { MyListSkeleton } from "../LoadingSkeleton";
 import "./styles.scss";
 
 
-// TODO: styling for checkbox
 const SavedItem = props => (
   <div className="saved-item">
     <div className="saved-item__row">
