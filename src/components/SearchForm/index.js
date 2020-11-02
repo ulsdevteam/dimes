@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Select from "react-select";
 import Button from "../Button"
 import PropTypes from "prop-types";
-import { TextInput } from "../Inputs";
+import { SelectInput, TextInput } from "../Inputs";
 import "./styles.scss";
 
 
 const SearchForm = props => {
-  var [category, setCategory] = useState(props.category);
+  var [category, setCategory] = useState(props.category || "");
   var [query, setQuery] = useState(props.query);
 
   useEffect(() => {
@@ -22,16 +21,6 @@ const SearchForm = props => {
     { value: "organization", label: "Organizations"}
   ]
 
-  /** Removes existing styling */
-  const selectStyles = {
-    option: () => ({}),
-    control: () => ({}),
-    dropdownIndicator: () => ({}),
-    indicatorsContainer: () => ({}),
-    indicatorSeparator: () => ({}),
-    valueContainer: () => ({}),
-  }
-
   return (
   <form role="search" action="/search" method="get">
     <div className={props.className}>
@@ -43,21 +32,19 @@ const SearchForm = props => {
           placeholder="Search..."
           size={60}
           value={query || ""}
-          handleChange={e => setQuery(e.target.value)}
+          handleChange={e => setQuery(e.target)}
           type="search"
           required={true}
         />
-        <Select
+        <SelectInput
           aria-label="Choose a search category"
           className="select__search--wrapper"
           classNamePrefix="select__search"
           defaultValue={{ value: "", label: "Everything" }}
-          isSearchable={false}
+          selectedItem={category}
           name="category"
-          onChange={e => setCategory(e)}
+          onChange={({selectedItem}) => setCategory(selectedItem)}
           options={selectOptions}
-          styles={selectStyles}
-          value={(selectOptions ? selectOptions.find(option => option.value === category) : '')}
         />
         <Button
           className="btn--search"

@@ -7,6 +7,7 @@ import {
   DatePickerTable,
   DatePickerButton,
   DatePickerCalendar} from "@reecelucas/react-datepicker";
+import {useSelect} from "downshift";
 import MaterialIcon from "../MaterialIcon";
 import classnames from "classnames";
 import "./styles.scss";
@@ -102,38 +103,51 @@ DateInput.propTypes = {
   label: PropTypes.string.isRequired,
 };
 
-export const SelectInput = props => (
-  <div className={props.className} required={props.required}>
-    <InputLabel {...props} />
-    <select
-      name={props.id}
-      id={props.id}
-      defaultValue={props.defaultValue}
-      value={props.value}
-      onChange={props.handleChange}>
-        {props.children}
-    </select>
-    <MaterialIcon icon="unfold_more" />
-  </div>
-)
+
+export const SelectInput = props => {
+  const items = props.options
+  const selectedItem = props.selectedItem
+  const itemToString = item => (item ? item.label : "")
+  const {
+    isOpen,
+    getToggleButtonProps,
+    getLabelProps,
+    getMenuProps,
+    highlightedIndex,
+    getItemProps,
+  } = useSelect({
+    items,
+    itemToString: itemToString,
+    selectedItem,
+    onSelectedItemChange: props.onChange,
+   })
+  return (
+    <div className={props.className} required={props.required}>
+      <InputLabel {...props} />
+      <button id={props.name} name={props.name} type="button" {...getToggleButtonProps()}>
+        {selectedItem ? selectedItem.label : props.defaultValue.label}
+      </button>
+      <ul {...getMenuProps()}>
+        {isOpen &&
+          props.options.map((option, index) => (
+            <li
+              key={`${option}${index}`}
+              {...getItemProps({ option, index })} >
+              {option.label}
+            </li>
+          ))}
+      </ul>
+    </div>
+  )
+}
 
 SelectInput.propTypes = {
   className: PropTypes.string,
   handleChange: PropTypes.func,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  options: PropTypes.array.isRequired,
   required: PropTypes.bool
-}
-
-export const SelectOption = ({ label, value }) => (
-  <option value={value} >
-    {label}
-  </option>
-)
-
-SelectOption.propTypes = {
-  label: PropTypes.string.isRequired,
-  value: PropTypes.string
 }
 
 export const TextInput = props => (

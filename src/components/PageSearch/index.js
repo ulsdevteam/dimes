@@ -4,7 +4,7 @@ import queryString from "query-string";
 import Skeleton from 'react-loading-skeleton';
 import { Helmet } from "react-helmet";
 import Button from "../Button";
-import { SelectInput, SelectOption } from "../Inputs"
+import { SelectInput } from "../Inputs"
 import { SearchSkeleton } from "../LoadingSkeleton";
 import { CollectionHitsModal, FacetModal } from "../ModalSearch";
 import { SearchPagination } from "../Pagination";
@@ -195,11 +195,12 @@ class PageSearch extends Component {
                     handleChange={this.handleSortChange}
                     id="sort"
                     label="Sort search results"
-                    defaultValue={this.state.params.sort} >
-                      <SelectOption value="" label="Sort by relevance" />
-                      <SelectOption value="title" label="Sort by title" />
-                      <SelectOption value="creator" label="Sort by creator name" />
-                  </SelectInput>
+                    selectedItem={this.state.params.sort}
+                    options={[
+                      {value: "", label: "Sort by relevance"},
+                      {value: "title", label: "Sort by title"},
+                      {value: "creator", label: "Sort by creator name"}
+                    ]} />
                 </div>
               </div>
               <div className="results__pagination">
