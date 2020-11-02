@@ -15,8 +15,8 @@ it('renders without crashing', () => {
             isContentShown={false}
             isItemLoading={false}
             item={collectionWithChildHits}
+            myListCount={0}
             params={{}}
-            savedList={{}}
             toggleInList={function(){}} />, div);
 });
 
@@ -28,7 +28,7 @@ it('renders without crashing', () => {
           isContentShown={true}
           isItemLoading={false}
           item={object}
+          myListCount={0}
           params={{}}
-          savedList={{}}
           toggleInList={function(){}} />, div);
 });
