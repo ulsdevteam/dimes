@@ -9,5 +9,5 @@ it('renders without crashing', () => {
   render(<SavedItemList
           items={resolvedList}
           isLoading={true}
-          toggleInList={function(){}} />, div);
+          removeFromList={function(){}} />, div);
 });

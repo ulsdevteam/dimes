@@ -5,12 +5,11 @@ import "./styles.scss";
 
 
 const ModalSavedItem = ({ handleChange, isChecked, title, uri }) => (
-  // TODO: styling for checkbox
   <li className="modal-saved-item">
     <CheckBoxInput
       className="checkbox--orange"
       id={uri}
-      checked={isChecked}
+      checked={isChecked || false}
       label={title}
       handleChange={handleChange} />
   </li>
@@ -18,7 +17,7 @@ const ModalSavedItem = ({ handleChange, isChecked, title, uri }) => (
 
 ModalSavedItem.propTypes = {
   handleChange: PropTypes.func,
-  isChecked: PropTypes.bool.isRequired,
+  isChecked: PropTypes.bool,
   title: PropTypes.string.isRequired,
   uri: PropTypes.string.isRequired,
 }

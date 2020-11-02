@@ -125,48 +125,48 @@ const PanelTextSection = ({ params, text, title }) => {
     (null)
 )}
 
-const RecordsDetail = ({ ancestors, isAncestorsLoading, isContentShown, isItemLoading, item, params, savedList, toggleInList }) => {
+const RecordsDetail = props => {
 
   var [isSaved, setIsSaved] = useState(() => {
-    return !isItemLoading && isItemSaved(item, savedList)
+    return !props.isItemLoading && isItemSaved(props.item)
   })
 
   useEffect(() => {
-    const saved = !isItemLoading && isItemSaved(item, savedList)
+    const saved = !props.isItemLoading && isItemSaved(props.item)
     setIsSaved(saved)
-  }, [isItemLoading, item, savedList])
+  }, [props.isItemLoading, props.item, props.myListCount])
 
   return (
-  <div className={classnames("records__detail", {"hidden": isContentShown})}>
+  <div className={classnames("records__detail", {"hidden": props.isContentShown})}>
     <nav>
-      <a href={appendParams("/search", params)} className="btn btn--back">
+      <a href={appendParams("/search", props.params)} className="btn btn--back">
         <MaterialIcon icon="keyboard_arrow_left"/>Back to Search
       </a>
     </nav>
-    <h1 className="records__title">{isItemLoading ? <Skeleton /> : item.title }</h1>
-    {item.type === "object" ?
-      (item.online ? (
+    <h1 className="records__title">{props.isItemLoading ? <Skeleton /> : props.item.title }</h1>
+    {props.item.type === "object" ?
+      (props.item.online ? (
         <>
         <ListToggleButton
           className="btn-add--detail"
           isSaved={isSaved}
-          item={item}
-          toggleSaved={toggleInList} />
+          item={props.item}
+          toggleSaved={props.toggleInList} />
         <a className="btn btn-launch--detail"
-          href={`${item.uri}/view`}>View Online <MaterialIcon icon="visibility" /></a>
+          href={`${props.item.uri}/view`}>View Online <MaterialIcon icon="visibility" /></a>
         <Button
           className="btn-download--detail"
-          handleClick={() => alert(`Downloading file for ${item.uri}`)}
+          handleClick={() => alert(`Downloading file for ${props.item.uri}`)}
           iconAfter="get_app"
           label="Download"
-          uri={item.uri} />
+          uri={props.item.uri} />
         </>
       ) :
       (<ListToggleButton
         className="btn-add--detail"
         isSaved={isSaved}
-        item={item}
-        toggleSaved={toggleInList} />)
+        item={props.item}
+        toggleSaved={props.toggleInList} />)
       ): (null)
     }
     <Accordion className="accordion" preExpanded={["summary"]} allowZeroExpanded={true}>
@@ -175,36 +175,36 @@ const RecordsDetail = ({ ancestors, isAncestorsLoading, isContentShown, isItemLo
           <AccordionItemButton className="accordion__button">Summary</AccordionItemButton>
         </AccordionItemHeading>
         <AccordionItemPanel className="accordion__panel">
-          {isItemLoading ?
+          {props.isItemLoading ?
             (<DetailSkeleton />) :
             (<>
               <div className="panel__section--flex">
                 <PanelLinkedListSection
                   title="Creators"
-                  listData={item.creators} />
+                  listData={props.item.creators} />
                 <PanelTextSection
                   title="Dates"
-                  text={dateString(item.dates)} />
+                  text={dateString(props.item.dates)} />
                 <PanelExtentSection
-                  extents={item.extents} />
+                  extents={props.item.extents} />
                 <PanelFormatSection
-                  formats={item.formats}
-                  notes={item.notes} />
+                  formats={props.item.formats}
+                  notes={props.item.notes} />
               </div>
               <PanelFoundInSection
-                ancestors={ancestors}
-                isItemLoading={isAncestorsLoading}
-                params={params} />
+                ancestors={props.ancestors}
+                isItemLoading={props.isAncestorsLoading}
+                params={props.params} />
               <PanelTextSection
-                params={params}
+                params={props.params}
                 title="Description"
-                text={noteText(item.notes, "abstract") || noteText(item.notes, "scopecontent")} />
+                text={noteText(props.item.notes, "abstract") || noteText(props.item.notes, "scopecontent")} />
               </>
               )
             }
         </AccordionItemPanel>
       </AccordionItem>
-      { hasAccessAndUse(item.notes) ?
+      { hasAccessAndUse(props.item.notes) ?
         (<AccordionItem className="accordion__item" uuid="accessAndUse">
           <AccordionItemHeading className="accordion__heading" aria-level={2}>
             <AccordionItemButton className="accordion__button">Access and Use</AccordionItemButton>
@@ -212,14 +212,14 @@ const RecordsDetail = ({ ancestors, isAncestorsLoading, isContentShown, isItemLo
           <AccordionItemPanel className="accordion__panel">
             <PanelTextSection
               title="Access"
-              text={noteText(item.notes, "accessrestrict")} />
+              text={noteText(props.item.notes, "accessrestrict")} />
             <PanelTextSection
               title="Reproduction and Duplication"
-              text={noteText(item.notes, "userestrict")} />
+              text={noteText(props.item.notes, "userestrict")} />
           </AccordionItemPanel>
         </AccordionItem>) :
         (null)}
-      { item.terms && item.terms.length ?
+      { props.item.terms && props.item.terms.length ?
         (<AccordionItem className="accordion__item" uuid="relatedTerms">
             <AccordionItemHeading className="accordion__heading" aria-level={2}>
               <AccordionItemButton className="accordion__button">Related Terms</AccordionItemButton>
@@ -227,7 +227,7 @@ const RecordsDetail = ({ ancestors, isAncestorsLoading, isContentShown, isItemLo
             <AccordionItemPanel className="accordion__panel">
               <PanelListSection
                 title="Subjects"
-                listData={item.terms} />
+                listData={props.item.terms} />
             </AccordionItemPanel>
           </AccordionItem>) :
         (null)}
@@ -236,13 +236,13 @@ const RecordsDetail = ({ ancestors, isAncestorsLoading, isContentShown, isItemLo
 )}
 
 RecordsDetail.propTypes = {
-  item: PropTypes.object.isRequired,
   ancestors: PropTypes.object.isRequired,
   isAncestorsLoading: PropTypes.bool.isRequired,
   isContentShown: PropTypes.bool,
   isItemLoading: PropTypes.bool.isRequired,
+  item: PropTypes.object.isRequired,
+  myListCount: PropTypes.number.isRequired,
   params: PropTypes.object.isRequired,
-  savedList: PropTypes.object.isRequired,
   toggleInList: PropTypes.func.isRequired,
 }
 

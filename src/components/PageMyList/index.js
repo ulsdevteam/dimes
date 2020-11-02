@@ -9,6 +9,7 @@
   import MyListExportActions from "../MyListExportActions";
   import MyListSidebar from "../MyListSidebar";
   import { SavedItemList } from "../SavedItem";
+  import { fetchMyList } from "../MyListHelpers";
   import "./styles.scss";
 
   class PageMyList extends Component {
@@ -31,14 +32,8 @@
       };
     }
 
-    async componentDidUpdate(nextProps, nextState) {
-      if (nextProps.savedList !== this.props.savedList) {
-        this.setState({isLoading: true})
-        const resolved = await this.resolveList(this.props.savedList)
-        const submitList = this.constructSubmitList(resolved);
-        this.setState({savedList: resolved, submitList: submitList})
-        this.setState({isLoading: false})
-      }
+    componentDidMount() {
+      this.fetchList()
     }
 
     /** Returns a list of ArchivesSpace URIs for checked items in list */
@@ -67,11 +62,10 @@
     handleModalListChange = (e) => {
       const updatedList = this.setIsChecked(e, this.state.savedList)
       this.setState({savedList: updatedList})
-
-      const submitList = this.constructSubmitList(updatedList)
-      this.setState({submitList: submitList})
+      this.setState({submitList: this.constructSubmitList(updatedList)})
     }
 
+    /** Sets messages in confirm modal */
     handleConfirmData = (title, message) => {
       this.setState({ confirm: { ...this.state.confirm, title: title, message: message } })
     }
@@ -126,11 +120,31 @@
 
     }
 
-    fetchFromUri = uri => {
-      return axios
-        .get(`${process.env.REACT_APP_ARGO_BASEURL}${uri}`)
-        .then(res => res.data)
-        .catch(err => console.log(err));
+    fetchList = () => {
+      const list = fetchMyList();
+      axios
+        .post(`${process.env.REACT_APP_ARGO_BASEURL}/mylist`, {list: list})
+        .then(res => {
+          this.setState({ savedList: res.data, submitList: this.constructSubmitList(res.data)})
+        })
+        .catch(err => console.log(err))
+        .then(() => this.state.isLoading && this.setState({isLoading: false}));
+    }
+
+    removeAllFromList = () => {
+      this.props.removeAllListItems();
+      this.fetchList();
+    }
+
+    removeFromList = item => {
+      this.props.toggleInList(item);
+      var filteredList = [];
+      for (const group of this.state.savedList) {
+        var newGroup = {...group}
+        newGroup.items = group.items.filter(i => i.uri !== item.uri)
+        newGroup.items.length && filteredList.push(newGroup);
+      }
+      this.setState({ savedList: filteredList, submitList: this.constructSubmitList(filteredList) });
     }
 
     /** Returns a list with all unchecked items removed */
@@ -142,44 +156,6 @@
         newGroup.items.length && filteredList.push(newGroup);
       }
       return filteredList;
-    }
-
-    /** Returns data about list items fetched from canonical source */
-    resolveList = async (list) => {
-      var resolvedList = [];
-      for (const [uri, items] of Object.entries(list)) {
-        const fetchedGroup = await this.fetchFromUri(uri);
-        if (fetchedGroup) {
-          const resolved = {
-            "title": fetchedGroup.title,
-            "uri": fetchedGroup.uri,
-            "items": []
-          }
-          for (const [key, value] of Object.entries(items)) {
-            const fetchedItem = await this.fetchFromUri(key)
-            const fetchedAncestors = await this.fetchFromUri(`${key}/ancestors/`)
-            if (fetchedItem) {
-              let note = fetchedItem.notes && fetchedItem.notes.filter(n => {return n.title === "Scope and Contents"})[0];
-              const description = note && note.subnotes ? note.subnotes.map(s => s.content).join("\r\n") : null
-              resolved.items.push({
-                "title": fetchedItem.title,
-                "uri": fetchedItem.uri,
-                "date": fetchedItem.dates && fetchedItem.dates.map(d => d.expression).join(", "),
-                "description": description,
-                "parent": fetchedAncestors.title,
-                "parentRef": fetchedAncestors.uri,
-                "online": fetchedItem.online,
-                "lastRequested": value.lastRequested ? value.lastRequested : null,
-                "saved": value.saved,
-                "isChecked": false,
-                "archivesspace_uri": fetchedItem.external_identifiers.find(i => i.source === "archivesspace").identifier
-              })
-            }
-          }
-          resolvedList.push(resolved)
-        }
-      }
-      return resolvedList
     }
 
     sendEmail = () => {
@@ -202,11 +178,11 @@
     }
 
     /** Checks or unchecks all items in list, depending on value passed to function
-    * value: boolean
+    * isCheckedValue: boolean
     */
-    toggleList = value => {
+    toggleList = isCheckedValue => {
       const updatedList = this.state.savedList.map(g => {
-        const updatedGroupItems = g.items.map(i => ({...i, isChecked: value}))
+        const updatedGroupItems = g.items.map(i => ({...i, isChecked: isCheckedValue}))
         return {...g, items: updatedGroupItems}
       })
       this.setState({ savedList: updatedList })
@@ -238,7 +214,7 @@
                   duplicationRequest={() => this.toggleModal("duplication")}
                   emailList={() => this.toggleModal("email")}
                   readingRoomRequest={() => this.toggleModal("readingRoom")}
-                  removeAllItems={this.props.removeAllItems}
+                  removeAllItems={this.removeAllFromList}
                   sendEmail={this.sendEmail} />
               </div>
               <MyListExportActions
@@ -248,7 +224,7 @@
               <SavedItemList
                 items={this.state.savedList}
                 isLoading={this.state.isLoading}
-                toggleInList={this.props.toggleInList} />
+                removeFromList={this.removeFromList} />
             </main>
             <MyListSidebar
                 duplicationRequest={() => this.toggleModal("duplication")}
@@ -294,7 +270,7 @@
                 <Button
                   className="btn--sm btn--orange"
                   label="Remove"
-                  handleClick={() => {this.props.removeAllItems(); this.toggleModal("confirmDeleteAll");}} />
+                  handleClick={() => {this.removeAllFromList(); this.toggleModal("confirmDeleteAll");}} />
                 <Button
                   className="btn--sm btn--gray"
                   label="Cancel"
@@ -311,8 +287,7 @@
   }
 
   PageMyList.propTypes = {
-    removeAllItems: PropTypes.func.isRequired,
-    savedList: PropTypes.object.isRequired,
+    removeAllListItems: PropTypes.func.isRequired,
     toggleInList: PropTypes.func.isRequired,
   }
 

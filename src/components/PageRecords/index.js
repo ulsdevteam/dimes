@@ -111,7 +111,7 @@ class PageRecords extends Component {
   }
 
   render() {
-    const { savedList, toggleInList } = this.props;
+    const { myListCount, toggleInList } = this.props;
     if (!this.state.found) {
       return (<PageNotFound />)
     }
@@ -131,17 +131,17 @@ class PageRecords extends Component {
             isContentShown={this.state.isContentShown}
             isItemLoading={this.state.isItemLoading}
             item={this.state.item}
+            myListCount={myListCount}
             params={this.state.params}
-            savedList={savedList}
             toggleInList={toggleInList} />
           <RecordsContent
             children={this.state.children}
             collection={this.parseCollection()}
             isContentShown={this.state.isContentShown}
+            myListCount={this.props.myListCount}
             params={this.state.params}
             parent={this.state.item}
             preExpanded={this.state.preExpanded}
-            savedList={savedList}
             setActiveRecords={this.setActiveRecords}
             toggleInList={toggleInList}
             toggleIsLoading={this.toggleIsLoading} />
@@ -152,7 +152,7 @@ class PageRecords extends Component {
 }
 
 PageRecords.propTypes = {
-  savedList: PropTypes.object.isRequired,
+  myListCount: PropTypes.number.isRequired,
   toggleInList: PropTypes.func.isRequired,
 }
 

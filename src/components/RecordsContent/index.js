@@ -35,6 +35,7 @@ class RecordsChild extends Component {
   */
   componentDidMount() {
     const currentUrl = window.location.pathname
+    this.setState({ isSaved: isItemSaved(this.props.item) })
     if (this.props.preExpanded.includes(this.props.item.uri)) {
       const childrenParams = {...this.props.params, limit: 5}
       this.props.item.uri.includes("collections") && this.getChildrenPage(
@@ -47,9 +48,9 @@ class RecordsChild extends Component {
     }
   }
 
-  componentDidUpdate(nextProps, nextState) {
-    if (nextProps.savedList !== this.props.savedList && this.props.item.group) {
-      this.setState({ isSaved: isItemSaved(this.props.item, this.props.savedList)})
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.myListCount !== this.props.myListCount) {
+      this.setState({ isSaved: isItemSaved(this.props.item) })
     }
   }
 
@@ -83,7 +84,7 @@ class RecordsChild extends Component {
   }
 
   render() {
-    const { ariaLevel, item, params, preExpanded, savedList, setActiveRecords, toggleInList } = this.props;
+    const { ariaLevel, item, myListCount, params, preExpanded, setActiveRecords, toggleInList } = this.props;
     const firstChildType = this.state.children.length && this.state.children[0].type
     const isMobile = window.innerWidth < 580;
     return (item.type === "object" ?
@@ -147,9 +148,9 @@ class RecordsChild extends Component {
               ariaLevel={ariaLevel+1}
               children={this.state.children}
               className={classnames({"child__list--bottom-level": firstChildType === "object"})}
+              myListCount={myListCount}
               params={params}
               preExpanded={preExpanded}
-              savedList={savedList}
               setActiveRecords={setActiveRecords}
               toggleInList={toggleInList} />
           </AccordionItemPanel>) :
@@ -161,26 +162,26 @@ class RecordsChild extends Component {
 
 RecordsChild.propTypes = {
     item: PropTypes.object.isRequired,
+    myListCount: PropTypes.number.isRequired,
     params: PropTypes.object,
     preExpanded: PropTypes.array,
     setActiveRecords: PropTypes.func.isRequired,
-    savedList: PropTypes.object.isRequired,
     toggleInList: PropTypes.func.isRequired,
 }
 
 export const RecordsContentList = props => {
 
   const childList = children => {
-    const { ariaLevel, params, preExpanded, savedList, setActiveRecords, toggleInList } = props;
+    const { ariaLevel, myListCount, params, preExpanded, setActiveRecords, toggleInList } = props;
     return (
       children.map(child => (
         <RecordsChild
           key={child.uri}
           ariaLevel={ariaLevel}
           item={child}
+          myListCount={myListCount}
           params={params}
           preExpanded={preExpanded}
-          savedList={savedList}
           setActiveRecords={setActiveRecords}
           toggleInList={toggleInList} />
         )
@@ -201,17 +202,17 @@ RecordsContentList.propTypes = {
   ariaLevel: PropTypes.number.isRequired,
   children: PropTypes.array,
   className: PropTypes.string,
+  myListCount: PropTypes.number.isRequired,
   params: PropTypes.object,
   preExpanded: PropTypes.array,
-  savedList: PropTypes.object.isRequired,
   setActiveRecords: PropTypes.func.isRequired,
   toggleInList: PropTypes.func.isRequired,
 }
 
 
 const RecordsContent = props => {
-  const { children, collection, isContentShown, params, preExpanded,
-          savedList, setActiveRecords, toggleInList } = props;
+  const { children, collection, isContentShown, myListCount, params, preExpanded,
+          setActiveRecords, toggleInList } = props;
 
   return (
   children ?
@@ -224,9 +225,9 @@ const RecordsContent = props => {
         ariaLevel={3}
         className="child__list--top-level"
         children={children}
+        myListCount={myListCount}
         params={params}
         preExpanded={preExpanded}
-        savedList={savedList}
         setActiveRecords={setActiveRecords}
         toggleInList={toggleInList} />
     </div>) :
@@ -238,9 +239,9 @@ RecordsContent.propTypes = {
   children: PropTypes.array.isRequired,
   collection: PropTypes.object.isRequired,
   isContentShown: PropTypes.bool.isRequired,
+  myListCount: PropTypes.number.isRequired,
   params: PropTypes.object,
   preExpanded: PropTypes.array,
-  savedList: PropTypes.object.isRequired,
   setActiveRecords: PropTypes.func.isRequired,
   toggleInList: PropTypes.func.isRequired,
 }
