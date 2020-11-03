@@ -278,7 +278,7 @@
               </div>
               </>
             }
-            title="Confirm delete all"
+            title="Confirm Remove All"
             toggleModal={() => this.toggleModal("confirmDeleteAll")}
           />
         </React.Fragment>
