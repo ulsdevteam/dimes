@@ -4,7 +4,6 @@ import {
   CheckBoxInput,
   DateInput,
   SelectInput,
-  SelectOption,
   TextInput,
   YearInput } from "..";
 
@@ -23,16 +22,18 @@ it('renders without crashing', () => {
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
+  const options = [
+    {value: "", label: "select a value"},
+    {value: "foo", label: "Foo"},
+    {value: "bar", label: "Bar"},
+  ]
   render(
-    <SelectInput label="Select an option" id="1">
-      <SelectOption label="Foo" />
-      <SelectOption label="Bar" />
-    </SelectInput>, div);
-});
-
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  render(<SelectOption label="Foo" id="1" />, div);
+    <SelectInput
+      className="foo"
+      id="foo"
+      label="Select an option"
+      onChange={function(){}}
+      options={options} />, div);
 });
 
 it('renders without crashing', () => {
