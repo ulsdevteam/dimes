@@ -105,34 +105,39 @@ DateInput.propTypes = {
 
 
 export const SelectInput = props => {
-  const items = props.options
-  const selectedItem = props.selectedItem
   const itemToString = item => (item ? item.label : "")
+  const selectedItem = props.options.find(i => i.value === props.selectedItem)
   const {
+    highlightedIndex,
     isOpen,
     getToggleButtonProps,
     getLabelProps,
     getMenuProps,
-    highlightedIndex,
     getItemProps,
   } = useSelect({
-    items,
+    items: props.options,
     itemToString: itemToString,
-    selectedItem,
+    selectedItem: props.selectedItem,
     onSelectedItemChange: props.onChange,
    })
+
   return (
-    <div className={props.className} required={props.required}>
-      <InputLabel {...props} />
-      <button id={props.name} name={props.name} type="button" {...getToggleButtonProps()}>
-        {selectedItem ? selectedItem.label : props.defaultValue.label}
+    <div className={classnames(`${props.className}__wrapper`, {"hide-label": props.hideLabel})} required={props.required}>
+      <input type="hidden" name={props.name} value={selectedItem && selectedItem.value} />
+      <InputLabel {...props} {...getLabelProps()} />
+      <button id={props.name} name={props.name} className={`${props.className}__control`} type="button" {...getToggleButtonProps()}>
+        {selectedItem && selectedItem.label}
       </button>
-      <ul {...getMenuProps()}>
+      <ul className={classnames(`${props.className}__menu`, {"open": isOpen})} {...getMenuProps()}>
         {isOpen &&
           props.options.map((option, index) => (
-            <li
-              key={`${option}${index}`}
-              {...getItemProps({ option, index })} >
+            <li className={classnames(
+                `${props.className}__option`,
+                {"is-focused": index === highlightedIndex},
+                {"is-selected": option === selectedItem}
+              )}
+              key={index}
+              {...getItemProps({ option: option.label, index })} >
               {option.label}
             </li>
           ))}
@@ -142,10 +147,10 @@ export const SelectInput = props => {
 }
 
 SelectInput.propTypes = {
-  className: PropTypes.string,
-  handleChange: PropTypes.func,
+  className: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
   options: PropTypes.array.isRequired,
   required: PropTypes.bool
 }

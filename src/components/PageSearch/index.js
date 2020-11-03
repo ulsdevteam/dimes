@@ -143,9 +143,9 @@ class PageSearch extends Component {
     this.executeSearch(params)
   };
 
-  handleSortChange = (event) => {
+  handleSortChange = value => {
     var params = {...this.state.params}
-    event.target.value ? params.sort = event.target.value : delete params["sort"]
+    value ? params.sort = value : delete params["sort"]
     delete params.offset
     this.executeSearch(params);
   }
@@ -158,6 +158,12 @@ class PageSearch extends Component {
     this.setState({ hitsIsOpen: !this.state.hitsIsOpen })
     this.setState({ hitsData: {} })
   }
+
+  sortOptions = [
+    {value: "", label: "Sort by relevance"},
+    {value: "title", label: "Sort by title"},
+    {value: "creator", label: "Sort by creator name"}
+  ]
 
   render() {
     return (
@@ -192,15 +198,12 @@ class PageSearch extends Component {
                 <div className="select__sort--wrapper">
                   <SelectInput
                     className="hide-label select__sort"
-                    handleChange={this.handleSortChange}
+                    onChange={({selectedItem}) => this.handleSortChange(selectedItem.value)}
                     id="sort"
+                    name="sort"
                     label="Sort search results"
-                    selectedItem={this.state.params.sort}
-                    options={[
-                      {value: "", label: "Sort by relevance"},
-                      {value: "title", label: "Sort by title"},
-                      {value: "creator", label: "Sort by creator name"}
-                    ]} />
+                    selectedItem={this.state.params.sort || ""}
+                    options={this.sortOptions} />
                 </div>
               </div>
               <div className="results__pagination">

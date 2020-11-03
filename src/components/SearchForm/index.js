@@ -32,19 +32,19 @@ const SearchForm = props => {
           placeholder="Search..."
           size={60}
           value={query || ""}
-          handleChange={e => setQuery(e.target)}
+          handleChange={e => setQuery(e.target.value)}
           type="search"
           required={true}
         />
         <SelectInput
-          aria-label="Choose a search category"
-          className="select__search--wrapper"
-          classNamePrefix="select__search"
-          defaultValue={{ value: "", label: "Everything" }}
-          selectedItem={category}
+          className="select__search"
+          hideLabel={true}
+          id="category"
+          label="Choose a search category"
           name="category"
-          onChange={({selectedItem}) => setCategory(selectedItem)}
+          onChange={({selectedItem}) => setCategory(selectedItem.value)}
           options={selectOptions}
+          selectedItem={category || ""}
         />
         <Button
           className="btn--search"
