@@ -214,7 +214,7 @@
                   duplicationRequest={() => this.toggleModal("duplication")}
                   emailList={() => this.toggleModal("email")}
                   readingRoomRequest={() => this.toggleModal("readingRoom")}
-                  removeAllItems={this.removeAllFromList}
+                  removeAllItems={() => this.toggleModal("confirmDeleteAll")}
                   sendEmail={this.sendEmail} />
               </div>
               <MyListExportActions
