@@ -54,16 +54,8 @@ input[type=search] {
   width: 100%;
 }
 
-.select__search__wrapper {
-  position: relative;
-}
-
 .select__search__control {
-  @include input-text;
-  cursor: pointer;
   font-size: 16px;
-  background-color: $pure-white;
-  border-radius: 0px;
   border-top: 1px solid $dark-gray;
   border-bottom: 1px solid $dark-gray;
   border-left: 0;
@@ -72,46 +64,13 @@ input[type=search] {
   height: 62px;
   width: 180px;
   box-sizing: border-box;
-}
-
-.select__search__menu {
-  position: absolute;
-  background-color: $pure-white;
-  border-radius: 0;
-  list-style: none;
-  top: 0px;
-  padding-left: 0;
-  text-align: center;
-  margin: 0;
-  width: 100%;
-  left: -1px;
-  &.open {
-    border: 1px solid $dark-gray;
+  & > .material-icons {
+    right: 23px;
+    top: 20px;
   }
 }
 
 .select__search__option {
-  font-family: $sans-serif-stack;
   font-size: 16px;
-  cursor: pointer;
   padding: 16px 18px;
-}
-
-.select__search__option {
-  &.is-selected {
-    &::after {
-      @extend .material-icons;
-      font-size: 20px;
-      content: "check";
-      position: absolute;
-      right: 18px;
-      color: $burnt-orange;
-    }
-  }
-}
-
-.select__search__option {
-  &.is-focused {
-    background: $lighter-gray;
-  }
 }

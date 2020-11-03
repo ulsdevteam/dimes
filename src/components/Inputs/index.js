@@ -122,16 +122,18 @@ export const SelectInput = props => {
    })
 
   return (
-    <div className={classnames(`${props.className}__wrapper`, {"hide-label": props.hideLabel})} required={props.required}>
+    <div className={classnames("select__wrapper", `${props.className}__wrapper`, {"hide-label": props.hideLabel})} required={props.required}>
       <input type="hidden" name={props.name} value={selectedItem && selectedItem.value} />
       <InputLabel {...props} {...getLabelProps()} />
-      <button id={props.name} name={props.name} className={`${props.className}__control`} type="button" {...getToggleButtonProps()}>
+      <button id={props.name} name={props.name} className={classnames("select__control", `${props.className}__control`)} type="button" {...getToggleButtonProps()}>
         {selectedItem && selectedItem.label}
+        <MaterialIcon icon={props.iconAfter ? props.iconAfter : "unfold_more"} />
       </button>
-      <ul className={classnames(`${props.className}__menu`, {"open": isOpen})} {...getMenuProps()}>
+      <ul className={classnames("select__menu", `${props.className}__menu`, {"open": isOpen})} {...getMenuProps()}>
         {isOpen &&
           props.options.map((option, index) => (
             <li className={classnames(
+                "select__option",
                 `${props.className}__option`,
                 {"is-focused": index === highlightedIndex},
                 {"is-selected": option === selectedItem}

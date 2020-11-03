@@ -39,6 +39,7 @@ const SearchForm = props => {
         <SelectInput
           className="select__search"
           hideLabel={true}
+          iconAfter="expand_more"
           id="category"
           label="Choose a search category"
           name="category"

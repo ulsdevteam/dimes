@@ -324,8 +324,7 @@ export const DuplicationRequestModal = props => {
                 className="modal-form__error" />
               <div className="form-group">
                 <SelectInput
-                  className="select__search--wrapper"
-                  classNamePrefix="select__modal"
+                  className="select__modal"
                   id="format"
                   label="Format"
                   name="format"

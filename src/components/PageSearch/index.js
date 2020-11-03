@@ -195,16 +195,15 @@ class PageSearch extends Component {
                   label="Filters"
                   iconBefore="filter_alt"
                   className="btn--filter" />
-                <div className="select__sort--wrapper">
-                  <SelectInput
-                    className="hide-label select__sort"
-                    onChange={({selectedItem}) => this.handleSortChange(selectedItem.value)}
-                    id="sort"
-                    name="sort"
-                    label="Sort search results"
-                    selectedItem={this.state.params.sort || ""}
-                    options={this.sortOptions} />
-                </div>
+                <SelectInput
+                  className="select__sort"
+                  hideLabel={true}
+                  id="sort"
+                  name="sort"
+                  onChange={({selectedItem}) => this.handleSortChange(selectedItem.value)}
+                  label="Sort search results"
+                  selectedItem={this.state.params.sort || ""}
+                  options={this.sortOptions} />
               </div>
               <div className="results__pagination">
                 {this.state.inProgress ?
