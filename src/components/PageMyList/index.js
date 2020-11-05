@@ -80,17 +80,11 @@
           const title = modal === "email" ? "Email Sent" : "Requests Delivered"
           var message = ""
           if (modal === "email") {
-            message = `Selected items in your list have been emailed to ${submitted.email}`
+            message = <p>{`Selected items in your list have been emailed to ${submitted.email}`}</p>
           } else if (modal === "duplication") {
-            message = ["Your requests have been submitted to",
-                       <a href='https://raccess.rockarch.org'>RACcess</a>, ". ",
-                       "You can track their status using your RACcess account."]
+            message = <p>Your requests have been submitted to <a href="https://raccess.rockarch.org">RACcess</a>. You can track their status using your RACcess account.</p>
           } else {
-            message = ["Your requests have been submitted to ",
-                       <a href='https://raccess.rockarch.org'>RACcess</a>, ". ",
-                       "You can track their status using your RACcess account.",
-                       <br/ >, <br />,
-                       "Requests to access archival records in the Reading Room are processed between 10am-3pm on days when the Rockefeller Archive Center is open."]
+            message = <p>Your requests have been submitted to <a href="https://raccess.rockarch.org">RACcess</a>. You can track their status using your RACcess account.<br/ > <br />Requests to access archival records in the Reading Room are processed between 10am-3pm on days when the Rockefeller Archive Center is open.</p>
           }
           this.handleConfirmData(title, message);
         })
@@ -107,11 +101,11 @@
           const title = modal === "email" ? "Email Sent" : "Requests Delivered"
           var message = ""
           if (modal === "email") {
-            message = `Selected items in your list have been emailed to ${submitted.email}`
+            message = <p>{`Selected items in your list have been emailed to ${submitted.email}`}</p>
           } else if (modal === "duplication") {
-            message = <>Your requests have been submitted to <a href='https://raccess.rockarch.org'>RACcess</a>. You can track their status using your RACcess account.</>
+            message = <p>Your requests have been submitted to <a href="https://raccess.rockarch.org">RACcess</a>. You can track their status using your RACcess account.</p>
           } else {
-            message = <>Your requests have been submitted to <a href='https://raccess.rockarch.org'>RACcess</a>. You can track their status using your RACcess account.<br/ ><br />Requests to access archival records in the Reading Room are processed between 10am-3pm on days when the Rockefeller Archive Center is open.</>
+            message = <p>Your requests have been submitted to <a href="https://raccess.rockarch.org">RACcess</a>. You can track their status using your RACcess account.<br/ ><br />Requests to access archival records in the Reading Room are processed between 10am-3pm on days when the Rockefeller Archive Center is open.</p>
           }
           this.handleConfirmData(title, message);
           /** end testing code */
