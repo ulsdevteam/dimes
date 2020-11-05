@@ -182,7 +182,6 @@ export const ReadingRoomRequestModal = props => (
           if (!values.scheduledDate) errors.scheduledDate = 'Please provide the date of your research visit.';
           if (!values.recaptcha) errors.recaptcha = 'Please complete this field.';
           if (!values.items.length) errors.items = 'No items have been selected to submit.'
-          console.log(errors)
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
