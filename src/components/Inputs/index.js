@@ -105,7 +105,6 @@ DateInput.propTypes = {
 
 
 export const SelectInput = props => {
-  const itemToString = item => (item ? item.label : "")
   const selectedItem = props.options.find(i => i.value === props.selectedItem)
   const {
     highlightedIndex,
@@ -116,7 +115,6 @@ export const SelectInput = props => {
     getItemProps,
   } = useSelect({
     items: props.options,
-    itemToString: itemToString,
     selectedItem: props.selectedItem,
     onSelectedItemChange: props.onChange,
    })
