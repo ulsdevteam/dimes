@@ -125,7 +125,7 @@ export const SelectInput = props => {
     <div className={classnames("select__wrapper", `${props.className}__wrapper`, {"hide-label": props.hideLabel})} required={props.required}>
       <input type="hidden" name={props.name} value={selectedItem && selectedItem.value} />
       <label {...getLabelProps()}>{props.label}</label>
-      <button id={props.name} name={props.name} className={classnames("select__control", `${props.className}__control`)} type="button" {...getToggleButtonProps()}>
+      <button className={classnames("select__control", `${props.className}__control`)} type="button" {...getToggleButtonProps()}>
         {selectedItem && selectedItem.label}
         <MaterialIcon icon={props.iconAfter ? props.iconAfter : "unfold_more"} />
       </button>

@@ -287,7 +287,7 @@ export const DuplicationRequestModal = props => {
           <Formik
             enableReinitialize={true}
             initialValues={{
-              format: "",
+              format: format,
               description: "Entire folder",
               questions: "",
               notes: "",
@@ -333,7 +333,7 @@ export const DuplicationRequestModal = props => {
                   selectedItem={format || ""} />
                 <ErrorMessage
                   id="format-error"
-                  name="forman"
+                  name="format"
                   component="div"
                   className="modal-form__error" />
               </div>
