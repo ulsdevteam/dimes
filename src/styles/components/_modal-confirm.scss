@@ -4,7 +4,6 @@
   top: $confirm-modal-content-margin;
   left: $confirm-modal-content-margin;
   right: $confirm-modal-content-margin;
-  bottom: $confirm-modal-content-margin;
   border: 1px solid $dark-gray;
   background: rgb(255, 255, 255);
   border-radius: 3px;
@@ -14,7 +13,6 @@
     top: $confirm-modal-content-margin-lg;
     left: $confirm-modal-content-margin-lg;
     right: $confirm-modal-content-margin-lg;
-    bottom: $confirm-modal-content-margin-lg;
   }
 }
 
@@ -24,11 +22,11 @@
   font-size: 18px;
   display: flex;
   justify-content: center;
-  @media screen and (min-width: $break-lg) {
-    align-items: center;
-  }
+  flex-wrap: wrap;
 }
 
 .confirm-buttons {
+  width: 100%;
+  text-align: center;
   margin-top: 20px;
 }

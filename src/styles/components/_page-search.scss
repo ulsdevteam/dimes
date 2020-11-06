@@ -71,29 +71,27 @@
   }
 }
 
-
-.select__sort--wrapper {
+.select__sort__wrapper {
   position: relative;
   display: inline-block;
   box-sizing: border-box;
   margin-left: 16px;
 }
 
-.select__sort--wrapper .material-icons {
-  font-size: 20px;
+.select__sort__control > .material-icons {
   top: 12px;
   right: 10px;
-  position: absolute;
-  pointer-events: none;
 }
 
-.select__sort select {
-  @include input-text;
+.select__sort__control {
   font-size: 14px;
-  background-color: $pure-white;
-  border-radius: 0px;
-  border: 1px solid $dark-gray;
   padding: 0px 15px;
   height: 45px;
   width: 200px;
+  border: 1px solid $dark-gray;
+}
+
+.select__sort__option {
+  font-size: 14px;
+  padding: 10px 15px;
 }

@@ -4,7 +4,7 @@ import queryString from "query-string";
 import Skeleton from 'react-loading-skeleton';
 import { Helmet } from "react-helmet";
 import Button from "../Button";
-import { SelectInput, SelectOption } from "../Inputs"
+import { SelectInput } from "../Inputs"
 import { SearchSkeleton } from "../LoadingSkeleton";
 import { CollectionHitsModal, FacetModal } from "../ModalSearch";
 import { SearchPagination } from "../Pagination";
@@ -143,9 +143,9 @@ class PageSearch extends Component {
     this.executeSearch(params)
   };
 
-  handleSortChange = (event) => {
+  handleSortChange = value => {
     var params = {...this.state.params}
-    event.target.value ? params.sort = event.target.value : delete params["sort"]
+    value ? params.sort = value : delete params["sort"]
     delete params.offset
     this.executeSearch(params);
   }
@@ -158,6 +158,12 @@ class PageSearch extends Component {
     this.setState({ hitsIsOpen: !this.state.hitsIsOpen })
     this.setState({ hitsData: {} })
   }
+
+  sortOptions = [
+    {value: "", label: "Sort by relevance"},
+    {value: "title", label: "Sort by title"},
+    {value: "creator", label: "Sort by creator name"}
+  ]
 
   render() {
     return (
@@ -189,18 +195,15 @@ class PageSearch extends Component {
                   label="Filters"
                   iconBefore="filter_alt"
                   className="btn--filter" />
-                <div className="select__sort--wrapper">
-                  <SelectInput
-                    className="hide-label select__sort"
-                    handleChange={this.handleSortChange}
-                    id="sort"
-                    label="Sort search results"
-                    defaultValue={this.state.params.sort} >
-                      <SelectOption value="" label="Sort by relevance" />
-                      <SelectOption value="title" label="Sort by title" />
-                      <SelectOption value="creator" label="Sort by creator name" />
-                  </SelectInput>
-                </div>
+                <SelectInput
+                  className="select__sort"
+                  hideLabel={true}
+                  id="sort"
+                  name="sort"
+                  onChange={({selectedItem}) => this.handleSortChange(selectedItem.value)}
+                  label="Sort search results"
+                  selectedItem={this.state.params.sort || ""}
+                  options={this.sortOptions} />
               </div>
               <div className="results__pagination">
                 {this.state.inProgress ?

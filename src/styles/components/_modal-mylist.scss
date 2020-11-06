@@ -37,7 +37,7 @@
   }
 }
 
-.modal-form input, .modal-form textarea, .modal-form select {
+.modal-form input, .modal-form textarea, .modal-form .select__modal__control {
   width: 100%;
   border: 1px solid $dark-gray;
   padding: 10px;
@@ -48,16 +48,19 @@
   }
 }
 
-.select__modal {
-  position: relative;
-}
-
-.select__modal .material-icons {
+.select__modal__control .material-icons {
   font-size: 20px;
   top: 25px;
   right: 10px;
-  position: absolute;
-  pointer-events: none;
+}
+
+.select__modal__menu {
+  font-size: 14px;
+  top: 16px !important;
+}
+
+.select__modal__option {
+  padding: 5px 10px;
 }
 
 .modal-form label {

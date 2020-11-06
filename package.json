@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
+    "downshift": "^6.0.6",
     "formik": "^2.1.5",
     "mirador": "^3.0.0-rc.7",
     "node-sass": "^4.14.1",
@@ -24,8 +25,7 @@
     "react-modal": "^3.11.2",
     "react-paginate": "^6.5.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
-    "react-select": "^3.1.0"
+    "react-scripts": "3.4.1"
   },
   "scripts": {
     "start": "react-scripts start",

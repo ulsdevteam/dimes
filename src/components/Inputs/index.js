@@ -7,6 +7,7 @@ import {
   DatePickerTable,
   DatePickerButton,
   DatePickerCalendar} from "@reecelucas/react-datepicker";
+import {useSelect} from "downshift";
 import MaterialIcon from "../MaterialIcon";
 import classnames from "classnames";
 import "./styles.scss";
@@ -102,38 +103,56 @@ DateInput.propTypes = {
   label: PropTypes.string.isRequired,
 };
 
-export const SelectInput = props => (
-  <div className={props.className} required={props.required}>
-    <InputLabel {...props} />
-    <select
-      name={props.id}
-      id={props.id}
-      defaultValue={props.defaultValue}
-      value={props.value}
-      onChange={props.handleChange}>
-        {props.children}
-    </select>
-    <MaterialIcon icon="unfold_more" />
-  </div>
-)
 
-SelectInput.propTypes = {
-  className: PropTypes.string,
-  handleChange: PropTypes.func,
-  id: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  required: PropTypes.bool
+export const SelectInput = props => {
+  const selectedItem = props.options.find(i => i.value === props.selectedItem)
+  const {
+    highlightedIndex,
+    isOpen,
+    getToggleButtonProps,
+    getLabelProps,
+    getMenuProps,
+    getItemProps,
+  } = useSelect({
+    items: props.options,
+    selectedItem: props.selectedItem,
+    onSelectedItemChange: props.onChange,
+   })
+
+  return (
+    <div className={classnames("select__wrapper", `${props.className}__wrapper`, {"hide-label": props.hideLabel})} required={props.required}>
+      <input type="hidden" name={props.name} value={selectedItem && selectedItem.value} />
+      <label {...getLabelProps()}>{props.label}</label>
+      <button className={classnames("select__control", `${props.className}__control`)} type="button" {...getToggleButtonProps()}>
+        {selectedItem && selectedItem.label}
+        <MaterialIcon icon={props.iconAfter ? props.iconAfter : "unfold_more"} />
+      </button>
+      <ul className={classnames("select__menu", `${props.className}__menu`, {"open": isOpen})} {...getMenuProps()}>
+        {isOpen &&
+          props.options.map((option, index) => (
+            <li className={classnames(
+                "select__option",
+                `${props.className}__option`,
+                {"is-focused": index === highlightedIndex},
+                {"is-selected": option === selectedItem}
+              )}
+              key={index}
+              {...getItemProps({ option: option.label, index })} >
+              {option.label}
+            </li>
+          ))}
+      </ul>
+    </div>
+  )
 }
 
-export const SelectOption = ({ label, value }) => (
-  <option value={value} >
-    {label}
-  </option>
-)
-
-SelectOption.propTypes = {
+SelectInput.propTypes = {
+  className: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  value: PropTypes.string
+  onChange: PropTypes.func.isRequired,
+  options: PropTypes.array.isRequired,
+  required: PropTypes.bool
 }
 
 export const TextInput = props => (

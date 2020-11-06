@@ -203,3 +203,54 @@ label {
     }
   }
 }
+
+.select__wrapper {
+  position: relative;
+}
+
+.select__control {
+  @include input-text;
+  cursor: pointer;
+  background-color: $pure-white;
+  border-radius: 0px;
+  text-align: left;
+  & > .material-icons {
+    position: absolute;
+    pointer-events: none;
+  }
+}
+
+.select__menu {
+  position: absolute;
+  background-color: $pure-white;
+  border-radius: 0;
+  box-sizing: border-box;
+  list-style: none;
+  top: 0px;
+  padding-left: 0;
+  margin: 0;
+  width: 100%;
+  z-index: 999;
+  &.open {
+    border: 1px solid $dark-gray;
+  }
+}
+
+.select__option {
+  font-family: $sans-serif-stack;
+  cursor: pointer;
+  &.is-focused {
+    background: $lighter-gray;
+  }
+  &.is-selected {
+    font-weight: 700;
+    &::after {
+      @extend .material-icons;
+      font-size: 20px;
+      content: "check";
+      position: absolute;
+      right: 18px;
+      color: $burnt-orange;
+    }
+  }
+}

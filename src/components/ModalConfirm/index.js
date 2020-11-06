@@ -20,7 +20,7 @@ const ModalConfirm = props => (
     </div>
     <div className="modal-body">
       <div className="modal-message">
-        <p>{props.message}</p>
+        {props.message}
       </div>
     </div>
   </Modal>
