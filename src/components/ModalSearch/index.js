@@ -39,7 +39,7 @@ export const FacetModal = props => {
         </button>
       </div>
       <div className="modal-body">
-        <Facet>
+        <Facet title="View Online">
           <CheckBoxInput
             id="online"
             name="true"
