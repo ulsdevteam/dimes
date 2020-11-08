@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
 import Button from "../Button";
-import CollectionHits from "../CollectionHits";
 import Facet from "../Facet";
 import { CheckBoxInput, YearInput } from "../Inputs";
 import MaterialIcon from "../MaterialIcon";
@@ -91,48 +90,6 @@ FacetModal.propTypes = {
   data: PropTypes.object.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleDateChange: PropTypes.func.isRequired,
-  isOpen: PropTypes.bool.isRequired,
-  params: PropTypes.object.isRequired,
-  toggleModal: PropTypes.func.isRequired,
-}
-
-export const CollectionHitsModal = props => {
-  return (
-    <Modal
-      appElement={props.appElement ? props.appElement : Modal.setAppElement("#root")}
-      isOpen={props.isOpen}
-      onRequestClose={props.toggleModal}
-      className="modal-content--hits"
-      overlayClassName={{
-        base: "modal-overlay--hits slide--left",
-        afterOpen: "slide--left--after-open",
-        beforeClose: "slide--left--before-close"
-      }}
-      closeTimeoutMS={200} >
-      <div className="modal-header--search">
-        <h2 className="modal-header__title">Inside This Collection</h2>
-        <button className="modal-header__button" aria-label="Close" onClick={props.toggleModal}>
-          <MaterialIcon icon="close"/>
-        </button>
-      </div>
-      <div className="modal-body">
-        <CollectionHits
-          collection={props.collection}
-          children={props.children}
-          isChildrenLoading={props.isChildrenLoading}
-          isCollectionLoading={props.isCollectionLoading}
-          params={props.params} />
-      </div>
-    </Modal>
-  )
-}
-
-CollectionHitsModal.propTypes = {
-  appElement: PropTypes.object,
-  children: PropTypes.array.isRequired,
-  collection: PropTypes.object.isRequired,
-  isChildrenLoading: PropTypes.bool.isRequired,
-  isCollectionLoading: PropTypes.bool.isRequired,
   isOpen: PropTypes.bool.isRequired,
   params: PropTypes.object.isRequired,
   toggleModal: PropTypes.func.isRequired,

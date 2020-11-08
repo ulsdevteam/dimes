@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet";
 import Button from "../Button";
 import { SelectInput } from "../Inputs"
 import { SearchSkeleton } from "../LoadingSkeleton";
-import { CollectionHitsModal, FacetModal } from "../ModalSearch";
+import { FacetModal } from "../ModalSearch";
 import { SearchPagination } from "../Pagination";
 import SearchForm from "../SearchForm";
 import TileList from "../Tile";
@@ -26,11 +26,6 @@ class PageSearch extends Component {
       startItem: 0,
       endItem: 0,
       resultsCount: 0,
-      hitsChildren: [],
-      hitsChildrenIsLoading: false,
-      hitsCollection: {},
-      hitsCollectionIsLoading: false,
-      hitsIsOpen: false,
       facetIsOpen: false,
       facetData: {},
     };
@@ -91,33 +86,6 @@ class PageSearch extends Component {
     this.executeSearch(params);
   }
 
-  getChildrenPage = uri => {
-    axios
-      .get(uri)
-      .then(res => {
-        this.setState({ hitsChildren: [...this.state.hitsChildren].concat(res.data.results) })
-        this.state.hitsChildrenIsLoading && this.setState({ hitsChildrenIsLoading: false })
-        res.data.next && this.getChildrenPage(res.data.next)
-      })
-      .catch(err => console.log(err))
-  }
-
-  handleHitCountClick = uri => {
-    this.setState(
-      { hitsChildrenIsLoading: true, hitsCollectionIsLoading: true, hitsChildren: []},
-      () => this.toggleHitsModal()
-    )
-    axios
-      .get(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${uri}`, this.state.params))
-      .then(res => {
-        this.setState({ hitsCollection: res.data })
-        this.setState({ hitsCollectionIsLoading: false })
-      })
-      .catch(err => console.log(err))
-    const filteredParams = {...this.state.params, limit: 5}
-    this.getChildrenPage(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${uri}/children/`, filteredParams))
-  }
-
   /** Pushes changes to facet checkboxes to url and executes search */
   handleFacetChange = (event, k) => {
     var params = {...this.state.params}
@@ -152,11 +120,6 @@ class PageSearch extends Component {
 
   toggleFacetModal = () => {
     this.setState({ facetIsOpen: !this.state.facetIsOpen })
-  }
-
-  toggleHitsModal = () => {
-    this.setState({ hitsIsOpen: !this.state.hitsIsOpen })
-    this.setState({ hitsData: {} })
   }
 
   sortOptions = [
@@ -220,7 +183,6 @@ class PageSearch extends Component {
               (<SearchSkeleton />) :
               (<TileList
                 items={this.state.items}
-                handleHitCountClick={this.handleHitCountClick}
                 params={this.state.params} />)}
               <div className="results__footer">
                 <p className="results__summary">
@@ -246,14 +208,6 @@ class PageSearch extends Component {
           params={this.state.params}
           handleChange={this.handleFacetChange}
           handleDateChange={this.handleDateFacetChange} />
-        <CollectionHitsModal
-          children={this.state.hitsChildren}
-          collection={this.state.hitsCollection}
-          isCollectionLoading={this.state.hitsCollectionIsLoading}
-          isChildrenLoading={this.state.hitsChildrenIsLoading}
-          isOpen={this.state.hitsIsOpen}
-          params={this.state.params}
-          toggleModal={this.toggleHitsModal} />
       </React.Fragment>
     )
   }
