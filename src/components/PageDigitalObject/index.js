@@ -61,7 +61,7 @@ const configs = {
       canvas: true,
   },
   windows: [
-    { manifestId: "https://raciif-dev.s3.amazonaws.com/manifests/f430dec48d764f218c2147a846e28704" }
+    { manifestId: "https://raciif-dev.s3.amazonaws.com/manifests/PSa6w7BFSndije9qHzAGPV" }
   ]
 }
 
