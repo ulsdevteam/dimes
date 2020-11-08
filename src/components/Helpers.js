@@ -7,9 +7,9 @@ export const dateString = dates => {
 
 
 /** Boolean indicator for the presence of access and use notes */
-export const hasAccessAndUse = notes => {
-  const access = notes && notes.filter(n => {return n.title === "Conditions Governing Access"}).length
-  const use = notes && notes.filter(n => {return n.title === "Conditions Governing Use"}).length
+export const hasAccessOrUse = notes => {
+  const access = notes && notes.filter(n => {return n.type === "accessrestrict"}).length
+  const use = notes && notes.filter(n => {return n.type === "userestrict"}).length
   return access || use
 }
 
