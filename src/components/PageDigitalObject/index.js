@@ -1,10 +1,12 @@
 import React from 'react';
+import MaterialIcon from "../MaterialIcon";
 import Viewer from "../Viewer"
+import "./styles.scss"
 
 const PageDigitalObject = props => {
 
   const configs = {
-    id: "root",
+    id: "mirador",
     selectedTheme: "rac",
     themes: {
       rac:{
@@ -71,7 +73,14 @@ const PageDigitalObject = props => {
   }
 
   return (
-    <Viewer config={configs} plugins={[]} />
+    <div className="digital">
+      <nav>
+        <button onClick={() => props.history.goBack()} className="btn btn--back-item">
+          <MaterialIcon icon="keyboard_arrow_left"/>Back to Item Details
+        </button>
+      </nav>
+      <Viewer config={configs} plugins={[]} />
+    </div>
   )
 }
 
