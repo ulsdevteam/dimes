@@ -142,6 +142,13 @@
   }
 }
 
+.btn--new-search {
+  @extend .btn--back;
+  @extend .btn--sm;
+  position: absolute;
+  margin-left: $gutters-default;
+}
+
 .btn--search {
   @extend .btn--block;
   @extend .btn--orange;
