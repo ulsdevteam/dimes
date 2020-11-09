@@ -12,7 +12,7 @@
     "classnames": "^2.2.6",
     "downshift": "^6.0.6",
     "formik": "^2.1.5",
-    "mirador": "^3.0.0-rc.7",
+    "mirador": "^3.0.0",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-accessible-dropdown-menu-hook": "^2.1.1",
