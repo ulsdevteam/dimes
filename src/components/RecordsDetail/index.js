@@ -88,13 +88,13 @@ const PanelFoundInSection = ({ ancestors, isItemLoading, params }) => (
     (null)
 )
 
-const PanelLinkedListSection = ({ listData, title }) =>  (
+const PanelLinkedListSection = ({ listData, params, title }) =>  (
   listData ?
     (<div className="panel__section">
       <h3 className="panel__heading">{title}</h3>
       <ul className="panel__list--unstyled">
         {listData.map((item, index) => (
-        <li key={index} className="panel__text"><a href={item.uri}>{item.title}</a></li>))}
+        <li key={index} className="panel__text"><a href={appendParams(item.uri, params)}>{item.title}</a></li>))}
       </ul>
     </div>) :
     (null)
@@ -181,6 +181,7 @@ const RecordsDetail = props => {
               <div className="panel__section--flex">
                 <PanelLinkedListSection
                   title="Creators"
+                  params={props.params}
                   listData={props.item.creators} />
                 <PanelTextSection
                   title="Dates"
