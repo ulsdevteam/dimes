@@ -80,7 +80,6 @@ export const EmailModal = props => (
     list={props.list}
     form={
       <Formik
-        enableReinitialize={true}
         initialValues={{email: "", subject: "", message: "", items: props.submitList, recaptcha: ""}}
         validate={values => {
           const errors = {};
@@ -175,7 +174,6 @@ export const ReadingRoomRequestModal = props => (
     list={props.list}
     form={
       <Formik
-        enableReinitialize={true}
         initialValues={{scheduledDate: new Date(), questions: "", notes: "", items: props.submitList, recaptcha: ""}}
         validate={values => {
           const errors = {};
@@ -285,7 +283,6 @@ export const DuplicationRequestModal = props => {
             <strong>Please note:</strong> if you want a cost estimate for your order, email an archivist at <a href="mailto:archive@rockarch.org">archive@rockarch.org</a>.
           </div>
           <Formik
-            enableReinitialize={true}
             initialValues={{
               format: format,
               description: "Entire folder",
