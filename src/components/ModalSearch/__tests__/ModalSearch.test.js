@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
-import { CollectionHitsModal, FacetModal } from '..';
+import { FacetModal } from '..';
 
 import { facet } from '../../../__fixtures__/facet';
 
