@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { HitCountButton } from "../HitCount";
+import { HitCountBadge } from "../HitCount";
 import MaterialIcon from "../MaterialIcon";
 import { appendParams } from "../Helpers";
 import classnames from "classnames";
@@ -24,24 +24,22 @@ const CategoryLabel = ({ category }) => {
   )
 }
 
-const Tile = ({ category, date, handleHitCountClick, hideHitCount, hit_count, params, title, uri }) => (
+const Tile = ({ category, date, hit_count, params, title, uri }) => (
   <li className="tile">
     <a className="tile__title" href={appendParams(uri, params)}>{title}</a>
     {category ? (<CategoryLabel category={category} />) : null }
-    {hit_count && category === "collection" && !hideHitCount ?
-      (<HitCountButton className="hit-count--tile" hitCount={hit_count} handleClick={() => {handleHitCountClick && handleHitCountClick(uri)}} />) :
+    {hit_count && category === "collection" ?
+      (<HitCountBadge className="hit-count--tile" hitCount={hit_count} />) :
       (null)
     }
     <p className="tile__date">{date}</p>
   </li>)
 
-const TileList = ({ handleHitCountClick, hideHitCount, items, params }) => {
+const TileList = ({ items, params }) => {
   const listItems = items.map((item) =>
     <Tile
       key={item.uri}
       {...item}
-      handleHitCountClick={handleHitCountClick}
-      hideHitCount={hideHitCount}
       params={params}
       date={item.dates?.length ? item.dates.map(d => d.expression).join(", ") : null} />
   );
