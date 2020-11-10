@@ -75,9 +75,9 @@ const PageDigitalObject = props => {
   return (
     <div className="digital">
       <nav>
-        <button onClick={() => props.history.goBack()} className="btn btn--back-item">
+        <a href={document.referrer} className="btn btn--back-item">
           <MaterialIcon icon="keyboard_arrow_left"/>Back to Item Details
-        </button>
+        </a>
       </nav>
       <Viewer config={configs} plugins={[]} />
     </div>
