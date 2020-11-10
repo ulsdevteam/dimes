@@ -13,11 +13,11 @@ import "./styles.scss"
 
 const SubmitListInput = ({ submitList }) => {
 
-  const formik = useFormikContext();
+  const { setFieldValue } = useFormikContext();
 
   useEffect(() => {
-    formik.setFieldValue("items", submitList)
-  }, [submitList])
+    setFieldValue("items", submitList)
+  }, [setFieldValue, submitList])
 
   return (
     <Field
@@ -28,7 +28,7 @@ const SubmitListInput = ({ submitList }) => {
 
 
 const FormatSelectInput = () => {
-  const formik = useFormikContext();
+  const { setFieldValue } = useFormikContext();
   const [format, setFormat] = useState("")
 
   const formatOptions = [
@@ -40,8 +40,8 @@ const FormatSelectInput = () => {
   ]
 
   useEffect(() => {
-    formik.setFieldValue("format", format)
-  }, [format])
+    setFieldValue("format", format)
+  }, [format, setFieldValue])
 
   return (
     <div className="form-group">
