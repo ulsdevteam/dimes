@@ -133,6 +133,12 @@
   }
 }
 
+.btn--black {
+  background: $pure-black;
+  color: $pure-white;
+  border: 1px solid $pure-white;
+}
+
 .btn--back {
   @extend .btn--gray;
   @extend .btn--sm;
@@ -140,6 +146,25 @@
   @media screen and (min-width: $break-md)  {
     margin-top: 30px;
   }
+}
+
+.btn--back-item {
+  @extend .btn--black;
+  @extend .btn--sm;
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  z-index: 999;
+  &:hover {
+    color: $light-med-gray;
+  }
+}
+
+.btn--new-search {
+  @extend .btn--back;
+  @extend .btn--sm;
+  position: absolute;
+  margin-left: $gutters-default;
 }
 
 .btn--search {

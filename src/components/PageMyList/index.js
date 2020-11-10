@@ -5,6 +5,7 @@
   import Button from "../Button";
   import { MyListDropdown } from "../Dropdown";
   import { DuplicationRequestModal, EmailModal, ReadingRoomRequestModal } from "../ModalMyList";
+  import MaterialIcon from "../MaterialIcon";
   import ModalConfirm from "../ModalConfirm";
   import MyListExportActions from "../MyListExportActions";
   import MyListSidebar from "../MyListSidebar";
@@ -201,6 +202,11 @@
             <title>DIMES: My List</title>
           </Helmet>
           <div className="container mylist flex">
+            <nav>
+              <a href="/" className="btn btn--new-search">
+                <MaterialIcon icon="keyboard_arrow_left"/>Start a New Search
+              </a>
+            </nav>
             <main id="main" role="main">
               <div className="mylist__header">
                 <h1 className="mylist__title">My List</h1>
