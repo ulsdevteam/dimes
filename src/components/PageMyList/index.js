@@ -203,7 +203,7 @@
           </Helmet>
           <div className="container mylist flex">
             <nav>
-              <a href="/search" className="btn btn--new-search">
+              <a href="/" className="btn btn--new-search">
                 <MaterialIcon icon="keyboard_arrow_left"/>Start a New Search
               </a>
             </nav>
