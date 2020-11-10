@@ -13,7 +13,7 @@ import ListToggleButton from "../ListToggleButton";
 import MaterialIcon from "../MaterialIcon";
 import QueryHighlighter from "../QueryHighlighter";
 import { DetailSkeleton, FoundInItemSkeleton } from "../LoadingSkeleton";
-import { appendParams, dateString, hasAccessAndUse, noteText } from "../Helpers";
+import { appendParams, dateString, hasAccessOrUse, noteText } from "../Helpers";
 import { isItemSaved } from "../MyListHelpers";
 import classnames from "classnames";
 import "./styles.scss";
@@ -204,7 +204,7 @@ const RecordsDetail = props => {
             }
         </AccordionItemPanel>
       </AccordionItem>
-      { hasAccessAndUse(props.item.notes) ?
+      { hasAccessOrUse(props.item.notes) ?
         (<AccordionItem className="accordion__item" uuid="accessAndUse">
           <AccordionItemHeading className="accordion__heading" aria-level={2}>
             <AccordionItemButton className="accordion__button">Access and Use</AccordionItemButton>
