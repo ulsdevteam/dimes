@@ -114,7 +114,7 @@ class RecordsChild extends Component {
         <p className="child__text text--truncate">
           <QueryHighlighter query={params.query} text={item.description} />
         </p>
-        {item.hit_count ? (<HitCountBadge className="hit-count--records" hitCount={item.hit_count} />) : null}
+        {params.query && item.hit_count ? (<HitCountBadge className="hit-count--records" hitCount={item.hit_count} />) : null}
       </div>) :
       (<AccordionItem
         preExpanded={preExpanded}
@@ -138,7 +138,7 @@ class RecordsChild extends Component {
             <p className="child__text text--truncate">
               <QueryHighlighter query={params.query} text={item.description} />
             </p>
-            {item.hit_count ? (<HitCountBadge className="hit-count--records-" hitCount={item.hit_count} />) : null}
+            {params.query && item.hit_count ? (<HitCountBadge className="hit-count--records-" hitCount={item.hit_count} />) : null}
             <MaterialIcon icon="expand_more" />
           </AccordionItemButton>
         </AccordionItemHeading>
