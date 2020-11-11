@@ -137,7 +137,7 @@ export const SelectInput = props => {
                 {"is-selected": option === selectedItem}
               )}
               key={index}
-              {...getItemProps({ option: option.label, index })} >
+              {...getItemProps({ option: option.value, index })} >
               {option.label}
             </li>
           ))}
