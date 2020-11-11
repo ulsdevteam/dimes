@@ -136,10 +136,14 @@ const RecordsDetail = props => {
     setIsSaved(saved)
   }, [props.isItemLoading, props.item, props.myListCount])
 
+  const searchUrl = (
+    props.params && props.params.query ? appendParams("/search", props.params) : "/"
+  )
+
   return (
   <div className={classnames("records__detail", {"hidden": props.isContentShown})}>
     <nav>
-      <a href={appendParams("/search", props.params)} className="btn btn--back">
+      <a href={searchUrl} className="btn btn--back">
         <MaterialIcon icon="keyboard_arrow_left"/>Back to Search
       </a>
     </nav>

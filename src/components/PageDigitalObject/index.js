@@ -72,10 +72,19 @@ const PageDigitalObject = props => {
     ]
   }
 
+  console.log(document.referrer)
+  console.log(props.match.url)
+  console.log(document.referrer.includes(props.match.url))
+
+  const itemUrl = (
+    document.referrer && document.referrer.includes(`/${props.match.params.type}/${props.match.params.id}`) && !document.referrer.endsWith("/view") ?
+      document.referrer : `/${props.match.params.type}/${props.match.params.id}`
+  )
+
   return (
     <div className="digital">
       <nav>
-        <a href={document.referrer} className="btn btn--back-item">
+        <a href={itemUrl} className="btn btn--back-item">
           <MaterialIcon icon="keyboard_arrow_left"/>Back to Item Details
         </a>
       </nav>
