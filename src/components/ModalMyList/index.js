@@ -33,9 +33,10 @@ const FormatSelectInput = () => {
 
   const formatOptions = [
     {value: "", label: "Select a format"},
+    {value: "MP3", label: "Audio (MP3)"},
     {value: "JPEG", label: "JPEG"},
+    {value: "MP4", label: "Moving image (MP4)"},
     {value: "PDF", label: "PDF"},
-    {value: "Photocopy", label: "Photocopy"},
     {value: "TIFF", label: "TIFF"}
   ]
 
