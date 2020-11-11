@@ -9,6 +9,10 @@ form {
   width: 100%;
 }
 
+#main {
+  margin-top: 60px;
+}
+
 .wrapper {
   display: flex;
   justify-content: center;
@@ -273,7 +277,7 @@ form {
   }
 }
 
-// NOTE: use of these styles was causing wierd conflicts in Mirador. 
+// NOTE: use of these styles was causing wierd conflicts in Mirador.
 // These should be targeted at a class, not a generic HTML element.
 //
 // section {
