@@ -21,6 +21,7 @@
         savedList: [],
         submitList: [],
         isLoading: true,
+        isRestrictionsLoading: true,
         email: {isOpen: false},
         readingRoom: {isOpen: false},
         duplication: {isOpen: false},
@@ -38,11 +39,15 @@
     }
 
     /** Returns a list of ArchivesSpace URIs for checked items in list */
-    constructSubmitList = (list) => {
+    constructSubmitList = (list, allItems) => {
       var submitList = [];
       for (const group of list) {
         for (const item of group.items) {
-          item.isChecked && submitList.push(item.archivesspace_uri)
+          if (allItems) {
+            submitList.push(item.archivesspace_uri)
+          } else {
+            item.isChecked && submitList.push(item.archivesspace_uri)
+          }
         }
       }
       return submitList
@@ -112,7 +117,27 @@
           /** end testing code */
           this.toggleModal("confirm")
         });
+    }
 
+    combineParsedData = (list, parsed) => {
+      const uriList = this.constructSubmitList(list, true)
+      axios
+        .post(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/process-request/parse`, {items: uriList})
+        .then(res => {
+          var combinedList = [];
+          for (const group of list) {
+            var newGroup = {...group}
+            group.items.map(item => {
+              var parsedItem = res.data.items.find(i => i.uri === item.archivesspace_uri)
+              item.submit = parsedItem.submit
+              item.submitReason = parsedItem.submit_reason
+              return item
+            })
+            combinedList.push(newGroup);
+          }
+        })
+        .catch(err => console.log(err))
+        .then(() => this.setState({ isRestrictionsLoading: false }));
     }
 
     fetchList = () => {
@@ -120,7 +145,8 @@
       axios
         .post(`${process.env.REACT_APP_ARGO_BASEURL}/mylist`, {list: list})
         .then(res => {
-          this.setState({ savedList: res.data, submitList: this.constructSubmitList(res.data)})
+          this.setState({ savedList: res.data, submitList: this.constructSubmitList(res.data) })
+          this.combineParsedData(res.data)
         })
         .catch(err => console.log(err))
         .then(() => this.state.isLoading && this.setState({isLoading: false}));
@@ -139,7 +165,7 @@
         newGroup.items = group.items.filter(i => i.uri !== item.uri)
         newGroup.items.length && filteredList.push(newGroup);
       }
-      this.setState({ savedList: filteredList, submitList: this.constructSubmitList(filteredList) });
+      this.setState({ savedList: filteredList, submitList: this.constructSubmitList(filteredList) })
     }
 
     /** Returns a list with all unchecked items removed */
@@ -244,6 +270,7 @@
             {...this.state.readingRoom}
             handleChange={this.handleModalListChange}
             handleFormSubmit={this.handleFormSubmit}
+            isRestrictionsLoading={this.state.isRestrictionsLoading}
             list={this.state.savedList}
             submitList={this.state.submitList}
             toggleList={this.toggleList}
@@ -253,6 +280,7 @@
             {...this.state.duplication}
             handleChange={this.handleModalListChange}
             handleFormSubmit={this.handleFormSubmit}
+            isRestrictionsLoading={this.state.isRestrictionsLoading}
             list={this.state.savedList}
             submitList={this.state.submitList}
             toggleList={this.toggleList}

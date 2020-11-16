@@ -136,3 +136,8 @@ export const RecordsChildSkeleton = () => (
       ))}
   </ul>
 )
+
+
+export const RestrictionsSkeleton = () => (
+  <div><Skeleton /></div>
+)

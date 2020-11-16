@@ -102,8 +102,13 @@ const ModalMyList = (props) => (
     </div>
     <div className="modal-body">
       <div className="modal-list">
-        <ModalToggleListButton items={props.list} toggleList={props.toggleList} />
-        <ModalSavedItemList items={props.list} handleChange={props.handleChange} />
+        <ModalToggleListButton
+          items={props.list}
+          toggleList={props.toggleList} />
+        <ModalSavedItemList
+          items={props.list}
+          isRestrictionsLoading={props.isRestrictionsLoading}
+          handleChange={props.handleChange} />
       </div>
       <div className="modal-form">
         {props.form}
@@ -116,6 +121,7 @@ ModalMyList.propTypes = {
   appElement: PropTypes.object,
   handleChange: PropTypes.func,
   isOpen: PropTypes.bool.isRequired,
+  isRestrictionsLoading: PropTypes.bool,
   toggleModal: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   list: PropTypes.array.isRequired
@@ -219,6 +225,7 @@ export const ReadingRoomRequestModal = props => (
     title="Request in Reading Room"
     handleChange={props.handleChange}
     isOpen={props.isOpen}
+    isRestrictionsLoading={props.isRestrictionsLoading}
     toggleList={props.toggleList}
     toggleModal={props.toggleModal}
     list={props.list}
@@ -297,6 +304,7 @@ ReadingRoomRequestModal.propTypes = {
   handleChange: PropTypes.func,
   handleFormSubmit: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
+  isRestrictionsLoading: PropTypes.bool,
   list: PropTypes.array.isRequired,
   submitList: PropTypes.array.isRequired,
   toggleList: PropTypes.func.isRequired,
@@ -310,6 +318,7 @@ export const DuplicationRequestModal = props => (
     title="Request Copies"
     handleChange={props.handleChange}
     isOpen={props.isOpen}
+    isRestrictionsLoading={props.isRestrictionsLoading}
     toggleList={props.toggleList}
     toggleModal={props.toggleModal}
     list={props.list}
@@ -409,6 +418,7 @@ DuplicationRequestModal.propTypes = {
   handleChange: PropTypes.func,
   handleFormSubmit: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
+  isRestrictionsLoading: PropTypes.bool,
   list: PropTypes.array.isRequired,
   submitList: PropTypes.array.isRequired,
   toggleList: PropTypes.func.isRequired,
