@@ -12,10 +12,11 @@ const ModalSavedItem = props => (
       id={props.uri}
       checked={props.isChecked || false}
       label={props.title}
-      handleChange={props.handleChange} />
+      handleChange={props.handleChange}
+      disabled={!props.submit} />
     {props.isRestrictionsLoading ?
       (<RestrictionsSkeleton />) :
-      props.submit ? (null) : (<div className="modal-form__error">{props.submitReason}</div>)}
+      props.submitReason ? (<div className="modal-form__error">{props.submitReason}</div>) : (null)}
   </li>
 )
 

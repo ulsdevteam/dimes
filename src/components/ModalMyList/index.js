@@ -64,18 +64,18 @@ const FormatSelectInput = () => {
   )
 }
 
-const ModalToggleListButton = ({items, toggleList}) => {
+const ModalToggleListButton = ({isRestrictionsLoading, items, toggleList}) => {
 
   /** Returns false if any items are unchecked */
   const allSelected = items => {
-    return items.filter(g => g.items.filter(i => !i.isChecked).length).length ? false : true
+    return items.filter(g => g.items.filter(i => i.submit && !i.isChecked).length).length ? false : true
   }
 
   const [deselect, setDeselect] = useState(allSelected(items));
 
   useEffect(() => {
     setDeselect(allSelected(items))
-  }, [items])
+  }, [isRestrictionsLoading, items])
 
   return (
     <Button
@@ -103,6 +103,7 @@ const ModalMyList = (props) => (
     <div className="modal-body">
       <div className="modal-list">
         <ModalToggleListButton
+          isRestrictionsLoading={props.isRestrictionsLoading}
           items={props.list}
           toggleList={props.toggleList} />
         <ModalSavedItemList

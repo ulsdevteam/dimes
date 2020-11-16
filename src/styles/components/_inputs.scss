@@ -60,6 +60,9 @@ label {
   padding-left: 30px;
   cursor: pointer;
 }
+.checkbox:disabled + label {
+  cursor: not-allowed;
+}
 
 /* checkbox aspect */
 .checkbox:not(:checked) + label:before,

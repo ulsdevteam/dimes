@@ -203,7 +203,7 @@
     */
     toggleList = isCheckedValue => {
       const updatedList = this.state.savedList.map(g => {
-        const updatedGroupItems = g.items.map(i => ({...i, isChecked: isCheckedValue}))
+        const updatedGroupItems = g.items.map(i => ({...i, isChecked: i.submit ? isCheckedValue : i.isChecked }))
         return {...g, items: updatedGroupItems}
       })
       this.setState({ savedList: updatedList })
