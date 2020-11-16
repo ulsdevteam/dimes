@@ -124,6 +124,15 @@ label {
   color: $pure-white;
 }
 
+.checkbox:disabled + label:before {
+  background-color: $lighter-gray;
+  border: 1px solid $med-gray;
+}
+
+.checkbox:disabled + label {
+  color: $med-gray;
+}
+
 .dp__wrapper {
   margin-bottom: 2px;
 }
