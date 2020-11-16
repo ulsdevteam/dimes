@@ -20,6 +20,7 @@
       this.state = {
         savedList: [],
         submitList: [],
+        isDownloading: false,
         isLoading: true,
         isRestrictionsLoading: true,
         email: {isOpen: false},
@@ -53,12 +54,22 @@
       return submitList
     }
 
+    /* Requests CSV data and downloads a local file */
     downloadCsv = () => {
-      // TODO: what should happen if there are errors?
+      this.setState({ isDownloading: true })
       axios
-        .post(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/download-csv/`, this.state.savedList)
-        .then(res => { console.log(res.data) })
-        .catch(err => { console.log(err) });
+        .post(
+          `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/download-csv/`,
+          {items: this.constructSubmitList(this.state.savedList, true)})
+        .then(res => {
+          const blob = new Blob([res.data], { type: "text/csv" })
+          const link = document.createElement('a')
+          link.href = window.URL.createObjectURL(blob)
+          link.download = `dimes-${new Date().toISOString()}.csv`
+          link.click()
+        })
+        .catch(err => { console.log(err) })
+        .then(() => this.setState({ isDownloading: false }));
     }
 
     /**
@@ -237,6 +248,7 @@
               <div className="mylist__header">
                 <h1 className="mylist__title">My List</h1>
                 <MyListDropdown
+                  downloadCsv={this.downloadCsv}
                   duplicationRequest={() => this.toggleModal("duplication")}
                   emailList={() => this.toggleModal("email")}
                   readingRoomRequest={() => this.toggleModal("readingRoom")}
@@ -246,7 +258,8 @@
               <MyListExportActions
                   confirmDeleteAll={() => this.toggleModal("confirmDeleteAll")}
                   downloadCsv={this.downloadCsv}
-                  emailList={() => this.toggleModal("email")} />
+                  emailList={() => this.toggleModal("email")}
+                  isDownloading={this.state.isDownloading} />
               <SavedItemList
                 items={this.state.savedList}
                 isLoading={this.state.isLoading}

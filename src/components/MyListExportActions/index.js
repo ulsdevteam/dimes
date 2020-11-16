@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from "../Button";
+import classnames from "classnames";
 
 
-const MyListExportActions = ({ confirmDeleteAll, downloadCsv, emailList }) => (
+const MyListExportActions = ({ confirmDeleteAll, downloadCsv, emailList, isDownloading }) => (
   <div className="mylist__export-actions show-on-lg-up">
     <Button
       className="btn--orange btn--sm"
@@ -11,10 +12,11 @@ const MyListExportActions = ({ confirmDeleteAll, downloadCsv, emailList }) => (
       iconBefore="email"
       handleClick={emailList} />
     <Button
-      className="btn--orange btn--sm"
-      label="Download as .CSV"
-      iconBefore="get_app"
-      handleClick={downloadCsv} />
+      className={classnames("btn--orange", "btn--sm", {"icon-spin": isDownloading})}
+      label={isDownloading ? "Downloading" : "Download as .CSV"}
+      iconBefore={isDownloading ? "cached" : "get_app"}
+      handleClick={downloadCsv}
+      disabled={isDownloading} />
     <Button
       className="btn--gray btn--sm"
       label="Remove All Items"
@@ -26,6 +28,7 @@ MyListExportActions.propTypes = {
   confirmDeleteAll: PropTypes.func.isRequired,
   downloadCsv: PropTypes.func.isRequired,
   emailList: PropTypes.func.isRequired,
+  isDownloading: PropTypes.bool,
 }
 
 export default MyListExportActions
