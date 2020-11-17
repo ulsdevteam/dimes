@@ -31,15 +31,6 @@
   }
 }
 
-.btn.icon-spin {
-  & .material-icons {
-    animation-name: spin-counterclockwise;
-    animation-duration: 2500ms;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-  }
-}
-
 .btn--block {
   display: flex;
 }

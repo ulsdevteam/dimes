@@ -88,10 +88,13 @@
 
     handleFormSubmit = (uri, submitted, modal) => {
       this.toggleModal(modal);
+      const loadingTitle = modal === "email" ? "Sending Email" : "Delivering Requests"
+      const loadingMessage = <p className="icon-spin"><MaterialIcon icon="cached"/> Preparing items...</p>
+      this.handleConfirmData(loadingTitle, loadingMessage);
+      this.toggleModal("confirm");
       axios
         .post(uri, submitted)
         .then(res => {
-          this.toggleModal(modal);
           const title = modal === "email" ? "Email Sent" : "Requests Delivered"
           var message = ""
           if (modal === "email") {
@@ -109,9 +112,6 @@
           const message = `There was an error submitting your request. The error message was: ${err.toString()}`
           this.handleConfirmData(title, message);
         })
-        .then(() => {
-          this.toggleModal("confirm")
-        });
     }
 
     fetchList = () => {
