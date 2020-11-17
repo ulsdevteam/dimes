@@ -145,10 +145,10 @@
       window.open("mailto:archive@rockarch.org?subject=Scheduling a research appointment");
     }
 
-    setSubmit = (uri, submitValue) => {
+    setSubmit = (uri, submitValue, submitReason) => {
       const updatedList = this.state.savedList.map(g => {
         const updatedGroupItems = g.items.map(i => (
-          {...i, submit: i.uri === uri ? submitValue : i.submit }))
+          {...i, submit: i.uri === uri ? submitValue : i.submit, submitReason: i.uri === uri ? submitReason : i.submitReason}))
         return {...g, items: updatedGroupItems}
       })
       this.setState({ savedList: updatedList })

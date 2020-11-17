@@ -6,20 +6,7 @@ import { RestrictionsSkeleton } from "../LoadingSkeleton";
 import "./styles.scss";
 
 
-const ModalSavedItemsRestrictions = ({archivesspace_uri, setSubmit, uri}) => {
-  const [isRestrictionsLoading, setIsRestrictionsLoading] = useState(true)
-  const [submitReason, setSubmitReason] = useState("")
-
-  useEffect(() => {
-    axios
-      .post(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/process-request/parse`, {item: archivesspace_uri})
-      .then(res => {
-        setSubmit(uri, res.data.submit)
-        setSubmitReason(res.data.submit_reason)
-      })
-      .catch(err => console.log(err))
-      .then(() => setIsRestrictionsLoading(false));
-  }, [archivesspace_uri, setSubmit, uri])
+const ModalSavedItemsRestrictions = ({isRestrictionsLoading, submitReason}) => {
 
   return (
     isRestrictionsLoading ?
@@ -29,24 +16,41 @@ const ModalSavedItemsRestrictions = ({archivesspace_uri, setSubmit, uri}) => {
 }
 
 
-const ModalSavedItem = props => (
-  <li className="modal-saved-item">
-    <CheckBoxInput
-      className="checkbox--orange"
-      id={props.uri}
-      checked={props.isChecked || false}
-      label={props.title}
-      handleChange={props.handleChange}
-      disabled={!props.ignoreRestrictions && !props.submit} />
-    {props.ignoreRestrictions ?
-      (null) :
-      (<ModalSavedItemsRestrictions
-          archivesspace_uri={props.archivesspace_uri}
-          setSubmit={props.setSubmit}
-          uri={props.uri} />)
+const ModalSavedItem = props => {
+  const [isRestrictionsLoading, setIsRestrictionsLoading] = useState(false)
+
+  useEffect(() => {
+    if (!props.ignoreRestrictions && typeof props.submit === "undefined") {
+      setIsRestrictionsLoading(true)
+      axios
+        .post(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/process-request/parse`, {item: props.archivesspace_uri})
+        .then(res => {
+          props.setSubmit(props.uri, res.data.submit, res.data.submit_reason)
+        })
+        .catch(err => console.log(err))
+        .then(() => setIsRestrictionsLoading(false));
     }
-  </li>
-)
+  }, [props])
+
+  return (
+    <li className="modal-saved-item">
+      <CheckBoxInput
+        className="checkbox--orange"
+        id={props.uri}
+        checked={props.isChecked || false}
+        label={props.title}
+        handleChange={props.handleChange}
+        disabled={!props.ignoreRestrictions && !props.submit} />
+      {props.ignoreRestrictions ?
+        (null) :
+        (<ModalSavedItemsRestrictions
+            isRestrictionsLoading={isRestrictionsLoading}
+            setSubmit={props.setSubmit}
+            submitReason={props.submitReason} />)
+      }
+    </li>
+  )
+}
 
 ModalSavedItem.propTypes = {
   handleChange: PropTypes.func,
