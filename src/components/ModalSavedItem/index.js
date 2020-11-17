@@ -13,25 +13,30 @@ const ModalSavedItem = props => (
       checked={props.isChecked || false}
       label={props.title}
       handleChange={props.handleChange}
-      disabled={!props.submit} />
-    {props.isRestrictionsLoading ?
-      (<RestrictionsSkeleton />) :
-      props.submitReason ? (<div className="modal-form__error">{props.submitReason}</div>) : (null)}
+      disabled={!props.ignoreRestrictions && !props.submit} />
+    {props.ignoreRestrictions ?
+      (null) :
+      (props.isRestrictionsLoading ?
+        (<RestrictionsSkeleton />) :
+        props.submitReason ? (<div className="modal-form__error">{props.submitReason}</div>) : (null))
+    }
   </li>
 )
 
 ModalSavedItem.propTypes = {
   handleChange: PropTypes.func,
+  ignoreRestrictions: PropTypes.bool,
   isChecked: PropTypes.bool,
   isRestrictionsLoading: PropTypes.bool,
   title: PropTypes.string.isRequired,
   uri: PropTypes.string.isRequired,
 }
 
-const ModalSavedItemGroup = ({ handleChange, isRestrictionsLoading, items, title }) => {
+const ModalSavedItemGroup = ({ handleChange, ignoreRestrictions, isRestrictionsLoading, items, title }) => {
   const listItems = items.map((item, index) =>
     <ModalSavedItem
       handleChange={handleChange}
+      ignoreRestrictions={ignoreRestrictions}
       isRestrictionsLoading={isRestrictionsLoading}
       key={index}
       {...item} />
@@ -48,19 +53,21 @@ const ModalSavedItemGroup = ({ handleChange, isRestrictionsLoading, items, title
 
 ModalSavedItemGroup.propTypes = {
   handleChange: PropTypes.func,
+  ignoreRestrictions: PropTypes.bool,
   isRestrictionsLoading: PropTypes.bool,
   items: PropTypes.array.isRequired,
   title: PropTypes.string.isRequired,
 }
 
 
-export const ModalSavedItemList = ({ handleChange, isRestrictionsLoading, items }) => {
+export const ModalSavedItemList = ({ handleChange, ignoreRestrictions, isRestrictionsLoading, items }) => {
   const groupItems = items => {
     return items.length ? (items.map((item) =>
       <ModalSavedItemGroup
         key={item.title}
         {...item}
         groupUri={item.uri}
+        ignoreRestrictions={ignoreRestrictions}
         isRestrictionsLoading={isRestrictionsLoading}
         handleChange={handleChange} />
     )) : (<p className="saved-items__empty">No saved items.</p>)
@@ -74,6 +81,7 @@ export const ModalSavedItemList = ({ handleChange, isRestrictionsLoading, items 
 
 ModalSavedItemList.propTypes = {
   handleChange: PropTypes.func,
+  ignoreRestrictions: PropTypes.bool,
   isRestrictionsLoading: PropTypes.bool,
   items: PropTypes.array.isRequired
 }

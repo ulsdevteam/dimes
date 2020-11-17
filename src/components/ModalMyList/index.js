@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage, useFormikContext } from "formik";
 import PropTypes from "prop-types";
 import Button from "../Button";
@@ -64,23 +64,30 @@ const FormatSelectInput = () => {
   )
 }
 
-const ModalToggleListButton = ({isRestrictionsLoading, items, toggleList}) => {
+const ModalToggleListButton = ({ignoreRestrictions, isRestrictionsLoading, items, toggleList}) => {
 
   /** Returns false if any items are unchecked */
-  const allSelected = items => {
-    return items.filter(g => g.items.filter(i => i.submit && !i.isChecked).length).length ? false : true
-  }
+  const allSelected = useCallback(
+    () => {
+      if (ignoreRestrictions) {
+        return items.filter(g => g.items.filter(i => !i.isChecked).length).length ? false : true
+      } else {
+        return items.filter(g => g.items.filter(i => i.submit && !i.isChecked).length).length ? false : true
+      }
+    },
+    [items]
+  )
 
   const [deselect, setDeselect] = useState(allSelected(items));
 
   useEffect(() => {
-    setDeselect(allSelected(items))
-  }, [isRestrictionsLoading, items])
+    setDeselect(allSelected())
+  }, [allSelected, items])
 
   return (
     <Button
       className="btn--sm btn--gray"
-      handleClick={() => toggleList(!deselect)}
+      handleClick={() => toggleList(!deselect, ignoreRestrictions)}
       label={deselect ? "Deselect all items" : "Select all items"}
       iconBefore={deselect ? "check_box_outline_blank" : "check_box"} />
   )
@@ -103,10 +110,12 @@ const ModalMyList = (props) => (
     <div className="modal-body">
       <div className="modal-list">
         <ModalToggleListButton
+          ignoreRestrictions={props.ignoreRestrictions}
           isRestrictionsLoading={props.isRestrictionsLoading}
           items={props.list}
           toggleList={props.toggleList} />
         <ModalSavedItemList
+          ignoreRestrictions={props.ignoreRestrictions}
           items={props.list}
           isRestrictionsLoading={props.isRestrictionsLoading}
           handleChange={props.handleChange} />
@@ -121,11 +130,16 @@ const ModalMyList = (props) => (
 ModalMyList.propTypes = {
   appElement: PropTypes.object,
   handleChange: PropTypes.func,
+  ignoreRestrictions: PropTypes.bool.isRequired,
   isOpen: PropTypes.bool.isRequired,
   isRestrictionsLoading: PropTypes.bool,
   toggleModal: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   list: PropTypes.array.isRequired
+}
+
+ModalMyList.defaultProps = {
+  ignoreRestrictions: false,
 }
 
 
@@ -134,6 +148,7 @@ export const EmailModal = props => (
     appElement={props.appElement}
     title="Email List"
     handleChange={props.handleChange}
+    ignoreRestrictions={true}
     isOpen={props.isOpen}
     toggleList={props.toggleList}
     toggleModal={props.toggleModal}

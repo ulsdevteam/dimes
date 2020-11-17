@@ -212,9 +212,10 @@
     /** Checks or unchecks all items in list, depending on value passed to function
     * isCheckedValue: boolean
     */
-    toggleList = isCheckedValue => {
+    toggleList = (isCheckedValue, ignoreRestrictions) => {
       const updatedList = this.state.savedList.map(g => {
-        const updatedGroupItems = g.items.map(i => ({...i, isChecked: i.submit ? isCheckedValue : i.isChecked }))
+        const updatedGroupItems = g.items.map(i => (
+          {...i, isChecked: ignoreRestrictions || i.submit ? isCheckedValue : false }))
         return {...g, items: updatedGroupItems}
       })
       this.setState({ savedList: updatedList })
