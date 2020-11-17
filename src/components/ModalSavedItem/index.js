@@ -12,10 +12,10 @@ const ModalSavedItemsRestrictions = ({archivesspace_uri, setSubmit, uri}) => {
 
   useEffect(() => {
     axios
-      .post(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/process-request/parse`, {items: [archivesspace_uri]})
+      .post(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/process-request/parse`, {item: archivesspace_uri})
       .then(res => {
-        setSubmit(uri, res.data.items[0].submit)
-        setSubmitReason(res.data.items[0].submit_reason)
+        setSubmit(uri, res.data.submit)
+        setSubmitReason(res.data.submit_reason)
       })
       .catch(err => console.log(err))
       .then(() => setIsRestrictionsLoading(false));
