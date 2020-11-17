@@ -64,7 +64,7 @@ const FormatSelectInput = () => {
   )
 }
 
-const ModalToggleListButton = ({ignoreRestrictions, isRestrictionsLoading, items, toggleList}) => {
+const ModalToggleListButton = ({ignoreRestrictions, items, toggleList}) => {
 
   /** Returns false if any items are unchecked */
   const allSelected = useCallback(
@@ -94,7 +94,7 @@ const ModalToggleListButton = ({ignoreRestrictions, isRestrictionsLoading, items
 }
 
 
-const ModalMyList = (props) => (
+const ModalMyList = props => (
   <Modal
     appElement={props.appElement ? props.appElement : Modal.setAppElement("#root")}
     isOpen={props.isOpen}
@@ -111,14 +111,13 @@ const ModalMyList = (props) => (
       <div className="modal-list">
         <ModalToggleListButton
           ignoreRestrictions={props.ignoreRestrictions}
-          isRestrictionsLoading={props.isRestrictionsLoading}
           items={props.list}
           toggleList={props.toggleList} />
         <ModalSavedItemList
           ignoreRestrictions={props.ignoreRestrictions}
           items={props.list}
-          isRestrictionsLoading={props.isRestrictionsLoading}
-          handleChange={props.handleChange} />
+          handleChange={props.handleChange}
+          setSubmit={props.setSubmit} />
       </div>
       <div className="modal-form">
         {props.form}
@@ -132,7 +131,7 @@ ModalMyList.propTypes = {
   handleChange: PropTypes.func,
   ignoreRestrictions: PropTypes.bool.isRequired,
   isOpen: PropTypes.bool.isRequired,
-  isRestrictionsLoading: PropTypes.bool,
+  setSubmit: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   list: PropTypes.array.isRequired
@@ -150,6 +149,7 @@ export const EmailModal = props => (
     handleChange={props.handleChange}
     ignoreRestrictions={true}
     isOpen={props.isOpen}
+    setSubmit={props.setSubmit}
     toggleList={props.toggleList}
     toggleModal={props.toggleModal}
     list={props.list}
@@ -230,6 +230,7 @@ EmailModal.propTypes = {
   handleFormSubmit: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   list: PropTypes.array.isRequired,
+  setSubmit: PropTypes.func.isRequired,
   submitList: PropTypes.array.isRequired,
   toggleList: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
@@ -241,7 +242,7 @@ export const ReadingRoomRequestModal = props => (
     title="Request in Reading Room"
     handleChange={props.handleChange}
     isOpen={props.isOpen}
-    isRestrictionsLoading={props.isRestrictionsLoading}
+    setSubmit={props.setSubmit}
     toggleList={props.toggleList}
     toggleModal={props.toggleModal}
     list={props.list}
@@ -320,8 +321,8 @@ ReadingRoomRequestModal.propTypes = {
   handleChange: PropTypes.func,
   handleFormSubmit: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
-  isRestrictionsLoading: PropTypes.bool,
   list: PropTypes.array.isRequired,
+  setSubmit: PropTypes.func.isRequired,
   submitList: PropTypes.array.isRequired,
   toggleList: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
@@ -334,7 +335,7 @@ export const DuplicationRequestModal = props => (
     title="Request Copies"
     handleChange={props.handleChange}
     isOpen={props.isOpen}
-    isRestrictionsLoading={props.isRestrictionsLoading}
+    setSubmit={props.setSubmit}
     toggleList={props.toggleList}
     toggleModal={props.toggleModal}
     list={props.list}
@@ -434,8 +435,8 @@ DuplicationRequestModal.propTypes = {
   handleChange: PropTypes.func,
   handleFormSubmit: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
-  isRestrictionsLoading: PropTypes.bool,
   list: PropTypes.array.isRequired,
+  setSubmit: PropTypes.func.isRequired,
   submitList: PropTypes.array.isRequired,
   toggleList: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,

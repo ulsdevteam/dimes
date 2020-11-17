@@ -22,7 +22,6 @@
         submitList: [],
         isDownloading: false,
         isLoading: true,
-        isRestrictionsLoading: true,
         email: {isOpen: false},
         readingRoom: {isOpen: false},
         duplication: {isOpen: false},
@@ -88,7 +87,6 @@
     }
 
     handleFormSubmit = (uri, submitted, modal) => {
-      // TODO: remove toggleModal, which is just here for testing purposes.
       this.toggleModal(modal);
       axios
         .post(uri, submitted)
@@ -107,48 +105,13 @@
         })
         .catch(err => {
           console.log(err)
-          /** the following lines commented out for testing purposes only */
-          // const title = "Error submitting request"
-          // const message = `There was an error submitting your request. The error message was: ${err.toString()}`
-          // this.handleConfirmData(title, message);
-          /** end commented code */
+          const title = "Error submitting request"
+          const message = `There was an error submitting your request. The error message was: ${err.toString()}`
+          this.handleConfirmData(title, message);
         })
         .then(() => {
-          /** added for testing purposes ONLY, should be removed once Request Broker is in place */
-          const title = modal === "email" ? "Email Sent" : "Requests Delivered"
-          var message = ""
-          if (modal === "email") {
-            message = <p>{`Selected items in your list have been emailed to ${submitted.email}`}</p>
-          } else if (modal === "duplication") {
-            message = <p>Your requests have been submitted to <a href="https://raccess.rockarch.org">RACcess</a>. You can track their status using your RACcess account.</p>
-          } else {
-            message = <p>Your requests have been submitted to <a href="https://raccess.rockarch.org">RACcess</a>. You can track their status using your RACcess account.<br/ ><br />Requests to access archival records in the Reading Room are processed between 10am-3pm on days when the Rockefeller Archive Center is open.</p>
-          }
-          this.handleConfirmData(title, message);
-          /** end testing code */
           this.toggleModal("confirm")
         });
-    }
-
-    combineParsedData = (list, parsed) => {
-      const uriList = this.constructSubmitList(list, true)
-      axios
-        .post(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/process-request/parse`, {items: uriList})
-        .then(res => {
-          var combinedList = [];
-          for (const group of list) {
-            var newGroup = {...group}
-            group.items.map(item => {
-              var parsedItem = res.data.items.find(i => i.uri === item.archivesspace_uri)
-              item.submit = parsedItem.submit
-              item.submitReason = parsedItem.submit_reason
-              return item
-            })
-            combinedList.push(newGroup);
-          }
-        })
-        .catch(err => console.log(err))
-        .then(() => this.setState({ isRestrictionsLoading: false }));
     }
 
     fetchList = () => {
@@ -157,7 +120,6 @@
         .post(`${process.env.REACT_APP_ARGO_BASEURL}/mylist`, {list: list})
         .then(res => {
           this.setState({ savedList: res.data, submitList: this.constructSubmitList(res.data) })
-          this.combineParsedData(res.data)
         })
         .catch(err => console.log(err))
         .then(() => this.state.isLoading && this.setState({isLoading: false}));
@@ -179,33 +141,26 @@
       this.setState({ savedList: filteredList, submitList: this.constructSubmitList(filteredList) })
     }
 
-    /** Returns a list with all unchecked items removed */
-    removeUnchecked = (list) => {
-      var filteredList = [];
-      for (const group of list) {
-        var newGroup = {...group}
-        newGroup.items = group.items.filter(i => {return i.isChecked})
-        newGroup.items.length && filteredList.push(newGroup);
-      }
-      return filteredList;
-    }
-
     sendEmail = () => {
       window.open("mailto:archive@rockarch.org?subject=Scheduling a research appointment");
     }
 
+    setSubmit = (uri, submitValue) => {
+      const updatedList = this.state.savedList.map(g => {
+        const updatedGroupItems = g.items.map(i => (
+          {...i, submit: i.uri === uri ? submitValue : i.submit }))
+        return {...g, items: updatedGroupItems}
+      })
+      this.setState({ savedList: updatedList })
+    }
+
     /** Returns list with isChecked attributes set based on checkbox input. */
     setIsChecked = (e, list) => {
-      var updatedList = []
-      for (const group of list) {
-        if (group.items.filter(i => {return i.uri === e.target.id}).length) {
-          var newGroup = {...group}
-          newGroup.items.filter(i => {return i.uri === e.target.id})[0].isChecked = e.target.checked
-          updatedList.push(newGroup);
-        } else {
-          updatedList.push(group);
-        }
-      }
+      const updatedList = list.map(g => {
+        const updatedGroupItems = g.items.map(i => (
+          {...i, isChecked: i.uri === e.target.id ? e.target.checked : i.isChecked }))
+        return {...g, items: updatedGroupItems}
+      })
       return updatedList
     }
 
@@ -276,6 +231,7 @@
             handleChange={this.handleModalListChange}
             handleFormSubmit={this.handleFormSubmit}
             list={this.state.savedList}
+            setSubmit={this.setSubmit}
             submitList={this.state.submitList}
             toggleList={this.toggleList}
             toggleModal={() => this.toggleModal("email")}
@@ -284,8 +240,8 @@
             {...this.state.readingRoom}
             handleChange={this.handleModalListChange}
             handleFormSubmit={this.handleFormSubmit}
-            isRestrictionsLoading={this.state.isRestrictionsLoading}
             list={this.state.savedList}
+            setSubmit={this.setSubmit}
             submitList={this.state.submitList}
             toggleList={this.toggleList}
             toggleModal={() => this.toggleModal("readingRoom")}
@@ -294,8 +250,8 @@
             {...this.state.duplication}
             handleChange={this.handleModalListChange}
             handleFormSubmit={this.handleFormSubmit}
-            isRestrictionsLoading={this.state.isRestrictionsLoading}
             list={this.state.savedList}
+            setSubmit={this.setSubmit}
             submitList={this.state.submitList}
             toggleList={this.toggleList}
             toggleModal={() => this.toggleModal("duplication")}
