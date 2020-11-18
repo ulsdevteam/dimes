@@ -84,6 +84,9 @@
   font-family: $sans-serif-stack;
   float: left;
   max-height: calc(80vh - 52px);
+  & a {
+    text-decoration: underline;
+  }
   @media screen and (min-width: $break-lg) {
     width: 100%
   }
