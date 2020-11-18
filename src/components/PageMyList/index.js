@@ -86,24 +86,56 @@
       this.setState({ confirm: { ...this.state.confirm, title: title, message: message } })
     }
 
-    handleFormSubmit = (uri, submitted, modal) => {
+    createInputElement = (key, value) => {
+      const input = document.createElement("input")
+      input.name = key
+      input.setAttribute("value", value)
+      return input
+    }
+
+    handleAeonFormSubmit = (uri, submitted, modal) => {
       this.toggleModal(modal);
-      const loadingTitle = modal === "email" ? "Sending Email" : "Delivering Requests"
-      const loadingMessage = <p className="icon-spin"><MaterialIcon icon="cached"/> Preparing items...</p>
+      const loadingTitle = "Preparing Request Data"
+      const loadingMessage = <p className="icon-spin"><MaterialIcon icon="cached"/> Preparing items for your request.</p>
       this.handleConfirmData(loadingTitle, loadingMessage);
       this.toggleModal("confirm");
       axios
         .post(uri, submitted)
         .then(res => {
-          const title = modal === "email" ? "Email Sent" : "Requests Delivered"
-          var message = ""
-          if (modal === "email") {
-            message = <p>{`Selected items in your list have been emailed to ${submitted.email}`}</p>
-          } else if (modal === "duplication") {
-            message = <p>Your requests have been submitted to <a href="https://raccess.rockarch.org">RACcess</a>. You can track their status using your RACcess account.</p>
-          } else {
-            message = <p>Your requests have been submitted to <a href="https://raccess.rockarch.org">RACcess</a>. You can track their status using your RACcess account.<br/ > <br />Requests to access archival records in the Reading Room are processed between 10am-3pm on days when the Rockefeller Archive Center is open.</p>
-          }
+          const form = document.createElement("form")
+          form.action = "https://raccess.rockarch.org/aeon.dll"
+          form.method = "post"
+          Object.keys(res.data).forEach(key => {
+            if (Array.isArray(res.data[key])) {
+              res.data[key].forEach(v => {
+                form.append(this.createInputElement(key, v))
+              })
+            } else {
+              form.append(this.createInputElement(key, res.data[key]))
+            }
+          });
+          document.body.appendChild(form);
+          form.submit()
+        })
+        .catch(err => {
+          console.log(err)
+          const title = "Error submitting request"
+          const message = `There was an error submitting your request. The error message was: ${err.toString()}`
+          this.handleConfirmData(title, message);
+        })
+    }
+
+    handleExportFormSubmit = (uri, submitted, modal) => {
+      this.toggleModal(modal);
+      const loadingTitle = "Sending Email"
+      const loadingMessage = <p className="icon-spin"><MaterialIcon icon="cached"/> Adding items to your message.</p>
+      this.handleConfirmData(loadingTitle, loadingMessage);
+      this.toggleModal("confirm");
+      axios
+        .post(uri, submitted)
+        .then(res => {
+          const title = "Email Sent"
+          var message = <p>{`Selected items in your list have been emailed to ${submitted.email}`}</p>
           this.handleConfirmData(title, message);
         })
         .catch(err => {
@@ -229,7 +261,7 @@
           <EmailModal
             {...this.state.email}
             handleChange={this.handleModalListChange}
-            handleFormSubmit={this.handleFormSubmit}
+            handleFormSubmit={this.handleExportFormSubmit}
             list={this.state.savedList}
             setSubmit={this.setSubmit}
             submitList={this.state.submitList}
@@ -239,7 +271,7 @@
           <ReadingRoomRequestModal
             {...this.state.readingRoom}
             handleChange={this.handleModalListChange}
-            handleFormSubmit={this.handleFormSubmit}
+            handleFormSubmit={this.handleAeonFormSubmit}
             list={this.state.savedList}
             setSubmit={this.setSubmit}
             submitList={this.state.submitList}
@@ -249,7 +281,7 @@
           <DuplicationRequestModal
             {...this.state.duplication}
             handleChange={this.handleModalListChange}
-            handleFormSubmit={this.handleFormSubmit}
+            handleFormSubmit={this.handleAeonFormSubmit}
             list={this.state.savedList}
             setSubmit={this.setSubmit}
             submitList={this.state.submitList}
