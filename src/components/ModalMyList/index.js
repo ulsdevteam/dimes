@@ -259,9 +259,9 @@ export const ReadingRoomRequestModal = props => (
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
+          /* In order for Aeon to accept requests, dates need to be formatted as MM/DD/YYYY */
           const stringDate = moment(values.scheduledDate).format("MM/DD/YYYY")
           values.scheduledDate = stringDate
-          console.log(values);
           props.handleFormSubmit(
             `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/deliver-request/reading-room`,
             values,
