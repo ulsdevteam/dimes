@@ -17,4 +17,7 @@
 .not-found__text {
   font-family: $sans-serif-stack;
   font-size: 20px;
+  & a {
+    text-decoration: underline;
+  }
 }
