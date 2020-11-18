@@ -18,35 +18,36 @@ const ModalSavedItemsRestrictions = ({isRestrictionsLoading, submitReason}) => {
 
 const ModalSavedItem = props => {
   const [isRestrictionsLoading, setIsRestrictionsLoading] = useState(false)
+  const { archivesspace_uri, ignoreRestrictions, handleChange, isChecked, setSubmit, submitReason, title, submit, uri} = props
 
   useEffect(() => {
     if (!props.ignoreRestrictions && typeof props.submit === "undefined") {
       setIsRestrictionsLoading(true)
       axios
-        .post(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/process-request/parse`, {item: props.archivesspace_uri})
+        .post(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/process-request/parse`, {item: archivesspace_uri})
         .then(res => {
-          props.setSubmit(props.uri, res.data.submit, res.data.submit_reason)
+          setSubmit(uri, res.data.submit, res.data.submit_reason)
         })
         .catch(err => console.log(err))
         .then(() => setIsRestrictionsLoading(false));
     }
-  }, [props])
+  }, [ignoreRestrictions, submit, archivesspace_uri, uri, setSubmit])
 
   return (
     <li className="modal-saved-item">
       <CheckBoxInput
         className="checkbox--orange"
-        id={props.uri}
-        checked={props.isChecked || false}
-        label={props.title}
-        handleChange={props.handleChange}
-        disabled={!props.ignoreRestrictions && !props.submit} />
-      {props.ignoreRestrictions ?
+        id={uri}
+        checked={isChecked || false}
+        label={title}
+        handleChange={handleChange}
+        disabled={!ignoreRestrictions && !submit} />
+      {ignoreRestrictions ?
         (null) :
         (<ModalSavedItemsRestrictions
             isRestrictionsLoading={isRestrictionsLoading}
-            setSubmit={props.setSubmit}
-            submitReason={props.submitReason} />)
+            setSubmit={setSubmit}
+            submitReason={submitReason} />)
       }
     </li>
   )
