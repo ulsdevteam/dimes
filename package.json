@@ -13,7 +13,6 @@
     "downshift": "^6.0.6",
     "formik": "^2.1.5",
     "mirador": "^3.0.0",
-    "moment": "^2.29.1",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-accessible-dropdown-menu-hook": "^2.1.1",

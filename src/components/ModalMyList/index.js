@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage, useFormikContext } from "formik";
 import PropTypes from "prop-types";
-import * as moment from "moment";
 import Button from "../Button";
 import Modal from "react-modal";
 import Captcha from "../Captcha";
@@ -9,6 +8,7 @@ import { FocusError, FormButtons, FormGroup } from "../Form";
 import { DateInput, SelectInput } from "../Inputs";
 import MaterialIcon from "../MaterialIcon";
 import { ModalSavedItemList } from "../ModalSavedItem";
+import { getFormattedDate } from "../Helpers";
 import "./styles.scss"
 
 
@@ -252,7 +252,6 @@ export const ReadingRoomRequestModal = props => (
         initialValues={{scheduledDate: new Date(), questions: "", notes: "", items: props.submitList, recaptcha: ""}}
         validate={values => {
           const errors = {};
-          console.log(values.scheduledDate.toDateString())
           if (!values.scheduledDate) errors.scheduledDate = 'Please provide the date of your research visit.';
           if (!values.recaptcha) errors.recaptcha = 'Please complete this field.';
           if (!values.items.length) errors.items = 'No items have been selected to submit.'
@@ -260,8 +259,7 @@ export const ReadingRoomRequestModal = props => (
         }}
         onSubmit={(values, { setSubmitting }) => {
           /* In order for Aeon to accept requests, dates need to be formatted as MM/DD/YYYY */
-          const stringDate = moment(values.scheduledDate).format("MM/DD/YYYY")
-          values.scheduledDate = stringDate
+          values.scheduledDate = getFormattedDate(values.scheduledDate)
           props.handleFormSubmit(
             `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/deliver-request/reading-room`,
             values,
