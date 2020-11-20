@@ -54,3 +54,12 @@ $transition-default: all 0.2s ease;
     display: none;
   }
 }
+
+.icon-spin {
+  & .material-icons {
+    animation-name: spin-counterclockwise;
+    animation-duration: 2500ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+}

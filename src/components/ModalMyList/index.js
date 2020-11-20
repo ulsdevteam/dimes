@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage, useFormikContext } from "formik";
 import PropTypes from "prop-types";
 import Button from "../Button";
@@ -8,6 +8,7 @@ import { FocusError, FormButtons, FormGroup } from "../Form";
 import { DateInput, SelectInput } from "../Inputs";
 import MaterialIcon from "../MaterialIcon";
 import { ModalSavedItemList } from "../ModalSavedItem";
+import { getFormattedDate } from "../Helpers";
 import "./styles.scss"
 
 
@@ -64,30 +65,37 @@ const FormatSelectInput = () => {
   )
 }
 
-const ModalToggleListButton = ({items, toggleList}) => {
+const ModalToggleListButton = ({ignoreRestrictions, items, toggleList}) => {
 
   /** Returns false if any items are unchecked */
-  const allSelected = items => {
-    return items.filter(g => g.items.filter(i => !i.isChecked).length).length ? false : true
-  }
+  const allSelected = useCallback(
+    () => {
+      if (ignoreRestrictions) {
+        return items.filter(g => g.items.filter(i => !i.isChecked).length).length ? false : true
+      } else {
+        return items.filter(g => g.items.filter(i => i.submit && !i.isChecked).length).length ? false : true
+      }
+    },
+    [items]
+  )
 
   const [deselect, setDeselect] = useState(allSelected(items));
 
   useEffect(() => {
-    setDeselect(allSelected(items))
-  }, [items])
+    setDeselect(allSelected())
+  }, [allSelected, items])
 
   return (
     <Button
       className="btn--sm btn--gray"
-      handleClick={() => toggleList(!deselect)}
+      handleClick={() => toggleList(!deselect, ignoreRestrictions)}
       label={deselect ? "Deselect all items" : "Select all items"}
       iconBefore={deselect ? "check_box_outline_blank" : "check_box"} />
   )
 }
 
 
-const ModalMyList = (props) => (
+const ModalMyList = props => (
   <Modal
     appElement={props.appElement ? props.appElement : Modal.setAppElement("#root")}
     isOpen={props.isOpen}
@@ -102,8 +110,15 @@ const ModalMyList = (props) => (
     </div>
     <div className="modal-body">
       <div className="modal-list">
-        <ModalToggleListButton items={props.list} toggleList={props.toggleList} />
-        <ModalSavedItemList items={props.list} handleChange={props.handleChange} />
+        <ModalToggleListButton
+          ignoreRestrictions={props.ignoreRestrictions}
+          items={props.list}
+          toggleList={props.toggleList} />
+        <ModalSavedItemList
+          ignoreRestrictions={props.ignoreRestrictions}
+          items={props.list}
+          handleChange={props.handleChange}
+          setSubmit={props.setSubmit} />
       </div>
       <div className="modal-form">
         {props.form}
@@ -115,10 +130,16 @@ const ModalMyList = (props) => (
 ModalMyList.propTypes = {
   appElement: PropTypes.object,
   handleChange: PropTypes.func,
+  ignoreRestrictions: PropTypes.bool.isRequired,
   isOpen: PropTypes.bool.isRequired,
+  setSubmit: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   list: PropTypes.array.isRequired
+}
+
+ModalMyList.defaultProps = {
+  ignoreRestrictions: false,
 }
 
 
@@ -127,7 +148,9 @@ export const EmailModal = props => (
     appElement={props.appElement}
     title="Email List"
     handleChange={props.handleChange}
+    ignoreRestrictions={true}
     isOpen={props.isOpen}
+    setSubmit={props.setSubmit}
     toggleList={props.toggleList}
     toggleModal={props.toggleModal}
     list={props.list}
@@ -208,6 +231,7 @@ EmailModal.propTypes = {
   handleFormSubmit: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   list: PropTypes.array.isRequired,
+  setSubmit: PropTypes.func.isRequired,
   submitList: PropTypes.array.isRequired,
   toggleList: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
@@ -219,6 +243,7 @@ export const ReadingRoomRequestModal = props => (
     title="Request in Reading Room"
     handleChange={props.handleChange}
     isOpen={props.isOpen}
+    setSubmit={props.setSubmit}
     toggleList={props.toggleList}
     toggleModal={props.toggleModal}
     list={props.list}
@@ -233,6 +258,8 @@ export const ReadingRoomRequestModal = props => (
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
+          /* In order for Aeon to accept requests, dates need to be formatted as MM/DD/YYYY */
+          values.scheduledDate = getFormattedDate(values.scheduledDate)
           props.handleFormSubmit(
             `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/deliver-request/reading-room`,
             values,
@@ -298,6 +325,7 @@ ReadingRoomRequestModal.propTypes = {
   handleFormSubmit: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   list: PropTypes.array.isRequired,
+  setSubmit: PropTypes.func.isRequired,
   submitList: PropTypes.array.isRequired,
   toggleList: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
@@ -310,6 +338,7 @@ export const DuplicationRequestModal = props => (
     title="Request Copies"
     handleChange={props.handleChange}
     isOpen={props.isOpen}
+    setSubmit={props.setSubmit}
     toggleList={props.toggleList}
     toggleModal={props.toggleModal}
     list={props.list}
@@ -410,6 +439,7 @@ DuplicationRequestModal.propTypes = {
   handleFormSubmit: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   list: PropTypes.array.isRequired,
+  setSubmit: PropTypes.func.isRequired,
   submitList: PropTypes.array.isRequired,
   toggleList: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,

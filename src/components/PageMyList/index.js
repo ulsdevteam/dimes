@@ -20,6 +20,7 @@
       this.state = {
         savedList: [],
         submitList: [],
+        isDownloading: false,
         isLoading: true,
         email: {isOpen: false},
         readingRoom: {isOpen: false},
@@ -38,22 +39,36 @@
     }
 
     /** Returns a list of ArchivesSpace URIs for checked items in list */
-    constructSubmitList = (list) => {
+    constructSubmitList = (list, allItems) => {
       var submitList = [];
       for (const group of list) {
         for (const item of group.items) {
-          item.isChecked && submitList.push(item.archivesspace_uri)
+          if (allItems) {
+            submitList.push(item.archivesspace_uri)
+          } else {
+            item.isChecked && submitList.push(item.archivesspace_uri)
+          }
         }
       }
       return submitList
     }
 
+    /* Requests CSV data and downloads a local file */
     downloadCsv = () => {
-      // TODO: what should happen if there are errors?
+      this.setState({ isDownloading: true })
       axios
-        .post(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/download-csv/`, this.state.savedList)
-        .then(res => { console.log(res.data) })
-        .catch(err => { console.log(err) });
+        .post(
+          `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/download-csv/`,
+          {items: this.constructSubmitList(this.state.savedList, true)})
+        .then(res => {
+          const blob = new Blob([res.data], { type: "text/csv" })
+          const link = document.createElement('a')
+          link.href = window.URL.createObjectURL(blob)
+          link.download = `dimes-${new Date().toISOString()}.csv`
+          link.click()
+        })
+        .catch(err => { console.log(err) })
+        .then(() => this.setState({ isDownloading: false }));
     }
 
     /**
@@ -71,48 +86,64 @@
       this.setState({ confirm: { ...this.state.confirm, title: title, message: message } })
     }
 
-    handleFormSubmit = (uri, submitted, modal) => {
-      // TODO: remove toggleModal, which is just here for testing purposes.
+    createInputElement = (key, value) => {
+      const input = document.createElement("input")
+      input.name = key
+      input.setAttribute("value", value)
+      return input
+    }
+
+    handleAeonFormSubmit = (uri, submitted, modal) => {
       this.toggleModal(modal);
+      const loadingTitle = "Preparing Request Data"
+      const loadingMessage = <p className="icon-spin"><MaterialIcon icon="cached"/> Preparing items for your request.</p>
+      this.handleConfirmData(loadingTitle, loadingMessage);
+      this.toggleModal("confirm");
       axios
         .post(uri, submitted)
         .then(res => {
-          this.toggleModal(modal);
-          const title = modal === "email" ? "Email Sent" : "Requests Delivered"
-          var message = ""
-          if (modal === "email") {
-            message = <p>{`Selected items in your list have been emailed to ${submitted.email}`}</p>
-          } else if (modal === "duplication") {
-            message = <p>Your requests have been submitted to <a href="https://raccess.rockarch.org">RACcess</a>. You can track their status using your RACcess account.</p>
-          } else {
-            message = <p>Your requests have been submitted to <a href="https://raccess.rockarch.org">RACcess</a>. You can track their status using your RACcess account.<br/ > <br />Requests to access archival records in the Reading Room are processed between 10am-3pm on days when the Rockefeller Archive Center is open.</p>
-          }
+          const form = document.createElement("form")
+          form.action = "https://raccess.rockarch.org/aeon.dll"
+          form.method = "post"
+          Object.keys(res.data).forEach(key => {
+            if (Array.isArray(res.data[key])) {
+              res.data[key].forEach(v => {
+                form.append(this.createInputElement(key, v))
+              })
+            } else {
+              form.append(this.createInputElement(key, res.data[key]))
+            }
+          });
+          document.body.appendChild(form);
+          form.submit()
+        })
+        .catch(err => {
+          console.log(err)
+          const title = "Error submitting request"
+          const message = `There was an error submitting your request. The error message was: ${err.toString()}`
+          this.handleConfirmData(title, message);
+        })
+    }
+
+    handleExportFormSubmit = (uri, submitted, modal) => {
+      this.toggleModal(modal);
+      const loadingTitle = "Sending Email"
+      const loadingMessage = <p className="icon-spin"><MaterialIcon icon="cached"/> Adding items to your message.</p>
+      this.handleConfirmData(loadingTitle, loadingMessage);
+      this.toggleModal("confirm");
+      axios
+        .post(uri, submitted)
+        .then(res => {
+          const title = "Email Sent"
+          var message = <p>{`Selected items in your list have been emailed to ${submitted.email}`}</p>
           this.handleConfirmData(title, message);
         })
         .catch(err => {
           console.log(err)
-          /** the following lines commented out for testing purposes only */
-          // const title = "Error submitting request"
-          // const message = `There was an error submitting your request. The error message was: ${err.toString()}`
-          // this.handleConfirmData(title, message);
-          /** end commented code */
-        })
-        .then(() => {
-          /** added for testing purposes ONLY, should be removed once Request Broker is in place */
-          const title = modal === "email" ? "Email Sent" : "Requests Delivered"
-          var message = ""
-          if (modal === "email") {
-            message = <p>{`Selected items in your list have been emailed to ${submitted.email}`}</p>
-          } else if (modal === "duplication") {
-            message = <p>Your requests have been submitted to <a href="https://raccess.rockarch.org">RACcess</a>. You can track their status using your RACcess account.</p>
-          } else {
-            message = <p>Your requests have been submitted to <a href="https://raccess.rockarch.org">RACcess</a>. You can track their status using your RACcess account.<br/ ><br />Requests to access archival records in the Reading Room are processed between 10am-3pm on days when the Rockefeller Archive Center is open.</p>
-          }
+          const title = "Error submitting request"
+          const message = `There was an error submitting your request. The error message was: ${err.toString()}`
           this.handleConfirmData(title, message);
-          /** end testing code */
-          this.toggleModal("confirm")
-        });
-
+        })
     }
 
     fetchList = () => {
@@ -120,7 +151,7 @@
       axios
         .post(`${process.env.REACT_APP_ARGO_BASEURL}/mylist`, {list: list})
         .then(res => {
-          this.setState({ savedList: res.data, submitList: this.constructSubmitList(res.data)})
+          this.setState({ savedList: res.data, submitList: this.constructSubmitList(res.data) })
         })
         .catch(err => console.log(err))
         .then(() => this.state.isLoading && this.setState({isLoading: false}));
@@ -139,45 +170,39 @@
         newGroup.items = group.items.filter(i => i.uri !== item.uri)
         newGroup.items.length && filteredList.push(newGroup);
       }
-      this.setState({ savedList: filteredList, submitList: this.constructSubmitList(filteredList) });
-    }
-
-    /** Returns a list with all unchecked items removed */
-    removeUnchecked = (list) => {
-      var filteredList = [];
-      for (const group of list) {
-        var newGroup = {...group}
-        newGroup.items = group.items.filter(i => {return i.isChecked})
-        newGroup.items.length && filteredList.push(newGroup);
-      }
-      return filteredList;
+      this.setState({ savedList: filteredList, submitList: this.constructSubmitList(filteredList) })
     }
 
     sendEmail = () => {
       window.open("mailto:archive@rockarch.org?subject=Scheduling a research appointment");
     }
 
+    setSubmit = (uri, submitValue, submitReason) => {
+      const updatedList = this.state.savedList.map(g => {
+        const updatedGroupItems = g.items.map(i => (
+          {...i, submit: i.uri === uri ? submitValue : i.submit, submitReason: i.uri === uri ? submitReason : i.submitReason}))
+        return {...g, items: updatedGroupItems}
+      })
+      this.setState({ savedList: updatedList })
+    }
+
     /** Returns list with isChecked attributes set based on checkbox input. */
     setIsChecked = (e, list) => {
-      var updatedList = []
-      for (const group of list) {
-        if (group.items.filter(i => {return i.uri === e.target.id}).length) {
-          var newGroup = {...group}
-          newGroup.items.filter(i => {return i.uri === e.target.id})[0].isChecked = e.target.checked
-          updatedList.push(newGroup);
-        } else {
-          updatedList.push(group);
-        }
-      }
+      const updatedList = list.map(g => {
+        const updatedGroupItems = g.items.map(i => (
+          {...i, isChecked: i.uri === e.target.id ? e.target.checked : i.isChecked }))
+        return {...g, items: updatedGroupItems}
+      })
       return updatedList
     }
 
     /** Checks or unchecks all items in list, depending on value passed to function
     * isCheckedValue: boolean
     */
-    toggleList = isCheckedValue => {
+    toggleList = (isCheckedValue, ignoreRestrictions) => {
       const updatedList = this.state.savedList.map(g => {
-        const updatedGroupItems = g.items.map(i => ({...i, isChecked: isCheckedValue}))
+        const updatedGroupItems = g.items.map(i => (
+          {...i, isChecked: ignoreRestrictions || i.submit ? isCheckedValue : false }))
         return {...g, items: updatedGroupItems}
       })
       this.setState({ savedList: updatedList })
@@ -211,6 +236,7 @@
               <div className="mylist__header">
                 <h1 className="mylist__title">My List</h1>
                 <MyListDropdown
+                  downloadCsv={this.downloadCsv}
                   duplicationRequest={() => this.toggleModal("duplication")}
                   emailList={() => this.toggleModal("email")}
                   readingRoomRequest={() => this.toggleModal("readingRoom")}
@@ -220,7 +246,8 @@
               <MyListExportActions
                   confirmDeleteAll={() => this.toggleModal("confirmDeleteAll")}
                   downloadCsv={this.downloadCsv}
-                  emailList={() => this.toggleModal("email")} />
+                  emailList={() => this.toggleModal("email")}
+                  isDownloading={this.state.isDownloading} />
               <SavedItemList
                 items={this.state.savedList}
                 isLoading={this.state.isLoading}
@@ -234,8 +261,9 @@
           <EmailModal
             {...this.state.email}
             handleChange={this.handleModalListChange}
-            handleFormSubmit={this.handleFormSubmit}
+            handleFormSubmit={this.handleExportFormSubmit}
             list={this.state.savedList}
+            setSubmit={this.setSubmit}
             submitList={this.state.submitList}
             toggleList={this.toggleList}
             toggleModal={() => this.toggleModal("email")}
@@ -243,8 +271,9 @@
           <ReadingRoomRequestModal
             {...this.state.readingRoom}
             handleChange={this.handleModalListChange}
-            handleFormSubmit={this.handleFormSubmit}
+            handleFormSubmit={this.handleAeonFormSubmit}
             list={this.state.savedList}
+            setSubmit={this.setSubmit}
             submitList={this.state.submitList}
             toggleList={this.toggleList}
             toggleModal={() => this.toggleModal("readingRoom")}
@@ -252,8 +281,9 @@
           <DuplicationRequestModal
             {...this.state.duplication}
             handleChange={this.handleModalListChange}
-            handleFormSubmit={this.handleFormSubmit}
+            handleFormSubmit={this.handleAeonFormSubmit}
             list={this.state.savedList}
+            setSubmit={this.setSubmit}
             submitList={this.state.submitList}
             toggleList={this.toggleList}
             toggleModal={() => this.toggleModal("duplication")}

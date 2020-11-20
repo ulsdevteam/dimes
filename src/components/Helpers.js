@@ -25,3 +25,13 @@ export const noteText = (notes, noteType) => {
 export const appendParams = (url, params) => {
   return `${url}?${queryString.stringify(params)}`
 }
+
+
+/** Returns a date formatted as mm/dd/yyyy */
+export const getFormattedDate = date => {
+    const year = date.getFullYear();
+    const month = (1 + date.getMonth()).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+
+    return month + '/' + day + '/' + year;
+}

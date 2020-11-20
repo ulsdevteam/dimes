@@ -60,6 +60,9 @@ label {
   padding-left: 30px;
   cursor: pointer;
 }
+.checkbox:disabled + label {
+  cursor: not-allowed;
+}
 
 /* checkbox aspect */
 .checkbox:not(:checked) + label:before,
@@ -119,6 +122,15 @@ label {
   background-color: $burnt-orange;
   border: 1px solid $burnt-orange;
   color: $pure-white;
+}
+
+.checkbox:disabled + label:before {
+  background-color: $lighter-gray;
+  border: 1px solid $med-gray;
+}
+
+.checkbox:disabled + label {
+  color: $med-gray;
 }
 
 .dp__wrapper {
