@@ -204,6 +204,13 @@ const RecordsDetail = props => {
                 params={props.params}
                 title="Description"
                 text={noteText(props.item.notes, "abstract") || noteText(props.item.notes, "scopecontent")} />
+              { noteText(props.item.notes, "processinfo") ?
+                (<PanelTextSection
+                  params={props.params}
+                  title="Processing Information"
+                  text={noteText(props.item.notes, "processinfo")} />) :
+                (null)
+              }
               </>
               )
             }
