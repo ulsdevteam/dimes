@@ -23,7 +23,10 @@ const AgentRelatedCollections = ({ agentTitle, collections, params }) => (
   (<div className="agent__related">
     <h2 className="agent__section-title">Related Collections</h2>
     <TileList hideHitCount={true} items={collections} params={params} />
-    <a href={`/search/?query=${agentTitle}&category=collection`} className="btn btn--search-more">Search More Related Collections</a>
+    { collections.length === 8 ?
+      (<a href={`/search/?query=${agentTitle}&category=collection`} className="btn btn--search-more">Search More Related Collections</a>) :
+      (null)
+    }
   </div>) : (null)
 )
 
@@ -44,8 +47,8 @@ class PageAgent extends Component {
       isAttributesLoading: true,
       isCollectionsLoading: true,
       agent: {},
-      collections: null,
-      attributes: null,
+      collections: [],
+      attributes: [],
       params: {}
     };
   }
@@ -75,24 +78,17 @@ class PageAgent extends Component {
   }
 
   parseAgentAttributes = () => {
-    var items = [];
     const agentType = this.state.agent.agent_type
-    if (this.state.agent.dates) {
-      this.state.agent.dates.forEach(date => {
-          items.push({"label": agentType === "organization" ? "Date Established" : "Date of Birth", "value": date.begin, "note": false})
-          items.push({"label": agentType === "organization" ? "Date Disbanded" : "Date of Death", "value": date.end, "note": false})
-      });
-    }
-    if (this.state.agent.notes) {
-      this.state.agent.notes.forEach(note => {
-        let content = "";
-        note.subnotes.forEach(subnote => {
-          content += subnote.content
-        });
-        items.push({"label": "Description", "value": content, "note": true})
-      });
-    }
-    this.setState({ attributes: items });
+    const startDates = this.state.agent.dates ? this.state.agent.dates.map(date => (
+      {label: agentType === "organization" ? "Date Established" : "Date of Birth", value: date.begin, note: false}
+    )) : []
+    const endDates = this.state.agent.dates ? this.state.agent.dates.map(date => (
+      {label: agentType === "organization" ? "Date Disbanded" : "Date of Death", value: date.end, note: false}
+    )) : []
+    const noteText = this.state.agent.notes ? this.state.agent.notes.map(note => (
+      {label: "Description", value: note.subnotes.map(s => s.content).join("\r\n"), note: true}
+    )) : []
+    this.setState({ attributes: startDates.concat(endDates).concat(noteText) });
     this.setState({ isAttributesLoading: false })
   }
 
