@@ -164,6 +164,7 @@ const RecordsDetail = props => {
         <a className="btn btn-download--detail"
           href={`${process.env.REACT_APP_S3_BASEURL}/pdfs/${identifier}`}
           target="_blank"
+          title="opens in a new window"
           rel="noopener noreferrer"
           >Download <MaterialIcon icon="get_app" /></a>
         </>
