@@ -8,7 +8,6 @@ import {
     AccordionItemButton,
     AccordionItemPanel,
 } from "../Accordion";
-import Button from "../Button";
 import ListToggleButton from "../ListToggleButton";
 import MaterialIcon from "../MaterialIcon";
 import QueryHighlighter from "../QueryHighlighter";
@@ -140,6 +139,10 @@ const RecordsDetail = props => {
     props.params && props.params.query ? appendParams("/search", props.params) : "/"
   )
 
+  const identifier = (
+    props.item.uri && props.item.uri.split("/")[props.item.uri.split("/").length - 1]
+  )
+
   return (
   <div className={classnames("records__detail", {"hidden": props.isContentShown})}>
     <nav>
@@ -158,12 +161,12 @@ const RecordsDetail = props => {
           toggleSaved={props.toggleInList} />
         <a className="btn btn-launch--detail"
           href={`${props.item.uri}/view`}>View Online <MaterialIcon icon="visibility" /></a>
-        <Button
-          className="btn-download--detail"
-          handleClick={() => alert(`Downloading file for ${props.item.uri}`)}
-          iconAfter="get_app"
-          label="Download"
-          uri={props.item.uri} />
+        <a className="btn btn-download--detail"
+          href={`${process.env.REACT_APP_S3_BASEURL}/pdfs/${identifier}`}
+          target="_blank"
+          title="opens in a new window"
+          rel="noopener noreferrer"
+          >Download <MaterialIcon icon="get_app" /></a>
         </>
       ) :
       (<ListToggleButton
