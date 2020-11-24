@@ -167,6 +167,9 @@ const RecordsDetail = props => {
           title="opens in a new window"
           rel="noopener noreferrer"
           >Download <MaterialIcon icon="get_app" /></a>
+          {props.downloadSize ?
+            (<p className="panel__text">{`Acrobat PDF, ${props.downloadSize}`}</p>) :
+            (null)}
         </>
       ) :
       (<ListToggleButton
@@ -176,7 +179,7 @@ const RecordsDetail = props => {
         toggleSaved={props.toggleInList} />)
       ): (null)
     }
-    <Accordion className="accordion" preExpanded={["summary"]} allowZeroExpanded={true}>
+    <Accordion className="accordion accordion--details" preExpanded={["summary"]} allowZeroExpanded={true}>
       <AccordionItem className="accordion__item" uuid="summary">
         <AccordionItemHeading className="accordion__heading" ariaLevel={2}>
           <AccordionItemButton className="accordion__button">Summary</AccordionItemButton>
@@ -252,6 +255,7 @@ const RecordsDetail = props => {
 
 RecordsDetail.propTypes = {
   ancestors: PropTypes.object.isRequired,
+  downloadSize: PropTypes.string,
   isAncestorsLoading: PropTypes.bool.isRequired,
   isContentShown: PropTypes.bool,
   isItemLoading: PropTypes.bool.isRequired,
