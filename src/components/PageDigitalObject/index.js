@@ -68,13 +68,9 @@ const PageDigitalObject = props => {
       enabled: false,
     },
     windows: [
-      { manifestId: `https://raciif-dev.s3.amazonaws.com/manifests/${props.match.params.id}` }
+      { manifestId: `${process.env.REACT_APP_S3_BASEURL}/manifests/${props.match.params.id}` }
     ]
   }
-
-  console.log(document.referrer)
-  console.log(props.match.url)
-  console.log(document.referrer.includes(props.match.url))
 
   const itemUrl = (
     document.referrer && document.referrer.includes(`/${props.match.params.type}/${props.match.params.id}`) && !document.referrer.endsWith("/view") ?
