@@ -7,7 +7,7 @@ cache:
 install:
   - yarn install
 script:
-  - yarn run build
+  - CI=false yarn run build
   - yarn test
 notifications:
   email: false
