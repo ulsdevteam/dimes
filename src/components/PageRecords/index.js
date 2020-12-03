@@ -8,7 +8,7 @@ import ContextSwitcher from "../ContextSwitcher";
 import RecordsContent from "../RecordsContent";
 import RecordsDetail from "../RecordsDetail";
 import PageNotFound from "../PageNotFound";
-import { appendParams } from "../Helpers";
+import { appendParams, formatBytes } from "../Helpers";
 
 
 class PageRecords extends Component {
@@ -17,6 +17,7 @@ class PageRecords extends Component {
     this.state = {
       ancestors: {},
       children: [],
+      downloadSize: "",
       found: true,
       isAncestorsLoading: true,
       isChildrenLoading: true,
@@ -50,6 +51,17 @@ class PageRecords extends Component {
       .get(appendParams(itemUrl, params))
       .then(res => {
         this.setState({ item: res.data });
+        if (res.data.online) {
+          axios
+            .head(`${process.env.REACT_APP_S3_BASEURL}/pdfs/${res.data.uri.split("/").pop()}`)
+            .then(res => {
+              this.setState({ downloadSize: formatBytes(res.headers["content-length"]) })
+            })
+            .catch(e => {
+              console.log(e);
+              this.setState({ downloadSize: "" })
+            })
+        }
         this.setState({ updateMessage: `Details under heading 1 have been updated to describe the selected records titled ${res.data.title}`})
         this.setUrl(appendParams(itemPath, this.state.params), res.data);
       })
@@ -127,6 +139,7 @@ class PageRecords extends Component {
             toggleIsContentShown={this.toggleIsContentShown} />
           <RecordsDetail
             ancestors={this.state.ancestors}
+            downloadSize={this.state.downloadSize}
             isAncestorsLoading={this.state.isAncestorsLoading}
             isContentShown={this.state.isContentShown}
             isItemLoading={this.state.isItemLoading}
