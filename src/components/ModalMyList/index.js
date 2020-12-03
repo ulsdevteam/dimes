@@ -103,7 +103,7 @@ const SelectedTotals = ({ items }) => {
       {...total, [current.type]: total[current.type] + parseFloat(current.value)} :
       {...total, [current.type]: parseFloat(current.value)}
   ), {})
-  const extents = Object.entries(totals).map(e => {console.log(e); return (`${e[1]} ${e[1] === 1 ? e[0] : `${e[0]}s`}`)})
+  const extents = Object.entries(totals).map(e => `${e[1]} ${e[1] === 1 ? e[0] : `${e[0]}s`}`)
   return (extents.length ? <p className="selected-totals">{`${extents.join(", ")} selected`}</p> : null)
 }
 
