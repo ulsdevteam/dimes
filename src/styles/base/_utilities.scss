@@ -30,7 +30,7 @@ $transition-default: all 0.2s ease;
 .show-on-md-up {
   display: none;
   @media screen and (min-width: $break-md) {
-    display: block;
+    display: inherit;
   }
 }
 
@@ -44,7 +44,7 @@ $transition-default: all 0.2s ease;
 .show-on-lg-up {
   display: none;
   @media screen and (min-width: $break-lg) {
-    display: block;
+    display: inherit;
   }
 }
 

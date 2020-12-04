@@ -24,6 +24,11 @@
   margin-right: -45px;
   padding: 60px 0px 60px 40px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  & > button {
+    align-self: flex-start;
+  }
 }
 
 .mylist__title {
