@@ -14,7 +14,7 @@
 .collection-hits__title {
   @include collection-hits-text;
   font-size: 12px;
-  font-weight: bold;
+  font-weight: $font-weight-bold;
   text-transform: uppercase;
   color: $dark-gray;
   letter-spacing: 0.5px;
