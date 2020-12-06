@@ -47,6 +47,8 @@ class RecordsChild extends Component {
       const el = document.getElementById(`accordion__heading-${currentUrl}`)
       el.scrollIntoView({ behavior: "smooth", block: "center" })
       el.focus()
+    }
+    if (this.props.item.uri === currentUrl || this.props.preExpanded.length < 2) {
       this.props.setIsLoading(false)
     }
   }
@@ -227,7 +229,10 @@ const RecordsContent = props => {
       const el = document.getElementById("content-loading")
       el.focus()
     }
-  }, [isLoading])
+  }, [isLoading, preExpanded])
+
+  console.log(preExpanded);
+  console.log(isLoading);
 
   return (
   children ?
