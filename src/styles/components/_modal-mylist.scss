@@ -4,7 +4,7 @@
   padding: 30px 20px;
   box-sizing: border-box;
   @include lg-up {
-    @include grid-column(8);
+    width: 66%
   }
 }
 
@@ -19,7 +19,7 @@
   font-size: 14px;
   padding-bottom: 18px;
   @include lg-up {
-    @include grid-column(4);
+    width: 34%;
     float: right;
   }
 }
