@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import {
@@ -36,15 +36,18 @@ class RecordsChild extends Component {
   componentDidMount() {
     const currentUrl = window.location.pathname
     this.setState({ isSaved: isItemSaved(this.props.item) })
-    if (this.props.preExpanded.includes(this.props.item.uri)) {
-      const childrenParams = {...this.props.params, limit: 5}
-      this.props.item.uri.includes("collections") && this.getChildrenPage(
-        appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${this.props.item.uri}/children`, childrenParams))
+    if (this.props.preExpanded.includes(this.props.item.uri) && this.props.item.uri.includes("collections")) {
+      this.getChildrenPage(
+        appendParams(
+          `${process.env.REACT_APP_ARGO_BASEURL}${this.props.item.uri}/children`,
+          {...this.props.params, limit: 5})
+        )
     }
     if (this.props.item.uri === currentUrl) {
       const el = document.getElementById(`accordion__heading-${currentUrl}`)
       el.scrollIntoView({ behavior: "smooth", block: "center" })
       el.focus()
+      this.props.setIsLoading(false)
     }
   }
 
@@ -84,7 +87,7 @@ class RecordsChild extends Component {
   }
 
   render() {
-    const { ariaLevel, item, myListCount, params, preExpanded, setActiveRecords, toggleInList } = this.props;
+    const { ariaLevel, item, myListCount, params, preExpanded, setActiveRecords, setIsLoading, toggleInList } = this.props;
     const firstChildType = this.state.children.length && this.state.children[0].type
     const isMobile = window.innerWidth < 580;
     return (item.type === "object" ?
@@ -152,6 +155,7 @@ class RecordsChild extends Component {
               params={params}
               preExpanded={preExpanded}
               setActiveRecords={setActiveRecords}
+              setIsLoading={setIsLoading}
               toggleInList={toggleInList} />
           </AccordionItemPanel>) :
           (null)}
@@ -166,13 +170,14 @@ RecordsChild.propTypes = {
     params: PropTypes.object,
     preExpanded: PropTypes.array,
     setActiveRecords: PropTypes.func.isRequired,
+    setIsLoading: PropTypes.func.isRequired,
     toggleInList: PropTypes.func.isRequired,
 }
 
 export const RecordsContentList = props => {
 
   const childList = children => {
-    const { ariaLevel, myListCount, params, preExpanded, setActiveRecords, toggleInList } = props;
+    const { ariaLevel, myListCount, params, preExpanded, setActiveRecords, setIsLoading, toggleInList } = props;
     return (
       children.map(child => (
         <RecordsChild
@@ -183,6 +188,7 @@ export const RecordsContentList = props => {
           params={params}
           preExpanded={preExpanded}
           setActiveRecords={setActiveRecords}
+          setIsLoading={setIsLoading}
           toggleInList={toggleInList} />
         )
       )
@@ -206,6 +212,7 @@ RecordsContentList.propTypes = {
   params: PropTypes.object,
   preExpanded: PropTypes.array,
   setActiveRecords: PropTypes.func.isRequired,
+  setIsLoading: PropTypes.func.isRequired,
   toggleInList: PropTypes.func.isRequired,
 }
 
@@ -213,10 +220,22 @@ RecordsContentList.propTypes = {
 const RecordsContent = props => {
   const { children, collection, isContentShown, myListCount, params, preExpanded,
           setActiveRecords, toggleInList } = props;
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    if (isLoading) {
+      const el = document.getElementById("content-loading")
+      el.focus()
+    }
+  }, [isLoading])
 
   return (
   children ?
     (<div className={classnames("records__content", {"hidden": !isContentShown})}>
+      {isLoading ? (
+        <div className="loading">
+          <p id="content-loading" className="loading__text">Loading</p>
+        </div>) : (null)}
       <h2 className="content__title">Collection Content</h2>
       <h3 className="collection__title">{collection.title}</h3>
       <p className="collection__date">{dateString(collection.dates)}</p>
@@ -229,6 +248,7 @@ const RecordsContent = props => {
         params={params}
         preExpanded={preExpanded}
         setActiveRecords={setActiveRecords}
+        setIsLoading={setIsLoading}
         toggleInList={toggleInList} />
     </div>) :
     (null)

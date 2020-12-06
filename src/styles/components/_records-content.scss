@@ -12,6 +12,25 @@
   }
 }
 
+.loading {
+  background: $dark-gray;
+  opacity: 0.5;
+  top: 60px;
+  bottom: 0;
+  left: 40%;
+  right: 0;
+  position: fixed;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading__text {
+  font-size: 75px;
+  color: $pure-white;
+}
+
 .content__title {
   font-family: $sans-serif-stack;
   font-size: 24px;
