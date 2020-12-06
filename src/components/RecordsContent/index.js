@@ -231,9 +231,6 @@ const RecordsContent = props => {
     }
   }, [isLoading, preExpanded])
 
-  console.log(preExpanded);
-  console.log(isLoading);
-
   return (
   children ?
     (<div className={classnames("records__content", {"hidden": !isContentShown})}>
