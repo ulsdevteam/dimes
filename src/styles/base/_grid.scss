@@ -10,8 +10,8 @@ $grid-column: (
 ); //does this work??
 
 .container--full-width {
-  @include grid-container;
   width: 100%;
+  @include grid-container;
 }
 
 .container {

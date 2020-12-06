@@ -143,7 +143,7 @@
   @extend .btn--gray;
   @extend .btn--sm;
   margin-top: 20px;
-  @media screen and (min-width: $break-md)  {
+  @include md-up  {
     margin-top: 30px;
   }
 }
@@ -232,7 +232,7 @@
 .btn-add--content {
   @include records-btn;
   @extend .btn--orange;
-  @media screen and (min-width: $break-md) {
+  @include md-up {
     position: relative;
   }
 }
@@ -250,7 +250,7 @@
   font-size: 10px;
   margin-bottom: 10px;
   text-align: center;
-  @media screen and (min-width: $break-md) {
+  @include md-up {
     width: unset;
   }
 }
@@ -263,7 +263,7 @@
   @include records-detail-btn;
   @extend .btn--orange;
   box-sizing: border-box;
-  @media screen and (min-width: $break-md) {
+  @include md-up {
     margin-right: 10px;
   }
 }

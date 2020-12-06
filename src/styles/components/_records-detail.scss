@@ -12,14 +12,14 @@
   font-family: $sans-serif-stack;
   &.hidden {
     display: none;
-    @media screen and (min-width: $break-lg) {
+    @include lg-up {
       display: unset;
     }
   }
-  @media screen and (min-width: $break-md) {
+  @include md-up {
     padding: 0px 40px 50px 40px;
   }
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     width: 40%;
     max-height: 100vh;
     position: sticky;

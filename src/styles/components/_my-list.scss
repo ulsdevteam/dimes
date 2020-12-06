@@ -2,7 +2,7 @@
 
 .mylist main {
   @include grid-column(12);
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     @include grid-column(8);
   }
 }
@@ -13,6 +13,7 @@
 }
 
 .mylist__export-actions {
+  @include show-on-lg-up;
   padding-bottom: 30px;
 }
 
@@ -29,6 +30,7 @@
   & > button {
     align-self: flex-start;
   }
+  @include show-on-lg-up;
 }
 
 .mylist__title {

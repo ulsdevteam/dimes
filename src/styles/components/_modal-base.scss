@@ -87,7 +87,7 @@
   & a {
     text-decoration: underline;
   }
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     width: 100%
   }
 }

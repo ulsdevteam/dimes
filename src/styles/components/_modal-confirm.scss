@@ -9,7 +9,7 @@
   border-radius: 3px;
   overflow: auto;
   outline: none;
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     top: $confirm-modal-content-margin-lg;
     left: $confirm-modal-content-margin-lg;
     right: $confirm-modal-content-margin-lg;
