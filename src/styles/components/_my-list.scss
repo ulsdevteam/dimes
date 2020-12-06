@@ -10,7 +10,6 @@
 
 .mylist__header {
   @include grid-column(12);
-  margin-top: 80px;
 }
 
 .mylist__export-actions {
