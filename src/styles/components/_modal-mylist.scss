@@ -90,8 +90,11 @@
 
 .modal-form__buttons {
   float: left;
-  margin: 20px 0;
+  margin: 10px 0;
   width: 100%;
+  & > .btn {
+    margin-top: 10px;
+  }
 }
 
 .modal-form__error {
