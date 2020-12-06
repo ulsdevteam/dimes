@@ -11,10 +11,7 @@
   float: left;
   font-family: $sans-serif-stack;
   &.hidden {
-    display: none;
-    @include lg-up {
-      display: unset;
-    }
+    @include show-on-lg-up;
   }
   @include md-up {
     padding: 0px 40px 50px 40px;

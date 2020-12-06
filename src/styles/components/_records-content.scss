@@ -10,6 +10,9 @@
   @include lg-up {
     width: 60%;
   }
+  &.hidden {
+    @include show-on-lg-up;
+  }
 }
 
 .content__title {
