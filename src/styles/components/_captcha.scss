@@ -6,10 +6,10 @@
   & div > div > div {
     position: relative;
     transform-origin: left center;
-    @media screen and (min-width: $break-lg) and (max-width: 1350px) {
-      left: 50%;
-      transform: scale(0.87) translateX(-50%);
-      transform-origin: left center;
+    transform: scale(0.90);
+    @media screen and (min-width: 1240px) {
+      transform: scale(1);
     }
   }
 }
+
