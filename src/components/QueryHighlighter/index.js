@@ -4,7 +4,7 @@ import Highlighter from "react-highlight-words";
 import "./styles.scss";
 
 
-const QueryHighlighter = ({ query, text}) => {
+const QueryHighlighter = ({ query, text }) => {
   const parsedQuery = query ? query.replace(/"([^"]+(?="))"/g, '$1').split(" ") : []
   return (
     <Highlighter
