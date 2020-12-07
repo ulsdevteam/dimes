@@ -8,5 +8,6 @@ it('renders without crashing', () => {
   const div = document.createElement('div');
   render(<ModalSavedItemList
           items={resolvedList}
-          handleChange={function(){}} />, div);
+          handleChange={function(){}}
+          setSubmit={function(){}} />, div);
 });

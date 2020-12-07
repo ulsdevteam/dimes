@@ -227,7 +227,7 @@ const RecordsContent = props => {
   useEffect(() => {
     if (isLoading) {
       const el = document.getElementById("content-loading")
-      el.focus()
+      el && el.focus()
     }
   }, [isLoading, preExpanded])
 
