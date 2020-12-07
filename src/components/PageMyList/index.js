@@ -61,6 +61,10 @@
 
     /* Requests CSV data and downloads a local file */
     downloadCsv = () => {
+      if (!this.state.isRequestingAvailable) {
+        this.toggleModal("requestingUnavailable");
+        return;
+      }
       this.setState({ isDownloading: true })
       axios
         .post(
@@ -220,11 +224,11 @@
     * to original state
     */
     toggleModal = modal  => {
-      if (["duplication", "readingRoom"].includes(modal) && !this.state.isRequestingAvailable) {
+      if ((["duplication", "email", "readingRoom"].includes(modal)) && !this.state.isRequestingAvailable) {
         this.toggleModal("requestingUnavailable");
-      } else {
-        this.setState({ [modal]: {...this.state[modal], isOpen: !this.state[modal]["isOpen"], error: ""} })
+        return;
       }
+      this.setState({ [modal]: {...this.state[modal], isOpen: !this.state[modal]["isOpen"], error: ""} })
       if (this.state[modal].isOpen) {
         this.toggleList(false)
       }
