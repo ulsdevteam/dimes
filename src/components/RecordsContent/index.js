@@ -93,7 +93,7 @@ class RecordsChild extends Component {
           <button id={`accordion__heading-${item.uri}`}
                   className={classnames("child__title", `child__title--${item.type}`)}
                   onClick={() => this.handleItemClick(item.uri)}>
-            <QueryHighlighter query={params.query} text={item.title} />
+            <QueryHighlighter query={item.hit_count ? params.query : null} text={item.title} />
           </button>
           {item.dates === item.title ? (null) : (<p className="child__text">{item.dates}</p>)}
         </div>
@@ -112,7 +112,7 @@ class RecordsChild extends Component {
             toggleSaved={this.toggleSaved} />
         </div>
         <p className="child__text text--truncate">
-          <QueryHighlighter query={params.query} text={item.description} />
+          <QueryHighlighter query={item.hit_count ? params.query : null} text={item.description} />
         </p>
         {params.query && item.hit_count ? (<HitCountBadge className="hit-count--records" hitCount={item.hit_count} />) : null}
       </div>) :
@@ -133,10 +133,10 @@ class RecordsChild extends Component {
           <AccordionItemButton
               className={`child__title child__title--${item.type}`}
               onClick={() => this.handleCollectionClick(item.uri)} >
-            <QueryHighlighter query={params.query} text={item.title} />
+            <QueryHighlighter query={item.hit_count ? params.query : null} text={item.title} />
             {item.title === item.dates ? (null) : (<p className="child__text">{item.dates}</p>)}
             <p className="child__text text--truncate">
-              <QueryHighlighter query={params.query} text={item.description} />
+              <QueryHighlighter query={item.hit_count ? params.query : null} text={item.description} />
             </p>
             {params.query && item.hit_count ? (<HitCountBadge className="hit-count--records-" hitCount={item.hit_count} />) : null}
             <MaterialIcon icon="expand_more" />
