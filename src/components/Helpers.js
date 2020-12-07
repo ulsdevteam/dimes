@@ -14,10 +14,10 @@ export const hasAccessOrUse = notes => {
 }
 
 
-/** Returns text for a specific note by type */
+/** Returns text for a specific note (or notes) by type */
 export const noteText = (notes, noteType) => {
-  let note = notes && notes.filter(n => {return n.type === noteType})[0]
-  return note ? note.subnotes.map(s => s.content).join("\r\n") : null
+  let filteredNotes = notes && notes.filter(n => {return n.type === noteType})
+  return filteredNotes ? filteredNotes.map(note => note.subnotes.map(s => s.content)).join("\r") : null
 }
 
 
