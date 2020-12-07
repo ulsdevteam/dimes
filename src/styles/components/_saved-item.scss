@@ -52,6 +52,10 @@
 .saved-item__title {
   margin: 0 0 5px 0;
   font-size: 20px;
+  & a {
+    color: inherit;
+    text-decoration: underline;
+  }
 }
 
 .modal-saved-item__title {

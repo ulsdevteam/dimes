@@ -10,7 +10,7 @@ const SavedItem = props => (
   <div className="saved-item">
     <div className="saved-item__row">
       <div className="saved-item__item-description">
-        <h3 className="saved-item__title">{props.title}</h3>
+        <h3 className="saved-item__title"><a href={props.uri}>{props.title}</a></h3>
         {props.date !== props.title && <p className="saved-item__date">{props.date}</p>}
         {props.description && <p className="saved-item__description">{props.description}</p>}
         {props.parent && <p className="saved-item__found-in">Found in: <a href={props.parentRef}>{props.parent}</a></p>}
@@ -42,7 +42,7 @@ SavedItem.propTypes = {
   uri: PropTypes.string
 }
 
-const SavedItemGroup = ({ items, removeFromList, title, uri }) => {
+const SavedItemGroup = ({ items, removeFromList, title }) => {
   const listItems = items.map((item, index) =>
     <SavedItem
       key={index}
