@@ -7,10 +7,10 @@
   .biography {
     margin-bottom: 26px;
     @include grid-column(6);
-    @media screen and (min-width: $break-md) {
+    @include md-up {
       @include grid-column(4);
     }
-    @media screen and (min-width: $break-lg) {
+    @include lg-up {
       @include grid-column(3)
     }
     img {
@@ -33,7 +33,7 @@
 }
 
 .bio-page-image {
-  @media screen and (min-width: $break-md) {
+  @include md-up {
     float: left;
     margin-right: 20px;
   }

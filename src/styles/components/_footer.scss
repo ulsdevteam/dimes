@@ -31,12 +31,12 @@
   @include grid-column(12);
   margin-bottom: 40px;
   margin-left: 0px;
-  @media screen and (min-width: $break-md) {
+  @include md-up {
     @include grid-column(6);
     margin-left: 0px;
     margin-bottom: 50px;
   }
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     @include grid-column(3);
     margin-left: 0px;
     margin-bottom: 50px;
@@ -59,11 +59,11 @@
       }
     }
   }
-  @media screen and (min-width: $break-md) {
+  @include md-up {
     @include grid-column(12);
     margin-left: 0px;
   }
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     @include grid-column(3);
     float: right;
     text-align: right;
@@ -78,5 +78,5 @@
 .footer-secondary__data {
   @include grid-column(12);
   width: 100%;
-  @media screen and (min-width: $break-lg) {text-align: right;}
+  @include lg-up {text-align: right;}
 }

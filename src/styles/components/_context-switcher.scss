@@ -7,7 +7,7 @@
   position: fixed;
   bottom: 0;
   left: 0;
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     display: none;
   }
 }
@@ -20,7 +20,7 @@
   width: 100%;
   position: fixed;
   bottom: 0;
-  @media screen and (min-width: $break-md) {
+  @include md-up {
     position: relative;
     width: 50%;
   }
@@ -28,7 +28,7 @@
 
 .toggle-context--active {
   opacity: 0;
-  @media screen and (min-width: $break-md) {
+  @include md-up {
     opacity: 1;
     background: $off-white;
     color: $dark-gray;

@@ -18,7 +18,7 @@ const ModalConfirm = props => (
         <MaterialIcon icon="close"/>
       </button>
     </div>
-    <div className="modal-body">
+    <div className="modal-body--confirm">
       <div className="modal-message">
         {props.message}
       </div>

@@ -34,7 +34,7 @@
 
 .modal-saved-item__item-description  {
   @include grid-column(11);
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     @include grid-column(9);
   }
 }

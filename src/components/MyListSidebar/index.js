@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Button from "../Button";
 
 const MyListSidebar = ({ duplicationRequest, readingRoomRequest, sendEmail }) => (
-  <aside className="mylist__sidebar show-on-lg-up">
+  <aside className="mylist__sidebar">
     <Button
       className="btn--orange btn--lg"
       label="Schedule a Visit"

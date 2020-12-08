@@ -5,7 +5,7 @@
   font-family: $sans-serif-stack;
   list-style: none;
   padding-left: 0;
-  @media screen and (min-width: $break-md) {
+  @include md-up {
     margin-bottom: 0;
   }
 }
@@ -42,7 +42,7 @@
     line-height: normal;
     margin: 0;
   }
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     padding: 0px 7px;
   }
 }
