@@ -14,16 +14,21 @@
 
 .loading {
   background: $dark-gray;
-  opacity: 0.5;
-  top: 60px;
-  bottom: 0;
-  left: 40%;
+  opacity: 0.8;
+  top: 70px;
+  bottom: 58px;
+  left: 0;
   right: 0;
   position: fixed;
   z-index: 999;
   display: flex;
   justify-content: center;
   align-items: center;
+  @media screen and (min-width: $break-lg) {
+    top: 60px;
+    bottom: 0;
+    left: 40%;
+  }
 }
 
 .loading__text {
