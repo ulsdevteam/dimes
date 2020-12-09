@@ -33,7 +33,7 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     flex-wrap: nowrap;
   }
 }
@@ -44,7 +44,7 @@
   flex-wrap: nowrap;
   align-items: flex-start;
   width: 100%;
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     width: unset;
   }
 }
@@ -52,6 +52,10 @@
 .saved-item__title {
   margin: 0 0 5px 0;
   font-size: 20px;
+  & a {
+    color: inherit;
+    text-decoration: underline;
+  }
 }
 
 .modal-saved-item__title {

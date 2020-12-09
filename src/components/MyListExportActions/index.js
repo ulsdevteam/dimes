@@ -5,7 +5,7 @@ import classnames from "classnames";
 
 
 const MyListExportActions = ({ confirmDeleteAll, downloadCsv, emailList, isDownloading }) => (
-  <div className="mylist__export-actions show-on-lg-up">
+  <div className="mylist__export-actions">
     <Button
       className="btn--orange btn--sm"
       label="Email List"

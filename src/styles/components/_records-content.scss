@@ -7,8 +7,11 @@
   float: left;
   padding: 40px 30px;
   box-sizing: border-box;
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     width: 60%;
+  }
+  &.hidden {
+    @include show-on-lg-up;
   }
 }
 
@@ -201,7 +204,7 @@
 .child__description {
   min-width: 0;
   order: 1;
-  @media screen and (min-width: $break-md) {
+  @include md-up {
     order: unset;
     flex-basis: 50%;
     flex-grow: 2;
@@ -214,7 +217,7 @@
   align-items: flex-start;
   flex-shrink: 0;
   order: 3;
-  @media screen and (min-width: $break-md) {
+  @include md-up {
     width: unset;
     order: unset;
     justify-content: flex-end;
@@ -255,7 +258,7 @@
 .child__text {
   font-size: 14px;
   order: 2;
-  @media screen and (min-width: $break-md) {
+  @include md-up {
     order: unset
   }
 }

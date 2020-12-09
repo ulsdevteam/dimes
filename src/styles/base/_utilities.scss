@@ -27,30 +27,38 @@ $transition-default: all 0.2s ease;
   display: flex;
 }
 
-.show-on-md-up {
+
+@mixin md-up {
+  @media screen and (min-width: $break-md) { @content; }
+}
+@mixin lg-up {
+  @media screen and (min-width: $break-lg) { @content; }
+}
+
+@mixin show-on-md-up {
   display: none;
-  @media screen and (min-width: $break-md) {
+  @include md-up {
     display: inherit;
   }
 }
 
-.hide-on-md-up {
-  display: block;
-  @media screen and (min-width: $break-md) {
+@mixin hide-on-md-up {
+  display: inherit;
+  @include md-up {
     display: none
   }
 }
 
-.show-on-lg-up {
+@mixin show-on-lg-up {
   display: none;
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     display: inherit;
   }
 }
 
 .hide-on-lg-up {
-  display: block;
-  @media screen and (min-width: $break-lg) {
+  display: inherit;
+  @include lg-up {
     display: none;
   }
 }

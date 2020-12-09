@@ -3,8 +3,8 @@
   float: left;
   padding: 30px 20px;
   box-sizing: border-box;
-  @media screen and (min-width: $break-lg) {
-    @include grid-column(8);
+  @include lg-up {
+    width: 66%
   }
 }
 
@@ -18,8 +18,8 @@
   box-sizing: border-box;
   font-size: 14px;
   padding-bottom: 18px;
-  @media screen and (min-width: $break-lg) {
-    @include grid-column(4);
+  @include lg-up {
+    width: 34%;
     float: right;
   }
 }
@@ -90,8 +90,11 @@
 
 .modal-form__buttons {
   float: left;
-  margin: 20px 0;
+  margin: 10px 0;
   width: 100%;
+  & > .btn {
+    margin-top: 10px;
+  }
 }
 
 .modal-form__error {

@@ -2,26 +2,26 @@
 
 .mylist main {
   @include grid-column(12);
-  @media screen and (min-width: $break-lg) {
-    @include grid-column(8);
+  @include lg-up {
+    width: 66%;
+    box-sizing: border-box;
   }
 }
 
 .mylist__header {
   @include grid-column(12);
-  margin-top: 80px;
 }
 
 .mylist__export-actions {
+  @include show-on-lg-up;
   padding-bottom: 30px;
 }
 
 .mylist__sidebar {
-  @include grid-column(4);
+  width: 34%;
   background: $off-white;
   float: right;
-  margin-left: 45px;
-  margin-right: -45px;
+  margin-right: -30px;
   padding: 60px 0px 60px 40px;
   box-sizing: border-box;
   display: flex;
@@ -29,6 +29,7 @@
   & > button {
     align-self: flex-start;
   }
+  @include show-on-lg-up;
 }
 
 .mylist__title {

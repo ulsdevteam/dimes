@@ -30,10 +30,10 @@ h1 {
   font-weight: $font-weight-bold;
   font-size: 32px;
   color: $dark-gray;
-  @media screen and (min-width: $break-md) {
+  @include md-up {
     font-size: 42px;
   }
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     font-size: 52px;
   }
 }
@@ -51,7 +51,7 @@ h2 {
   // padding-bottom: 12px; // NOTE: style conflicting with Mirador
   margin-bottom: 20px;
   margin-top: 60px;
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     margin-top: 0px;
     font-size: 28px;
   }
@@ -61,7 +61,7 @@ h3 {
   font-size: 18px;
   margin-top: 30px;
   margin-bottom: 10px;
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     font-size: 20px;
   }
 }
@@ -69,7 +69,7 @@ h3 {
 h4 {
   font-size: 14px;
   color: $faded-orange;
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     font-size: 16px;
   }
 }
@@ -92,7 +92,7 @@ a {
 ul {
   font-family: inherit;
   line-height: 23px;
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     font-size: 17px;
     line-height: 24px;
   }
@@ -103,7 +103,7 @@ small {
   font-size: 14px;
   line-height: 20px;
   margin-bottom: 12px;
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     font-size: 15px;
     line-height: 21px;
   }
@@ -170,7 +170,7 @@ small {
   &:hover {
     color: $off-white;
   }
-  @media screen and (min-width: $break-md) {
+  @include md-up {
     line-height: 18px;
     font-size: 15px;
   }
@@ -191,10 +191,10 @@ small {
   &:hover {
     color: $off-white;
   }
-  @media screen and (min-width: $break-md)  {
+  @include md-up  {
     line-height: 70px;
   }
-  @media screen and (min-width: $break-lg)  {
+  @include lg-up  {
     line-height: 60px;
   }
 }
@@ -241,7 +241,7 @@ small {
   font-family: $sans-serif-stack;
   font-size: 24px;
   color: $deep-navy;
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     font-size: 28px;
   }
 }
@@ -289,11 +289,11 @@ small {
   font-size: 18px;
   line-height: 24px;
   color: $dark-gray;
-  @media screen and (min-width: $break-md) {
+  @include md-up {
     font-size: 28px;
     line-height: 38px;
   }
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     font-size: 34px;
     line-height: 42px;
   }
@@ -302,7 +302,7 @@ small {
 .mylist__title {
   @include page-title;
   float: left;
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     float: none;
   }
 }

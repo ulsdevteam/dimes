@@ -3,23 +3,11 @@
   top: 0;
   left: 0;
   right: unset;
-  width: 420px;
+  max-width: 420px;
   height: 100vh;
   border-radius: 0px;
   border: 1px solid $dark-gray;
   background: $pale-blue;
-}
-
-.modal-content--hits {
-  @extend .modal-content;
-  left: unset;
-  top: 0;
-  right: 0;
-  width: 420px;
-  height: 100vh;
-  border-radius: 0px;
-  border: 1px solid $dark-gray;
-  background: $pure-white;
 }
 
 .modal-header--search {

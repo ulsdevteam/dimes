@@ -1,7 +1,7 @@
 @import "../styles";
 
 .rac-social-icons {
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     display: flex;
     justify-content: space-evenly;
   }

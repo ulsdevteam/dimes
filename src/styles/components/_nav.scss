@@ -8,7 +8,7 @@
   margin-left: 0;
   height: 60px;
   box-sizing: border-box;
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     @include grid-column(5);
     border: none;
     float: right;
@@ -16,10 +16,11 @@
 }
 
 .nav__list {
+  @include show-on-lg-up;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     margin-right: -15px;
   }
 }
@@ -31,7 +32,7 @@
     background-color: $deep-blue;
     transition: $transition-default
   }
-  @media screen and (min-width: $break-md) {
+  @include md-up {
     padding-left: 14px;
     padding-right: 14px;
   }

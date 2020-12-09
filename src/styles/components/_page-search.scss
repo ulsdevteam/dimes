@@ -5,10 +5,10 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  @media screen and (min-width: $break-md) {
+  @include md-up {
     align-items: flex-end;
   }
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     flex-wrap: nowrap;
     align-items: flex-end;
   }
@@ -16,18 +16,18 @@
 
 .results__footer {
   margin-bottom: 30px;
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     justify-content: flex-end;
   }
 }
 
 .results__summary {
   width: 100%;
-  @media screen and (min-width: $break-md) {
+  @include md-up {
     width: 50%;
     order: 0;
   }
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     width: unset;
     order: 1;
     text-align: right;
@@ -37,17 +37,17 @@
 .results__summary--text {
   font-family: inherit;
   min-width: 225px;
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     margin-bottom: 0;
   }
 }
 
 .results__controls {
   width: 100%;
-  @media screen and (min-width: $break-md) {
+  @include md-up {
     order: 2
   }
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     width: unset;
     order: 0;
     flex-grow: 1;
@@ -56,14 +56,14 @@
 
 .results__pagination {
   width: 100%;
-  @media screen and (min-width: $break-md) {
+  @include md-up {
     width: 50%;
     order: 1;
     margin-bottom: 10px;
     text-align: right;
     align-self: flex-end;
   }
-  @media screen and (min-width: $break-lg) {
+  @include lg-up {
     width: unset;
     order: 2;
     margin-left: 10px;
@@ -75,7 +75,7 @@
   position: relative;
   display: inline-block;
   box-sizing: border-box;
-  margin-left: 16px;
+  margin-top: 16px;
 }
 
 .select__sort__control > .material-icons {

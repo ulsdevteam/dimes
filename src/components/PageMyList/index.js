@@ -22,8 +22,10 @@
         submitList: [],
         isDownloading: false,
         isLoading: true,
+        isRequestingAvailable: false,
         email: {isOpen: false},
         readingRoom: {isOpen: false},
+        requestingUnavailable: {isOpen: false},
         duplication: {isOpen: false},
         confirm: {
           isOpen: false,
@@ -36,6 +38,10 @@
 
     componentDidMount() {
       this.fetchList()
+      axios
+        .get(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/admin`)
+        .then(res => this.setState({ isRequestingAvailable: true }))
+        .catch(err => console.log(err))
     }
 
     /** Returns a list of ArchivesSpace URIs for checked items in list */
@@ -55,6 +61,10 @@
 
     /* Requests CSV data and downloads a local file */
     downloadCsv = () => {
+      if (!this.state.isRequestingAvailable) {
+        this.toggleModal("requestingUnavailable");
+        return;
+      }
       this.setState({ isDownloading: true })
       axios
         .post(
@@ -214,6 +224,10 @@
     * to original state
     */
     toggleModal = modal  => {
+      if ((["duplication", "email", "readingRoom"].includes(modal)) && !this.state.isRequestingAvailable) {
+        this.toggleModal("requestingUnavailable");
+        return;
+      }
       this.setState({ [modal]: {...this.state[modal], isOpen: !this.state[modal]["isOpen"], error: ""} })
       if (this.state[modal].isOpen) {
         this.toggleList(false)
@@ -287,6 +301,12 @@
             submitList={this.state.submitList}
             toggleList={this.toggleList}
             toggleModal={() => this.toggleModal("duplication")}
+          />
+          <ModalConfirm
+            {...this.state.requestingUnavailable}
+            message="Sorry, our system is unable to process requests right now. We're working to fix this! Please try again later."
+            title="Can't Complete Request"
+            toggleModal={() => this.toggleModal("requestingUnavailable")}
           />
           <ModalConfirm
             {...this.state.confirm}
