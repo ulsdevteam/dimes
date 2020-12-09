@@ -18,7 +18,7 @@
 .loading {
   background: $dark-gray;
   opacity: 0.8;
-  top: 70px;
+  top: 60px;
   bottom: 58px;
   left: 0;
   right: 0;
@@ -27,7 +27,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  @media screen and (min-width: $break-lg) {
+  @include md-up {
+    top: 70px;
+  }
+  @include lg-up {
     top: 60px;
     bottom: 0;
     left: 40%;

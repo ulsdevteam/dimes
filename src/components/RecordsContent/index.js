@@ -237,7 +237,7 @@ const RecordsContent = props => {
     (<div className={classnames("records__content", {"hidden": !isContentShown})}>
       {isLoading ? (
         <div className="loading">
-          <p id="content-loading" className="loading__text">Loading...</p>
+          <p id="content-loading" className="loading__text loading-dots">Loading</p>
         </div>) : (null)}
       <h2 className="content__title">Collection Content</h2>
       <h3 className="collection__title">{collection.title}</h3>

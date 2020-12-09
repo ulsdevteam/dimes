@@ -39,8 +39,8 @@
     componentDidMount() {
       this.fetchList()
       axios
-        .get(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/admin`)
-        .then(res => this.setState({ isRequestingAvailable: true }))
+        .get(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/status/health/ping`)
+        .then(res => res.data.pong && this.setState({ isRequestingAvailable: true }))
         .catch(err => console.log(err))
     }
 
@@ -106,7 +106,7 @@
     handleAeonFormSubmit = (uri, submitted, modal) => {
       this.toggleModal(modal);
       const loadingTitle = "Preparing Request Data"
-      const loadingMessage = <p className="icon-spin"><MaterialIcon icon="cached"/> Preparing items for your request.</p>
+      const loadingMessage = <p className="loading-dots">Preparing items for your request</p>
       this.handleConfirmData(loadingTitle, loadingMessage);
       this.toggleModal("confirm");
       axios
@@ -138,7 +138,7 @@
     handleExportFormSubmit = (uri, submitted, modal) => {
       this.toggleModal(modal);
       const loadingTitle = "Sending Email"
-      const loadingMessage = <p className="icon-spin"><MaterialIcon icon="cached"/> Adding items to your message.</p>
+      const loadingMessage = <p className="loading-dots">Adding items to your message</p>
       this.handleConfirmData(loadingTitle, loadingMessage);
       this.toggleModal("confirm");
       axios
