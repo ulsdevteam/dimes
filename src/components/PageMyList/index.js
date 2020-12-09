@@ -39,8 +39,8 @@
     componentDidMount() {
       this.fetchList()
       axios
-        .get(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/admin`)
-        .then(res => this.setState({ isRequestingAvailable: true }))
+        .get(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/status/health/ping`)
+        .then(res => res.data.pong && this.setState({ isRequestingAvailable: true }))
         .catch(err => console.log(err))
     }
 
