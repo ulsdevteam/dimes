@@ -12,9 +12,8 @@ const MyListExportActions = ({ confirmDeleteAll, downloadCsv, emailList, isDownl
       iconBefore="email"
       handleClick={emailList} />
     <Button
-      className={classnames("btn--orange", "btn--sm", {"icon-spin": isDownloading})}
+      className={classnames("btn--orange", "btn--sm", {"loading-dots": isDownloading})}
       label={isDownloading ? "Downloading" : "Download as .CSV"}
-      iconBefore={isDownloading ? "cached" : "get_app"}
       handleClick={downloadCsv}
       disabled={isDownloading} />
     <Button
