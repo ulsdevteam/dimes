@@ -75,7 +75,7 @@ h4 {
 }
 
 a {
-  font-weight: 700;
+  font-weight: $font-weight-bold;
   color: $burnt-orange;
   text-decoration: none;
   transition: $transition-default;
@@ -115,7 +115,7 @@ small {
 
 @mixin footer-primary-title-text {
   font-family: $sans-serif-stack;
-  font-weight: 900;
+  font-weight: $font-weight-heavy;
   font-size: 21px;
   letter-spacing: 4px;
   line-height: 26px;
@@ -124,7 +124,7 @@ small {
 
 @mixin footer-primary-text {
   font-family: $serif-stack;
-  font-weight: 400;
+  font-weight: $font-weight-normal;
   font-size: 15px;
   color: $deep-navy;
   line-height: 22px;
@@ -166,7 +166,7 @@ small {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   line-height: 13px;
-  font-weight: 900;
+  font-weight: $font-weight-heavy;
   &:hover, &:focus {
     color: $off-white;
   }
@@ -184,7 +184,7 @@ small {
 
 @mixin secondary-header-nav-link {
   @include secondary-header-text;
-  font-weight: 700;
+  font-weight: $font-weight-bold;
   font-size: 13px;
   letter-spacing: 0.1em;
   line-height: 60px;
@@ -205,7 +205,7 @@ small {
 
 @mixin tile-title-text {
   @include tile-text;
-  font-weight: 700;
+  font-weight: $font-weight-bold;
   font-size: 18px;
   color: $dark-gray;
   line-height: 22px;
@@ -213,7 +213,7 @@ small {
 
 @mixin tile-date-text {
   @include tile-text;
-  font-weight: 400;
+  font-weight: $font-weight-normal;
   font-size: 15px;
   color: $dark-gray;
 }
@@ -222,14 +222,14 @@ small {
   @include tile-text;
   font-size: 11px;
   line-height: 11px;
-  font-weight: 700;
+  font-weight: $font-weight-bold;
   color: $pure-white;
 }
 
 @mixin tile-type-label-text {
   @include tile-text;
   text-transform: uppercase;
-  font-weight: 900;
+  font-weight: $font-weight-heavy;
   font-size: 12px;
   color: $red-brown;
   letter-spacing: 0.1em;
@@ -270,7 +270,7 @@ small {
 .agent-attribute__label {
   font-family: $sans-serif-stack;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: $font-weight-bold;
   letter-spacing: 0.65px;
   text-transform: uppercase;
   margin: 0px;
@@ -285,7 +285,7 @@ small {
 
 .hero__text {
   font-family: $serif-stack;
-  font-weight: 700;
+  font-weight: $font-weight-bold;
   font-size: 18px;
   line-height: 24px;
   color: $dark-gray;

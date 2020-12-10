@@ -156,7 +156,7 @@ label {
 }
 
 .dp__month {
-  font-weight: 700;
+  font-weight: $font-weight-bold;
   padding: 0 16px;
   text-align: center;
   width: 200px;
@@ -186,7 +186,7 @@ label {
 
   th {
     color: $med-gray;
-    font-weight: 400;
+    font-weight: $font-weight-normal;
     line-height: 1.6;
   }
 
@@ -255,7 +255,7 @@ label {
     background: $lighter-gray;
   }
   &.is-selected {
-    font-weight: 700;
+    font-weight: $font-weight-bold;
     &::after {
       @extend .material-icons;
       font-size: 20px;

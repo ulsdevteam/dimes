@@ -83,7 +83,7 @@
   & a {
     @include saved-item-text;
     color: $dark-gray;
-    font-weight: normal;
+    font-weight: $font-weight-normal;
     text-decoration: underline;
   }
 }

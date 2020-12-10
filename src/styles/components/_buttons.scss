@@ -34,7 +34,7 @@
 
 .btn--sm {
   font-size: 10px;
-  font-weight: 700;
+  font-weight: $font-weight-bold;
   line-height: 16px;
   padding: 8px 10px;
   margin-right: 10px;
@@ -56,7 +56,7 @@
 }
 
 .btn--lg {
-  font-weight: 700;
+  font-weight: $font-weight-bold;
   font-size: 14px;
   line-height: 18px;
   padding: 18px;
