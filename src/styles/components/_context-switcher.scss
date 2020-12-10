@@ -32,7 +32,7 @@
     opacity: 1;
     background: $off-white;
     color: $dark-gray;
-    &:hover {
+    &:hover, &:focus {
       background: $neutral-sand;
       color: $dark-gray;
     }

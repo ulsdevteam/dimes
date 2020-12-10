@@ -26,7 +26,7 @@
 .pagination__button.disabled a, .page__active a{
   color: $dark-gray;
   cursor: default;
-  &:hover {
+  &:hover, &:focus {
     color: inherit;
     cursor: inherit;
     text-decoration: none;

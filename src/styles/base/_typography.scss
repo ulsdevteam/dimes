@@ -82,7 +82,7 @@ a {
   &:focus {
     text-decoration: underline;
   }
-  &:hover {
+  &:hover, &:focus {
     text-decoration: underline;
     color: $red-orange;
     cursor: pointer;
@@ -135,7 +135,7 @@ small {
   @include footer-primary-text;
   text-decoration: underline;
   font-weight: $font-weight-normal;
-  &:hover {
+  &:hover, &:focus {
     color: $burnt-orange;
     transition: $transition-default;
   }
@@ -149,7 +149,7 @@ small {
 @mixin footer-secondary-link {
   @include footer-secondary-text;
   text-decoration: underline;
-  &:hover {
+  &:hover, &:focus {
     color: $off-white;
     transition: $transition-default;
   }
@@ -167,7 +167,7 @@ small {
   letter-spacing: 0.1em;
   line-height: 13px;
   font-weight: 900;
-  &:hover {
+  &:hover, &:focus {
     color: $off-white;
   }
   @include md-up {
@@ -188,7 +188,7 @@ small {
   font-size: 13px;
   letter-spacing: 0.1em;
   line-height: 60px;
-  &:hover {
+  &:hover, &:focus {
     color: $off-white;
   }
   @include md-up  {

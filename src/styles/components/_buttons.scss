@@ -5,10 +5,7 @@
   letter-spacing: 1.5px;
   text-transform: uppercase;
   vertical-align: middle;
-  &:hover {
-    text-decoration: none;
-  }
-  &:focus {
+  &:hover, &:focus {
     text-decoration: none;
   }
 }
@@ -73,7 +70,7 @@
   background: $deep-blue;
   color: $pure-white;
   border: 1px solid $deep-blue;
-  &:hover {
+  &:hover, &:focus {
     background: $dark-blue;
     border: 1px solid $dark-blue;
     color: $pure-white; //for links styled as buttons
@@ -84,7 +81,7 @@
   background: $deep-navy;
   color: $pure-white;
   border: 1px solid $deep-navy;
-  &:hover {
+  &:hover, &:focus {
     background: $deep-blue;
     border: 1px solid $deep-blue;
     color: $off-white;
@@ -95,7 +92,7 @@
   background: $burnt-orange;
   color: $pure-white;
   border: 1px solid $burnt-orange;
-  &:hover {
+  &:hover, &:focus {
     background: $med-brown;
     border: 1px solid $med-brown;
     color: $off-white;
@@ -117,7 +114,7 @@
   background: $off-white;
   color: $med-gray;
   border: 1px solid $light-med-gray;
-  &:hover {
+  &:hover, &:focus {
     background: $lighter-gray;
     color: $med-gray;
   }
@@ -127,7 +124,7 @@
   background: $light-med-gray;
   color: $pure-white;
   border: 1px solid $light-med-gray;
-  &:hover {
+  &:hover, &:focus {
     background: $orange-gray;
     color: $pure-white;
   }
@@ -155,7 +152,7 @@
   top: 12px;
   right: 15px;
   z-index: 999;
-  &:hover {
+  &:hover, &:focus {
     color: $light-med-gray;
   }
 }
@@ -219,7 +216,7 @@
   @extend .btn--sm;
   padding: 8px;
   z-index: 998;
-  &:hover {
+  &:hover, &:focus {
     color: $pure-white;
   }
   & .material-icons {
