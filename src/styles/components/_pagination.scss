@@ -15,9 +15,9 @@
   & a {
     @extend .material-icons;
     font-size: 23px;
-    line-height: 0;
-    margin-bottom: 5px;
-    &:hover {
+    line-height: 23px;
+    margin-bottom: 3px;
+    &:hover, &:focus {
       text-decoration: none;
     }
   }
