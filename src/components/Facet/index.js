@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Button from "../Button";
 import { CheckBoxInput } from "../Inputs";
 import classnames from "classnames";
 import "./styles.scss";
@@ -6,7 +7,12 @@ import "./styles.scss";
 
 const ShowHideMore = ({id, isOpen, toggleOpen}) => {
   return (
-    <button className="facet__show-hide" onClick={() => toggleOpen(isOpen)} >{isOpen ? "show less" : "show all"}</button>
+    <Button
+      ariaLabel="Show all values"
+      ariaPressed={isOpen}
+      className="facet__show-hide"
+      label={isOpen ? "show less" : "show all"}
+      handleClick={() => toggleOpen(isOpen)} />
   )
 }
 
