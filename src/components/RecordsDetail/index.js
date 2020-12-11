@@ -181,7 +181,7 @@ const RecordsDetail = props => {
     }
     <Accordion className="accordion accordion--details" preExpanded={["summary"]} allowZeroExpanded={true}>
       <AccordionItem className="accordion__item" uuid="summary">
-        <AccordionItemHeading className="accordion__heading" ariaLevel={2}>
+        <AccordionItemHeading ariaLevel={2}>
           <AccordionItemButton className="accordion__button">Summary</AccordionItemButton>
         </AccordionItemHeading>
         <AccordionItemPanel className="accordion__panel">
@@ -225,7 +225,7 @@ const RecordsDetail = props => {
       </AccordionItem>
       { hasAccessOrUse(props.item.notes) ?
         (<AccordionItem className="accordion__item" uuid="accessAndUse">
-          <AccordionItemHeading className="accordion__heading" ariaLevel={2}>
+          <AccordionItemHeading ariaLevel={2}>
             <AccordionItemButton className="accordion__button">Access and Use</AccordionItemButton>
           </AccordionItemHeading>
           <AccordionItemPanel className="accordion__panel">
@@ -240,7 +240,7 @@ const RecordsDetail = props => {
         (null)}
       { props.item.terms && props.item.terms.length ?
         (<AccordionItem className="accordion__item" uuid="relatedTerms">
-            <AccordionItemHeading className="accordion__heading" ariaLevel={2}>
+            <AccordionItemHeading ariaLevel={2}>
               <AccordionItemButton className="accordion__button">Related Terms</AccordionItemButton>
             </AccordionItemHeading>
             <AccordionItemPanel className="accordion__panel">

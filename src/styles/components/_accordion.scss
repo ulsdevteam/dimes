@@ -9,11 +9,8 @@
   margin-top: 20px;
 }
 
-.accordion__heading {
-  border-bottom: 1px dotted $deep-navy;
-}
-
 .accordion__button {
+  border-bottom: 1px dotted $deep-navy;
   font-family: inherit;
   font-size: 14px;
   text-transform: uppercase;
@@ -24,6 +21,8 @@
   cursor: pointer;
   &:focus {
     outline: none;
+    border-bottom: 1px solid $deep-navy;
+    font-weight: $font-weight-heavy;
   }
   &::after {
     @extend .material-icons;
