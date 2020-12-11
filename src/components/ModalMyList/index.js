@@ -90,7 +90,7 @@ const ModalToggleListButton = ({ignoreRestrictions, items, toggleList}) => {
       className="btn--sm btn--gray"
       handleClick={() => toggleList(!deselect, ignoreRestrictions)}
       label={deselect ? "Deselect all items" : "Select all items"}
-      ariaLabel="Toggle select all items"
+      ariaLabel="Select all items"
       ariaPressed={deselect}
       iconBefore={deselect ? "check_box_outline_blank" : "check_box"} />
   )
