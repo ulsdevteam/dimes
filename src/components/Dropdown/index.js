@@ -23,6 +23,7 @@ const Dropdown = (props) => {
       className={classnames("btn", itemClassName)}
       onClick={item.handleClick}
       href={item.href}
+      title={item.title}
       {...itemProps[idx]}>{item.iconBefore && <MaterialIcon icon={item.iconBefore} />}{item.label}{item.iconAfter && <MaterialIcon icon={item.iconAfter} />}</a>
   );
   return (
@@ -42,7 +43,7 @@ const Dropdown = (props) => {
   )
 }
 
-export const MyListDropdown = ({ downloadCsv, duplicationRequest, emailList, readingRoomRequest, removeAllItems, sendEmail }) => (
+export const MyListDropdown = ({ downloadCsv, duplicationRequest, emailList, readingRoomRequest, removeAllItems }) => (
   <Dropdown
     label="Actions"
     iconBefore="settings"
@@ -55,7 +56,8 @@ export const MyListDropdown = ({ downloadCsv, duplicationRequest, emailList, rea
         {
           "label": "Schedule a Visit",
           "iconBefore": "account_balance",
-          "handleClick": sendEmail
+          "href": "mailto:archive@rockarch.org?subject=Scheduling a research appointment",
+          "title": "opens email"
         },
         {
           "label": "Request in Reading Room",
