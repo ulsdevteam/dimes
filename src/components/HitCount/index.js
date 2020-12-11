@@ -5,7 +5,11 @@ import "./styles.scss";
 
 
 export const HitCountBadge = ({ className, handleClick, hitCount }) => (
-  <span className={classnames("hit-count", className)} onClick={handleClick}>{hitCount === 10000 ? `${hitCount}+` : hitCount} matches</span>
+  <span
+    className={classnames("hit-count", className)}
+    onClick={handleClick}>
+      {hitCount === 10000 ? `${hitCount}+` : hitCount} {hitCount === 1 ? "match": "matches"}
+  </span>
 )
 
 HitCountBadge.propTypes = {
