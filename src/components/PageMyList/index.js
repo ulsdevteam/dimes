@@ -183,10 +183,6 @@
       this.setState({ savedList: filteredList, submitList: this.constructSubmitList(filteredList) })
     }
 
-    sendEmail = () => {
-      window.open("mailto:archive@rockarch.org?subject=Scheduling a research appointment");
-    }
-
     setSubmit = (uri, submitValue, submitReason) => {
       const updatedList = this.state.savedList.map(g => {
         const updatedGroupItems = g.items.map(i => (
@@ -254,8 +250,7 @@
                   duplicationRequest={() => this.toggleModal("duplication")}
                   emailList={() => this.toggleModal("email")}
                   readingRoomRequest={() => this.toggleModal("readingRoom")}
-                  removeAllItems={() => this.toggleModal("confirmDeleteAll")}
-                  sendEmail={this.sendEmail} />
+                  removeAllItems={() => this.toggleModal("confirmDeleteAll")} />
               </div>
               <MyListExportActions
                   confirmDeleteAll={() => this.toggleModal("confirmDeleteAll")}
@@ -269,8 +264,7 @@
             </main>
             <MyListSidebar
                 duplicationRequest={() => this.toggleModal("duplication")}
-                readingRoomRequest={() => this.toggleModal("readingRoom")}
-                sendEmail={this.sendEmail} />
+                readingRoomRequest={() => this.toggleModal("readingRoom")} />
           </div>
           <EmailModal
             {...this.state.email}
