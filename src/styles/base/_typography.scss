@@ -164,6 +164,7 @@ small {
   text-decoration: underline;
   &:hover, &:focus {
     color: $off-white;
+    text-decoration: none;
     transition: $transition-default;
   }
 }

@@ -13,7 +13,7 @@
   width: 40px;
   text-align: center;
   vertical-align: middle;
-  &:hover, &:focus {
+  &:hover {
     svg g, svg path {
       fill: $burnt-orange;
       transition: $transition-default;
