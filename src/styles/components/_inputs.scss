@@ -230,6 +230,10 @@ label {
     position: absolute;
     pointer-events: none;
   }
+  &:focus {
+    outline: solid 1px $med-gray;
+    outline-offset: 0px;
+  }
 }
 
 .select__menu {

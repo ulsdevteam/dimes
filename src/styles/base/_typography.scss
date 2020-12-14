@@ -6,6 +6,19 @@
 // TODO: replace font weights with variables
 // TODO: consider using relative units instead of pixels
 
+@mixin focus-default {
+  outline: solid 2px $med-gray;
+  outline-offset: 2px;
+}
+
+button:focus {
+  @include focus-default;
+}
+
+a:focus {
+  @include focus-default;
+}
+
 p, a {
   font-family: inherit;
   font-weight: $font-weight-normal;
