@@ -77,14 +77,25 @@ const PageDigitalObject = props => {
       document.referrer : `/${props.match.params.type}/${props.match.params.id}`
   )
 
+  const BackToItemButton = () => (
+    <nav>
+      <a href={itemUrl} className="btn btn--back-item">
+        <MaterialIcon icon="keyboard_arrow_left"/>Back to Item Details
+      </a>
+    </nav>
+  )
+
+  const plugins = [
+    {
+      mode: 'wrap',
+      component: BackToItemButton,
+      target: 'WindowTopBarPluginArea',
+    }
+  ];
+
   return (
     <div className="digital">
-      <nav>
-        <a href={itemUrl} className="btn btn--back-item">
-          <MaterialIcon icon="keyboard_arrow_left"/>Back to Item Details
-        </a>
-      </nav>
-      <Viewer config={configs} plugins={[]} />
+      <Viewer config={configs} plugins={plugins} />
     </div>
   )
 }
