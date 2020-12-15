@@ -8,6 +8,9 @@
   border-radius: 0px;
   border: 1px solid $dark-gray;
   background: $pale-blue;
+  @include md-up {
+    width: 420px;
+  }
 }
 
 .modal-header--search {

@@ -15,16 +15,17 @@
 }
 
 .facet__items {
-  max-height: 115px;
   overflow: hidden;
   transition: $transition-default;
-  &.open {
-    max-height: none;
-  }
 }
 
 .facet__input {
-  margin: 6px 0px;
+  margin: 3px 0px;
+  float: left;
+  width: 100%;
+  & > label {
+    float: left;
+  }
 }
 
 .facet input[type=number] {
@@ -46,4 +47,7 @@
   appearance: none;
   border: none;
   background: none;
+  letter-spacing: normal;
+  text-transform: none;
+  padding-left: 0;
 }

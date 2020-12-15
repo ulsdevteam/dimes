@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Button from "../Button";
 import { CheckBoxInput } from "../Inputs";
 import classnames from "classnames";
 import "./styles.scss";
@@ -6,7 +7,12 @@ import "./styles.scss";
 
 const ShowHideMore = ({id, isOpen, toggleOpen}) => {
   return (
-    <button className="facet__show-hide" onClick={() => toggleOpen(isOpen)} >{isOpen ? "show less" : "show all"}</button>
+    <Button
+      ariaLabel="Show all values"
+      ariaPressed={isOpen}
+      className="facet__show-hide"
+      label={isOpen ? "show less" : "show all"}
+      handleClick={() => toggleOpen(isOpen)} />
   )
 }
 
@@ -26,7 +32,7 @@ const Facet = ({ children, handleChange, items, paramKey, params, title }) => {
   const toggleOpen = isOpen => {
     setIsOpen(!isOpen)
   }
-  const facetValues = items ?? [];
+  const facetValues = items ? isOpen ? items : items.slice(0,5) : [];
   const isChecked = key => {
     if (Array.isArray(params)) {
       return params.includes(key)
@@ -50,7 +56,7 @@ const Facet = ({ children, handleChange, items, paramKey, params, title }) => {
         {title && <h3 className="facet__title">{title}</h3>}
         {children && children}
         {facetItems && <div className={classnames("facet__items", {"open": isOpen})}>{facetItems}</div>}
-        {facetItems.length > 5 && <ShowHideMore id={paramKey} isOpen={isOpen} toggleOpen={toggleOpen} />}
+        {items && items.length > 5 && <ShowHideMore id={paramKey} isOpen={isOpen} toggleOpen={toggleOpen} />}
       </div>
     ) : null
   )

@@ -69,8 +69,11 @@ label {
 .checkbox:checked + label:before {
   content: '';
   position: absolute;
-  left: 0; top: 0px;
-  width: 16px; height: 16px;
+  left: 0px;
+  top: 0px;
+  width: 16px;
+  height: 16px;
+  margin-left: 3px;
 }
 
 /* checked mark aspect */
@@ -86,6 +89,10 @@ label {
   text-align: center;
   transition: $transition-default;
   font-family: monospace;
+}
+
+.checkbox:focus + label:before {
+  outline: 2px solid blue;
 }
 
 /* checked mark aspect changes */
