@@ -49,3 +49,15 @@ export const formatBytes = (bytes, decimals = 2) => {
 
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 }
+
+/** Trims a string to a specified length */
+export const truncateString = (text, maxLength) => {
+  if (text) {
+    if (text.length < maxLength) {
+      return text
+    }
+    return text.substr(0, text.indexOf(" ", maxLength)) + "...";
+  } else {
+    return null
+  }
+}
