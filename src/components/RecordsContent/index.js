@@ -233,7 +233,7 @@ const RecordsContent = props => {
   }, [isLoading, preExpanded])
 
   const collectionDescription = (
-    collection.description || noteText(collection.notes, "abstract") || noteText(collection.notes, "scopecontent")
+    collection.description || noteTextByType(collection.notes, "abstract") || noteTextByType(collection.notes, "scopecontent")
   )
 
   return (
