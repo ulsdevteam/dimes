@@ -12,7 +12,7 @@ import { HitCountBadge } from "../HitCount";
 import ListToggleButton from "../ListToggleButton";
 import MaterialIcon from "../MaterialIcon";
 import QueryHighlighter from "../QueryHighlighter";
-import { appendParams, dateString, noteText, truncateString} from "../Helpers";
+import { appendParams, dateString, noteTextByType, truncateString} from "../Helpers";
 import { isItemSaved } from "../MyListHelpers";
 import classnames from "classnames";
 import "./styles.scss";

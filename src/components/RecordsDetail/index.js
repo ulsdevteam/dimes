@@ -12,7 +12,7 @@ import ListToggleButton from "../ListToggleButton";
 import MaterialIcon from "../MaterialIcon";
 import QueryHighlighter from "../QueryHighlighter";
 import { DetailSkeleton, FoundInItemSkeleton } from "../LoadingSkeleton";
-import { appendParams, dateString, hasAccessOrUse, noteText } from "../Helpers";
+import { appendParams, dateString, hasAccessOrUse, noteText, noteTextByType } from "../Helpers";
 import { isItemSaved } from "../MyListHelpers";
 import classnames from "classnames";
 import "./styles.scss";
@@ -50,8 +50,8 @@ const PanelFormatSection = ({ formats, notes }) => {
     f !== "documents"
   ))
   const formatText = []
-  formatText.push(noteText(notes, "physdesc"))
-  formatText.push(noteText(notes, "materialspec"))
+  formatText.push(noteTextByType(notes, "physdesc"))
+  formatText.push(noteTextByType(notes, "materialspec"))
   const filteredFormatText = formatText.filter(i => (i != null))
   return (
     displayFormats.length ? (
@@ -209,13 +209,20 @@ const RecordsDetail = props => {
               <PanelTextSection
                 params={props.params}
                 title="Description"
-                text={noteText(props.item.notes, "abstract") || noteText(props.item.notes, "scopecontent")} />
+                text={noteTextByType(props.item.notes, "abstract") || noteTextByType(props.item.notes, "scopecontent")} />
+              { props.item.notes && props.item.notes.filter(n => n.type === "odd").map(n => (
+                <PanelTextSection
+                params={props.params}
+                title={n.title}
+                text={noteText(n)}
+                />
+              ))}
               {/** Commented out until we're ready to display Processing Information notes */
-              /**{ noteText(props.item.notes, "processinfo") ?
+              /**{ noteTextByType(props.item.notes, "processinfo") ?
                 (<PanelTextSection
                   params={props.params}
                   title="Processing Information"
-                  text={noteText(props.item.notes, "processinfo")} />) :
+                  text={noteTextByType(props.item.notes, "processinfo")} />) :
                 (null)
               }*/}
               </>
@@ -231,10 +238,10 @@ const RecordsDetail = props => {
           <AccordionItemPanel className="accordion__panel">
             <PanelTextSection
               title="Access"
-              text={noteText(props.item.notes, "accessrestrict")} />
+              text={noteTextByType(props.item.notes, "accessrestrict")} />
             <PanelTextSection
               title="Reproduction and Duplication"
-              text={noteText(props.item.notes, "userestrict")} />
+              text={noteTextByType(props.item.notes, "userestrict")} />
           </AccordionItemPanel>
         </AccordionItem>) :
         (null)}
