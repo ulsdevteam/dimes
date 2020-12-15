@@ -149,7 +149,7 @@
   @extend .btn--black;
   @extend .btn--sm;
   margin-top: 10px;
-  &:hover {
+  &:hover, &:focus {
     color: $light-med-gray;
   }
   &:focus {
