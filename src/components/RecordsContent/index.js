@@ -12,7 +12,7 @@ import { HitCountBadge } from "../HitCount";
 import ListToggleButton from "../ListToggleButton";
 import MaterialIcon from "../MaterialIcon";
 import QueryHighlighter from "../QueryHighlighter";
-import { appendParams, dateString, noteText } from "../Helpers";
+import { appendParams, dateString, noteTextByType, truncateString} from "../Helpers";
 import { isItemSaved } from "../MyListHelpers";
 import classnames from "classnames";
 import "./styles.scss";
@@ -118,7 +118,7 @@ class RecordsChild extends Component {
             toggleSaved={this.toggleSaved} />
         </div>
         <p className="child__text text--truncate">
-          <QueryHighlighter query={query} text={item.description} />
+          <QueryHighlighter query={query} text={truncateString(item.description, 200)} />
         </p>
         {params.query && item.hit_count ? (<HitCountBadge className="hit-count--records" hitCount={item.hit_count} />) : null}
       </div>) :
@@ -142,7 +142,7 @@ class RecordsChild extends Component {
             <QueryHighlighter query={query} text={item.title} />
             {item.title === item.dates ? (null) : (<p className="child__text">{item.dates}</p>)}
             <p className="child__text text--truncate">
-              <QueryHighlighter query={query} text={item.description} />
+              <QueryHighlighter query={query} text={truncateString(item.description, 200)} />
             </p>
             {params.query && item.hit_count ? (<HitCountBadge className="hit-count--records-" hitCount={item.hit_count} />) : null}
             <MaterialIcon icon="expand_more" />
@@ -232,6 +232,10 @@ const RecordsContent = props => {
     }
   }, [isLoading, preExpanded])
 
+  const collectionDescription = (
+    collection.description || noteTextByType(collection.notes, "abstract") || noteTextByType(collection.notes, "scopecontent")
+  )
+
   return (
   children ?
     (<div className={classnames("records__content", {"hidden": !isContentShown})}>
@@ -242,7 +246,9 @@ const RecordsContent = props => {
       <h2 className="content__title">Collection Content</h2>
       <h3 className="collection__title">{collection.title}</h3>
       <p className="collection__date">{dateString(collection.dates)}</p>
-      <p className="collection__text text--truncate">{collection.description || noteText(collection.notes, "abstract") || noteText(collection.notes, "scopecontent")}</p>
+      <p className="collection__text text--truncate">
+        {truncateString(collectionDescription, 180)}
+      </p>
       <RecordsContentList
         ariaLevel={3}
         className="child__list--top-level"

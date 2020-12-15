@@ -13,13 +13,16 @@ export const hasAccessOrUse = notes => {
   return access || use
 }
 
+/** Returns text for a given note */
+export const noteText = note => {
+  return note.subnotes.map(s => s.content).join("\r")
+}
 
 /** Returns text for a specific note (or notes) by type */
-export const noteText = (notes, noteType) => {
+export const noteTextByType = (notes, noteType) => {
   let filteredNotes = notes && notes.filter(n => {return n.type === noteType})
   return filteredNotes ? filteredNotes.map(note => note.subnotes.map(s => s.content)).join("\r") : null
 }
-
 
 /** Adds params (passed as an object) to a URL */
 export const appendParams = (url, params) => {
@@ -48,4 +51,16 @@ export const formatBytes = (bytes, decimals = 2) => {
     const i = Math.floor(Math.log(bytes) / Math.log(k));
 
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+}
+
+/** Trims a string to a specified length */
+export const truncateString = (text, maxLength) => {
+  if (text) {
+    if (text.length < maxLength) {
+      return text
+    }
+    return text.substr(0, text.indexOf(" ", maxLength)) + "...";
+  } else {
+    return null
+  }
 }
