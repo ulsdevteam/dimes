@@ -73,7 +73,6 @@ label {
   top: 0px;
   width: 16px;
   height: 16px;
-  margin-left: 3px;
 }
 
 /* checked mark aspect */
@@ -92,7 +91,7 @@ label {
 }
 
 .checkbox:focus + label:before {
-  outline: 2px solid blue;
+  outline: 2px solid $dark-gray;
 }
 
 /* checked mark aspect changes */
