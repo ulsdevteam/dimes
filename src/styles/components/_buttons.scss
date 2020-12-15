@@ -97,6 +97,9 @@
     border: 1px solid $med-brown;
     color: $off-white;
   }
+  &:focus {
+    color: $off-white;
+  }
   &:disabled {
     background: $burnt-orange;
     color: $pure-white;
@@ -187,6 +190,9 @@
   @extend .btn--sm;
   margin-top: 15px;
   margin-bottom: 40px;
+  &:focus {
+
+  }
 }
 
 .btn--dropdown {
