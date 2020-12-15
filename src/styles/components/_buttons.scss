@@ -151,10 +151,7 @@
 .btn--back-item {
   @extend .btn--black;
   @extend .btn--sm;
-  position: absolute;
-  top: 12px;
-  right: 15px;
-  z-index: 999;
+  margin-top: 10px;
   &:hover {
     color: $light-med-gray;
   }
