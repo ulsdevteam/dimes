@@ -179,9 +179,10 @@
     line-height: 58px;
     width: 58px;
   }
-  &:focus {
+  &:focus { //match .btn--orange hover styles
     outline: none;
-    background-color: $red-orange;
+    background: $med-brown;
+    border: 1px solid $med-brown;
   }
 }
 
@@ -190,9 +191,6 @@
   @extend .btn--sm;
   margin-top: 15px;
   margin-bottom: 40px;
-  &:focus {
-
-  }
 }
 
 .btn--dropdown {
