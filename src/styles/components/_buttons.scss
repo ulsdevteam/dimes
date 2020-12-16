@@ -180,8 +180,8 @@
     width: 58px;
   }
   &:focus {
-    outline: solid 1px $med-gray;
-    outline-offset: 0px;
+    outline: none;
+    background-color: $red-orange;
   }
 }
 

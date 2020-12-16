@@ -239,8 +239,8 @@ label {
     pointer-events: none;
   }
   &:focus {
-    outline: solid 1px $med-gray;
-    outline-offset: 0px;
+    outline: none;
+    font-weight: 700;
   }
 }
 
