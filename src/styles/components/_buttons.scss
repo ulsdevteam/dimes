@@ -5,10 +5,7 @@
   letter-spacing: 1.5px;
   text-transform: uppercase;
   vertical-align: middle;
-  &:hover {
-    text-decoration: none;
-  }
-  &:focus {
+  &:hover, &:focus {
     text-decoration: none;
   }
 }
@@ -37,7 +34,7 @@
 
 .btn--sm {
   font-size: 10px;
-  font-weight: 700;
+  font-weight: $font-weight-bold;
   line-height: 16px;
   padding: 8px 10px;
   margin-right: 10px;
@@ -59,7 +56,7 @@
 }
 
 .btn--lg {
-  font-weight: 700;
+  font-weight: $font-weight-bold;
   font-size: 14px;
   line-height: 18px;
   padding: 18px;
@@ -73,7 +70,7 @@
   background: $deep-blue;
   color: $pure-white;
   border: 1px solid $deep-blue;
-  &:hover {
+  &:hover, &:focus {
     background: $dark-blue;
     border: 1px solid $dark-blue;
     color: $pure-white; //for links styled as buttons
@@ -84,7 +81,7 @@
   background: $deep-navy;
   color: $pure-white;
   border: 1px solid $deep-navy;
-  &:hover {
+  &:hover, &:focus {
     background: $deep-blue;
     border: 1px solid $deep-blue;
     color: $off-white;
@@ -98,6 +95,9 @@
   &:hover {
     background: $med-brown;
     border: 1px solid $med-brown;
+    color: $off-white;
+  }
+  &:focus {
     color: $off-white;
   }
   &:disabled {
@@ -117,7 +117,7 @@
   background: $off-white;
   color: $med-gray;
   border: 1px solid $light-med-gray;
-  &:hover {
+  &:hover, &:focus {
     background: $lighter-gray;
     color: $med-gray;
   }
@@ -152,8 +152,11 @@
   @extend .btn--black;
   @extend .btn--sm;
   margin-top: 10px;
-  &:hover {
+  &:hover, &:focus {
     color: $light-med-gray;
+  }
+  &:focus {
+    outline: solid 1px $light-med-gray;
   }
 }
 
@@ -175,6 +178,11 @@
     font-size: 36px;
     line-height: 58px;
     width: 58px;
+  }
+  &:focus { //match .btn--orange hover styles
+    outline: none;
+    background: $med-brown;
+    border: 1px solid $med-brown;
   }
 }
 
@@ -216,7 +224,7 @@
   @extend .btn--sm;
   padding: 8px;
   z-index: 998;
-  &:hover {
+  &:hover, &:focus {
     color: $pure-white;
   }
   & .material-icons {

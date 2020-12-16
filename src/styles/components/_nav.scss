@@ -28,9 +28,9 @@
   display: inline-block;
   border-left: 1px solid $med-gray;
   position: relative;
-  &:hover {
+  &:hover, &:focus-within {
     background-color: $deep-blue;
-    transition: $transition-default
+    transition: $transition-default;
   }
   @include md-up {
     padding-left: 14px;
@@ -39,6 +39,9 @@
 }
 .nav__link {
   @include secondary-header-nav-link;
+  &:focus {
+    outline: none;
+  }
   &::before {
     content: "";
     position: absolute;

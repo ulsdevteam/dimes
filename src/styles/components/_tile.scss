@@ -55,7 +55,7 @@
   width: 100%;
   border-bottom: none;
   order: 2;
-  &:hover {
+  &:hover, &:focus {
     text-decoration: none;
     color: $dark-gray;
   }

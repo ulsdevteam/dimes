@@ -93,7 +93,7 @@ label {
 }
 
 .checkbox:focus + label:before {
-  outline: 2px solid $dark-gray;
+  outline: 2px solid $med-gray;
 }
 
 /* checked mark aspect changes */
@@ -164,7 +164,7 @@ label {
 }
 
 .dp__month {
-  font-weight: 700;
+  font-weight: $font-weight-bold;
   padding: 0 16px;
   text-align: center;
   width: 200px;
@@ -194,7 +194,7 @@ label {
 
   th {
     color: $med-gray;
-    font-weight: 400;
+    font-weight: $font-weight-normal;
     line-height: 1.6;
   }
 
@@ -238,6 +238,10 @@ label {
     position: absolute;
     pointer-events: none;
   }
+  &:focus {
+    outline: none;
+    font-weight: $font-weight-bold;
+  }
 }
 
 .select__menu {
@@ -263,7 +267,7 @@ label {
     background: $lighter-gray;
   }
   &.is-selected {
-    font-weight: 700;
+    font-weight: $font-weight-bold;
     &::after {
       @extend .material-icons;
       font-size: 20px;

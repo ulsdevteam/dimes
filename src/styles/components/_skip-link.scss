@@ -9,9 +9,9 @@
   left: 80px;
   top: 60px;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: $font-weight-bold;;
   text-align: center;
-  &:hover {
+  &:focus {
     color: $off-white;
   }
 }
