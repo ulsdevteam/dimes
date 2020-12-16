@@ -2,10 +2,25 @@
 
 .digital {
   position: absolute;
-  top: 0;
+  top: 60px;
   bottom: 0;
   left: 0;
   right: 0;
   background: $pure-black;
-  z-index: 999;
+  z-index: 998;
+}
+
+.mosaic-tile {
+  margin: 0px !important;
+}
+
+.mosaic-root {
+    top: 0px !important;
+    left: 0px  !important;
+    right: 0px !important;
+    bottom: 0px !important;
+}
+
+.mirador-window-top-bar {
+  border-top: 0 !important;
 }
