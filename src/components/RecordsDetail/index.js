@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import pluralize from "pluralize";
 import PropTypes from "prop-types";
 import Skeleton from "react-loading-skeleton";
 import {
@@ -39,7 +40,7 @@ const PanelExtentSection = ({ extents }) => (
     <h3 className="panel__heading">Size</h3>
     <ul className="panel__list--unstyled">
       {extents.map((e, index) => (
-      <li key={index} className="panel__text">{`${e.value} ${e.type.replace("_", " ")}`}</li>))}
+      <li key={index} className="panel__text">{pluralize(e.type.replace("_", " "), e.value, true)}</li>))}
     </ul>
   </div>) :
   (null)

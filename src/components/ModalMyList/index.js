@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage, useFormikContext } from "formik";
+import pluralize from "pluralize";
 import PropTypes from "prop-types";
 import Button from "../Button";
 import Modal from "react-modal";
@@ -105,7 +106,7 @@ const SelectedTotals = ({ items }) => {
       {...total, [current.type]: total[current.type] + parseFloat(current.value)} :
       {...total, [current.type]: parseFloat(current.value)}
   ), {})
-  const extents = Object.entries(totals).map(e => `${e[1]} ${e[1] === 1 ? e[0] : `${e[0]}s`}`)
+  const extents = Object.entries(totals).map(e => pluralize(e[0], e[1], true))
   return (extents.length ? <p className="selected-totals">{`selected: ${extents.join(", ")}`}</p> : <p className="selected-totals">selected: 0 items</p>)
 }
 
