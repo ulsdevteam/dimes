@@ -96,6 +96,19 @@ const ModalToggleListButton = ({ignoreRestrictions, items, toggleList}) => {
   )
 }
 
+const SelectedTotals = ({ items }) => {
+  const selectedExtents = items.map(
+    g => g.items.map(
+      i => i.submit && i.isChecked ? i.extents : null)).flat(2).filter(i => i !== null)
+  const totals = selectedExtents.reduce((total, current) => (
+    total[current.type] ?
+      {...total, [current.type]: total[current.type] + parseFloat(current.value)} :
+      {...total, [current.type]: parseFloat(current.value)}
+  ), {})
+  const extents = Object.entries(totals).map(e => `${e[1]} ${e[1] === 1 ? e[0] : `${e[0]}s`}`)
+  return (extents.length ? <p className="selected-totals">{`selected: ${extents.join(", ")}`}</p> : <p className="selected-totals">selected: 0 items</p>)
+}
+
 
 const ModalMyList = props => (
   <Modal
@@ -116,11 +129,13 @@ const ModalMyList = props => (
           ignoreRestrictions={props.ignoreRestrictions}
           items={props.list}
           toggleList={props.toggleList} />
+        <SelectedTotals items={props.list} />
         <ModalSavedItemList
           ignoreRestrictions={props.ignoreRestrictions}
           items={props.list}
           handleChange={props.handleChange}
           setSubmit={props.setSubmit} />
+        <SelectedTotals items={props.list} />
       </div>
       <div className="modal-form">
         {props.form}
