@@ -59,7 +59,11 @@ export const truncateString = (text, maxLength) => {
     if (text.length < maxLength) {
       return text
     }
-    return text.substr(0, text.indexOf(" ", maxLength)) + "...";
+    if (text.indexOf(" ", maxLength) > 0) {
+      return text.substr(0, text.indexOf(" ", maxLength)) + "...";
+    } else {
+      return text + "...";
+    }
   } else {
     return null
   }
