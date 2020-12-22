@@ -39,8 +39,12 @@ const PanelExtentSection = ({ extents }) => (
   <div className="panel__section">
     <h3 className="panel__heading">Size</h3>
     <ul className="panel__list--unstyled">
-      {extents.map((e, index) => (
-      <li key={index} className="panel__text">{pluralize(e.type.replace("_", " "), e.value, true)}</li>))}
+      {extents.map((e, index) => {
+        const extentArray = e.type.replace("_", " ").split(" ").map((ext, i, arr) => (
+          arr.length - 1 === i ? pluralize(ext, e.value) : ext
+        ))
+        return (
+      <li key={index} className="panel__text">{`${e.value} ${extentArray.join(" ")}`}</li>)})}
     </ul>
   </div>) :
   (null)
