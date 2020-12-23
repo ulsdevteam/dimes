@@ -2,4 +2,4 @@
 set -e
 
 # get status endpoint
-curl https://dimes.rockarch.org
+curl http://localhost:80
