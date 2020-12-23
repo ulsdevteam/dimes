@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from "axios";
+import { Helmet } from "react-helmet";
 import MaterialIcon from "../MaterialIcon";
 import Viewer from "../Viewer"
 import "./styles.scss"
 
 const PageDigitalObject = props => {
+
+  const [itemTitle, setItemTitle] = useState("")
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_ARGO_BASEURL}/${props.match.params.type}/${props.match.params.id}`)
+      .then(res =>  {
+        setItemTitle(res.data.title)})
+      .catch(err => console.log(err))
+    })
 
   const configs = {
     id: "mirador",
@@ -94,9 +106,14 @@ const PageDigitalObject = props => {
   ];
 
   return (
-    <div className="digital">
-      <Viewer config={configs} plugins={plugins} />
-    </div>
+    <>
+      <Helmet>
+        <title>{`View digital item - ${itemTitle}`}</title>
+      </Helmet>
+      <div className="digital">
+        <Viewer config={configs} plugins={plugins} />
+      </div>
+    </>
   )
 }
 
