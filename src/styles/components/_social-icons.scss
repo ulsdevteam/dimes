@@ -13,6 +13,7 @@
   width: 40px;
   text-align: center;
   vertical-align: middle;
+  pointer-events: visibleFill;
   &:hover {
     svg g, svg path {
       fill: $burnt-orange;
