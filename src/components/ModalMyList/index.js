@@ -190,7 +190,7 @@ export const EmailModal = props => (
         }}
         onSubmit={(values, { setSubmitting }) => {
           props.handleFormSubmit(
-            `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/deliver-request/email`,
+            `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/deliver-request/email`,
             values,
             "email");
           setSubmitting(false);
@@ -279,7 +279,7 @@ export const ReadingRoomRequestModal = props => (
           /* In order for Aeon to accept requests, dates need to be formatted as MM/DD/YYYY */
           values.scheduledDate = getFormattedDate(values.scheduledDate)
           props.handleFormSubmit(
-            `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/deliver-request/reading-room`,
+            `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/deliver-request/reading-room`,
             values,
             "readingRoom");
           setSubmitting(false);
@@ -384,7 +384,7 @@ export const DuplicationRequestModal = props => (
           }}
           onSubmit={(values, { setSubmitting }) => {
             props.handleFormSubmit(
-              `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/deliver-request/duplication`,
+              `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/deliver-request/duplication`,
               values,
               "duplication");
             setSubmitting(false);

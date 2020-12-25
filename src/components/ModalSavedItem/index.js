@@ -24,7 +24,7 @@ const ModalSavedItem = props => {
     if (!props.ignoreRestrictions && typeof props.submit === "undefined") {
       setIsRestrictionsLoading(true)
       axios
-        .post(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/process-request/parse`, {item: archivesspace_uri})
+        .post(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/process-request/parse`, {item: archivesspace_uri})
         .then(res => {
           setSubmit(uri, res.data.submit, res.data.submit_reason)
         })
