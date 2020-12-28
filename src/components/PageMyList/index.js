@@ -68,7 +68,7 @@
       this.setState({ isDownloading: true })
       axios
         .post(
-          `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/api/download-csv/`,
+          `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/download-csv/`,
           {items: this.constructSubmitList(this.state.savedList, true)})
         .then(res => {
           const blob = new Blob([res.data], { type: "text/csv" })
