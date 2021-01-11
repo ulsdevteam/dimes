@@ -234,7 +234,7 @@
       return (
         <React.Fragment>
           <Helmet>
-            <title>DIMES: My List</title>
+            <title>My List</title>
           </Helmet>
           <div className="container mylist flex">
             <nav>
