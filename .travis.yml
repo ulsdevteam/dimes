@@ -12,6 +12,8 @@ install:
   - yarn install
 before_script:
   - sudo deploy_scripts/substitute_env.sh
+  - ls
+  - cat .env
 script:
   - CI=false yarn run build
   - yarn test
