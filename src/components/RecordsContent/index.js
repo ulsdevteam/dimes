@@ -24,6 +24,7 @@ class RecordsChild extends Component {
     this.state = {
       children: [],
       isSaved: false,
+      hasOnlineAsset: false,
     }
   }
 
@@ -43,6 +44,7 @@ class RecordsChild extends Component {
           {...this.props.params, limit: 5})
         )
     }
+    this.handleOnlineAsset(this.props.item.uri.split("/").pop())
     if (this.props.item.uri === currentUrl) {
       const el = document.getElementById(`accordion__heading-${currentUrl}`)
       el.scrollIntoView({ behavior: "smooth", block: "center" })
@@ -82,6 +84,13 @@ class RecordsChild extends Component {
     this.props.setActiveRecords(uri)
   }
 
+  handleOnlineAsset = identifier => {
+    axios
+      .head(`${process.env.REACT_APP_S3_BASEURL}/pdfs/${identifier}`)
+      .then(res => { this.setState({ hasOnlineAsset: true }) })
+      .catch(e => { this.setState({ hasOnlineAsset: false }) })
+  }
+
   toggleSaved = item => {
     this.props.toggleInList(item);
     this.setState({isSaved: !this.state.isSaved})
@@ -104,7 +113,7 @@ class RecordsChild extends Component {
           {item.dates === item.title ? (null) : (<p className="child__text">{item.dates}</p>)}
         </div>
         <div className="child__buttons">
-          {item.online ? (
+          {this.state.hasOnlineAsset ? (
             <a className="btn btn-launch--content"
                href={`${item.uri}/view`}>{isMobile? "View" : "View Online"}
                <MaterialIcon icon="visibility" /></a>) :
