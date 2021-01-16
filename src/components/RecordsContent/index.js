@@ -44,7 +44,7 @@ class RecordsChild extends Component {
           {...this.props.params, limit: 5})
         )
     }
-    this.handleOnlineAsset(this.props.item.uri.split("/").pop())
+    this.props.item.online && this.handleOnlineAsset(this.props.item.uri.split("/").pop())
     if (this.props.item.uri === currentUrl) {
       const el = document.getElementById(`accordion__heading-${currentUrl}`)
       el.scrollIntoView({ behavior: "smooth", block: "center" })
