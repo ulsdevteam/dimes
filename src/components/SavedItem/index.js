@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect, useState} from "react";
+import axios from "axios";
 import PropTypes from "prop-types";
 import Button from "../Button";
 import MaterialIcon from "../MaterialIcon";
@@ -6,7 +7,17 @@ import { MyListSkeleton } from "../LoadingSkeleton";
 import "./styles.scss";
 
 
-const SavedItem = props => (
+const SavedItem = props => {
+  const [hasOnlineAsset, setHasOnlineAsset] = useState(false)
+
+  useEffect(() => {
+    axios
+      .head(`${process.env.REACT_APP_S3_BASEURL}/pdfs/${props.uri.split("/").pop()}`)
+      .then(res => { setHasOnlineAsset(true) })
+      .catch(e => { setHasOnlineAsset(false) })
+  }, [props.uri])
+
+  return (
   <div className="saved-item">
     <div className="saved-item__row">
       <div className="saved-item__item-description">
@@ -17,7 +28,7 @@ const SavedItem = props => (
         {props.lastRequested && <p className="saved-item__last-requested">Last requested on: {props.lastRequested}</p>}
       </div>
       <div className="saved-item__buttons">
-        {props.online &&
+        {hasOnlineAsset &&
           <a className="btn btn--blue btn--sm"
             href={`${props.uri}/view`}>View Online <MaterialIcon icon="visibility" /></a>}
         <Button
@@ -27,7 +38,7 @@ const SavedItem = props => (
           handleClick={props.handleClick} />
       </div>
     </div>
-  </div>)
+  </div>)}
 
 SavedItem.propTypes = {
   date: PropTypes.string,

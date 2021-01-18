@@ -58,7 +58,6 @@ class PageRecords extends Component {
               this.setState({ downloadSize: formatBytes(res.headers["content-length"]) })
             })
             .catch(e => {
-              console.log(e);
               this.setState({ downloadSize: "" })
             })
         }
