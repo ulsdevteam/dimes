@@ -21,7 +21,7 @@ class Captcha extends Component {
     return (
       <div name="recaptcha" tabIndex="0" className={classnames("captcha", this.props.className)}>
         <ReCAPTCHA
-          sitekey="6LeFBTUaAAAAAI9OUQUmrT5-tjMTjADS9k3WsZHf"
+          sitekey="6LdQiSkTAAAAAPsOlHq_QmykPBEF9jdq3qQL_D9a"
           onChange={this.props.handleCaptchaChange}
           ref={this.recaptchaRef} />
       </div>
