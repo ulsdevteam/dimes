@@ -156,33 +156,27 @@ const RecordsDetail = props => {
       </a>
     </nav>
     <h1 className="records__title">{props.isItemLoading ? <Skeleton /> : props.item.title }</h1>
-    {props.item.type === "object" ?
-      (props.item.online ? (
-        <>
-        <ListToggleButton
-          className="btn-add--detail"
-          isSaved={isSaved}
-          item={props.item}
-          toggleSaved={props.toggleInList} />
-        <a className="btn btn-launch--detail"
-          href={`${props.item.uri}/view`}>View Online <MaterialIcon icon="visibility" /></a>
-        <a className="btn btn-download--detail"
-          href={`${process.env.REACT_APP_S3_BASEURL}/pdfs/${identifier}`}
-          target="_blank"
-          title="opens in a new window"
-          rel="noopener noreferrer"
-          >Download <MaterialIcon icon="get_app" /></a>
-          {props.downloadSize ?
-            (<p className="panel__text">{`Acrobat PDF, ${props.downloadSize}`}</p>) :
-            (null)}
-        </>
-      ) :
-      (<ListToggleButton
+    {props.item.type === "object" &&
+      <>
+      <ListToggleButton
         className="btn-add--detail"
         isSaved={isSaved}
         item={props.item}
-        toggleSaved={props.toggleInList} />)
-      ): (null)
+        toggleSaved={props.toggleInList} />
+        {props.downloadSize &&
+          <>
+          <a className="btn btn-launch--detail"
+            href={`${props.item.uri}/view`}>View Online <MaterialIcon icon="visibility" /></a>
+          <a className="btn btn-download--detail"
+            href={`${process.env.REACT_APP_S3_BASEURL}/pdfs/${identifier}`}
+            target="_blank"
+            title="opens in a new window"
+            rel="noopener noreferrer"
+            >Download <MaterialIcon icon="get_app" /></a>
+            <p className="panel__text">{`Acrobat PDF, ${props.downloadSize}`}</p>
+          </>
+        }
+      </>
     }
     <Accordion className="accordion accordion--details" preExpanded={["summary"]} allowZeroExpanded={true}>
       <AccordionItem className="accordion__item" uuid="summary">

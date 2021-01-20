@@ -53,7 +53,7 @@ const Facet = ({ children, handleChange, items, paramKey, params, title }) => {
     facetItems.length || children ?
     (
       <div className="facet">
-        {title && <h3 className="facet__title">{title}</h3>}
+        {title && <h3 id={title} className="facet__title">{title}</h3>}
         {children && children}
         {facetItems && <div className={classnames("facet__items", {"open": isOpen})}>{facetItems}</div>}
         {items && items.length > 5 && <ShowHideMore id={paramKey} isOpen={isOpen} toggleOpen={toggleOpen} />}
