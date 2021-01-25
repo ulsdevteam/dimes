@@ -45,6 +45,7 @@ class PageRecords extends Component {
   getItemData = (itemUrl, params, initial=false) => {
     this.setState({isItemLoading: true})
     this.setState({isAncestorsLoading: true})
+    this.setState({ downloadSize: "" })
     const childrenParams = {...params, limit: 5}
     const itemPath = itemUrl.replace(`${process.env.REACT_APP_ARGO_BASEURL}`, "")
     axios
