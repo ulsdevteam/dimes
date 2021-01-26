@@ -8,7 +8,7 @@ import { AgentAttributeSkeleton, SearchSkeleton } from "../LoadingSkeleton";
 import TileList from "../Tile";
 import AgentAttributeList from "../AgentAttribute";
 import "../Button/styles.scss";
-import { appendParams } from "../Helpers";
+import { appendParams, firePageViewEvent } from "../Helpers";
 
 const AgentDescription = ({ attributes }) => (
   attributes.length ?
@@ -64,7 +64,8 @@ class PageAgent extends Component {
         this.parseAgentAttributes();
         this.setState({ isAgentLoading: false })
       })
-      .catch(err => this.setState({ found: false }));
+      .catch(err => this.setState({ found: false }))
+      .then(() => firePageViewEvent());
   }
 
   fetchCollections = () => {

@@ -8,7 +8,7 @@ import ContextSwitcher from "../ContextSwitcher";
 import RecordsContent from "../RecordsContent";
 import RecordsDetail from "../RecordsDetail";
 import PageNotFound from "../PageNotFound";
-import { appendParams, formatBytes } from "../Helpers";
+import { appendParams, firePageViewEvent, formatBytes } from "../Helpers";
 
 
 class PageRecords extends Component {
@@ -79,7 +79,8 @@ class PageRecords extends Component {
         }
       })
       .catch(e => console.log(e))
-      .then(() => this.setState({isAncestorsLoading: false}));
+      .then(() => this.setState({isAncestorsLoading: false}))
+      .then(() => firePageViewEvent())
   }
 
   /** Fetches paged content */
