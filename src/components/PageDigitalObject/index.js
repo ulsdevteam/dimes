@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { Helmet } from "react-helmet";
 import MaterialIcon from "../MaterialIcon";
-import Viewer from "../Viewer"
+import Viewer from "../Viewer";
+import { firePageViewEvent } from "../Helpers";
 import "./styles.scss"
 
 const PageDigitalObject = props => {
@@ -15,7 +16,8 @@ const PageDigitalObject = props => {
       .then(res =>  {
         setItemTitle(res.data.title)})
       .catch(err => console.log(err))
-    })
+      .then(() => firePageViewEvent())
+    }, [props.match.params.id, props.match.params.type])
 
   const configs = {
     id: "mirador",

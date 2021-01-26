@@ -10,7 +10,7 @@ import { FacetModal } from "../ModalSearch";
 import { SearchPagination } from "../Pagination";
 import SearchForm from "../SearchForm";
 import TileList from "../Tile";
-import { appendParams } from "../Helpers";
+import { appendParams, firePageViewEvent } from "../Helpers";
 import "./styles.scss"
 
 class PageSearch extends Component {
@@ -32,6 +32,7 @@ class PageSearch extends Component {
   };
 
   componentDidMount() {
+    firePageViewEvent();
     let params = queryString.parse(this.props.location.search)
     params.limit = this.state.pageSize
     this.executeSearch(params)

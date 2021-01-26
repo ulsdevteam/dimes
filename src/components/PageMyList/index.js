@@ -11,6 +11,7 @@
   import MyListSidebar from "../MyListSidebar";
   import { SavedItemList } from "../SavedItem";
   import { fetchMyList } from "../MyListHelpers";
+  import { firePageViewEvent } from "../Helpers";
   import "./styles.scss";
 
   class PageMyList extends Component {
@@ -38,6 +39,7 @@
 
     componentDidMount() {
       this.fetchList()
+      firePageViewEvent()
       axios
         .get(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/status/health/ping`)
         .then(res => res.data.pong && this.setState({ isRequestingAvailable: true }))
