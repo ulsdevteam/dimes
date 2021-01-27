@@ -5,7 +5,7 @@ import classnames from "classnames";
 import "./styles.scss"
 
 
-const Button = (props) => (
+const Button = props => (
   <button
     type={props.type}
     className={classnames("btn", props.className)}
