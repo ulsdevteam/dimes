@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import AgentAttributeList from '..';
 
 const items = [
@@ -9,5 +9,5 @@ const items = [
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<AgentAttributeList items={items} />, div);
+  render(<AgentAttributeList items={items} />, div);
 });
