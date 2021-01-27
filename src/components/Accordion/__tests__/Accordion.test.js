@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom';
+import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from "react-dom/test-utils";
 import {
     Accordion,
@@ -9,34 +9,42 @@ import {
     AccordionItemPanel,
 } from "..";
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  render(<Accordion />, div);
+let container = null;
+beforeEach(() => {
+  // setup a DOM element as a render target
+  container = document.createElement("div");
+  document.body.appendChild(container);
+});
+
+afterEach(() => {
+  // cleanup on exiting
+  unmountComponentAtNode(container);
+  container.remove();
+  container = null;
 });
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  render(<AccordionItem />, div);
+  render(<Accordion />, container);
 });
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  render(<AccordionItemHeading />, div);
+  render(<AccordionItem />, container);
 });
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  render(<AccordionItemButton />, div);
+  render(<AccordionItemHeading />, container);
+});
+
+it('renders without crashing', () => {
+  render(<AccordionItemButton />, container);
 });
 
 it('handles clicks', () => {
-  const div = document.createElement('div');
-  document.body.appendChild(div);
   const onClick = jest.fn();
   const setIsExpanded = jest.fn();
 
   act(() => {
-    render(<AccordionItemButton setIsExpanded={setIsExpanded} onClick={onClick} />, div);
+    render(<AccordionItemButton setIsExpanded={setIsExpanded} onClick={onClick} />, container);
   })
 
   const button = document.querySelector("[data-accordion-component=AccordionItemButton]");
@@ -51,5 +59,5 @@ it('handles clicks', () => {
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  render(<AccordionItemPanel />, div);
+  render(<AccordionItemPanel />, container);
 });
