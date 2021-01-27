@@ -1,8 +1,44 @@
 import React from "react";
-import { render } from "react-dom";
-import { FormGroup, FormButtons } from "..";
+import { render, unmountComponentAtNode } from "react-dom";
+import { act } from "react-dom/test-utils";
+import { FormButtons } from "..";
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  render(<FormButtons submitText="foo" toggleModal={() => {}} />, div);
+let container = null;
+beforeEach(() => {
+  // setup a DOM element as a render target
+  container = document.createElement("div");
+  document.body.appendChild(container);
+});
+
+afterEach(() => {
+  // cleanup on exiting
+  unmountComponentAtNode(container);
+  container.remove();
+  container = null;
+});
+
+it('renders correctly', () => {
+  act(() => {
+    render(<FormButtons submitText="foo" toggleModal={jest.fn()} />, container);
+  })
+
+  const submit = document.querySelector("div > button[type=submit]")
+  const cancel = document.querySelector("div > button[type=reset]")
+  expect(submit.textContent).toBe("foo")
+  expect(cancel.textContent).toBe("Cancel")
+});
+
+it('renders correctly', () => {
+  const toggleModal = jest.fn()
+  act(() => {
+    render(<FormButtons submitText="foo" toggleModal={toggleModal} />, container);
+  })
+
+  const cancel = document.querySelector("div > button[type=reset]")
+
+  act(() => {
+    cancel.dispatchEvent(new MouseEvent("click", { bubbles: true }))
+  })
+
+  expect(toggleModal).toHaveBeenCalledTimes(1)
 });
