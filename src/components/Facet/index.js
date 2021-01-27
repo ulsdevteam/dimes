@@ -65,7 +65,7 @@ const Facet = ({ children, handleChange, items, paramKey, params, title }) => {
 
 Facet.propTypes = {
   children: PropTypes.node,
-  handleChange: PropTypes.func.isRequired,
+  handleChange: PropTypes.func,
   items: PropTypes.array,
   paramKey: PropTypes.string,
   params: PropTypes.string,
