@@ -149,8 +149,8 @@ export const SelectInput = props => {
 
 SelectInput.propTypes = {
   className: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   options: PropTypes.array.isRequired,
   required: PropTypes.bool
@@ -184,7 +184,7 @@ TextInput.propTypes = {
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   size: PropTypes.number,
-  type: PropTypes.oneOf(['text', 'search']),
+  type: PropTypes.oneOf(['text', 'search']).isRequired,
   value: PropTypes.string
 };
 
