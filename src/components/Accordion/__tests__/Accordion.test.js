@@ -1,6 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { act, Simulate } from "react-dom/test-utils";
+import { render } from 'react-dom';
+import { act } from "react-dom/test-utils";
 import {
     Accordion,
     AccordionItem,
@@ -11,22 +11,22 @@ import {
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Accordion />, div);
+  render(<Accordion />, div);
 });
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<AccordionItem />, div);
+  render(<AccordionItem />, div);
 });
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<AccordionItemHeading />, div);
+  render(<AccordionItemHeading />, div);
 });
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<AccordionItemButton />, div);
+  render(<AccordionItemButton />, div);
 });
 
 it('handles clicks', () => {
@@ -36,7 +36,7 @@ it('handles clicks', () => {
   const setIsExpanded = jest.fn();
 
   act(() => {
-    ReactDOM.render(<AccordionItemButton setIsExpanded={setIsExpanded} onClick={onClick} />, div);
+    render(<AccordionItemButton setIsExpanded={setIsExpanded} onClick={onClick} />, div);
   })
 
   const button = document.querySelector("[data-accordion-component=AccordionItemButton]");
@@ -51,5 +51,5 @@ it('handles clicks', () => {
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<AccordionItemPanel />, div);
+  render(<AccordionItemPanel />, div);
 });
