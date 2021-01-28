@@ -8,6 +8,7 @@ import {
     AccordionItemButton,
     AccordionItemPanel,
 } from "..";
+import * as focus from '../helpers/focus';
 
 let container = null;
 beforeEach(() => {
@@ -53,6 +54,84 @@ it('handles clicks', () => {
 
   expect(onClick).toHaveBeenCalledTimes(1)
   expect(setIsExpanded).toHaveBeenCalledTimes(1)
+});
+
+it('handles keyboard events', () => {
+  const onClick = jest.fn();
+  const setIsExpanded = jest.fn();
+  focus.focusFirstSiblingOf = jest.fn()
+  focus.focusLastSiblingOf = jest.fn()
+  focus.focusPreviousSiblingOf = jest.fn()
+  focus.focusNextSiblingOf = jest.fn()
+
+  act(() => {
+    render(<AccordionItemButton setIsExpanded={setIsExpanded} onClick={onClick} />, container);
+  })
+
+  const button = document.querySelector("[data-accordion-component=AccordionItemButton]");
+
+  act(() => {
+    button.dispatchEvent(new KeyboardEvent("keydown", { keyCode: 32, bubbles: true }));
+  });
+  expect(onClick).toHaveBeenCalledTimes(1)
+  expect(setIsExpanded).toHaveBeenCalledTimes(1)
+  jest.clearAllMocks();
+
+  act(() => {
+    button.dispatchEvent(new KeyboardEvent("keydown", { keyCode: 13, bubbles: true }));
+  });
+  expect(onClick).toHaveBeenCalledTimes(1)
+  expect(setIsExpanded).toHaveBeenCalledTimes(1)
+  jest.clearAllMocks();
+
+  act(() => {
+    button.dispatchEvent(new KeyboardEvent("keydown", { keyCode: 40, bubbles: true }));
+  });
+  expect(onClick).toHaveBeenCalledTimes(0)
+  expect(setIsExpanded).toHaveBeenCalledTimes(0)
+  expect(focus.focusNextSiblingOf).toHaveBeenCalledTimes(1)
+  jest.clearAllMocks();
+
+  act(() => {
+    button.dispatchEvent(new KeyboardEvent("keydown", { keyCode: 35, bubbles: true }));
+  });
+  expect(onClick).toHaveBeenCalledTimes(0)
+  expect(setIsExpanded).toHaveBeenCalledTimes(0)
+  expect(focus.focusLastSiblingOf).toHaveBeenCalledTimes(1)
+  jest.clearAllMocks();
+
+  act(() => {
+    button.dispatchEvent(new KeyboardEvent("keydown", { keyCode: 36, bubbles: true }));
+  });
+  expect(onClick).toHaveBeenCalledTimes(0)
+  expect(setIsExpanded).toHaveBeenCalledTimes(0)
+  expect(focus.focusFirstSiblingOf).toHaveBeenCalledTimes(1);
+  jest.clearAllMocks();
+
+  act(() => {
+    button.dispatchEvent(new KeyboardEvent("keydown", { keyCode: 37, bubbles: true }));
+  });
+  expect(onClick).toHaveBeenCalledTimes(0)
+  expect(setIsExpanded).toHaveBeenCalledTimes(0)
+  expect(focus.focusPreviousSiblingOf).toHaveBeenCalledTimes(1)
+  jest.clearAllMocks();
+
+  act(() => {
+    button.dispatchEvent(new KeyboardEvent("keydown", { keyCode: 39, bubbles: true }));
+  });
+  expect(onClick).toHaveBeenCalledTimes(0)
+  expect(setIsExpanded).toHaveBeenCalledTimes(0)
+  expect(focus.focusNextSiblingOf).toHaveBeenCalledTimes(1)
+  jest.clearAllMocks();
+
+  act(() => {
+    button.dispatchEvent(new KeyboardEvent("keydown", { keyCode: 38, bubbles: true }));
+  });
+  expect(onClick).toHaveBeenCalledTimes(0)
+  expect(setIsExpanded).toHaveBeenCalledTimes(0)
+  expect(focus.focusPreviousSiblingOf).toHaveBeenCalledTimes(1)
+  jest.clearAllMocks();
+
 });
 
 it('renders without crashing', () => {
