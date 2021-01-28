@@ -149,5 +149,25 @@ export const tileItems = [
             "Rockefeller, John D. (John Davison)",
             "Inglis, William O."
         ]
+    },
+    {
+            "category": "person",
+            "dates": [],
+            "hit_count": 1,
+            "title": "Reich, Cary",
+            "uri": "/agents/TyQ8HLBpb6kCArn4fLCRQn",
+            "creators": [
+                "Reich, Cary"
+            ]
+    },
+    {
+            "category": "organization",
+            "dates": [],
+            "hit_count": 1,
+            "title": "Rockefeller Foundation",
+            "uri": "/agents/NCf9Q6yeMM5XdmJjwWHQU4",
+            "creators": [
+                "Rockefeller Foundation"
+            ]
     }
 ]
