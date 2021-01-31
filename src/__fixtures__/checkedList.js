@@ -1,6 +1,7 @@
-export const resolvedList = [{
+export const checkedList = [{
   "title": "Cary Reich papers",
   "items": [{
+    "isChecked": true,
     "title": "Abramovitz, Max",
     "uri": "/objects/UvxecDKvokJw59bWTP6Qwz",
     "dates": [{
@@ -30,6 +31,7 @@ export const resolvedList = [{
     "online": false,
     "archivesspace_uri": "/repositories/2/archival_objects/1053534"
   }, {
+    "isChecked": true,
     "title": "Abrams, Al",
     "uri": "/objects/m6u4RPZQ25tBiFxfgnE6ev",
     "dates": [{
@@ -62,6 +64,7 @@ export const resolvedList = [{
 }, {
   "title": "Rockefeller Foundation records",
   "items": [{
+    "isChecked": true,
     "title": "Alcoholism",
     "uri": "/objects/3htvHFf2iEoEPdDUyeofYG",
     "dates": [{
@@ -82,6 +85,7 @@ export const resolvedList = [{
     "online": false,
     "archivesspace_uri": "/repositories/2/archival_objects/1120778"
   }, {
+    "isChecked": true,
     "title": "Animals (Experimental Laboratory)",
     "uri": "/objects/FibGteDpazyy3DYyw2iZ5B",
     "dates": [{
@@ -102,6 +106,7 @@ export const resolvedList = [{
     "online": false,
     "archivesspace_uri": "/repositories/2/archival_objects/1120779"
   }, {
+    "isChecked": true,
     "title": "Animals (Mongoose)",
     "uri": "/objects/D4CrEjfyTwgssyxR8QF4tc",
     "dates": [{

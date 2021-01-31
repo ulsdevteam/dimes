@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom';
+import { render, unmountComponentAtNode } from 'react-dom';
 import {
   AgentAttributeSkeleton,
   CollectionHitsChildrenSkeleton,
@@ -11,42 +11,46 @@ import {
   MyListSkeleton
 } from '..';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  render(<SearchSkeleton />, div);
+let container = null;
+beforeEach(() => {
+  container = document.createElement("div");
+  document.body.appendChild(container);
+});
+
+afterEach(() => {
+  unmountComponentAtNode(container);
+  container.remove();
+  container = null;
 });
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  render(<MyListSkeleton />, div);
+  render(<SearchSkeleton />, container);
 });
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  render(<AgentAttributeSkeleton />, div);
+  render(<MyListSkeleton />, container);
 });
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  render(<DetailSkeleton />, div);
+  render(<AgentAttributeSkeleton />, container);
 });
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  render(<CollectionHitsChildrenSkeleton />, div);
+  render(<DetailSkeleton />, container);
 });
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  render(<CollectionHitsCollectionSkeleton />, div);
+  render(<CollectionHitsChildrenSkeleton />, container);
 });
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  render(<FoundInItemSkeleton />, div);
+  render(<CollectionHitsCollectionSkeleton />, container);
 });
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  render(<RecordsChildSkeleton />, div);
+  render(<FoundInItemSkeleton />, container);
+});
+
+it('renders without crashing', () => {
+  render(<RecordsChildSkeleton />, container);
 });

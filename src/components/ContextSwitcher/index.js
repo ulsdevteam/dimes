@@ -5,21 +5,16 @@ import classnames from "classnames";
 import "./styles.scss"
 
 
-const ContextSwitcher = ({isContentShown, toggleIsContentShown}) => {
-  return (
+const ContextSwitcher = ({isContentShown, toggleIsContentShown}) => (
   <div className="toggle-wrapper">
     <Button
-      className={classnames("toggle-context", {"toggle-context--active": !isContentShown})}
+      className={classnames("toggle-context")}
       iconBefore={isContentShown ? "west" : null}
-      label="Collection Details"
-      handleClick={toggleIsContentShown} />
-    <Button
-      className={classnames("toggle-context", {"toggle-context--active": isContentShown})}
-      label="Collection Content"
       iconAfter={isContentShown ? null : "east"}
+      label={isContentShown ? "Collection Details" : "Collection Content"}
       handleClick={toggleIsContentShown} />
   </div>
-)}
+)
 
 ContextSwitcher.propTypes = {
   isContentShown: PropTypes.bool.isRequired,

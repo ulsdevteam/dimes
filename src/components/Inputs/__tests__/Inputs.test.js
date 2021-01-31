@@ -1,5 +1,6 @@
 import React from "react";
-import { render } from "react-dom";
+import { render, unmountComponentAtNode } from "react-dom";
+import { act } from "react-dom/test-utils";
 import {
   CheckBoxInput,
   DateInput,
@@ -7,41 +8,101 @@ import {
   TextInput,
   YearInput } from "..";
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  render(<CheckBoxInput
-    label="Do you want to proceed?"
-    id="1" checked={true}
-    handleChange={function(){}}/>, div);
+let container = null;
+beforeEach(() => {
+  container = document.createElement("div");
+  document.body.appendChild(container);
 });
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  render(<DateInput label="Select a date" id="1" />, div);
+afterEach(() => {
+  unmountComponentAtNode(container);
+  container.remove();
+  container = null;
 });
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
+it('renders correctly', () => {
+  const handleChange = jest.fn()
+  act(() => {
+    render(<CheckBoxInput
+      label="Do you want to proceed?"
+      id="1" checked={true}
+      handleChange={handleChange}/>, container);
+  })
+
+  const input = document.querySelector("[type=checkbox]")
+  expect(input.checked).toBe(true)
+  expect(input.id).toBe("1")
+  expect(input.name).toBe("1")
+  const label = document.querySelector("label")
+  expect(label.textContent).toBe("Do you want to proceed?")
+  expect(label.htmlFor).toBe("1")
+
+  act(() => {
+    input.dispatchEvent(new MouseEvent("click", { bubbles: true }))
+  })
+
+  expect(handleChange).toHaveBeenCalledTimes(1)
+});
+
+it('renders correctly', () => {
+  act(() => {
+    render(<DateInput label="Select a date" id="1" />, container);
+  })
+
+  const label = document.querySelector("label")
+  expect(label.textContent).toBe("Select a date")
+
+  const input = document.querySelector(".dp__input")
+  expect(input.id).toBe("1")
+});
+
+it('renders correctly', () => {
   const options = [
     {value: "", label: "select a value"},
     {value: "foo", label: "Foo"},
     {value: "bar", label: "Bar"},
   ]
-  render(
-    <SelectInput
-      className="foo"
-      id="foo"
-      label="Select an option"
-      onChange={function(){}}
-      options={options} />, div);
+  const onChange = jest.fn()
+
+  act(() => {
+    render(
+      <SelectInput
+        className="foo"
+        id="1"
+        label="Select an option"
+        name="bar"
+        onChange={onChange}
+        options={options} />, container);
+  })
+
+  const label = document.querySelector("label")
+  expect(label.textContent).toBe("Select an option")
+  const hidden = document.querySelector("[type=hidden]")
+  expect(hidden.name).toBe("bar")
+});
+
+it('renders correctly', () => {
+  act(() => {
+    render(<TextInput label="Foo" id="1" type="text" />, container);
+  })
+
+  const label = document.querySelector("label")
+  expect(label.textContent).toBe("Foo")
+  const input = document.querySelector("[type=text]")
+  expect(input.id).toBe("1")
+  expect(input.name).toBe("1")
+  expect(input.maxLength).toBe(255)
+  expect(input.size).toBe(10)
 });
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  render(<TextInput label="Foo" id="1" />, div);
-});
+  act(() => {
+    render(<YearInput label="Enter a year" id="1" />, container);
+  })
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  render(<YearInput label="Enter a year" id="1" />, div);
+  const label = document.querySelector("label")
+  expect(label.textContent).toBe("Enter a year")
+  const input = document.querySelector("[type=number]")
+  expect(input.id).toBe("1")
+  expect(input.name).toBe("1")
 });

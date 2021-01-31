@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import PropTypes from "prop-types";
 import Button from "../Button";
 import { CheckBoxInput } from "../Inputs";
 import classnames from "classnames";
@@ -60,6 +61,15 @@ const Facet = ({ children, handleChange, items, paramKey, params, title }) => {
       </div>
     ) : null
   )
+}
+
+Facet.propTypes = {
+  children: PropTypes.node,
+  handleChange: PropTypes.func,
+  items: PropTypes.array,
+  paramKey: PropTypes.string,
+  params: PropTypes.string,
+  title: PropTypes.string.isRequired,
 }
 
 export default Facet;

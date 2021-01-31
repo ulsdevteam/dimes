@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from "prop-types";
 import useDropdownMenu from 'react-accessible-dropdown-menu-hook';
 import MaterialIcon from "../MaterialIcon";
 import "../Button/styles.scss";
@@ -6,7 +7,7 @@ import classnames from "classnames";
 import "./styles.scss";
 
 const Dropdown = (props) => {
-  const [buttonClassName] = useState(props.buttonClassName);
+  // const [buttonClassName] = useState(props.buttonClassName);
   const [className] = useState(props.className);
   const [iconBefore] = useState(props.iconBefore);
   const [iconBeforeOpen] = useState(props.iconBeforeOpen);
@@ -24,12 +25,15 @@ const Dropdown = (props) => {
       onClick={item.handleClick}
       href={item.href}
       title={item.title}
-      {...itemProps[idx]}>{item.iconBefore && <MaterialIcon icon={item.iconBefore} />}{item.label}{item.iconAfter && <MaterialIcon icon={item.iconAfter} />}</a>
+      {...itemProps[idx]}>
+        {item.iconBefore && <MaterialIcon icon={item.iconBefore} />}
+        {item.label}{item.iconAfter && <MaterialIcon icon={item.iconAfter} />}
+    </a>
   );
   return (
     <div className={classnames("dropdown", className)}>
       <button
-        className={`${buttonClassName} ${isOpen ? "open" : "closed" }`}
+        className={classnames(props.buttonClassName, { "open": isOpen, "closed": !isOpen })}
         {...buttonProps} >
           {isOpen ? (<MaterialIcon icon={openIcon} />) : (iconBefore && <MaterialIcon icon={iconBefore} />)}
           {label}
@@ -87,6 +91,14 @@ export const MyListDropdown = ({ downloadCsv, duplicationRequest, emailList, rea
       ]
     } />
   )
+
+MyListDropdown.propTypes = {
+  downloadCsv: PropTypes.func.isRequired,
+  duplicationRequest: PropTypes.func.isRequired,
+  emailList: PropTypes.func.isRequired,
+  readingRoomRequest: PropTypes.func.isRequired,
+  removeAllItems: PropTypes.func.isRequired
+}
 
 export const NavDropdown = () => (
   <Dropdown
