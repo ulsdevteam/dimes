@@ -6,7 +6,7 @@ import classnames from "classnames";
 const ListToggleButton = ({ className, isMobile, isSaved, item, toggleSaved }) => (
   isSaved ? (
     <Button
-      ariaLabel="Add item to list"
+      ariaLabel="Remove item from list"
       ariaPressed={true}
       className={classnames("saved", className)}
       label={isMobile ? "Remove" : "Remove from List"}

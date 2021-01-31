@@ -66,7 +66,7 @@ const FormatSelectInput = () => {
   )
 }
 
-const ModalToggleListButton = ({ignoreRestrictions, items, toggleList}) => {
+export const ModalToggleListButton = ({ ignoreRestrictions, items, toggleList }) => {
 
   /** Returns false if any items are unchecked */
   const allSelected = useCallback(
@@ -80,7 +80,7 @@ const ModalToggleListButton = ({ignoreRestrictions, items, toggleList}) => {
     [items]
   )
 
-  const [deselect, setDeselect] = useState(allSelected(items));
+  const [deselect, setDeselect] = useState(allSelected());
 
   useEffect(() => {
     setDeselect(allSelected())
@@ -91,16 +91,16 @@ const ModalToggleListButton = ({ignoreRestrictions, items, toggleList}) => {
       className="btn--sm btn--gray"
       handleClick={() => toggleList(!deselect, ignoreRestrictions)}
       label={deselect ? "Deselect all items" : "Select all items"}
-      ariaLabel="Select all items"
+      ariaLabel={deselect ? "Deselect all items" : "Select all items"}
       ariaPressed={deselect}
       iconBefore={deselect ? "check_box_outline_blank" : "check_box"} />
   )
 }
 
-const SelectedTotals = ({ items }) => {
+export const SelectedTotals = ({ items }) => {
   const selectedExtents = items.map(
     g => g.items.map(
-      i => i.submit && i.isChecked ? i.extents : null)).flat(2).filter(i => i !== null)
+      i => i.isChecked ? i.extents : null)).flat(2).filter(i => i !== null)
   const totals = selectedExtents.reduce((total, current) => (
     total[current.type] ?
       {...total, [current.type]: total[current.type] + parseFloat(current.value)} :
@@ -111,7 +111,7 @@ const SelectedTotals = ({ items }) => {
 }
 
 
-const ModalMyList = props => (
+export const ModalMyList = props => (
   <Modal
     appElement={props.appElement ? props.appElement : Modal.setAppElement("#root")}
     isOpen={props.isOpen}

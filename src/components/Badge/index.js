@@ -8,9 +8,9 @@ const Badge = ({ className, icon, label }) => (
   </span>)
 
 Badge.propTypes = {
-  label: PropTypes.string.isRequired,
   className: PropTypes.string,
-  icon: PropTypes.string
+  icon: PropTypes.string,
+  label: PropTypes.string.isRequired
 }
 
 export default Badge;

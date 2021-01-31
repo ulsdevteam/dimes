@@ -1,17 +1,70 @@
 import React from 'react';
-import {render} from 'react-dom';
+import { render, unmountComponentAtNode } from 'react-dom';
+import { act } from 'react-dom/test-utils';
 import { FacetModal } from '..';
 
 import { facet } from '../../../__fixtures__/facet';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  render(<FacetModal
-      appElement={div}
-      handleChange={function(){}}
-      handleDateChange={function(){}}
-      isOpen={true}
-      params={{}}
-      data={facet}
-      toggleModal={function(){}} />, div);
+let container = null;
+beforeEach(() => {
+  container = document.createElement("div");
+  document.body.appendChild(container);
+});
+
+afterEach(() => {
+  unmountComponentAtNode(container);
+  container.remove();
+  container = null;
+});
+
+it('renders data correctly', () => {
+  act(() => {
+    render(<FacetModal
+        appElement={container}
+        handleChange={jest.fn()}
+        handleDateChange={jest.fn()}
+        isOpen={true}
+        params={{}}
+        data={facet}
+        toggleModal={jest.fn()} />, container);
+  })
+
+  const online = document.querySelector("[for=online]")
+  expect(online.textContent).toBe("Show me digital materials only (50)")
+  const startYear = document.querySelector("#startYear")
+  expect(startYear.value).toBe("-8867404800000")
+  const endYear = document.querySelector("#endYear")
+  expect(endYear.value).toBe("1546300800000")
+  const formats = document.querySelector("[id=Format] + .facet__items")
+  expect(formats.children.length).toBe(4)
+  const creators = document.querySelector("[id=Creator] + .facet__items")
+  expect(creators.children.length).toBe(5)
+  const subjects = document.querySelector("[id=Subject] + .facet__items")
+  expect(subjects.children.length).toBe(5)
+
+});
+
+it('handles clicks', () => {
+  const handleDateChange = jest.fn()
+
+  act(() => {
+    render(<FacetModal
+        appElement={container}
+        handleChange={jest.fn()}
+        handleDateChange={handleDateChange}
+        isOpen={true}
+        params={{}}
+        data={facet}
+        toggleModal={jest.fn()} />, container);
+  })
+
+
+  const apply = document.querySelector(".modal-body--search .btn")
+
+  act(() => {
+    apply.dispatchEvent(new MouseEvent("click", { bubbles: true }))
+  })
+
+  expect(handleDateChange).toHaveBeenCalledTimes(1)
+
 });

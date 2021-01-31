@@ -11,10 +11,10 @@ import keycodes from './helpers/keycodes';
 /** Adds props to an array of children */
 const addPropsToChildren = (children, props) => (
   React.Children.map(children, child => {
-      if (React.isValidElement(child)) {
-          return React.cloneElement(child, props);
-      }
-      return child;
+    if (React.isValidElement(child)) {
+      return React.cloneElement(child, props);
+    }
+    return child;
   })
 )
 
@@ -45,39 +45,39 @@ export const AccordionItemButton = ({ className, children, isExpanded, onClick, 
     const keyCode = evt.which.toString();
 
     if (keyCode === keycodes.ENTER || keyCode === keycodes.SPACE) {
-        evt.preventDefault();
-        handleClick();
+      evt.preventDefault();
+      handleClick();
     }
 
     if (evt.target instanceof HTMLElement) {
-        switch (keyCode) {
-            case keycodes.HOME: {
-                evt.preventDefault();
-                focusFirstSiblingOf(evt.target);
-                break;
-            }
-            case keycodes.END: {
-                evt.preventDefault();
-                focusLastSiblingOf(evt.target);
-                break;
-            }
-            case keycodes.LEFT:
-            case keycodes.UP: {
-                evt.preventDefault();
-                focusPreviousSiblingOf(evt.target);
-                break;
-            }
-            case keycodes.RIGHT:
-            case keycodes.DOWN: {
-                evt.preventDefault();
-                focusNextSiblingOf(evt.target);
-                break;
-            }
-            default: {
-                //
-            }
+      switch (keyCode) {
+        case keycodes.HOME: {
+          evt.preventDefault();
+          focusFirstSiblingOf(evt.target);
+          break;
         }
-     }
+        case keycodes.END: {
+          evt.preventDefault();
+          focusLastSiblingOf(evt.target);
+          break;
+        }
+        case keycodes.LEFT:
+        case keycodes.UP: {
+          evt.preventDefault();
+          focusPreviousSiblingOf(evt.target);
+          break;
+        }
+        case keycodes.RIGHT:
+        case keycodes.DOWN: {
+          evt.preventDefault();
+          focusNextSiblingOf(evt.target);
+          break;
+        }
+        default: {
+            //
+        }
+      }
+    }
   };
 
   return (

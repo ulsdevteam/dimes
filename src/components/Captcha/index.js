@@ -4,7 +4,6 @@ import ReCAPTCHA from "react-google-recaptcha";
 import classnames from "classnames";
 import "./styles.scss";
 
-// TODO: replace Captcha key
 class Captcha extends Component {
   constructor(props) {
     super(props)
