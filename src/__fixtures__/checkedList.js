@@ -126,5 +126,23 @@ export const checkedList = [{
     "parent_ref": "/collections/ChqRRrDVPGqYiDftR4WszC",
     "online": false,
     "archivesspace_uri": "/repositories/2/archival_objects/1120786"
+  }, {
+    "isChecked": true,
+    "title": "Barry Goldwater shakes Nelson A. Rockefeller's hand",
+    "uri": "/objects/h2uFAr5Lqe5rHYTPg45vuW",
+    "dates": [{
+      "expression": "1960 July 25",
+      "end": "1960-07-25",
+      "label": "creation",
+      "source": "archivesspace",
+      "type": "single",
+      "begin": "1960-07-25"
+    }],
+    "extents": null,
+    "notes": [],
+    "parent": "Chicago, GOP Convention",
+    "parent_ref": "/collections/Ac4QpG4hRL8M9TWchMERBL",
+    "online": false,
+    "archivesspace_uri": "/repositories/2/archival_objects/472103"
   }]
 }]

@@ -97,10 +97,14 @@ export const ModalToggleListButton = ({ ignoreRestrictions, items, toggleList })
   )
 }
 
+/** Calculates total extent of selected items
+* Only checked items are included in this calculation. A default of "1 item" is
+* provided for items with no extents (which usually means no instance).
+*/
 export const SelectedTotals = ({ items }) => {
   const selectedExtents = items.map(
-    g => g.items.map(
-      i => i.isChecked ? i.extents : null)).flat(2).filter(i => i !== null)
+    g => g.items.filter(i => i.isChecked).map(
+      i => i.extents ? i.extents: {"type": "item", "value": 1} )).flat(2)
   const totals = selectedExtents.reduce((total, current) => (
     total[current.type] ?
       {...total, [current.type]: total[current.type] + parseFloat(current.value)} :

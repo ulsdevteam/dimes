@@ -58,7 +58,7 @@ it('renders correctly', () => {
   })
 
   expect(selectButton.textContent).toContain("Deselect all items")
-  expect(totals.textContent).toBe("selected: 2 audio tapes, 9 folders")
+  expect(totals.textContent).toBe("selected: 2 audio tapes, 9 folders, 1 item")
 });
 
 it('renders without crashing', () => {
