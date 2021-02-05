@@ -216,14 +216,13 @@ const RecordsDetail = props => {
                 text={noteText(n)}
                 />
               ))}
-              {/** Commented out until we're ready to display Processing Information notes */
-              /**{ noteTextByType(props.item.notes, "processinfo") ?
+              { noteTextByType(props.item.notes, "processinfo") ?
                 (<PanelTextSection
                   params={props.params}
                   title="Processing Information"
                   text={noteTextByType(props.item.notes, "processinfo")} />) :
                 (null)
-              }*/}
+              }
               </>
               )
             }
