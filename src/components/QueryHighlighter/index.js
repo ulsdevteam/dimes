@@ -5,7 +5,7 @@ import "./styles.scss";
 
 
 const QueryHighlighter = ({ query, text }) => {
-  const parsedQuery = query ? query.replace(/"([^"]+(?="))"/g, '$1').split(" ") : []
+  const parsedQuery = query ? [query.replace(/"([^"]+(?="))"/g, '$1')] : []
   return (
     <Highlighter
         highlightClassName="query-highlight"
