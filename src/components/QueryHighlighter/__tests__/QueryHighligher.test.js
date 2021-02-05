@@ -15,7 +15,7 @@ afterEach(() => {
   container = null;
 });
 
-it('renders props correctly', () => {
+it('finds word at beginning', () => {
   act(() => {
     render(<QueryHighlighter query="foo" text="foo bar baz" />, container);
   })
@@ -24,7 +24,7 @@ it('renders props correctly', () => {
   expect(highlight.textContent).toBe("foo")
 });
 
-it('renders props correctly', () => {
+it('finds word in middle', () => {
   act(() => {
     render(<QueryHighlighter query="bar baz" text="foo bar baz" />, container);
   })
@@ -34,7 +34,17 @@ it('renders props correctly', () => {
 
 });
 
-it('renders props correctly', () => {
+it('finds phrase', () => {
+  act(() => {
+    render(<QueryHighlighter query="foo bar" text="foo bar baz" />, container);
+  })
+
+  const highlight = document.querySelector(".query-highlight")
+  expect(highlight.textContent).toBe("foo")
+
+});
+
+it('finds phrase separated by another word', () => {
   act(() => {
     render(<QueryHighlighter query="foo baz" text="foo bar baz" />, container);
   })
