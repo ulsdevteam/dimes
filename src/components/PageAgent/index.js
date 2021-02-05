@@ -63,9 +63,9 @@ class PageAgent extends Component {
         this.fetchCollections();
         this.parseAgentAttributes();
         this.setState({ isAgentLoading: false })
+        firePageViewEvent()
       })
       .catch(err => this.setState({ found: false }))
-      .then(() => firePageViewEvent());
   }
 
   fetchCollections = () => {
@@ -99,7 +99,7 @@ class PageAgent extends Component {
     }
     return (
       <React.Fragment>
-        <Helmet>
+        <Helmet defer={false}>
           <title>{ this.state.agent.title }</title>
         </Helmet>
         <div className="container agent">

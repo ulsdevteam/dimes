@@ -64,6 +64,7 @@ class PageRecords extends Component {
         }
         this.setState({ updateMessage: `Details under heading 1 have been updated to describe the selected records titled ${res.data.title}`})
         this.setUrl(appendParams(itemPath, this.state.params), res.data);
+        this.firePageViewEvent();
       })
       .catch(err => this.setState({ found: false }))
       .then(() => this.setState({isItemLoading: false}));
@@ -80,7 +81,6 @@ class PageRecords extends Component {
       })
       .catch(e => console.log(e))
       .then(() => this.setState({isAncestorsLoading: false}))
-      .then(() => firePageViewEvent())
   }
 
   /** Fetches paged content */
@@ -131,7 +131,7 @@ class PageRecords extends Component {
     return (
       <React.Fragment>
         <LiveMessage message={this.state.updateMessage} aria-live="polite" />
-        <Helmet>
+        <Helmet defer={false} >
           <title>{ this.state.item.title }</title>
         </Helmet>
         <div className="container--full-width">
