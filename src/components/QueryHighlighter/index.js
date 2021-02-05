@@ -5,10 +5,6 @@ import { findChunks } from "highlight-words-core";
 import "./styles.scss";
 
 
-/** Custom function which mimics boolean search behavior
-* Only highlights text from a string when all words from search query
-* are present in that string.
-*/
 const findChunksBoolean = ({
     autoEscape,
     caseSensitive,
