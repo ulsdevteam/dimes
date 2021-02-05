@@ -15,7 +15,6 @@ const PageDigitalObject = props => {
       .get(`${process.env.REACT_APP_ARGO_BASEURL}/${props.match.params.type}/${props.match.params.id}`)
       .then(res =>  {
         setItemTitle(res.data.title)})
-        firePageViewEvent()
       .catch(err => console.log(err))
     }, [props.match.params.id, props.match.params.type])
 
@@ -109,7 +108,8 @@ const PageDigitalObject = props => {
 
   return (
     <>
-      <Helmet defer={false}>
+      <Helmet
+        onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
         <title>{`View digital item - ${itemTitle}`}</title>
       </Helmet>
       <div className="digital">

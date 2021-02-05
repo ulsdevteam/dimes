@@ -71,11 +71,21 @@ export const truncateString = (text, maxLength) => {
 
 /** Sends a custom pageview event to Googgle Tag Manager.
 * This allows us to ensure that the correct page titles are sent.  */
-export const firePageViewEvent = () => {
+var done = false;
+var prevTitle = ""
+export const firePageViewEvent = title => {
+  if (title && title !== prevTitle) {
+    done = false;
+  }
+  if (title && !done) {
     if (window && window.dataLayer) {
-        let dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'reactPageViewEvent'
-        });
+      let dataLayer = window.dataLayer || [];
+      console.log("push", title)
+      dataLayer.push({
+          'event': 'reactPageViewEvent'
+      });
+      done = true;
+      prevTitle = title;
     }
+  }
 };
