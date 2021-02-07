@@ -241,10 +241,6 @@ const RecordsContent = props => {
     }
   }, [isLoading, preExpanded])
 
-  const collectionDescription = (
-    collection.description || noteTextByType(collection.notes, "abstract") || noteTextByType(collection.notes, "scopecontent")
-  )
-
   return (
   children ?
     (<div className={classnames("records__content", {"hidden": !isContentShown})}>
@@ -256,7 +252,7 @@ const RecordsContent = props => {
       <h3 className="collection__title">{collection.title}</h3>
       <p className="collection__date">{dateString(collection.dates)}</p>
       <p className="collection__text text--truncate">
-        {truncateString(collectionDescription, 180)}
+        {truncateString(collection.description, 180)}
       </p>
       <RecordsContentList
         ariaLevel={3}
