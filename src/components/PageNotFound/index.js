@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from "react";
 import { Helmet } from "react-helmet";
 import MaterialIcon from "../MaterialIcon";
 import { firePageViewEvent } from "../Helpers";
@@ -6,11 +6,9 @@ import "./styles.scss";
 
 const PageNotFound = () => {
 
-  useEffect(() => { firePageViewEvent() }, [])
-
   return (
     <>
-      <Helmet>
+      <Helmet onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
         <title>Page Not Found</title>
       </Helmet>
       <div className="not-found">
