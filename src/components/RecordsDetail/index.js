@@ -206,7 +206,7 @@ const RecordsDetail = props => {
               <PanelTextSection
                 params={props.params}
                 title="Description"
-                text={props.description} />
+                text={props.item.description} />
               { props.item.notes && props.item.notes.filter(n => n.type === "odd").map(n => (
                 <PanelTextSection
                 params={props.params}
