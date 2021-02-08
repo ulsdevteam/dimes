@@ -8,7 +8,8 @@ const PageNotFound = () => {
 
   return (
     <>
-      <Helmet onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
+      <Helmet
+        onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
         <title>Page Not Found</title>
       </Helmet>
       <div className="not-found">

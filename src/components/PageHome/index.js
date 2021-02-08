@@ -9,7 +9,8 @@ const PageHome = () => {
 
   return (
     <>
-      <Helmet onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
+      <Helmet
+        onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
         <title>DIMES: Online Collections and Catalog of Rockefeller Archive Center</title>
       </Helmet>
       <div className="container--full-width home">

@@ -234,7 +234,8 @@
     render() {
       return (
         <React.Fragment>
-          <Helmet onChangeClientState={(newState) => firePageViewEvent(newState.title)} >>
+          <Helmet
+            onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
             <title>DIMES: My List</title>
           </Helmet>
           <div className="container mylist flex">
