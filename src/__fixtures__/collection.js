@@ -3,6 +3,7 @@ export const collectionWithChildHits = {
     "title": "Cary Reich papers",
     "type": "collection",
     "category": "collection",
+      "description": "This collection primarily contains transcripts, audiotapes, and notes of interviews conducted by author Cary Reich during research for the first volume, and anticipated second volume, of \"The Life of Nelson A. Rockefeller.\" Additionally, it contains partial audiotaped interviews for Reich's \"New York Times\" expose \"The Creative Mind: The Innovator\" from April 21, 1985, as well as other financial articles. \n\nIn addition, there are audio interviews conducted by Patricia Linden, who was gathering stories for a \"Town and Country\" magazine article (\"Rockefellers' Monumental Legacy,\" September 1982) describing the Rockefeller legacy in New York, as well as her own unrealized unauthored biography of Nelson Rockefeller.\n\nLastly, the collection has subject files primarily consisting of research materials and news clippings pertaining to a variety of significant events in Nelson Rockfeller's life, including but not limited to the 1964 U.S. Presidential campaign, the International Basic Economy Corporation (IBEC), his gubernatorial tenure, and the U.S. vice presidency.",
     "group": {
         "identifier": "/collections/WakaW9sdM6GG8cJ7xXbZcN",
         "title": "Cary Reich papers"

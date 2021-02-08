@@ -51,13 +51,11 @@ const PanelExtentSection = ({ extents }) => (
 )
 
 const PanelFormatSection = ({ formats, notes }) => {
-  const displayFormats = formats.filter(f => (
-    f !== "documents"
-  ))
-  const formatText = []
+  const displayFormats = formats.filter(f => f !== "documents")
+  var formatText = []
   formatText.push(noteTextByType(notes, "physdesc"))
   formatText.push(noteTextByType(notes, "materialspec"))
-  const filteredFormatText = formatText.filter(i => (i != null))
+  const filteredFormatText = formatText.filter(i => i != null)
   return (
     displayFormats.length ? (
       <div className="panel__section">
@@ -208,7 +206,7 @@ const RecordsDetail = props => {
               <PanelTextSection
                 params={props.params}
                 title="Description"
-                text={noteTextByType(props.item.notes, "abstract") || noteTextByType(props.item.notes, "scopecontent")} />
+                text={props.item.description} />
               { props.item.notes && props.item.notes.filter(n => n.type === "odd").map(n => (
                 <PanelTextSection
                 params={props.params}
@@ -216,14 +214,13 @@ const RecordsDetail = props => {
                 text={noteText(n)}
                 />
               ))}
-              {/** Commented out until we're ready to display Processing Information notes */
-              /**{ noteTextByType(props.item.notes, "processinfo") ?
+              { noteTextByType(props.item.notes, "processinfo") ?
                 (<PanelTextSection
                   params={props.params}
                   title="Processing Information"
                   text={noteTextByType(props.item.notes, "processinfo")} />) :
                 (null)
-              }*/}
+              }
               </>
               )
             }
