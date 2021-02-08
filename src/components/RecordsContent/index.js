@@ -18,7 +18,7 @@ import classnames from "classnames";
 import "./styles.scss";
 
 
-class RecordsChild extends Component {
+export class RecordsChild extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -153,7 +153,7 @@ class RecordsChild extends Component {
             <p className="child__text text--truncate">
               <QueryHighlighter query={query} text={truncateString(item.description, 200)} />
             </p>
-            {params.query && item.hit_count ? (<HitCountBadge className="hit-count--records-" hitCount={item.hit_count} />) : null}
+            {params.query && item.hit_count ? (<HitCountBadge className="hit-count--records" hitCount={item.hit_count} />) : null}
             <MaterialIcon icon="expand_more" />
           </AccordionItemButton>
         </AccordionItemHeading>
@@ -179,8 +179,8 @@ class RecordsChild extends Component {
 RecordsChild.propTypes = {
     item: PropTypes.object.isRequired,
     myListCount: PropTypes.number.isRequired,
-    params: PropTypes.object,
-    preExpanded: PropTypes.array,
+    params: PropTypes.object.isRequired,
+    preExpanded: PropTypes.array.isRequired,
     setActiveRecords: PropTypes.func.isRequired,
     setIsLoading: PropTypes.func.isRequired,
     toggleInList: PropTypes.func.isRequired,
