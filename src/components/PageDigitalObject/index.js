@@ -108,9 +108,8 @@ const PageDigitalObject = props => {
 
   return (
     <>
-      <Helmet
-        onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
-        <title>{`View digital item - ${itemTitle}`}</title>
+      <Helmet onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
+        <title>{`${itemTitle}`}</title>
       </Helmet>
       <div className="digital">
         <Viewer config={configs} plugins={plugins} />
