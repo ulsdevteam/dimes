@@ -80,7 +80,6 @@ export const firePageViewEvent = title => {
   if (title && !done) {
     if (window && window.dataLayer) {
       let dataLayer = window.dataLayer || [];
-      console.log("push", title)
       dataLayer.push({
           'event': 'reactPageViewEvent'
       });
