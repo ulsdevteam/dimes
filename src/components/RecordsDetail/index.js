@@ -161,7 +161,7 @@ const RecordsDetail = props => {
         isSaved={isSaved}
         item={props.item}
         toggleSaved={props.toggleInList} />
-        {props.downloadSize &&
+        {props.item.online &&
           <>
           <a className="btn btn-launch--detail"
             href={`${props.item.uri}/view`}>View Online <MaterialIcon icon="visibility" /></a>
@@ -171,7 +171,9 @@ const RecordsDetail = props => {
             title="opens in a new window"
             rel="noopener noreferrer"
             >Download <MaterialIcon icon="get_app" /></a>
-            <p className="panel__text">{`Acrobat PDF, ${props.downloadSize}`}</p>
+            { props.downloadSize ?
+              <p className="panel__text">{`Acrobat PDF, ${props.downloadSize}`}</p> :
+              <p className="panel__text"><Skeleton/></p> }
           </>
         }
       </>
