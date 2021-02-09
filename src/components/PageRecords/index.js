@@ -80,7 +80,6 @@ class PageRecords extends Component {
       })
       .catch(e => console.log(e))
       .then(() => this.setState({isAncestorsLoading: false}))
-      .then(() => firePageViewEvent())
   }
 
   /** Fetches paged content */
@@ -131,7 +130,8 @@ class PageRecords extends Component {
     return (
       <React.Fragment>
         <LiveMessage message={this.state.updateMessage} aria-live="polite" />
-        <Helmet>
+        <Helmet
+          onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
           <title>{ this.state.item.title }</title>
         </Helmet>
         <div className="container--full-width">

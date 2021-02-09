@@ -32,7 +32,6 @@ class PageSearch extends Component {
   };
 
   componentDidMount() {
-    firePageViewEvent();
     let params = queryString.parse(this.props.location.search)
     params.limit = this.state.pageSize
     this.executeSearch(params)
@@ -132,7 +131,8 @@ class PageSearch extends Component {
   render() {
     return (
       <React.Fragment>
-        <Helmet>
+        <Helmet
+          onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
           <title>Search Results</title>
         </Helmet>
         <div className="container--full-width">
