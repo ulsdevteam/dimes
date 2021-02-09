@@ -39,7 +39,6 @@
 
     componentDidMount() {
       this.fetchList()
-      firePageViewEvent()
       axios
         .get(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/status/health/ping`)
         .then(res => res.data.pong && this.setState({ isRequestingAvailable: true }))
@@ -235,7 +234,8 @@
     render() {
       return (
         <React.Fragment>
-          <Helmet>
+          <Helmet
+            onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
             <title>DIMES: My List</title>
           </Helmet>
           <div className="container mylist flex">

@@ -16,7 +16,6 @@ const PageDigitalObject = props => {
       .then(res =>  {
         setItemTitle(res.data.title)})
       .catch(err => console.log(err))
-      .then(() => firePageViewEvent())
     }, [props.match.params.id, props.match.params.type])
 
   const configs = {
@@ -109,8 +108,9 @@ const PageDigitalObject = props => {
 
   return (
     <>
-      <Helmet>
-        <title>{`View digital item - ${itemTitle}`}</title>
+      <Helmet
+        onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
+        <title>{ itemTitle }</title>
       </Helmet>
       <div className="digital">
         <Viewer config={configs} plugins={plugins} />
