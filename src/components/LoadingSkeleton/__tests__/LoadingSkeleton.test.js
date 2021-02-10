@@ -1,5 +1,5 @@
-import React from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
+import React from 'react'
+import { render, unmountComponentAtNode } from 'react-dom'
 import {
   AgentAttributeSkeleton,
   CollectionHitsChildrenSkeleton,
@@ -9,48 +9,48 @@ import {
   RecordsChildSkeleton,
   SearchSkeleton,
   MyListSkeleton
-} from '..';
+} from '..'
 
-let container = null;
+let container = null
 beforeEach(() => {
-  container = document.createElement("div");
-  document.body.appendChild(container);
-});
+  container = document.createElement('div')
+  document.body.appendChild(container)
+})
 
 afterEach(() => {
-  unmountComponentAtNode(container);
-  container.remove();
-  container = null;
-});
+  unmountComponentAtNode(container)
+  container.remove()
+  container = null
+})
 
 it('renders without crashing', () => {
-  render(<SearchSkeleton />, container);
-});
+  render(<SearchSkeleton />, container)
+})
 
 it('renders without crashing', () => {
-  render(<MyListSkeleton />, container);
-});
+  render(<MyListSkeleton />, container)
+})
 
 it('renders without crashing', () => {
-  render(<AgentAttributeSkeleton />, container);
-});
+  render(<AgentAttributeSkeleton />, container)
+})
 
 it('renders without crashing', () => {
-  render(<DetailSkeleton />, container);
-});
+  render(<DetailSkeleton />, container)
+})
 
 it('renders without crashing', () => {
-  render(<CollectionHitsChildrenSkeleton />, container);
-});
+  render(<CollectionHitsChildrenSkeleton />, container)
+})
 
 it('renders without crashing', () => {
-  render(<CollectionHitsCollectionSkeleton />, container);
-});
+  render(<CollectionHitsCollectionSkeleton />, container)
+})
 
 it('renders without crashing', () => {
-  render(<FoundInItemSkeleton />, container);
-});
+  render(<FoundInItemSkeleton />, container)
+})
 
 it('renders without crashing', () => {
-  render(<RecordsChildSkeleton />, container);
-});
+  render(<RecordsChildSkeleton />, container)
+})

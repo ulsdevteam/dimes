@@ -1,21 +1,21 @@
-import React, { Component, useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import axios from "axios";
+import React, { Component, useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
+import axios from 'axios'
 import {
     Accordion,
     AccordionItem,
     AccordionItemHeading,
     AccordionItemButton,
     AccordionItemPanel,
-} from "../Accordion";
-import { HitCountBadge } from "../HitCount";
-import ListToggleButton from "../ListToggleButton";
-import MaterialIcon from "../MaterialIcon";
-import QueryHighlighter from "../QueryHighlighter";
-import { appendParams, dateString, truncateString} from "../Helpers";
-import { isItemSaved } from "../MyListHelpers";
-import classnames from "classnames";
-import "./styles.scss";
+} from '../Accordion';
+import { HitCountBadge } from '../HitCount'
+import ListToggleButton from '../ListToggleButton'
+import MaterialIcon from '../MaterialIcon'
+import QueryHighlighter from '../QueryHighlighter'
+import { appendParams, dateString, truncateString} from '../Helpers'
+import { isItemSaved } from '../MyListHelpers'
+import classnames from 'classnames'
+import './styles.scss'
 
 
 export class RecordsChild extends Component {
@@ -36,7 +36,7 @@ export class RecordsChild extends Component {
   componentDidMount() {
     const currentUrl = window.location.pathname
     this.setState({ isSaved: isItemSaved(this.props.item) })
-    if (this.props.preExpanded.includes(this.props.item.uri) && this.props.item.uri.includes("collections")) {
+    if (this.props.preExpanded.includes(this.props.item.uri) && this.props.item.uri.includes('collections')) {
       this.getChildrenPage(
         appendParams(
           `${process.env.REACT_APP_ARGO_BASEURL}${this.props.item.uri}/children`,
@@ -45,7 +45,7 @@ export class RecordsChild extends Component {
     }
     if (this.props.item.uri === currentUrl) {
       const el = document.getElementById(`accordion__heading-${currentUrl}`)
-      el.scrollIntoView({ behavior: "smooth", block: "center" })
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' })
       el.focus()
     }
     if (this.props.item.uri === currentUrl || this.props.preExpanded.length < 2) {
@@ -98,59 +98,59 @@ export class RecordsChild extends Component {
     const firstChildType = this.state.children.length && this.state.children[0].type
     const query = item.hit_count ? params.query : null
     const isMobile = window.innerWidth < 580;
-    return (item.type === "object" ?
-      (<div className={classnames("child__list-item", `child__list-item--${item.type}`)} >
-        <div className="child__description">
+    return (item.type === 'object' ?
+      (<div className={classnames('child__list-item', `child__list-item--${item.type}`)} >
+        <div className='child__description'>
           <button id={`accordion__heading-${item.uri}`}
-                  className={classnames("child__title", `child__title--${item.type}`)}
+                  className={classnames('child__title', `child__title--${item.type}`)}
                   onClick={() => this.handleItemClick(item.uri)}>
             <QueryHighlighter query={query} text={item.title} />
           </button>
-          {item.dates === item.title ? (null) : (<p className="child__text">{item.dates}</p>)}
+          {item.dates === item.title ? (null) : (<p className='child__text'>{item.dates}</p>)}
         </div>
-        <div className="child__buttons">
+        <div className='child__buttons'>
           {item.online ? (
-            <a className="btn btn-launch--content"
-               href={`${item.uri}/view`}>{isMobile? "View" : "View Online"}
-               <MaterialIcon icon="visibility" /></a>) :
+            <a className='btn btn-launch--content'
+               href={`${item.uri}/view`}>{isMobile? 'View' : 'View Online'}
+               <MaterialIcon icon='visibility' /></a>) :
             (null)
           }
           <ListToggleButton
-            className="btn-add--content"
+            className='btn-add--content'
             isMobile={isMobile}
             isSaved={this.state.isSaved}
             item={this.props.item}
             toggleSaved={this.toggleSaved} />
         </div>
-        <p className="child__text text--truncate">
+        <p className='child__text text--truncate'>
           <QueryHighlighter query={query} text={truncateString(item.description, 200)} />
         </p>
-        {params.query && item.hit_count ? (<HitCountBadge className="hit-count--records" hitCount={item.hit_count} />) : null}
+        {params.query && item.hit_count ? (<HitCountBadge className='hit-count--records' hitCount={item.hit_count} />) : null}
       </div>) :
       (<AccordionItem
         preExpanded={preExpanded}
         uuid={item.uri}
         className={classnames(
-          "child__list-accordion",
-          {"child__list-accordion--bottom-level": firstChildType === "object"}
+          'child__list-accordion',
+          {'child__list-accordion--bottom-level': firstChildType === 'object'}
         )} >
         <AccordionItemHeading
           ariaLevel={ariaLevel}
           className={classnames(
-            "child__list-item",
+            'child__list-item',
             `child__list-item--${item.type}`,
-            {"child__list-item--bottom-level": firstChildType === "object"},
+            {'child__list-item--bottom-level': firstChildType === 'object'},
           )} >
           <AccordionItemButton
               className={`child__title child__title--${item.type}`}
               onClick={() => this.handleCollectionClick(item.uri)} >
             <QueryHighlighter query={query} text={item.title} />
-            {item.title === item.dates ? (null) : (<p className="child__text">{item.dates}</p>)}
-            <p className="child__text text--truncate">
+            {item.title === item.dates ? (null) : (<p className='child__text'>{item.dates}</p>)}
+            <p className='child__text text--truncate'>
               <QueryHighlighter query={query} text={truncateString(item.description, 200)} />
             </p>
-            {params.query && item.hit_count ? (<HitCountBadge className="hit-count--records" hitCount={item.hit_count} />) : null}
-            <MaterialIcon icon="expand_more" />
+            {params.query && item.hit_count ? (<HitCountBadge className='hit-count--records' hitCount={item.hit_count} />) : null}
+            <MaterialIcon icon='expand_more' />
           </AccordionItemButton>
         </AccordionItemHeading>
         {(this.state.children.length) ?
@@ -158,7 +158,7 @@ export class RecordsChild extends Component {
             <RecordsContentList
               ariaLevel={ariaLevel+1}
               children={this.state.children}
-              className={classnames({"child__list--bottom-level": firstChildType === "object"})}
+              className={classnames({'child__list--bottom-level': firstChildType === 'object'})}
               myListCount={myListCount}
               params={params}
               preExpanded={preExpanded}
@@ -205,7 +205,7 @@ export const RecordsContentList = props => {
 
   return (
     <Accordion
-      className={classnames("child__list", props.className)}
+      className={classnames('child__list', props.className)}
       preExpanded={props.preExpanded} >
       {childList(props.children)}
     </Accordion>
@@ -233,27 +233,27 @@ const RecordsContent = props => {
   /** Focus on loading overlay when page is loading */
   useEffect(() => {
     if (isLoading) {
-      const el = document.getElementById("content-loading")
+      const el = document.getElementById('content-loading')
       el && el.focus()
     }
   }, [isLoading, preExpanded])
 
   return (
   children ?
-    (<div className={classnames("records__content", {"hidden": !isContentShown})}>
+    (<div className={classnames('records__content', {'hidden': !isContentShown})}>
       {isLoading ? (
-        <div className="loading">
-          <p id="content-loading" className="loading__text loading-dots">Loading</p>
+        <div className='loading'>
+          <p id='content-loading' className='loading__text loading-dots'>Loading</p>
         </div>) : (null)}
-      <h2 className="content__title">Collection Content</h2>
-      <h3 className="collection__title">{collection.title}</h3>
-      <p className="collection__date">{dateString(collection.dates)}</p>
-      <p className="collection__text text--truncate">
+      <h2 className='content__title'>Collection Content</h2>
+      <h3 className='collection__title'>{collection.title}</h3>
+      <p className='collection__date'>{dateString(collection.dates)}</p>
+      <p className='collection__text text--truncate'>
         {truncateString(collection.description, 180)}
       </p>
       <RecordsContentList
         ariaLevel={3}
-        className="child__list--top-level"
+        className='child__list--top-level'
         children={children}
         myListCount={myListCount}
         params={params}

@@ -1,14 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import MaterialIcon from "../MaterialIcon";
-import {NavDropdown} from "../Dropdown";
-import classnames from "classnames";
-import "./styles.scss";
+import React from 'react'
+import PropTypes from 'prop-types'
+import MaterialIcon from '../MaterialIcon'
+import {NavDropdown} from '../Dropdown'
+import classnames from 'classnames'
+import './styles.scss'
 
-
-export const NavItem  = ({ className, href, icon, id, label}) => (
-  <li className={classnames("nav__item", className)}>
-    <a className={classnames("nav__link", className)} href={href} id={id}>{label} {icon && <MaterialIcon icon={icon} />}</a>
+export const NavItem = ({ className, href, icon, id, label}) => (
+  <li className={classnames('nav__item', className)}>
+    <a className={classnames('nav__link', className)} href={href} id={id}>{label} {icon && <MaterialIcon icon={icon} />}</a>
   </li>)
 
 NavItem.propTypes = {
@@ -20,8 +19,8 @@ NavItem.propTypes = {
 }
 
 export const Nav = ({ ariaLabel, children, className}) => (
-  <nav className={classnames("nav", className)} aria-label={ariaLabel}>
-    <ul className="nav__list">
+  <nav className={classnames('nav', className)} aria-label={ariaLabel}>
+    <ul className='nav__list'>
       {children}
     </ul>
     <NavDropdown />

@@ -1,9 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Highlighter from "react-highlight-words";
-import { findChunks } from "highlight-words-core";
-import "./styles.scss";
-
+import React from 'react'
+import PropTypes from 'prop-types'
+import Highlighter from 'react-highlight-words'
+import { findChunks } from 'highlight-words-core'
+import './styles.scss'
 
 /** Custom function which mimics boolean search behavior
 * Only highlights text from a string when all words from search query
@@ -16,29 +15,29 @@ const findChunksBoolean = ({
     searchWords,
     textToHighlight
   }) => {
-    if (searchWords.every(word => textToHighlight.toLowerCase().includes(word.toLowerCase()))) {
-      return findChunks({autoEscape, caseSensitive, sanitize, searchWords, textToHighlight})
-    } else {
-      return []
-    }
-  };
+  if (searchWords.every(word => textToHighlight.toLowerCase().includes(word.toLowerCase()))) {
+    return findChunks({autoEscape, caseSensitive, sanitize, searchWords, textToHighlight})
+  } else {
+    return []
+  }
+}
 
 const QueryHighlighter = ({ query, text }) => {
-  const parsedQuery = query ? query.replace(/"([^"]+(?="))"/g, '$1').split(" ") : []
+  const parsedQuery = query ? query.replace(/"([^"]+(?="))"/g, '$1').split(' ') : []
   return (
     <Highlighter
-        highlightClassName="query-highlight"
-        searchWords={parsedQuery}
-        autoEscape={true}
-        textToHighlight={text ? text : ""}
-        findChunks={findChunksBoolean}
+      highlightClassName='query-highlight'
+      searchWords={parsedQuery}
+      autoEscape
+      textToHighlight={text ? text : ''}
+      findChunks={findChunksBoolean}
       />
-    )
-  }
+  )
+}
 
 QueryHighlighter.propTypes = {
   query: PropTypes.string,
-  text: PropTypes.string,
+  text: PropTypes.string
 }
 
-export default QueryHighlighter;
+export default QueryHighlighter
