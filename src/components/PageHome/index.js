@@ -14,7 +14,7 @@ const PageHome = () => (
     <div className='container--full-width home'>
       <Hero />
       <SearchForm className='search-form--home'/>
-    </div>)
+    </div>
   </>
 )
 
