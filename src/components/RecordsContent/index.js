@@ -53,12 +53,14 @@ export class RecordsChild extends Component {
     }
   }
 
+  /** Sets isItemSaved state when myListCount changes */
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.myListCount !== this.props.myListCount) {
       this.setState({ isSaved: isItemSaved(this.props.item) })
     }
   }
 
+  /** Fetches paginated content from the children endpoint */
   getChildrenPage = (uri, item) => {
     axios
       .get(uri)
@@ -69,6 +71,7 @@ export class RecordsChild extends Component {
       .catch(e => console.log(e))
   }
 
+  /** Loads a collection's children when a user clicks on it */
   handleCollectionClick = uri => {
     this.props.setActiveRecords(uri)
     if (!this.state.children.length) {
@@ -78,10 +81,12 @@ export class RecordsChild extends Component {
     }
   }
 
+  /** Calls the setActiveRecords callback function */
   handleItemClick = uri => {
     this.props.setActiveRecords(uri)
   }
 
+  /** Add or remove an item from MyList */
   toggleSaved = item => {
     this.props.toggleInList(item);
     this.setState({isSaved: !this.state.isSaved})
@@ -225,6 +230,7 @@ const RecordsContent = props => {
           setActiveRecords, toggleInList } = props;
   const [isLoading, setIsLoading] = useState(true)
 
+  /** Focus on loading overlay when page is loading */
   useEffect(() => {
     if (isLoading) {
       const el = document.getElementById("content-loading")
