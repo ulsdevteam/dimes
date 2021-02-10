@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import axios from "axios";
-import { Helmet } from "react-helmet";
-import MaterialIcon from "../MaterialIcon";
-import Viewer from "../Viewer";
-import { firePageViewEvent } from "../Helpers";
-import "./styles.scss"
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import { Helmet } from 'react-helmet'
+import MaterialIcon from '../MaterialIcon'
+import Viewer from '../Viewer'
+import { firePageViewEvent } from '../Helpers'
+import './styles.scss'
 
 const PageDigitalObject = props => {
 
@@ -20,46 +20,46 @@ const PageDigitalObject = props => {
     }, [props.match.params.id, props.match.params.type])
 
   const configs = {
-    id: "mirador",
-    selectedTheme: "rac",
+    id: 'mirador',
+    selectedTheme: 'rac',
     themes: {
-      rac:{
+      rac: {
         palette: {
           type: 'dark',
           primary: {
-            main: '#ffffff',
+            main: '#ffffff'
           },
           secondary: {
-            main: '#2F2F2F',
+            main: '#2F2F2F'
           },
           shades: {
             main: '#000000',
             dark: '#2F2F2F',
-            light: '#000000',
+            light: '#000000'
           },
           background: {
-            paper: '#000000',
-          },
+            paper: '#000000'
+          }
         },
-        typography:{
+        typography: {
           fontFamily: ['Lato', 'sans-serif'],
           body1: {
-            color: '#ffffff',
+            color: '#ffffff'
           },
           h3: {
-            color: '#ffffff',
+            color: '#ffffff'
           },
           h4: {
-            color: '#ffffff',
+            color: '#ffffff'
           },
           overline: {
-            color: '#ffffff',
+            color: '#ffffff'
           }
         }
       }
     },
     thumbnailNavigation: {
-      defaultPosition: 'off',
+      defaultPosition: 'off'
     },
     window: {
       allowClose: false,
@@ -70,32 +70,32 @@ const PageDigitalObject = props => {
       hideWindowTitle: false,
       sideBarOpen: true,
       panels: {
-          info: true,
-          attribution: false,
-          canvas: true,
+        info: true,
+        attribution: false,
+        canvas: true
       }
     },
     workspace: {
       showZoomControls: true
     },
     workspaceControlPanel: {
-      enabled: false,
+      enabled: false
     },
     windows: [
-      { manifestId: `${process.env.REACT_APP_S3_BASEURL}/manifests/${props.match.params.id}` }
+        { manifestId: `${process.env.REACT_APP_S3_BASEURL}/manifests/${props.match.params.id}` }
     ]
   }
 
   /** Constructs url for Back to Item Details link */
   const itemUrl = (
-    document.referrer && document.referrer.includes(`/${props.match.params.type}/${props.match.params.id}`) && !document.referrer.endsWith("/view") ?
+    document.referrer && document.referrer.includes(`/${props.match.params.type}/${props.match.params.id}`) && !document.referrer.endsWith('/view') ?
       document.referrer : `/${props.match.params.type}/${props.match.params.id}`
   )
 
   const BackToItemButton = () => (
     <nav>
-      <a href={itemUrl} className="btn btn--back-item">
-        <MaterialIcon icon="keyboard_arrow_left"/>Back to Item Details
+      <a href={itemUrl} className='btn btn--back-item'>
+        <MaterialIcon icon='keyboard_arrow_left' />Back to Item Details
       </a>
     </nav>
   )
@@ -105,9 +105,9 @@ const PageDigitalObject = props => {
     {
       mode: 'wrap',
       component: BackToItemButton,
-      target: 'WindowTopBarPluginArea',
+      target: 'WindowTopBarPluginArea'
     }
-  ];
+  ]
 
   return (
     <>
@@ -115,7 +115,7 @@ const PageDigitalObject = props => {
         onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
         <title>{ itemTitle }</title>
       </Helmet>
-      <div className="digital">
+      <div className='digital'>
         <Viewer config={configs} plugins={plugins} />
       </div>
     </>

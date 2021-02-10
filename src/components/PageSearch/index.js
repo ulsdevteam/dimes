@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import axios from "axios";
-import queryString from "query-string";
-import Skeleton from 'react-loading-skeleton';
-import { Helmet } from "react-helmet";
-import Button from "../Button";
-import { SelectInput } from "../Inputs"
-import { SearchSkeleton } from "../LoadingSkeleton";
-import { FacetModal } from "../ModalSearch";
-import { SearchPagination } from "../Pagination";
-import SearchForm from "../SearchForm";
-import TileList from "../Tile";
-import { appendParams, firePageViewEvent } from "../Helpers";
-import "./styles.scss"
+import React, { Component } from 'react'
+import axios from 'axios'
+import queryString from 'query-string'
+import Skeleton from 'react-loading-skeleton'
+import { Helmet } from 'react-helmet'
+import Button from '../Button'
+import { SelectInput } from '../Inputs'
+import { SearchSkeleton } from '../LoadingSkeleton'
+import { FacetModal } from '../ModalSearch'
+import { SearchPagination } from '../Pagination'
+import SearchForm from '../SearchForm'
+import TileList from '../Tile'
+import { appendParams, firePageViewEvent } from '../Helpers'
+import './styles.scss'
 
 class PageSearch extends Component {
   constructor(props) {
@@ -121,9 +121,9 @@ class PageSearch extends Component {
   /** Changes sort based on user input */
   handleSortChange = value => {
     var params = {...this.state.params}
-    value ? params.sort = value : delete params["sort"]
+    value ? params.sort = value : delete params['sort']
     delete params.offset
-    this.executeSearch(params);
+    this.executeSearch(params)
   }
 
   /** Shows and hides the facet modal */
@@ -132,9 +132,9 @@ class PageSearch extends Component {
   }
 
   sortOptions = [
-    {value: "", label: "Sort by relevance"},
-    {value: "title", label: "Sort by title"},
-    {value: "creator", label: "Sort by creator name"}
+    {value: '', label: 'Sort by relevance'},
+    {value: 'title', label: 'Sort by title'},
+    {value: 'creator', label: 'Sort by creator name'}
   ]
 
   render() {
@@ -144,69 +144,68 @@ class PageSearch extends Component {
           onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
           <title>Search Results</title>
         </Helmet>
-        <div className="container--full-width">
-          <div className="search-bar">
+        <div className='container--full-width'>
+          <div className='search-bar'>
             <SearchForm
-              className="search-form--results"
+              className='search-form--results'
               query={this.state.params.query}
-              category={this.state.params.category}
-             />
+              category={this.state.params.category} />
           </div>
-          <div className="results">
-            <h1 className="results__title">{`Search Results ${this.state.params.query && `for “${this.state.params.query.replace(/"([^"]+(?="))"/g, '$1')}”` }`}</h1>
-            <div className="results__header">
-              <div className="results__summary">
-                <p className="results__summary--text">
-                {this.state.inProgress ? (<Skeleton />) : (`${this.state.startItem === this.state.endItem ?
-                  this.state.startItem :
-                  `${this.state.startItem}-${this.state.endItem}`} of ${this.state.resultsCount} results`)}
+          <div className='results'>
+            <h1 className='results__title'>{`Search Results ${this.state.params.query && `for “${this.state.params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`}</h1>
+            <div className='results__header'>
+              <div className='results__summary'>
+                <p className='results__summary--text'>
+                  {this.state.inProgress ? (<Skeleton />) : (`${this.state.startItem === this.state.endItem ?
+                      this.state.startItem :
+                      `${this.state.startItem}-${this.state.endItem}`} of ${this.state.resultsCount} results`)}
                 </p>
               </div>
-              <div className="results__controls">
+              <div className='results__controls'>
                 <Button
                   handleClick={() => this.toggleFacetModal()}
-                  label="Filters"
-                  iconBefore="filter_alt"
-                  className="btn--filter" />
+                  label='Filters'
+                  iconBefore='filter_alt'
+                  className='btn--filter' />
                 <SelectInput
-                  className="select__sort"
-                  hideLabel={true}
-                  id="sort"
-                  name="sort"
+                  className='select__sort'
+                  hideLabel
+                  id='sort'
+                  name='sort'
                   onChange={({selectedItem}) => this.handleSortChange(selectedItem.value)}
-                  label="Sort search results"
-                  selectedItem={this.state.params.sort || ""}
+                  label='Sort search results'
+                  selectedItem={this.state.params.sort || ''}
                   options={this.sortOptions} />
               </div>
-              <div className="results__pagination">
+              <div className='results__pagination'>
                 {this.state.inProgress ?
-                  (<Skeleton />) :
-                  (<SearchPagination
-                    offset={this.state.offset}
-                    pageSize={this.state.pageSize}
-                    pageCount={this.state.pageCount}
-                    handlePageClick={this.handlePageClick}
-                  />)}
+                    (<Skeleton />) :
+                    (<SearchPagination
+                      offset={this.state.offset}
+                      pageSize={this.state.pageSize}
+                      pageCount={this.state.pageCount}
+                      handlePageClick={this.handlePageClick}
+                    />)}
               </div>
             </div>
             { this.state.inProgress ?
-              (<SearchSkeleton />) :
-              (<TileList
-                items={this.state.items}
-                params={this.state.params} />)}
-              <div className="results__footer">
-                <p className="results__summary">
-                  {`${this.state.startItem === this.state.endItem ?
-                    this.state.startItem :
-                    `${this.state.startItem}-${this.state.endItem}`} of ${this.state.resultsCount} results`}
-                </p>
-                <div className="results__pagination">
-                  <SearchPagination
-                    offset={this.state.offset}
-                    pageSize={this.state.pageSize}
-                    pageCount={this.state.pageCount}
-                    handlePageClick={this.handlePageClick}
-                  />
+                (<SearchSkeleton />) :
+                (<TileList
+                  items={this.state.items}
+                  params={this.state.params} />)}
+            <div className='results__footer'>
+              <p className='results__summary'>
+                {`${this.state.startItem === this.state.endItem ?
+                        this.state.startItem :
+                        `${this.state.startItem}-${this.state.endItem}`} of ${this.state.resultsCount} results`}
+              </p>
+              <div className='results__pagination'>
+                <SearchPagination
+                  offset={this.state.offset}
+                  pageSize={this.state.pageSize}
+                  pageCount={this.state.pageCount}
+                  handlePageClick={this.handlePageClick}
+                        />
               </div>
             </div>
           </div>
@@ -219,6 +218,7 @@ class PageSearch extends Component {
           handleChange={this.handleFacetChange}
           handleDateChange={this.handleDateFacetChange} />
       </React.Fragment>
+
     )
   }
 }
