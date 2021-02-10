@@ -133,15 +133,18 @@ const RecordsDetail = props => {
     return !props.isItemLoading && isItemSaved(props.item)
   })
 
+  /** Set isSaved in state after item finishes loading */
   useEffect(() => {
     const saved = !props.isItemLoading && isItemSaved(props.item)
     setIsSaved(saved)
   }, [props.isItemLoading, props.item, props.myListCount])
 
+  /** Constructs the URL for the "Back to Search" button */
   const searchUrl = (
     props.params && props.params.query ? appendParams("/search", props.params) : "/"
   )
 
+  /** Parses an item's identifier from its URI */
   const identifier = (
     props.item.uri && props.item.uri.split("/")[props.item.uri.split("/").length - 1]
   )
