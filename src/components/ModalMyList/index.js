@@ -17,6 +17,7 @@ const SubmitListInput = ({ submitList }) => {
 
   const { setFieldValue } = useFormikContext();
 
+  /** Sets value of hidden items input */
   useEffect(() => {
     setFieldValue("items", submitList)
   }, [setFieldValue, submitList])
