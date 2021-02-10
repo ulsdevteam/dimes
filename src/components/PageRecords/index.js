@@ -30,6 +30,7 @@ class PageRecords extends Component {
     }
   }
 
+  /** Handle navigation using browser back button, get and set item data */
   componentDidMount() {
     window.onpopstate = () => {
       this.setState({...this.props.location.state})
@@ -95,6 +96,7 @@ class PageRecords extends Component {
     .catch(err => console.log(err))
   }
 
+  /** Constructs a preExpanded list based on an item's ancestors */
   preExpanded = (ancestors, list) => {
     Object.keys(ancestors).length && list.push(ancestors.uri)
     return ancestors.child ? this.preExpanded(ancestors.child, list) : list
@@ -118,6 +120,7 @@ class PageRecords extends Component {
     this.props.history.push(uri, {...this.state, item: itemData})
   }
 
+  /** Show or hide the RecordsContent on mobile */
   toggleIsContentShown = () => {
     this.setState({ isContentShown: !this.state.isContentShown })
   }

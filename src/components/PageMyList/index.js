@@ -37,6 +37,7 @@
       };
     }
 
+    /** Fetch list data and ensure Request Broker is available */
     componentDidMount() {
       this.fetchList()
       axios
@@ -97,6 +98,7 @@
       this.setState({ confirm: { ...this.state.confirm, title: title, message: message } })
     }
 
+    /** Creates HTML input elements */
     createInputElement = (key, value) => {
       const input = document.createElement("input")
       input.name = key
@@ -104,6 +106,7 @@
       return input
     }
 
+    /* Handle the form submission for Aeon request (duplication and reading room) */
     handleAeonFormSubmit = (uri, submitted, modal) => {
       this.toggleModal(modal);
       const loadingTitle = "Preparing Request Data"
@@ -136,6 +139,7 @@
         })
     }
 
+    /** Handles form submit for emails */
     handleExportFormSubmit = (uri, submitted, modal) => {
       this.toggleModal(modal);
       const loadingTitle = "Sending Email"
@@ -157,6 +161,7 @@
         })
     }
 
+    /** Fetches list data from localStorage and get complete data from mylist endpoint */
     fetchList = () => {
       const list = fetchMyList();
       axios
@@ -168,11 +173,13 @@
         .then(() => this.state.isLoading && this.setState({isLoading: false}));
     }
 
+    /** Remove all items from list */
     removeAllFromList = () => {
       this.props.removeAllListItems();
       this.fetchList();
     }
 
+    /** Remove single item from list */
     removeFromList = item => {
       this.props.toggleInList(item);
       var filteredList = [];
@@ -184,6 +191,7 @@
       this.setState({ savedList: filteredList, submitList: this.constructSubmitList(filteredList) })
     }
 
+    /** Set submit flag on an item, which indicates if it should be included in request */
     setSubmit = (uri, submitValue, submitReason) => {
       const updatedList = this.state.savedList.map(g => {
         const updatedGroupItems = g.items.map(i => (

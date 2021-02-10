@@ -53,6 +53,7 @@ class PageAgent extends Component {
     };
   }
 
+  /** Fetches agent data */
   componentDidMount() {
     const params = queryString.parse(this.props.location.search);
     this.setState({ params: params })
@@ -67,6 +68,7 @@ class PageAgent extends Component {
       .catch(err => this.setState({ found: false }))
   }
 
+  /** Fetches data about collections associated with the agent */
   fetchCollections = () => {
     axios
       .get(`${process.env.REACT_APP_ARGO_BASEURL}/search/?query=${this.state.agent.title}&category=collection&limit=8`)
@@ -77,6 +79,7 @@ class PageAgent extends Component {
       .catch(err => console.log(err));
   }
 
+  /** Adds labels for agent attributes */ 
   parseAgentAttributes = () => {
     const agentType = this.state.agent.agent_type
     const startDates = this.state.agent.dates ? this.state.agent.dates.map(date => (

@@ -31,12 +31,14 @@ class PageSearch extends Component {
     };
   };
 
+  /** Execute search based on params */
   componentDidMount() {
     let params = queryString.parse(this.props.location.search)
     params.limit = this.state.pageSize
     this.executeSearch(params)
   };
 
+  /** Get first search result */
   startItem = (results, offset) => {
     var startItem = this.state.startItem;
     if (results.count) startItem = 1;
@@ -44,6 +46,7 @@ class PageSearch extends Component {
     return startItem;
   }
 
+  /** Get last search result */
   endItem = (results, offset) => {
     var endItem = results.count
     if (results.count > this.state.pageSize) endItem = this.state.pageSize;
@@ -52,6 +55,7 @@ class PageSearch extends Component {
     return endItem;
   }
 
+  /** Fetch data from facets endpoint */
   excecuteFacetsSearch = params =>  {
     axios
       .get(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}/facets/`, params))
@@ -59,6 +63,7 @@ class PageSearch extends Component {
       .catch(err => console.log(err));
   };
 
+  /** Executes search and sets results in state */
   executeSearch = params =>  {
     this.props.history.push(appendParams(window.location.pathname, params))
     this.setState({ inProgress: true });
@@ -78,6 +83,7 @@ class PageSearch extends Component {
       .catch(err => console.log(err));
   };
 
+  /** Executes search when user clicks on Apply button in date facet */
   handleDateFacetChange = (startYear, endYear) => {
     var params = {...this.state.params}
     params.start_date__gte = startYear
@@ -104,6 +110,7 @@ class PageSearch extends Component {
     this.executeSearch(params);
   }
 
+  /** Sets offset and executes search based on user input */
   handlePageClick = (data) => {
     let offset = Math.ceil(data.selected * this.state.pageSize);
     let params = {...this.state.params}
@@ -111,6 +118,7 @@ class PageSearch extends Component {
     this.executeSearch(params)
   };
 
+  /** Changes sort based on user input */
   handleSortChange = value => {
     var params = {...this.state.params}
     value ? params.sort = value : delete params["sort"]
@@ -118,6 +126,7 @@ class PageSearch extends Component {
     this.executeSearch(params);
   }
 
+  /** Shows and hides the facet modal */
   toggleFacetModal = () => {
     this.setState({ facetIsOpen: !this.state.facetIsOpen })
   }

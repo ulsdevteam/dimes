@@ -10,6 +10,7 @@ const PageDigitalObject = props => {
 
   const [itemTitle, setItemTitle] = useState("")
 
+  /** Fetches and sets item title */
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_ARGO_BASEURL}/${props.match.params.type}/${props.match.params.id}`)
@@ -85,6 +86,7 @@ const PageDigitalObject = props => {
     ]
   }
 
+  /** Constructs url for Back to Item Details link */
   const itemUrl = (
     document.referrer && document.referrer.includes(`/${props.match.params.type}/${props.match.params.id}`) && !document.referrer.endsWith("/view") ?
       document.referrer : `/${props.match.params.type}/${props.match.params.id}`
@@ -98,6 +100,7 @@ const PageDigitalObject = props => {
     </nav>
   )
 
+  /** Adds BackToItemButton to Mirador plugins */
   const plugins = [
     {
       mode: 'wrap',
