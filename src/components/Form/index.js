@@ -7,6 +7,7 @@ import classnames from "classnames";
 export const FocusError = () => {
   const { errors, isSubmitting, isValidating } = useFormikContext();
 
+  /** If there are errors on form submission, focus on first input that has an error */
   useEffect(() => {
     if (isSubmitting && !isValidating) {
       const keys = Object.keys(errors);
@@ -25,6 +26,7 @@ export const FocusError = () => {
 
 export const FormGroup = (props) => {
   const { children, component, errors, helpText, maxLength, label, name, required, rows, touched, type } = props;
+  /** Return text for aria describedBy label */
   const describedBy = () => {
     if (helpText) {
       if (errors && errors[name] && touched[name]) {
