@@ -10,6 +10,7 @@ class Captcha extends Component {
     this.recaptchaRef = React.createRef();
   }
 
+  /** Reset Recaptcha when form is submitted */
   componentDidUpdate() {
     if (!this.props.form.isValid && this.props.form.isSubmitting) {
       this.recaptchaRef.current.reset()
