@@ -308,8 +308,8 @@
           />
           <ModalConfirm
             {...this.state.requestingUnavailable}
-            message='Sorry, our system is unable to process requests right now. We're working to fix this! Please try again later.'
-            title='Can't Complete Request'
+            message="Sorry, our system is unable to process requests right now. We're working to fix this! Please try again later."
+            title="Can't Complete Request"
             toggleModal={() => this.toggleModal('requestingUnavailable')}
           />
           <ModalConfirm
