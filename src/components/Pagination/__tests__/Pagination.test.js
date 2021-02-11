@@ -1,14 +1,14 @@
-import React from 'react';
-import { render } from 'react-dom';
-import { SearchPagination } from '..';
+import React from 'react'
+import { render } from 'react-dom'
+import { SearchPagination } from '..'
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
+  const div = document.createElement('div')
   render(
     <SearchPagination
-      handlePageClick={function(){}}
+      handlePageClick={jest.fn()}
       offset={0}
       pageCount={20}
       pageSize={40}
-    />, div);
-});
+    />, div)
+})

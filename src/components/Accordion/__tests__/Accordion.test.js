@@ -1,140 +1,139 @@
-import React from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
-import { act } from "react-dom/test-utils";
+import React from 'react'
+import { render, unmountComponentAtNode } from 'react-dom'
+import { act } from 'react-dom/test-utils'
 import {
     Accordion,
     AccordionItem,
     AccordionItemHeading,
     AccordionItemButton,
-    AccordionItemPanel,
-} from "..";
-import * as focus from '../helpers/focus';
+    AccordionItemPanel
+} from '..'
+import * as focus from '../helpers/focus'
 
-let container = null;
+let container = null
 beforeEach(() => {
-  container = document.createElement("div");
-  document.body.appendChild(container);
-});
+  container = document.createElement('div')
+  document.body.appendChild(container)
+})
 
 afterEach(() => {
-  unmountComponentAtNode(container);
-  container.remove();
-  container = null;
-});
+  unmountComponentAtNode(container)
+  container.remove()
+  container = null
+})
 
 it('renders without crashing', () => {
-  render(<Accordion />, container);
-});
+  render(<Accordion />, container)
+})
 
 it('renders without crashing', () => {
-  render(<AccordionItem />, container);
-});
+  render(<AccordionItem />, container)
+})
 
 it('renders without crashing', () => {
-  render(<AccordionItemHeading />, container);
-});
+  render(<AccordionItemHeading />, container)
+})
 
 it('renders without crashing', () => {
-  render(<AccordionItemButton />, container);
-});
+  render(<AccordionItemButton />, container)
+})
 
 it('handles clicks', () => {
-  const onClick = jest.fn();
-  const setIsExpanded = jest.fn();
+  const onClick = jest.fn()
+  const setIsExpanded = jest.fn()
 
   act(() => {
-    render(<AccordionItemButton setIsExpanded={setIsExpanded} onClick={onClick} />, container);
+    render(<AccordionItemButton setIsExpanded={setIsExpanded} onClick={onClick} />, container)
   })
 
-  const button = document.querySelector("[data-accordion-component=AccordionItemButton]");
+  const button = document.querySelector('[data-accordion-component=AccordionItemButton]')
 
   act(() => {
-    button.dispatchEvent(new MouseEvent("click", { bubbles: true }));
-  });
+    button.dispatchEvent(new MouseEvent('click', { bubbles: true }))
+  })
 
   expect(onClick).toHaveBeenCalledTimes(1)
   expect(setIsExpanded).toHaveBeenCalledTimes(1)
-});
+})
 
 it('handles keyboard events', () => {
-  const onClick = jest.fn();
-  const setIsExpanded = jest.fn();
+  const onClick = jest.fn()
+  const setIsExpanded = jest.fn()
   focus.focusFirstSiblingOf = jest.fn()
   focus.focusLastSiblingOf = jest.fn()
   focus.focusPreviousSiblingOf = jest.fn()
   focus.focusNextSiblingOf = jest.fn()
 
   act(() => {
-    render(<AccordionItemButton setIsExpanded={setIsExpanded} onClick={onClick} />, container);
+    render(<AccordionItemButton setIsExpanded={setIsExpanded} onClick={onClick} />, container)
   })
 
-  const button = document.querySelector("[data-accordion-component=AccordionItemButton]");
+  const button = document.querySelector('[data-accordion-component=AccordionItemButton]')
 
   act(() => {
-    button.dispatchEvent(new KeyboardEvent("keydown", { keyCode: 32, bubbles: true }));
-  });
+    button.dispatchEvent(new KeyboardEvent('keydown', { keyCode: 32, bubbles: true }))
+  })
   expect(onClick).toHaveBeenCalledTimes(1)
   expect(setIsExpanded).toHaveBeenCalledTimes(1)
-  jest.clearAllMocks();
+  jest.clearAllMocks()
 
   act(() => {
-    button.dispatchEvent(new KeyboardEvent("keydown", { keyCode: 13, bubbles: true }));
-  });
+    button.dispatchEvent(new KeyboardEvent('keydown', { keyCode: 13, bubbles: true }))
+  })
   expect(onClick).toHaveBeenCalledTimes(1)
   expect(setIsExpanded).toHaveBeenCalledTimes(1)
-  jest.clearAllMocks();
+  jest.clearAllMocks()
 
   act(() => {
-    button.dispatchEvent(new KeyboardEvent("keydown", { keyCode: 40, bubbles: true }));
-  });
+    button.dispatchEvent(new KeyboardEvent('keydown', { keyCode: 40, bubbles: true }))
+  })
   expect(onClick).toHaveBeenCalledTimes(0)
   expect(setIsExpanded).toHaveBeenCalledTimes(0)
   expect(focus.focusNextSiblingOf).toHaveBeenCalledTimes(1)
-  jest.clearAllMocks();
+  jest.clearAllMocks()
 
   act(() => {
-    button.dispatchEvent(new KeyboardEvent("keydown", { keyCode: 35, bubbles: true }));
-  });
+    button.dispatchEvent(new KeyboardEvent('keydown', { keyCode: 35, bubbles: true }))
+  })
   expect(onClick).toHaveBeenCalledTimes(0)
   expect(setIsExpanded).toHaveBeenCalledTimes(0)
   expect(focus.focusLastSiblingOf).toHaveBeenCalledTimes(1)
-  jest.clearAllMocks();
+  jest.clearAllMocks()
 
   act(() => {
-    button.dispatchEvent(new KeyboardEvent("keydown", { keyCode: 36, bubbles: true }));
-  });
+    button.dispatchEvent(new KeyboardEvent('keydown', { keyCode: 36, bubbles: true }))
+  })
   expect(onClick).toHaveBeenCalledTimes(0)
   expect(setIsExpanded).toHaveBeenCalledTimes(0)
-  expect(focus.focusFirstSiblingOf).toHaveBeenCalledTimes(1);
-  jest.clearAllMocks();
+  expect(focus.focusFirstSiblingOf).toHaveBeenCalledTimes(1)
+  jest.clearAllMocks()
 
   act(() => {
-    button.dispatchEvent(new KeyboardEvent("keydown", { keyCode: 37, bubbles: true }));
-  });
+    button.dispatchEvent(new KeyboardEvent('keydown', { keyCode: 37, bubbles: true }))
+  })
   expect(onClick).toHaveBeenCalledTimes(0)
   expect(setIsExpanded).toHaveBeenCalledTimes(0)
   expect(focus.focusPreviousSiblingOf).toHaveBeenCalledTimes(1)
-  jest.clearAllMocks();
+  jest.clearAllMocks()
 
   act(() => {
-    button.dispatchEvent(new KeyboardEvent("keydown", { keyCode: 39, bubbles: true }));
-  });
+    button.dispatchEvent(new KeyboardEvent('keydown', { keyCode: 39, bubbles: true }))
+  })
   expect(onClick).toHaveBeenCalledTimes(0)
   expect(setIsExpanded).toHaveBeenCalledTimes(0)
   expect(focus.focusNextSiblingOf).toHaveBeenCalledTimes(1)
-  jest.clearAllMocks();
+  jest.clearAllMocks()
 
   act(() => {
-    button.dispatchEvent(new KeyboardEvent("keydown", { keyCode: 38, bubbles: true }));
-  });
+    button.dispatchEvent(new KeyboardEvent('keydown', { keyCode: 38, bubbles: true }))
+  })
   expect(onClick).toHaveBeenCalledTimes(0)
   expect(setIsExpanded).toHaveBeenCalledTimes(0)
   expect(focus.focusPreviousSiblingOf).toHaveBeenCalledTimes(1)
-  jest.clearAllMocks();
-
-});
+  jest.clearAllMocks()
+})
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  render(<AccordionItemPanel />, container);
-});
+  const div = document.createElement('div')
+  render(<AccordionItemPanel />, container)
+})

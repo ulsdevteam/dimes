@@ -1,15 +1,14 @@
 import React, { Component } from "react";
-import { LiveMessage } from "react-aria-live";
-import PropTypes from "prop-types";
-import axios from "axios";
-import queryString from "query-string";
-import { Helmet } from "react-helmet";
-import ContextSwitcher from "../ContextSwitcher";
-import RecordsContent from "../RecordsContent";
-import RecordsDetail from "../RecordsDetail";
-import PageNotFound from "../PageNotFound";
-import { appendParams, firePageViewEvent, formatBytes } from "../Helpers";
-
+import { LiveMessage } from 'react-aria-live'
+import PropTypes from 'prop-types'
+import axios from 'axios'
+import queryString from 'query-string'
+import { Helmet } from 'react-helmet'
+import ContextSwitcher from '../ContextSwitcher'
+import RecordsContent from '../RecordsContent'
+import RecordsDetail from '../RecordsDetail'
+import PageNotFound from '../PageNotFound'
+import { appendParams, firePageViewEvent, formatBytes } from '../Helpers'
 
 class PageRecords extends Component {
   constructor(props) {
@@ -30,6 +29,7 @@ class PageRecords extends Component {
     }
   }
 
+  /** Handle navigation using browser back button, get and set item data */
   componentDidMount() {
     window.onpopstate = () => {
       this.setState({...this.props.location.state})
@@ -42,59 +42,60 @@ class PageRecords extends Component {
   };
 
   /** Fetches item data, including ancestors and collection children */
-  getItemData = (itemUrl, params, initial=false) => {
+  getItemData = (itemUrl, params, initial = false) => {
     this.setState({isItemLoading: true})
     this.setState({isAncestorsLoading: true})
-    this.setState({ downloadSize: "" })
+    this.setState({ downloadSize: '' })
     const childrenParams = {...params, limit: 5}
-    const itemPath = itemUrl.replace(`${process.env.REACT_APP_ARGO_BASEURL}`, "")
+    const itemPath = itemUrl.replace(`${process.env.REACT_APP_ARGO_BASEURL}`, '')
     axios
-      .get(appendParams(itemUrl, params))
-      .then(res => {
-        this.setState({ item: res.data });
-        if (res.data.online) {
-          axios
-            .head(`${process.env.REACT_APP_S3_BASEURL}/pdfs/${res.data.uri.split("/").pop()}`)
-            .then(res => {
-              this.setState({ downloadSize: formatBytes(res.headers["content-length"]) })
-            })
-            .catch(e => {
-              this.setState({ downloadSize: "" })
-            })
-        }
-        this.setState({ updateMessage: `Details under heading 1 have been updated to describe the selected records titled ${res.data.title}`})
-        this.setUrl(appendParams(itemPath, this.state.params), res.data);
-      })
-      .catch(err => this.setState({ found: false }))
-      .then(() => this.setState({isItemLoading: false}));
+        .get(appendParams(itemUrl, params))
+        .then(res => {
+          this.setState({ item: res.data })
+          if (res.data.online) {
+            axios
+              .head(`${process.env.REACT_APP_S3_BASEURL}/pdfs/${res.data.uri.split('/').pop()}`)
+              .then(res => {
+                this.setState({ downloadSize: formatBytes(res.headers['content-length']) })
+              })
+              .catch(e => {
+                this.setState({ downloadSize: '' })
+              })
+          }
+          this.setState({ updateMessage: `Details under heading 1 have been updated to describe the selected records titled ${res.data.title}`})
+          this.setUrl(appendParams(itemPath, this.state.params), res.data)
+        })
+        .catch(err => this.setState({ found: false }))
+        .then(() => this.setState({isItemLoading: false}))
     axios
-      .get(appendParams(`${itemUrl}/ancestors`, params))
-      .then(res => {
-        this.setState({ ancestors: res.data })
-        if (initial) {
-          const itemUrl = `/${this.props.match.params.type}/${this.props.match.params.id}`
-          const collectionUrl = Object.keys(res.data).length ? res.data.uri : itemUrl
-          collectionUrl.includes("collections") && this.getPage(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${collectionUrl}/children`, childrenParams))
-          this.setState({ preExpanded: this.preExpanded(res.data, [itemUrl]) })
-        }
-      })
-      .catch(e => console.log(e))
-      .then(() => this.setState({isAncestorsLoading: false}))
+        .get(appendParams(`${itemUrl}/ancestors`, params))
+        .then(res => {
+          this.setState({ ancestors: res.data })
+          if (initial) {
+            const itemUrl = `/${this.props.match.params.type}/${this.props.match.params.id}`
+            const collectionUrl = Object.keys(res.data).length ? res.data.uri : itemUrl
+            collectionUrl.includes('collections') && this.getPage(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${collectionUrl}/children`, childrenParams))
+            this.setState({ preExpanded: this.preExpanded(res.data, [itemUrl]) })
+          }
+        })
+        .catch(e => console.log(e))
+        .then(() => this.setState({isAncestorsLoading: false}))
   }
 
   /** Fetches paged content */
   getPage = uri => {
     axios
-      .get(uri)
-      .then(res => {
-          this.setState({ children: [...this.state.children].concat(res.data.results)});
-          this.state.isChildrenLoading && this.setState({ isChildrenLoading: false });
+        .get(uri)
+        .then(res => {
+          this.setState({ children: [...this.state.children].concat(res.data.results)})
+          this.state.isChildrenLoading && this.setState({ isChildrenLoading: false })
           res.data.next && this.getPage(res.data.next)
-      }
-    )
-    .catch(err => console.log(err))
+        }
+      )
+      .catch(err => console.log(err))
   }
 
+  /** Constructs a preExpanded list based on an item's ancestors */
   preExpanded = (ancestors, list) => {
     Object.keys(ancestors).length && list.push(ancestors.uri)
     return ancestors.child ? this.preExpanded(ancestors.child, list) : list
@@ -118,6 +119,7 @@ class PageRecords extends Component {
     this.props.history.push(uri, {...this.state, item: itemData})
   }
 
+  /** Show or hide the RecordsContent on mobile */
   toggleIsContentShown = () => {
     this.setState({ isContentShown: !this.state.isContentShown })
   }
@@ -129,12 +131,12 @@ class PageRecords extends Component {
     }
     return (
       <React.Fragment>
-        <LiveMessage message={this.state.updateMessage} aria-live="polite" />
+        <LiveMessage message={this.state.updateMessage} aria-live='polite' />
         <Helmet
           onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
           <title>{ this.state.item.title }</title>
         </Helmet>
-        <div className="container--full-width">
+        <div className='container--full-width'>
           <ContextSwitcher
             isContentShown={this.state.isContentShown}
             toggleIsContentShown={this.toggleIsContentShown} />

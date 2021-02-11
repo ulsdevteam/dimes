@@ -1,34 +1,33 @@
-import React, { useEffect, useState } from "react";
-import pluralize from "pluralize";
-import PropTypes from "prop-types";
-import Skeleton from "react-loading-skeleton";
+import React, { useEffect, useState } from 'react'
+import pluralize from 'pluralize'
+import PropTypes from 'prop-types'
+import Skeleton from 'react-loading-skeleton'
 import {
     Accordion,
     AccordionItem,
     AccordionItemHeading,
     AccordionItemButton,
     AccordionItemPanel,
-} from "../Accordion";
-import ListToggleButton from "../ListToggleButton";
-import MaterialIcon from "../MaterialIcon";
-import QueryHighlighter from "../QueryHighlighter";
-import { DetailSkeleton, FoundInItemSkeleton } from "../LoadingSkeleton";
-import { appendParams, dateString, hasAccessOrUse, noteText, noteTextByType } from "../Helpers";
-import { isItemSaved } from "../MyListHelpers";
-import classnames from "classnames";
-import "./styles.scss";
-
+} from '../Accordion'
+import ListToggleButton from '../ListToggleButton'
+import MaterialIcon from '../MaterialIcon'
+import QueryHighlighter from '../QueryHighlighter'
+import { DetailSkeleton, FoundInItemSkeleton } from '../LoadingSkeleton'
+import { appendParams, dateString, hasAccessOrUse, noteText, noteTextByType } from '../Helpers'
+import { isItemSaved } from '../MyListHelpers'
+import classnames from 'classnames'
+import './styles.scss'
 
 const FoundInItem = ({ className, item, params, topLevel }) => (
   <>
     <li className={className}>
-      <MaterialIcon icon={topLevel ? "archive_box" : "subdirectory_arrow_right"} />
-      <a className="found-in__link" href={appendParams(item.uri, params)}>{item.title}</a>
+      <MaterialIcon icon={topLevel ? 'archive_box' : 'subdirectory_arrow_right'} />
+      <a className='found-in__link' href={appendParams(item.uri, params)}>{item.title}</a>
     </li>
     {item.child ?
       (<FoundInItem
         item={item.child}
-        className="found-in__subcollection"
+        className='found-in__subcollection'
         params={params} />) :
       (null)}
   </>
@@ -36,35 +35,35 @@ const FoundInItem = ({ className, item, params, topLevel }) => (
 
 const PanelExtentSection = ({ extents }) => (
   extents ? (
-  <div className="panel__section">
-    <h3 className="panel__heading">Size</h3>
-    <ul className="panel__list--unstyled">
+  <div className='panel__section'>
+    <h3 className='panel__heading'>Size</h3>
+    <ul className='panel__list--unstyled'>
       {extents.map((e, index) => {
-        const extentArray = e.type.replace("_", " ").split(" ").map((ext, i, arr) => (
+        const extentArray = e.type.replace('_', ' ').split(' ').map((ext, i, arr) => (
           arr.length - 1 === i ? pluralize(ext, e.value) : ext
         ))
         return (
-      <li key={index} className="panel__text">{`${e.value} ${extentArray.join(" ")}`}</li>)})}
+      <li key={index} className='panel__text'>{`${e.value} ${extentArray.join(' ')}`}</li>)})}
     </ul>
   </div>) :
   (null)
 )
 
 const PanelFormatSection = ({ formats, notes }) => {
-  const displayFormats = formats.filter(f => f !== "documents")
+  const displayFormats = formats.filter(f => f !== 'documents')
   var formatText = []
   formatText.push(noteTextByType(notes, "physdesc"))
   formatText.push(noteTextByType(notes, "materialspec"))
   const filteredFormatText = formatText.filter(i => i != null).filter(i => i !== '')
   return (
     displayFormats.length ? (
-      <div className="panel__section">
-        <h3 className="panel__heading">Formats</h3>
-        <ul className="panel__list--unstyled">
+      <div className='panel__section'>
+        <h3 className='panel__heading'>Formats</h3>
+        <ul className='panel__list--unstyled'>
           {filteredFormatText.length ?
-            (<li className="panel__text">{filteredFormatText.join("\n")}</li>) :
+            (<li className='panel__text'>{filteredFormatText.join('\n')}</li>) :
             (displayFormats.map((format, index) => (
-              <li key={index} className="panel__text">{format}</li>))
+              <li key={index} className='panel__text'>{format}</li>))
             )
           }
         </ul>
@@ -75,14 +74,14 @@ const PanelFormatSection = ({ formats, notes }) => {
 
 const PanelFoundInSection = ({ ancestors, isItemLoading, params }) => (
   ancestors.title ?
-    (<div className="panel__section">
-      <h3 className="panel__heading">Found In</h3>
-      <ul className="found-in">
+    (<div className='panel__section'>
+      <h3 className='panel__heading'>Found In</h3>
+      <ul className='found-in'>
       {isItemLoading ?
         (<FoundInItemSkeleton/>) :
         (<FoundInItem
             item={ancestors}
-            className="found-in__collection"
+            className='found-in__collection'
             params={params}
             topLevel={true} />)}
       </ul>
@@ -92,11 +91,11 @@ const PanelFoundInSection = ({ ancestors, isItemLoading, params }) => (
 
 const PanelLinkedListSection = ({ listData, params, title }) =>  (
   listData ?
-    (<div className="panel__section">
-      <h3 className="panel__heading">{title}</h3>
-      <ul className="panel__list--unstyled">
+    (<div className='panel__section'>
+      <h3 className='panel__heading'>{title}</h3>
+      <ul className='panel__list--unstyled'>
         {listData.map((item, index) => (
-        <li key={index} className="panel__text"><a href={appendParams(item.uri, params)}>{item.title}</a></li>))}
+        <li key={index} className='panel__text'><a href={appendParams(item.uri, params)}>{item.title}</a></li>))}
       </ul>
     </div>) :
     (null)
@@ -104,23 +103,23 @@ const PanelLinkedListSection = ({ listData, params, title }) =>  (
 
 const PanelListSection = ({ listData, title }) =>  (
   listData ?
-    (<div className="panel__section">
-      <h3 className="panel__heading">{title}</h3>
-      <ul className="panel__list--unstyled">
+    (<div className='panel__section'>
+      <h3 className='panel__heading'>{title}</h3>
+      <ul className='panel__list--unstyled'>
         {listData.map((item, index) => (
-        <li key={index} className="panel__text">{item.title}</li>))}
+        <li key={index} className='panel__text'>{item.title}</li>))}
       </ul>
     </div>) :
     (null)
 )
 
 const PanelTextSection = ({ params, text, title }) => {
-  const parsedQuery = params && params.query ? (params.query) : ("")
+  const parsedQuery = params && params.query ? (params.query) : ('')
   return (
   text ?
-    (<div className="panel__section">
-      <h3 className="panel__heading">{title}</h3>
-      <p className="panel__text--narrative">
+    (<div className='panel__section'>
+      <h3 className='panel__heading'>{title}</h3>
+      <p className='panel__text--narrative'>
         <QueryHighlighter query={parsedQuery} text={text} />
       </p>
     </div>) :
@@ -133,67 +132,70 @@ const RecordsDetail = props => {
     return !props.isItemLoading && isItemSaved(props.item)
   })
 
+  /** Set isSaved in state after item finishes loading */
   useEffect(() => {
     const saved = !props.isItemLoading && isItemSaved(props.item)
     setIsSaved(saved)
   }, [props.isItemLoading, props.item, props.myListCount])
 
+  /** Constructs the URL for the 'Back to Search' button */
   const searchUrl = (
-    props.params && props.params.query ? appendParams("/search", props.params) : "/"
+    props.params && props.params.query ? appendParams('/search', props.params) : '/'
   )
 
+  /** Parses an item's identifier from its URI */
   const identifier = (
-    props.item.uri && props.item.uri.split("/")[props.item.uri.split("/").length - 1]
+    props.item.uri && props.item.uri.split('/')[props.item.uri.split('/').length - 1]
   )
 
   return (
-  <div className={classnames("records__detail", {"hidden": props.isContentShown})}>
+  <div className={classnames('records__detail', {'hidden': props.isContentShown})}>
     <nav>
-      <a href={searchUrl} className="btn btn--back">
-        <MaterialIcon icon="keyboard_arrow_left"/>Back to Search
+      <a href={searchUrl} className='btn btn--back'>
+        <MaterialIcon icon='keyboard_arrow_left'/>Back to Search
       </a>
     </nav>
-    <h1 className="records__title">{props.isItemLoading ? <Skeleton /> : props.item.title }</h1>
-    {props.item.type === "object" &&
+    <h1 className='records__title'>{props.isItemLoading ? <Skeleton /> : props.item.title }</h1>
+    {props.item.type === 'object' &&
       <>
       <ListToggleButton
-        className="btn-add--detail"
+        className='btn-add--detail'
         isSaved={isSaved}
         item={props.item}
         toggleSaved={props.toggleInList} />
         {props.item.online &&
           <>
-          <a className="btn btn-launch--detail"
-            href={`${props.item.uri}/view`}>View Online <MaterialIcon icon="visibility" /></a>
-          <a className="btn btn-download--detail"
+          <a className='btn btn-launch--detail'
+            href={`${props.item.uri}/view`}>View Online <MaterialIcon icon='visibility' /></a>
+          <a className='btn btn-download--detail'
             href={`${process.env.REACT_APP_S3_BASEURL}/pdfs/${identifier}`}
-            target="_blank"
-            title="opens in a new window"
-            rel="noopener noreferrer"
-            >Download <MaterialIcon icon="get_app" /></a>
+            target='_blank'
+            title='opens in a new window'
+            rel='noopener noreferrer'
+            >Download <MaterialIcon icon='get_app' /></a>
             { props.downloadSize ?
-              <p className="panel__text">{`Acrobat PDF, ${props.downloadSize}`}</p> :
-              <p className="panel__text"><Skeleton/></p> }
+              <p className='panel__text'>{`Acrobat PDF, ${props.downloadSize}`}</p> :
+              <p className='panel__text'><Skeleton/></p> }
           </>
         }
       </>
     }
-    <Accordion className="accordion accordion--details" preExpanded={["summary"]} allowZeroExpanded={true}>
-      <AccordionItem className="accordion__item" uuid="summary">
+    <Accordion className='accordion accordion--details' preExpanded={['summary']} allowZeroExpanded={true}>
+      <AccordionItem className='accordion__item' uuid='summary'>
         <AccordionItemHeading ariaLevel={2}>
-          <AccordionItemButton className="accordion__button">Summary</AccordionItemButton>
+          <AccordionItemButton className='accordion__button'>Summary</AccordionItemButton>
         </AccordionItemHeading>
-        <AccordionItemPanel className="accordion__panel">
+        <AccordionItemPanel className='accordion__panel'>
           {props.isItemLoading ?
             (<DetailSkeleton />) :
             (<>
-              <div className="panel__section--flex">
+              <div className='panel__section--flex'>
                 <PanelLinkedListSection
-                  title="Creators"
+                  title='Creators'
                   params={props.params}
                   listData={props.item.creators} />
                 <PanelTextSection
-                  title="Dates"
+                  title='Dates'
                   text={dateString(props.item.dates)} />
                 <PanelExtentSection
                   extents={props.item.extents} />
@@ -207,20 +209,20 @@ const RecordsDetail = props => {
                 params={props.params} />
               <PanelTextSection
                 params={props.params}
-                title="Description"
+                title='Description'
                 text={props.item.description} />
-              { props.item.notes && props.item.notes.filter(n => n.type === "odd").map(n => (
+              { props.item.notes && props.item.notes.filter(n => n.type === 'odd').map(n => (
                 <PanelTextSection
                 params={props.params}
                 title={n.title}
                 text={noteText(n)}
                 />
               ))}
-              { noteTextByType(props.item.notes, "processinfo") ?
+              { noteTextByType(props.item.notes, 'processinfo') ?
                 (<PanelTextSection
                   params={props.params}
-                  title="Processing Information"
-                  text={noteTextByType(props.item.notes, "processinfo")} />) :
+                  title='Processing Information'
+                  text={noteTextByType(props.item.notes, 'processinfo')} />) :
                 (null)
               }
               </>
@@ -229,28 +231,28 @@ const RecordsDetail = props => {
         </AccordionItemPanel>
       </AccordionItem>
       { hasAccessOrUse(props.item.notes) ?
-        (<AccordionItem className="accordion__item" uuid="accessAndUse">
+        (<AccordionItem className='accordion__item' uuid='accessAndUse'>
           <AccordionItemHeading ariaLevel={2}>
-            <AccordionItemButton className="accordion__button">Access and Use</AccordionItemButton>
+            <AccordionItemButton className='accordion__button'>Access and Use</AccordionItemButton>
           </AccordionItemHeading>
-          <AccordionItemPanel className="accordion__panel">
+          <AccordionItemPanel className='accordion__panel'>
             <PanelTextSection
-              title="Access"
-              text={noteTextByType(props.item.notes, "accessrestrict")} />
+              title='Access'
+              text={noteTextByType(props.item.notes, 'accessrestrict')} />
             <PanelTextSection
-              title="Reproduction and Duplication"
-              text={noteTextByType(props.item.notes, "userestrict")} />
+              title='Reproduction and Duplication'
+              text={noteTextByType(props.item.notes, 'userestrict')} />
           </AccordionItemPanel>
         </AccordionItem>) :
         (null)}
       { props.item.terms && props.item.terms.length ?
-        (<AccordionItem className="accordion__item" uuid="relatedTerms">
+        (<AccordionItem className='accordion__item' uuid='relatedTerms'>
             <AccordionItemHeading ariaLevel={2}>
-              <AccordionItemButton className="accordion__button">Related Terms</AccordionItemButton>
+              <AccordionItemButton className='accordion__button'>Related Terms</AccordionItemButton>
             </AccordionItemHeading>
-            <AccordionItemPanel className="accordion__panel">
+            <AccordionItemPanel className='accordion__panel'>
               <PanelListSection
-                title="Subjects"
+                title='Subjects'
                 listData={props.item.terms} />
             </AccordionItemPanel>
           </AccordionItem>) :
