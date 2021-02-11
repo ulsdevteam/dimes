@@ -213,7 +213,7 @@ const RecordsDetail = props => {
                 text={props.item.description} />
               <PanelTextSection
                 params={props.params}
-                title='Description'
+                title='Biographical/Historical Note'
                 text={noteTextByType(props.item.notes, 'bioghist')} />
               { props.item.notes && props.item.notes.filter(n => n.type === 'odd').map(n => (
                 <PanelTextSection
