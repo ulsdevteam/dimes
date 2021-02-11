@@ -52,9 +52,9 @@ const PanelExtentSection = ({ extents }) => (
 const PanelFormatSection = ({ formats, notes }) => {
   const displayFormats = formats.filter(f => f !== 'documents')
   var formatText = []
-  formatText.push(noteTextByType(notes, 'physdesc'))
-  formatText.push(noteTextByType(notes, 'materialspec'))
-  const filteredFormatText = formatText.filter(i => i != null)
+  formatText.push(noteTextByType(notes, "physdesc"))
+  formatText.push(noteTextByType(notes, "materialspec"))
+  const filteredFormatText = formatText.filter(i => i != null).filter(i => i !== '')
   return (
     displayFormats.length ? (
       <div className='panel__section'>
