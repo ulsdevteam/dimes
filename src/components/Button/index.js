@@ -1,21 +1,21 @@
-import React from "react";
-import PropTypes from "prop-types";
-import MaterialIcon from "../MaterialIcon";
-import classnames from "classnames";
-import "./styles.scss"
-
+import React from 'react'
+import PropTypes from 'prop-types'
+import MaterialIcon from '../MaterialIcon'
+import classnames from 'classnames'
+import './styles.scss'
 
 const Button = props => (
   <button
     type={props.type}
-    className={classnames("btn", props.className)}
+    className={classnames('btn', props.className)}
     onClick={props.handleClick}
     aria-label={props.ariaLabel}
     aria-haspopup={props.ariaHasPopup}
     aria-expanded={props.ariaExpanded}
     aria-pressed={props.ariaPressed}
     disabled={props.disabled} >
-      {props.iconBefore && <MaterialIcon icon={props.iconBefore} />} {props.label} {props.iconAfter && <MaterialIcon icon={props.iconAfter} />}
+    { props.iconBefore &&
+      <MaterialIcon icon={props.iconBefore} />} {props.label} {props.iconAfter && <MaterialIcon icon={props.iconAfter} />}
   </button>)
 
 Button.propTypes = {
@@ -27,6 +27,6 @@ Button.propTypes = {
   iconBefore: PropTypes.string,
   label: PropTypes.string,
   disabled: PropTypes.bool
-};
+}
 
-export default Button;
+export default Button

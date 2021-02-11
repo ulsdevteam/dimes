@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import "./styles.scss"
+import React from 'react'
+import PropTypes from 'prop-types'
+import './styles.scss'
 
 const Badge = ({ className, icon, label }) => (
   <span className={className}>
@@ -13,4 +13,4 @@ Badge.propTypes = {
   label: PropTypes.string.isRequired
 }
 
-export default Badge;
+export default Badge

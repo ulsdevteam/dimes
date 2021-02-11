@@ -1,85 +1,82 @@
-import React from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
-import { act } from 'react-dom/test-utils';
-import ListToggleButton from '..';
+import React from 'react'
+import { render, unmountComponentAtNode } from 'react-dom'
+import { act } from 'react-dom/test-utils'
+import ListToggleButton from '..'
 
-import { object } from '../../../__fixtures__/object';
+import { object } from '../../../__fixtures__/object'
 
-
-let container = null;
+let container = null
 beforeEach(() => {
-  container = document.createElement("div");
-  document.body.appendChild(container);
-});
+  container = document.createElement('div')
+  document.body.appendChild(container)
+})
 
 afterEach(() => {
-  unmountComponentAtNode(container);
-  container.remove();
-  container = null;
-});
+  unmountComponentAtNode(container)
+  container.remove()
+  container = null
+})
 
 it('renders correctly in desktop and modal', () => {
   act(() => {
     render(<ListToggleButton
-              isSaved={false}
-              item={object}
-              toggleSaved={jest.fn()} />, container);
+      isSaved={false}
+      item={object}
+      toggleSaved={jest.fn()} />, container)
   })
 
-  const button = document.querySelector("button")
-  expect(button.textContent).toContain("Add to List")
-  expect(button).toHaveAttribute("aria-label", "Add item to list")
-  expect(button.className).not.toContain("saved")
+  const button = document.querySelector('button')
+  expect(button.textContent).toContain('Add to List')
+  expect(button).toHaveAttribute('aria-label', 'Add item to list')
+  expect(button.className).not.toContain('saved')
 
   act(() => {
     render(<ListToggleButton
-              isSaved={true}
-              item={object}
-              toggleSaved={jest.fn()} />, container);
+      isSaved
+      item={object}
+      toggleSaved={jest.fn()} />, container)
   })
 
-  expect(button.textContent).toContain("Remove from List")
-  expect(button).toHaveAttribute("aria-label", "Remove item from list")
-  expect(button.className).toContain("saved")
+  expect(button.textContent).toContain('Remove from List')
+  expect(button).toHaveAttribute('aria-label', 'Remove item from list')
+  expect(button.className).toContain('saved')
 
   act(() => {
     render(<ListToggleButton
-              isMobile={true}
-              isSaved={false}
-              item={object}
-              toggleSaved={jest.fn()} />, container);
+      isMobile
+      isSaved={false}
+      item={object}
+      toggleSaved={jest.fn()} />, container)
   })
 
-  expect(button.textContent).toContain("Add")
+  expect(button.textContent).toContain('Add')
 
   act(() => {
     render(<ListToggleButton
-              isMobile={true}
-              isSaved={true}
-              item={object}
-              toggleSaved={jest.fn()} />, container);
+      isMobile
+      isSaved
+      item={object}
+      toggleSaved={jest.fn()} />, container)
   })
 
-  expect(button.textContent).toContain("Remove")
+  expect(button.textContent).toContain('Remove')
+})
 
-});
-
-it('handles clicks', () => {
-  const toggleSaved = jest.fn();
+it('handles clicks correctly', () => {
+  const toggleSaved = jest.fn()
 
   act(() => {
     render(<ListToggleButton
-              isSaved={false}
-              item={object}
-              toggleSaved={toggleSaved} />, container);
+      isSaved={false}
+      item={object}
+      toggleSaved={toggleSaved} />, container)
   })
 
-  const button = document.querySelector("button")
+  const button = document.querySelector('button')
 
   act(() => {
-    button.dispatchEvent(new MouseEvent("click", { bubbles: true }))
+    button.dispatchEvent(new MouseEvent('click', { bubbles: true }))
   })
 
   expect(toggleSaved).toHaveBeenCalledTimes(1)
-
-});
+})

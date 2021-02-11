@@ -1,42 +1,42 @@
-import React from "react";
-import { render, unmountComponentAtNode } from "react-dom";
-import { act } from "react-dom/test-utils";
-import { FormButtons } from "..";
+import React from 'react'
+import { render, unmountComponentAtNode } from 'react-dom'
+import { act } from 'react-dom/test-utils'
+import { FormButtons } from '..'
 
-let container = null;
+let container = null
 beforeEach(() => {
-  container = document.createElement("div");
-  document.body.appendChild(container);
-});
+  container = document.createElement('div')
+  document.body.appendChild(container)
+})
 
 afterEach(() => {
-  unmountComponentAtNode(container);
-  container.remove();
-  container = null;
-});
+  unmountComponentAtNode(container)
+  container.remove()
+  container = null
+})
 
-it('renders correctly', () => {
+it('renders props correctly', () => {
   act(() => {
-    render(<FormButtons submitText="foo" toggleModal={jest.fn()} />, container);
+    render(<FormButtons submitText='foo' toggleModal={jest.fn()} />, container)
   })
 
-  const submit = document.querySelector("div > button[type=submit]")
-  const cancel = document.querySelector("div > button[type=reset]")
-  expect(submit.textContent).toBe("foo")
-  expect(cancel.textContent).toBe("Cancel")
-});
+  const submit = document.querySelector('div > button[type=submit]')
+  const cancel = document.querySelector('div > button[type=reset]')
+  expect(submit.textContent).toBe('foo')
+  expect(cancel.textContent).toBe('Cancel')
+})
 
-it('renders correctly', () => {
+it('handles clicks correctly', () => {
   const toggleModal = jest.fn()
   act(() => {
-    render(<FormButtons submitText="foo" toggleModal={toggleModal} />, container);
+    render(<FormButtons submitText='foo' toggleModal={toggleModal} />, container)
   })
 
-  const cancel = document.querySelector("div > button[type=reset]")
+  const cancel = document.querySelector('div > button[type=reset]')
 
   act(() => {
-    cancel.dispatchEvent(new MouseEvent("click", { bubbles: true }))
+    cancel.dispatchEvent(new MouseEvent('click', { bubbles: true }))
   })
 
   expect(toggleModal).toHaveBeenCalledTimes(1)
-});
+})

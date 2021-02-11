@@ -1,25 +1,24 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Modal from "react-modal";
-import MaterialIcon from "../MaterialIcon";
-import "./styles.scss"
-
+import React from 'react'
+import PropTypes from 'prop-types'
+import Modal from 'react-modal'
+import MaterialIcon from '../MaterialIcon'
+import './styles.scss'
 
 const ModalConfirm = props => (
   <Modal
-    appElement={props.appElement ? props.appElement : Modal.setAppElement("#root")}
+    appElement={props.appElement ? props.appElement : Modal.setAppElement('#root')}
     isOpen={props.isOpen}
     onRequestClose={props.toggleModal}
-    className="modal-content--confirm"
-    overlayClassName="modal-overlay">
-    <div className="modal-header">
-      <h2 className="modal-header__title">{props.title}</h2>
-      <button className="modal-header__button" aria-label="Close" onClick={props.toggleModal}>
-        <MaterialIcon icon="close"/>
+    className='modal-content--confirm'
+    overlayClassName='modal-overlay'>
+    <div className='modal-header'>
+      <h2 className='modal-header__title'>{props.title}</h2>
+      <button className='modal-header__button' aria-label='Close' onClick={props.toggleModal}>
+        <MaterialIcon icon='close' />
       </button>
     </div>
-    <div className="modal-body--confirm">
-      <div className="modal-message">
+    <div className='modal-body--confirm'>
+      <div className='modal-message'>
         {props.message}
       </div>
     </div>
@@ -34,7 +33,7 @@ ModalConfirm.propTypes = {
     PropTypes.string,
     PropTypes.object]).isRequired,
   title: PropTypes.string.isRequired,
-  toggleModal: PropTypes.func.isRequired,
+  toggleModal: PropTypes.func.isRequired
 }
 
 export default ModalConfirm

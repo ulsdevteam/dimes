@@ -1,21 +1,21 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react'
+import PropTypes from 'prop-types'
 import {
   DatePicker,
   DatePickerInput,
   DatePickerMonth,
   DatePickerTable,
   DatePickerButton,
-  DatePickerCalendar} from "@reecelucas/react-datepicker";
-import {useSelect} from "downshift";
-import MaterialIcon from "../MaterialIcon";
-import classnames from "classnames";
-import "./styles.scss";
+  DatePickerCalendar} from '@reecelucas/react-datepicker'
+import {useSelect} from 'downshift'
+import MaterialIcon from '../MaterialIcon'
+import classnames from 'classnames'
+import './styles.scss'
 
 
 const InputLabel = ({className, id, label, required}) => (
   <label htmlFor={id} className={className}>
-    {label}{required && " *"}
+    {label}{required && ' *'}
   </label>)
 
 InputLabel.propTypes = {
@@ -31,8 +31,8 @@ InputLabel.propTypes = {
 export const CheckBoxInput = props => (
   <>
     <input
-      type="checkbox"
-      className={classnames("checkbox", props.className)}
+      type='checkbox'
+      className={classnames('checkbox', props.className)}
       id={props.id}
       name={props.name ? props.name : props.id}
       onChange={props.handleChange}
@@ -63,36 +63,36 @@ CheckBoxInput.defaultProps = {
 export const DateInput = props => (
   <>
   <DatePicker
-      className="dp__wrapper"
+      className='dp__wrapper'
       initialDate={new Date()}
       minDate={new Date()}
       onSelect={date => props.handleChange(date)}>
     <label htmlFor={props.id}>{props.label}</label>
     <DatePickerInput
-      className="dp__input"
+      className='dp__input'
       dateFormat={'MM/dd/yyyy'}
       id={props.id}
       name={props.name} />
-    <DatePickerCalendar className="dp__calendar">
-      <div className="dp__top-bar">
+    <DatePickerCalendar className='dp__calendar'>
+      <div className='dp__top-bar'>
         <DatePickerButton
-          className="dp__button"
-          aria-label="Switch to the previous month."
+          className='dp__button'
+          aria-label='Switch to the previous month.'
           updateMonth={({ prev }) => prev()} >
-          <MaterialIcon icon="west" />
+          <MaterialIcon icon='west' />
         </DatePickerButton>
-        <DatePickerMonth className="dp__month" />
+        <DatePickerMonth className='dp__month' />
         <DatePickerButton
-          className="dp__button"
-          aria-label="Switch to the next month."
+          className='dp__button'
+          aria-label='Switch to the next month.'
           updateMonth={({ next }) => next()} >
-          <MaterialIcon icon="east" />
+          <MaterialIcon icon='east' />
         </DatePickerButton>
       </div>
-      <DatePickerTable className="dp__table" />
+      <DatePickerTable className='dp__table' />
     </DatePickerCalendar>
   </DatePicker>
-  {props.helpText && <p className="help-text" aria-describedby={`desc-${props.id}`}>{props.helpText}</p>}
+  {props.helpText && <p className='help-text' aria-describedby={`desc-${props.id}`}>{props.helpText}</p>}
   </>
 )
 
@@ -121,21 +121,21 @@ export const SelectInput = props => {
    })
 
   return (
-    <div className={classnames("select__wrapper", `${props.className}__wrapper`, {"hide-label": props.hideLabel})} required={props.required}>
-      <input type="hidden" name={props.name} value={selectedItem && selectedItem.value} />
+    <div className={classnames('select__wrapper', `${props.className}__wrapper`, {'hide-label': props.hideLabel})} required={props.required}>
+      <input type='hidden' name={props.name} value={selectedItem && selectedItem.value} />
       <label {...getLabelProps()}>{props.label}</label>
-      <button className={classnames("select__control", `${props.className}__control`)} type="button" {...getToggleButtonProps()}>
+      <button className={classnames('select__control', `${props.className}__control`)} type='button' {...getToggleButtonProps()}>
         {selectedItem && selectedItem.label}
-        <MaterialIcon icon={props.iconAfter ? props.iconAfter : "unfold_more"} />
+        <MaterialIcon icon={props.iconAfter ? props.iconAfter : 'unfold_more'} />
       </button>
-      <ul className={classnames("select__menu", `${props.className}__menu`, {"open": isOpen})} {...getMenuProps()}>
+      <ul className={classnames('select__menu', `${props.className}__menu`, {'open': isOpen})} {...getMenuProps()}>
         {isOpen &&
           props.options.map((option, index) => (
             <li className={classnames(
-                "select__option",
+                'select__option',
                 `${props.className}__option`,
-                {"is-focused": index === highlightedIndex},
-                {"is-selected": option === selectedItem}
+                {'is-focused': index === highlightedIndex},
+                {'is-selected': option === selectedItem}
               )}
               key={index}
               {...getItemProps({ option: option.value, index })} >
@@ -197,7 +197,7 @@ export const YearInput = props => (
   <div className={props.className} >
     <InputLabel {...props} />
     <input
-      type="number"
+      type='number'
       id={props.id}
       max={props.max}
       min={props.min}
