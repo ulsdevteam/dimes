@@ -55,7 +55,7 @@ const PanelFormatSection = ({ formats, notes }) => {
   var formatText = []
   formatText.push(noteTextByType(notes, "physdesc"))
   formatText.push(noteTextByType(notes, "materialspec"))
-  const filteredFormatText = formatText.filter(i => i != null)
+  const filteredFormatText = formatText.filter(i => i != null).filter(i => i !== '')
   return (
     displayFormats.length ? (
       <div className="panel__section">
