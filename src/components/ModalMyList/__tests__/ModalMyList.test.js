@@ -60,7 +60,7 @@ it('renders props correctly', () => {
   expect(totals.textContent).toBe('selected: 2 audio tapes, 9 folders, 1 item')
 })
 
-it('renders email modal props correctly', async () => {
+it('renders email modal props correctly', () => {
   act(() => {
     render(<EmailModal
       appElement={container}
@@ -82,16 +82,33 @@ it('renders email modal props correctly', async () => {
   expect(form.textContent).toContain("Message")
   expect(buttons.querySelector("[type=submit]").textContent).toBe('Send List')
   expect(buttons.querySelector("[type=reset]").textContent).toBe('Cancel')
+})
+
+it('validates email modal form correctly', async () => {
+  act(() => {
+    render(<EmailModal
+      appElement={container}
+      handleChange={jest.fn()}
+      handleFormSubmit={jest.fn()}
+      isOpen={true}
+      list={resolvedList}
+      setSubmit={jest.fn()}
+      submitList={submitList}
+      toggleList={jest.fn()}
+      toggleModal={jest.fn()} />, container)
+  })
+
+  const form = document.querySelector('.modal-form')
 
   await act(async () => {
-    buttons.querySelector("[type=submit]").dispatchEvent(new MouseEvent("click", { bubbles: true }))
+    document.querySelector("[type=submit]").dispatchEvent(new MouseEvent("click", { bubbles: true }))
   })
 
   expect(form.textContent).toContain('Please complete this field.')
   expect(form.textContent).toContain('An email address is required.')
 })
 
-it('renders reading room modal props correctly', async () => {
+it('renders reading room modal props correctly', () => {
   act(() => {
     render(<ReadingRoomRequestModal
       appElement={container}
@@ -112,15 +129,32 @@ it('renders reading room modal props correctly', async () => {
   expect(form.textContent).toContain("Message for RAC staff")
   expect(buttons.querySelector("[type=submit]").textContent).toBe('Request 4 Items')
   expect(buttons.querySelector("[type=reset]").textContent).toBe('Cancel')
+})
+
+it('validates reading room modal form correctly', async () => {
+  act(() => {
+    render(<ReadingRoomRequestModal
+      appElement={container}
+      handleChange={jest.fn()}
+      handleFormSubmit={jest.fn()}
+      isOpen={true}
+      list={resolvedList}
+      setSubmit={jest.fn()}
+      submitList={submitList}
+      toggleList={jest.fn()}
+      toggleModal={jest.fn()} />, container)
+  })
+
+  const form = document.querySelector('.modal-form')
 
   await act(async () => {
-    buttons.querySelector("[type=submit]").dispatchEvent(new MouseEvent("click", { bubbles: true }))
+    document.querySelector("[type=submit]").dispatchEvent(new MouseEvent("click", { bubbles: true }))
   })
 
   expect(form.textContent).toContain('Please complete this field.')
 })
 
-it('renders duplication modal props correctly', async () => {
+it('renders duplication modal props correctly', () => {
   act(() => {
     render(<DuplicationRequestModal
       appElement={container}
@@ -141,9 +175,26 @@ it('renders duplication modal props correctly', async () => {
   expect(form.textContent).toContain("Message for RAC staff")
   expect(buttons.querySelector("[type=submit]").textContent).toBe('Request 4 Items')
   expect(buttons.querySelector("[type=reset]").textContent).toBe('Cancel')
+})
+
+it('validates duplication modal form correctly', async () => {
+  act(() => {
+    render(<DuplicationRequestModal
+      appElement={container}
+      handleChange={jest.fn()}
+      handleFormSubmit={jest.fn()}
+      isOpen={true}
+      list={resolvedList}
+      setSubmit={jest.fn()}
+      submitList={submitList}
+      toggleList={jest.fn()}
+      toggleModal={jest.fn()} />, container)
+  })
+
+  const form = document.querySelector('.modal-form')
 
   await act(async () => {
-    buttons.querySelector("[type=submit]").dispatchEvent(new MouseEvent("click", { bubbles: true }))
+    document.querySelector("[type=submit]").dispatchEvent(new MouseEvent("click", { bubbles: true }))
   })
 
   expect(form.textContent).toContain('Please complete this field.')
