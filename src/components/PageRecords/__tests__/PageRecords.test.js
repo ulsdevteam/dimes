@@ -12,7 +12,6 @@ import { childrenCollections } from '../../../__fixtures__/children'
 let container = null
 beforeEach(() => {
   container = document.createElement('div')
-  container.setAttribute('id', 'root')
   document.body.appendChild(container)
 })
 
