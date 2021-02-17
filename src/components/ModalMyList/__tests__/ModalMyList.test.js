@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
-import { act } from 'react-dom/test-utils'
+import { act, Simulate } from 'react-dom/test-utils'
 import {
   DuplicationRequestModal,
   EmailModal,
@@ -30,7 +30,7 @@ it('renders props correctly', () => {
       appElement={container}
       handleChange={jest.fn()}
       ignoreRestrictions
-      isOpen
+      isOpen={true}
       list={resolvedList}
       setSubmit={jest.fn()}
       title='foo'
@@ -49,7 +49,7 @@ it('renders props correctly', () => {
       appElement={container}
       handleChange={jest.fn()}
       ignoreRestrictions
-      isOpen
+      isOpen={true}
       list={checkedList}
       setSubmit={jest.fn()}
       title='foo'
@@ -60,43 +60,144 @@ it('renders props correctly', () => {
   expect(totals.textContent).toBe('selected: 2 audio tapes, 9 folders, 1 item')
 })
 
-it('renders without crashing', () => {
+it('renders email modal props correctly', () => {
   act(() => {
     render(<EmailModal
       appElement={container}
       handleChange={jest.fn()}
       handleFormSubmit={jest.fn()}
-      isOpen
+      isOpen={true}
       list={resolvedList}
       setSubmit={jest.fn()}
       submitList={submitList}
       toggleList={jest.fn()}
       toggleModal={jest.fn()} />, container)
   })
+
+  const form = document.querySelector('.modal-form')
+  const buttons = document.querySelector('.modal-form__buttons')
+
+  expect(form.textContent).toContain("Email *")
+  expect(form.textContent).toContain("Subject")
+  expect(form.textContent).toContain("Message")
+  expect(buttons.querySelector("[type=submit]").textContent).toBe('Send List')
+  expect(buttons.querySelector("[type=reset]").textContent).toBe('Cancel')
 })
 
-it('renders without crashing', () => {
-  render(<ReadingRoomRequestModal
-    appElement={container}
-    handleChange={jest.fn()}
-    handleFormSubmit={jest.fn()}
-    isOpen={false}
-    list={resolvedList}
-    setSubmit={jest.fn()}
-    submitList={submitList}
-    toggleList={jest.fn()}
-    toggleModal={jest.fn()} />, container)
+it('validates email modal form correctly', async () => {
+  act(() => {
+    render(<EmailModal
+      appElement={container}
+      handleChange={jest.fn()}
+      handleFormSubmit={jest.fn()}
+      isOpen={true}
+      list={resolvedList}
+      setSubmit={jest.fn()}
+      submitList={submitList}
+      toggleList={jest.fn()}
+      toggleModal={jest.fn()} />, container)
+  })
+
+  const form = document.querySelector('.modal-form')
+
+  await act(async () => {
+    document.querySelector("[type=submit]").dispatchEvent(new MouseEvent("click", { bubbles: true }))
+  })
+
+  expect(form.textContent).toContain('Please complete this field.')
+  expect(form.textContent).toContain('An email address is required.')
 })
 
-it('renders without crashing', () => {
-  render(<DuplicationRequestModal
-    appElement={container}
-    handleChange={jest.fn()}
-    handleFormSubmit={jest.fn()}
-    isOpen={false}
-    list={resolvedList}
-    setSubmit={jest.fn()}
-    submitList={submitList}
-    toggleList={jest.fn()}
-    toggleModal={jest.fn()} />, container)
+it('renders reading room modal props correctly', () => {
+  act(() => {
+    render(<ReadingRoomRequestModal
+      appElement={container}
+      handleChange={jest.fn()}
+      handleFormSubmit={jest.fn()}
+      isOpen={true}
+      list={resolvedList}
+      setSubmit={jest.fn()}
+      submitList={submitList}
+      toggleList={jest.fn()}
+      toggleModal={jest.fn()} />, container)
+  })
+
+  const form = document.querySelector('.modal-form')
+  const buttons = document.querySelector('.modal-form__buttons')
+
+  expect(form.textContent).toContain("Scheduled Date *")
+  expect(form.textContent).toContain("Message for RAC staff")
+  expect(buttons.querySelector("[type=submit]").textContent).toBe('Request 4 Items')
+  expect(buttons.querySelector("[type=reset]").textContent).toBe('Cancel')
+})
+
+it('validates reading room modal form correctly', async () => {
+  act(() => {
+    render(<ReadingRoomRequestModal
+      appElement={container}
+      handleChange={jest.fn()}
+      handleFormSubmit={jest.fn()}
+      isOpen={true}
+      list={resolvedList}
+      setSubmit={jest.fn()}
+      submitList={submitList}
+      toggleList={jest.fn()}
+      toggleModal={jest.fn()} />, container)
+  })
+
+  const form = document.querySelector('.modal-form')
+
+  await act(async () => {
+    document.querySelector("[type=submit]").dispatchEvent(new MouseEvent("click", { bubbles: true }))
+  })
+
+  expect(form.textContent).toContain('Please complete this field.')
+})
+
+it('renders duplication modal props correctly', () => {
+  act(() => {
+    render(<DuplicationRequestModal
+      appElement={container}
+      handleChange={jest.fn()}
+      handleFormSubmit={jest.fn()}
+      isOpen={true}
+      list={resolvedList}
+      setSubmit={jest.fn()}
+      submitList={submitList}
+      toggleList={jest.fn()}
+      toggleModal={jest.fn()} />, container)
+  })
+
+  const form = document.querySelector('.modal-form')
+  const buttons = document.querySelector('.modal-form__buttons')
+
+  expect(form.textContent).toContain("Description of Materials")
+  expect(form.textContent).toContain("Message for RAC staff")
+  expect(buttons.querySelector("[type=submit]").textContent).toBe('Request 4 Items')
+  expect(buttons.querySelector("[type=reset]").textContent).toBe('Cancel')
+})
+
+it('validates duplication modal form correctly', async () => {
+  act(() => {
+    render(<DuplicationRequestModal
+      appElement={container}
+      handleChange={jest.fn()}
+      handleFormSubmit={jest.fn()}
+      isOpen={true}
+      list={resolvedList}
+      setSubmit={jest.fn()}
+      submitList={submitList}
+      toggleList={jest.fn()}
+      toggleModal={jest.fn()} />, container)
+  })
+
+  const form = document.querySelector('.modal-form')
+
+  await act(async () => {
+    document.querySelector("[type=submit]").dispatchEvent(new MouseEvent("click", { bubbles: true }))
+  })
+
+  expect(form.textContent).toContain('Please complete this field.')
+  expect(form.textContent).toContain('Please select your desired duplication format.')
+  expect(form.textContent).toContain('We cannot process your request unless you agree to pay the costs of reproduction.')
 })
