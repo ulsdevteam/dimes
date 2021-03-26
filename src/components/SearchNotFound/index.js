@@ -1,7 +1,18 @@
 import React from 'react'
 import './styles.scss'
 
-const SearchNotFound = () => (
+
+const SuggestionItem = ({text}) => (
+  <li>
+    <a className="results__not-found--link" href={`/search?query=${text}`}>{text}</a>
+  </li>
+)
+
+const SearchNotFound = ({suggestions}) => {
+
+  const suggestionList = suggestions && suggestions.map((item, idx) => <SuggestionItem key={idx} text={item} />)
+
+  return (
   <div className='results__not-found'>
     <p className="results__not-found--text">Have you tried doing the following:</p>
     <ul className="results__not-found--text">
@@ -9,11 +20,15 @@ const SearchNotFound = () => (
       <li>Use fewer keywords</li>
       <li>Clear search filter options</li>
     </ul>
-    <p className="results__not-found--text">Here are some suggested search terms:</p>
-    <ul className="unstyled">
-      <li><a className="results__not-found--link" href="#">foobar</a></li>
-    </ul>
+    {suggestions.length ? (
+      <>
+        <p className="results__not-found--text">Here are some suggested search terms:</p>
+        <ul className="suggestions unstyled">
+          {suggestionList}
+        </ul>
+      </>
+    ) : null}
   </div>
-)
+)}
 
 export default SearchNotFound
