@@ -109,6 +109,10 @@ ul {
     font-size: 17px;
     line-height: 24px;
   }
+  &.unstyled {
+    list-style: none;
+    padding-left: 0;
+  }
 }
 
 small {
@@ -319,6 +323,19 @@ small {
   @include lg-up {
     float: none;
   }
+}
+
+.results__not-found--text {
+  font-family: $sans-serif-stack;
+  font-size: 18px;
+  font-weight: 400;
+  color: $dark-gray;
+}
+
+.results__not-found--link {
+  @extend .results__not-found--text;
+  text-decoration: underline;
+  font-weight: normal;
 }
 
 .results__title {

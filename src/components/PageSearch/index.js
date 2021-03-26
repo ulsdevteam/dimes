@@ -9,6 +9,7 @@ import { SearchSkeleton } from '../LoadingSkeleton'
 import { FacetModal } from '../ModalSearch'
 import { SearchPagination } from '../Pagination'
 import SearchForm from '../SearchForm'
+import SearchNotFound from '../SearchNotFound'
 import TileList from '../Tile'
 import { appendParams, firePageViewEvent } from '../Helpers'
 import './styles.scss'
@@ -131,6 +132,8 @@ class PageSearch extends Component {
     this.setState({ facetIsOpen: !this.state.facetIsOpen })
   }
 
+
+
   sortOptions = [
     {value: '', label: 'Sort by relevance'},
     {value: 'title', label: 'Sort by title'},
@@ -152,62 +155,70 @@ class PageSearch extends Component {
               category={this.state.params.category} />
           </div>
           <div className='results'>
-            <h1 className='results__title'>{`Search Results ${this.state.params.query && `for “${this.state.params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`}</h1>
-            <div className='results__header'>
-              <div className='results__summary'>
-                <p className='results__summary--text'>
-                  {this.state.inProgress ? (<Skeleton />) : (`${this.state.startItem === this.state.endItem ?
-                      this.state.startItem :
-                      `${this.state.startItem}-${this.state.endItem}`} of ${this.state.resultsCount} results`)}
-                </p>
-              </div>
-              <div className='results__controls'>
-                <Button
-                  handleClick={() => this.toggleFacetModal()}
-                  label='Filters'
-                  iconBefore='filter_alt'
-                  className='btn--filter' />
-                <SelectInput
-                  className='select__sort'
-                  hideLabel
-                  id='sort'
-                  name='sort'
-                  onChange={({selectedItem}) => this.handleSortChange(selectedItem.value)}
-                  label='Sort search results'
-                  selectedItem={this.state.params.sort || ''}
-                  options={this.sortOptions} />
-              </div>
-              <div className='results__pagination'>
-                {this.state.inProgress ?
-                    (<Skeleton />) :
-                    (<SearchPagination
-                      offset={this.state.offset}
-                      pageSize={this.state.pageSize}
-                      pageCount={this.state.pageCount}
-                      handlePageClick={this.handlePageClick}
-                    />)}
-              </div>
-            </div>
-            { this.state.inProgress ?
-                (<SearchSkeleton />) :
-                (<TileList
-                  items={this.state.items}
-                  params={this.state.params} />)}
-            <div className='results__footer'>
-              <p className='results__summary'>
-                {`${this.state.startItem === this.state.endItem ?
+          <h1 className='results__title'>{this.state.resultsCount ?
+            (`Search Results ${this.state.params.query && `for “${this.state.params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`) :
+            (`Sorry, there are no search results ${this.state.params.query && `for “${this.state.params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`)}</h1>
+            {this.state.resultsCount ? (
+              <>
+              <div className='results__header'>
+                <div className='results__summary'>
+                  <p className='results__summary--text'>
+                    {this.state.inProgress ? (<Skeleton />) : (`${this.state.startItem === this.state.endItem ?
                         this.state.startItem :
-                        `${this.state.startItem}-${this.state.endItem}`} of ${this.state.resultsCount} results`}
-              </p>
-              <div className='results__pagination'>
-                <SearchPagination
-                  offset={this.state.offset}
-                  pageSize={this.state.pageSize}
-                  pageCount={this.state.pageCount}
-                  handlePageClick={this.handlePageClick}
-                        />
+                        `${this.state.startItem}-${this.state.endItem}`} of ${this.state.resultsCount} results`)}
+                  </p>
+                </div>
+                <div className='results__controls'>
+                  <Button
+                    handleClick={() => this.toggleFacetModal()}
+                    label='Filters'
+                    iconBefore='filter_alt'
+                    className='btn--filter' />
+                  <SelectInput
+                    className='select__sort'
+                    hideLabel
+                    id='sort'
+                    name='sort'
+                    onChange={({selectedItem}) => this.handleSortChange(selectedItem.value)}
+                    label='Sort search results'
+                    selectedItem={this.state.params.sort || ''}
+                    options={this.sortOptions} />
+                </div>
+                <div className='results__pagination'>
+                  {this.state.inProgress ?
+                      (<Skeleton />) :
+                      (<SearchPagination
+                        offset={this.state.offset}
+                        pageSize={this.state.pageSize}
+                        pageCount={this.state.pageCount}
+                        handlePageClick={this.handlePageClick}
+                      />)}
+                </div>
               </div>
-            </div>
+              { this.state.inProgress ?
+                  (<SearchSkeleton />) :
+                  (<TileList
+                    items={this.state.items}
+                    params={this.state.params} />)}
+              <div className='results__footer'>
+                <p className='results__summary'>
+                  {`${this.state.startItem === this.state.endItem ?
+                          this.state.startItem :
+                          `${this.state.startItem}-${this.state.endItem}`} of ${this.state.resultsCount} results`}
+                </p>
+                <div className='results__pagination'>
+                  <SearchPagination
+                    offset={this.state.offset}
+                    pageSize={this.state.pageSize}
+                    pageCount={this.state.pageCount}
+                    handlePageClick={this.handlePageClick}
+                          />
+                </div>
+              </div>
+              </>
+            ): (
+              <SearchNotFound />
+            )}
           </div>
         </div>
         <FacetModal
