@@ -149,6 +149,7 @@ class PageSearch extends Component {
             <SearchForm
               className='search-form--results'
               query={this.state.params.query}
+              online={this.state.params.online}
               category={this.state.params.category} />
           </div>
           <div className='results'>
