@@ -27,7 +27,7 @@ const SearchForm = props => {
 
   return (
     <form className='form--search' role='search' action='/search' method='get'>
-      <div class="wrapper">
+      <div className="wrapper">
         <div className={props.className}>
           <div className={classnames('input-group__search', { 'input-group__search-results': !isHomePage })}>
             <TextInput
