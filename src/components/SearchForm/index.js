@@ -15,7 +15,7 @@ const SearchForm = props => {
   }, [props.category, props.query])
 
   const selectOptions = [
-    { value: '', label: 'Everything' },
+    { value: '', label: 'All Types' },
     { value: 'collection', label: 'Collections' },
     { value: 'person', label: 'People' },
     { value: 'organization', label: 'Organizations'}
