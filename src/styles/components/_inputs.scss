@@ -48,6 +48,10 @@ label {
   @include visually-hidden;
 }
 
+.input--outline {
+  border: 1px solid;
+}
+
 /* Base for label styling */
 .checkbox:not(:checked),
 .checkbox:checked {
@@ -139,6 +143,26 @@ label {
 
 .checkbox:disabled + label {
   color: $med-gray;
+}
+
+.checkbox--online:not(:checked) + label,
+.checkbox--online:checked + label {
+  padding: 13px 15px 13px 45px;
+  margin-top: 20px;
+  background: $neutral-sand;
+  min-width: 266px;
+}
+
+.checkbox--online:not(:checked) + label:before,
+.checkbox--online:checked + label:before {
+  top: 13px;
+  left: 15px;
+}
+
+.checkbox--online:not(:checked) + label:after,
+.checkbox--online:checked + label:after {
+  top: 13px;
+  left: 15px;
 }
 
 .dp__wrapper {
@@ -277,4 +301,8 @@ label {
       color: $burnt-orange;
     }
   }
+}
+
+.select__search__menu {
+  top: 20px;
 }

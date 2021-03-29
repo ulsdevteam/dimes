@@ -42,8 +42,10 @@ const SearchForm = props => {
             className='btn--search'
             type='submit'
             label='Search'
-            iconBefore='search'
+            iconAfter='search'
           />
+        </div>
+        <div className='input-group__search-controls'>
           <SelectInput
             className='select__search'
             hideLabel
@@ -58,7 +60,7 @@ const SearchForm = props => {
           <CheckBoxInput
             id='online'
             name='online'
-            className='checkbox--blue input--outline'
+            className='checkbox--blue checkbox--online input--outline'
             checked={online}
             handleChange={e => setOnline(e.target.checked)}
             label='Show only results with digital matches'
