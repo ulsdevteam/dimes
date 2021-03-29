@@ -181,6 +181,13 @@
   }
 }
 
+.btn--search-results {
+  @extend .btn--search;
+  padding: 10px 12px;
+  height: 48px;
+  min-width: unset;
+}
+
 .btn--search-more {
   @extend .btn--orange;
   @extend .btn--sm;

@@ -148,7 +148,6 @@ label {
 .checkbox--online:not(:checked) + label,
 .checkbox--online:checked + label {
   padding: 13px 15px 13px 45px;
-  margin-top: 20px;
   background: $neutral-sand;
   min-width: 266px;
 }
@@ -301,8 +300,4 @@ label {
       color: $burnt-orange;
     }
   }
-}
-
-.select__search__menu {
-  top: 20px;
 }
