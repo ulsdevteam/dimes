@@ -99,7 +99,11 @@ input[type=search] {
 }
 
 .select__search__wrapper {
+  display: none;
   margin-right: 14px;
+  @include md-up {
+    display: block;
+  }
 }
 
 .select__search__control {
@@ -112,9 +116,6 @@ input[type=search] {
   & > .material-icons {
     right: 15px;
     top: 13px;
-  }
-  @include md-up {
-    display: block;
   }
 }
 
