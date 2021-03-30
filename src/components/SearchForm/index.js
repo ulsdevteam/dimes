@@ -10,6 +10,7 @@ const SearchForm = props => {
   var [online, setOnline] = useState(props.online)
   var [query, setQuery] = useState(props.query)
   const isHomePage = props.className === 'search-form--home'
+  const isMobile = window.innerWidth < 580;
 
   /** Sets the search category, query and online checkbox */
   useEffect(() => {
@@ -44,7 +45,7 @@ const SearchForm = props => {
             <Button
               className={classnames({ 'btn--search': isHomePage, 'btn--search-results': !isHomePage })}
               type='submit'
-              label={isHomePage ? 'Search' : null}
+              label={isHomePage ? (isMobile ? null : 'Search' ) : null}
               iconAfter='search'
             />
           </div>
