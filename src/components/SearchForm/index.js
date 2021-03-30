@@ -47,6 +47,7 @@ const SearchForm = props => {
               type='submit'
               label={isHomePage ? (isMobile ? null : 'Search' ) : null}
               iconAfter='search'
+              ariaLabel='Submit search'
             />
           </div>
           <div className={classnames(
