@@ -147,9 +147,14 @@ label {
 
 .checkbox--online:not(:checked) + label,
 .checkbox--online:checked + label {
+  font-size: 14px;
   padding: 13px 15px 13px 45px;
-  background: $neutral-sand;
-  min-width: 266px;
+  background: $lighter-gray;
+}
+
+.checkbox--online:checked + label {
+  background: $deep-blue;
+  color: $pure-white;
 }
 
 .checkbox--online:not(:checked) + label:before,
@@ -160,6 +165,9 @@ label {
 
 .checkbox--online:not(:checked) + label:after,
 .checkbox--online:checked + label:after {
+  background-color: $pure-white;
+  border: 1px solid $deep-blue;
+  color: $deep-blue;
   top: 13px;
   left: 15px;
 }
