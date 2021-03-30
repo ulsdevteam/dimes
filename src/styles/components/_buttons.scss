@@ -77,6 +77,17 @@
   }
 }
 
+.btn--light-blue {
+  background: $light-blue;
+  color: $deep-navy;
+  border: 1px solid $light-gray;
+  &:hover, &:focus {
+    background: lighten($light-blue, 5%);
+    border: 1px solid $light-gray;
+    color: $deep-navy;
+  }
+}
+
 .btn--navy {
   background: $deep-navy;
   color: $pure-white;
@@ -142,10 +153,7 @@
 .btn--back {
   @extend .btn--gray;
   @extend .btn--sm;
-  margin-top: 20px;
-  @include md-up  {
-    margin-top: 30px;
-  }
+  margin-bottom: 0;
 }
 
 .btn--back-item {
@@ -163,6 +171,7 @@
 .btn--new-search {
   @extend .btn--back;
   @extend .btn--sm;
+  margin-top: 20px;
   position: absolute;
   margin-left: $gutters-default;
 }
@@ -278,4 +287,10 @@
   @include records-detail-btn;
   @extend .btn--orange;
   box-sizing: border-box;
+}
+
+.btn--scroll-focused {
+  & .material-icons {
+    @include icon-margin-left;
+  }
 }

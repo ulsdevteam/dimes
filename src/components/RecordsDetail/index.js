@@ -157,11 +157,11 @@ const RecordsDetail = props => {
 
   return (
   <div className={classnames('records__detail', {'hidden': props.isContentShown})}>
-    <nav>
+    <nav className='records__nav'>
       <a href={searchUrl} className='btn btn--back'>
         <MaterialIcon icon='keyboard_arrow_left'/>Back to Search
       </a>
-      <button className='btn btn--scroll-focused' onClick={() => scrollFocusedIntoView(props.item.uri)}>
+      <button className='btn btn--sm btn--light-blue btn--scroll-focused' onClick={() => scrollFocusedIntoView(props.item.uri)}>
         Locate within collection
         <MaterialIcon icon='gps_fixed'/>
       </button>
@@ -285,7 +285,6 @@ RecordsDetail.propTypes = {
   item: PropTypes.object.isRequired,
   myListCount: PropTypes.number.isRequired,
   params: PropTypes.object.isRequired,
-  scrollFocusedIntoView: PropTypes.func.isRequired,
   toggleInList: PropTypes.func.isRequired,
 }
 
