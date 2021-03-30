@@ -24,7 +24,7 @@ input[type=search] {
 .search-bar {
   width: 100%;
   background-color: $pale-blue;
-  padding: 24px 0px;
+  padding-bottom: 24px;
 }
 
 .results, .search-form--results {
@@ -48,11 +48,10 @@ input[type=search] {
 
 .input-group__search-results {
   justify-content: flex-start;
-  margin-bottom: 20px;
-  margin-right: 30px;
-  width: 460px;
-  @include lg-up {
-    margin-bottom: 0;
+  margin-top: 24px;
+  @include md-up {
+    margin-right: 30px;
+    width: 460px;
   }
 }
 
@@ -68,7 +67,7 @@ input[type=search] {
 
 .input-group__search-controls-results {
   flex-wrap: nowrap;
-  margin-top: 0;
+  margin-top: 24px;
   width: 100%;
   @include lg-up {
     width: unset;
