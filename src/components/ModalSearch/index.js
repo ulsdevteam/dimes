@@ -51,7 +51,7 @@ export const FacetModal = props => {
             className='hide-label'
             handleChange={e => { setEndYear(e.target.value) }}
             value={endYear} />
-          <Button className='btn--sm btn--blue' label='apply' handleClick={() => { props.handleDateChange(startYear, endYear) }} />
+          <Button className='btn--sm btn--gray' label='apply dates' handleClick={() => { props.handleDateChange(startYear, endYear) }} />
         </Facet>
         <Facet
           handleChange={props.handleChange}
