@@ -145,9 +145,11 @@ const RecordsDetail = props => {
 
   /** Scrolls a component into view in the records tree **/
   const scrollFocusedIntoView = uri => {
-    const el = document.getElementById(`accordion__heading-${uri}`);
-    el.focus();
-    el.scrollIntoView({ behavior: 'smooth', block: 'center'});
+    const el = document.getElementById(`accordion__heading-${uri}`)
+    if (el) {
+      el.focus()
+      el.scrollIntoView({ behavior: 'smooth', block: 'center'})
+    }
   }
 
   /** Parses an item's identifier from its URI */
