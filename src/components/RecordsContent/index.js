@@ -23,6 +23,7 @@ export class RecordsChild extends Component {
     super(props)
     this.state = {
       children: [],
+      isExpanded: false,
       isSaved: false,
     }
   }
@@ -37,6 +38,7 @@ export class RecordsChild extends Component {
     const currentUrl = window.location.pathname
     this.setState({ isSaved: isItemSaved(this.props.item) })
     if (this.props.preExpanded.includes(this.props.item.uri) && this.props.item.uri.includes('collections')) {
+      this.setState({ isExpanded: true })
       this.getChildrenPage(
         appendParams(
           `${process.env.REACT_APP_ARGO_BASEURL}${this.props.item.uri}/children`,
@@ -73,6 +75,7 @@ export class RecordsChild extends Component {
 
   /** Loads a collection's children when a user clicks on it */
   handleCollectionClick = uri => {
+    this.setState({ isExpanded: !this.state.isExpanded })
     this.props.setActiveRecords(uri)
     if (!this.state.children.length) {
       const childrenParams = {...this.props.params, limit: 5}
@@ -150,7 +153,7 @@ export class RecordsChild extends Component {
               <QueryHighlighter query={query} text={truncateString(item.description, 200)} />
             </p>
             {params.query && item.hit_count ? (<HitCountBadge className='hit-count--records' hitCount={item.hit_count} />) : null}
-            <MaterialIcon icon='expand_more' />
+            <MaterialIcon icon={this.state.isExpanded ? 'expand_less' : 'expand_more'} />
           </AccordionItemButton>
         </AccordionItemHeading>
         {(this.state.children.length) ?
