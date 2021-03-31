@@ -25,16 +25,6 @@
   }
 }
 
-.records__nav {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  @include md-up  {
-    margin-top: 30px;
-  }
-}
-
 .records__title {
   font-family: $sans-serif-stack;
   font-size: 28px;
