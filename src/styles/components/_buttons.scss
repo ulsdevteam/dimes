@@ -71,18 +71,18 @@
   color: $pure-white;
   border: 1px solid $deep-blue;
   &:hover, &:focus {
-    background: $dark-blue;
+    background: darken($deep-blue, 10%);
     border: 1px solid $dark-blue;
     color: $pure-white; //for links styled as buttons
   }
 }
 
 .btn--light-blue {
-  background: $light-blue;
+  background: $pale-blue;
   color: $deep-navy;
-  border: 1px solid $light-gray;
+  border: 1px solid $light-blue;
   &:hover, &:focus {
-    background: lighten($light-blue, 5%);
+    background: darken($light-blue, 2%);
     border: 1px solid $light-gray;
     color: $deep-navy;
   }
@@ -93,7 +93,7 @@
   color: $pure-white;
   border: 1px solid $deep-navy;
   &:hover, &:focus {
-    background: $deep-blue;
+    background: darken($deep-navy, 10%);
     border: 1px solid $deep-blue;
     color: $off-white;
   }
@@ -104,7 +104,7 @@
   color: $pure-white;
   border: 1px solid $burnt-orange;
   &:hover {
-    background: $med-brown;
+    background: darken($burnt-orange, 10%);
     border: 1px solid $med-brown;
     color: $off-white;
   }
@@ -129,7 +129,7 @@
   color: $med-gray;
   border: 1px solid $light-med-gray;
   &:hover, &:focus {
-    background: $lighter-gray;
+    background: darken($off-white, 5%);
     color: $med-gray;
   }
 }
@@ -139,7 +139,7 @@
   color: $pure-white;
   border: 1px solid $light-med-gray;
   &:hover {
-    background: $orange-gray;
+    background: darken($light-med-gray, 5%);
     color: $pure-white;
   }
 }
@@ -216,9 +216,8 @@
 }
 
 .btn--filter {
+  @extend .btn--light-blue;
   padding: 12px 16px;
-  background: $pale-blue;
-  border: 1px solid $light-blue;
   font-size: 14px;
   text-transform: none;
   letter-spacing: unset;
