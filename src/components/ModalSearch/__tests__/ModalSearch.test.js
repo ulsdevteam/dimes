@@ -29,8 +29,6 @@ it('renders props correctly', () => {
       toggleModal={jest.fn()} />, container)
   })
 
-  const online = document.querySelector('[for=online]')
-  expect(online.textContent).toBe('Show me digital materials only (50)')
   const startYear = document.querySelector('#startYear')
   expect(startYear.value).toBe('-8867404800000')
   const endYear = document.querySelector('#endYear')

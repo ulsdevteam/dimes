@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Modal from 'react-modal'
 import Button from '../Button'
 import Facet from '../Facet'
-import { CheckBoxInput, YearInput } from '../Inputs'
+import { YearInput } from '../Inputs'
 import MaterialIcon from '../MaterialIcon'
 import './styles.scss'
 
@@ -38,15 +38,6 @@ export const FacetModal = props => {
         </button>
       </div>
       <div className='modal-body--search'>
-        <Facet title='View Online'>
-          <CheckBoxInput
-            id='online'
-            name='true'
-            className='facet__input checkbox--blue'
-            checked={props.params.online === 'true'}
-            handleChange={e => props.handleChange(e, 'online')}
-            label={`Show me digital materials only (${props.data.online && props.data.online.doc_count})`} />
-        </Facet>
         <Facet title='Date Range'>
           <YearInput
             id='startYear'

@@ -168,22 +168,27 @@
 }
 
 .btn--search {
-  @extend .btn--block;
   @extend .btn--orange;
   border-radius: 0px;
-  height: 62px;
-  width: 66px;
+  padding: 18px 20px;
+  margin-left: -1px;
   border: 1px solid $med-brown;
-  & .material-icons {
-    font-size: 36px;
-    line-height: 58px;
-    width: 58px;
-  }
-  &:focus { //match .btn--orange hover styles
+  &:focus {
     outline: none;
+    box-shadow: 0 0 0 1px $pure-white inset;
     background: $med-brown;
     border: 1px solid $med-brown;
   }
+  @include md-up {
+    min-width: 150px;
+  }
+}
+
+.btn--search-results {
+  @extend .btn--search;
+  padding: 10px 12px;
+  height: 46px;
+  min-width: unset;
 }
 
 .btn--search-more {

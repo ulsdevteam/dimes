@@ -48,6 +48,10 @@ label {
   @include visually-hidden;
 }
 
+.input--outline {
+  border: 1px solid;
+}
+
 /* Base for label styling */
 .checkbox:not(:checked),
 .checkbox:checked {
@@ -139,6 +143,33 @@ label {
 
 .checkbox:disabled + label {
   color: $med-gray;
+}
+
+.checkbox--online:not(:checked) + label,
+.checkbox--online:checked + label {
+  font-size: 14px;
+  padding: 13px 15px 13px 45px;
+  background: $lighter-gray;
+}
+
+.checkbox--online:checked + label {
+  background: $deep-blue;
+  color: $pure-white;
+}
+
+.checkbox--online:not(:checked) + label:before,
+.checkbox--online:checked + label:before {
+  top: 13px;
+  left: 15px;
+}
+
+.checkbox--online:not(:checked) + label:after,
+.checkbox--online:checked + label:after {
+  background-color: $pure-white;
+  border: 1px solid $deep-blue;
+  color: $deep-blue;
+  top: 13px;
+  left: 15px;
 }
 
 .dp__wrapper {
