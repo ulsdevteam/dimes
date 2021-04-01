@@ -193,8 +193,21 @@
 }
 
 .child__list--bottom-level > .child__list-accordion {
-    margin-left: 9px;
-    margin-right: 9px;
+  margin-top: 9px;
+  margin-left: 9px;
+  margin-right: 9px;
+}
+
+// Adds top border for objects following collections nested within objects
+.child__list-accordion + .child__list-item {
+  border-top: 1px solid #E3E1DD;
+}
+
+// removes before pseudo element from collections within object lists
+.child__list--bottom-level .child__list-item--collection {
+  &::before {
+    content: none;
+  }
 }
 
 // removes before pseudo element from top-level children
