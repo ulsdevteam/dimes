@@ -14,7 +14,6 @@ const SearchForm = props => {
 
   /** Sets the search category, query and online checkbox */
   useEffect(() => {
-    setCategory(props.category)
     setOnline(props.online ? true : false)
     setQuery(props.query)
   }, [props.category, props.online, props.query])
@@ -43,9 +42,9 @@ const SearchForm = props => {
               required
             />
             <Button
-              className={classnames({ 'btn--search': isHomePage, 'btn--search-results': !isHomePage })}
+              className={ classnames({ 'btn--search': isHomePage, 'btn--search-results': !isHomePage })}
               type='submit'
-              label={isHomePage ? (isMobile ? null : 'Search' ) : null}
+              label={isHomePage ? (isMobile ? null : 'Search') : null}
               iconAfter='search'
               ariaLabel='Submit search'
             />
@@ -60,16 +59,16 @@ const SearchForm = props => {
               id='category'
               label='Choose a search category'
               name='category'
-              onChange={({selectedItem}) => setCategory(selectedItem.value)}
-              options={selectOptions}
-              selectedItem={category || ''}
+              onChange={({ selectedItem }) => setCategory(selectedItem.value)}
+              options={ selectOptions }
+              selectedItem={ category || '' }
             />
             <CheckBoxInput
               id='online'
               name='online'
               className='checkbox--blue checkbox--online input--outline'
               checked={online}
-              handleChange={e => setOnline(e.target.checked)}
+              handleChange={e => { isHomePage ? setOnline(e.target.checked) : props.handleOnlineChange(e) }}
               label='Show only results with digital matches'
             />
           </div>
@@ -79,7 +78,8 @@ const SearchForm = props => {
 }
 
 SearchForm.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  handleOnlineChange: PropTypes.func
 }
 
 export default SearchForm
