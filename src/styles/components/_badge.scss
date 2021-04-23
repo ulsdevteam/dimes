@@ -1,1 +1,21 @@
 @import "../styles";
+
+.badge {
+  @include tile-hit-count-text;
+  background: $red-orange;
+  border-radius: 2px;
+  border: none;
+  padding: 7px 8px 5px 8px;
+  transition: $transition-default;
+}
+
+
+.badge--tile {
+  @include tile-hit-count-text;
+  position: absolute;
+  order: 1;
+  top: 0;
+  right: 20px;
+  border-radius: 0 0 2px 2px;
+  cursor: pointer;
+}

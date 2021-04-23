@@ -50,6 +50,12 @@ export const formatBytes = (bytes, decimals = 2) => {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i]
 }
 
+export const formatMatchString = (hitCount) => {
+  const count = hitCount === 10000 ? `${hitCount}+` : hitCount
+  const suffix = hitCount === 1 ? 'match' : 'matches'
+  return `${count} ${suffix}`
+}
+
 /** Trims a string to a specified length */
 export const truncateString = (text, maxLength) => {
   if (text) {

@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { HitCountBadge } from '../HitCount'
+import { Badge } from '../Badge'
 import MaterialIcon from '../MaterialIcon'
-import { appendParams } from '../Helpers'
+import { appendParams, formatMatchString } from '../Helpers'
 import classnames from 'classnames'
 import './styles.scss'
 
@@ -28,7 +28,7 @@ const Tile = ({ category, date, hit_count, params, title, uri }) => (
     <a className='tile__title' href={appendParams(uri, params)}>{title}</a>
     {category ? (<CategoryLabel category={category} />) : null }
     {hit_count && category === 'collection' ?
-      (<HitCountBadge className='hit-count--tile' hitCount={hit_count} />) :
+      (<Badge className='badge--tile' text={formatMatchString(hit_count)} />) :
       (null)
     }
     <p className='tile__date'>{date}</p>
@@ -50,7 +50,6 @@ const TileList = ({ items, params }) => {
 }
 
 TileList.propTypes = {
-  handleHitCountClick: PropTypes.func,
   items: PropTypes.array.isRequired,
   params: PropTypes.object
 }
