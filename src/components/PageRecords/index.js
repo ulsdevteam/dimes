@@ -36,7 +36,7 @@ class PageRecords extends Component {
       this.setState({ isItemLoading: false });
     }
     const itemUrl = `${process.env.REACT_APP_ARGO_BASEURL}/${this.props.match.params.type}/${this.props.match.params.id}`
-    const params = queryString.parse(this.props.location.search);
+    const params = queryString.parse(this.props.location.search, {parseBooleans: true});
     this.setState({ params: params })
     this.getItemData(itemUrl, params, true)
   };
