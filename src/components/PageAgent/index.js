@@ -55,7 +55,7 @@ class PageAgent extends Component {
 
   /** Fetches agent data */
   componentDidMount() {
-    const params = queryString.parse(this.props.location.search);
+    const params = queryString.parse(this.props.location.search, {parseBooleans: true});
     this.setState({ params: params })
     axios
       .get(`${process.env.REACT_APP_ARGO_BASEURL}/agents/${this.props.match.params.id}`)
