@@ -23,15 +23,15 @@ const CategoryLabel = ({ category }) => {
   )
 }
 
-const Tile = ({ category, date, hit_count, params, title, uri }) => (
+const Tile = ({ category, date, hit_count, online_hit_count, params, title, uri }) => (
   <li className='tile'>
     <a className='tile__title' href={appendParams(uri, params)}>{title}</a>
     {category ? (<CategoryLabel category={category} />) : null }
-    {hit_count && category === 'collection' ?
-      (<Badge className='badge--tile' text={formatMatchString(hit_count)} />) :
-      (null)
-    }
     <p className='tile__date'>{date}</p>
+    <div className='tile__footer'>
+      <Badge className='badge--orange' text={formatMatchString(hit_count)} />
+      {online_hit_count ? <Badge className='badge--blue' text={formatMatchString(online_hit_count, true)} /> : null}
+    </div>
   </li>)
 
 const TileList = ({ items, params }) => {
