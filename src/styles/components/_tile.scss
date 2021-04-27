@@ -19,33 +19,24 @@
   flex-wrap: wrap;
   box-sizing: border-box;
   background: $off-white;
-  border: 1px solid $orange-gray;
-  box-shadow: 0 0 4px 0 $light-gray;
+  box-shadow: 0 0 0 1px $orange-gray, 0 0 4px 0 $light-gray;
   border-radius: 4px;
-  padding: 26px 20px;
+  padding: 26px 20px 50px 20px;
   margin-bottom: $gutters-default;
   position: relative;
   &:hover {
-    border: 2px solid $red-orange;
-    padding: 25px 19px;
-    box-shadow: 0 0 8px 0 $light-gray;
+    box-shadow: 0 0 0 2px $red-orange, 0 0 8px 0 $light-gray;
     transition: $transition-default;
   }
   @include md-up {
     @include grid-column(4);
-    padding: 32px 20px;
+    padding: 32px 20px 56px 20px;
     min-height: 210px;
-    &:hover {
-      padding: 31px 19px;
-    }
   }
   @include lg-up {
     @include grid-column(3);
-    padding: 32px 26px;
+    padding: 32px 26px 56px 26px;
     min-height: 220px;
-    &:hover {
-      padding: 31px 25px;
-    }
   }
 }
 
@@ -99,4 +90,12 @@
   &::after {
     vertical-align: middle;
   }
+}
+
+.tile__footer {
+  position: absolute;
+  bottom: 0;
+  padding: 22px 0;
+  order: 4;
+  pointer-events: none;
 }
