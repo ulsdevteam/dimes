@@ -66,7 +66,7 @@ export const truncateString = (text, maxLength) => {
   }
 }
 
-/** Sends a custom pageview event to Googgle Tag Manager.
+/** Sends a custom pageview event to Google Tag Manager.
 * This allows us to ensure that the correct page titles are sent.  */
 var done = false
 var prevTitle = ''
@@ -85,3 +85,6 @@ export const firePageViewEvent = title => {
     }
   }
 }
+
+/** Checks the width of the window to determine if current device is mobile **/
+export const isMobile = window.innerWidth < 580;

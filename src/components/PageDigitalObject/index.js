@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Helmet } from 'react-helmet'
 import MaterialIcon from '../MaterialIcon'
 import Viewer from '../Viewer'
-import { firePageViewEvent } from '../Helpers'
+import { firePageViewEvent, isMobile } from '../Helpers'
 import './styles.scss'
 
 const PageDigitalObject = props => {
@@ -68,7 +68,7 @@ const PageDigitalObject = props => {
       defaultSideBarPanel: 'canvas',
       defaultView: 'single',
       hideWindowTitle: false,
-      sideBarOpen: true,
+      sideBarOpen: !isMobile,
       panels: {
         info: true,
         attribution: false,
