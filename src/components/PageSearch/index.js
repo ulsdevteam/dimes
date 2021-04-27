@@ -35,7 +35,7 @@ class PageSearch extends Component {
 
   /** Execute search based on params */
   componentDidMount() {
-    let params = queryString.parse(this.props.location.search)
+    let params = queryString.parse(this.props.location.search, {parseBooleans: true})
     params.limit = this.state.pageSize
     this.executeSearch(params)
   };
@@ -126,6 +126,12 @@ class PageSearch extends Component {
     this.executeSearch(params);
   }
 
+  /** Sets online flag when chechbox is checked **/
+  handleOnlineChange = (event) => {
+    var params = { ...this.state.params, online: event.target.checked }
+    this.executeSearch(params)
+  }
+
   /** Sets offset and executes search based on user input */
   handlePageClick = (data) => {
     let offset = Math.ceil(data.selected * this.state.pageSize);
@@ -147,8 +153,6 @@ class PageSearch extends Component {
     this.setState({ facetIsOpen: !this.state.facetIsOpen })
   }
 
-
-
   sortOptions = [
     {value: '', label: 'Sort by relevance'},
     {value: 'title', label: 'Sort by title'},
@@ -166,6 +170,7 @@ class PageSearch extends Component {
           <div className='search-bar'>
             <SearchForm
               className='search-form--results'
+              handleOnlineChange={this.handleOnlineChange}
               query={this.state.params.query}
               online={this.state.params.online}
               category={this.state.params.category} />
