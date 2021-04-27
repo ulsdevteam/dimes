@@ -128,7 +128,8 @@ export class RecordsChild extends Component {
         <p className='child__text text--truncate'>
           <QueryHighlighter query={query} text={truncateString(item.description, 200)} />
         </p>
-        {params.query && item.hit_count ? (<Badge className='badge--records' text={formatMatchString(item.hit_count)} />) : null}
+        {item.hit_count ? <Badge className='badge--orange' text={formatMatchString(item.hit_count)} /> : null}
+        {item.online_hit_count ? <Badge className='badge--blue' text={formatMatchString(item.online_hit_count, true)} /> : null}
       </div>) :
       (<AccordionItem
         preExpanded={preExpanded}
@@ -152,7 +153,8 @@ export class RecordsChild extends Component {
             <p className='child__text text--truncate'>
               <QueryHighlighter query={query} text={truncateString(item.description, 200)} />
             </p>
-            {params.query && item.hit_count ? (<Badge className='badge--records' text={formatMatchString(item.hit_count)} />) : null}
+            {item.hit_count ? <Badge className='badge--orange' text={formatMatchString(item.hit_count)} /> : null}
+            {item.online_hit_count ? <Badge className='badge--blue' text={formatMatchString(item.online_hit_count, true)} /> : null}
             <MaterialIcon icon={this.state.isExpanded ? 'expand_less' : 'expand_more'} />
           </AccordionItemButton>
         </AccordionItemHeading>
