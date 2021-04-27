@@ -25,7 +25,7 @@
   margin-bottom: $gutters-default;
   position: relative;
   &:hover {
-    box-shadow: 0 0 0 2px $red-orange, 0 0 8px 0 $light-gray;
+    box-shadow: 0 0 0 2px $red-orange, 0 0 8px 2px $light-gray;
     transition: $transition-default;
   }
   @include md-up {
