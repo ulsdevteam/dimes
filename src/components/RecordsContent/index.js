@@ -8,11 +8,11 @@ import {
     AccordionItemButton,
     AccordionItemPanel,
 } from '../Accordion';
-import { HitCountBadge } from '../HitCount'
+import { Badge } from '../Badge'
 import ListToggleButton from '../ListToggleButton'
 import MaterialIcon from '../MaterialIcon'
 import QueryHighlighter from '../QueryHighlighter'
-import { appendParams, dateString, truncateString} from '../Helpers'
+import { appendParams, dateString, formatMatchString, truncateString} from '../Helpers'
 import { isItemSaved } from '../MyListHelpers'
 import classnames from 'classnames'
 import './styles.scss'
@@ -128,7 +128,12 @@ export class RecordsChild extends Component {
         <p className='child__text text--truncate'>
           <QueryHighlighter query={query} text={truncateString(item.description, 200)} />
         </p>
-        {params.query && item.hit_count ? (<HitCountBadge className='hit-count--records' hitCount={item.hit_count} />) : null}
+        {item.hit_count ?
+          <div className="child__badges">
+            <Badge className='badge--orange' text={formatMatchString(item.hit_count)} />
+            {item.online_hit_count ? <Badge className='badge--blue' text={formatMatchString(item.online_hit_count, true)} /> : null}
+          </div>
+          : null}
       </div>) :
       (<AccordionItem
         preExpanded={preExpanded}
@@ -152,7 +157,12 @@ export class RecordsChild extends Component {
             <p className='child__text text--truncate'>
               <QueryHighlighter query={query} text={truncateString(item.description, 200)} />
             </p>
-            {params.query && item.hit_count ? (<HitCountBadge className='hit-count--records' hitCount={item.hit_count} />) : null}
+            {item.hit_count ?
+              <div className="child__badges">
+                <Badge className='badge--orange' text={formatMatchString(item.hit_count)} />
+                {item.online_hit_count ? <Badge className='badge--blue' text={formatMatchString(item.online_hit_count, true)} /> : null}
+              </div>
+              : null}
             <MaterialIcon icon={this.state.isExpanded ? 'expand_less' : 'expand_more'} />
           </AccordionItemButton>
         </AccordionItemHeading>
