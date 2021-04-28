@@ -92,6 +92,7 @@ const PageDigitalObject = props => {
       document.referrer : `/${props.match.params.type}/${props.match.params.id}`
   )
 
+  /** Custom top bar which includes additional classes  so we can style things as we want to **/
   const CustomTopBarTitle = ({ TargetComponent, targetProps  }) => (
     <div className='viewer-bar'>
       <div className='viewer-bar__title'>
