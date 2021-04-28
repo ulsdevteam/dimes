@@ -148,24 +148,18 @@
   background: $pure-black;
   color: $pure-white;
   border: 1px solid $pure-white;
-}
-
-.btn--back {
-  @extend .btn--gray;
-  @extend .btn--sm;
-  margin-bottom: 0;
-}
-
-.btn--back-item {
-  @extend .btn--black;
-  @extend .btn--sm;
-  margin-top: 10px;
   &:hover, &:focus {
     color: $light-med-gray;
   }
   &:focus {
     outline: solid 1px $light-med-gray;
   }
+}
+
+.btn--back {
+  @extend .btn--gray;
+  @extend .btn--sm;
+  margin-bottom: 0;
 }
 
 .btn--new-search {
