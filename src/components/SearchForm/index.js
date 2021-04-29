@@ -3,6 +3,7 @@ import classnames from 'classnames'
 import Button from '../Button'
 import PropTypes from 'prop-types'
 import { CheckBoxInput, SelectInput, TextInput } from '../Inputs'
+import { isMobile } from '../Helpers'
 import './styles.scss'
 
 const SearchForm = props => {
@@ -10,7 +11,6 @@ const SearchForm = props => {
   var [online, setOnline] = useState(props.online)
   var [query, setQuery] = useState(props.query)
   const isHomePage = props.className === 'search-form--home'
-  const isMobile = window.innerWidth < 580;
 
   /** Sets the search category, query and online checkbox */
   useEffect(() => {

@@ -12,7 +12,7 @@ import { Badge } from '../Badge'
 import ListToggleButton from '../ListToggleButton'
 import MaterialIcon from '../MaterialIcon'
 import QueryHighlighter from '../QueryHighlighter'
-import { appendParams, dateString, formatMatchString, truncateString} from '../Helpers'
+import { appendParams, dateString, isMobile, formatMatchString, truncateString} from '../Helpers'
 import { isItemSaved } from '../MyListHelpers'
 import classnames from 'classnames'
 import './styles.scss'
@@ -100,7 +100,6 @@ export class RecordsChild extends Component {
     const { ariaLevel, item, myListCount, params, preExpanded, setActiveRecords, setIsLoading, toggleInList } = this.props;
     const firstChildType = this.state.children.length && this.state.children[0].type
     const query = item.hit_count ? params.query : null
-    const isMobile = window.innerWidth < 580;
     return (item.type === 'object' ?
       (<div className={classnames('child__list-item', `child__list-item--${item.type}`)} >
         <div className='child__description'>
