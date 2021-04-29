@@ -50,6 +50,13 @@ export const formatBytes = (bytes, decimals = 2) => {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i]
 }
 
+/** Returns a human readable representation of a number of matches **/
+export const formatMatchString = (hitCount, online) => {
+  const count = hitCount === 10000 ? `${hitCount}+` : hitCount
+  const suffix = online ? (hitCount === 1 ? 'digital match' : 'digital matches' ) : (hitCount === 1 ? 'match' : 'matches')
+  return `${count} ${suffix}`
+}
+
 /** Trims a string to a specified length */
 export const truncateString = (text, maxLength) => {
   if (text) {
