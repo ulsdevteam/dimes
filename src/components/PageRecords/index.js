@@ -5,6 +5,7 @@ import axios from 'axios'
 import queryString from 'query-string'
 import { Helmet } from 'react-helmet'
 import ContextSwitcher from '../ContextSwitcher'
+import Minimap from '../Minimap'
 import RecordsContent from '../RecordsContent'
 import RecordsDetail from '../RecordsDetail'
 import PageNotFound from '../PageNotFound'
@@ -22,7 +23,9 @@ class PageRecords extends Component {
       isChildrenLoading: true,
       isContentShown: false,
       isItemLoading: true,
+      isMinimapLoading: true,
       item: {},
+      minimap: {},
       params: {},
       preExpanded: [],
       updateMessage: ""
@@ -64,6 +67,7 @@ class PageRecords extends Component {
           }
           this.setState({ updateMessage: `Details under heading 1 have been updated to describe the selected records titled ${res.data.title}`})
           this.setUrl(appendParams(itemPath, this.state.params), res.data)
+          this.getMinimap(res.data.group.identifier, params)
         })
         .catch(err => this.setState({ found: false }))
         .then(() => this.setState({isItemLoading: false}))
@@ -93,6 +97,14 @@ class PageRecords extends Component {
         }
       )
       .catch(err => console.log(err))
+  }
+
+  getMinimap = (collectionUri, params) => {
+    axios
+        .get(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${collectionUri}/minimap`, params))
+        .then(res => this.setState({ minimap: res.data }))
+        .catch(e => console.log(e))
+        .then(() => this.setState({isMinimapLoading: false}))
   }
 
   /** Constructs a preExpanded list based on an item's ancestors */
@@ -150,6 +162,10 @@ class PageRecords extends Component {
             myListCount={myListCount}
             params={this.state.params}
             toggleInList={toggleInList} />
+          <Minimap
+            data={this.state.minimap}
+            isLoading={this.state.isMinimapLoading}
+            params={this.state.params} />
           <RecordsContent
             children={this.state.children}
             collection={this.parseCollection()}
