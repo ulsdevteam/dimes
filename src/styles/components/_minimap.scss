@@ -1,0 +1,38 @@
+@import "../styles";
+
+@mixin transition-row {
+  &:hover {
+    transform: scale(1.04, 1.3);
+    border-radius: 3px;
+  }
+}
+
+$minimap-width: 5%;
+
+.minimap {
+  height: 100vh;
+  float: left;
+  background: $neutral-sand;
+  position: sticky;
+  top: 60px;
+  z-index: 999;
+  padding: 0 2px;
+  width: $minimap-width;
+}
+
+.minimap__row {
+  position: fixed;
+  height: 12px;
+  width: $minimap-width;
+}
+
+.minimap__digital-hit {
+  @include transition-row;
+  background-color: $deep-blue;
+  transition: $transition-default;
+}
+
+.minimap__hit {
+  @include transition-row;
+  background: $burnt-orange;
+}
