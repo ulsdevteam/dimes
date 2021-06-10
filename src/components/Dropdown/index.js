@@ -59,7 +59,7 @@ export const MyListDropdown = ({ downloadCsv, duplicationRequest, emailList, rea
       {
         'label': 'Schedule a Visit',
         'iconBefore': 'account_balance',
-        'href': 'mailto:archive@rockarch.org?subject=Scheduling a research appointment',
+        'href': 'mailto:' + process.email + '?subject=Scheduling a research appointment',
         'title': 'opens email'
       },
       {
@@ -109,11 +109,6 @@ export const NavDropdown = () => (
     listClassName='dropdown__list--mobile dropdown__list--navy dropdown__list--slide-left'
     items={
     [
-      {
-        'label': 'Sign in to RACcess',
-        'iconAfter': 'east',
-        'href': 'https://raccess.rockarch.org'
-      },
       {
         'label': 'My List',
         'iconAfter': 'east',

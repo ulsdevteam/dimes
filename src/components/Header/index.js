@@ -11,7 +11,7 @@ const Header = ({ myListCount }) => (
           <p className='header-secondary__subtitle'>The Online Collection and Catalog of Rockefeller Archive Center</p>
         </div>
         <Nav ariaLabel='Main'>
-          <NavItem href='https://raccess.rockarch.org/' id='raccess' label='Sign in to RACcess' icon='arrow_right_alt' />
+          <NavItem href='(`${process.env.DIMES_APP_EMAIL}`)' id='raccess' label='Sign in to RACcess' icon='arrow_right_alt' />
           <NavItem href='/list/' id='list' label={`My List${myListCount > 0 ? ` (${myListCount})` : ''}`} icon='arrow_right_alt' />
         </Nav>
       </div>

@@ -7,7 +7,7 @@ const MyListSidebar = ({ duplicationRequest, readingRoomRequest }) => (
   <aside className='mylist__sidebar'>
     <a
       className='btn btn--orange btn--lg'
-      href='mailto:archive@rockarch.org?subject=Scheduling a research appointment'
+      href={'mailto:' + process.env.DIMES_APP_EMAIL + '?subject=Scheduling a research appointment'}
       title='opens email'>
       <MaterialIcon icon='account_balance' /> Schedule a Visit
     </a>
