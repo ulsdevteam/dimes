@@ -80,7 +80,7 @@
 .btn--light-blue {
   background: $pale-blue;
   color: $deep-navy;
-  border: 1px solid $light-blue;
+  border: 1px solid $deep-navy;
   &:hover, &:focus {
     background: darken($light-blue, 2%);
     border: 1px solid $light-gray;
