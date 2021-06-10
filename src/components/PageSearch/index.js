@@ -176,9 +176,12 @@ class PageSearch extends Component {
               category={this.state.params.category} />
           </div>
           <div className='results'>
-          <h1 className='results__title'>{this.state.resultsCount ?
-            (`Search Results ${this.state.params.query && `for “${this.state.params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`) :
-            (`Sorry, there are no search results ${this.state.params.query && `for “${this.state.params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`)}</h1>
+          <h1 className='results__title'>{this.state.inProgress ? "Searching" :
+            (this.state.resultsCount ?
+              (`Search Results ${this.state.params.query && `for “${this.state.params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`) :
+              (`Sorry, there are no search results ${this.state.params.query && `for “${this.state.params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`))
+          }
+          </h1>
             {!this.state.resultsCount && !this.state.inProgress ?
               (
                 <SearchNotFound suggestions={this.state.suggestions}/>
