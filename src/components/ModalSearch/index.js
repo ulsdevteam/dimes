@@ -32,7 +32,9 @@ export const FacetModal = props => {
       }}
       closeTimeoutMS={200} >
       <div className='modal-header--search'>
-        <h2 className='modal-header__title'>{`Filter ${props.resultsCount} Search ${props.resultsCount === 1 ? 'Result': 'Results'}`}</h2>
+        <h2 className='modal-header__title' aria-live='polite' aria-atomic='true'>
+          {`Filter ${props.resultsCount} Search ${props.resultsCount === 1 ? 'Result': 'Results'}`}
+        </h2>
         <button className='modal-header__button' aria-label='Close' onClick={props.toggleModal}>
           <MaterialIcon icon='close' />
         </button>
