@@ -88,20 +88,20 @@
   }
 }
 
-.btn--orange {
-  background: $burnt-orange;
+.btn--gold {
+  background: $pitt-gold;
   color: $pure-white;
-  border: 1px solid $burnt-orange;
+  border: 1px solid $pitt-gold;
   &:hover {
-    background: $med-brown;
-    border: 1px solid $med-brown;
+    background: $pitt-dark-gold;
+    border: 1px solid $pitt-dark-gold;
     color: $off-white;
   }
   &:focus {
     color: $off-white;
   }
   &:disabled {
-    background: $burnt-orange;
+    background: $pitt-gold;
     color: $pure-white;
     opacity: .7;
   }
@@ -169,25 +169,25 @@
 
 .btn--search {
   @extend .btn--block;
-  @extend .btn--orange;
+  @extend .btn--gold;
   border-radius: 0px;
   height: 62px;
   width: 66px;
-  border: 1px solid $med-brown;
+  border: 1px solid $pitt-dark-gold;
   & .material-icons {
     font-size: 36px;
     line-height: 58px;
     width: 58px;
   }
-  &:focus { //match .btn--orange hover styles
+  &:focus { //match ..btn--gold hover styles
     outline: none;
-    background: $med-brown;
-    border: 1px solid $med-brown;
+    background: $pitt-dark-gold;
+    border: 1px solid $pitt-dark-gold;
   }
 }
 
 .btn--search-more {
-  @extend .btn--orange;
+  @extend .btn--gold;
   @extend .btn--sm;
   margin-top: 15px;
   margin-bottom: 40px;
@@ -237,7 +237,7 @@
 
 .btn-add--content {
   @include records-btn;
-  @extend .btn--orange;
+  @extend .btn--gold;
   @include md-up {
     position: relative;
   }
@@ -251,7 +251,7 @@
 
 @mixin records-detail-btn {
   @include records-btn;
-  @extend .btn--orange;
+  @extend .btn--gold;
   width: 100%;
   font-size: 10px;
   margin-bottom: 10px;
@@ -267,7 +267,7 @@
 
 .btn-launch--detail {
   @include records-detail-btn;
-  @extend .btn--orange;
+  @extend .btn--gold;
   box-sizing: border-box;
   @include md-up {
     margin-right: 10px;
@@ -276,6 +276,6 @@
 
 .btn-download--detail {
   @include records-detail-btn;
-  @extend .btn--orange;
+  @extend .btn--gold;
   box-sizing: border-box;
 }

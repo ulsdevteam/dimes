@@ -51,15 +51,15 @@ export const MyListDropdown = ({ downloadCsv, duplicationRequest, emailList, rea
     label='Actions'
     iconBefore='settings'
     className='mylist__actions'
-    buttonClassName='btn btn--orange btn--md'
-    itemClassName='btn--orange btn--dropdown dropdown__item--orange'
+    buttonClassName='btn btn--gold btn--md'
+    itemClassName='btn--gold btn--dropdown dropdown__item--gold'
     listClassName='dropdown__list--orange dropdown__list--slide-down'
     items={
     [
       {
         'label': 'Schedule a Visit',
         'iconBefore': 'account_balance',
-        'href': 'mailto:' + process.email + '?subject=Scheduling a research appointment',
+        'href': 'mailto:' + `${process.env.REACT_APP_EMAIL}` + '?subject=Scheduling a research appointment',
         'title': 'opens email'
       },
       {

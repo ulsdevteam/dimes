@@ -322,7 +322,7 @@
               <>Are you sure you want to remove all the items from your list?
               <div className='confirm-buttons'>
                 <Button
-                  className='btn--sm btn--orange'
+                  className='btn--sm btn--gold'
                   label='Remove'
                   handleClick={() => {this.removeAllFromList(); this.toggleModal('confirmDeleteAll');}} />
                 <Button
