@@ -25,6 +25,7 @@ it('renders props correctly', () => {
       handleDateChange={jest.fn()}
       isOpen
       params={{}}
+      resultsCount={2}
       data={facet}
       toggleModal={jest.fn()} />, container)
   })
@@ -51,6 +52,7 @@ it('handles clicks', () => {
       handleDateChange={handleDateChange}
       isOpen
       params={{}}
+      resultsCount={2}
       data={facet}
       toggleModal={jest.fn()} />, container)
   })
