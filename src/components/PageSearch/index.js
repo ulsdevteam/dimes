@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import classnames from 'classnames'
 import queryString from 'query-string'
 import Skeleton from 'react-loading-skeleton'
 import { Helmet } from 'react-helmet'
@@ -176,9 +177,12 @@ class PageSearch extends Component {
               category={this.state.params.category} />
           </div>
           <div className='results'>
-          <h1 className='results__title'>{this.state.resultsCount ?
-            (`Search Results ${this.state.params.query && `for “${this.state.params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`) :
-            (`Sorry, there are no search results ${this.state.params.query && `for “${this.state.params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`)}</h1>
+          <h1 className={classnames('results__title', { 'loading-dots': this.state.inProgress })}>{this.state.inProgress ? "Searching" :
+            (this.state.resultsCount ?
+              (`Search Results ${this.state.params.query && `for “${this.state.params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`) :
+              (`Sorry, there are no search results ${this.state.params.query && `for “${this.state.params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`))
+          }
+          </h1>
             {!this.state.resultsCount && !this.state.inProgress ?
               (
                 <SearchNotFound suggestions={this.state.suggestions}/>
