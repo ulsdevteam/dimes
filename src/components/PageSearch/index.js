@@ -128,8 +128,13 @@ class PageSearch extends Component {
   }
 
   /** Sets online flag when chechbox is checked **/
-  handleOnlineChange = (event) => {
-    var params = { ...this.state.params, online: event.target.checked }
+  handleOnlineChange = (event, query, category) => {
+    var params = { ...this.state.params, query: query, category: category }
+    if (event.target.checked) {
+      params = { ...params, online: true }
+    } else {
+      delete params.online
+    }
     this.executeSearch(params)
   }
 
