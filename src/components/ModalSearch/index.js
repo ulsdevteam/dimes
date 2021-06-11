@@ -35,9 +35,11 @@ export const FacetModal = props => {
         <h2 className='modal-header__title' aria-live='polite' aria-atomic='true'>
           {`Filter ${props.resultsCount} Search ${props.resultsCount === 1 ? 'Result': 'Results'}`}
         </h2>
-        <button className='modal-header__button' aria-label='Close' onClick={props.toggleModal}>
-          <MaterialIcon icon='close' />
-        </button>
+        <Button
+          className='btn--blue btn--sm'
+          aria-label='Close'
+          label='Save &amp; Close'
+          handleClick={props.toggleModal} />
       </div>
       <div className='modal-body--search'>
         <Facet title='Date Range'>
