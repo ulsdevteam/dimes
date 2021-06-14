@@ -60,7 +60,9 @@ const SearchForm = props => {
               id='category'
               label='Choose a search category'
               name='category'
-              onChange={({ selectedItem }) => setCategory(selectedItem.value)}
+              onChange={({ selectedItem }) => {
+                isHomePage ? setCategory(selectedItem.value) : props.handleSearchFormChange(selectedItem.value, query, online)
+              }}
               options={ selectOptions }
               selectedItem={ category || '' }
             />
@@ -69,7 +71,9 @@ const SearchForm = props => {
               name='online'
               className='checkbox--blue checkbox--online input--outline'
               checked={online}
-              handleChange={e => { isHomePage ? setOnline(e.target.checked) : props.handleOnlineChange(e, query, category) }}
+              handleChange={e => {
+                isHomePage ? setOnline(e.target.checked) : props.handleSearchFormChange(category, query, e.target.checked)
+              }}
               label='Show only results with digital matches'
             />
           </div>
