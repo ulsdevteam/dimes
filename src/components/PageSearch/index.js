@@ -252,6 +252,7 @@ class PageSearch extends Component {
           toggleModal={this.toggleFacetModal}
           data={this.state.facetData}
           params={this.state.params}
+          resultsCount={this.state.resultsCount}
           handleChange={this.handleFacetChange}
           handleDateChange={this.handleDateFacetChange} />
       </React.Fragment>

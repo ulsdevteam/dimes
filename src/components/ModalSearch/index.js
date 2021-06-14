@@ -32,10 +32,14 @@ export const FacetModal = props => {
       }}
       closeTimeoutMS={200} >
       <div className='modal-header--search'>
-        <h2 className='modal-header__title'>Filter Search Results</h2>
-        <button className='modal-header__button' aria-label='Close' onClick={props.toggleModal}>
-          <MaterialIcon icon='close' />
-        </button>
+        <h2 className='modal-header__title' aria-live='polite' aria-atomic='true'>
+          {`Filter ${props.resultsCount} Search ${props.resultsCount === 1 ? 'Result': 'Results'}`}
+        </h2>
+        <Button
+          className='btn--blue btn--sm'
+          aria-label='Close'
+          label='Save &amp; Close'
+          handleClick={props.toggleModal} />
       </div>
       <div className='modal-body--search'>
         <Facet title='Date Range'>
@@ -83,5 +87,6 @@ FacetModal.propTypes = {
   handleDateChange: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   params: PropTypes.object.isRequired,
+  resultsCount: PropTypes.number.isRequired,
   toggleModal: PropTypes.func.isRequired
 }
