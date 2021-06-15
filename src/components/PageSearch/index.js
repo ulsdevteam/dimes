@@ -127,9 +127,15 @@ class PageSearch extends Component {
     this.executeSearch(params);
   }
 
-  /** Sets online flag when chechbox is checked **/
-  handleOnlineChange = (event) => {
-    var params = { ...this.state.params, online: event.target.checked }
+  /** Executes a new search when search form inputs are changed **/
+  handleSearchFormChange = (category, query, online) => {
+    var params = { ...this.state.params, query: query, category: category }
+    if (online) {
+      console.log(online);
+      params = { ...params, online: true }
+    } else {
+      delete params.online
+    }
     this.executeSearch(params)
   }
 
@@ -171,7 +177,7 @@ class PageSearch extends Component {
           <div className='search-bar'>
             <SearchForm
               className='search-form--results'
-              handleOnlineChange={this.handleOnlineChange}
+              handleSearchFormChange={this.handleSearchFormChange}
               query={this.state.params.query}
               online={this.state.params.online}
               category={this.state.params.category} />
