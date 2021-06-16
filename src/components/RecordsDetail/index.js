@@ -143,15 +143,6 @@ const RecordsDetail = props => {
     props.params && props.params.query ? appendParams('/search', props.params) : '/'
   )
 
-  /** Scrolls a component into view in the records tree **/
-  const scrollFocusedIntoView = uri => {
-    const el = document.getElementById(`accordion__heading-${uri}`)
-    if (el) {
-      el.focus()
-      el.scrollIntoView({ behavior: 'smooth', block: 'center'})
-    }
-  }
-
   /** Parses an item's identifier from its URI */
   const identifier = (
     props.item.uri && props.item.uri.split('/')[props.item.uri.split('/').length - 1]
@@ -159,14 +150,10 @@ const RecordsDetail = props => {
 
   return (
   <div className={classnames('records__detail', {'hidden': props.isContentShown})}>
-    <nav className='records__nav'>
+    <nav>
       <a href={searchUrl} className='btn btn--back'>
         <MaterialIcon icon='keyboard_arrow_left'/>Back to Search
       </a>
-      <button className='btn btn--sm btn--light-blue btn--scroll-focused' onClick={() => scrollFocusedIntoView(props.item.uri)}>
-        Locate within collection
-        <MaterialIcon icon='gps_fixed'/>
-      </button>
     </nav>
     <h1 className='records__title'>{props.isItemLoading ? <Skeleton /> : props.item.title }</h1>
     {props.item.type === 'object' &&
