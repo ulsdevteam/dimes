@@ -10,7 +10,7 @@
 $minimap-width: 5%;
 
 .minimap {
-  height: 100vh;
+  height: calc(100vh - 60px);
   float: left;
   position: sticky;
   top: 60px;
