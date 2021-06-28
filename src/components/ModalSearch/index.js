@@ -4,7 +4,6 @@ import Modal from 'react-modal'
 import Button from '../Button'
 import Facet from '../Facet'
 import { YearInput } from '../Inputs'
-import MaterialIcon from '../MaterialIcon'
 import './styles.scss'
 
 export const FacetModal = props => {
