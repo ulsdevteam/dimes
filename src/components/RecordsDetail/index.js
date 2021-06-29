@@ -13,7 +13,7 @@ import ListToggleButton from '../ListToggleButton'
 import MaterialIcon from '../MaterialIcon'
 import QueryHighlighter from '../QueryHighlighter'
 import { DetailSkeleton, FoundInItemSkeleton } from '../LoadingSkeleton'
-import { appendParams, dateString, hasAccessOrUse, noteText, noteTextByType } from '../Helpers'
+import { appendParams, dateString, hasAccessOrUse, isTablet, noteText, noteTextByType } from '../Helpers'
 import { isItemSaved } from '../MyListHelpers'
 import classnames from 'classnames'
 import './styles.scss'
@@ -163,10 +163,12 @@ const RecordsDetail = props => {
       <a href={searchUrl} className='btn btn--back'>
         <MaterialIcon icon='keyboard_arrow_left'/>Back to Search
       </a>
-      <button className='btn btn--sm btn--light-blue btn--scroll-focused' onClick={() => scrollFocusedIntoView(props.item.uri)}>
-        Locate within collection
-        <MaterialIcon icon='gps_fixed'/>
-      </button>
+      {isTablet ? null : (
+        <button className='btn btn--sm btn--light-blue btn--scroll-focused' onClick={() => scrollFocusedIntoView(props.item.uri)}>
+          Locate within collection
+          <MaterialIcon icon='gps_fixed'/>
+        </button>
+      )}
     </nav>
     <h1 className='records__title'>{props.isItemLoading ? <Skeleton /> : props.item.title }</h1>
     {props.item.type === 'object' &&
