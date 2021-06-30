@@ -1,16 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import classnames from 'classnames'
 import './styles.scss'
 
-const Badge = ({ className, icon, label }) => (
-  <span className={className}>
-    {icon && icon} {label}
-  </span>)
+export const Badge = ({ className, text }) => (
+  <span className={classnames('badge', className)}>
+    {text}
+  </span>
+)
 
 Badge.propTypes = {
   className: PropTypes.string,
-  icon: PropTypes.string,
-  label: PropTypes.string.isRequired
+  text: PropTypes.string.isRequired
 }
-
-export default Badge

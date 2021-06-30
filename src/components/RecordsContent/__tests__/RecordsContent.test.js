@@ -56,9 +56,9 @@ it('renders with collection data', () => {
     expect(item.textContent).toContain(child.description)
   }
   if (child.hit_count) {
-    expect(item.querySelector('.hit-count--records').textContent).toContain(child.hit_count)
+    expect(item.querySelector('.badge--orange').textContent).toContain(child.hit_count)
   } else {
-    expect(item.querySelector('.hit-count--records')).not.toBeInTheDocument()
+    expect(item.querySelector('.badge--orange')).not.toBeInTheDocument()
   }
 })
 
@@ -84,9 +84,9 @@ it('renders with object data', () => {
     expect(item.textContent).toContain(child.description)
   }
   if (child.hit_count) {
-    expect(item.querySelector('.hit-count--records').textContent).toContain(child.hit_count)
+    expect(item.querySelector('.badge--orange').textContent).toContain(child.hit_count)
   } else {
-    expect(item.querySelector('.hit-count--records')).not.toBeInTheDocument()
+    expect(item.querySelector('.badge--orange')).not.toBeInTheDocument()
   }
 })
 

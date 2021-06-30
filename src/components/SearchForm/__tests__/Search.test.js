@@ -1,16 +1,16 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
-import Search from '..'
+import SearchForm from '..'
 
 it('renders props correctly', () => {
   const div = document.createElement('div')
   document.body.appendChild(div)
 
   act(() => {
-    render(<Search className='foo' />, div)
+    render(<SearchForm className='foo' />, div)
   })
 
-  const wrapper = document.querySelector('form > div')
+  const wrapper = document.querySelector('form > .wrapper > div')
   expect(wrapper.className).toBe('foo')
 })
