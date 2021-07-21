@@ -59,7 +59,7 @@ export const MyListDropdown = ({ downloadCsv, duplicationRequest, emailList, rea
       {
         'label': 'Schedule a Visit',
         'iconBefore': 'account_balance',
-        'href': '`mailto:${process.env.REACT_APP_EMAIL}?subject=Scheduling a research appointment`',
+        'href': `mailto:${process.env.REACT_APP_EMAIL}?subject=Scheduling a research appointment`,
         'title': 'opens email'
       },
       {
