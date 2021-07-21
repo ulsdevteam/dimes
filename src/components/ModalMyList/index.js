@@ -313,7 +313,7 @@ export const ReadingRoomRequestModal = props => (
               className='modal-form__error' />
           </div>
           <FormGroup
-            label='Message for RAC staff'
+            label='Message for Pitt staff'
             helpText='255 characters maximum'
             name='questions'
             maxLength={255}
@@ -424,7 +424,7 @@ export const DuplicationRequestModal = props => (
                 <a target='_blank'
                   rel='noopener noreferrer'
                   title='opens in a new window'
-                  href='https://rockarch.org/collections/access-and-request-materials/#duplication-services-and-fee-schedule'>
+                  href='https://library.pitt.edu/asc-ordering-reproductions'>
                   fee schedule
                 </a>.</>}
               name='costs'
