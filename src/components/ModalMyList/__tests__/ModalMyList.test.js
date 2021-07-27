@@ -24,7 +24,7 @@ afterEach(() => {
   container = null
 })
 
-it('renders props correctly', () => {
+it('renders props correctly', async () => {
   act(() => {
     render(<ModalMyList
       appElement={container}
@@ -40,9 +40,12 @@ it('renders props correctly', () => {
   const selectButton = document.querySelector('.modal-list > button')
   const title = document.querySelector('.modal-header__title')
   const totals = document.querySelector('.selected-totals')
-  expect(selectButton.textContent).toContain('Select all items')
-  expect(title.textContent).toBe('foo')
-  expect(totals.textContent).toBe('selected: 0 items')
+
+  await act(async () => {
+    expect(selectButton.textContent).toContain('Select all items')
+    expect(title.textContent).toBe('foo')
+    expect(totals.textContent).toBe('selected: 0 items')
+  })
 
   act(() => {
     render(<ModalMyList
@@ -56,8 +59,10 @@ it('renders props correctly', () => {
       toggleModal={jest.fn()} />, container)
   })
 
-  expect(selectButton.textContent).toContain('Deselect all items')
-  expect(totals.textContent).toBe('selected: 2 audio tapes, 9 folders, 1 item')
+  await act(async () => {
+    expect(selectButton.textContent).toContain('Deselect all items')
+    expect(totals.textContent).toBe('selected: 2 audio tapes, 9 folders, 1 item')
+  })
 })
 
 it('renders email modal props correctly', async () => {
