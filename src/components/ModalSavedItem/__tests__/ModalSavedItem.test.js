@@ -10,7 +10,7 @@ it('renders props correctly', async () => {
   const div = document.createElement('div')
   document.body.appendChild(div)
 
-  act(() => {
+  await act(async () => {
     render(<ModalSavedItemList
       items={resolvedList}
       handleChange={jest.fn()}
@@ -26,7 +26,7 @@ it('renders props correctly', async () => {
     expect(input).not.toBeChecked()
   })
 
-  act(() => {
+  await act(async () => {
     render(<ModalSavedItemList
       items={checkedList}
       handleChange={jest.fn()}
