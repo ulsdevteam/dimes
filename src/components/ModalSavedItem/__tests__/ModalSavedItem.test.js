@@ -13,6 +13,7 @@ it('renders props correctly', async () => {
   await act(async () => {
     render(<ModalSavedItemList
       items={resolvedList}
+      ignoreRestrictions={true}
       handleChange={jest.fn()}
       setSubmit={jest.fn()} />, div)
   })
@@ -29,11 +30,13 @@ it('renders props correctly', async () => {
   await act(async () => {
     render(<ModalSavedItemList
       items={checkedList}
+      ignoreRestrictions={true}
       handleChange={jest.fn()}
       setSubmit={jest.fn()} />, div)
   })
 
   await act(async () => {
+    const input = document.querySelector('.modal-saved-item > input')
     expect(input).toBeChecked()
   })
 })
