@@ -60,7 +60,7 @@ it('renders props correctly', () => {
   expect(totals.textContent).toBe('selected: 2 audio tapes, 9 folders, 1 item')
 })
 
-it('renders email modal props correctly', () => {
+it('renders email modal props correctly', async () => {
   act(() => {
     render(<EmailModal
       appElement={container}
@@ -77,11 +77,13 @@ it('renders email modal props correctly', () => {
   const form = document.querySelector('.modal-form')
   const buttons = document.querySelector('.modal-form__buttons')
 
-  expect(form.textContent).toContain("Email *")
-  expect(form.textContent).toContain("Subject")
-  expect(form.textContent).toContain("Message")
-  expect(buttons.querySelector("[type=submit]").textContent).toBe('Send List')
-  expect(buttons.querySelector("[type=reset]").textContent).toBe('Cancel')
+  await act(async () => {
+    expect(form.textContent).toContain("Email *")
+    expect(form.textContent).toContain("Subject")
+    expect(form.textContent).toContain("Message")
+    expect(buttons.querySelector("[type=submit]").textContent).toBe('Send List')
+    expect(buttons.querySelector("[type=reset]").textContent).toBe('Cancel')
+  })
 })
 
 it('validates email modal form correctly', async () => {
@@ -108,7 +110,7 @@ it('validates email modal form correctly', async () => {
   expect(form.textContent).toContain('An email address is required.')
 })
 
-it('renders reading room modal props correctly', () => {
+it('renders reading room modal props correctly', async () => {
   act(() => {
     render(<ReadingRoomRequestModal
       appElement={container}
@@ -125,10 +127,12 @@ it('renders reading room modal props correctly', () => {
   const form = document.querySelector('.modal-form')
   const buttons = document.querySelector('.modal-form__buttons')
 
-  expect(form.textContent).toContain("Scheduled Date *")
-  expect(form.textContent).toContain("Message for RAC staff")
-  expect(buttons.querySelector("[type=submit]").textContent).toBe('Request 4 Items')
-  expect(buttons.querySelector("[type=reset]").textContent).toBe('Cancel')
+  await act(async () => {
+    expect(form.textContent).toContain("Scheduled Date *")
+    expect(form.textContent).toContain("Message for RAC staff")
+    expect(buttons.querySelector("[type=submit]").textContent).toBe('Request 4 Items')
+    expect(buttons.querySelector("[type=reset]").textContent).toBe('Cancel')
+  })
 })
 
 it('validates reading room modal form correctly', async () => {
@@ -154,7 +158,7 @@ it('validates reading room modal form correctly', async () => {
   expect(form.textContent).toContain('Please complete this field.')
 })
 
-it('renders duplication modal props correctly', () => {
+it('renders duplication modal props correctly', async () => {
   act(() => {
     render(<DuplicationRequestModal
       appElement={container}
@@ -171,10 +175,12 @@ it('renders duplication modal props correctly', () => {
   const form = document.querySelector('.modal-form')
   const buttons = document.querySelector('.modal-form__buttons')
 
-  expect(form.textContent).toContain("Description of Materials")
-  expect(form.textContent).toContain("Message for RAC staff")
-  expect(buttons.querySelector("[type=submit]").textContent).toBe('Request 4 Items')
-  expect(buttons.querySelector("[type=reset]").textContent).toBe('Cancel')
+  await act(async () => {
+    expect(form.textContent).toContain("Description of Materials")
+    expect(form.textContent).toContain("Message for RAC staff")
+    expect(buttons.querySelector("[type=submit]").textContent).toBe('Request 4 Items')
+    expect(buttons.querySelector("[type=reset]").textContent).toBe('Cancel')
+  })
 })
 
 it('validates duplication modal form correctly', async () => {
