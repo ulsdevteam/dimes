@@ -66,11 +66,13 @@ class PageRecords extends Component {
               })
           }
           this.setState({ updateMessage: `Details under heading 1 have been updated to describe the selected records titled ${res.data.title}`})
-          this.setUrl(appendParams(itemPath, this.state.params), res.data)
           this.getMinimap(res.data.group.identifier, params)
         })
         .catch(err => this.setState({ found: false }))
-        .then(() => this.setState({isItemLoading: false}))
+        .then(() => {
+          this.setState({isItemLoading: false})
+          this.setUrl(appendParams(itemPath, this.state.params))
+        })
     axios
         .get(appendParams(`${itemUrl}/ancestors`, params))
         .then(res => {
@@ -127,8 +129,8 @@ class PageRecords extends Component {
   }
 
   /** Pushes a URL and state into browser history */
-  setUrl = (uri, itemData) => {
-    this.props.history.push(uri, {...this.state, item: itemData})
+  setUrl = (uri) => {
+    this.props.history.push(uri, { ...this.state })
   }
 
   /** Show or hide the RecordsContent on mobile */

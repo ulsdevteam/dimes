@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import classnames from 'classnames'
 import queryString from 'query-string'
 import Skeleton from 'react-loading-skeleton'
 import { Helmet } from 'react-helmet'
@@ -126,9 +127,15 @@ class PageSearch extends Component {
     this.executeSearch(params);
   }
 
-  /** Sets online flag when chechbox is checked **/
-  handleOnlineChange = (event) => {
-    var params = { ...this.state.params, online: event.target.checked }
+  /** Executes a new search when search form inputs are changed **/
+  handleSearchFormChange = (category, query, online) => {
+    var params = { ...this.state.params, query: query, category: category }
+    if (online) {
+      console.log(online);
+      params = { ...params, online: true }
+    } else {
+      delete params.online
+    }
     this.executeSearch(params)
   }
 
@@ -170,15 +177,18 @@ class PageSearch extends Component {
           <div className='search-bar'>
             <SearchForm
               className='search-form--results'
-              handleOnlineChange={this.handleOnlineChange}
+              handleSearchFormChange={this.handleSearchFormChange}
               query={this.state.params.query}
               online={this.state.params.online}
               category={this.state.params.category} />
           </div>
           <div className='results'>
-          <h1 className='results__title'>{this.state.resultsCount ?
-            (`Search Results ${this.state.params.query && `for “${this.state.params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`) :
-            (`Sorry, there are no search results ${this.state.params.query && `for “${this.state.params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`)}</h1>
+          <h1 className={classnames('results__title', { 'loading-dots': this.state.inProgress })}>{this.state.inProgress ? "Searching" :
+            (this.state.resultsCount ?
+              (`Search Results ${this.state.params.query && `for “${this.state.params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`) :
+              (`Sorry, there are no search results ${this.state.params.query && `for “${this.state.params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`))
+          }
+          </h1>
             {!this.state.resultsCount && !this.state.inProgress ?
               (
                 <SearchNotFound suggestions={this.state.suggestions}/>
@@ -248,6 +258,7 @@ class PageSearch extends Component {
           toggleModal={this.toggleFacetModal}
           data={this.state.facetData}
           params={this.state.params}
+          resultsCount={this.state.resultsCount}
           handleChange={this.handleFacetChange}
           handleDateChange={this.handleDateFacetChange} />
       </React.Fragment>

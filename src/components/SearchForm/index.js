@@ -15,6 +15,7 @@ const SearchForm = props => {
   /** Sets the search category, query and online checkbox */
   useEffect(() => {
     setOnline(props.online ? true : false)
+    setCategory(props.category || '')
     setQuery(props.query)
   }, [props.category, props.online, props.query])
 
@@ -59,7 +60,9 @@ const SearchForm = props => {
               id='category'
               label='Choose a search category'
               name='category'
-              onChange={({ selectedItem }) => setCategory(selectedItem.value)}
+              onChange={({ selectedItem }) => {
+                isHomePage ? setCategory(selectedItem.value) : props.handleSearchFormChange(selectedItem.value, query, online)
+              }}
               options={ selectOptions }
               selectedItem={ category || '' }
             />
@@ -68,7 +71,9 @@ const SearchForm = props => {
               name='online'
               className='checkbox--blue checkbox--online input--outline'
               checked={online}
-              handleChange={e => { isHomePage ? setOnline(e.target.checked) : props.handleOnlineChange(e) }}
+              handleChange={e => {
+                isHomePage ? setOnline(e.target.checked) : props.handleSearchFormChange(category, query, e.target.checked)
+              }}
               label='Show only results with digital matches'
             />
           </div>
