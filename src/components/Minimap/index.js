@@ -9,22 +9,6 @@ const Minimap = ({ data, isLoading, params }) => {
   const containerHeight = document.getElementById('minimap') && document.getElementById('minimap').clientHeight
   const containerWidth = document.getElementById('minimap') && document.getElementById('minimap').clientWidth
 
-  // const rowsFromHits = (hits, digital, params) => hits.map(h => {
-  //   const rowClass = digital ? 'minimap__digital-hit' : 'minimap__hit'
-  //   const top = h.index * (containerHeight / (data.total + 3)) + 60
-  //   return (
-  //     <a
-  //       key={h.uri}
-  //       href={appendParams(h.uri, params)}
-  //       className={classnames('minimap__row', rowClass)}
-  //       style={{top: `${top}px`}}
-  //       title={`Jump to ${h.title}`}
-  //       >
-  //       <span className='visually-hidden'>{`Jump to ${h.title}`}</span>
-  //     </a>
-  //   )
-  // })
-
   const totalBoxes = parseInt(parseInt(containerHeight/13) * parseInt(containerWidth/13))
   const hitsPerBox = data.total / totalBoxes
   /* Create the correct number of blank boxes with start and end indexes */
@@ -59,9 +43,6 @@ const Minimap = ({ data, isLoading, params }) => {
       ></div>
     )
   })
-
-  // const rows = data.hits ? rowsFromHits(data.hits.filter(h => !h.online), false, params) : []
-  // const digitalRows = data.hits ? rowsFromHits(data.hits.filter(h => h.online), true, params) : []
 
   return (
     <div id='minimap' className='minimap'>
