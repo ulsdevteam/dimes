@@ -45,11 +45,12 @@ class PageRecords extends Component {
   };
 
   /** Fetches item data, including ancestors and collection children */
-  getItemData = (itemUrl, params, initial = false) => {
+  getItemData = (itemUrl, params, initialLoad = false) => {
     this.setState({isItemLoading: true})
     this.setState({isAncestorsLoading: true})
     this.setState({ downloadSize: '' })
-    const childrenParams = {...params, limit: 5}
+    const pageSize = 5
+    const childrenParams = {...params, limit: pageSize}
     const itemPath = itemUrl.replace(`${process.env.REACT_APP_ARGO_BASEURL}`, '')
     axios
         .get(appendParams(itemUrl, params))
@@ -65,6 +66,9 @@ class PageRecords extends Component {
                 this.setState({ downloadSize: '' })
               })
           }
+          if (initialLoad) {
+            this.getPage(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${res.data.group.identifier}/children`, childrenParams))
+          }
           this.setState({ updateMessage: `Details under heading 1 have been updated to describe the selected records titled ${res.data.title}`})
           this.getMinimap(res.data.group.identifier, params)
         })
@@ -77,11 +81,8 @@ class PageRecords extends Component {
         .get(appendParams(`${itemUrl}/ancestors`, params))
         .then(res => {
           this.setState({ ancestors: res.data })
-          if (initial) {
-            const itemUrl = `/${this.props.match.params.type}/${this.props.match.params.id}`
-            const collectionUrl = Object.keys(res.data).length ? res.data.uri : itemUrl
-            collectionUrl.includes('collections') && this.getPage(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${collectionUrl}/children`, childrenParams))
-            this.setState({ preExpanded: this.preExpanded(res.data, [itemUrl]) })
+          if (initialLoad) {
+            this.setState({ preExpanded: this.preExpanded(res.data, [itemPath]) })
           }
         })
         .catch(e => console.log(e))
@@ -173,6 +174,8 @@ class PageRecords extends Component {
             collection={this.parseCollection()}
             isContentShown={this.state.isContentShown}
             myListCount={this.props.myListCount}
+            offsetAfter={this.state.item.offset + 1}
+            offsetBefore={this.state.item.offset}
             params={this.state.params}
             parent={this.state.item}
             preExpanded={this.state.preExpanded}
