@@ -131,7 +131,6 @@ class PageSearch extends Component {
   handleSearchFormChange = (category, query, online) => {
     var params = { ...this.state.params, query: query, category: category }
     if (online) {
-      console.log(online);
       params = { ...params, online: true }
     } else {
       delete params.online
