@@ -136,3 +136,16 @@ export const RecordsChildSkeleton = () => (
 export const RestrictionsSkeleton = () => (
   <div><Skeleton /></div>
 )
+
+export const MinimapSkeleton = ({totalBoxes}) => {
+  return (
+  <>
+    {Array(totalBoxes)
+      .fill()
+      .map((item, index) => (
+        <div key={index} className='minimap__box'>
+          <Skeleton delay={.2} />
+        </div>
+      ))}
+  </>
+)}

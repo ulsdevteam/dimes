@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { appendParams } from '../Helpers'
+import { MinimapSkeleton } from '../LoadingSkeleton'
 import './styles.scss'
 
 const Minimap = ({ data, isLoading, params }) => {
@@ -18,10 +19,8 @@ const Minimap = ({ data, isLoading, params }) => {
     return ({start: startIndex, end: endIndex})
   })
 
-  /* Take blankBoxes and map hits onto them.
-  // TODO: Handling multiple hits in a single box
-   */
-  const boxes = () => blankBoxes.map((b, idx) => {
+  /* Take blankBoxes and map hits onto them. */
+  const minimapBoxes = () => blankBoxes.map((b, idx) => {
     const hits = data.hits && data.hits.filter(h => (h.index <= b.end && b.start < h.index)).sort((a, b) => a.index - b.index)
     const rowClass = hits.filter(h => h.online).length ? 'minimap__digital-hit' : 'minimap__hit'
     const hitTitles = hits.map(h => h.title).join(', ')
@@ -46,7 +45,7 @@ const Minimap = ({ data, isLoading, params }) => {
 
   return (
     <div id='minimap' className='minimap'>
-      {isLoading ? 'Loading...' : boxes()}
+      {isLoading ? <MinimapSkeleton totalBoxes={totalBoxes} /> : minimapBoxes()}
     </div>
 )}
 
