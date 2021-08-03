@@ -92,46 +92,21 @@ export const FoundInItemSkeleton = () => (
   </>
 )
 
-export const CollectionHitsCollectionSkeleton = () => (
-  <div className='collection-hits__info'>
-    {Array(3)
+export const RecordsChildSkeleton = React.forwardRef((props, ref) => (
+  <div className='child__list child__list--bottom-level' ref={ref}>
+    {Array(5)
       .fill()
       .map((item, index) => (
-        <React.Fragment key={index}>
-          <h3 className='collection-hits__title'><Skeleton /></h3>
-          <p className='collection-hits__text'><Skeleton /></p>
-        </React.Fragment>
-      ))}
-  </div>
-)
-
-export const CollectionHitsChildrenSkeleton = () => (
-  Array(4)
-  .fill()
-  .map((item, index) => (
-    <div key={index} className='collection-child'>
-      <p className='collection-child__title'>
-        <Skeleton />
-      </p>
-    </div>
-  ))
-)
-
-export const RecordsChildSkeleton = () => (
-  <ul className='child__list'>
-    {Array(4)
-      .fill()
-      .map((item, index) => (
-        <li key={index}>
-          <div className='child__list-item child__list-item--collection'>
-            <button className='child__title child__title--collection'><Skeleton /></button>
-            <p className='child__text'><Skeleton /></p>
+        <div key={index}>
+          <div className='child__list-item child__list-item--object'>
+            <button className='child__title child__title--object'></button>
+            <p className='child__text' style={{width: '100%'}}><Skeleton /></p>
             <p className='child__text child__description'><Skeleton /></p>
           </div>
-        </li>
+        </div>
       ))}
-  </ul>
-)
+  </div>
+))
 
 export const RestrictionsSkeleton = () => (
   <div><Skeleton /></div>

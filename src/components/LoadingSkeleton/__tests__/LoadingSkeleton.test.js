@@ -2,11 +2,11 @@ import React from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
 import {
   AgentAttributeSkeleton,
-  CollectionHitsChildrenSkeleton,
-  CollectionHitsCollectionSkeleton,
   DetailSkeleton,
   FoundInItemSkeleton,
+  MinimapSkeleton
   RecordsChildSkeleton,
+  RestrictionsSkeleton,
   SearchSkeleton,
   MyListSkeleton
 } from '..'
@@ -40,17 +40,17 @@ it('renders without crashing', () => {
 })
 
 it('renders without crashing', () => {
-  render(<CollectionHitsChildrenSkeleton />, container)
-})
-
-it('renders without crashing', () => {
-  render(<CollectionHitsCollectionSkeleton />, container)
-})
-
-it('renders without crashing', () => {
   render(<FoundInItemSkeleton />, container)
 })
 
 it('renders without crashing', () => {
   render(<RecordsChildSkeleton />, container)
+})
+
+it('renders without crashing', () => {
+  render(<RestrictionsSkeleton />, container)
+})
+
+it('renders without crashing', () => {
+  render(<MinimapSkeleton totalBoxes={184} />, container)
 })

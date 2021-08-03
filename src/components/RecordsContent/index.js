@@ -15,6 +15,7 @@ import QueryHighlighter from '../QueryHighlighter'
 import { appendParams, dateString, isMobile, formatMatchString, truncateString} from '../Helpers'
 import { useOnScreen } from '../Hooks'
 import { isItemSaved } from '../MyListHelpers'
+import { RecordsChildSkeleton } from '../LoadingSkeleton'
 import classnames from 'classnames'
 import './styles.scss'
 
@@ -241,7 +242,7 @@ export const RecordsChild = props => {
       </AccordionItemHeading>
       {(children.length) ?
         (<AccordionItemPanel>
-          {targetIsDirectDescendant ? <div id="loadingBefore" ref={refBefore}></div> : null}
+          {targetIsDirectDescendant && offsetBefore > 0 ? <RecordsChildSkeleton ref={refBefore} /> : null}
           <RecordsContentList
             ariaLevel={ariaLevel+1}
             children={children}
@@ -254,7 +255,7 @@ export const RecordsChild = props => {
             setActiveRecords={setActiveRecords}
             setIsLoading={setIsLoading}
             toggleInList={toggleInList} />
-          {targetIsDirectDescendant ? <div id="loadingAfter" ref={refAfter}></div> : null}
+          {targetIsDirectDescendant && offsetAfter < childCount ? <RecordsChildSkeleton ref={refAfter} /> : null}
         </AccordionItemPanel>
         ) :
         (null)}
