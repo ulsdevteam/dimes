@@ -157,17 +157,17 @@ export const RecordsChild = props => {
         getPages(appendParams(itemUri, {...params, limit: pageSize}))
       }
     }
-  }, [itemUri])
+  }, [isParentCollection, itemUri, params, targetIsDirectDescendant])
 
-  /* Load previous page when loading trigger is visible */
+  /* Load previous page if available when loading trigger is visible */
   useEffect(() => {
     (isBeforeVisible && offsetBefore > 0) && getPageBefore(itemUri, params, pageSize)
-  }, [isBeforeVisible, offsetBefore])
+  }, [isBeforeVisible, itemUri, offsetBefore, params])
 
-  /* Load next page when loading trigger is visible */
+  /* Load next page if available when loading trigger is visible */
   useEffect(() => {
     (isAfterVisible && offsetAfter < childCount) && getPageAfter(itemUri, params, pageSize)
-  }, [isAfterVisible, offsetAfter])
+  }, [childCount, isAfterVisible, itemUri, offsetAfter, params])
 
   /** Sets isItemSaved state when myListCount changes */
   useEffect(() => {
