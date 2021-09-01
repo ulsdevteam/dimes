@@ -104,13 +104,8 @@
   color: $pure-white;
   border: 1px solid $pitt-gold;
   &:hover {
-<<<<<<< HEAD
     background: $pitt-dark-gold;
     border: 1px solid $pitt-dark-gold;
-=======
-    background: darken($burnt-orange, 10%);
-    border: 1px solid $med-brown;
->>>>>>> base
     color: $off-white;
   }
   &:focus {
@@ -188,7 +183,6 @@
 }
 
 .btn--search {
-<<<<<<< HEAD
   @extend .btn--block;
   @extend .btn--gold;
   border-radius: 0px;
@@ -204,18 +198,6 @@
     outline: none;
     background: $pitt-dark-gold;
     border: 1px solid $pitt-dark-gold;
-=======
-  @extend .btn--orange;
-  border-radius: 0px;
-  padding: 18px 20px;
-  margin-left: -1px;
-  border: 1px solid $med-brown;
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 1px $pure-white inset;
-    background: $med-brown;
-    border: 1px solid $med-brown;
->>>>>>> base
   }
   @include md-up {
     min-width: 150px;
