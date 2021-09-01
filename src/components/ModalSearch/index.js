@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import Modal from 'react-modal'
 import Button from '../Button'
 import Facet from '../Facet'
-import { CheckBoxInput, YearInput } from '../Inputs'
-import MaterialIcon from '../MaterialIcon'
+import { YearInput } from '../Inputs'
 import './styles.scss'
 
 export const FacetModal = props => {
@@ -32,21 +31,16 @@ export const FacetModal = props => {
       }}
       closeTimeoutMS={200} >
       <div className='modal-header--search'>
-        <h2 className='modal-header__title'>Filter Search Results</h2>
-        <button className='modal-header__button' aria-label='Close' onClick={props.toggleModal}>
-          <MaterialIcon icon='close' />
-        </button>
+        <h2 className='modal-header__title' aria-live='polite' aria-atomic='true'>
+          {`Filter ${props.resultsCount} Search ${props.resultsCount === 1 ? 'Result': 'Results'}`}
+        </h2>
+        <Button
+          className='btn--blue btn--sm'
+          aria-label='Close'
+          label='Save &amp; Close'
+          handleClick={props.toggleModal} />
       </div>
       <div className='modal-body--search'>
-        <Facet title='View Online'>
-          <CheckBoxInput
-            id='online'
-            name='true'
-            className='facet__input checkbox--blue'
-            checked={props.params.online === 'true'}
-            handleChange={e => props.handleChange(e, 'online')}
-            label={`Show me digital materials only (${props.data.online && props.data.online.doc_count})`} />
-        </Facet>
         <Facet title='Date Range'>
           <YearInput
             id='startYear'
@@ -60,7 +54,7 @@ export const FacetModal = props => {
             className='hide-label'
             handleChange={e => { setEndYear(e.target.value) }}
             value={endYear} />
-          <Button className='btn--sm btn--blue' label='apply' handleClick={() => { props.handleDateChange(startYear, endYear) }} />
+          <Button className='btn--sm btn--gray' label='apply dates' handleClick={() => { props.handleDateChange(startYear, endYear) }} />
         </Facet>
         <Facet
           handleChange={props.handleChange}
@@ -92,5 +86,6 @@ FacetModal.propTypes = {
   handleDateChange: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   params: PropTypes.object.isRequired,
+  resultsCount: PropTypes.number.isRequired,
   toggleModal: PropTypes.func.isRequired
 }

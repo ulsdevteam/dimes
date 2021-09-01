@@ -8,11 +8,11 @@ import {
     AccordionItemButton,
     AccordionItemPanel,
 } from '../Accordion';
-import { HitCountBadge } from '../HitCount'
+import { Badge } from '../Badge'
 import ListToggleButton from '../ListToggleButton'
 import MaterialIcon from '../MaterialIcon'
 import QueryHighlighter from '../QueryHighlighter'
-import { appendParams, dateString, truncateString} from '../Helpers'
+import { appendParams, dateString, isMobile, formatMatchString, truncateString} from '../Helpers'
 import { isItemSaved } from '../MyListHelpers'
 import classnames from 'classnames'
 import './styles.scss'
@@ -23,6 +23,7 @@ export class RecordsChild extends Component {
     super(props)
     this.state = {
       children: [],
+      isExpanded: false,
       isSaved: false,
     }
   }
@@ -37,6 +38,7 @@ export class RecordsChild extends Component {
     const currentUrl = window.location.pathname
     this.setState({ isSaved: isItemSaved(this.props.item) })
     if (this.props.preExpanded.includes(this.props.item.uri) && this.props.item.uri.includes('collections')) {
+      this.setState({ isExpanded: true })
       this.getChildrenPage(
         appendParams(
           `${process.env.REACT_APP_ARGO_BASEURL}${this.props.item.uri}/children`,
@@ -73,6 +75,7 @@ export class RecordsChild extends Component {
 
   /** Loads a collection's children when a user clicks on it */
   handleCollectionClick = uri => {
+    this.setState({ isExpanded: !this.state.isExpanded })
     this.props.setActiveRecords(uri)
     if (!this.state.children.length) {
       const childrenParams = {...this.props.params, limit: 5}
@@ -97,7 +100,6 @@ export class RecordsChild extends Component {
     const { ariaLevel, item, myListCount, params, preExpanded, setActiveRecords, setIsLoading, toggleInList } = this.props;
     const firstChildType = this.state.children.length && this.state.children[0].type
     const query = item.hit_count ? params.query : null
-    const isMobile = window.innerWidth < 580;
     return (item.type === 'object' ?
       (<div className={classnames('child__list-item', `child__list-item--${item.type}`)} >
         <div className='child__description'>
@@ -125,7 +127,12 @@ export class RecordsChild extends Component {
         <p className='child__text text--truncate'>
           <QueryHighlighter query={query} text={truncateString(item.description, 200)} />
         </p>
-        {params.query && item.hit_count ? (<HitCountBadge className='hit-count--records' hitCount={item.hit_count} />) : null}
+        {item.hit_count ?
+          <div className="child__badges">
+            <Badge className='badge--orange' text={formatMatchString(item.hit_count)} />
+            {item.online_hit_count ? <Badge className='badge--blue' text={formatMatchString(item.online_hit_count, true)} /> : null}
+          </div>
+          : null}
       </div>) :
       (<AccordionItem
         preExpanded={preExpanded}
@@ -149,8 +156,13 @@ export class RecordsChild extends Component {
             <p className='child__text text--truncate'>
               <QueryHighlighter query={query} text={truncateString(item.description, 200)} />
             </p>
-            {params.query && item.hit_count ? (<HitCountBadge className='hit-count--records' hitCount={item.hit_count} />) : null}
-            <MaterialIcon icon='expand_more' />
+            {item.hit_count ?
+              <div className="child__badges">
+                <Badge className='badge--orange' text={formatMatchString(item.hit_count)} />
+                {item.online_hit_count ? <Badge className='badge--blue' text={formatMatchString(item.online_hit_count, true)} /> : null}
+              </div>
+              : null}
+            <MaterialIcon icon={this.state.isExpanded ? 'expand_less' : 'expand_more'} />
           </AccordionItemButton>
         </AccordionItemHeading>
         {(this.state.children.length) ?

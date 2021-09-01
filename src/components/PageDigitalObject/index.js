@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Helmet } from 'react-helmet'
 import MaterialIcon from '../MaterialIcon'
 import Viewer from '../Viewer'
-import { firePageViewEvent } from '../Helpers'
+import { firePageViewEvent, isMobile } from '../Helpers'
 import './styles.scss'
 
 const PageDigitalObject = props => {
@@ -68,7 +68,7 @@ const PageDigitalObject = props => {
       defaultSideBarPanel: 'canvas',
       defaultView: 'single',
       hideWindowTitle: false,
-      sideBarOpen: true,
+      sideBarOpen: !isMobile,
       panels: {
         info: true,
         attribution: false,
@@ -92,20 +92,34 @@ const PageDigitalObject = props => {
       document.referrer : `/${props.match.params.type}/${props.match.params.id}`
   )
 
-  const BackToItemButton = () => (
-    <nav>
-      <a href={itemUrl} className='btn btn--back-item'>
-        <MaterialIcon icon='keyboard_arrow_left' />Back to Item Details
-      </a>
-    </nav>
+  /** Custom top bar which includes additional classes  so we can style things as we want to **/
+  const CustomTopBarTitle = ({ TargetComponent, targetProps  }) => (
+    <div className='viewer-bar'>
+      <div className='viewer-bar__title'>
+        <TargetComponent {...targetProps} />
+      </div>
+      <div className='viewer-bar__buttons'>
+        <a className='btn btn--sm btn--orange'
+          href={`${process.env.REACT_APP_S3_BASEURL}/pdfs/${props.match.params.id}`}
+          target='_blank'
+          title='opens in a new window'
+          rel='noopener noreferrer'
+          ><MaterialIcon icon='get_app' /> Download</a>
+        <div>
+          <a href={itemUrl} className='btn btn--sm btn--black'>
+            <MaterialIcon icon='keyboard_arrow_left' />Back to Item Details
+          </a>
+        </div>
+      </div>
+    </div>
   )
 
-  /** Adds BackToItemButton to Mirador plugins */
+  /** Adds CustomTopBarTitle to Mirador plugins */
   const plugins = [
     {
       mode: 'wrap',
-      component: BackToItemButton,
-      target: 'WindowTopBarPluginArea'
+      component: CustomTopBarTitle,
+      target: 'WindowTopBarTitle'
     }
   ]
 
@@ -115,7 +129,7 @@ const PageDigitalObject = props => {
         onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
         <title>{ itemTitle }</title>
       </Helmet>
-      <div className='digital'>
+      <div className='viewer'>
         <Viewer config={configs} plugins={plugins} />
       </div>
     </>

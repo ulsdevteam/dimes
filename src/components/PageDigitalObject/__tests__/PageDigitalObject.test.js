@@ -22,7 +22,6 @@ jest.mock('axios')
 
 it('renders props correctly', async () => {
   axios.get.mockImplementation((url) => {
-    console.log(url);
     if (url.includes('objects')) {
       return Promise.resolve({data: object})
     } else {

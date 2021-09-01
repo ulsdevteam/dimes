@@ -50,6 +50,13 @@ export const formatBytes = (bytes, decimals = 2) => {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i]
 }
 
+/** Returns a human readable representation of a number of matches **/
+export const formatMatchString = (hitCount, online) => {
+  const count = hitCount === 10000 ? `${hitCount}+` : hitCount
+  const suffix = online ? (hitCount === 1 ? 'digital match' : 'digital matches' ) : (hitCount === 1 ? 'match' : 'matches')
+  return `${count} ${suffix}`
+}
+
 /** Trims a string to a specified length */
 export const truncateString = (text, maxLength) => {
   if (text) {
@@ -66,7 +73,7 @@ export const truncateString = (text, maxLength) => {
   }
 }
 
-/** Sends a custom pageview event to Googgle Tag Manager.
+/** Sends a custom pageview event to Google Tag Manager.
 * This allows us to ensure that the correct page titles are sent.  */
 var done = false
 var prevTitle = ''
@@ -85,3 +92,9 @@ export const firePageViewEvent = title => {
     }
   }
 }
+
+/** Checks the width of the window to determine if current device is mobile **/
+export const isMobile = window.innerWidth < 580;
+
+/** Checks the width of the window to determine if current device is tablet **/
+export const isTablet = window.innerWidth < 1024;

@@ -71,9 +71,20 @@
   color: $pure-white;
   border: 1px solid $deep-blue;
   &:hover, &:focus {
-    background: $dark-blue;
+    background: darken($deep-blue, 10%);
     border: 1px solid $dark-blue;
     color: $pure-white; //for links styled as buttons
+  }
+}
+
+.btn--light-blue {
+  background: $pale-blue;
+  color: $deep-navy;
+  border: 1px solid $deep-navy;
+  &:hover, &:focus {
+    background: darken($light-blue, 2%);
+    border: 1px solid $light-gray;
+    color: $deep-navy;
   }
 }
 
@@ -82,7 +93,7 @@
   color: $pure-white;
   border: 1px solid $deep-navy;
   &:hover, &:focus {
-    background: $deep-blue;
+    background: darken($deep-blue, 10%);
     border: 1px solid $deep-blue;
     color: $off-white;
   }
@@ -93,8 +104,13 @@
   color: $pure-white;
   border: 1px solid $pitt-gold;
   &:hover {
+<<<<<<< HEAD
     background: $pitt-dark-gold;
     border: 1px solid $pitt-dark-gold;
+=======
+    background: darken($burnt-orange, 10%);
+    border: 1px solid $med-brown;
+>>>>>>> base
     color: $off-white;
   }
   &:focus {
@@ -118,7 +134,7 @@
   color: $med-gray;
   border: 1px solid $light-med-gray;
   &:hover, &:focus {
-    background: $lighter-gray;
+    background: darken($off-white, 5%);
     color: $med-gray;
   }
 }
@@ -128,7 +144,7 @@
   color: $pure-white;
   border: 1px solid $light-med-gray;
   &:hover {
-    background: $orange-gray;
+    background: darken($light-med-gray, 5%);
     color: $pure-white;
   }
 }
@@ -137,15 +153,18 @@
   background: $pure-black;
   color: $pure-white;
   border: 1px solid $pure-white;
+  &:hover, &:focus {
+    color: $light-med-gray;
+  }
+  &:focus {
+    outline: solid 1px $light-med-gray;
+  }
 }
 
 .btn--back {
   @extend .btn--gray;
   @extend .btn--sm;
-  margin-top: 20px;
-  @include md-up  {
-    margin-top: 30px;
-  }
+  margin-bottom: 0;
 }
 
 .btn--back-item {
@@ -163,11 +182,13 @@
 .btn--new-search {
   @extend .btn--back;
   @extend .btn--sm;
+  margin-top:20px;
   position: absolute;
   margin-left: $gutters-default;
 }
 
 .btn--search {
+<<<<<<< HEAD
   @extend .btn--block;
   @extend .btn--gold;
   border-radius: 0px;
@@ -183,7 +204,29 @@
     outline: none;
     background: $pitt-dark-gold;
     border: 1px solid $pitt-dark-gold;
+=======
+  @extend .btn--orange;
+  border-radius: 0px;
+  padding: 18px 20px;
+  margin-left: -1px;
+  border: 1px solid $med-brown;
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 1px $pure-white inset;
+    background: $med-brown;
+    border: 1px solid $med-brown;
+>>>>>>> base
   }
+  @include md-up {
+    min-width: 150px;
+  }
+}
+
+.btn--search-results {
+  @extend .btn--search;
+  padding: 10px 12px;
+  height: 46px;
+  min-width: unset;
 }
 
 .btn--search-more {
@@ -207,9 +250,8 @@
 }
 
 .btn--filter {
+  @extend .btn--light-blue;
   padding: 12px 16px;
-  background: $pale-blue;
-  border: 1px solid $light-blue;
   font-size: 14px;
   text-transform: none;
   letter-spacing: unset;
@@ -278,4 +320,10 @@
   @include records-detail-btn;
   @extend .btn--gold;
   box-sizing: border-box;
+}
+
+.btn--scroll-focused {
+  & .material-icons {
+    @include icon-margin-left;
+  }
 }
