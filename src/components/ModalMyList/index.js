@@ -77,7 +77,7 @@ export const ModalToggleListButton = ({ ignoreRestrictions, items, toggleList })
       } else {
         return items.filter(g => g.items.filter(i => i.submit && !i.isChecked).length).length ? false : true
       }
-    },
+    }, // eslint-disable-next-line react-hooks/exhaustive-deps
     [items]
   )
 

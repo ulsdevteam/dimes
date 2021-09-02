@@ -27,6 +27,7 @@ const ModalSavedItem = props => {
         .catch(err => console.log(err))
         .then(() => setIsRestrictionsLoading(false))
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ignoreRestrictions, submit, archivesspace_uri, uri, setSubmit])
 
   return (
