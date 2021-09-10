@@ -29,8 +29,8 @@ export const RecordsChild = props => {
   * 5. Observe when the refs created in 4 are visible.
   * 6. Determines if the target object or collection has been loaded.
   */
-  const { ariaLevel, item, myListCount, params, preExpanded, setActiveRecords,
-          setIsLoading, toggleInList } = props
+  const { ariaLevel, isScrolled, item, myListCount, params, preExpanded, setActiveRecords,
+          setIsLoading, setIsScrolled, toggleInList } = props
   const [children, setChildren] = useState([])
   const [childCount, setChildCount] = useState(0)
   const [isExpanded, setIsExpanded] = useState(false)
@@ -63,18 +63,28 @@ export const RecordsChild = props => {
       .catch(err => console.log(err))
   }
 
-  /* Fetches the page previous to a given offset */
-  const getPageBefore = (uri, params, pageSize) => {
+  /* Fetches the page previous to a given offset
+  * 1. If there are fewer preceding items than the size of the page, set the
+  *   offset to zero, otherwise subtract from the page size.
+  * 2. If there are fewer preceding items than the size of the page, fetch all
+  *   of the preceding items, otherwise get the full page.
+  */
+  const getPageBefore = (uri, params, pageSize, scrollAfter=false) => {
     const updatedParams = {
       ...params,
-      offset: offsetBefore >= pageSize ? offsetBefore - (pageSize - 1) : 0, /* 2 */
-      limit: offsetBefore >= pageSize ? pageSize : offsetBefore
+      offset: offsetBefore >= pageSize ? offsetBefore - (pageSize - 1) : 0, /* 1 */
+      limit: offsetBefore >= pageSize ? pageSize : (offsetBefore + 1) /* 2 */
     }
-    console.log(appendParams(uri, updatedParams));
     axios
         .get(appendParams(uri, updatedParams))
         .then(res => {
           setChildren(children => res.data.results.concat(children))
+          process.nextTick(() => {
+            if (scrollAfter) {
+              // TODO: get scroll height of newly added elements
+              document.documentElement.scrollTop = document.documentElement.scrollTop + 900
+            }
+          })
           const newOffset = updatedParams.offset < updatedParams.limit ? 0 : updatedParams.offset - updatedParams.limit
           setOffsetBefore(updatedParams => newOffset)
         }
@@ -89,7 +99,6 @@ export const RecordsChild = props => {
       offset: offsetAfter,
       limit: pageSize,
     }
-    console.log(appendParams(uri, updatedParams));
     axios
         .get(appendParams(uri, updatedParams))
         .then(res => {
@@ -133,19 +142,20 @@ export const RecordsChild = props => {
       const targetElement = document.getElementById(`accordion__heading-${currentUrl}`)
       targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
       targetElement.focus()
+      setTimeout(() => {console.log(isBeforeVisible);setIsScrolled(true)}, 3000)
     }
-  }, [currentUrl, targetElementLoaded])
+  }, [currentUrl, isBeforeVisible, setIsScrolled, targetElementLoaded])
 
   /* Set isLoading to false once loading has completed */
   useEffect(() => {
     if (targetElementLoaded || preExpanded.length < 2) {
       setIsLoading(false)
     }
-  }, [targetElementLoaded, setIsLoading, preExpanded])
+  }, [targetElementLoaded, setIsLoading, setIsScrolled, preExpanded])
 
   /* Loads children of current item
   * 1. Execute alternate loading strategy on parents of target object. This is only
-  *    used when loading ant object, which can be a long ways down a list.
+  *    used when loading an object, which can be a long ways down a list.
   * 2. If targeting a collection, fetch all its children and save to state
   */
   useEffect(() => {
@@ -162,13 +172,13 @@ export const RecordsChild = props => {
 
   /* Load previous page if available when loading trigger is visible */
   useEffect(() => {
-    (isBeforeVisible && offsetBefore > 0) && getPageBefore(itemUri, params, pageSize)
-  }, [isBeforeVisible, itemUri, offsetBefore, params])
+    isScrolled && isBeforeVisible && getPageBefore(itemUri, params, pageSize, true)
+  }, [isBeforeVisible, isScrolled, itemUri, offsetBefore, params])
 
   /* Load next page if available when loading trigger is visible */
   useEffect(() => {
-    (isAfterVisible && offsetAfter < childCount) && getPageAfter(itemUri, params, pageSize)
-  }, [childCount, isAfterVisible, itemUri, offsetAfter, params])
+    isScrolled && isAfterVisible && getPageAfter(itemUri, params, pageSize)
+  }, [childCount, isAfterVisible, isScrolled, itemUri, offsetAfter, params])
 
   /** Sets isItemSaved state when myListCount changes */
   useEffect(() => {
@@ -242,11 +252,12 @@ export const RecordsChild = props => {
       </AccordionItemHeading>
       {(children.length) ?
         (<AccordionItemPanel>
-          {targetIsDirectDescendant && offsetBefore > 0 ? <RecordsChildSkeleton ref={refBefore} /> : null}
+          {targetIsDirectDescendant && offsetBefore >= pageSize ? <RecordsChildSkeleton ref={refBefore} /> : null}
           <RecordsContentList
             ariaLevel={ariaLevel+1}
             children={children}
             className={classnames({'child__list--bottom-level': firstChildType === 'object'})}
+            isScrolled={isScrolled}
             myListCount={myListCount}
             offsetAfter={offsetAfter}
             offsetBefore={offsetBefore}
@@ -254,6 +265,7 @@ export const RecordsChild = props => {
             preExpanded={preExpanded}
             setActiveRecords={setActiveRecords}
             setIsLoading={setIsLoading}
+            setIsScrolled={setIsScrolled}
             toggleInList={toggleInList} />
           {targetIsDirectDescendant && offsetAfter < childCount ? <RecordsChildSkeleton ref={refAfter} /> : null}
         </AccordionItemPanel>
@@ -264,6 +276,7 @@ export const RecordsChild = props => {
 }
 
 RecordsChild.propTypes = {
+    isScrolled: PropTypes.bool.isRequired,
     item: PropTypes.object.isRequired,
     myListCount: PropTypes.number.isRequired,
     offsetAfter: PropTypes.number,
@@ -272,19 +285,21 @@ RecordsChild.propTypes = {
     preExpanded: PropTypes.array.isRequired,
     setActiveRecords: PropTypes.func.isRequired,
     setIsLoading: PropTypes.func.isRequired,
+    setIsScrolled: PropTypes.func.isRequired,
     toggleInList: PropTypes.func.isRequired,
 }
 
 export const RecordsContentList = props => {
 
   const childList = children => {
-    const { ariaLevel, myListCount, offsetAfter, offsetBefore, params, preExpanded,
-            setActiveRecords, setIsLoading, toggleInList } = props;
+    const { ariaLevel, isScrolled, myListCount, offsetAfter, offsetBefore, params, preExpanded,
+            setActiveRecords, setIsLoading, setIsScrolled, toggleInList } = props;
     return (
       children.map(child => (
         <RecordsChild
           key={child.uri}
           ariaLevel={ariaLevel}
+          isScrolled={isScrolled}
           item={child}
           myListCount={myListCount}
           offsetAfter={offsetAfter}
@@ -293,6 +308,7 @@ export const RecordsContentList = props => {
           preExpanded={preExpanded}
           setActiveRecords={setActiveRecords}
           setIsLoading={setIsLoading}
+          setIsScrolled={setIsScrolled}
           toggleInList={toggleInList} />
         )
       )
@@ -312,6 +328,7 @@ RecordsContentList.propTypes = {
   ariaLevel: PropTypes.number.isRequired,
   children: PropTypes.array,
   className: PropTypes.string,
+  isScrolled: PropTypes.bool.isRequired,
   myListCount: PropTypes.number.isRequired,
   offsetAfter: PropTypes.number,
   offsetBefore: PropTypes.number,
@@ -319,6 +336,7 @@ RecordsContentList.propTypes = {
   preExpanded: PropTypes.array,
   setActiveRecords: PropTypes.func.isRequired,
   setIsLoading: PropTypes.func.isRequired,
+  setIsScrolled: PropTypes.func.isRequired,
   toggleInList: PropTypes.func.isRequired,
 }
 
@@ -327,6 +345,7 @@ const RecordsContent = props => {
   const { children, collection, isContentShown, myListCount, offsetAfter,
           offsetBefore, params, preExpanded, setActiveRecords, toggleInList } = props;
   const [isLoading, setIsLoading] = useState(true)
+  const [isScrolled, setIsScrolled] = useState(false)
 
   /** Focus on loading overlay when page is loading */
   useEffect(() => {
@@ -353,6 +372,7 @@ const RecordsContent = props => {
         ariaLevel={3}
         className='child__list--top-level'
         children={children}
+        isScrolled={isScrolled}
         myListCount={myListCount}
         offsetAfter={offsetAfter}
         offsetBefore={offsetBefore}
@@ -360,6 +380,7 @@ const RecordsContent = props => {
         preExpanded={preExpanded}
         setActiveRecords={setActiveRecords}
         setIsLoading={setIsLoading}
+        setIsScrolled={setIsScrolled}
         toggleInList={toggleInList} />
     </div>) :
     (null)
