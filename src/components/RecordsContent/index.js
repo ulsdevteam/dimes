@@ -65,7 +65,8 @@ export const RecordsChild = props => {
 
   /* Fetches the page previous to a given offset
   * 1. If there are fewer preceding items than the size of the page, set the
-  *   offset to zero, otherwise subtract from the page size.
+  *   offset to zero, otherwise subtract from the page size. On initial load,
+  *   include the offset is adjusted by one to include the target object.
   * 2. If there are fewer preceding items than the size of the page, fetch all
   *   of the preceding items, otherwise get the full page.
   */
