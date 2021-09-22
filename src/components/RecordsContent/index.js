@@ -37,8 +37,8 @@ export const RecordsChild = props => {
   const [isSaved, setIsSaved] = useState(false)
   const [offsetAfter, setOffsetAfter] = useState(props.offsetAfter)
   const [offsetBefore, setOffsetBefore] = useState(props.offsetBefore)
-  const currentUrl = window.location.pathname
-  const itemUri = `${process.env.REACT_APP_ARGO_BASEURL}${item.uri}/children`
+  const currentUrl = window.location.pathname.endsWith('/') ? window.location.pathname.slice(0, -1) : window.location.pathname
+  const itemUri = `${process.env.REACT_APP_ARGO_BASEURL}${item.uri}/children/`
   const query = item.hit_count ? params.query : null
   const pageSize = 5
   const targetElementLoaded = item.uri === currentUrl /* 6 */
@@ -69,24 +69,24 @@ export const RecordsChild = props => {
   * 2. If there are fewer preceding items than the size of the page, fetch all
   *   of the preceding items, otherwise get the full page.
   */
-  const getPageBefore = (uri, params, pageSize, scrollAfter=false) => {
+  const getPageBefore = (uri, params, pageSize, isInitialLoad=false) => {
+    if (offsetBefore == 0) { return }
     const updatedParams = {
       ...params,
-      offset: offsetBefore >= pageSize ? offsetBefore - (pageSize - 1) : 0, /* 1 */
-      limit: offsetBefore >= pageSize ? pageSize : (offsetBefore + 1) /* 2 */
+      offset: offsetBefore >= pageSize ? isInitialLoad ? offsetBefore - (pageSize - 1) : offsetBefore - pageSize : 0, /* 1 */
+      limit: offsetBefore >= pageSize ? pageSize : offsetBefore > 0 ? offsetBefore : 0 /* 2 */
     }
     axios
         .get(appendParams(uri, updatedParams))
         .then(res => {
           setChildren(children => res.data.results.concat(children))
           process.nextTick(() => {
-            if (scrollAfter) {
+            if (!isInitialLoad) {
               // TODO: get scroll height of newly added elements
-              document.documentElement.scrollTop = document.documentElement.scrollTop + 900
+              // document.documentElement.scrollTop = document.documentElement.scrollTop + 900
             }
           })
-          const newOffset = updatedParams.offset < updatedParams.limit ? 0 : updatedParams.offset - updatedParams.limit
-          setOffsetBefore(updatedParams => newOffset)
+          setOffsetBefore(updatedParams.offset)
         }
       )
       .catch(err => console.log(err))
@@ -117,7 +117,7 @@ export const RecordsChild = props => {
     if (!children.length) {
       getPages(
         appendParams(
-          `${process.env.REACT_APP_ARGO_BASEURL}${uri}/children`,
+          `${process.env.REACT_APP_ARGO_BASEURL}${uri}/children/`,
           {...props.params, limit: 5}
         )
       )
@@ -136,7 +136,9 @@ export const RecordsChild = props => {
     props.setActiveRecords(item.uri)
   }
 
-  /* Scroll item matching currentUrl into view and focus on it */
+  /* Scroll item matching currentUrl into view and focus on it
+  * 1. The dependency array is empty so this will only execute once.
+  */
   useEffect(() => {
     if (targetElementLoaded) {
       const targetElement = document.getElementById(`accordion__heading-${currentUrl}`)
@@ -144,7 +146,7 @@ export const RecordsChild = props => {
       targetElement.focus()
       setTimeout(() => setIsScrolled(true), 3000)
     }
-  }, [currentUrl, isBeforeVisible, setIsScrolled, targetElementLoaded])
+  }, []) /* 1 */
 
   /* Set isLoading to false once loading has completed */
   useEffect(() => {
@@ -162,7 +164,7 @@ export const RecordsChild = props => {
     if (isParentCollection) {
       setIsExpanded(true)
       if (targetIsDirectDescendant) { /* 1 */
-        getPageBefore(itemUri, params, pageSize)
+        getPageBefore(itemUri, params, pageSize, true)
         getPageAfter(itemUri, params, pageSize)
       } else { /* 2 */
         getPages(appendParams(itemUri, {...params, limit: pageSize}))
@@ -172,7 +174,7 @@ export const RecordsChild = props => {
 
   /* Load previous page if available when loading trigger is visible */
   useEffect(() => {
-    isScrolled && isBeforeVisible && getPageBefore(itemUri, params, pageSize, true)
+    isScrolled && isBeforeVisible && getPageBefore(itemUri, params, pageSize)
   }, [isBeforeVisible, isScrolled, itemUri, offsetBefore, params])
 
   /* Load next page if available when loading trigger is visible */

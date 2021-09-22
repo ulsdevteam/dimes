@@ -38,7 +38,7 @@ class PageRecords extends Component {
       this.setState({...this.props.location.state})
       this.setState({ isItemLoading: false });
     }
-    const itemUrl = `${process.env.REACT_APP_ARGO_BASEURL}/${this.props.match.params.type}/${this.props.match.params.id}`
+    const itemUrl = `${process.env.REACT_APP_ARGO_BASEURL}/${this.props.match.params.type}/${this.props.match.params.id}/`
     const params = queryString.parse(this.props.location.search, {parseBooleans: true});
     this.setState({ params: params })
     this.getItemData(itemUrl, params, true)
@@ -67,7 +67,7 @@ class PageRecords extends Component {
               })
           }
           if (initialLoad) {
-            this.getPage(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${res.data.group.identifier}/children`, childrenParams))
+            this.getPage(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${res.data.group.identifier}/children/`, childrenParams))
           }
           this.setState({ updateMessage: `Details under heading 1 have been updated to describe the selected records titled ${res.data.title}`})
           this.getMinimap(res.data.group.identifier, params)
@@ -78,7 +78,7 @@ class PageRecords extends Component {
           this.setUrl(appendParams(itemPath, this.state.params))
         })
     axios
-        .get(appendParams(`${itemUrl}/ancestors`, params))
+        .get(appendParams(`${itemUrl}ancestors/`, params))
         .then(res => {
           this.setState({ ancestors: res.data })
           if (initialLoad) {
@@ -104,7 +104,7 @@ class PageRecords extends Component {
 
   getMinimap = (collectionUri, params) => {
     axios
-        .get(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${collectionUri}/minimap`, params))
+        .get(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${collectionUri}/minimap/`, params))
         .then(res => this.setState({ minimap: res.data }))
         .catch(e => console.log(e))
         .then(() => this.setState({isMinimapLoading: false}))

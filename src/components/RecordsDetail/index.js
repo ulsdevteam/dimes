@@ -140,7 +140,7 @@ const RecordsDetail = props => {
 
   /** Constructs the URL for the 'Back to Search' button */
   const searchUrl = (
-    props.params && props.params.query ? appendParams('/search', props.params) : '/'
+    props.params && props.params.query ? appendParams('/search/', props.params) : '/'
   )
 
   /** Parses an item's identifier from its URI */
