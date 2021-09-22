@@ -142,7 +142,7 @@ export const RecordsChild = props => {
       const targetElement = document.getElementById(`accordion__heading-${currentUrl}`)
       targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
       targetElement.focus()
-      setTimeout(() => {console.log(isBeforeVisible);setIsScrolled(true)}, 3000)
+      setTimeout(() => setIsScrolled(true), 3000)
     }
   }, [currentUrl, isBeforeVisible, setIsScrolled, targetElementLoaded])
 

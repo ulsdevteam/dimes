@@ -24,7 +24,6 @@ const Minimap = ({ data, isLoading, params }) => {
     const hits = data.hits && data.hits.filter(h => (h.index <= b.end && b.start < h.index)).sort((a, b) => a.index - b.index)
     const rowClass = hits.filter(h => h.online).length ? 'minimap__digital-hit' : 'minimap__hit'
     const hitTitles = hits.map(h => h.title).join(', ')
-    hits.length && console.log(hits)
     return (
       hits.length ?
       <a
