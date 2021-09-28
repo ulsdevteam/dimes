@@ -1,4 +1,4 @@
-import React, { useEffect, createRef, useState } from 'react'
+import React, { useEffect, createRef, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
 import {
@@ -34,6 +34,7 @@ export const RecordsChild = props => {
   const [children, setChildren] = useState([])
   const [childCount, setChildCount] = useState(0)
   const [isExpanded, setIsExpanded] = useState(false)
+  const [isLoadingBefore, setIsLoadingBefore] = useState(false)
   const [isSaved, setIsSaved] = useState(false)
   const [offsetAfter, setOffsetAfter] = useState(props.offsetAfter)
   const [offsetBefore, setOffsetBefore] = useState(props.offsetBefore)
@@ -71,26 +72,27 @@ export const RecordsChild = props => {
   *   of the preceding items, otherwise get the full page.
   */
   const getPageBefore = (uri, params, pageSize, isInitialLoad=false) => {
-    if (offsetBefore == 0) { return }
+    if (!offsetBefore) { return }
+    setIsLoadingBefore(true)
     const updatedParams = {
       ...params,
       offset: offsetBefore >= pageSize ? isInitialLoad ? offsetBefore - (pageSize - 1) : offsetBefore - pageSize : 0, /* 1 */
-      limit: offsetBefore >= pageSize ? pageSize : offsetBefore > 0 ? offsetBefore : 0 /* 2 */
+      limit: offsetBefore >= pageSize ? pageSize : offsetBefore > 0 ? isInitialLoad ? offsetBefore + 1 : offsetBefore : 0 /* 2 */
     }
+    const pastScroll = document.documentElement.scrollHeight
     axios
         .get(appendParams(uri, updatedParams))
         .then(res => {
           setChildren(children => res.data.results.concat(children))
-          process.nextTick(() => {
-            if (!isInitialLoad) {
-              // TODO: get scroll height of newly added elements
-              // document.documentElement.scrollTop = document.documentElement.scrollTop + 900
-            }
-          })
+          if (!isInitialLoad) {
+            const currentScroll = document.documentElement.scrollHeight - pastScroll
+            document.documentElement.scrollTop = document.documentElement.scrollTop + currentScroll
+          }
           setOffsetBefore(updatedParams.offset)
         }
       )
       .catch(err => console.log(err))
+      .then(res => setIsLoadingBefore(false))
   }
 
   /* Fetches the next page after a given offset */
@@ -175,7 +177,7 @@ export const RecordsChild = props => {
 
   /* Load previous page if available when loading trigger is visible */
   useEffect(() => {
-    isScrolled && isBeforeVisible && getPageBefore(itemUri, params, pageSize)
+    isScrolled && isBeforeVisible && !isLoadingBefore && getPageBefore(itemUri, params, pageSize)
   }, [isBeforeVisible, isScrolled, itemUri, offsetBefore, params])
 
   /* Load next page if available when loading trigger is visible */
@@ -255,7 +257,7 @@ export const RecordsChild = props => {
       </AccordionItemHeading>
       {(children.length) ?
         (<AccordionItemPanel>
-          {targetIsDirectDescendant && offsetBefore >= pageSize ? <RecordsChildSkeleton ref={refBefore} /> : null}
+          {targetIsDirectDescendant && offsetBefore > 0 ? <RecordsChildSkeleton ref={refBefore} /> : null}
           <RecordsContentList
             ariaLevel={ariaLevel+1}
             children={children}
