@@ -1,4 +1,4 @@
-import React, { useEffect, createRef, useRef, useState } from 'react'
+import React, { useEffect, createRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
 import {
@@ -70,24 +70,28 @@ export const RecordsChild = props => {
   *   include the offset is adjusted by one to include the target object.
   * 2. If there are fewer preceding items than the size of the page, fetch all
   *   of the preceding items, otherwise get the full page.
+  * 3. Update the HTML element's scrollTop so that the list stays in the same
+  *    location. Temporarily override 'smooth' scroll behavior (set in CSS) so
+  *    that the html element's scrollTop is set instantaneously.
   */
-  const getPageBefore = (uri, params, pageSize, isInitialLoad=false) => {
+  const getPageBefore = (uri, params) => {
     if (!offsetBefore) { return }
     setIsLoadingBefore(true)
     const updatedParams = {
       ...params,
-      offset: offsetBefore >= pageSize ? isInitialLoad ? offsetBefore - (pageSize - 1) : offsetBefore - pageSize : 0, /* 1 */
-      limit: offsetBefore >= pageSize ? pageSize : offsetBefore > 0 ? isInitialLoad ? offsetBefore + 1 : offsetBefore : 0 /* 2 */
+      offset: offsetBefore >= pageSize ? offsetBefore - pageSize : 0, /* 1 */
+      limit: offsetBefore >= pageSize ? pageSize : offsetBefore > 0 ? offsetBefore : 0 /* 2 */
     }
-    const pastScroll = document.documentElement.scrollHeight
+    const wrapperElement = document.getElementsByClassName('container--full-width')[0]
+    const pastScroll = wrapperElement.scrollHeight
     axios
         .get(appendParams(uri, updatedParams))
         .then(res => {
           setChildren(children => res.data.results.concat(children))
-          if (!isInitialLoad) {
-            const currentScroll = document.documentElement.scrollHeight - pastScroll
-            document.documentElement.scrollTop = document.documentElement.scrollTop + currentScroll
-          }
+          const currentScroll = wrapperElement.scrollHeight - pastScroll /* 3 */
+          document.documentElement.style.scrollBehavior = 'auto' /* 3 */
+          document.documentElement.scrollTop = document.documentElement.scrollTop + currentScroll /* 3 */
+          document.documentElement.style.scrollBehavior = '' /* 3 */
           setOffsetBefore(updatedParams.offset)
         }
       )
@@ -95,8 +99,24 @@ export const RecordsChild = props => {
       .then(res => setIsLoadingBefore(false))
   }
 
+  /* Fetches the siblings surrounding the target object */
+  const getInitialSiblings = (uri, params) => {
+    const offset = offsetBefore >= pageSize ? offsetBefore - pageSize : 0
+    const limit = pageSize * 2
+    const updatedParams = { ...params, offset: offset, limit: limit }
+    axios
+        .get(appendParams(uri, updatedParams))
+        .then(res => {
+          setChildCount(res.data.count)
+          setChildren(res.data.results)
+          setOffsetAfter(offset + limit)
+          setOffsetBefore(offset)
+        })
+        .catch(err => console.log(err))
+  }
+
   /* Fetches the next page after a given offset */
-  const getPageAfter = (uri, params, pageSize) => {
+  const getPageAfter = (uri, params) => {
     const updatedParams = {
       ...params,
       offset: offsetAfter,
@@ -105,7 +125,6 @@ export const RecordsChild = props => {
     axios
         .get(appendParams(uri, updatedParams))
         .then(res => {
-          setChildCount(res.data.count)
           setChildren(children => children.concat(res.data.results))
           setOffsetAfter(offsetAfter + pageSize)
         }
@@ -167,8 +186,7 @@ export const RecordsChild = props => {
     if (isParentCollection) {
       setIsExpanded(true)
       if (targetIsDirectDescendant) { /* 1 */
-        getPageBefore(itemUri, params, pageSize, true)
-        getPageAfter(itemUri, params, pageSize)
+        getInitialSiblings(itemUri, params)
       } else { /* 2 */
         getPages(appendParams(itemUri, {...params, limit: pageSize}))
       }
@@ -177,12 +195,12 @@ export const RecordsChild = props => {
 
   /* Load previous page if available when loading trigger is visible */
   useEffect(() => {
-    isScrolled && isBeforeVisible && !isLoadingBefore && getPageBefore(itemUri, params, pageSize)
+    isScrolled && isBeforeVisible && !isLoadingBefore && getPageBefore(itemUri, params)
   }, [isBeforeVisible, isScrolled, itemUri, offsetBefore, params])
 
   /* Load next page if available when loading trigger is visible */
   useEffect(() => {
-    isScrolled && isAfterVisible && getPageAfter(itemUri, params, pageSize)
+    isScrolled && isAfterVisible && getPageAfter(itemUri, params)
   }, [childCount, isAfterVisible, isScrolled, itemUri, offsetAfter, params])
 
   /** Sets isItemSaved state when myListCount changes */
@@ -296,9 +314,10 @@ RecordsChild.propTypes = {
 
 export const RecordsContentList = props => {
 
+  const { ariaLevel, isScrolled, myListCount, offsetAfter, offsetBefore, params, preExpanded,
+          setActiveRecords, setIsLoading, setIsScrolled, toggleInList } = props;
+
   const childList = children => {
-    const { ariaLevel, isScrolled, myListCount, offsetAfter, offsetBefore, params, preExpanded,
-            setActiveRecords, setIsLoading, setIsScrolled, toggleInList } = props;
     return (
       children.map(child => (
         <RecordsChild
