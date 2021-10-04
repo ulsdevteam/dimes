@@ -1,49 +1,60 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { appendParams } from '../Helpers'
 import { MinimapSkeleton } from '../LoadingSkeleton'
 import './styles.scss'
 
-const Minimap = ({ data, isLoading, params }) => {
+/**
+* Minimap component
+* 1. Uses a callback component so container height and width are set once ref resolves.
+* 2. Create the correct number of blank boxes with start and end indexes.
+* 3. Map hits onto blankBoxes array.
+**/
+const Minimap = ({ data, isLoading, params, rowCount=5 }) => {
+  const [containerHeight, setContainerHeight] = useState(0)
+  const [containerWidth, setContainerWidth] = useState(0)
 
-  const containerHeight = document.getElementById('minimap') && document.getElementById('minimap').clientHeight
-  const containerWidth = document.getElementById('minimap') && document.getElementById('minimap').clientWidth
+  const minimapContainer = useCallback(node => { /* 1 */
+    if (node !== null) {
+      setContainerHeight(node.getBoundingClientRect().height);
+      setContainerWidth(node.getBoundingClientRect().width)
+    }
+  }, []);
 
-  const totalBoxes = parseInt(parseInt(containerHeight/13) * parseInt(containerWidth/13))
+  const boxWidthHeight = containerWidth / rowCount
+  const totalBoxes = containerHeight && boxWidthHeight ? parseInt(parseInt(containerHeight) / boxWidthHeight) * rowCount : 0
   const hitsPerBox = data.total / totalBoxes
-  /* Create the correct number of blank boxes with start and end indexes */
-  const blankBoxes = Array(totalBoxes).fill().map((b, idx) => {
+
+  const blankBoxes = Array(totalBoxes).fill().map((b, idx) => { /* 2 */
     const startIndex = hitsPerBox * idx
     const endIndex = hitsPerBox * (idx + 1)
     return ({start: startIndex, end: endIndex})
   })
 
-  /* Take blankBoxes and map hits onto them. */
-  const minimapBoxes = () => blankBoxes.map((b, idx) => {
-    const hits = data.hits && data.hits.filter(h => (h.index <= b.end && b.start < h.index)).sort((a, b) => a.index - b.index)
-    const rowClass = hits.filter(h => h.online).length ? 'minimap__digital-hit' : 'minimap__hit'
-    const hitTitles = hits.map(h => h.title).join(', ')
+  const minimapBoxes = () => blankBoxes.map((b, idx) => {  /* 3 */
+    const areaHits = data.hits && data.hits.filter(h => (h.index <= b.end && b.start < h.index)).sort((a, b) => a.index - b.index)
+    const hitClass = areaHits.filter(h => h.online).length ? 'minimap__digital-hit' : 'minimap__hit'
+    const hitTitles = areaHits.map(h => h.title).join(', ')
     return (
-      hits.length ?
+      areaHits.length ?
       <a
         key={idx}
-        href={appendParams(hits[0].uri, params)}
-        className={classnames('minimap__box', rowClass)}
-        title={`Jump to ${hits.length} ${hits.length === 1 ? 'hit' : 'hits'} in this area: ${hitTitles}`}
-        >
-        <span className='visually-hidden'>{`Jump to ${hits.length} ${hits.length === 1 ? 'hit' : 'hits'} in this area: ${hitTitles}`}</span>
+        href={appendParams(areaHits[0].uri, params)}
+        className={classnames('minimap__box', hitClass)}
+        title={`Jump to ${areaHits.length} ${areaHits.length === 1 ? 'hit' : 'hits'} in this area: ${hitTitles}`} >
+        <span className='visually-hidden'>{`Jump to ${areaHits.length} ${areaHits.length === 1 ? 'hit' : 'hits'} in this area: ${hitTitles}`}</span>
       </a>
       :
       <div
         key={idx}
-        className='minimap__box'
-      ></div>
+        className='minimap__box'>
+    </div>
     )
   })
 
   return (
-    <div id='minimap' className='minimap'>
+    <div className={classnames('minimap', `minimap--${rowCount}-across` )} ref={minimapContainer}>
       {isLoading ? <MinimapSkeleton totalBoxes={totalBoxes} /> : minimapBoxes()}
     </div>
 )}
@@ -51,7 +62,8 @@ const Minimap = ({ data, isLoading, params }) => {
 Minimap.propTypes = {
   data: PropTypes.object.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  params: PropTypes.object.isRequired
+  params: PropTypes.object.isRequired,
+  rowCount: PropTypes.number,
 }
 
 export default Minimap

@@ -1,7 +1,9 @@
 import React from 'react'
-import {render} from 'react-dom'
+import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 import Minimap from '..'
+
+import { minimap } from '../../../__fixtures__/minimap.js'
 
 it('renders props correctly', () => {
   const div = document.createElement('div')
@@ -10,9 +12,9 @@ it('renders props correctly', () => {
   act(() => {
     render(
       <Minimap
-        data={}
+        data={minimap}
         isLoading={false}
-        params={} />, div)
+        params={{}} />, div)
   })
 
 })
