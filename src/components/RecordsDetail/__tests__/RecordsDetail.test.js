@@ -16,7 +16,8 @@ it('renders without crashing', () => {
     item={collectionWithChildHits}
     myListCount={0}
     params={{}}
-    toggleInList={jest.fn()} />, div)
+    toggleInList={jest.fn()}
+    toggleMinimapModal={jest.fn()} />, div)
 })
 
 it('renders without crashing', () => {
@@ -29,5 +30,6 @@ it('renders without crashing', () => {
     item={object}
     myListCount={0}
     params={{}}
-    toggleInList={jest.fn()} />, div)
+    toggleInList={jest.fn()}
+    toggleMinimapModal={jest.fn()} />, div)
 })

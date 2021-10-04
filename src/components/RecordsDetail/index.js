@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import pluralize from 'pluralize'
+import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import Skeleton from 'react-loading-skeleton'
 import {
@@ -9,13 +10,13 @@ import {
     AccordionItemButton,
     AccordionItemPanel,
 } from '../Accordion'
+import Button from '../Button'
 import ListToggleButton from '../ListToggleButton'
 import MaterialIcon from '../MaterialIcon'
 import QueryHighlighter from '../QueryHighlighter'
 import { DetailSkeleton, FoundInItemSkeleton } from '../LoadingSkeleton'
-import { appendParams, dateString, hasAccessOrUse, noteText, noteTextByType } from '../Helpers'
+import { appendParams, dateString, hasAccessOrUse, isDesktop, noteText, noteTextByType } from '../Helpers'
 import { isItemSaved } from '../MyListHelpers'
-import classnames from 'classnames'
 import './styles.scss'
 
 const FoundInItem = ({ className, item, params, topLevel }) => (
@@ -150,6 +151,14 @@ const RecordsDetail = props => {
 
   return (
   <div className={classnames('records__detail', {'hidden': props.isContentShown})}>
+    {isDesktop ? <Button
+      type='button'
+      className='btn--sm btn--transparent btn--minimap-info'
+      handleClick={props.toggleMinimapModal}
+      iconAfter='info'
+      label='about minimap'
+    /> : null
+    }
     <nav className='records__nav'>
       <a href={searchUrl} className='btn btn--back'>
         <MaterialIcon icon='keyboard_arrow_left'/>Back to Search
@@ -275,6 +284,7 @@ RecordsDetail.propTypes = {
   myListCount: PropTypes.number.isRequired,
   params: PropTypes.object.isRequired,
   toggleInList: PropTypes.func.isRequired,
+  toggleMinimapModal: PropTypes.func.isRequired,
 }
 
 export default RecordsDetail;
