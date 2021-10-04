@@ -6,10 +6,12 @@ import queryString from 'query-string'
 import { Helmet } from 'react-helmet'
 import ContextSwitcher from '../ContextSwitcher'
 import Minimap from '../Minimap'
+import MinimapButton from '../MinimapButton'
+import { ModalMinimap, ModalMinimapInfo } from '../ModalMinimap'
 import RecordsContent from '../RecordsContent'
 import RecordsDetail from '../RecordsDetail'
 import PageNotFound from '../PageNotFound'
-import { appendParams, firePageViewEvent, formatBytes } from '../Helpers'
+import { appendParams, firePageViewEvent, formatBytes, isDesktop } from '../Helpers'
 
 class PageRecords extends Component {
   constructor(props) {
@@ -24,6 +26,8 @@ class PageRecords extends Component {
       isContentShown: false,
       isItemLoading: true,
       isMinimapLoading: true,
+      isMinimapModalOpen: false,
+      isMinimapInfoModalOpen: false,
       item: {},
       minimap: {},
       params: {},
@@ -139,6 +143,15 @@ class PageRecords extends Component {
     this.setState({ isContentShown: !this.state.isContentShown })
   }
 
+  toggleMinimapModal = () => {
+    this.setState({ isMinimapModalOpen: !this.state.isMinimapModalOpen })
+  }
+
+  toggleMinimapInfoModal = () => {
+    console.log("here");
+    this.setState({ isMinimapInfoModalOpen: !this.state.isMinimapInfoModalOpen })
+  }
+
   render() {
     const { myListCount, toggleInList } = this.props;
     if (!this.state.found) {
@@ -152,6 +165,7 @@ class PageRecords extends Component {
           <title>{ this.state.item.title }</title>
         </Helmet>
         <div className='container--full-width'>
+          {isDesktop ? null : <MinimapButton toggleMinimapModal={this.toggleMinimapModal}/>}
           <ContextSwitcher
             isContentShown={this.state.isContentShown}
             toggleIsContentShown={this.toggleIsContentShown} />
@@ -164,11 +178,16 @@ class PageRecords extends Component {
             item={this.state.item}
             myListCount={myListCount}
             params={this.state.params}
-            toggleInList={toggleInList} />
-          <Minimap
-            data={this.state.minimap}
-            isLoading={this.state.isMinimapLoading}
-            params={this.state.params} />
+            toggleInList={toggleInList}
+            toggleMinimapModal={this.toggleMinimapInfoModal} />
+          {isDesktop ?
+            <div className='minimap__wrapper'>
+              <Minimap
+                data={this.state.minimap}
+                isLoading={this.state.isMinimapLoading}
+                params={this.state.params} />
+            </div>
+            : null}
           <RecordsContent
             children={this.state.children}
             collection={this.parseCollection()}
@@ -183,6 +202,15 @@ class PageRecords extends Component {
             toggleInList={toggleInList}
             toggleIsLoading={this.toggleIsLoading} />
         </div>
+        <ModalMinimapInfo
+          isOpen={this.state.isMinimapInfoModalOpen}
+          toggleModal={this.toggleMinimapInfoModal} />
+        <ModalMinimap
+          data={this.state.minimap}
+          isLoading={this.state.isMinimapLoading}
+          isOpen={this.state.isMinimapModalOpen}
+          params={this.state.params}
+          toggleModal={this.toggleMinimapModal} />
       </React.Fragment>
     )
   }
