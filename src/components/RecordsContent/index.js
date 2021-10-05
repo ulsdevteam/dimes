@@ -70,7 +70,9 @@ export const RecordsChild = props => {
   *   include the offset is adjusted by one to include the target object.
   * 2. If there are fewer preceding items than the size of the page, fetch all
   *   of the preceding items, otherwise get the full page.
-  * 3. Update the HTML element's scrollTop so that the list stays in the same
+  * 3. If the offset is zero, account for the height of the loading skeleton,
+  *    which will disappear after state is updated.
+  * 4. Update the HTML element's scrollTop so that the list stays in the same
   *    location. Temporarily override 'smooth' scroll behavior (set in CSS) so
   *    that the html element's scrollTop is set instantaneously.
   */
@@ -83,15 +85,16 @@ export const RecordsChild = props => {
       limit: offsetBefore >= pageSize ? pageSize : offsetBefore > 0 ? offsetBefore : 0 /* 2 */
     }
     const wrapperElement = document.getElementsByClassName('container--full-width')[0]
-    const pastScroll = wrapperElement.scrollHeight
+    const loadingSkeletonHeight = refBefore.current.scrollHeight
+    const pastScroll = updatedParams.offset === 0 ? wrapperElement.scrollHeight + loadingSkeletonHeight : wrapperElement.scrollHeight /* 3 */
     axios
         .get(appendParams(uri, updatedParams))
         .then(res => {
           setChildren(children => res.data.results.concat(children))
-          const currentScroll = wrapperElement.scrollHeight - pastScroll /* 3 */
-          document.documentElement.style.scrollBehavior = 'auto' /* 3 */
-          document.documentElement.scrollTop = document.documentElement.scrollTop + currentScroll /* 3 */
-          document.documentElement.style.scrollBehavior = '' /* 3 */
+          const currentScroll = wrapperElement.scrollHeight - pastScroll /* 4 */
+          document.documentElement.style.scrollBehavior = 'auto' /* 4 */
+          document.documentElement.scrollTop = document.documentElement.scrollTop + currentScroll /* 4 */
+          document.documentElement.style.scrollBehavior = '' /* 4 */
           setOffsetBefore(updatedParams.offset)
         }
       )
@@ -99,7 +102,9 @@ export const RecordsChild = props => {
       .then(res => setIsLoadingBefore(false))
   }
 
-  /* Fetches the siblings surrounding the target object */
+  /* Fetches the siblings surrounding the target object, then scrolls the
+  * target object into view and focuses on it.
+   */
   const getInitialSiblings = (uri, params) => {
     const offset = offsetBefore >= pageSize ? offsetBefore - pageSize : 0
     const limit = pageSize * 2
@@ -111,6 +116,10 @@ export const RecordsChild = props => {
           setChildren(res.data.results)
           setOffsetAfter(offset + limit)
           setOffsetBefore(offset)
+          const targetElement = document.getElementById(`accordion__heading-${currentUrl}`)
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
+          targetElement.focus()
+          setTimeout(() => setIsScrolled(true), 3000)
         })
         .catch(err => console.log(err))
   }
@@ -157,18 +166,6 @@ export const RecordsChild = props => {
     setIsSaved(!isSaved)
     props.setActiveRecords(item.uri)
   }
-
-  /* Scroll item matching currentUrl into view and focus on it
-  * 1. The dependency array is empty so this will only execute once.
-  */
-  useEffect(() => {
-    if (targetElementLoaded) {
-      const targetElement = document.getElementById(`accordion__heading-${currentUrl}`)
-      targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      targetElement.focus()
-      setTimeout(() => setIsScrolled(true), 3000)
-    }
-  }, []) /* 1 */
 
   /* Set isLoading to false once loading has completed */
   useEffect(() => {
