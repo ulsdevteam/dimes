@@ -4,7 +4,7 @@ import {
   AgentAttributeSkeleton,
   DetailSkeleton,
   FoundInItemSkeleton,
-  MinimapSkeleton
+  MinimapSkeleton,
   RecordsChildSkeleton,
   RestrictionsSkeleton,
   SearchSkeleton,
