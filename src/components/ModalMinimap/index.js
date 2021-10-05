@@ -12,7 +12,7 @@ export const ModalMinimapInfo = props => (
     appElement={props.appElement ? props.appElement : Modal.setAppElement('#root')}
     isOpen={props.isOpen}
     onRequestClose={props.toggleModal}
-    className='modal-content--minimap'
+    className='modal-content--minimap-info'
     overlayClassName='modal-overlay' >
     <div className='modal-header--minimap'>
       <h2 className='modal-header__title--minimap'>Minimap</h2>

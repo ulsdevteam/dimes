@@ -1,4 +1,4 @@
-.modal-content--minimap {
+.modal-content {
   font-family: $sans-serif-stack;
   position: absolute;
   border: 1px solid $dark-gray;
@@ -6,6 +6,10 @@
   border-radius: 3px;
   overflow: auto;
   outline: none;
+}
+
+.modal-content--minimap {
+  @extend .modal-content;
   top: 60px;
   bottom: 0;
   left: 0;
@@ -15,12 +19,14 @@
     right: 0;
     left: 50%;
   }
-  @include lg-up {
-    top: 80px;
-    left: 10%;
-    right: calc(63% + 20px);
-    bottom: unset;
-  }
+}
+
+.modal-content--minimap-info {
+  @extend .modal-content;
+  top: 80px;
+  left: 10%;
+  right: calc(63% + 20px);
+  bottom: unset;
 }
 
 .modal-header--minimap {
