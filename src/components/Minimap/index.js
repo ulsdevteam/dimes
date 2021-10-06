@@ -44,6 +44,7 @@ const Minimap = ({ data, isLoading, params, rowCount=5 }) => {
         className={classnames('minimap__box', hitClass)}
         title={`Jump to ${areaHits.length} ${areaHits.length === 1 ? 'hit' : 'hits'} in this area: ${hitTitles}`} >
         <span className='visually-hidden'>{`Jump to ${areaHits.length} ${areaHits.length === 1 ? 'hit' : 'hits'} in this area: ${hitTitles}`}</span>
+        <span class="material-icon" aria-hidden="true">check</span>
       </a>
       :
       <div
