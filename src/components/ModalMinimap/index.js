@@ -5,7 +5,11 @@ import MaterialIcon from '../MaterialIcon'
 import Minimap from '../Minimap'
 import './styles.scss'
 
-const minimapAboutText = 'Jump to an area with hits by clicking on an active square'
+const minimapAboutText = <>
+  <p>Jump to an area containing matches by clicking on an active square.</p>
+  <p>In the minimap diagram, each square represents an area of this collection.
+  Colored squares represent areas that contain one or more matches for your search.</p>
+</>
 
 export const ModalMinimapInfo = props => (
   <Modal
@@ -21,7 +25,7 @@ export const ModalMinimapInfo = props => (
       </button>
     </div>
     <div className='modal-body--minimap'>
-      <p>{minimapAboutText}</p>
+      {minimapAboutText}
     </div>
   </Modal>
 )
@@ -50,7 +54,7 @@ export const ModalMinimap = props => (
       </button>
     </div>
     <div className='modal-body--minimap'>
-      <p>{minimapAboutText}</p>
+      {minimapAboutText}
       <div className='minimap__wrapper--modal'>
         <Minimap
           data={props.data}
