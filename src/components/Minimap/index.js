@@ -11,7 +11,7 @@ import './styles.scss'
 * 2. Create the correct number of blank boxes with start and end indexes.
 * 3. Map hits onto blankBoxes array.
 **/
-const Minimap = ({ data, isLoading, params, rowCount=5 }) => {
+const Minimap = ({ data, isLoading, params, rowCount=4 }) => {
   const [containerHeight, setContainerHeight] = useState(0)
   const [containerWidth, setContainerWidth] = useState(0)
 
@@ -34,17 +34,20 @@ const Minimap = ({ data, isLoading, params, rowCount=5 }) => {
 
   const minimapBoxes = () => blankBoxes.map((b, idx) => {  /* 3 */
     const areaHits = data.hits && data.hits.filter(h => (h.index <= b.end && b.start < h.index)).sort((a, b) => a.index - b.index)
-    const hitClass = areaHits.filter(h => h.online).length ? 'minimap__digital-hit' : 'minimap__hit'
-    const hitTitles = areaHits.map(h => h.title).join(', ')
+    const hitClass = areaHits.filter(h => h.online).length ? 'minimap__digital-hit' : 'minimap__record-hit'
+    const hitTitles = areaHits.map(h => h.title).join('\n')
+    const currentUrl = window.location.pathname.endsWith('/') ? window.location.pathname.slice(0, -1) : window.location.pathname
+    const areaUrl = areaHits.length && areaHits[0].uri
+    const isAreaActive = areaUrl === currentUrl
     return (
       areaHits.length ?
       <a
         key={idx}
-        href={appendParams(areaHits[0].uri, params)}
-        className={classnames('minimap__box', hitClass)}
+        href={appendParams(areaUrl, params)}
+        className={classnames('minimap__box', hitClass, { [`${hitClass}--active`] : isAreaActive})}
         title={`Jump to ${areaHits.length} ${areaHits.length === 1 ? 'hit' : 'hits'} in this area: ${hitTitles}`} >
         <span className='visually-hidden'>{`Jump to ${areaHits.length} ${areaHits.length === 1 ? 'hit' : 'hits'} in this area: ${hitTitles}`}</span>
-        <span class="material-icon" aria-hidden="true">check</span>
+        <span className="material-icons" aria-hidden="true">check</span>
       </a>
       :
       <div
