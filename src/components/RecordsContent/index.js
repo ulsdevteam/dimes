@@ -102,9 +102,7 @@ export const RecordsChild = props => {
       .then(res => setIsLoadingBefore(false))
   }
 
-  /* Fetches the siblings surrounding the target object, then scrolls the
-  * target object into view and focuses on it.
-   */
+  /* Fetches the siblings surrounding the target object */
   const getInitialSiblings = (uri, params) => {
     const offset = offsetBefore >= pageSize ? offsetBefore - pageSize : 0
     const limit = pageSize * 2
@@ -116,10 +114,6 @@ export const RecordsChild = props => {
           setChildren(res.data.results)
           setOffsetAfter(offset + limit)
           setOffsetBefore(offset)
-          const targetElement = document.getElementById(`accordion__heading-${currentUrl}`)
-          targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
-          targetElement.focus()
-          setTimeout(() => setIsScrolled(true), 3000)
         })
         .catch(err => console.log(err))
   }
@@ -204,6 +198,21 @@ export const RecordsChild = props => {
   useEffect(() => {
     setIsSaved(isItemSaved(item))
   }, [item, myListCount])
+
+  /* Scroll item matching currentUrl into view and focus on it
+  * 1. The dependency array is empty so this will only execute once.
+  * 2. setTimeout is used so the loading skeleton does not cause scroll position
+  *    to be incorrectly calculated.
+  */
+  useEffect(() => {
+    if (targetElementLoaded) {
+      setTimeout(() => {
+        const targetElement = document.getElementById(`accordion__heading-${currentUrl}`)
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' }) && targetElement.focus()
+      }, 50) /* 2 */
+      setTimeout(() => setIsScrolled(true), 3000)
+    }
+  }, []) /* 1 */
 
   return (item.type === 'object' ?
     (<div className={classnames('child__list-item', `child__list-item--${item.type}`)} >
