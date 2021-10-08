@@ -74,14 +74,14 @@ $grid-col-count: 20;
     border: 3px solid darken($color, 22%);
     color: $color;
     outline: none;
-    text-decoration: none; // added
+    text-decoration: none;
 
     @include lg-up {
       border: 2px solid darken($color, 22%);
     }
   }
 
-  .material-icon {
+  .material-icons { // class name changed
     font-size: 18px; /* 2 */
   }
 
