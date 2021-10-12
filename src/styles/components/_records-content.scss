@@ -8,7 +8,7 @@
   padding: 40px 30px;
   box-sizing: border-box;
   @include lg-up {
-    width: calc(63% - $minimap-width);
+    width: calc(63% - #{$minimap-width});
   }
   &.hidden {
     @include show-on-lg-up;
@@ -33,7 +33,7 @@
   @include lg-up {
     top: 60px;
     bottom: 0;
-    left: calc(37% + $minimap-width);
+    left: calc(37% + #{$minimap-width});
   }
 }
 
