@@ -163,7 +163,7 @@ export const RecordsChild = props => {
 
   /* Set isLoading to false once loading has completed */
   useEffect(() => {
-    if (targetElementLoaded || preExpanded.length == 1) {
+    if (targetElementLoaded || preExpanded.length === 1) {
       setIsLoading(false)
     }
   }, [targetElementLoaded, setIsLoading, setIsScrolled, preExpanded])

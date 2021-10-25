@@ -29,7 +29,7 @@ class PageRecords extends Component {
       isMinimapModalOpen: false,
       isMinimapInfoModalOpen: false,
       item: {},
-      minimap: {},
+      minimap: {"hits": []},
       params: {},
       preExpanded: [],
       updateMessage: ""
@@ -107,11 +107,15 @@ class PageRecords extends Component {
   }
 
   getMinimap = (collectionUri, params) => {
-    axios
+    if (Object.keys(params).length === 0) {
+      this.setState({ isMinimapLoading: false })
+    } else {
+      axios
         .get(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${collectionUri}/minimap/`, params))
         .then(res => this.setState({ minimap: res.data }))
         .catch(e => console.log(e))
-        .then(() => this.setState({isMinimapLoading: false}))
+        .then(() => this.setState({ isMinimapLoading: false }))
+      }
   }
 
   /** Constructs a preExpanded list based on an item's ancestors */
