@@ -143,7 +143,7 @@ export const RecordsChild = props => {
       getPages(
         appendParams(
           `${process.env.REACT_APP_ARGO_BASEURL}${uri}/children/`,
-          {...props.params, limit: 5}
+          {...props.params, limit: pageSize}
         )
       )
     }
@@ -163,7 +163,7 @@ export const RecordsChild = props => {
 
   /* Set isLoading to false once loading has completed */
   useEffect(() => {
-    if (targetElementLoaded || preExpanded.length < 2) {
+    if (targetElementLoaded || preExpanded.length == 1) {
       setIsLoading(false)
     }
   }, [targetElementLoaded, setIsLoading, setIsScrolled, preExpanded])
