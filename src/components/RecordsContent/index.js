@@ -187,7 +187,7 @@ export const RecordsChild = props => {
   /* Load previous page if available when loading trigger is visible */
   useEffect(() => {
     isScrolled && isBeforeVisible && !isLoadingBefore && getPageBefore(itemUri, params)
-  }, [isBeforeVisible, isScrolled, itemUri, offsetBefore, params])
+  }, [isBeforeVisible, isLoadingBefore, isScrolled, itemUri, offsetBefore, params])
 
   /* Load next page if available when loading trigger is visible */
   useEffect(() => {
