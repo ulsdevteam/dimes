@@ -86,10 +86,12 @@ const PageDigitalObject = props => {
     ]
   }
 
+  const splitPath = document.referrer && document.referrer.split("?")
+  const params = (splitPath && splitPath.length === 2 ) ? `?{splitPath[1]}` : null
+
   /** Constructs url for Back to Item Details link */
   const itemUrl = (
-    document.referrer && document.referrer.includes(`/${props.match.params.type}/${props.match.params.id}`) && !document.referrer.endsWith('/view') ?
-      document.referrer : `/${props.match.params.type}/${props.match.params.id}`
+    params ? `/${props.match.params.type}/${props.match.params.id}/${params}` : `/${props.match.params.type}/${props.match.params.id}`
   )
 
   /** Custom top bar which includes additional classes  so we can style things as we want to **/
