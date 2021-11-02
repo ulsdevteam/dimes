@@ -32,12 +32,17 @@ const Minimap = ({ data, isLoading, params, rowCount=4 }) => {
     return ({start: startIndex, end: endIndex})
   })
 
+  /* Gets the best URL for a minimap area */
+  const getAreaUrl = (areaHits) => (
+    areaHits.find(h => h.uri.includes("objects")) ? areaHits.find(h => h.uri.includes("objects")).uri : areaHits[0].uri
+  )
+
   const minimapBoxes = () => blankBoxes.map((b, idx) => {  /* 3 */
     const areaHits = data.hits && data.hits.filter(h => (h.index <= b.end && b.start < h.index)).sort((a, b) => a.index - b.index)
     const hitClass = areaHits.filter(h => h.online).length ? 'minimap__digital-hit' : 'minimap__record-hit'
     const hitTitles = areaHits.map(h => h.title).join('\n')
     const currentUrl = window.location.pathname.endsWith('/') ? window.location.pathname.slice(0, -1) : window.location.pathname
-    const areaUrl = areaHits.length && areaHits[0].uri
+    const areaUrl = areaHits.length && getAreaUrl(areaHits)
     const isAreaActive = areaUrl === currentUrl
     return (
       areaHits.length ?
