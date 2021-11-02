@@ -45,7 +45,7 @@ it('renders props correctly', async () => {
     await render(
       <LiveAnnouncer>
         <PageRecords
-          history={{ push: jest.fn() }}
+          history={{ push: jest.fn(), listen: jest.fn() }}
           match={{params: {type: "objects", id: "oVDNM8UtE3ox9fiESd99Wy"}}}
           location={{search: ""}}
           myListCount={1}
