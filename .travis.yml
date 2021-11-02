@@ -6,8 +6,6 @@ sudo: required
 env:
   global:
     - APPLICATION_NAME: dimes
-node_js:
-  - "stable"
 cache:
   directories:
     - node_modules
