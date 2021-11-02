@@ -35,20 +35,20 @@ class PageRecords extends Component {
       preExpanded: [],
       updateMessage: ""
     }
+  }
+
+  componentDidMount() {
+    this.loadData()
     /** Handle navigation using browser back button
     * 1. Remove children to prevent creation of duplicates.
     * 2. Call with false setUrl parameter.
     */
-    this.backListener = this.props.history.listen((location, action) => {
+    this.props.history.listen((location, action) => {
       if (action === "POP") {
         this.setState({children: []}) /* 1 */
         this.loadData(false) /* 2 */
       }
     });
-  }
-
-  componentDidMount() {
-    this.loadData()
   };
 
   /** Get and set item data
