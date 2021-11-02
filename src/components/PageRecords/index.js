@@ -54,17 +54,16 @@ class PageRecords extends Component {
   /** Get and set item data
   * 1. Don't add URL to history if this action is triggered by the browser back button
   */
-  loadData = (setUrl = true) => {
+  loadData = (shouldSetUrl = true) => {
     const itemPath = `/${this.props.match.params.type}/${this.props.match.params.id}/`
     const itemUrl = `${process.env.REACT_APP_ARGO_BASEURL}${itemPath}`
     const params = queryString.parse(this.props.location.search, {parseBooleans: true});
     this.setState({ params: params })
-    this.getItemData(itemUrl, params, true)
-    setUrl && this.setUrl(appendParams(itemPath, this.state.params)) /* 1 */
+    this.getItemData(itemUrl, params, true, shouldSetUrl) /* 1 */
   }
 
   /** Fetches item data, including ancestors and collection children */
-  getItemData = (itemUrl, params, initialLoad = false) => {
+  getItemData = (itemUrl, params, initialLoad = false, shouldSetUrl) => {
     this.setState({isItemLoading: true})
     this.setState({isAncestorsLoading: true})
     this.setState({ downloadSize: '' })
@@ -94,6 +93,7 @@ class PageRecords extends Component {
         .catch(err => this.setState({ found: false }))
         .then(res => {
           this.setState({isItemLoading: false})
+          shouldSetUrl && this.setUrl(appendParams(itemPath, this.state.params))
         })
     axios
         .get(appendParams(`${itemUrl}ancestors/`, params))
