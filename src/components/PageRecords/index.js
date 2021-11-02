@@ -3,6 +3,7 @@ import { LiveMessage } from 'react-aria-live'
 import PropTypes from 'prop-types'
 import axios from 'axios'
 import queryString from 'query-string'
+import { browserHistory } from 'react-router';
 import { Helmet } from 'react-helmet'
 import ContextSwitcher from '../ContextSwitcher'
 import Minimap from '../Minimap'
@@ -34,19 +35,33 @@ class PageRecords extends Component {
       preExpanded: [],
       updateMessage: ""
     }
+    /** Handle navigation using browser back button
+    * 1. Remove children to prevent creation of duplicates.
+    * 2. Call with false setUrl parameter.
+    */
+    this.backListener = this.props.history.listen((location, action) => {
+      if (action === "POP") {
+        this.setState({children: []}) /* 1 */
+        this.loadData(false) /* 2 */
+      }
+    });
   }
 
-  /** Handle navigation using browser back button, get and set item data */
   componentDidMount() {
-    window.onpopstate = () => {
-      this.setState({...this.props.location.state})
-      this.setState({ isItemLoading: false });
-    }
-    const itemUrl = `${process.env.REACT_APP_ARGO_BASEURL}/${this.props.match.params.type}/${this.props.match.params.id}/`
+    this.loadData()
+  };
+
+  /** Get and set item data
+  * 1. Don't add URL to history if this action is triggered by the browser back button
+  */
+  loadData = (setUrl = true) => {
+    const itemPath = `/${this.props.match.params.type}/${this.props.match.params.id}/`
+    const itemUrl = `${process.env.REACT_APP_ARGO_BASEURL}${itemPath}`
     const params = queryString.parse(this.props.location.search, {parseBooleans: true});
     this.setState({ params: params })
     this.getItemData(itemUrl, params, true)
-  };
+    setUrl && this.setUrl(appendParams(itemPath, this.state.params)) /* 1 */
+  }
 
   /** Fetches item data, including ancestors and collection children */
   getItemData = (itemUrl, params, initialLoad = false) => {
@@ -77,9 +92,8 @@ class PageRecords extends Component {
           this.getMinimap(res.data.group.identifier, params)
         })
         .catch(err => this.setState({ found: false }))
-        .then(() => {
+        .then(res => {
           this.setState({isItemLoading: false})
-          this.setUrl(appendParams(itemPath, this.state.params))
         })
     axios
         .get(appendParams(`${itemUrl}ancestors/`, params))
@@ -134,6 +148,7 @@ class PageRecords extends Component {
     if (uri !== this.state.item.uri) {
       const itemUrl = `${process.env.REACT_APP_ARGO_BASEURL}${uri}/`
       this.getItemData(itemUrl, this.state.params)
+      this.setUrl(uri)
     }
   }
 
