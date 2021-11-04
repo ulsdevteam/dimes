@@ -38,7 +38,7 @@ export const RecordsChild = props => {
   const [isSaved, setIsSaved] = useState(false)
   const [offsetAfter, setOffsetAfter] = useState(props.offsetAfter)
   const [offsetBefore, setOffsetBefore] = useState(props.offsetBefore)
-  const currentUrl = window.location.pathname.endsWith('/') ? window.location.pathname.slice(0, -1) : window.location.pathname
+  const currentUrl = window.location.pathname
   const itemUri = `${process.env.REACT_APP_ARGO_BASEURL}${item.uri}/children/`
   const query = item.hit_count ? params.query : null
   const pageSize = 5
