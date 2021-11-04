@@ -38,7 +38,7 @@ class PageRecords extends Component {
   }
 
   componentDidMount() {
-    this.loadData()
+    this.loadData(false)
     /** Handle navigation using browser back button
     * 1. Remove children to prevent creation of duplicates.
     * 2. Call with false setUrl parameter.
