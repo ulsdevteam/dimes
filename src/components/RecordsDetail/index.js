@@ -146,7 +146,7 @@ const RecordsDetail = props => {
 
   /** Parses an item's identifier from its URI */
   const identifier = (
-    props.item.uri && props.item.uri.split('/')[props.item.uri.split('/').length - 1]
+    props.item.uri && props.item.uri.split('/')[props.item.uri.split('/').length - 2]
   )
 
   return (

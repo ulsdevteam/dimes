@@ -76,7 +76,7 @@ class PageRecords extends Component {
           this.setState({ item: res.data })
           if (res.data.online) {
             axios
-              .head(`${process.env.REACT_APP_S3_BASEURL}/pdfs/${res.data.uri.split('/').pop()}`)
+              .head(`${process.env.REACT_APP_S3_BASEURL}/pdfs/${this.props.match.params.id}`)
               .then(res => {
                 this.setState({ downloadSize: formatBytes(res.headers['content-length']) })
               })
