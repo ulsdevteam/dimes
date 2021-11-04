@@ -175,7 +175,7 @@ const RecordsDetail = props => {
         {props.item.online &&
           <>
           <a className='btn btn-launch--detail'
-            href={`${props.item.uri}/view`}>View Online <MaterialIcon icon='visibility' /></a>
+            href={`${props.item.uri}view`}>View Online <MaterialIcon icon='visibility' /></a>
           <a className='btn btn-download--detail'
             href={`${process.env.REACT_APP_S3_BASEURL}/pdfs/${identifier}`}
             target='_blank'
