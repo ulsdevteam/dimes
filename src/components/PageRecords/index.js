@@ -146,7 +146,7 @@ class PageRecords extends Component {
   /** Updates state with item found at URL. */
   setActiveRecords = uri => {
     if (uri !== this.state.item.uri) {
-      const itemUrl = `${process.env.REACT_APP_ARGO_BASEURL}${uri}/`
+      const itemUrl = `${process.env.REACT_APP_ARGO_BASEURL}${uri}`
       this.getItemData(itemUrl, this.state.params, false, true)
     }
   }
