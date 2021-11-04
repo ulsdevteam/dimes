@@ -87,7 +87,7 @@ const PageDigitalObject = props => {
   }
 
   const splitPath = document.referrer && document.referrer.split("?")
-  const params = (splitPath && splitPath.length === 2 ) ? `?{splitPath[1]}` : null
+  const params = (splitPath && splitPath.length === 2 ) ? `?${splitPath[1]}` : null
 
   /** Constructs url for Back to Item Details link */
   const itemUrl = (
