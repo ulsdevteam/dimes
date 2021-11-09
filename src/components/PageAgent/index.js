@@ -3,12 +3,14 @@ import axios from 'axios'
 import queryString from 'query-string'
 import { Helmet } from 'react-helmet'
 import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 import PageNotFound from '../PageNotFound'
 import { AgentAttributeSkeleton, SearchSkeleton } from '../LoadingSkeleton'
 import TileList from '../Tile'
 import AgentAttributeList from '../AgentAttribute'
 import '../Button/styles.scss'
 import { appendParams, firePageViewEvent } from '../Helpers'
+import './styles.scss'
 
 const AgentDescription = ({ attributes }) => (
   attributes.length ?
@@ -106,7 +108,7 @@ class PageAgent extends Component {
           <title>{ this.state.agent.title }</title>
         </Helmet>
         <div className='container agent'>
-          <nav>
+          <nav className="agent__nav">
             <a href={appendParams('/search', this.state.params)} className='btn btn--back'>
               <span className='material-icons'>keyboard_arrow_left</span>Back to Search
             </a>

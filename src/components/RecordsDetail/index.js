@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import pluralize from 'pluralize'
 import PropTypes from 'prop-types'
 import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 import {
     Accordion,
     AccordionItem,
