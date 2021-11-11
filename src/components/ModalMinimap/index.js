@@ -6,9 +6,16 @@ import Minimap from '../Minimap'
 import './styles.scss'
 
 const minimapAboutText = <>
-  <p>Jump to an area containing matches by clicking on an active square.</p>
-  <p>In the minimap diagram, each square represents an area of this collection.
-  Colored squares represent areas that contain one or more matches for your search.</p>
+  <p>Jump to a part of the collection containing matches by clicking on an active square.</p>
+  <p>In the minimap diagram, each square represents an part of this collection.
+  Colored squares represent parts that contain one or more matches for your search.</p>
+</>
+
+const minimapIntroText = <>
+  <p>The minimap is a new feature that allows you to quickly jump to hits in a
+  collection by clicking on an active square.</p>
+  <p>In the minimap diagram, each square represents an part of this collection.
+  Colored squares represent parts that contain one or more matches for your search.</p>
 </>
 
 export const ModalMinimapInfo = props => (
@@ -19,19 +26,20 @@ export const ModalMinimapInfo = props => (
     className='modal-content--minimap-info'
     overlayClassName='modal-overlay' >
     <div className='modal-header--minimap'>
-      <h2 className='modal-header__title--minimap'>Minimap</h2>
+      <h2 className='modal-header__title--minimap'>{ props.hasSeenMinimapIntro ? 'Minimap' : 'Introducing the Minimap' }</h2>
       <button className='modal-header__button' aria-label='Close' onClick={props.toggleModal}>
         <MaterialIcon icon='close' />
       </button>
     </div>
     <div className='modal-body--minimap'>
-      {minimapAboutText}
+      {props.hasSeenMinimapIntro ? minimapAboutText : minimapIntroText}
     </div>
   </Modal>
 )
 
 ModalMinimapInfo.propTypes = {
   appElement: PropTypes.object,
+  hasSeenMinimapIntro: PropTypes.bool.isRequired,
   isOpen: PropTypes.bool.isRequired,
   toggleModal: PropTypes.func.isRequired
 }
