@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import axios from 'axios'
 import queryString from 'query-string'
 import { browserHistory } from 'react-router';
+import classnames from 'classnames'
 import { Helmet } from 'react-helmet'
 import ContextSwitcher from '../ContextSwitcher'
 import Minimap from '../Minimap'
@@ -22,6 +23,7 @@ class PageRecords extends Component {
       children: [],
       downloadSize: "",
       found: true,
+      hasSeenMinimapIntro: true,
       isAncestorsLoading: true,
       isChildrenLoading: true,
       isContentShown: false,
@@ -49,6 +51,12 @@ class PageRecords extends Component {
         this.loadData(false) /* 2 */
       }
     });
+    this.setState(
+      {
+        hasSeenMinimapIntro: !!localStorage.getItem(`${process.env.REACT_APP_MINIMAP_KEY}`),
+        isMinimapInfoModalOpen: !(!!localStorage.getItem(`${process.env.REACT_APP_MINIMAP_KEY}`))
+      }
+    )
   };
 
   /** Get and set item data
@@ -161,13 +169,20 @@ class PageRecords extends Component {
     this.setState({ isContentShown: !this.state.isContentShown })
   }
 
+  /** Show or hide the Minimap modal (only used on mobile) */
   toggleMinimapModal = () => {
     this.setState({ isMinimapModalOpen: !this.state.isMinimapModalOpen })
   }
 
+  /** Show or hide the Minimap Information modal
+  * 1. Set localStorage variable once user interacts with the modal
+  */
   toggleMinimapInfoModal = () => {
-    console.log("here");
+    console.log(this.state);
     this.setState({ isMinimapInfoModalOpen: !this.state.isMinimapInfoModalOpen })
+    !(!!localStorage.getItem(`${process.env.REACT_APP_MINIMAP_KEY}`)) &&
+      localStorage.setItem(`${process.env.REACT_APP_MINIMAP_KEY}`, 1) &&  /* 1 */
+      this.setState({ hasSeenMinimapIntro: true })
   }
 
   render() {
@@ -199,7 +214,7 @@ class PageRecords extends Component {
             toggleInList={toggleInList}
             toggleMinimapModal={this.toggleMinimapInfoModal} />
           {isDesktop ?
-            <div className='minimap__wrapper'>
+            <div className={classnames('minimap__wrapper', {'bring-forward': !this.state.hasSeenMinimapIntro})}>
               <Minimap
                 data={this.state.minimap}
                 isLoading={this.state.isMinimapLoading}
@@ -222,7 +237,8 @@ class PageRecords extends Component {
         </div>
         <ModalMinimapInfo
           isOpen={this.state.isMinimapInfoModalOpen}
-          toggleModal={this.toggleMinimapInfoModal} />
+          toggleModal={this.toggleMinimapInfoModal}
+          hasSeenMinimapIntro={this.state.hasSeenMinimapIntro} />
         <ModalMinimap
           data={this.state.minimap}
           isLoading={this.state.isMinimapLoading}
