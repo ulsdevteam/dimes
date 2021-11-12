@@ -7,14 +7,14 @@ import './styles.scss'
 
 const minimapAboutText = <>
   <p>Jump to a part of the collection containing matches by clicking on an active square.</p>
-  <p>In the minimap diagram, each square represents an part of this collection.
+  <p>In the minimap diagram, each square represents part of this collection.
   Colored squares represent parts that contain one or more matches for your search.</p>
 </>
 
 const minimapIntroText = <>
-  <p>The minimap is a new feature that allows you to quickly jump to hits in a
+  <p>The minimap is a new feature that allows you to quickly jump to search matches in a
   collection by clicking on an active square.</p>
-  <p>In the minimap diagram, each square represents an part of this collection.
+  <p>In the minimap diagram, each square represents part of this collection.
   Colored squares represent parts that contain one or more matches for your search.</p>
 </>
 
