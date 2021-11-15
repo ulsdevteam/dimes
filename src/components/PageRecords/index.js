@@ -3,7 +3,6 @@ import { LiveMessage } from 'react-aria-live'
 import PropTypes from 'prop-types'
 import axios from 'axios'
 import queryString from 'query-string'
-import { browserHistory } from 'react-router';
 import classnames from 'classnames'
 import { Helmet } from 'react-helmet'
 import ContextSwitcher from '../ContextSwitcher'
