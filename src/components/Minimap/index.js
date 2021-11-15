@@ -63,9 +63,12 @@ const Minimap = ({ data, isLoading, params, rowCount=4 }) => {
   })
 
   return (
-    <div className={classnames('minimap', `minimap--${rowCount}-across` )} ref={minimapContainer}>
-      {isLoading ? <MinimapSkeleton totalBoxes={totalBoxes} /> : minimapBoxes()}
-    </div>
+    <>
+      <h2 className="visually-hidden">Minimap</h2>
+      <nav className={classnames('minimap', `minimap--${rowCount}-across` )} ref={minimapContainer} aria-label="Minimap">
+        {isLoading ? <MinimapSkeleton totalBoxes={totalBoxes} /> : minimapBoxes()}
+      </nav>
+    </>
 )}
 
 Minimap.propTypes = {
