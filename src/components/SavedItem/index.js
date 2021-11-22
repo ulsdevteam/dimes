@@ -19,7 +19,7 @@ const SavedItem = props => (
       <div className='saved-item__buttons'>
         {props.online &&
           <a className='btn btn--blue btn--sm'
-            href={`${props.uri}view`}>View Online <MaterialIcon icon='visibility' /></a>}
+            href={`${props.uri}/view`}>View Online <MaterialIcon icon='visibility' /></a>}
         <Button
           label='Remove'
           className='btn--gray btn--sm'

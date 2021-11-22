@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { LiveAnnouncer } from "react-aria-live";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import SkipLink from "./components/SkipLink";
@@ -50,23 +50,22 @@ class App extends Component {
           <main id="main" role="main">
             <div className="wrapper">
               <Switch>
-                <Route exact strict path="/:url*" render={props => <Redirect to={`${props.location.pathname}/${props.location.search}`}/>} />
-                <Route path="/list/" render={(props) =>
+                <Route path="/list" render={(props) =>
                   <PageMyList
                     {...props}
                     removeAllListItems={this.removeAllListItems}
                     toggleInList={this.toggleInList} />
                 } />
-                <Route path="/search/" component={PageSearch} />
-                <Route path="/:type(collections|objects)/:id/view/"
+                <Route path="/search" component={PageSearch} />
+                <Route path="/:type(collections|objects)/:id/view"
                     component={PageDigitalObject} />
-                <Route path="/:type(collections|objects)/:id/" render={(props) =>
+                <Route path="/:type(collections|objects)/:id" render={(props) =>
                   <PageRecords
                     {...props}
                     myListCount={this.state.myListCount}
                     toggleInList={this.toggleInList} />
                 } />
-                <Route path="/agents/:id/" component={PageAgent} />
+                <Route path="/agents/:id" component={PageAgent} />
                 <Route exact path="/" component={PageHome} />
                 <Route path="*" component={PageNotFound} />
               </Switch>
