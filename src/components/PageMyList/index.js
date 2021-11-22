@@ -167,7 +167,6 @@
       axios
         .post(`${process.env.REACT_APP_ARGO_BASEURL}/mylist`, {list: list})
         .then(res => {
-          console.log(res.data);
           this.setState({ savedList: res.data, submitList: this.constructSubmitList(res.data) })
         })
         .catch(err => console.log(err))
