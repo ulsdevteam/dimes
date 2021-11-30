@@ -91,7 +91,7 @@ const PageDigitalObject = props => {
 
   /** Constructs url for Back to Item Details link */
   const itemUrl = (
-    params ? `/${props.match.params.type}/${props.match.params.id}/${params}` : `/${props.match.params.type}/${props.match.params.id}`
+    params ? `/${props.match.params.type}/${props.match.params.id}${params}` : `/${props.match.params.type}/${props.match.params.id}`
   )
 
   /** Custom top bar which includes additional classes  so we can style things as we want to **/
