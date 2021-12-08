@@ -52,7 +52,7 @@ class PageRecords extends Component {
         .get(appendParams(itemUrl, params))
         .then(res => {
           this.setState({ item: res.data })
-          if (res.data.online) {
+          /*if (res.data.online) {
             axios
               .head(`${process.env.REACT_APP_S3_BASEURL}/pdfs/${res.data.uri.split('/').pop()}`)
               .then(res => {
@@ -61,10 +61,10 @@ class PageRecords extends Component {
               .catch(e => {
                 this.setState({ downloadSize: '' })
               })
-          }
+          }*/
           this.setState({ updateMessage: `Details under heading 1 have been updated to describe the selected records titled ${res.data.title}`})
         })
-        .catch(err => this.setState({ found: false }))
+        //.catch(err => this.setState({ found: false }))
         .then(() => {
           this.setState({isItemLoading: false})
           this.setUrl(appendParams(itemPath, this.state.params))
