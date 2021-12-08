@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  dimes-web:
+    build: .
+    ports:
+      - 80:80
+    stdin_open: true
