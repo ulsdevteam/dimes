@@ -12,6 +12,8 @@
 /build
 *.production
 *.prod
+public/
+apache/
 
 # misc
 .DS_Store
