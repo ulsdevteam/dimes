@@ -260,6 +260,65 @@ EmailModal.propTypes = {
   toggleModal: PropTypes.func.isRequired,
 }
 
+const ReadingRoomSelect = () => {
+  const { setFieldValue } = useFormikContext();
+  const [readingRoomID, setReadingRoomID] = useState('')
+  const [site, setSite] = useState('')
+
+  const ReadingRoomOptions = [
+   { value: "A&SC Hillman 320", label: "A&SC Hillman 320"},
+   { value: "A&SC Thomas Boulevard", label: "A&SC Thomas Boulevard"},
+   { value: "Center for American Music Reading Room", label: "Center for American Music Reading Room"}
+  ];
+
+  const ReadingRoomLocations = [
+   { value: "Hillman Library", label: "Hillman Library"},
+   { value: "Thomas Boulevard", label: "Thomas Boulevard"},
+   { value: "Center for American Music", label: "Center for American Music"}
+  ];
+
+  useEffect(() => {
+    setFieldValue('readingRoomID', readingRoomID)
+  }, [readingRoomID, setFieldValue])
+
+  useEffect(() => {
+    setFieldValue('site', site)
+  }, [site, setSite])
+
+  return (
+    <div className='form-group'>
+      <SelectInput
+        className='select__modal'
+        id='site'
+        label='Select Reading Room Location'
+        name='site'
+        onChange={({selectedItem}) => setSite(selectedItem.value)}
+        options={ReadingRoomLocations}
+        required={true}
+        selectedItem={site || ''} />
+      <ErrorMessage
+        id='site-error'
+        name='site'
+        component='div'
+        className='modal-form__error' />
+      <SelectInput
+        className='select__modal'
+        id='readingRoomID'
+        label='Select a Reading Room'
+        name='readingRoomID'
+        onChange={({selectedItem}) => setReadingRoomID(selectedItem.value)}
+        options={ReadingRoomOptions}
+        required={true}
+        selectedItem={readingRoomID || ''} />
+      <ErrorMessage
+        id='reading-roomID-error'
+        name='readingRoomID'
+        component='div'
+        className='modal-form__error' />
+    </div>
+  )
+}
+
 export const ReadingRoomRequestModal = props => (
   <ModalMyList
     appElement={props.appElement}
@@ -272,10 +331,12 @@ export const ReadingRoomRequestModal = props => (
     list={props.list}
     form={
       <Formik
-        initialValues={{scheduledDate: new Date(), questions: '', notes: '', items: props.submitList, recaptcha: ''}}
+        initialValues={{scheduledDate: new Date(), questions: '', notes: '', readingRoomID: '', site: '', items: props.submitList, recaptcha: ''}}
         validate={values => {
           const errors = {};
           if (!values.scheduledDate) errors.scheduledDate = 'Please provide the date of your research visit.';
+          if (!values.readingRoomID) errors.readingRoom = 'Please select a reading room.';
+          if (!values.site) errors.site = 'Please select a location of a reading room.';
           if (!values.recaptcha) errors.recaptcha = 'Please complete this field.';
           if (!values.items.length) errors.items = 'No items have been selected to submit.'
           return errors;
@@ -284,7 +345,7 @@ export const ReadingRoomRequestModal = props => (
           /* In order for Aeon to accept requests, dates need to be formatted as MM/DD/YYYY */
           values.scheduledDate = getFormattedDate(values.scheduledDate)
           props.handleFormSubmit(
-            `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/deliver-request/reading-room`,
+           `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/deliver-request/reading-room`,
             values,
             'readingRoom');
           setSubmitting(false);
@@ -312,6 +373,7 @@ export const ReadingRoomRequestModal = props => (
               component='div'
               className='modal-form__error' />
           </div>
+          <ReadingRoomSelect />
           <FormGroup
             label='Message for Pitt staff'
             helpText='255 characters maximum'
@@ -368,7 +430,7 @@ export const DuplicationRequestModal = props => (
     form={
       <>
         <div className='modal-form__intro'>
-          <strong>Please note:</strong> if you want a cost estimate for your order, email an archivist at <a href='mailto:archive@rockarch.org'>archive@rockarch.org</a>.
+          <strong>Please note:</strong> if you want a cost estimate for your order, email an archivist at <a href='mailto:archive@pitt.library.edu'>archive@pitt.library.edu</a>.
         </div>
         <Formik
           initialValues={{
