@@ -1,21 +1,43 @@
 import React from 'react'
-import { render } from 'react-dom'
+import axios from 'axios'
+import { render, unmountComponentAtNode } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 import {ModalSavedItemList} from '..'
 
 import { checkedList } from '../../../__fixtures__/checkedList'
 import { resolvedList } from '../../../__fixtures__/resolvedList'
 
+
+let container = null
+beforeEach(() => {
+  container = document.createElement('div')
+  container.setAttribute('id', 'root')
+  document.body.appendChild(container)
+})
+
+afterEach(() => {
+  unmountComponentAtNode(container)
+  container.remove()
+  container = null
+})
+
+jest.mock('axios')
+
 it('renders props correctly', async () => {
-  const div = document.createElement('div')
-  document.body.appendChild(div)
+  axios.post.mockImplementation((url) => {
+    if (url.includes('parse')) {
+      return Promise.resolve({data: {}})
+    } else {
+      return Promise.reject(new Error('not found'))
+    }
+  })
 
   await act(async () => {
     render(<ModalSavedItemList
       items={resolvedList}
       ignoreRestrictions={true}
       handleChange={jest.fn()}
-      setSubmit={jest.fn()} />, div)
+      setSubmit={jest.fn()} />, container)
   })
 
   await act(async () => {
@@ -32,7 +54,7 @@ it('renders props correctly', async () => {
       items={checkedList}
       ignoreRestrictions={true}
       handleChange={jest.fn()}
-      setSubmit={jest.fn()} />, div)
+      setSubmit={jest.fn()} />, container)
   })
 
   await act(async () => {

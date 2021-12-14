@@ -3,6 +3,7 @@ import pluralize from 'pluralize'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 import {
     Accordion,
     AccordionItem,

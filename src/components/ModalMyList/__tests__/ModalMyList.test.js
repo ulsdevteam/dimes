@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import { render, unmountComponentAtNode } from 'react-dom'
 import { act, Simulate } from 'react-dom/test-utils'
 import {
@@ -16,6 +17,13 @@ let container = null
 beforeEach(() => {
   container = document.createElement('div')
   document.body.appendChild(container)
+  axios.post.mockImplementation((url) => {
+    if (url.includes('parse')) {
+      return Promise.resolve({data: {}})
+    } else {
+      return Promise.reject(new Error('not found'))
+    }
+  })
 })
 
 afterEach(() => {
@@ -23,6 +31,8 @@ afterEach(() => {
   container.remove()
   container = null
 })
+
+jest.mock('axios')
 
 it('renders props correctly', async () => {
   act(() => {
