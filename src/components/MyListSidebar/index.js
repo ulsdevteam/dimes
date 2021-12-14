@@ -5,12 +5,6 @@ import Button from '../Button'
 
 const MyListSidebar = ({ duplicationRequest, readingRoomRequest }) => (
   <aside className='mylist__sidebar'>
-    <a
-      className='btn btn--gold btn--lg'
-      href={`mailto:${process.env.DIMES_APP_EMAIL}?subject=Scheduling a research appointment`}
-      title='opens email'>
-      <MaterialIcon icon='account_balance' /> Schedule a Visit
-    </a>
     <Button
       className='btn--gold btn--lg'
       label='Request in Reading Room'
