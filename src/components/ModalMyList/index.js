@@ -272,9 +272,9 @@ const ReadingRoomSelect = () => {
   ];
 
   const ReadingRoomLocations = [
-   { value: "Hillman Library", label: "Hillman Library"},
-   { value: "Thomas Boulevard", label: "Thomas Boulevard"},
-   { value: "Center for American Music", label: "Center for American Music"}
+   { value: "ASCHILLMAN", label: "Hillman Library"},
+   { value: "ASCTHOMAS", label: "Thomas Boulevard"},
+   { value: "CAMUSIC", label: "Center for American Music"}
   ];
 
   useEffect(() => {
