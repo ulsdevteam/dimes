@@ -8,7 +8,7 @@ const PageHome = () => (
   <>
     <Helmet
       onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
-      <title>Special Collections Requests @ Pitt</title>
+      <title>My Reading Room @ Archives & Special Collections</title>
     </Helmet>
     <div className='container--full-width home'>
       <SearchForm className='search-form--home'/>
