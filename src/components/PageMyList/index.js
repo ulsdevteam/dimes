@@ -248,8 +248,8 @@
           </Helmet>
           <div className='container mylist flex'>
             <nav>
-              <a href='/' className='btn btn--new-search'>
-                <MaterialIcon icon='keyboard_arrow_left'/>Start a New Search
+              <a href='https://digital.library.pitt.edu/' className='btn btn--new-search'>
+                <MaterialIcon icon='keyboard_arrow_left'/>Return to ULS Digital Collections
               </a>
             </nav>
             <main id='main' role='main'>
