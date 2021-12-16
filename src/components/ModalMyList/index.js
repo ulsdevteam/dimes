@@ -36,11 +36,10 @@ const FormatSelectInput = () => {
 
   const formatOptions = [
     {value: '', label: 'Select a format'},
-    {value: 'MP3', label: 'Audio (MP3)'},
-    {value: 'JPEG', label: 'JPEG'},
-    {value: 'MP4', label: 'Moving image (MP4)'},
-    {value: 'PDF', label: 'PDF'},
-    {value: 'TIFF', label: 'TIFF'}
+    {value: 'Digital Image ', label: 'Digital Image'},
+    {value: 'Photographic Print ', label: 'Photographic Print'},
+    {value: 'Audio/Video/Film', label: 'Audio/Video/Film'},
+    {value: 'Photocopy/Quickscan', label: 'Photocopy/Quickscan'}
   ]
 
   useEffect(() => {
@@ -266,12 +265,14 @@ const ReadingRoomSelect = () => {
   const [site, setSite] = useState('')
 
   const ReadingRoomOptions = [
+   { value: "", label: "Please select a location"},
    { value: "A&SC Hillman 320", label: "A&SC Hillman 320"},
    { value: "A&SC Thomas Boulevard", label: "A&SC Thomas Boulevard"},
    { value: "Center for American Music Reading Room", label: "Center for American Music Reading Room"}
   ];
 
   const ReadingRoomLocations = [
+   { value: "", label: "Please select a reading room"},
    { value: "ASCHILLMAN", label: "Hillman Library"},
    { value: "ASCTHOMAS", label: "Thomas Boulevard"},
    { value: "CAMUSIC", label: "Center for American Music"}
@@ -430,7 +431,7 @@ export const DuplicationRequestModal = props => (
     form={
       <>
         <div className='modal-form__intro'>
-          <strong>Please note:</strong> if you want a cost estimate for your order, email an archivist at <a href='mailto:archive@pitt.library.edu'>archive@pitt.library.edu</a>.
+          <strong>Please note:</strong> if you want a cost estimate for your order, email an archivist at <a href='mailto:archive-ref@pitt.edu'>archive-ref@pitt.edu</a>.
         </div>
         <Formik
           initialValues={{
@@ -438,14 +439,15 @@ export const DuplicationRequestModal = props => (
             description: 'Entire folder',
             questions: '',
             notes: '',
-            costs: false,
+	    site: 'ASCTHOMAS',
+            confirm: false,
             items: props.submitList,
             recaptcha: ''}}
           validate={values => {
             const errors = {};
             if (!values.format) errors.format = 'Please select your desired duplication format.';
             if (!values.recaptcha) errors.recaptcha = 'Please complete this field.';
-            if (!values.costs) errors.costs = 'We cannot process your request unless you agree to pay the costs of reproduction.';
+            if (!values.confirm) errors.confirm = 'Please check the box to acknowledge that an archivist may not be able to fulfill your requestat this time.';
             if (!values.items.length) errors.items = 'No items have been selected to submit.'
             return errors;
           }}
@@ -474,7 +476,7 @@ export const DuplicationRequestModal = props => (
               component='textarea'
               rows={5} />
             <FormGroup
-              label='Message for RAC staff'
+              label='Message for Pitt staff'
               helpText='255 characters maximum.'
               maxLength={255}
               name='questions'
@@ -482,14 +484,8 @@ export const DuplicationRequestModal = props => (
               rows={5} />
             <FormGroup
               label={<>
-                I agree to pay the duplication costs for this request. See our&nbsp;
-                <a target='_blank'
-                  rel='noopener noreferrer'
-                  title='opens in a new window'
-                  href='https://library.pitt.edu/asc-ordering-reproductions'>
-                  fee schedule
-                </a>.</>}
-              name='costs'
+                By checking this box, I acknowledge archival staff may not be able to fulfill my request at this time.</>}
+              name='confirm'
               type='checkbox'
               required={true}
               errors={errors}
