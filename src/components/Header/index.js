@@ -11,7 +11,7 @@ const Header = ({ myListCount }) => (
           <p className='header-secondary__subtitle'>Submit requests in advance of your Reading Room visit</p>
         </div>
         <Nav ariaLabel='Main'>
-          <NavItem href='/list/' id='list' label={`My List${myListCount > 0 ? ` (${myListCount})` : ''}`} icon='arrow_right_alt' />
+          <NavItem href='/list/' id='list' label={`View My List${myListCount > 0 ? ` (${myListCount})` : ''}`} icon='arrow_right_alt' />
         </Nav>
       </div>
     </div>
