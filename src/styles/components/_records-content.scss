@@ -11,8 +11,7 @@
     width: 60%;
   }
   &.hidden {
-    @include show-on-lg-up;
-    display:none;
+    display: none;
   }
 }
 
