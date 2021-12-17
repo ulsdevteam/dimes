@@ -66,7 +66,7 @@ class App extends Component {
                     toggleInList={this.toggleInList} />
                 } />
                 <Route path="/agents/:id" component={PageAgent} />
-                <Route exact path="/" component={PageHome} />
+                <Route exact path="/" component={PageMyList} />
                 <Route path="*" component={PageNotFound} />
               </Switch>
             </div>
