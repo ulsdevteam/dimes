@@ -23,10 +23,20 @@
 
 .modal-content--minimap-info {
   @extend .modal-content;
-  top: 80px;
-  left: 10%;
-  right: calc(63% + 20px);
+  top: 70px;
+  right: 40px;
+  left: 40px;
   bottom: unset;
+  @include md-up {
+    top: 100px;
+    right: 25%;
+    left: 25%;
+  }
+  @include lg-up {
+    top: 80px;
+    left: 10%;
+    right: calc(63% + 20px);
+  }
 }
 
 .modal-header--minimap {
