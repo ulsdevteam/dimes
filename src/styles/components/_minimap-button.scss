@@ -1,0 +1,24 @@
+@import "../variables/vars";
+
+.btn--minimap {
+  display: flex !important; // TODO: this is BS
+  background: $off-white;
+  position: fixed;
+  top: 80px;
+  right: 30px;
+  z-index: 999;
+  @mixin md-up {
+    top: 90px;
+  }
+}
+
+.btn--minimap__text {
+  width: 60px;
+  margin-left: 10px;
+  text-align: left;
+}
+
+.btn--minimap__icon {
+  height: 30px;
+  width: 30px;
+}

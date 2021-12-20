@@ -27,7 +27,7 @@ it('renders without crashing', () => {
 })
 
 it('renders without crashing', () => {
-  render(<AccordionItem />, container)
+  render(<AccordionItem preExpanded={[]} />, container)
 })
 
 it('renders without crashing', () => {

@@ -8,10 +8,12 @@ import PageRecords from '..'
 import { object } from '../../../__fixtures__/object'
 import { ancestors } from '../../../__fixtures__/ancestors'
 import { childrenCollections } from '../../../__fixtures__/children'
+import { minimap } from '../../../__fixtures__/minimap'
 
 let container = null
 beforeEach(() => {
   container = document.createElement('div')
+  container.setAttribute('id', 'root')
   document.body.appendChild(container)
 })
 
@@ -22,6 +24,7 @@ afterEach(() => {
 })
 
 jest.mock('axios')
+jest.mock('../../Hooks')
 
 it('renders props correctly', async () => {
   axios.get.mockImplementation((url) => {
@@ -31,6 +34,8 @@ it('renders props correctly', async () => {
       return Promise.resolve({data: {next: null, results: childrenCollections}})
     } else if (url.includes('objects')) {
       return Promise.resolve({data: object})
+    } else if (url.includes('minimap')) {
+      return Promise.resolve({data: minimap})
     } else {
       return Promise.reject(new Error('not found'))
     }
@@ -40,7 +45,7 @@ it('renders props correctly', async () => {
     await render(
       <LiveAnnouncer>
         <PageRecords
-          history={{ push: jest.fn() }}
+          history={{ push: jest.fn(), listen: jest.fn() }}
           match={{params: {type: "objects", id: "oVDNM8UtE3ox9fiESd99Wy"}}}
           location={{search: ""}}
           myListCount={1}

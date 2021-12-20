@@ -3,12 +3,16 @@ import { LiveMessage } from 'react-aria-live'
 import PropTypes from 'prop-types'
 import axios from 'axios'
 import queryString from 'query-string'
+import classnames from 'classnames'
 import { Helmet } from 'react-helmet'
 import ContextSwitcher from '../ContextSwitcher'
+import Minimap from '../Minimap'
+import MinimapButton from '../MinimapButton'
+import { ModalMinimap, ModalMinimapInfo } from '../ModalMinimap'
 import RecordsContent from '../RecordsContent'
 import RecordsDetail from '../RecordsDetail'
 import PageNotFound from '../PageNotFound'
-import { appendParams, firePageViewEvent, formatBytes } from '../Helpers'
+import { appendParams, firePageViewEvent, formatBytes, isDesktop } from '../Helpers'
 
 class PageRecords extends Component {
   constructor(props) {
@@ -18,35 +22,60 @@ class PageRecords extends Component {
       children: [],
       downloadSize: "",
       found: true,
+      hasSeenMinimapIntro: true,
       isAncestorsLoading: true,
       isChildrenLoading: true,
       isContentShown: false,
       isItemLoading: true,
+      isMinimapLoading: true,
+      isMinimapModalOpen: false,
+      isMinimapInfoModalOpen: false,
       item: {},
+      minimap: {"hits": []},
       params: {},
       preExpanded: [],
       updateMessage: ""
     }
   }
 
-  /** Handle navigation using browser back button, get and set item data */
   componentDidMount() {
-    window.onpopstate = () => {
-      this.setState({...this.props.location.state})
-      this.setState({ isItemLoading: false });
-    }
-    const itemUrl = `${process.env.REACT_APP_ARGO_BASEURL}/${this.props.match.params.type}/${this.props.match.params.id}`
-    const params = queryString.parse(this.props.location.search, {parseBooleans: true});
-    this.setState({ params: params })
-    this.getItemData(itemUrl, params, true)
+    this.loadData(false)
+    /** Handle navigation using browser back button
+    * 1. Remove children to prevent creation of duplicates.
+    * 2. Call with false setUrl parameter.
+    */
+    this.props.history.listen((location, action) => {
+      if (action === "POP") {
+        this.setState({children: []}) /* 1 */
+        this.loadData(false) /* 2 */
+      }
+    });
+    this.setState(
+      {
+        hasSeenMinimapIntro: !!localStorage.getItem(`${process.env.REACT_APP_MINIMAP_KEY}`),
+        isMinimapInfoModalOpen: !(!!localStorage.getItem(`${process.env.REACT_APP_MINIMAP_KEY}`))
+      }
+    )
   };
 
+  /** Get and set item data
+  * 1. Don't add URL to history if this action is triggered by the browser back button
+  */
+  loadData = (shouldSetUrl = true) => {
+    const itemPath = `/${this.props.match.params.type}/${this.props.match.params.id}`
+    const itemUrl = `${process.env.REACT_APP_ARGO_BASEURL}${itemPath}`
+    const params = queryString.parse(this.props.location.search, {parseBooleans: true});
+    this.setState({ params: params })
+    this.getItemData(itemUrl, params, true, shouldSetUrl) /* 1 */
+  }
+
   /** Fetches item data, including ancestors and collection children */
-  getItemData = (itemUrl, params, initial = false) => {
+  getItemData = (itemUrl, params, initialLoad = false, shouldSetUrl) => {
     this.setState({isItemLoading: true})
     this.setState({isAncestorsLoading: true})
     this.setState({ downloadSize: '' })
-    const childrenParams = {...params, limit: 5}
+    const pageSize = 5
+    const childrenParams = {...params, limit: pageSize}
     const itemPath = itemUrl.replace(`${process.env.REACT_APP_ARGO_BASEURL}`, '')
     axios
         .get(appendParams(itemUrl, params))
@@ -54,7 +83,7 @@ class PageRecords extends Component {
           this.setState({ item: res.data })
           if (res.data.online) {
             axios
-              .head(`${process.env.REACT_APP_S3_BASEURL}/pdfs/${res.data.uri.split('/').pop()}`)
+              .head(`${process.env.REACT_APP_S3_BASEURL}/pdfs/${this.props.match.params.id}`)
               .then(res => {
                 this.setState({ downloadSize: formatBytes(res.headers['content-length']) })
               })
@@ -62,22 +91,23 @@ class PageRecords extends Component {
                 this.setState({ downloadSize: '' })
               })
           }
+          if (initialLoad) {
+            this.getPage(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${res.data.group.identifier}/children`, childrenParams))
+          }
           this.setState({ updateMessage: `Details under heading 1 have been updated to describe the selected records titled ${res.data.title}`})
+          this.getMinimap(res.data.group.identifier, params)
         })
         .catch(err => this.setState({ found: false }))
-        .then(() => {
+        .then(res => {
           this.setState({isItemLoading: false})
-          this.setUrl(appendParams(itemPath, this.state.params))
+          shouldSetUrl && this.setUrl(appendParams(itemPath, this.state.params))
         })
     axios
         .get(appendParams(`${itemUrl}/ancestors`, params))
         .then(res => {
           this.setState({ ancestors: res.data })
-          if (initial) {
-            const itemUrl = `/${this.props.match.params.type}/${this.props.match.params.id}`
-            const collectionUrl = Object.keys(res.data).length ? res.data.uri : itemUrl
-            collectionUrl.includes('collections') && this.getPage(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${collectionUrl}/children`, childrenParams))
-            this.setState({ preExpanded: this.preExpanded(res.data, [itemUrl]) })
+          if (initialLoad) {
+            this.setState({ preExpanded: this.preExpanded(res.data, [itemPath]) })
           }
         })
         .catch(e => console.log(e))
@@ -97,6 +127,18 @@ class PageRecords extends Component {
       .catch(err => console.log(err))
   }
 
+  getMinimap = (collectionUri, params) => {
+    if (Object.keys(params).length === 0) {
+      this.setState({ isMinimapLoading: false })
+    } else {
+      axios
+        .get(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${collectionUri}/minimap`, params))
+        .then(res => this.setState({ minimap: res.data }))
+        .catch(e => console.log(e))
+        .then(() => this.setState({ isMinimapLoading: false }))
+      }
+  }
+
   /** Constructs a preExpanded list based on an item's ancestors */
   preExpanded = (ancestors, list) => {
     Object.keys(ancestors).length && list.push(ancestors.uri)
@@ -112,7 +154,7 @@ class PageRecords extends Component {
   setActiveRecords = uri => {
     if (uri !== this.state.item.uri) {
       const itemUrl = `${process.env.REACT_APP_ARGO_BASEURL}${uri}`
-      this.getItemData(itemUrl, this.state.params)
+      this.getItemData(itemUrl, this.state.params, false, true)
     }
   }
 
@@ -124,6 +166,22 @@ class PageRecords extends Component {
   /** Show or hide the RecordsContent on mobile */
   toggleIsContentShown = () => {
     this.setState({ isContentShown: !this.state.isContentShown })
+  }
+
+  /** Show or hide the Minimap modal (only used on mobile) */
+  toggleMinimapModal = () => {
+    this.setState({ isMinimapModalOpen: !this.state.isMinimapModalOpen })
+  }
+
+  /** Show or hide the Minimap Information modal
+  * 1. Set localStorage variable once user interacts with the modal
+  */
+  toggleMinimapInfoModal = () => {
+    console.log(this.state);
+    this.setState({ isMinimapInfoModalOpen: !this.state.isMinimapInfoModalOpen })
+    !(!!localStorage.getItem(`${process.env.REACT_APP_MINIMAP_KEY}`)) &&
+      localStorage.setItem(`${process.env.REACT_APP_MINIMAP_KEY}`, 1) &&  /* 1 */
+      this.setState({ hasSeenMinimapIntro: true })
   }
 
   render() {
@@ -139,6 +197,7 @@ class PageRecords extends Component {
           <title>{ this.state.item.title }</title>
         </Helmet>
         <div className='container--full-width'>
+          {isDesktop ? null : <MinimapButton toggleMinimapModal={this.toggleMinimapModal}/>}
           <ContextSwitcher
             isContentShown={this.state.isContentShown}
             toggleIsContentShown={this.toggleIsContentShown} />
@@ -151,12 +210,23 @@ class PageRecords extends Component {
             item={this.state.item}
             myListCount={myListCount}
             params={this.state.params}
-            toggleInList={toggleInList} />
+            toggleInList={toggleInList}
+            toggleMinimapModal={this.toggleMinimapInfoModal} />
+          {isDesktop ?
+            <div className={classnames('minimap__wrapper', {'bring-forward': !this.state.hasSeenMinimapIntro})}>
+              <Minimap
+                data={this.state.minimap}
+                isLoading={this.state.isMinimapLoading}
+                params={this.state.params} />
+            </div>
+            : null}
           <RecordsContent
             children={this.state.children}
             collection={this.parseCollection()}
             isContentShown={this.state.isContentShown}
             myListCount={this.props.myListCount}
+            offsetAfter={this.state.item.offset + 1}
+            offsetBefore={this.state.item.offset}
             params={this.state.params}
             parent={this.state.item}
             preExpanded={this.state.preExpanded}
@@ -164,6 +234,16 @@ class PageRecords extends Component {
             toggleInList={toggleInList}
             toggleIsLoading={this.toggleIsLoading} />
         </div>
+        <ModalMinimapInfo
+          isOpen={this.state.isMinimapInfoModalOpen}
+          toggleModal={this.toggleMinimapInfoModal}
+          hasSeenMinimapIntro={this.state.hasSeenMinimapIntro} />
+        <ModalMinimap
+          data={this.state.minimap}
+          isLoading={this.state.isMinimapLoading}
+          isOpen={this.state.isMinimapModalOpen}
+          params={this.state.params}
+          toggleModal={this.toggleMinimapModal} />
       </React.Fragment>
     )
   }

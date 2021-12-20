@@ -15,6 +15,6 @@ it('renders props correctly', () => {
 
   const tile = document.querySelector('.tile')
   expect(tile.querySelector('.tile__title').textContent).toBe('Rockefeller Foundation records')
-  expect(tile.querySelector('.tile__type-label').textContent).toBe('collection')
+  expect(tile.querySelector('.tile__type-label').textContent).toBe('archive_box.svgcollection')
   expect(tile.querySelector('.tile__date').textContent).toBe('1910-2000 (Bulk: 1924-1990), 1924-1990')
 })

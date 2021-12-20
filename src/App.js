@@ -50,14 +50,14 @@ class App extends Component {
           <main id="main" role="main">
             <div className="wrapper">
               <Switch>
-                <Route path="/list/" render={(props) =>
+                <Route path="/list" render={(props) =>
                   <PageMyList
                     {...props}
                     removeAllListItems={this.removeAllListItems}
                     toggleInList={this.toggleInList} />
                 } />
-                <Route path="/search/" component={PageSearch} />
-                <Route path="/:type(collections|objects)/:id/view/"
+                <Route path="/search" component={PageSearch} />
+                <Route path="/:type(collections|objects)/:id/view"
                     component={PageDigitalObject} />
                 <Route path="/:type(collections|objects)/:id" render={(props) =>
                   <PageRecords

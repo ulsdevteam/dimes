@@ -26,7 +26,7 @@ const AgentRelatedCollections = ({ agentTitle, collections, params }) => (
     <h2 className='agent__section-title'>Related Collections</h2>
     <TileList hideHitCount items={collections} params={params} />
     { collections.length === 8 ?
-      (<a href={`/search/?query=${agentTitle}&category=collection`} className='btn btn--search-more'>Search More Related Collections</a>) :
+      (<a href={`/search?query=${agentTitle}&category=collection`} className='btn btn--search-more'>Search More Related Collections</a>) :
       (null)
     }
   </div>) : (null)
@@ -73,7 +73,7 @@ class PageAgent extends Component {
   /** Fetches data about collections associated with the agent */
   fetchCollections = () => {
     axios
-      .get(`${process.env.REACT_APP_ARGO_BASEURL}/search/?query=${this.state.agent.title}&category=collection&limit=8`)
+      .get(`${process.env.REACT_APP_ARGO_BASEURL}/search?query=${this.state.agent.title}&category=collection&limit=8`)
       .then(res => {
         this.setState({ collections: res.data.results })
         this.setState({ isCollectionsLoading: false })
