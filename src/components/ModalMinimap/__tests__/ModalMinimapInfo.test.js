@@ -19,6 +19,7 @@ it('renders props correctly', () => {
   act(() => {
     render(<ModalMinimapInfo
       appElement={container}
+      hasSeenMinimapIntro={false}
       isOpen
       toggleModal={jest.fn()} />, container)
   })
@@ -30,6 +31,7 @@ it('handles clicks correctly', () => {
   act(() => {
     render(<ModalMinimapInfo
       appElement={container}
+      hasSeenMinimapIntro={false}
       isOpen
       toggleModal={toggleModal} />, container)
   })
