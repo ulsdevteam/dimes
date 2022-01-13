@@ -117,7 +117,7 @@
         .post(uri, submitted)
         .then(res => {
           const form = document.createElement('form')
-          form.action = 'https://pitt.aeon.atlas-sys.com/aeon/aeon.dll'
+          form.action = 'https://pitt.aeon.atlas-sys.com/logon'
           form.method = 'post'
           Object.keys(res.data).forEach(key => {
             if (Array.isArray(res.data[key])) {
