@@ -16,7 +16,6 @@ const Minimap = ({ data, isLoading, params, rowCount=4 }) => {
   const [containerWidth, setContainerWidth] = useState(0)
 
   const minimapContainer = useCallback(node => { /* 1 */
-    console.log(node);
     if (node !== null) {
       setContainerHeight(node.getBoundingClientRect().height);
       setContainerWidth(node.getBoundingClientRect().width)
@@ -34,6 +33,7 @@ const Minimap = ({ data, isLoading, params, rowCount=4 }) => {
   })
 
   const minimapBoxes = () => blankBoxes.map((b, idx) => {  /* 3 */
+    console.log("minimapBoxes")
     const areaHits = data.hits && data.hits.filter(h => (h.index <= b.end && b.start < h.index))
                                            .filter(h => h.uri.includes('objects'))
                                            .sort((a, b) => a.index - b.index)
