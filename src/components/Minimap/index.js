@@ -26,7 +26,6 @@ const Minimap = ({ data, isLoading, params, rowCount=4 }) => {
 
   const boxWidthHeight = containerWidth / rowCount
   const totalBoxes = containerHeight && boxWidthHeight ? parseInt(parseInt(containerHeight) / boxWidthHeight) * rowCount : 0
-  console.log(containerHeight, boxWidthHeight, totalBoxes);
   const hitsPerBox = data.total / totalBoxes
 
   const blankBoxes = Array(totalBoxes).fill().map((b, idx) => { /* 2 */
