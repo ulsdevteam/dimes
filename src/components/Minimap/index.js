@@ -65,7 +65,7 @@ const Minimap = ({ data, isLoading, params, rowCount=4 }) => {
     <>
       <h2 className="visually-hidden">Minimap</h2>
       <nav className={classnames('minimap', `minimap--${rowCount}-across` )} ref={minimapContainer} aria-label="Minimap">
-        {isLoading ? <MinimapSkeleton totalBoxes={totalBoxes} /> : loadedBoxes}
+        {loadedBoxes}
       </nav>
     </>
 )}
