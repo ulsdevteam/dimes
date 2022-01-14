@@ -20,10 +20,6 @@
   width: 100%;
   position: fixed;
   bottom: 0;
-  @include md-up {
-    position: relative;
-    width: 50%;
-  }
 }
 
 .toggle-context--active {

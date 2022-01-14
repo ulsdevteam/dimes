@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     focusFirstSiblingOf,
     focusLastSiblingOf,
@@ -23,8 +23,15 @@ export const Accordion = ({ className, children, preExpanded}) => (
   </div>
 )
 
+/* Main accordion component
+* 1. Sets isExpanded when preExpanded array changes.
+*/
 export const AccordionItem = ({ className, children, onClick, preExpanded, uuid }) => {
-  const [isExpanded, setIsExpanded] = useState(preExpanded && preExpanded.includes(uuid) ? true : false)
+  const [isExpanded, setIsExpanded] = useState(preExpanded.includes(uuid))
+
+  useEffect(() => { /* 1 */
+    setIsExpanded(preExpanded && preExpanded.includes(uuid) ? true : false)
+  }, [preExpanded])
 
   return (
     <div data-accordion-component='AccordionItem' className={className}>

@@ -27,7 +27,7 @@ const ModalSavedItem = props => {
         .catch(err => console.log(err))
         .then(() => setIsRestrictionsLoading(false))
     }
-  }, [ignoreRestrictions, submit, archivesspace_uri, uri, setSubmit])
+  }, [props.ignoreRestrictions, props.submit, archivesspace_uri, uri, setSubmit])
 
   return (
     <li className='modal-saved-item'>

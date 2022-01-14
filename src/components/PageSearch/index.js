@@ -62,14 +62,14 @@ class PageSearch extends Component {
   /** Fetch data from facets endpoint */
   excecuteFacetsSearch = params =>  {
     axios
-      .get(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}/facets/`, params))
+      .get(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}/facets`, params))
       .then(res => {this.setState({ facetData: res.data})})
       .catch(err => console.log(err));
   };
 
   executeSuggestSearch = params => {
     axios
-      .get(`${process.env.REACT_APP_ARGO_BASEURL}/search/suggest/?title_suggest=${params.query}`)
+      .get(`${process.env.REACT_APP_ARGO_BASEURL}/search/suggest?title_suggest=${params.query}`)
       .then(res => {
         const suggestions = res.data.title_suggest.reduce((a, c) => {
           const options = c.options.map(o => o.text)
@@ -86,7 +86,7 @@ class PageSearch extends Component {
     this.setState({ inProgress: true });
     this.setState({ params: params })
     axios
-      .get(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}/search/`, params))
+      .get(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}/search`, params))
       .then(res => {
         this.setState({items: res.data.results})
         this.setState({startItem: this.startItem(res.data, params.offset)})
@@ -132,7 +132,6 @@ class PageSearch extends Component {
   handleSearchFormChange = (category, query, online) => {
     var params = { ...this.state.params, query: query, category: category }
     if (online) {
-      console.log(online);
       params = { ...params, online: true }
     } else {
       delete params.online

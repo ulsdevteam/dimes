@@ -78,7 +78,7 @@ export const ModalToggleListButton = ({ ignoreRestrictions, items, toggleList })
         return items.filter(g => g.items.filter(i => i.submit && !i.isChecked).length).length ? false : true
       }
     },
-    [items]
+    [ignoreRestrictions, items]
   )
 
   const [deselect, setDeselect] = useState(allSelected());
