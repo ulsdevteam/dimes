@@ -16,10 +16,11 @@ const Minimap = ({ data, isLoading, params, rowCount=4 }) => {
   const [containerWidth, setContainerWidth] = useState(0)
 
   const minimapContainer = useCallback(node => { /* 1 */
-    // if (node !== null) {
+    console.log(node);
+    if (node !== null) {
       setContainerHeight(node.getBoundingClientRect().height);
       setContainerWidth(node.getBoundingClientRect().width)
-    // }
+    }
   }, []);
 
   const boxWidthHeight = containerWidth / rowCount
