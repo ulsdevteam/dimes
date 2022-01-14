@@ -24,6 +24,7 @@ const Minimap = ({ data, isLoading, params, rowCount=4 }) => {
 
   const boxWidthHeight = containerWidth / rowCount
   const totalBoxes = containerHeight && boxWidthHeight ? parseInt(parseInt(containerHeight) / boxWidthHeight) * rowCount : 0
+  console.log(containerHeight, boxWidthHeight, totalBoxes);
   const hitsPerBox = data.total / totalBoxes
 
   const blankBoxes = Array(totalBoxes).fill().map((b, idx) => { /* 2 */
@@ -33,7 +34,6 @@ const Minimap = ({ data, isLoading, params, rowCount=4 }) => {
   })
 
   const minimapBoxes = () => blankBoxes.map((b, idx) => {  /* 3 */
-    console.log("minimapBoxes")
     const areaHits = data.hits && data.hits.filter(h => (h.index <= b.end && b.start < h.index))
                                            .filter(h => h.uri.includes('objects'))
                                            .sort((a, b) => a.index - b.index)
