@@ -17,8 +17,10 @@ const Minimap = ({ data, isLoading, params, rowCount=4 }) => {
 
   const minimapContainer = useCallback(node => { /* 1 */
     if (node !== null) {
-      setContainerHeight(node.getBoundingClientRect().height);
-      setContainerWidth(node.getBoundingClientRect().width)
+      setTimeout(() => {
+        setContainerHeight(node.getBoundingClientRect().height)
+        setContainerWidth(node.getBoundingClientRect().width)
+      }, 300)
     }
   }, []);
 
