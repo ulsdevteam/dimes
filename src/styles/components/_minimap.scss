@@ -65,7 +65,7 @@ $grid-col-count: 20;
   background: $color;
   color: $color;
   display: flex; /* 1 */
-  justify-content: right; /* 1 */
+  justify-content: flex-end; /* 1 */
   text-decoration: none;
   margin: 0; // added
 
