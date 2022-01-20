@@ -1,8 +1,8 @@
-import React, { useCallback, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { appendParams } from '../Helpers'
-import { MinimapSkeleton } from '../LoadingSkeleton'
+import { useResizeObserver } from '../Hooks'
 import './styles.scss'
 
 /**
@@ -15,12 +15,16 @@ const Minimap = ({ data, isLoading, params, rowCount=4 }) => {
   const [containerHeight, setContainerHeight] = useState(0)
   const [containerWidth, setContainerWidth] = useState(0)
 
-  const minimapContainer = useCallback(node => { /* 1 */
-    if (node !== null) {
-      setContainerHeight(node.getBoundingClientRect().height);
-      setContainerWidth(node.getBoundingClientRect().width)
+  const minimapContainer = useRef(null)
+
+  const setDimensions = () => {
+    if (minimapContainer.current !== null) {
+      setContainerHeight(minimapContainer.current.getBoundingClientRect().height)
+      setContainerWidth(minimapContainer.current.getBoundingClientRect().width)
     }
-  }, []);
+  }
+
+  useResizeObserver({ callback: setDimensions, element: minimapContainer })
 
   const boxWidthHeight = containerWidth / rowCount
   const totalBoxes = containerHeight && boxWidthHeight ? parseInt(parseInt(containerHeight) / boxWidthHeight) * rowCount : 0
@@ -58,12 +62,13 @@ const Minimap = ({ data, isLoading, params, rowCount=4 }) => {
     </div>
     )
   })
+  const loadedBoxes = minimapBoxes()
 
   return (
     <>
       <h2 className="visually-hidden">Minimap</h2>
       <nav className={classnames('minimap', `minimap--${rowCount}-across` )} ref={minimapContainer} aria-label="Minimap">
-        {isLoading ? <MinimapSkeleton totalBoxes={totalBoxes} /> : minimapBoxes()}
+        {loadedBoxes}
       </nav>
     </>
 )}
