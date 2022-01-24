@@ -33,13 +33,7 @@ const Facet = ({ children, handleChange, items, paramKey, params, title }) => {
     setIsOpen(!isOpen)
   }
   const facetValues = items ? isOpen ? items : items.slice(0, 5) : []
-  const isChecked = key => {
-    if (Array.isArray(params)) {
-      return params.includes(key)
-    } else {
-      return params === key
-    }
-  }
+  const isChecked = key => { return params && params.includes(key) }
   const facetItems = facetValues.map((v) =>
     <FacetItem
       key={v.key}
@@ -67,7 +61,7 @@ Facet.propTypes = {
   handleChange: PropTypes.func,
   items: PropTypes.array,
   paramKey: PropTypes.string,
-  params: PropTypes.string,
+  params: PropTypes.array,
   title: PropTypes.string.isRequired
 }
 

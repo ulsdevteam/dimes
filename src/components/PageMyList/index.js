@@ -1,4 +1,4 @@
-  import React, { Component } from 'react'
+  import React, { useEffect, useState } from 'react'
   import PropTypes from 'prop-types'
   import axios from 'axios'
   import { Helmet } from 'react-helmet'
@@ -14,40 +14,24 @@
   import { firePageViewEvent } from '../Helpers'
   import './styles.scss'
 
-  class PageMyList extends Component {
-    _isMounted = false;
-    constructor(props) {
-      super(props);
-      this.state = {
-        savedList: [],
-        submitList: [],
-        isDownloading: false,
-        isLoading: true,
-        isRequestingAvailable: false,
-        email: {isOpen: false},
-        readingRoom: {isOpen: false},
-        requestingUnavailable: {isOpen: false},
-        duplication: {isOpen: false},
-        confirm: {
-          isOpen: false,
-          title: '',
-          message: ''
-        },
-        confirmDeleteAll: { isOpen: false }
-      };
-    }
+  const PageMyList = ({ removeAllListItems, toggleInList }) => {
 
-    /** Fetch list data and ensure Request Broker is available */
-    componentDidMount() {
-      this.fetchList()
-      axios
-        .get(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/status/health/ping`)
-        .then(res => res.data.pong && this.setState({ isRequestingAvailable: true }))
-        .catch(err => console.log(err))
-    }
+    const [savedList, setSavedList] = useState([])
+    const [submitList, setSubmitList] = useState([])
+    const [isDownloading, setIsDownloading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
+    const [isRequestingAvailable, setIsRequestingAvailable] = useState(false)
+    const [duplicationModalOpen, setDuplicationModalOpen] = useState(false)
+    const [emailModalOpen, setEmailModalOpen] = useState(false)
+    const [readingRoomModalOpen, setReadingRoomModalOpen] = useState(false)
+    const [requestingUnavailableModalOpen, setReqestingUnavailableModalOpen] = useState(false)
+    const [confirmDeleteAllModalOpen, setConfirmDeleteAllModalOpen] = useState(false)
+    const [confirmModalOpen, setConfirmModalOpen] = useState(false)
+    const [confirmModalTitle, setConfirmModalTitle] = useState('')
+    const [confirmModalMessage, setConfirmModalMessage] = useState('')
 
     /** Returns a list of ArchivesSpace URIs for checked items in list */
-    constructSubmitList = (list, allItems) => {
+    const constructSubmitList = (list, allItems) => {
       var submitList = [];
       for (const group of list) {
         for (const item of group.items) {
@@ -62,16 +46,16 @@
     }
 
     /* Requests CSV data and downloads a local file */
-    downloadCsv = () => {
-      if (!this.state.isRequestingAvailable) {
-        this.toggleModal('requestingUnavailable');
+    const downloadCsv = () => {
+      if (!isRequestingAvailable) {
+        setReqestingUnavailableModalOpen(true)
         return;
       }
-      this.setState({ isDownloading: true })
+      setIsDownloading(true)
       axios
         .post(
           `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/download-csv/`,
-          {items: this.constructSubmitList(this.state.savedList, true)})
+          {items: constructSubmitList(savedList, true)})
         .then(res => {
           const blob = new Blob([res.data], { type: 'text/csv' })
           const link = document.createElement('a')
@@ -80,26 +64,26 @@
           link.click()
         })
         .catch(err => { console.log(err) })
-        .then(() => this.setState({ isDownloading: false }));
+        .then(() => setIsDownloading(false));
     }
 
     /**
     * Sets isChecked attribute on savedList based on checkbox input.
     * Updates submitList by filtering unchecked items.
     */
-    handleModalListChange = (e) => {
-      const updatedList = this.setIsChecked(e, this.state.savedList)
-      this.setState({savedList: updatedList})
-      this.setState({submitList: this.constructSubmitList(updatedList)})
+    const handleModalListChange = (e) => {
+      const updatedList = setIsChecked(e, savedList)
+      setSavedList(updatedList)
     }
 
     /** Sets messages in confirm modal */
-    handleConfirmData = (title, message) => {
-      this.setState({ confirm: { ...this.state.confirm, title: title, message: message } })
+    const handleConfirmData = (title, message) => {
+      setConfirmModalTitle(title)
+      setConfirmModalMessage(message)
     }
 
     /** Creates HTML input elements */
-    createInputElement = (key, value) => {
+    const createInputElement = (key, value) => {
       const input = document.createElement('input')
       input.name = key
       input.setAttribute('value', value)
@@ -107,12 +91,11 @@
     }
 
     /* Handle the form submission for Aeon request (duplication and reading room) */
-    handleAeonFormSubmit = (uri, submitted, modal) => {
-      this.toggleModal(modal);
+    const handleAeonFormSubmit = (uri, submitted) => {
       const loadingTitle = 'Preparing Request Data'
       const loadingMessage = <p className='loading-dots'>Preparing items for your request</p>
-      this.handleConfirmData(loadingTitle, loadingMessage);
-      this.toggleModal('confirm');
+      handleConfirmData(loadingTitle, loadingMessage);
+      setConfirmModalOpen(true)
       axios
         .post(uri, submitted)
         .then(res => {
@@ -122,10 +105,10 @@
           Object.keys(res.data).forEach(key => {
             if (Array.isArray(res.data[key])) {
               res.data[key].forEach(v => {
-                form.append(this.createInputElement(key, v))
+                form.append(createInputElement(key, v))
               })
             } else {
-              form.append(this.createInputElement(key, res.data[key]))
+              form.append(createInputElement(key, res.data[key]))
             }
           });
           document.body.appendChild(form);
@@ -135,74 +118,73 @@
           console.log(err)
           const title = 'Error submitting request'
           const message = `There was an error submitting your request. The error message was: ${err.toString()}`
-          this.handleConfirmData(title, message);
+          handleConfirmData(title, message);
         })
     }
 
     /** Handles form submit for emails */
-    handleExportFormSubmit = (uri, submitted, modal) => {
-      this.toggleModal(modal);
+    const handleExportFormSubmit = (uri, submitted) => {
       const loadingTitle = 'Sending Email'
       const loadingMessage = <p className='loading-dots'>Adding items to your message</p>
-      this.handleConfirmData(loadingTitle, loadingMessage);
-      this.toggleModal('confirm');
+      handleConfirmData(loadingTitle, loadingMessage);
+      setConfirmModalOpen(true)
       axios
         .post(uri, submitted)
         .then(res => {
           const title = 'Email Sent'
           var message = <p>{`Selected items in your list have been emailed to ${submitted.email}`}</p>
-          this.handleConfirmData(title, message);
+          handleConfirmData(title, message);
         })
         .catch(err => {
           console.log(err)
           const title = 'Error submitting request'
           const message = `There was an error submitting your request. The error message was: ${err.toString()}`
-          this.handleConfirmData(title, message);
+          handleConfirmData(title, message);
         })
     }
 
     /** Fetches list data from localStorage and get complete data from mylist endpoint */
-    fetchList = () => {
+    const fetchList = () => {
       const list = fetchMyList();
       axios
-        .post(`${process.env.REACT_APP_ARGO_BASEURL}/mylist`, {list: list})
+        .post(`${process.env.REACT_APP_ARGO_BASEURL}/mylist`, { list: list })
         .then(res => {
-          this.setState({ savedList: res.data, submitList: this.constructSubmitList(res.data) })
+          setSavedList(res.data)
         })
         .catch(err => console.log(err))
-        .then(() => this.state.isLoading && this.setState({isLoading: false}));
+        .then(() => setIsLoading(false));
     }
 
     /** Remove all items from list */
-    removeAllFromList = () => {
-      this.props.removeAllListItems();
-      this.fetchList();
+    const removeAllFromList = () => {
+      removeAllListItems();
+      fetchList();
     }
 
     /** Remove single item from list */
-    removeFromList = item => {
-      this.props.toggleInList(item);
+    const removeFromList = item => {
+      toggleInList(item);
       var filteredList = [];
-      for (const group of this.state.savedList) {
+      for (const group of savedList) {
         var newGroup = {...group}
         newGroup.items = group.items.filter(i => i.uri !== item.uri)
         newGroup.items.length && filteredList.push(newGroup);
       }
-      this.setState({ savedList: filteredList, submitList: this.constructSubmitList(filteredList) })
+      setSavedList(filteredList)
     }
 
     /** Set submit flag on an item, which indicates if it should be included in request */
-    setSubmit = (uri, submitValue, submitReason) => {
-      const updatedList = this.state.savedList.map(g => {
+    const setSubmit = (uri, submitValue, submitReason) => {
+      const updatedList = savedList.map(g => {
         const updatedGroupItems = g.items.map(i => (
           {...i, submit: i.uri === uri ? submitValue : i.submit, submitReason: i.uri === uri ? submitReason : i.submitReason}))
         return {...g, items: updatedGroupItems}
       })
-      this.setState({ savedList: updatedList })
+      setSavedList(updatedList)
     }
 
     /** Returns list with isChecked attributes set based on checkbox input. */
-    setIsChecked = (e, list) => {
+    const setIsChecked = (e, list) => {
       const updatedList = list.map(g => {
         const updatedGroupItems = g.items.map(i => (
           {...i, isChecked: i.uri === e.target.id ? e.target.checked : i.isChecked }))
@@ -214,130 +196,133 @@
     /** Checks or unchecks all items in list, depending on value passed to function
     * isCheckedValue: boolean
     */
-    toggleList = (isCheckedValue, ignoreRestrictions) => {
-      const updatedList = this.state.savedList.map(g => {
+    const toggleList = (isCheckedValue, ignoreRestrictions) => {
+      const updatedList = savedList.map(g => {
         const updatedGroupItems = g.items.map(i => (
           {...i, isChecked: ignoreRestrictions || i.submit ? isCheckedValue : false }))
         return {...g, items: updatedGroupItems}
       })
-      this.setState({ savedList: updatedList })
-      const submitList = this.constructSubmitList(updatedList);
-      this.setState({submitList: submitList})
+      setSavedList(updatedList)
     }
 
-    /** Toggles modals. When modals are closed, resets savedList and submitList
-    * to original state
-    */
-    toggleModal = modal  => {
-      if ((['duplication', 'email', 'readingRoom'].includes(modal)) && !this.state.isRequestingAvailable) {
-        this.toggleModal('requestingUnavailable');
-        return;
-      }
-      this.setState({ [modal]: {...this.state[modal], isOpen: !this.state[modal]['isOpen'], error: ''} })
-      if (this.state[modal].isOpen) {
-        this.toggleList(false)
-      }
-    }
+    /** Fetch list data and ensure Request Broker is available on initial page load */
+    useEffect(() => {
+      fetchList()
+      axios
+        .get(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/status/health/ping`)
+        .then(res => res.data.pong && setIsRequestingAvailable(true))
+        .catch(err => console.log(err))
+    }, [])
 
-    render() {
-      return (
-        <React.Fragment>
-          <Helmet
-            onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
-            <title>DIMES: My List</title>
-          </Helmet>
-          <div className='container mylist flex'>
-            <nav>
-              <a href='/' className='btn btn--new-search'>
-                <MaterialIcon icon='keyboard_arrow_left'/>Start a New Search
-              </a>
-            </nav>
-            <main id='main' role='main'>
-              <div className='mylist__header'>
-                <h1 className='mylist__title'>My List</h1>
-                <MyListDropdown
-                  downloadCsv={this.downloadCsv}
-                  duplicationRequest={() => this.toggleModal('duplication')}
-                  emailList={() => this.toggleModal('email')}
-                  readingRoomRequest={() => this.toggleModal('readingRoom')}
-                  removeAllItems={() => this.toggleModal('confirmDeleteAll')} />
-              </div>
-              <MyListExportActions
-                  confirmDeleteAll={() => this.toggleModal('confirmDeleteAll')}
-                  downloadCsv={this.downloadCsv}
-                  emailList={() => this.toggleModal('email')}
-                  isDownloading={this.state.isDownloading} />
-              <SavedItemList
-                items={this.state.savedList}
-                isLoading={this.state.isLoading}
-                removeFromList={this.removeFromList} />
-            </main>
-            <MyListSidebar
-                duplicationRequest={() => this.toggleModal('duplication')}
-                readingRoomRequest={() => this.toggleModal('readingRoom')} />
-          </div>
-          <EmailModal
-            {...this.state.email}
-            handleChange={this.handleModalListChange}
-            handleFormSubmit={this.handleExportFormSubmit}
-            list={this.state.savedList}
-            setSubmit={this.setSubmit}
-            submitList={this.state.submitList}
-            toggleList={this.toggleList}
-            toggleModal={() => this.toggleModal('email')}
-          />
-          <ReadingRoomRequestModal
-            {...this.state.readingRoom}
-            handleChange={this.handleModalListChange}
-            handleFormSubmit={this.handleAeonFormSubmit}
-            list={this.state.savedList}
-            setSubmit={this.setSubmit}
-            submitList={this.state.submitList}
-            toggleList={this.toggleList}
-            toggleModal={() => this.toggleModal('readingRoom')}
-          />
-          <DuplicationRequestModal
-            {...this.state.duplication}
-            handleChange={this.handleModalListChange}
-            handleFormSubmit={this.handleAeonFormSubmit}
-            list={this.state.savedList}
-            setSubmit={this.setSubmit}
-            submitList={this.state.submitList}
-            toggleList={this.toggleList}
-            toggleModal={() => this.toggleModal('duplication')}
-          />
-          <ModalConfirm
-            {...this.state.requestingUnavailable}
-            message="Sorry, our system is unable to process requests right now. We're working to fix this! Please try again later."
-            title="Can't Complete Request"
-            toggleModal={() => this.toggleModal('requestingUnavailable')}
-          />
-          <ModalConfirm
-            {...this.state.confirm}
-            toggleModal={() => this.toggleModal('confirm')}
-          />
-          <ModalConfirm
-            {...this.state.confirmDeleteAll}
-            message={
-              <>Are you sure you want to remove all the items from your list?
-              <div className='confirm-buttons'>
-                <Button
-                  className='btn--sm btn--orange'
-                  label='Remove'
-                  handleClick={() => {this.removeAllFromList(); this.toggleModal('confirmDeleteAll');}} />
-                <Button
-                  className='btn--sm btn--gray'
-                  label='Cancel'
-                  handleClick={() => this.toggleModal('confirmDeleteAll')}/>
-              </div>
-              </>
-            }
-            title='Confirm Remove All'
-            toggleModal={() => this.toggleModal('confirmDeleteAll')}
-          />
-        </React.Fragment>
-      );
-    }
+    /** Reset checked items when modals are closed or opened */
+    useEffect(() => {
+      toggleList(false)
+    }, [emailModalOpen, readingRoomModalOpen, duplicationModalOpen])
+
+    /** Update submitList when savedList changes */
+    useEffect(() => {
+      setSubmitList(constructSubmitList(savedList))
+    }, [savedList])
+
+    return (
+      <>
+        <Helmet
+          onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
+          <title>DIMES: My List</title>
+        </Helmet>
+        <div className='container mylist flex'>
+          <nav>
+            <a href='/' className='btn btn--new-search'>
+              <MaterialIcon icon='keyboard_arrow_left'/>Start a New Search
+            </a>
+          </nav>
+          <main id='main' role='main'>
+            <div className='mylist__header'>
+              <h1 className='mylist__title'>My List</h1>
+              <MyListDropdown
+                downloadCsv={downloadCsv}
+                duplicationRequest={() => isRequestingAvailable ? setDuplicationModalOpen(true) : setReqestingUnavailableModalOpen(true)}
+                emailList={() => isRequestingAvailable ? setEmailModalOpen(true) : setReqestingUnavailableModalOpen(true)}
+                readingRoomRequest={() => isRequestingAvailable ? setReadingRoomModalOpen(true) : setReqestingUnavailableModalOpen(true)}
+                removeAllItems={() => setConfirmDeleteAllModalOpen(true)} />
+            </div>
+            <MyListExportActions
+                confirmDeleteAll={() => setConfirmDeleteAllModalOpen(true)}
+                downloadCsv={downloadCsv}
+                emailList={() => isRequestingAvailable ? setEmailModalOpen(true) : setReqestingUnavailableModalOpen(true)}
+                isDownloading={isDownloading} />
+            <SavedItemList
+              items={savedList}
+              isLoading={isLoading}
+              removeFromList={removeFromList} />
+          </main>
+          <MyListSidebar
+              duplicationRequest={() => isRequestingAvailable ? setDuplicationModalOpen(true) : setReqestingUnavailableModalOpen(true)}
+              readingRoomRequest={() => isRequestingAvailable ? setReadingRoomModalOpen(true) : setReqestingUnavailableModalOpen(true)} />
+        </div>
+        <EmailModal
+          isOpen={emailModalOpen}
+          handleChange={handleModalListChange}
+          handleFormSubmit={handleExportFormSubmit}
+          list={savedList}
+          setSubmit={setSubmit}
+          submitList={submitList}
+          toggleList={toggleList}
+          toggleModal={() => setEmailModalOpen(!emailModalOpen)}
+        />
+        <ReadingRoomRequestModal
+          isOpen={readingRoomModalOpen}
+          handleChange={handleModalListChange}
+          handleFormSubmit={handleAeonFormSubmit}
+          list={savedList}
+          setSubmit={setSubmit}
+          submitList={submitList}
+          toggleList={toggleList}
+          toggleModal={() => setReadingRoomModalOpen(readingRoomModalOpen)}
+        />
+        <DuplicationRequestModal
+          isOpen={duplicationModalOpen}
+          handleChange={handleModalListChange}
+          handleFormSubmit={handleAeonFormSubmit}
+          list={savedList}
+          setSubmit={setSubmit}
+          submitList={submitList}
+          toggleList={toggleList}
+          toggleModal={() => setDuplicationModalOpen(!duplicationModalOpen)}
+        />
+        <ModalConfirm
+          isOpen={requestingUnavailableModalOpen}
+          message="Sorry, our system is unable to process requests right now. We're working to fix this! Please try again later."
+          title="Can't Complete Request"
+          toggleModal={() => setReqestingUnavailableModalOpen(!requestingUnavailableModalOpen)}
+        />
+        <ModalConfirm
+          isOpen={confirmModalOpen}
+          message={confirmModalMessage}
+          title={confirmModalTitle}
+          toggleModal={() => setConfirmModalOpen(!confirmModalOpen)}
+        />
+        <ModalConfirm
+          isOpen={confirmDeleteAllModalOpen}
+          message={
+            <>Are you sure you want to remove all the items from your list?
+            <div className='confirm-buttons'>
+              <Button
+                className='btn--sm btn--orange'
+                label='Remove'
+                handleClick={() => {removeAllFromList(); setConfirmDeleteAllModalOpen(false)}} />
+              <Button
+                className='btn--sm btn--gray'
+                label='Cancel'
+                handleClick={() => setConfirmDeleteAllModalOpen(false)}/>
+            </div>
+            </>
+          }
+          title='Confirm Remove All'
+          toggleModal={() => setConfirmDeleteAllModalOpen(!confirmDeleteAllModalOpen)}
+        />
+      </>
+    );
   }
 
   PageMyList.propTypes = {

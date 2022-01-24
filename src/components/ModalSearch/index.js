@@ -10,6 +10,14 @@ export const FacetModal = props => {
   var [startYear, setStartYear] = useState(0)
   var [endYear, setEndYear] = useState(0)
 
+  const toArray = value => {
+    if (Array.isArray(value)) {
+      return value
+    } else {
+      return [value]
+    }
+  }
+
   /** Sets start and end year values */
   useEffect(() => {
     const startDate = (props.params.start_date__gte ? props.params.start_date__gte : (props.data.min_date && props.data.min_date.value)) || ''
@@ -60,19 +68,19 @@ export const FacetModal = props => {
           handleChange={props.handleChange}
           items={props.data.format}
           paramKey='genre'
-          params={props.params.genre}
+          params={toArray(props.params.genre)}
           title='Format' />
         <Facet
           handleChange={props.handleChange}
           items={props.data.creator}
           paramKey='creator'
-          params={props.params.creator}
+          params={toArray(props.params.creator)}
           title='Creator' />
         <Facet
           handleChange={props.handleChange}
           items={props.data.subject}
           paramKey='subject'
-          params={props.params.subject}
+          params={toArray(props.params.subject)}
           title='Subject' />
       </div>
     </Modal>
