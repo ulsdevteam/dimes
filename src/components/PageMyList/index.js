@@ -173,16 +173,6 @@
       setSavedList(filteredList)
     }
 
-    /** Set submit flag on an item, which indicates if it should be included in request */
-    const setSubmit = (uri, submitValue, submitReason) => {
-      const updatedList = savedList.map(g => {
-        const updatedGroupItems = g.items.map(i => (
-          {...i, submit: i.uri === uri ? submitValue : i.submit, submitReason: i.uri === uri ? submitReason : i.submitReason}))
-        return {...g, items: updatedGroupItems}
-      })
-      setSavedList(updatedList)
-    }
-
     /** Returns list with isChecked attributes set based on checkbox input. */
     const setIsChecked = (e, list) => {
       const updatedList = list.map(g => {
@@ -223,6 +213,46 @@
     useEffect(() => {
       setSubmitList(constructSubmitList(savedList))
     }, [savedList])
+
+    /** Updates submit and submitReason when savedList is updated
+    * 1. Resolve all promises before returning.
+    */
+    useEffect(() => {
+      /* Resolves savedList groups */
+      function resolveGroups(list) {
+        return Promise.all( /* 1 */
+          list.map(group => {
+            return resolveItemsStatus(group)
+          })
+        )
+      }
+      /* Resolves submit status of items in savedList groups */
+      async function resolveItemsStatus(group) {
+        const updatedItems = await Promise.all( /* 1 */
+          group.items.map(i => {
+            return axios
+              .post(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/process-request/parse`, { item: i.archivesspace_uri })
+              .then(res => {
+                return { ...i, submit: res.data.submit, submitReason: res.data.submit_reason}
+              })
+              .catch(err => console.log(err))
+          })
+        )
+        group.items = updatedItems
+        return group
+      }
+
+      /* Resolve submit status */
+      async function fetchData() {
+        const updatedList = await resolveGroups(savedList)
+        setSavedList(updatedList)
+      }
+
+      /* Calls the async function created above */
+      if (savedList.length) {
+        fetchData() /* 1 */
+      }
+    }, [savedList.length])
 
     return (
       <>
@@ -265,7 +295,6 @@
           handleChange={handleModalListChange}
           handleFormSubmit={handleExportFormSubmit}
           list={savedList}
-          setSubmit={setSubmit}
           submitList={submitList}
           toggleList={toggleList}
           toggleModal={() => setEmailModalOpen(!emailModalOpen)}
@@ -275,17 +304,15 @@
           handleChange={handleModalListChange}
           handleFormSubmit={handleAeonFormSubmit}
           list={savedList}
-          setSubmit={setSubmit}
           submitList={submitList}
           toggleList={toggleList}
-          toggleModal={() => setReadingRoomModalOpen(readingRoomModalOpen)}
+          toggleModal={() => setReadingRoomModalOpen(!readingRoomModalOpen)}
         />
         <DuplicationRequestModal
           isOpen={duplicationModalOpen}
           handleChange={handleModalListChange}
           handleFormSubmit={handleAeonFormSubmit}
           list={savedList}
-          setSubmit={setSubmit}
           submitList={submitList}
           toggleList={toggleList}
           toggleModal={() => setDuplicationModalOpen(!duplicationModalOpen)}
