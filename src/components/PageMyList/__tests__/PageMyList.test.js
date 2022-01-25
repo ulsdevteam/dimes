@@ -5,6 +5,7 @@ import { act } from 'react-dom/test-utils'
 import PageMyList from '..'
 
 import { resolvedList } from '../../../__fixtures__/resolvedList'
+import { parsedItem } from '../../../__fixtures__/parsedItem'
 
 let container = null
 beforeEach(() => {
@@ -24,7 +25,9 @@ jest.mock('axios')
 it('renders props correctly', async () => {
   axios.post.mockImplementation((url) => {
     if (url.includes('mylist')) {
-      return Promise.resolve({data: resolvedList})
+      return Promise.resolve({ data: resolvedList })
+    } else if (url.includes('process-request/parse')) {
+      return Promise.resolve({ data: parsedItem })
     } else {
       return Promise.reject(new Error('not found'))
     }
@@ -32,7 +35,7 @@ it('renders props correctly', async () => {
 
   axios.get.mockImplementation((url) => {
     if (url.includes('status/health/ping')) {
-      return Promise.resolve({data: { pong: true }})
+      return Promise.resolve({ data: { pong: true } })
     } else {
       return Promise.reject(new Error('not found'))
     }
