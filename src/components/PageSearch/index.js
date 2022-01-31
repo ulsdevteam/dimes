@@ -57,10 +57,8 @@ const PageSearch = () => {
 
   /** Set last search result */
   useEffect(() => {
-    let newEndItem = 0
-    if (resultsCount > pageSize) newEndItem = pageSize;
+    let newEndItem = resultsCount > pageSize ? pageSize : resultsCount
     if (params.offset) newEndItem = Math.ceil(Number(params.offset) + Number(pageSize))
-    if (newEndItem > resultsCount) newEndItem = resultsCount
     setEndItem(newEndItem)
   }, [resultsCount, params.offset])
 
