@@ -24,7 +24,7 @@
     const [duplicationModalOpen, setDuplicationModalOpen] = useState(false)
     const [emailModalOpen, setEmailModalOpen] = useState(false)
     const [readingRoomModalOpen, setReadingRoomModalOpen] = useState(false)
-    const [requestingUnavailableModalOpen, setReqestingUnavailableModalOpen] = useState(false)
+    const [requestingUnavailableModalOpen, setRequestingUnavailableModalOpen] = useState(false)
     const [confirmDeleteAllModalOpen, setConfirmDeleteAllModalOpen] = useState(false)
     const [confirmModalOpen, setConfirmModalOpen] = useState(false)
     const [confirmModalTitle, setConfirmModalTitle] = useState('')
@@ -48,7 +48,7 @@
     /* Requests CSV data and downloads a local file */
     const downloadCsv = () => {
       if (!isRequestingAvailable) {
-        setReqestingUnavailableModalOpen(true)
+        setRequestingUnavailableModalOpen(true)
         return;
       }
       setIsDownloading(true)
@@ -214,7 +214,7 @@
       setSubmitList(constructSubmitList(savedList))
     }, [savedList])
 
-    /** Updates submit and submitReason when savedList is updated
+    /** Updates submit and submitReason when savedList is updated and requesting is available
     * 1. Resolve all promises before returning.
     */
     useEffect(() => {
@@ -249,10 +249,10 @@
       }
 
       /* Calls the async function created above */
-      if (savedList.length) {
+      if (savedList.length && isRequestingAvailable) {
         fetchData() /* 1 */
       }
-    }, [savedList.length])
+    }, [savedList.length, isRequestingAvailable])
 
     return (
       <>
@@ -271,15 +271,15 @@
               <h1 className='mylist__title'>My List</h1>
               <MyListDropdown
                 downloadCsv={downloadCsv}
-                duplicationRequest={() => isRequestingAvailable ? setDuplicationModalOpen(true) : setReqestingUnavailableModalOpen(true)}
-                emailList={() => isRequestingAvailable ? setEmailModalOpen(true) : setReqestingUnavailableModalOpen(true)}
-                readingRoomRequest={() => isRequestingAvailable ? setReadingRoomModalOpen(true) : setReqestingUnavailableModalOpen(true)}
+                duplicationRequest={() => isRequestingAvailable ? setDuplicationModalOpen(true) : setRequestingUnavailableModalOpen(true)}
+                emailList={() => isRequestingAvailable ? setEmailModalOpen(true) : setRequestingUnavailableModalOpen(true)}
+                readingRoomRequest={() => isRequestingAvailable ? setReadingRoomModalOpen(true) : setRequestingUnavailableModalOpen(true)}
                 removeAllItems={() => setConfirmDeleteAllModalOpen(true)} />
             </div>
             <MyListExportActions
                 confirmDeleteAll={() => setConfirmDeleteAllModalOpen(true)}
                 downloadCsv={downloadCsv}
-                emailList={() => isRequestingAvailable ? setEmailModalOpen(true) : setReqestingUnavailableModalOpen(true)}
+                emailList={() => isRequestingAvailable ? setEmailModalOpen(true) : setRequestingUnavailableModalOpen(true)}
                 isDownloading={isDownloading} />
             <SavedItemList
               items={savedList}
@@ -287,8 +287,8 @@
               removeFromList={removeFromList} />
           </main>
           <MyListSidebar
-              duplicationRequest={() => isRequestingAvailable ? setDuplicationModalOpen(true) : setReqestingUnavailableModalOpen(true)}
-              readingRoomRequest={() => isRequestingAvailable ? setReadingRoomModalOpen(true) : setReqestingUnavailableModalOpen(true)} />
+              duplicationRequest={() => isRequestingAvailable ? setDuplicationModalOpen(true) : setRequestingUnavailableModalOpen(true)}
+              readingRoomRequest={() => isRequestingAvailable ? setReadingRoomModalOpen(true) : setRequestingUnavailableModalOpen(true)} />
         </div>
         <EmailModal
           isOpen={emailModalOpen}
@@ -321,7 +321,7 @@
           isOpen={requestingUnavailableModalOpen}
           message="Sorry, our system is unable to process requests right now. We're working to fix this! Please try again later."
           title="Can't Complete Request"
-          toggleModal={() => setReqestingUnavailableModalOpen(!requestingUnavailableModalOpen)}
+          toggleModal={() => setRequestingUnavailableModalOpen(!requestingUnavailableModalOpen)}
         />
         <ModalConfirm
           isOpen={confirmModalOpen}
