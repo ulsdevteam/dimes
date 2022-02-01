@@ -23,7 +23,7 @@ const App = () => {
 
   const removeAllListItems = () => {
     saveMyList([]);
-    this.setState({ myListCount: 0 })
+    setMyListCount(0)
   }
 
   const toggleInList = item => {
