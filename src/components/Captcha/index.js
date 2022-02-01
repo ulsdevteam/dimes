@@ -1,36 +1,33 @@
-import React, { Component } from 'react'
+import React, { createRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import ReCAPTCHA from 'react-google-recaptcha'
 import classnames from 'classnames'
 import './styles.scss'
 
-class Captcha extends Component {
-  constructor (props) {
-    super(props)
-    this.recaptchaRef = React.createRef()
-  }
+const Captcha = ({ className, form, handleCaptchaChange }) => {
 
-  /** Reset Recaptcha when form is submitted */
-  componentDidUpdate () {
-    if (!this.props.form.isValid && this.props.form.isSubmitting) {
-      this.recaptchaRef.current.reset()
+  const recaptchaRef = createRef()
+
+  useEffect(() => {
+    if (form.isValid && form.isSubmitting) {
+      recaptchaRef.current.reset()
     }
-  }
+  }, [form])
 
-  render () {
-    return (
-      <div name='recaptcha' tabIndex='0' className={classnames('captcha', this.props.className)}>
-        <ReCAPTCHA
-          sitekey='6LdQiSkTAAAAAPsOlHq_QmykPBEF9jdq3qQL_D9a'
-          onChange={this.props.handleCaptchaChange}
-          ref={this.recaptchaRef} />
-      </div>
-    )
-  }
+
+  return (
+    <div name='recaptcha' tabIndex='0' className={classnames('captcha', className)}>
+      <ReCAPTCHA
+        sitekey='6LdQiSkTAAAAAPsOlHq_QmykPBEF9jdq3qQL_D9a'
+        onChange={handleCaptchaChange}
+        ref={recaptchaRef} />
+    </div>
+  )
 }
 
 Captcha.propTypes = {
   className: PropTypes.string,
+  form: PropTypes.object,
   handleCaptchaChange: PropTypes.func
 }
 
