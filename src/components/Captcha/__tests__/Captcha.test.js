@@ -9,7 +9,10 @@ it('renders props correctly', () => {
   const onChange = jest.fn()
 
   act(() => {
-    render(<Captcha className='foo' handleCaptchaChange={onChange} />, div)
+    render(<Captcha
+      className='foo'
+      form={{}}
+      handleCaptchaChange={onChange} />, div)
   })
 
   const captcha = document.querySelector('[name=recaptcha]')
