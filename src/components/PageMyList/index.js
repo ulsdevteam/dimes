@@ -214,7 +214,7 @@
       setSubmitList(constructSubmitList(savedList))
     }, [savedList])
 
-    /** Updates submit and submitReason when savedList is updated and requesting is available
+    /** Updates submit and submitReason if requesting is available
     * 1. Resolve all promises before returning.
     */
     useEffect(() => {
@@ -252,7 +252,7 @@
       if (savedList.length && isRequestingAvailable) {
         fetchData() /* 1 */
       }
-    }, [savedList.length, isRequestingAvailable])
+    }, [isRequestingAvailable])
 
     return (
       <>
