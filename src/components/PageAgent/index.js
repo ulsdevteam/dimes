@@ -105,29 +105,31 @@ const PageAgent = () => {
         onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
         <title>{ agent.title }</title>
       </Helmet>
-      <div className='container agent'>
-        <nav className="agent__nav">
-          <a href={appendParams('/search', params)} className='btn btn--back'>
-            <span className='material-icons'>keyboard_arrow_left</span>Back to Search
-          </a>
-        </nav>
-        <main id='main' role='main'>
-          <h1 className='agent__title'>{ agent.title || <Skeleton />}</h1>
-          <p className='agent__subtitle'>{ isAgentLoading ?
-            (<Skeleton />) :
-            (agent.description) }
-          </p>
-          {isAttributesLoading ?
-            (<AgentAttributeSkeleton />) :
-            (<AgentDescription attributes={attributes} />)}
-          {isCollectionsLoading ?
-            (<SearchSkeleton />) :
-            (<AgentRelatedCollections
-              agentTitle={agent.title}
-              collections={collections}
-              params={{...params, category: ''}} />) }
-        </main>
-        <AgentSidebar related={agent.agents} />
+      <div className='container--full-width'>
+        <div className='agent__wrapper'>
+          <nav className="agent__nav">
+            <a href={appendParams('/search', params)} className='btn btn--back'>
+              <span className='material-icons'>keyboard_arrow_left</span>Back to Search
+            </a>
+          </nav>
+          <main id='main' role='main'>
+            <h1 className='agent__title'>{ agent.title || <Skeleton />}</h1>
+            <p className='agent__subtitle'>{ isAgentLoading ?
+              (<Skeleton />) :
+              (agent.description) }
+            </p>
+            {isAttributesLoading ?
+              (<AgentAttributeSkeleton />) :
+              (<AgentDescription attributes={attributes} />)}
+            {isCollectionsLoading ?
+              (<SearchSkeleton />) :
+              (<AgentRelatedCollections
+                agentTitle={agent.title}
+                collections={collections}
+                params={{...params, category: ''}} />) }
+          </main>
+          <AgentSidebar related={agent.agents} />
+        </div>
       </div>
     </React.Fragment>
   )

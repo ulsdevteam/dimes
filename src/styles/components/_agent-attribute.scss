@@ -22,3 +22,7 @@
 .agent-attribute--full-width {
   @include grid-column(12);
 }
+
+.agent-attribute__value {
+  white-space: pre-line;
+}

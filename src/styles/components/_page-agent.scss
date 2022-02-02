@@ -1,5 +1,12 @@
 @import "../styles";
 
+.agent__wrapper {
+  margin: 0px 30px;
+  @include lg-up {
+    margin: 0px 80px;
+  }
+}
+
 .agent__nav {
   margin-top: 30px;
 }
