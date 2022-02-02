@@ -11,7 +11,7 @@ export const SearchPagination = props => (
     nextClassName={'pagination__button'}
     breakLabel={'...'}
     breakClassName={'pagination__break'}
-    forcePage={props.offset && Math.ceil(props.offset / props.pageSize)}
+    forcePage={Math.ceil((props.offset || 0) / props.pageSize)}
     pageCount={props.pageCount}
     marginPagesDisplayed={1}
     pageRangeDisplayed={4}

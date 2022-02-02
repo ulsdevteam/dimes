@@ -1,7 +1,8 @@
 import React from 'react'
 import axios from 'axios'
-import { LiveAnnouncer, LiveMessage } from "react-aria-live";
+import { LiveAnnouncer, LiveMessage } from 'react-aria-live';
 import { render, unmountComponentAtNode } from 'react-dom'
+import { Route, Routes, MemoryRouter } from 'react-router-dom';
 import { act } from 'react-dom/test-utils'
 import PageRecords from '..'
 
@@ -44,12 +45,12 @@ it('renders props correctly', async () => {
   await act(async () => {
     await render(
       <LiveAnnouncer>
-        <PageRecords
-          history={{ push: jest.fn(), listen: jest.fn() }}
-          match={{params: {type: "objects", id: "oVDNM8UtE3ox9fiESd99Wy"}}}
-          location={{search: ""}}
-          myListCount={1}
-          toggleInList={jest.fn()} />
+        <MemoryRouter initialEntries={['/objects/oVDNM8UtE3ox9fiESd99Wy']}>
+          <Routes>
+            <Route path='/:type/:id' element={
+              <PageRecords myListCount={1} toggleInList={jest.fn()} />} />
+          </Routes>
+        </MemoryRouter>
       </LiveAnnouncer>, container)
   })
 

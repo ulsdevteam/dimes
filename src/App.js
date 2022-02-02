@@ -1,80 +1,62 @@
-import React, { Component } from "react";
-import { LiveAnnouncer } from "react-aria-live";
-import { Route, Switch } from "react-router-dom";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import SkipLink from "./components/SkipLink";
-import PageAgent from "./components/PageAgent";
-import PageRecords from "./components/PageRecords";
-import PageDigitalObject from "./components/PageDigitalObject";
-import PageHome from "./components/PageHome";
-import PageMyList from "./components/PageMyList";
-import PageSearch from "./components/PageSearch";
-import PageNotFound from "./components/PageNotFound";
-import { fetchMyList, isItemSaved, removeItem, saveItem, saveMyList } from "./components/MyListHelpers";
+import React, { useEffect, useState } from 'react';
+import { LiveAnnouncer } from 'react-aria-live';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import SkipLink from './components/SkipLink';
+import PageAgent from './components/PageAgent';
+import PageRecords from './components/PageRecords';
+import PageDigitalObject from './components/PageDigitalObject';
+import PageHome from './components/PageHome';
+import PageMyList from './components/PageMyList';
+import PageSearch from './components/PageSearch';
+import PageNotFound from './components/PageNotFound';
+import { fetchMyList, isItemSaved, removeItem, saveItem, saveMyList } from './components/MyListHelpers';
 
-class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      myListCount: 0,
-    }
-  }
+const App = () => {
+  const [myListCount, setMyListCount] = useState(0)
 
-  componentDidMount() {
-    this.setState({myListCount: this.countMyList()})
-  }
-
-  countMyList = data => {
+  const countMyList = data => {
     var list = data ? data : fetchMyList()
     return list.length
   }
 
-  removeAllListItems = () => {
+  const removeAllListItems = () => {
     saveMyList([]);
-    this.setState({ myListCount: 0 })
+    setMyListCount(0)
   }
 
-  toggleInList = item => {
+  const toggleInList = item => {
     const saved = isItemSaved(item)
     saved ? removeItem(item) : saveItem(item)
-    this.setState({ myListCount: this.countMyList() })
+    setMyListCount(countMyList())
     return !saved
   }
 
-  render() {
-    return (
-        <LiveAnnouncer>
-          <SkipLink />
-          <Header myListCount={this.state.myListCount} />
-          <main id="main" role="main">
-            <div className="wrapper">
-              <Switch>
-                <Route path="/list" render={(props) =>
-                  <PageMyList
-                    {...props}
-                    removeAllListItems={this.removeAllListItems}
-                    toggleInList={this.toggleInList} />
-                } />
-                <Route path="/search" component={PageSearch} />
-                <Route path="/:type(collections|objects)/:id/view"
-                    component={PageDigitalObject} />
-                <Route path="/:type(collections|objects)/:id" render={(props) =>
-                  <PageRecords
-                    {...props}
-                    myListCount={this.state.myListCount}
-                    toggleInList={this.toggleInList} />
-                } />
-                <Route path="/agents/:id" component={PageAgent} />
-                <Route exact path="/" component={PageHome} />
-                <Route path="*" component={PageNotFound} />
-              </Switch>
-            </div>
-          </main>
-        <Footer/>
-      </LiveAnnouncer>
-    );
-  }
+  useEffect(() => {
+    setMyListCount(countMyList())
+  }, [])
+
+  return (<LiveAnnouncer>
+    <SkipLink />
+    <Header myListCount={myListCount} />
+    <main id='main' role='main'>
+      <div className='wrapper'>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/list' element={<PageMyList removeAllListItems={removeAllListItems} toggleInList={toggleInList} />} />
+            <Route path='/search' element={<PageSearch />} />
+            <Route path='/:type/:id/view' element={<PageDigitalObject />} />
+            <Route path='/:type/:id' element={<PageRecords myListCount={myListCount} toggleInList={toggleInList} />} />
+            <Route path='/agents/:id' element={<PageAgent />} />
+            <Route exact path='/' element={<PageHome />} />
+            <Route path='*' element={<PageNotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </main>
+  <Footer/>
+  </LiveAnnouncer>)
 }
 
 export default App;

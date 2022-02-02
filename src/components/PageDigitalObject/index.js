@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { useParams } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import MaterialIcon from '../MaterialIcon'
 import Viewer from '../Viewer'
 import { firePageViewEvent, isMobile } from '../Helpers'
 import './styles.scss'
 
-const PageDigitalObject = props => {
+const PageDigitalObject = () => {
 
   const [itemTitle, setItemTitle] = useState("")
+  const { id, type } = useParams()
 
   /** Fetches and sets item title */
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_ARGO_BASEURL}/${props.match.params.type}/${props.match.params.id}`)
+      .get(`${process.env.REACT_APP_ARGO_BASEURL}/${type}/${id}`)
       .then(res =>  {
         setItemTitle(res.data.title)})
       .catch(err => console.log(err))
-    }, [props.match.params.id, props.match.params.type])
+    }, [id, type])
 
   const configs = {
     id: 'mirador',
@@ -82,7 +84,7 @@ const PageDigitalObject = props => {
       enabled: false
     },
     windows: [
-        { manifestId: `${process.env.REACT_APP_S3_BASEURL}/manifests/${props.match.params.id}` }
+        { manifestId: `${process.env.REACT_APP_S3_BASEURL}/manifests/${id}` }
     ]
   }
 
@@ -91,7 +93,7 @@ const PageDigitalObject = props => {
 
   /** Constructs url for Back to Item Details link */
   const itemUrl = (
-    params ? `/${props.match.params.type}/${props.match.params.id}${params}` : `/${props.match.params.type}/${props.match.params.id}`
+    params ? `/${type}/${id}${params}` : `/${type}/${id}`
   )
 
   /** Custom top bar which includes additional classes  so we can style things as we want to **/
@@ -102,7 +104,7 @@ const PageDigitalObject = props => {
       </div>
       <div className='viewer-bar__buttons'>
         <a className='btn btn--sm btn--orange'
-          href={`${process.env.REACT_APP_S3_BASEURL}/pdfs/${props.match.params.id}`}
+          href={`${process.env.REACT_APP_S3_BASEURL}/pdfs/${id}`}
           target='_blank'
           title='opens in a new window'
           rel='noopener noreferrer'
