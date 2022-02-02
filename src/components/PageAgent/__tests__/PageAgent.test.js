@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { render, unmountComponentAtNode } from 'react-dom'
+import { Route, Routes, MemoryRouter } from 'react-router-dom';
 import { act } from 'react-dom/test-utils'
 import PageAgent from '..'
 
@@ -31,10 +32,14 @@ it('renders props correctly', async () => {
       return Promise.reject(new Error('not found'))
     }
   })
-  act(() => {
-    render(<PageAgent
-      location={{ search: '?category=&limit=40&query=nelson%20rockefeller' }}
-      match={{params: { id: 'nQV9zedPVBqFgyGrXPQvBw' }}} />, container)
+
+  await act(async() => {
+    await render(
+      <MemoryRouter initialEntries={['/agents/nQV9zedPVBqFgyGrXPQvBw']}>
+        <Routes>
+          <Route path='/agents/:id' element={<PageAgent />} />
+        </Routes>
+      </MemoryRouter>, container)
   })
 
   const title = await document.querySelector('h1')

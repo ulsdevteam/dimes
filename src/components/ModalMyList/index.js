@@ -139,8 +139,7 @@ export const ModalMyList = props => (
         <ModalSavedItemList
           ignoreRestrictions={props.ignoreRestrictions}
           items={props.list}
-          handleChange={props.handleChange}
-          setSubmit={props.setSubmit} />
+          handleChange={props.handleChange} />
         <SelectedTotals items={props.list} />
       </div>
       <div className='modal-form'>
@@ -155,7 +154,6 @@ ModalMyList.propTypes = {
   handleChange: PropTypes.func,
   ignoreRestrictions: PropTypes.bool.isRequired,
   isOpen: PropTypes.bool.isRequired,
-  setSubmit: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   list: PropTypes.array.isRequired
@@ -173,7 +171,6 @@ export const EmailModal = props => (
     handleChange={props.handleChange}
     ignoreRestrictions={true}
     isOpen={props.isOpen}
-    setSubmit={props.setSubmit}
     toggleList={props.toggleList}
     toggleModal={props.toggleModal}
     list={props.list}
@@ -194,10 +191,10 @@ export const EmailModal = props => (
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
+          props.toggleModal()
           props.handleFormSubmit(
             `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/deliver-request/email`,
-            values,
-            'email');
+            values);
           setSubmitting(false);
         }}
       >
@@ -254,7 +251,6 @@ EmailModal.propTypes = {
   handleFormSubmit: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   list: PropTypes.array.isRequired,
-  setSubmit: PropTypes.func.isRequired,
   submitList: PropTypes.array.isRequired,
   toggleList: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
@@ -266,7 +262,6 @@ export const ReadingRoomRequestModal = props => (
     title='Request in Reading Room'
     handleChange={props.handleChange}
     isOpen={props.isOpen}
-    setSubmit={props.setSubmit}
     toggleList={props.toggleList}
     toggleModal={props.toggleModal}
     list={props.list}
@@ -281,12 +276,12 @@ export const ReadingRoomRequestModal = props => (
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
+          props.toggleModal()
           /* In order for Aeon to accept requests, dates need to be formatted as MM/DD/YYYY */
           values.scheduledDate = getFormattedDate(values.scheduledDate)
           props.handleFormSubmit(
             `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/deliver-request/reading-room`,
-            values,
-            'readingRoom');
+            values);
           setSubmitting(false);
         }}
       >
@@ -348,7 +343,6 @@ ReadingRoomRequestModal.propTypes = {
   handleFormSubmit: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   list: PropTypes.array.isRequired,
-  setSubmit: PropTypes.func.isRequired,
   submitList: PropTypes.array.isRequired,
   toggleList: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
@@ -361,7 +355,6 @@ export const DuplicationRequestModal = props => (
     title='Request Copies'
     handleChange={props.handleChange}
     isOpen={props.isOpen}
-    setSubmit={props.setSubmit}
     toggleList={props.toggleList}
     toggleModal={props.toggleModal}
     list={props.list}
@@ -388,10 +381,10 @@ export const DuplicationRequestModal = props => (
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
+            props.toggleModal()
             props.handleFormSubmit(
               `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/deliver-request/duplication`,
-              values,
-              'duplication');
+              values);
             setSubmitting(false);
           }}
         >
@@ -462,7 +455,6 @@ DuplicationRequestModal.propTypes = {
   handleFormSubmit: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   list: PropTypes.array.isRequired,
-  setSubmit: PropTypes.func.isRequired,
   submitList: PropTypes.array.isRequired,
   toggleList: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
