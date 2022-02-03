@@ -50,6 +50,7 @@ const PageAgent = () => {
   const [agent, setAgent] = useState({})
   const [collections, setCollections] = useState([])
   const [attributes, setAttributes] = useState([])
+  const [wikidata, setWikidata] = useState({})
   const [params, setParams] = useState({})
   const { id } = useParams()
   const { search } = useLocation()
@@ -62,6 +63,14 @@ const PageAgent = () => {
         setCollections(res.data.results);
         setIsCollectionsLoading(false);
       })
+      .catch(err => console.log(err))
+  }
+
+  const fetchWikidata = ({ external_identifiers }) => {
+    const wikidataId = external_identifiers.find(i => i.source == 'wikidata').identifier
+    axios
+      .get(`https://www.wikidata.org/wiki/Special:EntityData/${wikidataId}.json`)
+      .then(res => setWikidata(res.data))
       .catch(err => console.log(err))
   }
 
@@ -90,6 +99,7 @@ const PageAgent = () => {
       .then(res => {
         setAgent(res.data);
         fetchCollections(res.data);
+        fetchWikidata(res.data);
         parseAgentAttributes(res.data);
         setIsAgentLoading(false)
       })
