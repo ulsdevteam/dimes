@@ -252,7 +252,7 @@
       if (savedList.length && isRequestingAvailable) {
         fetchData() /* 1 */
       }
-    }, [isRequestingAvailable])
+    }, [savedList.length, isRequestingAvailable])
 
     return (
       <>
