@@ -33,16 +33,22 @@ const AgentRelatedCollections = ({ agentTitle, collections, params }) => (
   </div>) : (null)
 )
 
-const AgentSidebar = ({ agents }) => (
-  agents ?
+const AgentSidebar = ({ agentType, externalIdentifiers }) => {
+  const linkList = externalIdentifiers.map(i =>  (
+    <li key={i.url}>
+      <a className='btn--agent-identifier' href={i.url}>{i.title}</a>
+    </li>))
+  return (
+  externalIdentifiers.length ?
   (<div className='agent__sidebar'>
-    <h2 className='agent__section-title'>Related People and Organizations</h2>
-    <TileList hideHitCount items={agents} />
+    <h2 className='agent__section-title'>More about this {agentType}</h2>
+    <ul className='unstyled'>{linkList}</ul>
   </div>) : (null)
-)
+)}
 
 const PageAgent = () => {
 
+  const [externalIdentifiers, setExternalIdentifiers] = useState([])
   const [found, setFound] = useState(true)
   const [isAgentLoading, setIsAgentLoading] = useState(true)
   const [isAttributesLoading, setIsAttributesLoading] = useState(true)
@@ -67,11 +73,13 @@ const PageAgent = () => {
   }
 
   const fetchWikidata = ({ external_identifiers }) => {
-    const wikidataId = external_identifiers.find(i => i.source == 'wikidata').identifier
-    axios
-      .get(`https://www.wikidata.org/wiki/Special:EntityData/${wikidataId}.json`)
-      .then(res => setWikidata(res.data))
-      .catch(err => console.log(err))
+    const wikidataId = external_identifiers.find(i => i.source == 'wikidata') && external_identifiers.find(i => i.source == 'wikidata').identifier
+    if (wikidataId) {
+      axios
+        .get(`https://www.wikidata.org/wiki/Special:EntityData/${wikidataId}.json`)
+        .then(res => setWikidata(res.data.entities[wikidataId]))
+        .catch(err => console.log(err))
+    }
   }
 
   /** Adds labels for agent attributes */
@@ -106,6 +114,24 @@ const PageAgent = () => {
       .catch(err => setFound(false))
   }, [])
 
+  /** Parse and set external identifiers found in Wikidata */
+  useEffect(() => {
+    if (!!Object.keys(wikidata).length) {
+      const desiredIdentifiers = [
+        { property: 'P214', title: 'Virtual International Authority File', prefix: 'https://viaf.org/viaf'} ,
+        { property: 'P7859', title: 'WorldCat Identities', prefix: 'https://www.worldcat.org/identities' },
+        { property: 'P3430', title: 'Social Networks and Archival Context', prefix: 'https://snaccooperative.org/ark:' }]
+      const availableIdentifiers = desiredIdentifiers.filter(c => Object.keys(wikidata.claims).includes(c.property))
+      const parsedIdentifiers = availableIdentifiers.map(c => {
+        const identifierValue = wikidata.claims[c.property][0].mainsnak.datavalue.value
+        return {title: c.title, url: `${c.prefix}/${identifierValue}`}
+      })
+      let wikiIdentifiers = [{ title: 'Wikidata', url: `https://wikidata.org/wiki/${wikidata.title }`}]
+      wikidata.sitelinks.enwiki && wikiIdentifiers.unshift({ title: 'Wikipedia', url: wikidata.sitelinks.enwiki.url })
+      setExternalIdentifiers(wikiIdentifiers.concat(parsedIdentifiers))
+    }
+  }, [wikidata])
+
   if (!found) {
     return (<PageNotFound />)
   }
@@ -123,22 +149,22 @@ const PageAgent = () => {
             </a>
           </nav>
           <main id='main' role='main'>
-            <h1 className='agent__title'>{ agent.title || <Skeleton />}</h1>
-            <p className='agent__subtitle'>{ isAgentLoading ?
-              (<Skeleton />) :
-              (agent.description) }
-            </p>
-            {isAttributesLoading ?
-              (<AgentAttributeSkeleton />) :
-              (<AgentDescription attributes={attributes} />)}
-            {isCollectionsLoading ?
-              (<SearchSkeleton />) :
-              (<AgentRelatedCollections
-                agentTitle={agent.title}
-                collections={collections}
-                params={{...params, category: ''}} />) }
+            <div className='agent__wrapper--description'>
+              <div className='agent__main'>
+                <h1 className='agent__title'>{ agent.title || <Skeleton />}</h1>
+                {isAttributesLoading ?
+                  (<AgentAttributeSkeleton />) :
+                  (<AgentDescription attributes={attributes} />)}
+                {isCollectionsLoading ?
+                  (<SearchSkeleton />) :
+                  (<AgentRelatedCollections
+                    agentTitle={agent.title}
+                    collections={collections}
+                    params={{...params, category: ''}} />) }
+                </div>
+              <AgentSidebar agentType={agent.agent_type} externalIdentifiers={externalIdentifiers} />
+            </div>
           </main>
-          <AgentSidebar related={agent.agents} />
         </div>
       </div>
     </React.Fragment>
