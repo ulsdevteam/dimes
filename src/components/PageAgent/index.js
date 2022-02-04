@@ -132,6 +132,36 @@ const PageAgent = () => {
     }
   }, [wikidata])
 
+  /** Parse and set agent attributes from Wikidata */
+  useEffect(() => {
+    if (!!Object.keys(wikidata).length) {
+      const desiredProperties = [
+        { property: 'P106', label: 'Occupations' },
+        { property: 'P39', label: 'Positions Held' },
+        { property: 'P19', label: 'Place of Birth' }
+      ]
+      const availableProperties = desiredProperties.filter(p => Object.keys(wikidata.claims).includes(p.property))
+      availableProperties.map(p => {
+        const values = Promise.all(
+          wikidata.claims[p.property].map(c => {
+            const identifierValue = c.mainsnak.datavalue.value.id
+            if (identifierValue.startsWith('Q')) { // TODO: we should probably check a type here
+              return axios
+                .get(`https://www.wikidata.org/wiki/Special:EntityData/${identifierValue}.json`)
+                .then(res => {
+                  return res.data.entities[identifierValue].aliases.en && res.data.entities[identifierValue].aliases.en[0].value
+                })
+            }
+          })
+        ).then(v => {
+          const noteIndex = attributes.findIndex(a => a.note == true)
+          attributes.splice(noteIndex, 0, {label: p.label, value: v.filter(e => e != null).join(', '), note: false})
+          setAttributes(attributes)
+        })
+      })
+    }
+  }, [wikidata])
+
   if (!found) {
     return (<PageNotFound />)
   }
