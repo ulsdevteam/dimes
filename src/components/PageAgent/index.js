@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import PageNotFound from '../PageNotFound'
-import { AgentAttributeSkeleton, SearchSkeleton } from '../LoadingSkeleton'
+import { AgentAttributeSkeleton, AgentRelatedCollectionsSkeleton } from '../LoadingSkeleton'
 import TileList from '../Tile'
 import AgentAttributeList from '../AgentAttribute'
 import '../Button/styles.scss'
@@ -25,7 +25,11 @@ const AgentRelatedCollections = ({ agentTitle, collections, params }) => (
   collections.length ?
   (<div className='agent__related'>
     <h2 className='agent__section-title'>Related Collections</h2>
-    <TileList hideHitCount items={collections} params={params} />
+    <TileList
+      hideHitCount
+      items={collections}
+      params={params}
+      tileClassName='tile--related-collections'/>
     { collections.length === 8 ?
       (<a href={`/search?query=${agentTitle}&category=collection`} className='btn btn--search-more'>Search More Related Collections</a>) :
       (null)
@@ -216,7 +220,7 @@ const PageAgent = () => {
                       (<AgentNote noteText={noteText} />)}
                   </div>
                     {isCollectionsLoading ?
-                      (<SearchSkeleton />) :
+                      (<AgentRelatedCollectionsSkeleton />) :
                       (<AgentRelatedCollections
                         agentTitle={agent.title}
                         collections={collections}
