@@ -73,7 +73,7 @@ const PageAgent = () => {
   }
 
   const fetchWikidata = ({ external_identifiers }) => {
-    const wikidataId = external_identifiers.find(i => i.source == 'wikidata') && external_identifiers.find(i => i.source == 'wikidata').identifier
+    const wikidataId = external_identifiers.find(i => i.source === 'wikidata') && external_identifiers.find(i => i.source === 'wikidata').identifier
     if (wikidataId) {
       axios
         .get(`https://www.wikidata.org/wiki/Special:EntityData/${wikidataId}.json`)
@@ -82,8 +82,24 @@ const PageAgent = () => {
     }
   }
 
-  /** Adds labels for agent attributes */
-  const parseAgentAttributes = ( agent ) => {
+  /** Fetches agent data on initial page load */
+  useEffect(() => {
+    const initialParams = queryString.parse(search, { parseBooleans: true });
+    setParams(initialParams)
+    axios
+      .get(`${process.env.REACT_APP_ARGO_BASEURL}/agents/${id}`)
+      .then(res => {
+        setAgent(res.data);
+        // set wikidata id?
+        fetchCollections(res.data);
+        fetchWikidata(res.data);
+        setIsAgentLoading(false)
+      })
+      .catch(err => setFound(false))
+  }, [])
+
+  /** Sets agent attributes when data is available */
+  useEffect(() => {
     const agentType = agent.agent_type
     const startDates = agent.dates ? agent.dates.map(date => (
       {label: agentType === 'organization' ? 'Date Established' : 'Date of Birth', value: date.begin, note: false}
@@ -96,23 +112,7 @@ const PageAgent = () => {
     )) : []
     setAttributes(startDates.concat(endDates).concat(noteText))
     setIsAttributesLoading(false)
-  }
-
-  /** Fetches agent data on initial page load */
-  useEffect(() => {
-    const initialParams = queryString.parse(search, { parseBooleans: true });
-    setParams(initialParams)
-    axios
-      .get(`${process.env.REACT_APP_ARGO_BASEURL}/agents/${id}`)
-      .then(res => {
-        setAgent(res.data);
-        fetchCollections(res.data);
-        fetchWikidata(res.data);
-        parseAgentAttributes(res.data);
-        setIsAgentLoading(false)
-      })
-      .catch(err => setFound(false))
-  }, [])
+  }, [agent])
 
   /** Parse and set external identifiers found in Wikidata */
   useEffect(() => {
@@ -142,19 +142,22 @@ const PageAgent = () => {
       ]
       const availableProperties = desiredProperties.filter(p => Object.keys(wikidata.claims).includes(p.property))
       availableProperties.map(p => {
-        const values = Promise.all(
+        Promise.all(
           wikidata.claims[p.property].map(c => {
             const identifierValue = c.mainsnak.datavalue.value.id
-            if (identifierValue.startsWith('Q')) { // TODO: we should probably check a type here
+            if (c.mainsnak.datavalue.type === 'wikibase-entityid') {
               return axios
                 .get(`https://www.wikidata.org/wiki/Special:EntityData/${identifierValue}.json`)
                 .then(res => {
                   return res.data.entities[identifierValue].aliases.en && res.data.entities[identifierValue].aliases.en[0].value
-                })
+                }
+              )
+            } else {
+              return null
             }
           })
         ).then(v => {
-          const noteIndex = attributes.findIndex(a => a.note == true)
+          const noteIndex = attributes.findIndex(a => a.note === true)
           attributes.splice(noteIndex, 0, {label: p.label, value: v.filter(e => e != null).join(', '), note: false})
           setAttributes(attributes)
         })
