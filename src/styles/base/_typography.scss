@@ -266,6 +266,7 @@ small {
 
 .agent__title {
   @include page-title;
+  margin-top: 0;
 }
 
 .agent__subtitle {

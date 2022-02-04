@@ -3,10 +3,32 @@
 .agent__wrapper {
   margin: 0px 30px;
   @include lg-up {
-    margin: 0px 80px;
+    margin-left: 80px;
+    margin-right: 40px;
   }
 }
 
 .agent__nav {
   margin-top: 30px;
+}
+
+.agent__wrapper--description {
+  display: flex;
+}
+
+.agent__main {
+  width: 100%;
+  @include lg-up {
+    // width: 66%;
+    padding-right: 48px;
+  }
+}
+
+.agent__sidebar {
+  width: 100%;
+  @include lg-up {
+    width: 33%;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
 }
