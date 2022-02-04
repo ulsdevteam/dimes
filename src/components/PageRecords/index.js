@@ -99,7 +99,6 @@ const PageRecords = ({ myListCount, toggleInList }) => {
   useEffect(() => {
     if (itemUri) {
       setIsItemLoading(true)
-      const itemPath = itemUri.replace(`${process.env.REACT_APP_ARGO_BASEURL}`, '')
       axios
         .get(appendParams(itemUri, params))
         .then(res => {
@@ -114,7 +113,6 @@ const PageRecords = ({ myListCount, toggleInList }) => {
             setChildrenUri(`${process.env.REACT_APP_ARGO_BASEURL}${res.data.group.identifier}/children`)
           }
           setUpdateMessage(`Details under heading 1 have been updated to describe the selected records titled ${res.data.title}`)
-          // getMinimap(res.data.group.identifier, params)
         })
         .catch(err => setFound(false))
         .then(res => {
