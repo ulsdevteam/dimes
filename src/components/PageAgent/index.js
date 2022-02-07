@@ -154,7 +154,8 @@ const PageAgent = () => {
         { property: 'P39', label: 'Positions Held' },
         { property: 'P19', label: 'Place of Birth' },
         { property: 'P112', label: 'Founded by' },
-        { property: 'P159', label: 'Location of Headquarters' }
+        { property: 'P159', label: 'Location of Headquarters' },
+        { property: 'P1449', label: 'Nicknames' }
       ]
       const availableProperties = desiredProperties.filter(p => Object.keys(wikidata.claims).includes(p.property))
 
@@ -167,6 +168,7 @@ const PageAgent = () => {
                 return axios
                   .get(`https://www.wikidata.org/wiki/Special:EntityData/${identifierValue}.json`)
                   .then(res => {
+                    // TODO: labels, not aliases
                     return res.data.entities[identifierValue].aliases.en && res.data.entities[identifierValue].aliases.en[0].value
                   }
                 )
