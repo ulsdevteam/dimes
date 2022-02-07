@@ -70,7 +70,7 @@ const PageAgent = () => {
   /** Fetches data about collections associated with the agent */
   const fetchCollections = ({ title }) => {
     axios
-      .get(`${process.env.REACT_APP_ARGO_BASEURL}/search?query=${title}&category=collection&limit=8`)
+      .get(`${process.env.REACT_APP_ARGO_BASEURL}/search?query=${title}&category=collection&limit=6`)
       .then(res => {
         setCollections(res.data.results);
         setIsCollectionsLoading(false);
@@ -85,9 +85,11 @@ const PageAgent = () => {
         .get(`https://www.wikidata.org/wiki/Special:EntityData/${wikidataId}.json`)
         .then(res => {
           setWikidata(res.data.entities[wikidataId])
-          setIsWikidataLoading(false)
         })
         .catch(err => console.log(err))
+        .then(setIsWikidataLoading(false))
+    } else {
+      setIsWikidataLoading(false)
     }
   }
 
@@ -117,8 +119,7 @@ const PageAgent = () => {
       updatedAttributes[endLabel] = date.end
     })
     setAttributes(updatedAttributes)
-    // setIsAttributesLoading(false)
-    !isWikidataLoading && !wikidata && setIsAttributesLoading(false)
+    !isWikidataLoading && !Object.keys(wikidata).length && setIsAttributesLoading(false)
   }, [agent, wikidata, isWikidataLoading])
 
   /** Sets agent note text when agent notes are updated */
@@ -146,7 +147,6 @@ const PageAgent = () => {
   }, [wikidata])
 
   /** Parse and set agent attributes from Wikidata */
-  // TODO: need some sort of trigger when this has all completed.
   useEffect(() => {
     const fetchAttributes = async () => {
       const desiredProperties = [
@@ -168,8 +168,7 @@ const PageAgent = () => {
                 return axios
                   .get(`https://www.wikidata.org/wiki/Special:EntityData/${identifierValue}.json`)
                   .then(res => {
-                    // TODO: labels, not aliases
-                    return res.data.entities[identifierValue].aliases.en && res.data.entities[identifierValue].aliases.en[0].value
+                    return res.data.entities[identifierValue].labels.en.value
                   }
                 )
               } else {

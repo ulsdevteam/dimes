@@ -14,12 +14,15 @@
 
 .agent__wrapper--description {
   display: flex;
+  flex-wrap: wrap;
+  @include lg-up {
+    flex-wrap: nowrap;
+  }
 }
 
 .agent__main {
   width: 100%;
   @include lg-up {
-    // width: 66%;
     padding-right: 48px;
   }
 }
