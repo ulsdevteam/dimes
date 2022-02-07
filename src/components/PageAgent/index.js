@@ -87,7 +87,7 @@ const PageAgent = () => {
           setWikidata(res.data.entities[wikidataId])
         })
         .catch(err => console.log(err))
-        .then(setIsWikidataLoading(false))
+        .then(res => setIsWikidataLoading(false))
     } else {
       setIsWikidataLoading(false)
     }
@@ -106,7 +106,7 @@ const PageAgent = () => {
         setIsAgentLoading(false)
       })
       .catch(err => setFound(false))
-  }, [])
+  }, [id, search])
 
   /** Sets agent dates when agent data is available */
   useEffect(() => {
@@ -176,8 +176,8 @@ const PageAgent = () => {
               }
             })
           ).then(v => {
-            attributes[p.label] = v.filter(e => e != null).join(', ')
-            setAttributes(attributes)
+            const valuesList = v.filter(e => e != null).join(', ')
+            setAttributes(a => { return { ...a, [p.label]: valuesList }})
           })
         })
       )
