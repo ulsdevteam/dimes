@@ -13,11 +13,14 @@ import '../Button/styles.scss'
 import { appendParams, firePageViewEvent } from '../Helpers'
 import './styles.scss'
 
-const AgentNote = ({ noteText }) => (
-  noteText ?
+const AgentNote = ({ source, text }) => (
+  text ?
   (<div className={'agent__note'}>
-    <p className='agent-attribute__label'>Description</p>
-    <p className='agent-attribute__value'>{noteText}</p>
+    <p className='agent-note__label'>Description</p>
+    <p className='agent-note__value'>
+      {text}
+      { source ? (<span className='agent-note__source'>(Source: {source})</span>) : null }
+    </p>
   </div>) : (null)
 )
 
@@ -61,13 +64,14 @@ const PageAgent = () => {
   const [agent, setAgent] = useState({})
   const [collections, setCollections] = useState([])
   const [attributes, setAttributes] = useState({})
-  const [noteText, setNoteText] = useState("")
+  const [narrativeDescription, setNarrativeDescription] = useState('')
+  const [narrativeDescriptionSource, setNarrativeDescriptionSource] = useState('')
   const [wikidata, setWikidata] = useState({})
   const [params, setParams] = useState({})
   const { id } = useParams()
   const { search } = useLocation()
 
-  /** Fetches data about collections associated with the agent */
+  /** Fetches data about collections associated with the agent from the RAC API */
   const fetchCollections = ({ title }) => {
     axios
       .get(`${process.env.REACT_APP_ARGO_BASEURL}/search?query=${title}&category=collection&limit=6`)
@@ -78,6 +82,7 @@ const PageAgent = () => {
       .catch(err => console.log(err))
   }
 
+  /* Fetches data from Wikidata */
   const fetchWikidata = ({ external_identifiers }) => {
     const wikidataId = external_identifiers.find(i => i.source === 'wikidata') && external_identifiers.find(i => i.source === 'wikidata').identifier
     if (wikidataId) {
@@ -122,11 +127,24 @@ const PageAgent = () => {
     !isWikidataLoading && !Object.keys(wikidata).length && setIsAttributesLoading(false)
   }, [agent, wikidata, isWikidataLoading])
 
-  /** Sets agent note text when agent notes are updated */
+  /** Sets agent note text when agent notes are updated
+  * 1. Fetch extract from Wikipedia if available and no other note exists
+  */
   useEffect(() => {
-    const noteText = agent.notes && agent.notes.map(note => (note.subnotes.map(s => s.content).join('\r\n')))
-    setNoteText(noteText)
-  }, [agent.notes])
+    let noteText = agent.notes && agent.notes.map(note => note.subnotes.map(s => s.content).join('\r\n'))
+    if (!noteText && wikidata.sitelinks && wikidata.sitelinks.enwiki) { /* 1 */
+      const wikidataTitle = wikidata.sitelinks.enwiki.url.split('/').at(-1)
+      axios
+        .get(`https://en.wikipedia.org/api/rest_v1/page/summary/${wikidataTitle}`)
+        .then(res => {
+          setNarrativeDescription(res.data.extract)
+          setNarrativeDescriptionSource('Wikipedia')
+        })
+        .catch(err => console.log(err))
+    } else {
+      setNarrativeDescription(noteText)
+    }
+  }, [agent.notes, wikidata])
 
   /** Parse and set external identifiers found in Wikidata */
   useEffect(() => {
@@ -218,7 +236,7 @@ const PageAgent = () => {
                        </>)}
                     {isAgentLoading ?
                       (<AgentAttributeSkeleton />) :
-                      (<AgentNote noteText={noteText} />)}
+                      (<AgentNote source={narrativeDescriptionSource} text={narrativeDescription} />)}
                   </div>
                     {isCollectionsLoading ?
                       (<AgentRelatedCollectionsSkeleton />) :
