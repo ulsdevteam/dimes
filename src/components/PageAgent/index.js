@@ -231,7 +231,10 @@ const PageAgent = () => {
                     {isAttributesLoading ?
                       (<AgentAttributeSkeleton />) :
                       (<>
-                        <h2 className='agent__section-title'>Summary</h2>
+                        { !!Object.keys(attributes).length || narrativeDescription ?
+                          <h2 className='agent__section-title'>Summary</h2> :
+                          null
+                        }
                         <AgentAttributeList items={attributes} />
                        </>)}
                     {isAgentLoading ?
