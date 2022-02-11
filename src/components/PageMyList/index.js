@@ -199,7 +199,7 @@
     useEffect(() => {
       fetchList()
       axios
-        .get(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/status/health/ping`)
+        .get(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/status/health/ping_all`)
         .then(res => res.data.pong && setIsRequestingAvailable(true))
         .catch(err => console.log(err))
     }, [])
