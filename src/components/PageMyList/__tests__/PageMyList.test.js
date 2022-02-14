@@ -34,7 +34,7 @@ it('renders props correctly', async () => {
   })
 
   axios.get.mockImplementation((url) => {
-    if (url.includes('status/health/ping_all')) {
+    if (url.includes('status')) {
       return Promise.resolve({ data: { pong: true } })
     } else {
       return Promise.reject(new Error('not found'))
