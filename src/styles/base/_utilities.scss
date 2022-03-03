@@ -23,6 +23,10 @@ $transition-default: all 0.2s ease;
   @include visually-hidden;
 }
 
+.bring-forward {
+  z-index: 999999;
+}
+
 .flex {
   display: flex;
 }

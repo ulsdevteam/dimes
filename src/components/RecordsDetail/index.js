@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import pluralize from 'pluralize'
+import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 import {
     Accordion,
     AccordionItem,
@@ -9,13 +11,13 @@ import {
     AccordionItemButton,
     AccordionItemPanel,
 } from '../Accordion'
+import Button from '../Button'
 import ListToggleButton from '../ListToggleButton'
 import MaterialIcon from '../MaterialIcon'
 import QueryHighlighter from '../QueryHighlighter'
 import { DetailSkeleton, FoundInItemSkeleton } from '../LoadingSkeleton'
-import { appendParams, dateString, hasAccessOrUse, isTablet, noteText, noteTextByType } from '../Helpers'
+import { appendParams, dateString, hasAccessOrUse, isDesktop, noteText, noteTextByType } from '../Helpers'
 import { isItemSaved } from '../MyListHelpers'
-import classnames from 'classnames'
 import './styles.scss'
 
 const FoundInItem = ({ className, item, params, topLevel }) => (
@@ -140,17 +142,8 @@ const RecordsDetail = props => {
 
   /** Constructs the URL for the 'Back to Search' button */
   const searchUrl = (
-    props.params && props.params.query ? appendParams('/search', props.params) : '/'
+    props.params && props.params.query ? appendParams('/search/', props.params) : '/'
   )
-
-  /** Scrolls a component into view in the records tree **/
-  const scrollFocusedIntoView = uri => {
-    const el = document.getElementById(`accordion__heading-${uri}`)
-    if (el) {
-      el.focus()
-      el.scrollIntoView({ behavior: 'smooth', block: 'center'})
-    }
-  }
 
   /** Parses an item's identifier from its URI */
   const identifier = (
@@ -159,16 +152,18 @@ const RecordsDetail = props => {
 
   return (
   <div className={classnames('records__detail', {'hidden': props.isContentShown})}>
+    {isDesktop ? <Button
+      type='button'
+      className='btn--sm btn--transparent btn--minimap-info'
+      handleClick={props.toggleMinimapModal}
+      iconAfter='info'
+      label='about minimap'
+    /> : null
+    }
     <nav className='records__nav'>
       <a href={searchUrl} className='btn btn--back'>
         <MaterialIcon icon='keyboard_arrow_left'/>Back to Search
       </a>
-      {isTablet ? null : (
-        <button className='btn btn--sm btn--light-blue btn--scroll-focused' onClick={() => scrollFocusedIntoView(props.item.uri)}>
-          Locate within collection
-          <MaterialIcon icon='gps_fixed'/>
-        </button>
-      )}
     </nav>
     <h1 className='records__title'>{props.isItemLoading ? <Skeleton /> : props.item.title }</h1>
     {props.item.type === 'object' &&
@@ -290,6 +285,7 @@ RecordsDetail.propTypes = {
   myListCount: PropTypes.number.isRequired,
   params: PropTypes.object.isRequired,
   toggleInList: PropTypes.func.isRequired,
+  toggleMinimapModal: PropTypes.func.isRequired,
 }
 
 export default RecordsDetail;

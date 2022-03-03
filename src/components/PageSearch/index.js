@@ -1,9 +1,11 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import classnames from 'classnames'
 import queryString from 'query-string'
 import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 import { Helmet } from 'react-helmet'
+import { useNavigate, useLocation } from 'react-router-dom'
 import Button from '../Button'
 import { SelectInput } from '../Inputs'
 import { SearchSkeleton } from '../LoadingSkeleton'
@@ -15,256 +17,251 @@ import TileList from '../Tile'
 import { appendParams, firePageViewEvent } from '../Helpers'
 import './styles.scss'
 
-class PageSearch extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      inProgress: false,
-      items: [],
-      offset: 0,
-      params: {query: "", category: ""},
-      pageCount: 0,
-      pageSize: 40,
-      startItem: 0,
-      endItem: 0,
-      resultsCount: 0,
-      facetIsOpen: false,
-      facetData: {},
-      suggestions: []
-    };
-  };
+const PageSearch = () => {
 
-  /** Execute search based on params */
-  componentDidMount() {
-    let params = queryString.parse(this.props.location.search, {parseBooleans: true})
-    params.limit = this.state.pageSize
-    this.executeSearch(params)
-  };
-
-  /** Get first search result */
-  startItem = (results, offset) => {
-    var startItem = this.state.startItem;
-    if (results.count) startItem = 1;
-    if (offset > 0) startItem = offset;
-    return startItem;
-  }
-
-  /** Get last search result */
-  endItem = (results, offset) => {
-    var endItem = results.count
-    if (results.count > this.state.pageSize) endItem = this.state.pageSize;
-    if (offset) endItem = Math.ceil(Number(offset) + Number(this.state.pageSize));
-    if (endItem > results.count) endItem = results.count
-    return endItem;
-  }
-
-  /** Fetch data from facets endpoint */
-  excecuteFacetsSearch = params =>  {
-    axios
-      .get(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}/facets/`, params))
-      .then(res => {this.setState({ facetData: res.data})})
-      .catch(err => console.log(err));
-  };
-
-  executeSuggestSearch = params => {
-    axios
-      .get(`${process.env.REACT_APP_ARGO_BASEURL}/search/suggest/?title_suggest=${params.query}`)
-      .then(res => {
-        const suggestions = res.data.title_suggest.reduce((a, c) => {
-          const options = c.options.map(o => o.text)
-          return (a.concat(options))
-        }, [])
-        this.setState({ suggestions: suggestions})
-      })
-      .catch(err => console.log(err))
-  }
-
-  /** Executes search and sets results in state */
-  executeSearch = params =>  {
-    this.props.history.push(appendParams(window.location.pathname, params))
-    this.setState({ inProgress: true });
-    this.setState({ params: params })
-    axios
-      .get(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}/search/`, params))
-      .then(res => {
-        this.setState({items: res.data.results})
-        this.setState({startItem: this.startItem(res.data, params.offset)})
-        this.setState({endItem: this.endItem(res.data, params.offset)})
-        this.setState({resultsCount: res.data.count})
-        this.setState({offset: params.offset})
-        this.setState({pageCount: Math.ceil(res.data.count / this.state.pageSize)})
-        this.excecuteFacetsSearch(params);
-        !res.data.count && this.executeSuggestSearch(params)
-        this.setState({inProgress: false});
-      })
-      .catch(err => console.log(err));
-  };
-
-  /** Executes search when user clicks on Apply button in date facet */
-  handleDateFacetChange = (startYear, endYear) => {
-    var params = {...this.state.params}
-    params.start_date__gte = startYear
-    params.end_date__lte = endYear
-    delete params.offset
-    this.executeSearch(params);
-  }
-
-  /** Pushes changes to facet checkboxes to url and executes search */
-  handleFacetChange = (event, k) => {
-    var params = {...this.state.params}
-    if (event.target.checked) {
-      if (Array.isArray(params[k])) {
-        params[k].push(event.target.name)
-      } else if (params[k]) {
-        params[k] = [params[k], event.target.name]
-      } else {
-        params[k] = event.target.name;
-      }
-    } else {
-      Array.isArray(params[k]) ? delete params[k][params[k].indexOf(event.target.name)] : delete params[k]
-    }
-    delete params.offset
-    this.executeSearch(params);
-  }
-
-  /** Executes a new search when search form inputs are changed **/
-  handleSearchFormChange = (category, query, online) => {
-    var params = { ...this.state.params, query: query, category: category }
-    if (online) {
-      console.log(online);
-      params = { ...params, online: true }
-    } else {
-      delete params.online
-    }
-    this.executeSearch(params)
-  }
-
-  /** Sets offset and executes search based on user input */
-  handlePageClick = (data) => {
-    let offset = Math.ceil(data.selected * this.state.pageSize);
-    let params = {...this.state.params}
-    if (offset > 0) {params.offset = offset} else {delete params.offset}
-    this.executeSearch(params)
-  };
-
-  /** Changes sort based on user input */
-  handleSortChange = value => {
-    var params = {...this.state.params}
-    value ? params.sort = value : delete params['sort']
-    delete params.offset
-    this.executeSearch(params)
-  }
-
-  /** Shows and hides the facet modal */
-  toggleFacetModal = () => {
-    this.setState({ facetIsOpen: !this.state.facetIsOpen })
-  }
-
-  sortOptions = [
+  const [facetIsOpen, setFacetIsOpen] = useState(false)
+  const [facetData, setFacetData] = useState({})
+  const [inProgress, setInProgress] = useState(true)
+  const [items, setItems] = useState([])
+  const [params, setParams] = useState({ query: '', category: '' })
+  const [pageCount, setPageCount] = useState(0)
+  const [startItem, setStartItem] = useState(0)
+  const [endItem, setEndItem] = useState(0)
+  const [resultsCount, setResultsCount] = useState(0)
+  const [suggestions, setSuggestions] = useState([])
+  const pageSize = 40
+  const { pathname, search } = useLocation()
+  const navigate = useNavigate()
+  const sortOptions = [
     {value: '', label: 'Sort by relevance'},
     {value: 'title', label: 'Sort by title'},
     {value: 'creator', label: 'Sort by creator name'}
   ]
 
-  render() {
-    return (
-      <React.Fragment>
-        <Helmet
-          onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
-          <title>Search Results</title>
-        </Helmet>
-        <div className='container--full-width'>
-          <div className='search-bar'>
-            <SearchForm
-              className='search-form--results'
-              handleSearchFormChange={this.handleSearchFormChange}
-              query={this.state.params.query}
-              online={this.state.params.online}
-              category={this.state.params.category} />
-          </div>
-          <div className='results'>
-          <h1 className={classnames('results__title', { 'loading-dots': this.state.inProgress })}>{this.state.inProgress ? "Searching" :
-            (this.state.resultsCount ?
-              (`Search Results ${this.state.params.query && `for “${this.state.params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`) :
-              (`Sorry, there are no search results ${this.state.params.query && `for “${this.state.params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`))
-          }
-          </h1>
-            {!this.state.resultsCount && !this.state.inProgress ?
-              (
-                <SearchNotFound suggestions={this.state.suggestions}/>
-              ) :
-              (<>
-                <div className='results__header'>
-                  <div className='results__summary'>
-                    <p className='results__summary--text'>
-                      {this.state.inProgress ? (<Skeleton />) : (`${this.state.startItem === this.state.endItem ?
-                          this.state.startItem :
-                          `${this.state.startItem}-${this.state.endItem}`} of ${this.state.resultsCount} results`)}
-                    </p>
-                  </div>
-                  <div className='results__controls'>
-                    <Button
-                      handleClick={() => this.toggleFacetModal()}
-                      label='Filters'
-                      iconBefore='filter_alt'
-                      className='btn--filter' />
-                    <SelectInput
-                      className='select__sort'
-                      hideLabel
-                      id='sort'
-                      name='sort'
-                      onChange={({selectedItem}) => this.handleSortChange(selectedItem.value)}
-                      label='Sort search results'
-                      selectedItem={this.state.params.sort || ''}
-                      options={this.sortOptions} />
-                  </div>
-                  <div className='results__pagination'>
-                    {this.state.inProgress ?
-                        (<Skeleton />) :
-                        (<SearchPagination
-                          offset={this.state.offset}
-                          pageSize={this.state.pageSize}
-                          pageCount={this.state.pageCount}
-                          handlePageClick={this.handlePageClick}
-                        />)}
-                  </div>
-                </div>
-                { this.state.inProgress ?
-                    (<SearchSkeleton />) :
-                    (<TileList
-                      items={this.state.items}
-                      params={this.state.params} />)}
-                <div className='results__footer'>
-                  <p className='results__summary'>
-                    {`${this.state.startItem === this.state.endItem ?
-                            this.state.startItem :
-                            `${this.state.startItem}-${this.state.endItem}`} of ${this.state.resultsCount} results`}
-                  </p>
-                  <div className='results__pagination'>
-                    <SearchPagination
-                      offset={this.state.offset}
-                      pageSize={this.state.pageSize}
-                      pageCount={this.state.pageCount}
-                      handlePageClick={this.handlePageClick}
-                            />
-                  </div>
-                </div>
-              </>
-            )}
-          </div>
-        </div>
-        <FacetModal
-          isOpen={this.state.facetIsOpen}
-          toggleModal={this.toggleFacetModal}
-          data={this.state.facetData}
-          params={this.state.params}
-          resultsCount={this.state.resultsCount}
-          handleChange={this.handleFacetChange}
-          handleDateChange={this.handleDateFacetChange} />
-      </React.Fragment>
+  /** Execute search on initial page load */
+  useEffect(() => {
+    let params = queryString.parse(search, { parseBooleans: true })
+    params.limit = pageSize
+    const parsedOffset = +(params.offset)
+    if (parsedOffset > 0) { params.offset = parsedOffset } else { delete params.offset }
+    setParams(params)
+  }, [])
 
-    )
+  /** Set first search result */
+  useEffect(() => {
+    let newStartItem = 0
+    if (resultsCount) newStartItem = 1
+    if (params.offset > 0) newStartItem = params.offset
+    setStartItem(newStartItem)
+  }, [resultsCount, params.offset])
+
+  /** Set last search result */
+  useEffect(() => {
+    let newEndItem = resultsCount > pageSize ? pageSize : resultsCount
+    if (params.offset) newEndItem = Math.ceil(Number(params.offset) + Number(pageSize))
+    setEndItem(newEndItem)
+  }, [resultsCount, params.offset])
+
+  /** Fetch data from facets endpoint when params change */
+  useEffect(() => {
+    if (params.query) {
+      axios
+        .get(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}/facets`, params))
+        .then(res => setFacetData(res.data))
+        .catch(err => console.log(err));
+    }
+  }, [params])
+
+  /** Fetch suggestions data when params change */
+  useEffect(() => {
+    if (params.query) {
+      axios
+        .get(`${process.env.REACT_APP_ARGO_BASEURL}/search/suggest?title_suggest=${params.query}`)
+        .then(res => {
+          const suggestions = res.data.title_suggest.reduce((a, c) => {
+            const options = c.options.map(o => o.text)
+            return (a.concat(options))
+          }, [])
+          setSuggestions(suggestions)
+        })
+        .catch(err => console.log(err))
+    }
+  }, [params])
+
+  /** Executes search and sets results in state */
+  useEffect(() => {
+    if (params.query) {
+      navigate(appendParams(pathname, params))
+      setInProgress(true)
+      axios
+        .get(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}/search`, params))
+        .then(res => {
+          setItems(res.data.results)
+          setResultsCount(res.data.count)
+          setPageCount(Math.ceil(res.data.count / pageSize))
+          setInProgress(false)
+        })
+        .catch(err => console.log(err));
+    }
+  }, [params])
+
+  /** Executes search when user clicks on Apply button in date facet */
+  const handleDateFacetChange = (startYear, endYear) => {
+    let newParams = { ...params }
+    newParams.start_date__gte = startYear
+    newParams.end_date__lte = endYear
+    delete newParams.offset
+    setParams(newParams)
   }
+
+  /** Pushes changes to facet checkboxes to url and executes search */
+  const handleFacetChange = (event, k) => {
+    let newParams = { ...params }
+    if (event.target.checked) {
+      if (Array.isArray(newParams[k])) {
+        newParams[k].push(event.target.name)
+      } else if (newParams[k]) {
+        newParams[k] = [newParams[k], event.target.name]
+      } else {
+        newParams[k] = event.target.name;
+      }
+    } else {
+      Array.isArray(newParams[k]) ? delete newParams[k][newParams[k].indexOf(event.target.name)] : delete newParams[k]
+    }
+    delete newParams.offset
+    setParams(newParams)
+  }
+
+  /** Executes a new search when search form inputs are changed **/
+  const handleSearchFormChange = (category, query, online) => {
+    let newParams = { ...params, query: query, category: category }
+    if (online) {
+      newParams.online = true
+    } else {
+      delete newParams.online
+    }
+    setParams(newParams)
+  }
+
+  /** Sets offset and executes search based on user input */
+  const handlePageClick = (data) => {
+    let offset = Math.ceil(data.selected * pageSize);
+    let newParams = { ...params }
+    if (offset > 0) { newParams.offset = offset } else { delete newParams.offset }
+    setParams(newParams)
+  };
+
+  /** Changes sort based on user input */
+  const handleSortChange = value => {
+    let newParams = { ...params }
+    value ? newParams.sort = value : delete newParams['sort']
+    delete newParams.offset
+    setParams(newParams)
+  }
+
+  /** Shows and hides the facet modal */
+  const toggleFacetModal = () => {
+    setFacetIsOpen(!facetIsOpen)
+  }
+
+  return (
+    <React.Fragment>
+      <Helmet
+        onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
+        <title>Search Results</title>
+      </Helmet>
+      <div className='container--full-width'>
+        <div className='search-bar'>
+          <SearchForm
+            className='search-form--results'
+            handleSearchFormChange={handleSearchFormChange}
+            query={params.query}
+            online={params.online}
+            category={params.category} />
+        </div>
+        <div className='results'>
+        <h1 className={classnames('results__title', { 'loading-dots': inProgress })}>{inProgress ? "Searching" :
+          (resultsCount ?
+            (`Search Results ${params.query && `for “${params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`) :
+            (`Sorry, there are no search results ${params.query && `for “${params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`))
+        }
+        </h1>
+          {!resultsCount && !inProgress ?
+            (
+              <SearchNotFound suggestions={suggestions}/>
+            ) :
+            (<>
+              <div className='results__header'>
+                <div className='results__summary'>
+                  <p className='results__summary--text'>
+                    {inProgress ? (<Skeleton />) : (`${startItem === endItem ?
+                        startItem :
+                        `${startItem}-${endItem}`} of ${resultsCount} results`)}
+                  </p>
+                </div>
+                <div className='results__controls'>
+                  <Button
+                    handleClick={() => toggleFacetModal()}
+                    label='Filters'
+                    iconBefore='filter_alt'
+                    className='btn--filter' />
+                  <SelectInput
+                    className='select__sort'
+                    hideLabel
+                    id='sort'
+                    name='sort'
+                    onChange={({selectedItem}) => handleSortChange(selectedItem.value)}
+                    label='Sort search results'
+                    selectedItem={params.sort || ''}
+                    options={sortOptions} />
+                </div>
+                <div className='results__pagination'>
+                  { inProgress ? (null) : (
+                    <SearchPagination
+                      offset={params.offset}
+                      pageSize={pageSize}
+                      pageCount={pageCount}
+                      handlePageClick={handlePageClick} />
+                  )}
+                </div>
+              </div>
+              { inProgress ?
+                  (<SearchSkeleton />) :
+                  (<TileList
+                    items={items}
+                    params={params} />)}
+              <div className='results__footer'>
+                <div className='results__summary'>
+                  <p className='results__summary--text'>
+                    {inProgress ? (<Skeleton />) : (`${startItem === endItem ?
+                        startItem :
+                        `${startItem}-${endItem}`} of ${resultsCount} results`)}
+                  </p>
+                </div>
+                <div className='results__pagination'>
+                  { inProgress ? (null) : (
+                    <SearchPagination
+                      offset={params.offset}
+                      pageSize={pageSize}
+                      pageCount={pageCount}
+                      handlePageClick={handlePageClick} />
+                  )}
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+      <FacetModal
+        isOpen={facetIsOpen}
+        toggleModal={toggleFacetModal}
+        data={facetData}
+        params={params}
+        resultsCount={resultsCount}
+        handleChange={handleFacetChange}
+        handleDateChange={handleDateFacetChange} />
+    </React.Fragment>
+  )
 }
 
 export default PageSearch;

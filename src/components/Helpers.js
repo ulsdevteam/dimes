@@ -98,3 +98,6 @@ export const isMobile = window.innerWidth < 580;
 
 /** Checks the width of the window to determine if current device is tablet **/
 export const isTablet = window.innerWidth < 1024;
+
+/** Checks the width of the window to determine if current device is tablet **/
+export const isDesktop = window.innerWidth >= 1024;

@@ -1,14 +1,17 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { useLocation, useParams } from 'react-router-dom'
 import queryString from 'query-string'
 import { Helmet } from 'react-helmet'
 import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 import PageNotFound from '../PageNotFound'
 import { AgentAttributeSkeleton, SearchSkeleton } from '../LoadingSkeleton'
 import TileList from '../Tile'
 import AgentAttributeList from '../AgentAttribute'
 import '../Button/styles.scss'
 import { appendParams, firePageViewEvent } from '../Helpers'
+import './styles.scss'
 
 const AgentDescription = ({ attributes }) => (
   attributes.length ?
@@ -24,7 +27,7 @@ const AgentRelatedCollections = ({ agentTitle, collections, params }) => (
     <h2 className='agent__section-title'>Related Collections</h2>
     <TileList hideHitCount items={collections} params={params} />
     { collections.length === 8 ?
-      (<a href={`/search/?query=${agentTitle}&category=collection`} className='btn btn--search-more'>Search More Related Collections</a>) :
+      (<a href={`/search?query=${agentTitle}&category=collection`} className='btn btn--search-more'>Search More Related Collections</a>) :
       (null)
     }
   </div>) : (null)
@@ -34,104 +37,102 @@ const AgentSidebar = ({ agents }) => (
   agents ?
   (<div className='agent__sidebar'>
     <h2 className='agent__section-title'>Related People and Organizations</h2>
-    <TileList hideHitCount items={this.props.agents} />
+    <TileList hideHitCount items={agents} />
   </div>) : (null)
 )
 
-class PageAgent extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      found: true,
-      isAgentLoading: true,
-      isAttributesLoading: true,
-      isCollectionsLoading: true,
-      agent: {},
-      collections: [],
-      attributes: [],
-      params: {}
-    };
-  }
+const PageAgent = () => {
 
-  /** Fetches agent data */
-  componentDidMount() {
-    const params = queryString.parse(this.props.location.search, {parseBooleans: true});
-    this.setState({ params: params })
-    axios
-      .get(`${process.env.REACT_APP_ARGO_BASEURL}/agents/${this.props.match.params.id}`)
-      .then(res => {
-        this.setState({ agent: res.data });
-        this.fetchCollections();
-        this.parseAgentAttributes();
-        this.setState({ isAgentLoading: false })
-      })
-      .catch(err => this.setState({ found: false }))
-  }
+  const [found, setFound] = useState(true)
+  const [isAgentLoading, setIsAgentLoading] = useState(true)
+  const [isAttributesLoading, setIsAttributesLoading] = useState(true)
+  const [isCollectionsLoading, setIsCollectionsLoading] = useState(true)
+  const [agent, setAgent] = useState({})
+  const [collections, setCollections] = useState([])
+  const [attributes, setAttributes] = useState([])
+  const [params, setParams] = useState({})
+  const { id } = useParams()
+  const { search } = useLocation()
 
   /** Fetches data about collections associated with the agent */
-  fetchCollections = () => {
+  const fetchCollections = ({ title }) => {
     axios
-      .get(`${process.env.REACT_APP_ARGO_BASEURL}/search/?query=${this.state.agent.title}&category=collection&limit=8`)
+      .get(`${process.env.REACT_APP_ARGO_BASEURL}/search?query=${title}&category=collection&limit=8`)
       .then(res => {
-        this.setState({ collections: res.data.results })
-        this.setState({ isCollectionsLoading: false })
+        setCollections(res.data.results);
+        setIsCollectionsLoading(false);
       })
       .catch(err => console.log(err))
   }
 
   /** Adds labels for agent attributes */
-  parseAgentAttributes = () => {
-    const agentType = this.state.agent.agent_type
-    const startDates = this.state.agent.dates ? this.state.agent.dates.map(date => (
+  const parseAgentAttributes = ( agent ) => {
+    const agentType = agent.agent_type
+    const startDates = agent.dates ? agent.dates.map(date => (
       {label: agentType === 'organization' ? 'Date Established' : 'Date of Birth', value: date.begin, note: false}
     )) : []
-    const endDates = this.state.agent.dates ? this.state.agent.dates.map(date => (
+    const endDates = agent.dates ? agent.dates.map(date => (
       {label: agentType === 'organization' ? 'Date Disbanded' : 'Date of Death', value: date.end, note: false}
     )) : []
-    const noteText = this.state.agent.notes ? this.state.agent.notes.map(note => (
+    const noteText = agent.notes ? agent.notes.map(note => (
       {label: 'Description', value: note.subnotes.map(s => s.content).join('\r\n'), note: true}
     )) : []
-    this.setState({ attributes: startDates.concat(endDates).concat(noteText) })
-    this.setState({ isAttributesLoading: false })
+    setAttributes(startDates.concat(endDates).concat(noteText))
+    setIsAttributesLoading(false)
   }
 
-  render() {
-    if (!this.state.found) {
-      return (<PageNotFound />)
-    }
-    return (
-      <React.Fragment>
-        <Helmet
-          onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
-          <title>{ this.state.agent.title }</title>
-        </Helmet>
-        <div className='container agent'>
-          <nav>
-            <a href={appendParams('/search', this.state.params)} className='btn btn--back'>
+  /** Fetches agent data on initial page load */
+  useEffect(() => {
+    const initialParams = queryString.parse(search, { parseBooleans: true });
+    setParams(initialParams)
+    axios
+      .get(`${process.env.REACT_APP_ARGO_BASEURL}/agents/${id}`)
+      .then(res => {
+        setAgent(res.data);
+        fetchCollections(res.data);
+        parseAgentAttributes(res.data);
+        setIsAgentLoading(false)
+      })
+      .catch(err => setFound(false))
+  }, [])
+
+  if (!found) {
+    return (<PageNotFound />)
+  }
+  return (
+    <React.Fragment>
+      <Helmet
+        onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
+        <title>{ agent.title }</title>
+      </Helmet>
+      <div className='container--full-width'>
+        <div className='agent__wrapper'>
+          <nav className="agent__nav">
+            <a href={appendParams('/search', params)} className='btn btn--back'>
               <span className='material-icons'>keyboard_arrow_left</span>Back to Search
             </a>
           </nav>
           <main id='main' role='main'>
-            <h1 className='agent__title'>{ this.state.agent.title || <Skeleton />}</h1>
-            <p className='agent__subtitle'>{ this.state.isAgentLoading ?
+            <h1 className='agent__title'>{ agent.title || <Skeleton />}</h1>
+            <p className='agent__subtitle'>{ isAgentLoading ?
               (<Skeleton />) :
-              (this.state.agent.description) }
+              (agent.description) }
             </p>
-            {this.state.isAttributesLoading ?
+            {isAttributesLoading ?
               (<AgentAttributeSkeleton />) :
-              (<AgentDescription attributes={this.state.attributes} />)}
-            {this.state.isCollectionsLoading ?
+              (<AgentDescription attributes={attributes} />)}
+            {isCollectionsLoading ?
               (<SearchSkeleton />) :
               (<AgentRelatedCollections
-                agentTitle={this.state.agent.title}
-                collections={this.state.collections}
-                params={{...this.state.params, category: ''}} />) }
+                agentTitle={agent.title}
+                collections={collections}
+                params={{...params, category: ''}} />) }
           </main>
-          <AgentSidebar related={this.state.agent.agents} />
+          <AgentSidebar related={agent.agents} />
         </div>
-      </React.Fragment>
-    )
-  }
+      </div>
+    </React.Fragment>
+  )
 }
 
 export default PageAgent;

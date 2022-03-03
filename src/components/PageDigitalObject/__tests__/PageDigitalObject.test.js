@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { render, unmountComponentAtNode } from 'react-dom'
+import { Route, Routes, MemoryRouter } from 'react-router-dom';
 import { act } from 'react-dom/test-utils'
 import PageDigitalObject from '..'
 
@@ -30,8 +31,12 @@ it('renders props correctly', async () => {
   })
 
   await act(async () => {
-    await render(<PageDigitalObject
-      match={{params: { type: "objects", id: "AdnxgWuKKKheh2r3SvoAqZ" }}} />, container)
+    await render(
+      <MemoryRouter initialEntries={['/objects/AdnxgWuKKKheh2r3SvoAqZ/view']}>
+        <Routes>
+          <Route path='/:type/:id/view' element={<PageDigitalObject />} />
+        </Routes>
+      </MemoryRouter>, container)
   })
 
 })

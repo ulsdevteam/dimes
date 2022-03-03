@@ -18,6 +18,8 @@ afterEach(() => {
   container = null
 })
 
+jest.mock('../../Hooks')
+
 it('renders props correctly', () => {
   act(() => {
     render(<RecordsContent
@@ -39,12 +41,14 @@ it('renders with collection data', () => {
   const child = childrenCollections[Math.floor(Math.random() * childrenCollections.length)]
   act(() => {
     render(<RecordsChild
+      isScrolled={true}
       item={child}
       myListCount={0}
       params={{query: 'foo'}}
       preExpanded={[]}
       setActiveRecords={jest.fn()}
       setIsLoading={jest.fn()}
+      setIsScrolled={jest.fn()}
       toggleInList={jest.fn()}
             />, container)
   })
@@ -56,7 +60,7 @@ it('renders with collection data', () => {
     expect(item.textContent).toContain(child.description)
   }
   if (child.hit_count) {
-    expect(item.querySelector('.badge--orange').textContent).toContain(child.hit_count)
+    expect(item.querySelector('.badge--orange').textContent).toContain(child.hit_count.toString())
   } else {
     expect(item.querySelector('.badge--orange')).not.toBeInTheDocument()
   }
@@ -66,12 +70,14 @@ it('renders with object data', () => {
   const child = childrenObjects[Math.floor(Math.random() * childrenObjects.length)]
   act(() => {
     render(<RecordsChild
+      isScrolled={true}
       item={child}
       myListCount={0}
       params={{query: 'foo'}}
       preExpanded={[]}
       setActiveRecords={jest.fn()}
       setIsLoading={jest.fn()}
+      setIsScrolled={jest.fn()}
       toggleInList={jest.fn()}
             />, container)
   })
@@ -84,7 +90,7 @@ it('renders with object data', () => {
     expect(item.textContent).toContain(child.description)
   }
   if (child.hit_count) {
-    expect(item.querySelector('.badge--orange').textContent).toContain(child.hit_count)
+    expect(item.querySelector('.badge--orange').textContent).toContain(child.hit_count.toString())
   } else {
     expect(item.querySelector('.badge--orange')).not.toBeInTheDocument()
   }
@@ -95,12 +101,14 @@ it('handles expand clicks', () => {
   const setActiveRecords = jest.fn()
   act(() => {
     render(<RecordsChild
+      isScrolled={true}
       item={child}
       myListCount={0}
       params={{query: 'foo'}}
       preExpanded={[]}
       setActiveRecords={setActiveRecords}
       setIsLoading={jest.fn()}
+      setIsScrolled={jest.fn()}
       toggleInList={jest.fn()}
             />, container)
   })
@@ -120,12 +128,14 @@ it('handles list toggle clicks', () => {
   const setActiveRecords = jest.fn()
   act(() => {
     render(<RecordsChild
+      isScrolled={true}
       item={child}
       myListCount={0}
       params={{query: 'foo'}}
       preExpanded={[]}
       setActiveRecords={setActiveRecords}
       setIsLoading={jest.fn()}
+      setIsScrolled={jest.fn()}
       toggleInList={toggleInList}
             />, container)
   })

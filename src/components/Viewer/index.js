@@ -1,16 +1,14 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import mirador from 'mirador'
 
-class Viewer extends Component {
-  componentDidMount () {
-    const { config, plugins } = this.props
-    mirador.viewer(config, plugins)
-  }
+const Viewer = ({ config, plugins }) => {
 
-  render () {
-    const { config } = this.props
-    return <div id={config.id} />
-  }
+  useEffect(() => {
+    mirador.viewer(config, plugins)
+  }, [config, plugins])
+
+  return (<div id={ config.id } />)
+
 }
 
 export default Viewer
