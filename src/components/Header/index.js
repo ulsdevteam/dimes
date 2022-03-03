@@ -7,12 +7,11 @@ const Header = ({ myListCount }) => (
     <div className='wrapper'>
       <div className='container'>
         <div className='header-secondary__brand'>
-          <a href='/' id='home' className='header-secondary__title'>dimes.rockarch.org</a>
-          <p className='header-secondary__subtitle'>The Online Collection and Catalog of Rockefeller Archive Center</p>
+          <a href='/' id='home' className='header-secondary__title'>MyReadingRoom @ Archives & Special Collections</a>
+          <p className='header-secondary__subtitle'>Submit requests in advance of your Reading Room visit</p>
         </div>
         <Nav ariaLabel='Main'>
-          <NavItem href='https://raccess.rockarch.org/' id='raccess' label='Sign in to RACcess' icon='arrow_right_alt' />
-          <NavItem href='/list/' id='list' label={`My List${myListCount > 0 ? ` (${myListCount})` : ''}`} icon='arrow_right_alt' />
+          <NavItem href='/list/' id='list' label={`View My List${myListCount > 0 ? ` (${myListCount})` : ''}`} icon='arrow_right_alt' />
         </Nav>
       </div>
     </div>

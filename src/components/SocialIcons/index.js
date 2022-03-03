@@ -3,7 +3,7 @@ import './styles.scss'
 
 const SocialIcons = () => (
   <div className='rac-social-icons'>
-    <a href='https://twitter.com/rockarch_org' aria-label='Twitter'>
+    <a href='`$process.env{SOCIAL_TWITTER_URL}`' aria-label='Twitter'>
       <span className='social__icon'>
         <svg aria-hidden='true' focusable='false' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'>
           <title>Twitter Logo</title>
@@ -11,7 +11,7 @@ const SocialIcons = () => (
         </svg>
       </span>
     </a>
-    <a href='https://www.facebook.com/RockefellerArchiveCenter' aria-label='Facebook'>
+    <a href='`$process.env{SOCIAL_FACEBOOK_URL}`' aria-label='Facebook'>
       <span className='social__icon'>
         <svg aria-hidden='true' focusable='false' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'>
           <title>Facebook Logo</title>
@@ -19,7 +19,7 @@ const SocialIcons = () => (
         </svg>
       </span>
     </a>
-    <a href='https://www.instagram.com/rockefellerarchivecenter' aria-label='Instagram'>
+    <a href='`$process.env{SOCIAL_INSTAGRAM_URL}`' aria-label='Instagram'>
       <span className='social__icon'>
         <svg aria-hidden='true' focusable='false' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'>
           <title>Instagram Logo</title>
@@ -27,7 +27,7 @@ const SocialIcons = () => (
         </svg>
       </span>
     </a>
-    <a href='https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg' aria-label='YouTube'>
+    <a href='`$process.env{SOCIAL_YOUTUBE_URL}`' aria-label='YouTube'>
       <span className='social__icon'>
         <svg aria-hidden='true' focusable='false' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'>
           <title>YouTube Logo</title>
@@ -35,7 +35,7 @@ const SocialIcons = () => (
         </svg>
       </span>
     </a>
-    <a href='https://www.flickr.com/photos/147074352@N05/' aria-label='Flickr'>
+    <a href='`$process.env{SOCIAL_FLICKR_URL}`' aria-label='Flickr'>
       <span className='social__icon'>
         <svg aria-hidden='true' focusable='false' width='18px' height='24px' viewBox='0 0 18 8' version='1.1' xmlns='http://www.w3.org/2000/svg'>
           <title>Flickr Logo</title>

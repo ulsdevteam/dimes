@@ -1,0 +1,21 @@
+FROM httpd:2.4-alpine
+
+RUN a2dissite 000-default
+COPY ./000-dimes.conf /etc/apache2/sites-available/
+RUN a2ensite 000-dimes
+RUN a2enmod rewrite
+
+RUN mkdir -p /var/www/html/dimes
+RUN mkdir -p /var/logs
+RUN chmod 775 /var/www/html/dimes
+RUN chmod 775 /var/logs
+RUN chown :www-data /var/www/html/dimes
+RUN chown :www-data /var/logs
+
+WORKDIR /var/www/html
+
+COPY ./build/ /var/www/html/dimes/
+
+EXPOSE 80 3000
+
+CMD ["bin/sh", "apache.sh"]
