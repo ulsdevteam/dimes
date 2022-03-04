@@ -152,14 +152,6 @@ const RecordsDetail = props => {
 
   return (
   <div className={classnames('records__detail', {'hidden': props.isContentShown})}>
-    {isDesktop ? <Button
-      type='button'
-      className='btn--sm btn--transparent btn--minimap-info'
-      handleClick={props.toggleMinimapModal}
-      iconAfter='info'
-      label='about minimap'
-    /> : null
-    }
     <nav className='records__nav'>
       <a href={searchUrl} className='btn btn--back'>
         <MaterialIcon icon='keyboard_arrow_left'/>Back to Search
