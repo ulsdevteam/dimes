@@ -39,10 +39,13 @@ const Footer = () => (
           <div className='footer-secondary__data'>
             <ul className='footer-secondary__list'>
               <li className='footer-secondary__list-item'>
-                <a className='footer-secondary__link' href='https://docs.rockarch.org/archival-description-license/'>Licensing for our descriptive metadata</a>
+                <a className='footer-secondary__link' href='https://docs.rockarch.org/argo/'>Collections data API</a>
               </li>
               <li className='footer-secondary__list-item'>
                 <a className='footer-secondary__link' href='https://github.com/RockefellerArchiveCenter/data/'>Bulk data download</a>
+              </li>
+              <li className='footer-secondary__list-item'>
+                <a className='footer-secondary__link' href='https://docs.rockarch.org/archival-description-license/'>Licensing for descriptive metadata</a>
               </li>
               <li className='footer-secondary__list-item'>
                 <a className='footer-secondary__link' href='https://docs.rockarch.org/takedown-policy/'>Take-down policy</a>
