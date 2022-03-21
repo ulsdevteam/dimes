@@ -33,7 +33,7 @@ const AgentRelatedCollections = ({ agentTitle, collections, params }) => (
       items={collections}
       params={params}
       tileClassName='tile--related-collections'/>
-    { collections.length === 8 ?
+    { collections.length === 6 ?
       (<a href={`/search?query=${agentTitle}&category=collection`} className='btn btn--search-more'>Search More Related Collections</a>) :
       (null)
     }
