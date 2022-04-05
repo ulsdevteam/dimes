@@ -152,7 +152,7 @@ const PageAgent = () => {
       const desiredIdentifiers = [
         { property: 'P214', title: 'Virtual International Authority File', prefix: 'https://viaf.org/viaf'} ,
         { property: 'P7859', title: 'WorldCat Identities', prefix: 'https://www.worldcat.org/identities' },
-        { property: 'P3430', title: 'Social Networks and Archival Context', prefix: 'https://snaccooperative.org/ark:' }]
+        { property: 'P3430', title: 'Social Networks and Archival Context', prefix: 'https://snaccooperative.org/ark:99166' }]
       const availableIdentifiers = desiredIdentifiers.filter(c => Object.keys(wikidata.claims).includes(c.property))
       const parsedIdentifiers = availableIdentifiers.map(c => {
         const identifierValue = wikidata.claims[c.property][0].mainsnak.datavalue.value
