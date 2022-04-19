@@ -6,29 +6,28 @@ import '../Button/styles.scss'
 import classnames from 'classnames'
 import './styles.scss'
 
+const DropdownItem = (props) => (
+  <a
+    key={props.order}
+    id={`menu-item-${props.order}`}
+    className={classnames('btn', props.className)}
+    onClick={props.handleClick}
+    href={props.href}
+    title={props.title}>
+    {props.iconBefore && <MaterialIcon icon={props.iconBefore} />}
+    {props.label}{props.iconAfter && <MaterialIcon icon={props.iconAfter} />}
+  </a>
+)
+
 const Dropdown = (props) => {
   const [className] = useState(props.className)
   const [iconBefore] = useState(props.iconBefore)
   const [iconBeforeOpen] = useState(props.iconBeforeOpen)
-  const [items] = useState(props.items)
-  const [itemClassName] = useState(props.itemClassName)
   const [label] = useState(props.label)
   const [listClassName] = useState(props.listClassName)
-  const { buttonProps, itemProps, isOpen } = useDropdownMenu(items.length)
+  const { buttonProps, itemProps, isOpen } = useDropdownMenu(props.children && props.children.length)
   const openIcon = iconBeforeOpen ? iconBeforeOpen : iconBefore
-  const listItems = items.map((item, idx) =>
-    <a
-      key={idx}
-      id={`menu-item-${idx}`}
-      className={classnames('btn', itemClassName)}
-      onClick={item.handleClick}
-      href={item.href}
-      title={item.title}
-      {...itemProps[idx]}>
-      {item.iconBefore && <MaterialIcon icon={item.iconBefore} />}
-      {item.label}{item.iconAfter && <MaterialIcon icon={item.iconAfter} />}
-    </a>
-  )
+
   return (
     <div className={classnames('dropdown', className)}>
       <button
@@ -40,7 +39,7 @@ const Dropdown = (props) => {
       <div
         className={classnames('dropdown__list', listClassName, { 'open': isOpen, 'closed': !isOpen})}
         role='menu' >
-        {listItems}
+        {props.children}
       </div>
     </div>
   )
@@ -52,43 +51,45 @@ export const MyListDropdown = ({ downloadCsv, duplicationRequest, emailList, rea
     iconBefore='settings'
     className='mylist__actions'
     buttonClassName='btn btn--orange btn--md'
-    itemClassName='btn--orange btn--dropdown dropdown__item--orange'
-    listClassName='dropdown__list--orange dropdown__list--slide-down'
-    items={
-    [
-      {
-        'label': 'Schedule a Visit',
-        'iconBefore': 'account_balance',
-        'href': 'mailto:archive@rockarch.org?subject=Scheduling a research appointment',
-        'title': 'opens email'
-      },
-      {
-        'label': 'Request in Reading Room',
-        'iconBefore': 'local_library',
-        'handleClick': readingRoomRequest
-      },
-      {
-        'label': 'Request Copies',
-        'iconBefore': 'content_copy',
-        'handleClick': duplicationRequest
-      },
-      {
-        'label': 'Email List',
-        'iconBefore': 'email',
-        'handleClick': emailList
-      },
-      {
-        'label': 'Download as .csv',
-        'iconBefore': 'get_app',
-        'handleClick': downloadCsv
-      },
-      {
-        'label': 'Remove All Items',
-        'iconBefore': 'delete',
-        'handleClick': removeAllItems
-      }
-    ]
-    } />
+    listClassName='dropdown__list--orange dropdown__list--slide-down'>
+      <DropdownItem
+        order={1}
+        className='btn--orange btn--dropdown dropdown__item--orange'
+        label='Schedule a Visit'
+        iconBefore='account_balance'
+        href='mailto:archive@rockarch.org?subject=Scheduling a research appointment'
+        title='opens email'/>
+      <DropdownItem
+        order={2}
+        className='btn--orange btn--dropdown dropdown__item--orange'
+        label='Request in Reading Room'
+        iconBefore='local_library'
+        handleClick={readingRoomRequest}/>
+      <DropdownItem
+        order={3}
+        className='btn--orange btn--dropdown dropdown__item--orange'
+        label='Request Copies'
+        iconBefore='content_copy'
+        handleClick={duplicationRequest}/>
+      <DropdownItem
+        order={4}
+        className='btn--orange btn--dropdown dropdown__item--orange'
+        label='Email List'
+        iconBefore='email'
+        handleClick={emailList}/>
+      <DropdownItem
+        order={5}
+        className='btn--orange btn--dropdown dropdown__item--orange'
+        label='Download as .csv'
+        iconBefore='get_app'
+        handleClick={downloadCsv}/>
+      <DropdownItem
+        order={6}
+        className='btn--orange btn--dropdown dropdown__item--orange'
+        label='Remove All Items'
+        iconBefore='delete'
+        handleClick={removeAllItems}/>
+    </Dropdown>
   )
 
 MyListDropdown.propTypes = {
@@ -105,20 +106,18 @@ export const NavDropdown = () => (
     iconBeforeOpen='close'
     className='hide-on-lg-up'
     buttonClassName='btn nav-mobile__btn'
-    itemClassName='btn--navy btn--mobile-dropdown'
-    listClassName='dropdown__list--mobile dropdown__list--navy dropdown__list--slide-left'
-    items={
-    [
-      {
-        'label': 'Sign in to RACcess',
-        'iconAfter': 'east',
-        'href': 'https://raccess.rockarch.org'
-      },
-      {
-        'label': 'My List',
-        'iconAfter': 'east',
-        'href': '/list'
-      }
-    ]
-    } />
+    listClassName='dropdown__list--mobile dropdown__list--navy dropdown__list--slide-left'>
+      <DropdownItem
+        order={1}
+        className='btn--navy btn--mobile-dropdown'
+        label='Sign in to RACcess'
+        iconAfter='east'
+        href='https://raccess.rockarch.org' />
+      <DropdownItem
+        order={2}
+        className='btn--navy btn--mobile-dropdown'
+        label='My List'
+        iconAfter='east'
+        href='/list' />
+    </Dropdown>
 )
