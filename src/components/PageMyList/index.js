@@ -19,7 +19,7 @@
     const [savedList, setSavedList] = useState([])
     const [submitList, setSubmitList] = useState([])
     const [isDownloading, setIsDownloading] = useState(false)
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
     const [isRequestingAvailable, setIsRequestingAvailable] = useState(false)
     const [duplicationModalOpen, setDuplicationModalOpen] = useState(false)
     const [emailModalOpen, setEmailModalOpen] = useState(false)
