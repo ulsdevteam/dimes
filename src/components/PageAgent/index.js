@@ -27,11 +27,11 @@ const AgentNote = ({ source, text }) => (
 const AgentRelatedCollections = ({ agentTitle, collections, params }) => (
   collections.length ?
   (<div className='agent__related'>
-    <h2 className='agent__section-title'>Related Collections</h2>
+    <h2 className='agent__section-title'>Collections Related to {agentTitle}</h2>
     <TileList
       hideHitCount
       items={collections}
-      params={params}
+      params={{...params, query: agentTitle}}
       tileClassName='tile--related-collections'/>
     { collections.length === 6 ?
       (<a href={`/search?query=${agentTitle}&category=collection`} className='btn btn--search-more'>Search More Related Collections</a>) :
