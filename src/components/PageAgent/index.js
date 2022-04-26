@@ -31,7 +31,7 @@ const AgentRelatedCollections = ({ agentTitle, collections, params }) => (
     <TileList
       hideHitCount
       items={collections}
-      params={params}
+      params={{...params, query: agentTitle}}
       tileClassName='tile--related-collections'/>
     { collections.length === 6 ?
       (<a href={`/search?query=${agentTitle}&category=collection`} className='btn btn--search-more'>Search More Related Collections</a>) :
