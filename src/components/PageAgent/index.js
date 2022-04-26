@@ -27,7 +27,7 @@ const AgentNote = ({ source, text }) => (
 const AgentRelatedCollections = ({ agentTitle, collections, params }) => (
   collections.length ?
   (<div className='agent__related'>
-    <h2 className='agent__section-title'>Related Collections</h2>
+    <h2 className='agent__section-title'>Collections Related to {agentTitle}</h2>
     <TileList
       hideHitCount
       items={collections}
