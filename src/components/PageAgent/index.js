@@ -16,11 +16,11 @@ import './styles.scss'
 const AgentNote = ({ source, text }) => (
   text ?
   (<div className={'agent__note'}>
-    <p className='agent-note__label'>Description</p>
+    <h3 className='agent-note__label'>Description</h3>
     <p className='agent-note__value'>
       {text}
-      { source ? (<span className='agent-note__source'>(Source: {source})</span>) : null }
     </p>
+    <p className='agent-note__source'>{ source ? `Source: ${source}` : `Source: Rockefeller Archive Center` }</p>
   </div>) : (null)
 )
 
