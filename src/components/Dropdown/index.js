@@ -73,16 +73,6 @@ export const MyListDropdown = ({ downloadCsv, duplicationRequest, emailList, rea
         'handleClick': duplicationRequest
       },
       {
-        'label': 'Email List',
-        'iconBefore': 'email',
-        'handleClick': emailList
-      },
-      {
-        'label': 'Download as .csv',
-        'iconBefore': 'get_app',
-        'handleClick': downloadCsv
-      },
-      {
         'label': 'Remove All Items',
         'iconBefore': 'delete',
         'handleClick': removeAllItems
