@@ -199,7 +199,7 @@
     useEffect(() => {
       fetchList()
       axios
-        .get(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/status/health/ping`)
+        .get(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/status/`)
         .then(res => res.data.pong && setIsRequestingAvailable(true))
         .catch(err => console.log(err))
     }, [])
@@ -252,7 +252,7 @@
       if (savedList.length && isRequestingAvailable) {
         fetchData() /* 1 */
       }
-    }, [isRequestingAvailable])
+    }, [savedList.length, isRequestingAvailable])
 
     return (
       <>

@@ -142,8 +142,9 @@ const PageRecords = ({ myListCount, toggleInList }) => {
   /** Fetches children when childrenUri changes */
   useEffect(() => {
     if (childrenUri) {
+      const uri = childrenUri.includes('?') ? childrenUri : appendParams(childrenUri, { ...params, limit: pageSize })
       axios
-          .get(appendParams(childrenUri, { ...params, limit: pageSize }))
+          .get(uri)
           .then(res => {
             setChildren([...children].concat(res.data.results))
             res.data.next && setChildrenUri(res.data.next)

@@ -1,4 +1,4 @@
-FROM node:12.11.0-alpine as build
+FROM node:lts-alpine as build
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json yarn.lock ./
