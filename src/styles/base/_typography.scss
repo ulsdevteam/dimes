@@ -266,6 +266,7 @@ small {
 
 .agent__title {
   @include page-title;
+  margin-top: 0;
 }
 
 .agent__subtitle {
@@ -285,7 +286,7 @@ small {
   letter-spacing: 2px;
 }
 
-.agent-attribute__label {
+.agent-attribute__label, .agent-note__label {
   font-family: $sans-serif-stack;
   font-size: 12px;
   font-weight: $font-weight-bold;
@@ -295,7 +296,7 @@ small {
   color: $dark-gray;
 }
 
-.agent-attribute__value  {
+.agent-attribute__value, .agent-note__value, .agent-note__source {
   font-family: $sans-serif-stack;
   font-size: 16px;
   color: $dark-gray;

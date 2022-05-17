@@ -39,6 +39,12 @@
   }
 }
 
+.tile--related-collections {
+  @include md-up {
+    @include grid-column(4);
+  }
+}
+
 .tile__title  {
   @include tile-title-text;
   width: 100%;

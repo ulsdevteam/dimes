@@ -74,6 +74,25 @@ export const AgentAttributeSkeleton = () => (
   </div>
 )
 
+export const AgentRelatedCollectionsSkeleton = () => (
+  <ul className='tile-list'>
+    {Array(6)
+      .fill()
+      .map((item, index) => (
+        <li className='tile tile--related-collections' key={index}>
+          <Skeleton />
+          <h2 className='tile__title'>
+            <Skeleton count={3}/>
+          </h2>
+          <p className='tile__date'>
+            <Skeleton />
+          </p>
+        </li>
+      )
+    )}
+  </ul>
+)
+
 export const DetailSkeleton = () => (
   <>
     <h3 className='panel__heading'><Skeleton /></h3>
