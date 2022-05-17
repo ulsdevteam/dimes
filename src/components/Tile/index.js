@@ -23,8 +23,8 @@ const CategoryLabel = ({ category }) => {
   )
 }
 
-const Tile = ({ category, date, hit_count, online_hit_count, params, title, uri }) => (
-  <li className='tile'>
+const Tile = ({ category, className, date, hit_count, online_hit_count, params, title, uri }) => (
+  <li className={classnames('tile', className)}>
     <a className='tile__title' href={appendParams(uri, params)}>{title}</a>
     {category ? (<CategoryLabel category={category} />) : null }
     <p className='tile__date'>{date}</p>
@@ -34,12 +34,13 @@ const Tile = ({ category, date, hit_count, online_hit_count, params, title, uri 
     </div>
   </li>)
 
-const TileList = ({ items, params }) => {
+const TileList = ({ items, params, tileClassName }) => {
   const listItems = items.map(item =>
     <Tile
       key={item.uri}
       {...item}
       params={params}
+      className={tileClassName}
       date={item.dates?.length ? item.dates.map(d => d.expression).join(', ') : null} />
   )
   return (
@@ -51,7 +52,8 @@ const TileList = ({ items, params }) => {
 
 TileList.propTypes = {
   items: PropTypes.array.isRequired,
-  params: PropTypes.object
+  params: PropTypes.object,
+  tileClassName: PropTypes.string
 }
 
 export default TileList
