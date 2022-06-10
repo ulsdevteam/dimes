@@ -27,7 +27,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "resize-observer-polyfill": "^1.5.1",
-    "sass": "^1.51.0",
+    "sass": "^1.52.3",
     "url": "^0.11.0"
   },
   "scripts": {
