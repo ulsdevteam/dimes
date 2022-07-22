@@ -59,7 +59,8 @@ CheckBoxInput.defaultProps = {
 }
 
 export const DateInput = props => {
-  const [startDate, setStartDate] = useState(new Date())
+  /* This date will populate the initial datetime for the user */
+  const [startDate, setStartDate] = useState(new Date( ((new Date()) + 1) ))
   
   return(
   <>
@@ -70,7 +71,7 @@ export const DateInput = props => {
       minDate={new Date()}
       showTimeSelect='true'
       onChange={(date:Date) => setStartDate(date)}
-      dateFormat="MM/dd/yyyy h:mm aa">
+      dateFormat="yyyy-MM-dd h:mm aa">
   </DatePicker>
   {props.helpText && <p className='help-text' aria-describedby={`desc-${props.id}`}>{props.helpText}</p>}
   </>

@@ -30,11 +30,14 @@ export const appendParams = (url, params) => {
 
 /** Returns a date formatted as mm/dd/yyyy */
 export const getFormattedDate = date => {
-  const year = date.getFullYear()
-  const month = (1 + date.getMonth()).toString().padStart(2, '0')
-  const day = date.getDate().toString().padStart(2, '0')
+  var year = (date.getFullYear()).toString().slice(-2)
+  var month = (1 + date.getMonth()).toString().padStart(2, '0')
+  var day = date.getDate().toString().padStart(2, '0')
+  var hour = date.getHours().toString().padStart(2, '0')
+  var min = date.getMinutes().toString().padStart(2, '0')
+  var sec = date.getSeconds().toString().padStart(2, '0')
 
-  return month + '/' + day + '/' + year
+  return month + '/' + day + '/' + year + ' ' + hour + ':' + min + ':' + sec
 }
 
 /** Returns a human readable representation of bytes */
