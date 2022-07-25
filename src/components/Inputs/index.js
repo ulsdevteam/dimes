@@ -61,6 +61,10 @@ CheckBoxInput.defaultProps = {
 export const DateInput = props => {
   /* This date will populate the initial datetime for the user */
   const [startDate, setStartDate] = useState(new Date( ((new Date()) + 1) ))
+
+  useEffect(() => {
+    props.handleChange(startDate)
+  }, [startDate, setStartDate])
   
   return(
   <>
