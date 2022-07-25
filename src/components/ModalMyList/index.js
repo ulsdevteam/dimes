@@ -301,7 +301,6 @@ export const ReadingRoomRequestModal = props => (
     list={props.list}
     form={
       <Formik
-        // This date is sent to the form post AS-IS; TODO: it needs to be modified in the handleChange!
         initialValues={{scheduledDate: new Date(), questions: '', notes: '', readingRoomID: '', site: '', items: props.submitList, recaptcha: ''}}
         validate={values => {
           const errors = {};
@@ -314,7 +313,6 @@ export const ReadingRoomRequestModal = props => (
         onSubmit={(values, { setSubmitting }) => {
           props.toggleModal()
           /* In order for Aeon to accept requests, dates need to be formatted as MM/DD/YYYY */
-          // TODO: this formats the initialValue, and not the changed value !?
           values.scheduledDate = getFormattedDate(values.scheduledDate)
           props.handleFormSubmit(
             `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/deliver-request/reading-room`,
@@ -337,7 +335,7 @@ export const ReadingRoomRequestModal = props => (
               handleChange={date => setFieldValue('scheduledDate', date)}
               helpText='Enter the requested date of your research visit (year-month-day hour:min). We will confirm this appointment request with you.'
               id='scheduledDate'
-              label='Scheduled Date Request *'
+              label='Requested Visit Date *'
               type='date' />
             <ErrorMessage
               id='scheduledDate-error'

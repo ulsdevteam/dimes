@@ -59,8 +59,8 @@ CheckBoxInput.defaultProps = {
 }
 
 export const DateInput = props => {
-  /* This date will populate the initial datetime for the user */
-  const [startDate, setStartDate] = useState(new Date( ((new Date()) + 1) ))
+  // default date is tomorrow
+  const [startDate, setStartDate] = useState(new Date((new Date()).setDate((new Date()).getDate() + 1)))
 
   useEffect(() => {
     props.handleChange(startDate)
@@ -72,7 +72,8 @@ export const DateInput = props => {
   <DatePicker
       className='dp__wrapper'
       selected={startDate}
-      minDate={new Date()}
+      // earliest date is tomorrow
+      minDate={new Date((new Date()).setDate((new Date()).getDate() + 1))}
       showTimeSelect='true'
       onChange={(date:Date) => setStartDate(date)}
       dateFormat="yyyy-MM-dd h:mm aa">
