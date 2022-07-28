@@ -97,7 +97,7 @@ const PanelLinkedListSection = ({ listData, params, title }) =>  (
       <h3 className='panel__heading'>{title}</h3>
       <ul className='panel__list--unstyled'>
         {listData.map((item, index) => (
-        <li key={index} className='panel__text'><a href={appendParams(item.uri, params)}>{item.title}</a></li>))}
+        <li key={index} className='panel__text'><a name={appendParams(item.uri, params)}>{item.title}</a></li>))}
       </ul>
     </div>) :
     (null)

@@ -10,9 +10,6 @@ const PageHome = () => (
       onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
       <title>My Reading Room @ Archives & Special Collections</title>
     </Helmet>
-    <div className='container--full-width home'>
-      <SearchForm className='search-form--home'/>
-    </div>
   </>
 )
 

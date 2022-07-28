@@ -261,11 +261,6 @@
           <title>DIMES: My List</title>
         </Helmet>
         <div className='container mylist flex'>
-          <nav>
-	    <a href='https://digital.library.pitt.edu/' className='btn btn--new-search'>
-	      <MaterialIcon icon='keyboard_arrow_left'/>Return to ULS Digital Collections
-	    </a>
-          </nav>
           <main id='main' role='main'>
             <div className='mylist__header'>
               <h1 className='mylist__title'>My List</h1>

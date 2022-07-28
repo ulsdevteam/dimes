@@ -7,7 +7,7 @@ const Header = ({ myListCount }) => (
     <div className='wrapper'>
       <div className='container'>
         <div className='header-secondary__brand'>
-          <a href='/' id='home' className='header-secondary__title'>MyReadingRoom @ Archives & Special Collections</a>
+          <a name='home' id='home' className='header-secondary__title'>MyReadingRoom @ Archives & Special Collections</a>
           <p className='header-secondary__subtitle'>Submit requests in advance of your Reading Room visit</p>
         </div>
         <Nav ariaLabel='Main'>

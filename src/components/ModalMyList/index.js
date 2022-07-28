@@ -333,7 +333,7 @@ export const ReadingRoomRequestModal = props => (
               component={DateInput}
               // TODO: this handleChange alters the UI, but not the form submission ?!
               handleChange={date => setFieldValue('scheduledDate', date)}
-              helpText='Enter the requested date of your research visit (year-month-day hour:min). We will confirm this appointment request with you.'
+              helpText='Our reading rooms are open Monday - Friday from 9:00am to 4:45pm. We will confirm this appointment request with you.'
               id='scheduledDate'
               label='Requested Visit Date *'
               type='date' />
@@ -363,6 +363,7 @@ export const ReadingRoomRequestModal = props => (
               className='modal-form__error' />
           </div>
           <FormButtons
+            helpText='You may be requested to create an account.'
             submitText={`Request ${props.submitList.length ? (props.submitList.length) : '0'} ${props.submitList.length !== 1 ? 'Items' : 'Item'}`}
             toggleModal={props.toggleModal}
             isSubmitting={isSubmitting} />
