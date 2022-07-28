@@ -59,8 +59,8 @@ CheckBoxInput.defaultProps = {
 }
 
 export const DateInput = props => {
-  // default date is two days from now
-  const [startDate, setStartDate] = useState(new Date((new Date()).setDate((new Date()).getDate() + 2)))
+  // default date is two business days from now
+  const [startDate, setStartDate] = useState( new Date((new Date()).setDate( (new Date()).getDate() + Array(3, 2, 2, 2, 4, 4, 4)[new Date().getDay()] )) )
   const isWeekday = (date) => {
     const day = date.getDay();
     return day !== 0 && day !== 6;
@@ -80,8 +80,8 @@ export const DateInput = props => {
   <DatePicker
       className='dp__wrapper'
       selected={startDate}
-      // earliest date is tomorrow
-      minDate={new Date((new Date()).setDate((new Date()).getDate() + 1))}
+      // earliest date is next business day
+      minDate={new Date((new Date()).setDate((new Date()).getDate() + Array(2, 1, 1, 1, 1, 3, 3)[new Date().getDay()]))}
       showTimeSelect='true'
       filterDate={isWeekday}
       filterTime={filterPassedTime}
