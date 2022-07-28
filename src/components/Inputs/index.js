@@ -59,8 +59,16 @@ CheckBoxInput.defaultProps = {
 }
 
 export const DateInput = props => {
-  // default date is tomorrow
-  const [startDate, setStartDate] = useState(new Date((new Date()).setDate((new Date()).getDate() + 1)))
+  // default date is two days from now
+  const [startDate, setStartDate] = useState(new Date((new Date()).setDate((new Date()).getDate() + 2)))
+  const isWeekday = (date) => {
+    const day = date.getDay();
+    return day !== 0 && day !== 6;
+  };
+  const filterPassedTime = (time) => {
+    const selectedDate = new Date(time);
+    return selectedDate.getHours() >= 9 && selectedDate.getHours() < 17;
+  };
 
   useEffect(() => {
     props.handleChange(startDate)
@@ -75,6 +83,8 @@ export const DateInput = props => {
       // earliest date is tomorrow
       minDate={new Date((new Date()).setDate((new Date()).getDate() + 1))}
       showTimeSelect='true'
+      filterDate={isWeekday}
+      filterTime={filterPassedTime}
       onChange={(date:Date) => setStartDate(date)}
       dateFormat="yyyy-MM-dd h:mm aa">
   </DatePicker>
