@@ -103,7 +103,7 @@ const PageSearch = () => {
           setPageCount(Math.ceil(res.data.count / pageSize))
         })
         .catch(err => setBackendError(err))
-        .then(setInProgress(false));
+        .then(res => setInProgress(false));
     }
   }, [params])
 
