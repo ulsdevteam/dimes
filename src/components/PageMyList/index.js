@@ -2,6 +2,7 @@
   import PropTypes from 'prop-types'
   import axios from 'axios'
   import { Helmet } from 'react-helmet'
+  import PageBackendError from '../PageBackendError'
   import Button from '../Button'
   import { MyListDropdown } from '../Dropdown'
   import { DuplicationRequestModal, EmailModal, ReadingRoomRequestModal } from '../ModalMyList'
@@ -16,6 +17,7 @@
 
   const PageMyList = ({ removeAllListItems, toggleInList }) => {
 
+    const [backendError, setBackendError] = useState({})
     const [savedList, setSavedList] = useState([])
     const [submitList, setSubmitList] = useState([])
     const [isDownloading, setIsDownloading] = useState(false)
@@ -63,7 +65,7 @@
           link.download = `dimes-${new Date().toISOString()}.csv`
           link.click()
         })
-        .catch(err => { console.log(err) })
+        .catch(err => setBackendError(err))
         .then(() => setIsDownloading(false));
     }
 
@@ -151,7 +153,7 @@
         .then(res => {
           setSavedList(res.data)
         })
-        .catch(err => console.log(err))
+        .catch(err => setBackendError(err))
         .then(() => setIsLoading(false));
     }
 
@@ -235,7 +237,7 @@
               .then(res => {
                 return { ...i, submit: res.data.submit, submitReason: res.data.submit_reason}
               })
-              .catch(err => console.log(err))
+              .catch(err => setBackendError(err))
           })
         )
         group.items = updatedItems
@@ -254,6 +256,9 @@
       }
     }, [savedList.length, isRequestingAvailable])
 
+    if (!!Object.keys(backendError).length) {
+      return <PageBackendError error={backendError} />
+    }
     return (
       <>
         <Helmet

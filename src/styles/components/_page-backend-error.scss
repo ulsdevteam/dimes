@@ -1,0 +1,23 @@
+@import "../styles";
+
+.backend-error {
+  height: 100%;
+  max-width: 80%;
+  font-family: $serif-stack;
+  text-align: center;
+  min-height: 60vh;
+  margin-top: 60px;
+}
+
+.backend-error__icon > .material-icons {
+  font-size: 100px;
+  color: $dark-gray;
+}
+
+.backend-error__text {
+  font-family: $sans-serif-stack;
+  font-size: 20px;
+  & a {
+    text-decoration: underline;
+  }
+}

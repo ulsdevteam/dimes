@@ -6,6 +6,7 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { Helmet } from 'react-helmet'
 import { useNavigate, useLocation } from 'react-router-dom'
+import PageBackendError from '../PageBackendError'
 import Button from '../Button'
 import { SelectInput } from '../Inputs'
 import { SearchSkeleton } from '../LoadingSkeleton'
@@ -19,6 +20,7 @@ import './styles.scss'
 
 const PageSearch = () => {
 
+  const [backendError, setBackendError] = useState({})
   const [facetIsOpen, setFacetIsOpen] = useState(false)
   const [facetData, setFacetData] = useState({})
   const [inProgress, setInProgress] = useState(true)
@@ -68,7 +70,7 @@ const PageSearch = () => {
       axios
         .get(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}/facets`, params))
         .then(res => setFacetData(res.data))
-        .catch(err => console.log(err));
+        .catch(err => setBackendError(err));
     }
   }, [params])
 
@@ -84,7 +86,7 @@ const PageSearch = () => {
           }, [])
           setSuggestions(suggestions)
         })
-        .catch(err => console.log(err))
+        .catch(err => setBackendError(err))
     }
   }, [params])
 
@@ -99,9 +101,9 @@ const PageSearch = () => {
           setItems(res.data.results)
           setResultsCount(res.data.count)
           setPageCount(Math.ceil(res.data.count / pageSize))
-          setInProgress(false)
         })
-        .catch(err => console.log(err));
+        .catch(err => setBackendError(err))
+        .then(res => setInProgress(false));
     }
   }, [params])
 
@@ -164,6 +166,9 @@ const PageSearch = () => {
     setFacetIsOpen(!facetIsOpen)
   }
 
+  if (!!Object.keys(backendError).length) {
+    return <PageBackendError error={backendError} />
+  }
   return (
     <React.Fragment>
       <Helmet
@@ -180,17 +185,15 @@ const PageSearch = () => {
             category={params.category} />
         </div>
         <div className='results'>
-        <h1 className={classnames('results__title', { 'loading-dots': inProgress })}>{inProgress ? "Searching" :
-          (resultsCount ?
-            (`Search Results ${params.query && `for “${params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`) :
-            (`Sorry, there are no search results ${params.query && `for “${params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`))
-        }
-        </h1>
+          <h1 className={classnames('results__title', { 'loading-dots': inProgress })}>{inProgress ? "Searching" :
+            (resultsCount ?
+              (`Search Results ${params.query && `for “${params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`) :
+              (`Sorry, there are no search results ${params.query && `for “${params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`))
+          }
+          </h1>
           {!resultsCount && !inProgress ?
-            (
-              <SearchNotFound suggestions={suggestions}/>
-            ) :
-            (<>
+            (<SearchNotFound suggestions={suggestions}/>) :
+            <>
               <div className='results__header'>
                 <div className='results__summary'>
                   <p className='results__summary--text'>
@@ -246,10 +249,10 @@ const PageSearch = () => {
                       pageCount={pageCount}
                       handlePageClick={handlePageClick} />
                   )}
-                </div>
               </div>
-            </>
-          )}
+            </div>
+          </>
+        }
         </div>
       </div>
       <FacetModal

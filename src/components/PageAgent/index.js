@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useLocation, useParams } from 'react-router-dom'
 import queryString from 'query-string'
 import { Helmet } from 'react-helmet'
+import PageBackendError from '../PageBackendError'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import PageNotFound from '../PageNotFound'
@@ -55,6 +56,7 @@ const AgentSidebar = ({ agentType, externalIdentifiers }) => {
 
 const PageAgent = () => {
 
+  const [backendError, setBackendError] = useState({})
   const [externalIdentifiers, setExternalIdentifiers] = useState([])
   const [found, setFound] = useState(true)
   const [isAgentLoading, setIsAgentLoading] = useState(true)
@@ -79,7 +81,7 @@ const PageAgent = () => {
         setCollections(res.data.results);
         setIsCollectionsLoading(false);
       })
-      .catch(err => console.log(err))
+      .catch(err => setBackendError(err))
   }
 
   /* Fetches data from Wikidata */
@@ -110,7 +112,8 @@ const PageAgent = () => {
         fetchWikidata(res.data);
         setIsAgentLoading(false)
       })
-      .catch(err => setFound(false))
+      .catch(err => {
+        err.response.status === 404 ? setFound(false) : setBackendError(err) })
   }, [id, search])
 
   /** Sets agent dates when agent data is available */
@@ -209,6 +212,9 @@ const PageAgent = () => {
 
   if (!found) {
     return (<PageNotFound />)
+  }
+  if (!!Object.keys(backendError).length) {
+    return (<PageBackendError error={backendError} />)
   }
   return (
     <React.Fragment>
