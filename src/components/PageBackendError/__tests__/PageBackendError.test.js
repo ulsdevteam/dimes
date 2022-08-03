@@ -11,7 +11,10 @@ it('renders props correctly', () => {
       url: "https://api.rockarch.org/"
     },
     code: "ERR_NETWORK",
-    message: "Network Error"
+    message: "Network Error",
+    request: {
+      data: "foo"
+    }
   }
 
   act(() => {
@@ -24,4 +27,5 @@ it('renders props correctly', () => {
   expect(page.textContent).toContain(error.config.url)
   expect(page.textContent).toContain(error.code)
   expect(page.textContent).toContain(error.message)
+  expect(page.textContent).toContain(error.request.data)
 })
