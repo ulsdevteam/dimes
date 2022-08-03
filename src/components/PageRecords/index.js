@@ -6,6 +6,7 @@ import { useNavigate, useLocation, useParams } from 'react-router-dom'
 import queryString from 'query-string'
 import classnames from 'classnames'
 import { Helmet } from 'react-helmet'
+import PageBackendError from '../PageBackendError'
 import ContextSwitcher from '../ContextSwitcher'
 import Minimap from '../Minimap'
 import MinimapButton from '../MinimapButton'
@@ -18,6 +19,7 @@ import { appendParams, firePageViewEvent, formatBytes, isDesktop } from '../Help
 const PageRecords = ({ myListCount, toggleInList }) => {
 
   const [ancestors, setAncestors] = useState({})
+  const [backendError, setBackendError] = useState({})
   const [children, setChildren] = useState([])
   const [childrenUri, setChildrenUri] = useState('')
   const [downloadSize, setDownloadSize] = useState('')
@@ -114,7 +116,8 @@ const PageRecords = ({ myListCount, toggleInList }) => {
           }
           setUpdateMessage(`Details under heading 1 have been updated to describe the selected records titled ${res.data.title}`)
         })
-        .catch(err => setFound(false))
+        .catch(err => {
+          err.response.status === 404 ? setFound(false) : setBackendError(err) })
         .then(res => {
           setIsItemLoading(false)
           setItemInitialLoad(false)
@@ -134,7 +137,7 @@ const PageRecords = ({ myListCount, toggleInList }) => {
             setPreExpanded(constructPreExpanded(res.data, [itemUri.replace(`${process.env.REACT_APP_ARGO_BASEURL}`, '')]))
           }
         })
-        .catch(e => console.log(e))
+        .catch(e => setBackendError(e))
         .then(() => setIsAncestorsLoading(false))
     }
   }, [itemUri])
@@ -150,7 +153,7 @@ const PageRecords = ({ myListCount, toggleInList }) => {
             res.data.next && setChildrenUri(res.data.next)
           }
         )
-        .catch(err => console.log(err))
+        .catch(err => setBackendError(err))
       }
   }, [childrenUri])
 
@@ -163,7 +166,7 @@ const PageRecords = ({ myListCount, toggleInList }) => {
         axios
           .get(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${item.group.identifier}/minimap`, params))
           .then(res => setMinimap(res.data))
-          .catch(e => console.log(e))
+          .catch(e => setBackendError(e))
           .then(() => setIsMinimapLoading(false))
       }
     }
@@ -190,6 +193,9 @@ const PageRecords = ({ myListCount, toggleInList }) => {
 
   if (!found) {
     return (<PageNotFound />)
+  }
+  if (!!Object.keys(backendError).length) {
+    return (<PageBackendError error={backendError} />)
   }
   return (
     <React.Fragment>
