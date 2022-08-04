@@ -13,6 +13,9 @@ it('renders props correctly', () => {
     },
     code: "ERR_NETWORK",
     message: "Network Error",
+    response: {
+      data: "bar"
+    }
   }
 
   act(() => {
