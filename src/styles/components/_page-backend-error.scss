@@ -7,6 +7,7 @@
   text-align: center;
   min-height: 60vh;
   margin-top: 60px;
+  padding-bottom: 100px;
 }
 
 .backend-error__icon > .material-icons {
@@ -20,4 +21,16 @@
   & a {
     text-decoration: underline;
   }
+}
+
+.backend-error__header {
+  font-family: $sans-serif-stack;
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 18px;
+}
+
+.backend-error__message {
+  font-family: monospace;
+  font-size: 16px;
 }

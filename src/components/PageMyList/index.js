@@ -40,7 +40,8 @@
           if (allItems) {
             submitList.push(item.archivesspace_uri)
           } else {
-            item.isChecked && submitList.push(item.archivesspace_uri)
+            console.log(item);
+            item && item.isChecked && submitList.push(item.archivesspace_uri)
           }
         }
       }
@@ -117,7 +118,6 @@
           form.submit()
         })
         .catch(err => {
-          console.log(err)
           const title = 'Error submitting request'
           const message = `There was an error submitting your request. The error message was: ${err.toString()}`
           handleConfirmData(title, message);
@@ -138,7 +138,6 @@
           handleConfirmData(title, message);
         })
         .catch(err => {
-          console.log(err)
           const title = 'Error submitting request'
           const message = `There was an error submitting your request. The error message was: ${err.toString()}`
           handleConfirmData(title, message);
