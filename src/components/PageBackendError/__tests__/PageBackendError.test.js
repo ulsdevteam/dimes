@@ -8,12 +8,13 @@ it('renders props correctly', () => {
   document.body.appendChild(div)
   const error = {
     config: {
-      url: "https://api.rockarch.org/"
+      url: "https://api.rockarch.org/",
+      data: "foo"
     },
     code: "ERR_NETWORK",
     message: "Network Error",
-    request: {
-      data: "foo"
+    response: {
+      data: "bar"
     }
   }
 
@@ -27,5 +28,5 @@ it('renders props correctly', () => {
   expect(page.textContent).toContain(error.config.url)
   expect(page.textContent).toContain(error.code)
   expect(page.textContent).toContain(error.message)
-  expect(page.textContent).toContain(error.request.data)
+  expect(page.textContent).toContain(error.config.data)
 })
