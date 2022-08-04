@@ -18,7 +18,7 @@ const PageBackendError = ({error}) => (
       <p className='backend-error__text'>To report this problem, send us an email at <a href='mailto:archive.rockarch.org'>archive.rockarch.org</a>.</p>
       <p className='backend-error__header'>Error message:</p>
       <p className='backend-error__message'>{error.code}: {error.message}</p>
-      <p className='backend-error__message'>{JSON.stringify(error.response.data)}</p>
+      {error.response.data ? <p className='backend-error__message'>{JSON.stringify(error.response.data)}</p> : null}
       {error.config.data ?
         <>
           <p className='backend-error__header'>Request data:</p>
