@@ -333,9 +333,9 @@ export const ReadingRoomRequestModal = props => (
               component={DateInput}
               // TODO: this handleChange alters the UI, but not the form submission ?!
               handleChange={date => setFieldValue('scheduledDate', date)}
-              helpText='Our reading rooms are open Monday - Friday from 9:00am to 4:45pm. We will confirm this appointment request with you.'
+              helpText='Our reading rooms are open Monday - Friday from 9:00am to 4:45pm. We will confirm this appointment request with you before you arrive.'
               id='scheduledDate'
-              label='Requested Visit Date *'
+              label='Requested Visit Date'
               type='date' />
             <ErrorMessage
               id='scheduledDate-error'
@@ -363,7 +363,7 @@ export const ReadingRoomRequestModal = props => (
               className='modal-form__error' />
           </div>
           <FormButtons
-            helpText='You may be requested to create an account.'
+            helpText='You may be requested to create a researcher registration account with us.'
             submitText={`Request ${props.submitList.length ? (props.submitList.length) : '0'} ${props.submitList.length !== 1 ? 'Items' : 'Item'}`}
             toggleModal={props.toggleModal}
             isSubmitting={isSubmitting} />
@@ -399,7 +399,7 @@ export const DuplicationRequestModal = props => (
     form={
       <>
         <div className='modal-form__intro'>
-          <strong>Please note:</strong> if you want a cost estimate for your order, email an archivist at <a href='mailto:archive-ref@pitt.edu'>archive-ref@pitt.edu</a>.
+          <strong>Please note:</strong> if you would like a cost estimate for your order, please email an archivist at <a href='mailto:archive-ref@pitt.edu'>archive-ref@pitt.edu</a>.
         </div>
         <Formik
           initialValues={{
@@ -452,7 +452,7 @@ export const DuplicationRequestModal = props => (
               rows={5} />
             <FormGroup
               label={<>
-                By checking this box, I acknowledge archival staff may not be able to fulfill my request at this time.</>}
+                By checking this box, I acknowledge that archival staff may need to follow-up with me about this order before it can be placed.</>}
               name='confirm'
               type='checkbox'
               required={true}
