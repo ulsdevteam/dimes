@@ -6,6 +6,7 @@ import { useNavigate, useLocation, useParams } from 'react-router-dom'
 import queryString from 'query-string'
 import classnames from 'classnames'
 import { Helmet } from 'react-helmet'
+import PageBackendError from '../PageBackendError'
 import ContextSwitcher from '../ContextSwitcher'
 import RecordsContent from '../RecordsContent'
 import RecordsDetail from '../RecordsDetail'
@@ -15,6 +16,7 @@ import { appendParams, firePageViewEvent, formatBytes, isDesktop } from '../Help
 const PageRecords = ({ myListCount, toggleInList }) => {
 
   const [ancestors, setAncestors] = useState({})
+  const [backendError, setBackendError] = useState({})
   const [children, setChildren] = useState([])
   const [childrenUri, setChildrenUri] = useState('')
   const [downloadSize, setDownloadSize] = useState('')
@@ -76,7 +78,6 @@ const PageRecords = ({ myListCount, toggleInList }) => {
   useEffect(() => {
     if (itemUri) {
       setIsItemLoading(true)
-      const itemPath = itemUri.replace(`${process.env.REACT_APP_ARGO_BASEURL}`, '')
       axios
         .get(appendParams(itemUri, params))
         .then(res => {
@@ -91,9 +92,9 @@ const PageRecords = ({ myListCount, toggleInList }) => {
             setChildrenUri(`${process.env.REACT_APP_ARGO_BASEURL}${res.data.group.identifier}/children`)
           }
           setUpdateMessage(`Details under heading 1 have been updated to describe the selected records titled ${res.data.title}`)
-          // getMinimap(res.data.group.identifier, params)
         })
-        .catch(err => setFound(false))
+        .catch(err => {
+          err.response.status === 404 ? setFound(false) : setBackendError(err) })
         .then(res => {
           setIsItemLoading(false)
           setItemInitialLoad(false)
@@ -113,7 +114,7 @@ const PageRecords = ({ myListCount, toggleInList }) => {
             setPreExpanded(constructPreExpanded(res.data, [itemUri.replace(`${process.env.REACT_APP_ARGO_BASEURL}`, '')]))
           }
         })
-        .catch(e => console.log(e))
+        .catch(e => setBackendError(e))
         .then(() => setIsAncestorsLoading(false))
     }
   }, [itemUri])
@@ -129,9 +130,24 @@ const PageRecords = ({ myListCount, toggleInList }) => {
             res.data.next && setChildrenUri(res.data.next)
           }
         )
-        .catch(err => console.log(err))
+        .catch(err => setBackendError(err))
       }
   }, [childrenUri])
+
+  /** Fetches minimap data when item.group.identifier changes */
+  useEffect(() => {
+    if (item.group && item.group.identifier) {
+      if (Object.keys(params).length === 0) {
+        setIsMinimapLoading(false)
+      } else {
+        axios
+          .get(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${item.group.identifier}/minimap`, params))
+          .then(res => setMinimap(res.data))
+          .catch(e => setBackendError(e))
+          .then(() => setIsMinimapLoading(false))
+      }
+    }
+  }, [item.group.identifier])
 
   /** Pushes a updated URL and state into browser history when itemUri changes */
   useEffect(() => {
@@ -152,6 +168,9 @@ const PageRecords = ({ myListCount, toggleInList }) => {
 
   if (!found) {
     return (<PageNotFound />)
+  }
+  if (!!Object.keys(backendError).length) {
+    return (<PageBackendError error={backendError} />)
   }
   return (
     <React.Fragment>

@@ -2,12 +2,12 @@
 
 .agent__attributes {
   width: 100%;
-  float: left;
+  display: flex;
   margin-left: -$gutters-default;
   margin-right: -$gutters-default;
 }
 
-.agent-attribute {
+.agent-attribute, .agent-note {
   @include grid-column(12);
   margin-bottom: 24px;
   @include md-up  {
@@ -19,10 +19,6 @@
   }
 }
 
-.agent-attribute--full-width {
-  @include grid-column(12);
-}
-
-.agent-attribute__value {
+.agent-attribute__value, .agent-note__value {
   white-space: pre-line;
 }

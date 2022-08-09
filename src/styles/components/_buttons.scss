@@ -317,3 +317,10 @@
   margin-right: 0px;
   margin-top: 22px;
 }
+
+.btn--agent-identifier {
+  @extend .btn;
+  @extend .btn--md;
+  @extend .btn--gray;
+  width: 100%;
+}

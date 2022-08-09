@@ -14,11 +14,22 @@ before_script:
   - if [ ! -d deploy_scripts ]; then git clone https://github.com/RockefellerArchiveCenter/deploy_scripts.git; fi
   - sudo deploy_scripts/substitute_env.sh
 script:
+  - docker build .
   - CI=false yarn run build
   - yarn test
 before_deploy:
   - sudo deploy_scripts/make_zip_react.sh $DEPLOY_ZIP_DIR $DEPLOY_ZIP_NAME
 deploy:
+# - provider: s3
+#   access_key_id: $AWS_ACCESS_KEY
+#   secret_access_key: $AWS_SECRET_KEY
+#   local_dir: $LOCAL_DIR
+#   skip_cleanup: true
+#   on:
+#     repo: RockefellerArchiveCenter/${APPLICATION_NAME}
+#     branch: base
+#   bucket: $AWS_BUCKET_NAME
+#   region: us-east-1
 - provider: s3
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_KEY

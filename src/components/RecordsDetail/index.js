@@ -231,6 +231,12 @@ const RecordsDetail = props => {
                   text={noteTextByType(props.item.notes, 'processinfo')} />) :
                 (null)
               }
+                <PanelTextSection
+                  title='Immediate Source of Acquisition'
+                  text={noteTextByType(props.item.notes, 'acqinfo')} />
+                <PanelTextSection
+                  title='Custodial History'
+                  text={noteTextByType(props.item.notes, 'custodhist')} />
               </>
               )
             }
@@ -248,6 +254,12 @@ const RecordsDetail = props => {
             <PanelTextSection
               title='Reproduction and Duplication'
               text={noteTextByType(props.item.notes, 'userestrict')} />
+            <PanelTextSection
+              title='Technical Access'
+              text={noteTextByType(props.item.notes, 'phystech')} />
+            <PanelTextSection
+              title='Existence and Location of Copies'
+              text={noteTextByType(props.item.notes, 'altformavail')} />
           </AccordionItemPanel>
         </AccordionItem>) :
         (null)}
