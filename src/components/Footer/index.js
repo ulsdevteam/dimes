@@ -6,7 +6,7 @@ const Footer = () => (
     <div className='footer-primary'>
       <div className='wrapper'>
         <div className='container'>
-          <h2 className='footer-primary__title'>Archives and Special Collections <br />University Library System <br />University of Pittsburgh</h2>
+          <h2 className='footer-primary__title'>Archives &amp; Special Collections <br />University Library System <br />University of Pittsburgh</h2>
           <div className='footer-primary__address'>
             <p className='footer-primary__text'><a href="https://library.pitt.edu/archives-special-collections">About A&SC</a></p>
             <p className='footer-primary__text'><a href="https://library.pitt.edu/ask-archivist">Send us an email</a></p>
@@ -14,10 +14,10 @@ const Footer = () => (
           <div className='footer-primary__reading-room'>
             <h3 className='footer-primary__subtitle'>Our reading rooms:</h3>
             <p className='footer-primary__text'>
-              <strong>A&amp;SC at Hillman Library</strong><br />320 Hillman Library<br />University of Pittsburgh<br />3960 Forbes Avenue<br />Pittsburgh, PA 15260<br/ ><a href="tel:+14126488190">412-648-8190</a>
+              <strong>A&amp;SC at the Archives Service Center</strong><br />7500 Thomas Boulevard<br />Pittsburgh, PA 15208<br /><a href="tel:+14126483232">412-648-3232</a>
             </p>
             <p className='footer-primary__text'>
-              <strong>A&amp;SC at the Archives Service Center</strong><br />7500 Thomas Boulevard<br />Pittsburgh, PA 15208<br /><a href="tel:+14126483232">412-648-3232</a>
+              <strong>A&amp;SC at Hillman Library</strong><br />320 Hillman Library<br />University of Pittsburgh<br />3960 Forbes Avenue<br />Pittsburgh, PA 15260<br/ ><a href="tel:+14126488190">412-648-8190</a>
             </p>
             <p className='footer-primary__text'>
               <strong>Center for American Music</strong><br />Stephen Foster Memorial<br />4301 Forbes Ave.<br />Pittsburgh, PA 15260<br /><a href="tel:+14126244100">412-624-4100</a>
