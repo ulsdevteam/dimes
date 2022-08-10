@@ -134,21 +134,6 @@ const PageRecords = ({ myListCount, toggleInList }) => {
       }
   }, [childrenUri])
 
-  /** Fetches minimap data when item.group.identifier changes */
-  useEffect(() => {
-    if (item.group && item.group.identifier) {
-      if (Object.keys(params).length === 0) {
-        setIsMinimapLoading(false)
-      } else {
-        axios
-          .get(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${item.group.identifier}/minimap`, params))
-          .then(res => setMinimap(res.data))
-          .catch(e => setBackendError(e))
-          .then(() => setIsMinimapLoading(false))
-      }
-    }
-  }, [item.group.identifier])
-
   /** Pushes a updated URL and state into browser history when itemUri changes */
   useEffect(() => {
     if (itemUri && !itemInitialLoad) {
