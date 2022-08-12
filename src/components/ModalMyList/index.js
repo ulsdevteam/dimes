@@ -399,7 +399,7 @@ export const DuplicationRequestModal = props => (
     form={
       <>
         <div className='modal-form__intro'>
-          <strong>Please note:</strong> if you would like a cost estimate for your order, please email an archivist at <a href='mailto:archives-ref@pitt.edu'>archive-ref@pitt.edu</a>.
+          <strong>Please note:</strong> if you would like a cost estimate for your order, please email an archivist at <a href='mailto:archives-ref@pitt.edu'>archives-ref@pitt.edu</a>.
         </div>
         <Formik
           initialValues={{
