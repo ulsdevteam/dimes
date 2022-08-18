@@ -15,7 +15,7 @@ const PageBackendError = ({error}) => (
       <span className='not-found__icon'><MaterialIcon icon='error_outline' /></span>
       <h1 className='backend-error__title'>There was an error fetching data.</h1>
       <p className='backend-error__text'>The request to {error.config.url} failed.</p>
-      <p className='backend-error__text'>To report this problem, send us an email at <a href='mailto:archive.rockarch.org'>archive.rockarch.org</a>.</p>
+      <p className='backend-error__text'>To report this problem, send us an email at <a href='mailto:archive@rockarch.org'>archive@rockarch.org</a>.</p>
       <p className='backend-error__header'>Error message:</p>
       <p className='backend-error__message'>{error.code}: {error.message}</p>
       {error.response.data ? <p className='backend-error__message'>{JSON.stringify(error.response.data)}</p> : null}
