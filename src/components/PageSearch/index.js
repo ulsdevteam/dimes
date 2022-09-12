@@ -207,7 +207,7 @@ const PageSearch = () => {
                     handleClick={() => toggleFacetModal()}
                     label='Filters'
                     iconBefore='filter_alt'
-                    className='btn--filter' />
+                    className='btn btn--light-blue btn--filter' />
                   <SelectInput
                     className='select__sort'
                     hideLabel

@@ -154,14 +154,14 @@ const RecordsDetail = props => {
   <div className={classnames('records__detail', {'hidden': props.isContentShown})}>
     {isDesktop ? <Button
       type='button'
-      className='btn--sm btn--transparent btn--minimap-info'
+      className='btn btn--sm btn--transparent btn--minimap-info'
       handleClick={props.toggleMinimapModal}
       iconAfter='info'
       label='about minimap'
     /> : null
     }
     <nav className='records__nav'>
-      <a href={searchUrl} className='btn btn--back'>
+      <a href={searchUrl} className='btn btn--sm btn--gray btn--back'>
         <MaterialIcon icon='keyboard_arrow_left'/>Back to Search
       </a>
     </nav>
@@ -169,15 +169,15 @@ const RecordsDetail = props => {
     {props.item.type === 'object' &&
       <>
       <ListToggleButton
-        className='btn-add--detail'
+        className='btn btn--sm btn--orange btn-add--detail'
         isSaved={isSaved}
         item={props.item}
         toggleSaved={props.toggleInList} />
         {props.item.online &&
           <>
-          <a className='btn btn-launch--detail'
+          <a className='btn btn--sm btn--orange btn-launch--detail'
             href={`${props.item.uri}/view`}>View Online <MaterialIcon icon='visibility' /></a>
-          <a className='btn btn-download--detail'
+          <a className='btn btn--sm btn--orange btn-download--detail'
             href={`${process.env.REACT_APP_S3_BASEURL}/pdfs/${identifier}`}
             target='_blank'
             title='opens in a new window'

@@ -6,17 +6,17 @@ import classnames from 'classnames'
 const MyListExportActions = ({ confirmDeleteAll, downloadCsv, emailList, isDownloading }) => (
   <div className='mylist__export-actions'>
     <Button
-      className='btn--orange btn--sm'
+      className='btn btn--orange btn--sm'
       label='Email List'
       iconBefore='email'
       handleClick={emailList} />
     <Button
-      className={classnames('btn--orange', 'btn--sm', {'loading-dots': isDownloading})}
+      className={classnames('btn', 'btn--orange', 'btn--sm', {'loading-dots': isDownloading})}
       label={isDownloading ? 'Downloading' : 'Download as .CSV'}
       handleClick={downloadCsv}
       disabled={isDownloading} />
     <Button
-      className='btn--gray btn--sm'
+      className='btn btn--gray btn--sm'
       label='Remove All Items'
       iconBefore='delete'
       handleClick={() => confirmDeleteAll()} />

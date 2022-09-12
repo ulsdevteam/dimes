@@ -43,7 +43,7 @@ const SearchForm = props => {
               required
             />
             <Button
-              className={ classnames({ 'btn--search': isHomePage, 'btn--search-results': !isHomePage })}
+              className={ classnames({ 'btn btn--orange btn--search': isHomePage, 'btn btn--orange btn--search-results': !isHomePage })}
               type='submit'
               label={isHomePage ? (isMobile ? null : 'Search') : null}
               iconAfter='search'

@@ -35,7 +35,7 @@ const AgentRelatedCollections = ({ agentTitle, collections, params }) => (
       params={{...params, query: agentTitle}}
       tileClassName='tile--related-collections'/>
     { collections.length === 6 ?
-      (<a href={`/search?query=${agentTitle}&category=collection`} className='btn btn--search-more'>Search More Related Collections</a>) :
+      (<a href={`/search?query=${agentTitle}&category=collection`} className='btn btn--sm btn--orange btn--search-more'>Search More Related Collections</a>) :
       (null)
     }
   </div>) : (null)
@@ -44,7 +44,7 @@ const AgentRelatedCollections = ({ agentTitle, collections, params }) => (
 const AgentSidebar = ({ agentType, externalIdentifiers }) => {
   const linkList = externalIdentifiers.map(i =>  (
     <li key={i.url}>
-      <a className='btn--agent-identifier' href={i.url}>{i.title}</a>
+      <a className='btn btn--md btn--gray btn--agent-identifier' href={i.url}>{i.title}</a>
     </li>))
   return (
   externalIdentifiers.length ?
@@ -225,7 +225,7 @@ const PageAgent = () => {
       <div className='container--full-width'>
         <div className='agent__wrapper'>
           <nav className="agent__nav">
-            <a href={appendParams('/search', params)} className='btn btn--back'>
+            <a href={appendParams('/search', params)} className='btn btn--sm btn--gray btn--back'>
               <span className='material-icons'>keyboard_arrow_left</span>Back to Search
             </a>
           </nav>

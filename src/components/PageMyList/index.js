@@ -266,7 +266,7 @@
         </Helmet>
         <div className='container mylist flex'>
           <nav>
-            <a href='/' className='btn btn--new-search'>
+            <a href='/' className='btn btn--sm btn--gray btn--new-search'>
               <MaterialIcon icon='keyboard_arrow_left'/>Start a New Search
             </a>
           </nav>
@@ -339,11 +339,11 @@
             <>Are you sure you want to remove all the items from your list?
             <div className='confirm-buttons'>
               <Button
-                className='btn--sm btn--orange'
+                className='btn btn--sm btn--orange'
                 label='Remove'
                 handleClick={() => {removeAllFromList(); setConfirmDeleteAllModalOpen(false)}} />
               <Button
-                className='btn--sm btn--gray'
+                className='btn btn--sm btn--gray'
                 label='Cancel'
                 handleClick={() => setConfirmDeleteAllModalOpen(false)}/>
             </div>

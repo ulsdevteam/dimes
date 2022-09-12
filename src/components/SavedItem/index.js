@@ -22,7 +22,7 @@ const SavedItem = props => (
             href={`${props.uri}/view`}>View Online <MaterialIcon icon='visibility' /></a>}
         <Button
           label='Remove'
-          className='btn--gray btn--sm'
+          className='btn btn--gray btn--sm'
           iconBefore='delete'
           handleClick={props.handleClick} />
       </div>

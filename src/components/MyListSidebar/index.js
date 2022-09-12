@@ -12,12 +12,12 @@ const MyListSidebar = ({ duplicationRequest, readingRoomRequest }) => (
       <MaterialIcon icon='account_balance' /> Schedule a Visit
     </a>
     <Button
-      className='btn--orange btn--lg'
+      className='btn btn--orange btn--lg'
       label='Request in Reading Room'
       iconBefore='local_library'
       handleClick={() => readingRoomRequest()} />
     <Button
-      className='btn--orange btn--lg'
+      className='btn btn--orange btn--lg'
       label='Request Copies'
       iconBefore='content_copy'
       handleClick={() => duplicationRequest()} />
