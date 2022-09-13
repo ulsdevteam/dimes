@@ -109,13 +109,13 @@ export const NavDropdown = () => (
     listClassName='dropdown__list--mobile dropdown__list--navy dropdown__list--slide-left'>
       <DropdownItem
         order={1}
-        className='btn btn--navy dropdown__btn--mobile'
+        className='btn btn--navy dropdown__btn dropdown__btn--mobile'
         label='Sign in to RACcess'
         iconAfter='east'
         href='https://raccess.rockarch.org' />
       <DropdownItem
         order={2}
-        className='btn btn--navy dropdown__btn--mobile'
+        className='btn btn--navy dropdown__btn dropdown__btn--mobile'
         label='My List'
         iconAfter='east'
         href='/list' />
