@@ -3,16 +3,16 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 export const SearchSkeleton = () => (
-  <ul className='tile-list'>
+  <ul className='card-list'>
     {Array(8)
       .fill()
       .map((item, index) => (
-        <li className='tile' key={index}>
+        <li className='card' key={index}>
           <Skeleton />
-          <h2 className='tile__title'>
+          <h2 className='card__title'>
             <Skeleton count={3}/>
           </h2>
-          <p className='tile__date'>
+          <p className='card__date'>
             <Skeleton />
           </p>
         </li>
@@ -75,16 +75,16 @@ export const AgentAttributeSkeleton = () => (
 )
 
 export const AgentRelatedCollectionsSkeleton = () => (
-  <ul className='tile-list'>
+  <ul className='card-list'>
     {Array(6)
       .fill()
       .map((item, index) => (
-        <li className='tile tile--related-collections' key={index}>
+        <li className='card card--related-collections' key={index}>
           <Skeleton />
-          <h2 className='tile__title'>
+          <h2 className='card__title'>
             <Skeleton count={3}/>
           </h2>
-          <p className='tile__date'>
+          <p className='card__date'>
             <Skeleton />
           </p>
         </li>

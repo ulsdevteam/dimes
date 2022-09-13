@@ -14,7 +14,7 @@ import { FacetModal } from '../ModalSearch'
 import { SearchPagination } from '../Pagination'
 import SearchForm from '../SearchForm'
 import SearchNotFound from '../SearchNotFound'
-import TileList from '../Tile'
+import CardList from '../Card'
 import { appendParams, firePageViewEvent } from '../Helpers'
 import './styles.scss'
 
@@ -230,7 +230,7 @@ const PageSearch = () => {
               </div>
               { inProgress ?
                   (<SearchSkeleton />) :
-                  (<TileList
+                  (<CardList
                     items={items}
                     params={params} />)}
               <div className='results__footer'>

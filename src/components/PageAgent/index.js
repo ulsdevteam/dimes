@@ -8,7 +8,7 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import PageNotFound from '../PageNotFound'
 import { AgentAttributeSkeleton, AgentRelatedCollectionsSkeleton } from '../LoadingSkeleton'
-import TileList from '../Tile'
+import CardList from '../Card'
 import AgentAttributeList from '../AgentAttribute'
 import '../Button/styles.scss'
 import { appendParams, firePageViewEvent } from '../Helpers'
@@ -29,11 +29,11 @@ const AgentRelatedCollections = ({ agentTitle, collections, params }) => (
   collections.length ?
   (<div className='agent__related'>
     <h2 className='agent__section-title'>Collections Related to {agentTitle}</h2>
-    <TileList
+    <CardList
       hideHitCount
       items={collections}
       params={{...params, query: agentTitle}}
-      tileClassName='tile--related-collections'/>
+      cardClassName='card--related-collections'/>
     { collections.length === 6 ?
       (<a href={`/search?query=${agentTitle}&category=collection`} className='btn btn--sm btn--orange btn--search-more'>Search More Related Collections</a>) :
       (null)
@@ -50,7 +50,7 @@ const AgentSidebar = ({ agentType, externalIdentifiers }) => {
   externalIdentifiers.length ?
   (<div className='agent__sidebar'>
     <h2 className='agent__section-title'>More about this {agentType}</h2>
-    <ul className='unstyled'>{linkList}</ul>
+    <ul className='list--unstyled'>{linkList}</ul>
   </div>) : (null)
 )}
 
