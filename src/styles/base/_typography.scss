@@ -130,48 +130,48 @@
 //   @extend small;
 // }
 
-@mixin footer-primary-title-text {
-  font-family: $sans-serif-stack;
-  font-weight: $font-weight-heavy;
-  font-size: 21px;
-  letter-spacing: 4px;
-  line-height: 26px;
-  text-transform: uppercase;
-}
+// @mixin footer-primary-title-text {
+//   font-family: $sans-serif-stack;
+//   font-weight: $font-weight-heavy;
+//   font-size: 21px;
+//   letter-spacing: 4px;
+//   line-height: 26px;
+//   text-transform: uppercase;
+// }
 
-@mixin footer-primary-text {
-  font-family: $serif-stack;
-  font-weight: $font-weight-normal;
-  font-size: 15px;
-  color: $deep-navy;
-  line-height: 22px;
-  margin-bottom: 10px;
-}
+// @mixin footer-primary-text {
+//   font-family: $serif-stack;
+//   font-weight: $font-weight-normal;
+//   font-size: 15px;
+//   color: $deep-navy;
+//   line-height: 22px;
+//   margin-bottom: 10px;
+// }
 
-@mixin footer-primary-link {
-  @include footer-primary-text;
-  text-decoration: underline;
-  font-weight: $font-weight-normal;
-  &:hover, &:focus {
-    color: $burnt-orange;
-    transition: $transition-default;
-  }
-}
+// @mixin footer-primary-link {
+//   @include footer-primary-text;
+//   text-decoration: underline;
+//   font-weight: $font-weight-normal;
+//   &:hover, &:focus {
+//     color: $burnt-orange;
+//     transition: $transition-default;
+//   }
+// }
 
-@mixin footer-secondary-text {
-  @include footer-primary-text;
-  color: $pure-white;
-}
+// @mixin footer-secondary-text {
+//   @include footer-primary-text;
+//   color: $pure-white;
+// }
 
-@mixin footer-secondary-link {
-  @include footer-secondary-text;
-  text-decoration: underline;
-  &:hover, &:focus {
-    color: $off-white;
-    text-decoration: none;
-    transition: $transition-default;
-  }
-}
+// @mixin footer-secondary-link {
+//   @include footer-secondary-text;
+//   text-decoration: underline;
+//   &:hover, &:focus {
+//     color: $off-white;
+//     text-decoration: none;
+//     transition: $transition-default;
+//   }
+// }
 
 @mixin secondary-header-text {
   font-family: $sans-serif-stack;
