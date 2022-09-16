@@ -89,7 +89,7 @@ export const ModalToggleListButton = ({ ignoreRestrictions, items, toggleList })
 
   return (
     <Button
-      className='btn btn--sm btn--gray'
+      className='btn--sm btn--gray'
       handleClick={() => toggleList(!deselect, ignoreRestrictions)}
       label={deselect ? 'Deselect all items' : 'Select all items'}
       ariaLabel={deselect ? 'Deselect all items' : 'Select all items'}

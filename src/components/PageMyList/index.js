@@ -339,11 +339,11 @@
             <>Are you sure you want to remove all the items from your list?
             <div className='confirm-buttons'>
               <Button
-                className='btn btn--sm btn--orange'
+                className='btn--sm btn--orange'
                 label='Remove'
                 handleClick={() => {removeAllFromList(); setConfirmDeleteAllModalOpen(false)}} />
               <Button
-                className='btn btn--sm btn--gray'
+                className='btn--sm btn--gray'
                 label='Cancel'
                 handleClick={() => setConfirmDeleteAllModalOpen(false)}/>
             </div>

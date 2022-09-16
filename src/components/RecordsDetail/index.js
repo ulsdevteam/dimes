@@ -154,7 +154,7 @@ const RecordsDetail = props => {
   <div className={classnames('records__detail', {'hidden': props.isContentShown})}>
     {isDesktop ? <Button
       type='button'
-      className='btn btn--sm btn--transparent btn--minimap-info'
+      className='btn--sm btn--transparent btn--minimap-info'
       handleClick={props.toggleMinimapModal}
       iconAfter='info'
       label='about minimap'
@@ -169,7 +169,7 @@ const RecordsDetail = props => {
     {props.item.type === 'object' &&
       <>
       <ListToggleButton
-        className='btn btn--sm btn--orange btn-add--detail'
+        className='btn--sm btn--orange btn-add--detail'
         isSaved={isSaved}
         item={props.item}
         toggleSaved={props.toggleInList} />

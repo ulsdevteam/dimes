@@ -43,7 +43,7 @@ export const FacetModal = props => {
           {`Filter ${props.resultsCount} Search ${props.resultsCount === 1 ? 'Result': 'Results'}`}
         </h2>
         <Button
-          className='btn btn--blue btn--sm'
+          className='btn--blue btn--sm'
           aria-label='Close'
           label='Save &amp; Close'
           handleClick={props.toggleModal} />
@@ -62,7 +62,7 @@ export const FacetModal = props => {
             className='hide-label'
             handleChange={e => { setEndYear(e.target.value) }}
             value={endYear} />
-          <Button className='btn btn--sm btn--gray' label='apply dates' handleClick={() => { props.handleDateChange(startYear, endYear) }} />
+          <Button className='btn--sm btn--gray' label='apply dates' handleClick={() => { props.handleDateChange(startYear, endYear) }} />
         </Facet>
         <Facet
           handleChange={props.handleChange}

@@ -14,7 +14,7 @@ it('renders props correctly', () => {
   })
 
   const switcher = document.querySelector('.toggle-wrapper > button')
-  expect(switcher.className).toBe('btn toggle-context')
+  expect(switcher.className).toBe('btn btn--lg btn--orange toggle-context')
   expect(switcher.textContent).toContain('Collection Content')
 
   act(() => {
@@ -23,6 +23,6 @@ it('renders props correctly', () => {
       toggleIsContentShown={jest.fn()} />, div)
   })
 
-  expect(switcher.className).toBe('btn toggle-context')
+  expect(switcher.className).toBe('btn btn--lg btn--orange toggle-context')
   expect(switcher.textContent).toContain('Collection Details')
 })
