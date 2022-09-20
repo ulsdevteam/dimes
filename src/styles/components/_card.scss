@@ -1,5 +1,4 @@
 @import "../styles";
-@import "./material-icon";
 
 
 // @mixin card-text {
@@ -115,7 +114,7 @@
 .card__type-label {
   @include card-type-label-text;
   order: 0;
-  & .material-icons {
+  & .material-icon {
     font-size: 12px;
     padding-right: 6px;
     float: left;

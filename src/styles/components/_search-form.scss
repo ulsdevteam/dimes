@@ -1,6 +1,5 @@
 @import "../styles";
 @import "inputs";
-@import "material-icon";
 
 input[type=search] {
   @include input-text;
@@ -112,7 +111,7 @@ input[type=search] {
   padding: 13px 15px;
   width: 180px;
   box-sizing: border-box;
-  & > .material-icons {
+  & > .material-icon {
     right: 15px;
     top: 13px;
   }

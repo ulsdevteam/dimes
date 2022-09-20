@@ -208,7 +208,7 @@ label {
   cursor: pointer;
   line-height: 1;
   padding: 2px 6px;
-  & .material-icons {
+  & .material-icon {
     color: $med-gray;
   }
 }
@@ -265,7 +265,7 @@ label {
   background-color: $pure-white;
   border-radius: 0px;
   text-align: left;
-  & > .material-icons {
+  & > .material-icon {
     position: absolute;
     pointer-events: none;
   }
@@ -300,12 +300,13 @@ label {
   &.is-selected {
     font-weight: $font-weight-bold;
     &::after {
-      @extend .material-icons;
-      font-size: 20px;
-      content: "check";
-      position: absolute;
-      right: 18px;
-      color: $burnt-orange;
+      .material-icon {
+        font-size: 20px;
+        content: "check";
+        position: absolute;
+        right: 18px;
+        color: $burnt-orange;
+      }
     }
   }
 }

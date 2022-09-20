@@ -236,7 +236,7 @@
   text-transform: none;
   letter-spacing: unset;
   margin-right: 16px;
-  & .material-icons {
+  & .material-icon {
     @include icon-margin-right;
     font-size: 18px;
   }
@@ -250,7 +250,7 @@
   &:hover, &:focus {
     color: $pure-white;
   }
-  & .material-icons {
+  & .material-icon {
     @include icon-margin-left;
   }
   // &.saved {
@@ -304,7 +304,7 @@
 }
 
 .btn--scroll-focused {
-  & .material-icons {
+  & .material-icon {
     @include icon-margin-left;
   }
 }

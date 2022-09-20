@@ -1,5 +1,4 @@
 @import "../styles";
-@import "./material-icon";
 
 .records__content {
   font-family: $sans-serif-stack;
@@ -147,7 +146,7 @@
   border: 3px solid $orange-gray;
   border-radius: 3px;
   box-shadow: 0 0 4px $light-gray;
-  & .material-icons {
+  & .material-icon {
     position: absolute;
     top: 15px;
     right: 15px;
@@ -164,7 +163,7 @@
   }
   &:hover {
     border-color: $red-orange;
-    & .material-icons {
+    & .material-icon {
       color: $red-orange;
     }
   }
@@ -178,12 +177,13 @@
 
 .child__list-item--collection.active {
   &::after {
-    @extend .material-icons;
-    content: "expand_less";
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    pointer-events: none;
+    .material-icon {
+      content: "expand_less";
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      pointer-events: none;
+    }
   }
 }
 
