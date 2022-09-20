@@ -7,7 +7,7 @@ import './styles.scss'
 const ModalSavedItemsRestrictions = ({submit, submitReason}) => (
   typeof submit === 'undefined' ?
     (<RestrictionsSkeleton />) :
-    (submitReason ? (<div className='modal-form__error'>{submitReason}</div>) : (null))
+    (submitReason ? (<div className='input__error'>{submitReason}</div>) : (null))
 )
 
 const ModalSavedItem = props => {

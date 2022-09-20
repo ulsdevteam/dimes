@@ -62,7 +62,7 @@ const FormatSelectInput = () => {
         id='format-error'
         name='format'
         component='div'
-        className='modal-form__error' />
+        className='input__error' />
     </div>
   )
 }
@@ -205,7 +205,7 @@ export const EmailModal = props => (
             id='items-error'
             name='items'
             component='div'
-            className='modal-form__error' />
+            className='input__error' />
           <FormGroup
             label='Email *'
             name='email'
@@ -231,7 +231,7 @@ export const EmailModal = props => (
               id='recaptcha-error'
               name='recaptcha'
               component='div'
-              className='modal-form__error' />
+              className='input__error' />
           </div>
           <FormButtons
             submitText='Send List'
@@ -292,7 +292,7 @@ export const ReadingRoomRequestModal = props => (
             id='items-error'
             name='items'
             component='div'
-            className='modal-form__error' />
+            className='input__error' />
           <div className='form-group'>
             <Field
               component={DateInput}
@@ -305,7 +305,7 @@ export const ReadingRoomRequestModal = props => (
               id='scheduledDate-error'
               name='scheduledDate'
               component='div'
-              className='modal-form__error' />
+              className='input__error' />
           </div>
           <FormGroup
             label='Message for RAC staff'
@@ -323,7 +323,7 @@ export const ReadingRoomRequestModal = props => (
               id='recaptcha-error'
               name='recaptcha'
               component='div'
-              className='modal-form__error' />
+              className='input__error' />
           </div>
           <FormButtons
             submitText={`Request ${props.submitList.length ? (props.submitList.length) : '0'} ${props.submitList.length !== 1 ? 'Items' : 'Item'}`}
@@ -395,7 +395,7 @@ export const DuplicationRequestModal = props => (
               id='items-error'
               name='items'
               component='div'
-              className='modal-form__error' />
+              className='input__error' />
             <FormatSelectInput />
             <FormGroup
               label='Description of Materials'
@@ -434,7 +434,7 @@ export const DuplicationRequestModal = props => (
                 id='captcha-error'
                 name='recaptcha'
                 component='div'
-                className='modal-form__error' />
+                className='input__error' />
             </div>
             <FormButtons
               submitText={`Request ${props.submitList.length ? (props.submitList.length) : '0'} ${props.submitList.length !== 1 ? 'Items' : 'Item'}`}
