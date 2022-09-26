@@ -17,7 +17,7 @@ const ShowHideMore = ({id, isOpen, toggleOpen}) => {
 }
 
 const FacetItem = ({ checked, count, handleChange, label, paramKey }) => (
-  <div className='facet__input'>
+  <div className='input-group'>
     <CheckBoxInput
       className='checkbox--blue'
       id={label}
@@ -46,12 +46,12 @@ const Facet = ({ children, handleChange, items, paramKey, params, title }) => {
   return (
     facetItems.length || children ?
     (
-      <div className='facet'>
-        {title && <h3 id={title} className='facet__title'>{title}</h3>}
+      <fieldset className='facet'>
+        {title && <legend id={title}>{title}</legend>}
         {children && children}
         {facetItems && <div className={classnames('facet__items', {'open': isOpen})}>{facetItems}</div>}
         {items && items.length > 5 && <ShowHideMore id={paramKey} isOpen={isOpen} toggleOpen={toggleOpen} />}
-      </div>
+      </fieldset>
     ) : null
   )
 }
