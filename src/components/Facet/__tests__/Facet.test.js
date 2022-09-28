@@ -30,7 +30,7 @@ it('renders props correctly', () => {
     render(<Facet handleChange={jest.fn()} title='foo' items={facetItems} />, div)
   })
 
-  const title = document.querySelector('.facet > h3')
+  const title = document.querySelector('legend > h3')
   expect(title.textContent).toBe('foo')
   const list = document.querySelector('.facet > .facet__items')
   expect(list.children.length).toBe(facetItems.length)
