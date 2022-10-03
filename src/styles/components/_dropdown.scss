@@ -53,27 +53,27 @@
   margin-bottom: 30px;
   display: block;
   float: right;
-  @include lg-up {
-    display: none;
-  }
+  // @include lg-up {
+  //   display: none;
+  // }
 }
 
-.nav-mobile__btn {
-  margin: 5px;
-  padding: 15px;
-  background-color: $deep-navy;
-  color: $pure-white;
-  border: none;
-  border-radius: 0;
-  &:hover {
-    background-color: $deep-blue;
-    transition: $transition-default;
-  }
-  & .material-icon {
-    font-size: 20px;
-    line-height: 20px;
-  }
-}
+// .nav-mobile__btn {
+//   margin: 5px;
+//   padding: 15px;
+//   background-color: $deep-navy;
+//   color: $pure-white;
+//   border: none;
+//   border-radius: 0;
+//   &:hover {
+//     background-color: $deep-blue;
+//     transition: $transition-default;
+//   }
+//   & .material-icon {
+//     font-size: 20px;
+//     line-height: 20px;
+//   }
+// }
 
 // .dropdown__list--mobile {
 //   @extend .dropdown__list;
