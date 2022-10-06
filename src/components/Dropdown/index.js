@@ -62,7 +62,7 @@ export const MyListDropdown = ({ downloadCsv, duplicationRequest, emailList, rea
         label='Schedule a Visit'
         iconBefore='account_balance'
         href='mailto:archive@rockarch.org?subject=Scheduling a research appointment'
-        role="menu-item"
+        role="menuitem"
         title='opens email'/>
       <DropdownItem
         order={2}
@@ -70,35 +70,35 @@ export const MyListDropdown = ({ downloadCsv, duplicationRequest, emailList, rea
         label='Request in Reading Room'
         iconBefore='local_library'
         handleClick={readingRoomRequest}
-        role="menu-item"/>
+        role="menuitem"/>
       <DropdownItem
         order={3}
         className='btn--orange dropdown__btn dropdown__item--orange'
         label='Request Copies'
         iconBefore='content_copy'
         handleClick={duplicationRequest}
-        role="menu-item"/>
+        role="menuitem"/>
       <DropdownItem
         order={4}
         className='btn--orange dropdown__btn dropdown__item--orange'
         label='Email List'
         iconBefore='email'
         handleClick={emailList}
-        role="menu-item"/>
+        role="menuitem"/>
       <DropdownItem
         order={5}
         className='btn--orange dropdown__btn dropdown__item--orange'
         label='Download as .csv'
         iconBefore='get_app'
         handleClick={downloadCsv}
-        role="menu-item"/>
+        role="menuitem"/>
       <DropdownItem
         order={6}
         className='btn--orange dropdown__btn dropdown__item--orange'
         label='Remove All Items'
         iconBefore='delete'
         handleClick={removeAllItems}
-        role="menu-item"/>
+        role="menuitem"/>
     </Dropdown>
   )
 
