@@ -228,7 +228,7 @@ export const RecordsChild = props => {
         {item.online ? (
           <a className='btn btn--sm btn--blue btn-launch--content'
              href={`${item.uri}/view`}>{isMobile? 'View' : 'View Online'}
-             <MaterialIcon icon='visibility' /></a>) :
+             <MaterialIcon icon='visibility' className='material-icon--space-before' /></a>) :
           (null)
         }
         <ListToggleButton

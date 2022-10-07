@@ -9,7 +9,7 @@ const MyListSidebar = ({ duplicationRequest, readingRoomRequest }) => (
       className='btn btn--orange btn--lg'
       href='mailto:archive@rockarch.org?subject=Scheduling a research appointment'
       title='opens email'>
-      <MaterialIcon icon='account_balance' /> Schedule a Visit
+      <MaterialIcon icon='account_balance' className='material-icon--space-after' /> Schedule a Visit
     </a>
     <Button
       className='btn--orange btn--lg'

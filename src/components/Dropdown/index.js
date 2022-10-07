@@ -27,7 +27,7 @@ const Dropdown = (props) => {
   const [label] = useState(props.label)
   const [listClassName] = useState(props.listClassName)
   const [role] = useState(props.role)
-  // TODO: use itemProps for MyListDropdown so that DropdownMenu component functions work correctly (children items need keyboard focus)
+  // TODO: use itemProps for MyListDropdown so that DropdownMenu component functions work correctly (children items all need to receive keyboard focus)
   const { buttonProps, itemProps, isOpen } = useDropdownMenu(props.children && props.children.length)
   const openIcon = iconBeforeOpen ? iconBeforeOpen : iconBefore
 
@@ -36,7 +36,7 @@ const Dropdown = (props) => {
       <button
         className={classnames(props.buttonClassName, { 'open': isOpen, 'closed': !isOpen })}
         {...buttonProps} >
-        {isOpen ? (<MaterialIcon icon={openIcon} />) : (iconBefore && <MaterialIcon icon={iconBefore} />)}
+        {isOpen ? (<MaterialIcon icon={openIcon} />) : (iconBefore && <MaterialIcon icon={iconBefore} className='material-icon--space-after' />)}
         {label}
       </button>
       <div

@@ -267,7 +267,7 @@
         <div className='container mylist flex'>
           <nav>
             <a href='/' className='btn btn--sm btn--gray btn--new-search'>
-              <MaterialIcon icon='keyboard_arrow_left'/>Start a New Search
+              <MaterialIcon icon='keyboard_arrow_left' className='material-icon--space-after' />Start a New Search
             </a>
           </nav>
           <main id='main' role='main'>
