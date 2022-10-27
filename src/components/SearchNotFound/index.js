@@ -4,7 +4,7 @@ import './styles.scss'
 
 const SuggestionItem = ({text}) => (
   <li>
-    <a className="results__not-found--link" href={`/search?query=${text}`}>{text}</a>
+    <a className="results__not-found--text" href={`/search?query=${text}`}>{text}</a>
   </li>
 )
 
@@ -23,7 +23,7 @@ const SearchNotFound = ({suggestions}) => {
     {suggestions.length ? (
       <>
         <p className="results__not-found--text">Here are some suggested search terms:</p>
-        <ul className="suggestions unstyled">
+        <ul className="suggestions list--unstyled">
           {suggestionList}
         </ul>
       </>
