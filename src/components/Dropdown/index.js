@@ -36,7 +36,7 @@ const Dropdown = (props) => {
       <button
         className={classnames(props.buttonClassName, { 'open': isOpen, 'closed': !isOpen })}
         {...buttonProps} >
-        {isOpen ? (<MaterialIcon icon={openIcon} />) : (iconBefore && <MaterialIcon icon={iconBefore} className='material-icon--space-after' />)}
+        {isOpen ? (<MaterialIcon icon={openIcon} className='material-icon--space-after' />) : (iconBefore && <MaterialIcon icon={iconBefore} className='material-icon--space-after' />)}
         {label}
       </button>
       <div
