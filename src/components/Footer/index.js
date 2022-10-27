@@ -23,6 +23,7 @@ const Footer = () => (
         <div className='footer-primary__social'>
           <SocialIcons />
           <p>
+            <a className='footer-primary__link footer-primary__policy-link' href='https://rockarch.org/about-us/accessibility/'>Accessibility Statement</a>
             <a className='footer-primary__link footer-primary__policy-link' href='https://rockarch.org/about-us/privacy-policy/'>Privacy Policy</a>
             <a className='footer-primary__link footer-primary__policy-link' href='https://docs.rockarch.org'>RAC Policies</a>
           </p>
