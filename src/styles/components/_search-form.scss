@@ -1,14 +1,14 @@
 @import "../styles";
 @import "inputs";
 
-input[type=search] {
-  @include input-text;
-  font-size: 18px;
-}
+// input[type=search] {
+//   @include input-text;
+//   font-size: 18px;
+// }
 
 .search-form--home {
   display: flex;
-  justify-content: center;
+  // justify-content: center;
   flex-wrap: wrap;
   max-width: 1300px;
   margin: 30px 30px 110px 30px;
@@ -39,11 +39,11 @@ input[type=search] {
   width: 100%;
 }
 
-.input-group__search {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
+// .input-group__search {
+  // display: flex;
+  // justify-content: center;
+  // width: 100%;
+// }
 
 .input-group__search-results {
   justify-content: flex-start;
@@ -55,7 +55,8 @@ input[type=search] {
 }
 
 .input-group__search-controls {
-  @extend .input-group__search;
+  // @extend .input-group__search;
+  display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
   margin-top: 20px;
@@ -74,7 +75,7 @@ input[type=search] {
 }
 
 .input__search {
-  width:100%;
+//   width:100%;
   @include lg-up {
     width: calc(100% - 650px);
   }
@@ -84,19 +85,22 @@ input[type=search] {
   width: unset;
 }
 
-.input__search input {
-  border: 1px solid $dark-gray;
-  padding: 20px;
-  width: 100%;
-  height: 62px;
-  border-radius: 0px;
-  appearance: none
-}
+// .input__search input {
+//   border: 1px solid $dark-gray;
+//   padding: 20px;
+//   width: 100%;
+//   height: 62px;
+//   border-radius: 0px;
+//   appearance: none
+// }
 
 .input__search-results input {
   height: 46px;
 }
 
+//TODO: Where is this in the HTML? Our Style Library uses
+// .select__search--wrapper class, but can't find this in the HTML
+// to update it. Is it part of imported component styles?
 .select__search__wrapper {
   display: none;
   margin-right: 14px;
@@ -120,4 +124,26 @@ input[type=search] {
 .select__search__option {
   font-size: 16px;
   padding: 16px 18px;
+}
+
+.search__submit-btn {
+  @include md-up {
+    min-width: 150px;
+  }
+}
+
+/**
+* Styles for the search button on the search results page
+* 1. Removes the material-icon--space-before styles
+**/
+.search__results-submit-btn {
+  // @extend .btn--search;
+  height: 46px;
+  padding: 10px 12px;
+  min-width: unset;
+
+  .material-icon {
+    font-size: 24px;
+    margin-left: 0px; /* 1 */
+  }
 }

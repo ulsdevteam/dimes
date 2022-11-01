@@ -27,8 +27,8 @@ const SearchForm = props => {
   ]
 
   return (
-    <form className='form--search' role='search' action='/search' method='get'>
-      <div className="wrapper">
+    <form role='search' action='/search' method='get'>
+      <div className="search">
         <div className={props.className}>
           <div className={classnames('input-group__search', { 'input-group__search-results': !isHomePage })}>
             <TextInput
@@ -43,7 +43,7 @@ const SearchForm = props => {
               required
             />
             <Button
-              className={ classnames({ 'btn--orange btn--search': isHomePage, 'btn btn--orange btn--search-results': !isHomePage })}
+              className={ classnames({ 'btn--orange search__submit-btn': isHomePage, 'btn btn--orange search__submit-btn search__results-submit-btn': !isHomePage })}
               type='submit'
               label={isHomePage ? (isMobile ? null : 'Search') : null}
               iconAfter='search'

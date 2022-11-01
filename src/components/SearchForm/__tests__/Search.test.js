@@ -11,6 +11,6 @@ it('renders props correctly', () => {
     render(<SearchForm className='foo' />, div)
   })
 
-  const wrapper = document.querySelector('form > .wrapper > div')
+  const wrapper = document.querySelector('form > .search > div')
   expect(wrapper.className).toBe('foo')
 })
