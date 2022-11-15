@@ -82,11 +82,11 @@ export const firePageViewEvent = title => {
     done = false
   }
   if (title && !done) {
-    if (window && window.dataLayer) {
-      let dataLayer = window._mtm || []
+    if (window && window._mtm) {
+      let dataLayer = window._mtm || [];
       dataLayer.push({
         'event': 'reactPageViewEvent'
-      })
+      });
       done = true
       prevTitle = title
     }
