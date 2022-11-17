@@ -23,15 +23,15 @@ export const ModalMinimapInfo = props => (
     appElement={props.appElement ? props.appElement : Modal.setAppElement('#root')}
     isOpen={props.isOpen}
     onRequestClose={props.toggleModal}
-    className='modal-content--minimap-info'
-    overlayClassName='modal-overlay' >
-    <div className='modal-header--minimap'>
-      <h2 className='modal-header__title--minimap'>{ props.hasSeenMinimapIntro ? 'Minimap' : 'Introducing the Minimap' }</h2>
-      <button className='modal-header__button' aria-label='Close' onClick={props.toggleModal}>
+    className='modal modal--minimap'
+    overlayClassName='modal__overlay' >
+    <div className='modal__header--minimap'>
+      <h2 className='modal__header-title--minimap'>{ props.hasSeenMinimapIntro ? 'Minimap' : 'Introducing the Minimap' }</h2>
+      <button className='modal__header-button' aria-label='Close' onClick={props.toggleModal}>
         <MaterialIcon icon='close' />
       </button>
     </div>
-    <div className='modal-body--minimap'>
+    <div className='modal__body--minimap'>
       {props.hasSeenMinimapIntro ? minimapAboutText : minimapIntroText}
     </div>
   </Modal>
@@ -49,19 +49,18 @@ export const ModalMinimap = props => (
     appElement={props.appElement ? props.appElement : Modal.setAppElement('#root')}
     isOpen={props.isOpen}
     onRequestClose={props.toggleModal}
-    className='modal-content--minimap'
     overlayClassName={{
-      base: 'modal-overlay slide--left',
+      base: 'modal__overlay slide--left',
       afterOpen: 'slide--left--after-open',
       beforeClose: 'slide--left--before-close'
     }} >
-    <div className='modal-header--minimap'>
-      <h2 className='modal-header__title--minimap'>Minimap</h2>
-      <button className='modal-header__button' aria-label='Close' onClick={props.toggleModal}>
+    <div className='modal__header--minimap'>
+      <h2 className='modal__header-title--minimap'>Minimap</h2>
+      <button className='modal__header-button' aria-label='Close' onClick={props.toggleModal}>
         <MaterialIcon icon='close' />
       </button>
     </div>
-    <div className='modal-body--minimap'>
+    <div className='modal__body--minimap'>
       {minimapAboutText}
       <div className='minimap__wrapper--modal'>
         <Minimap

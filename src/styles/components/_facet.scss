@@ -5,7 +5,7 @@
 * 1. Positions legend inside fieldset instead of on top border line.
 * 2. Top padding calculated from top of facet items.
 **/
-.modal-body--search fieldset {
+.modal__body--search fieldset {
   position: relative; /* 1 */
 }
 

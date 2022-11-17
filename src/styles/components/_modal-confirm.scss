@@ -1,14 +1,18 @@
-.modal-content--confirm {
-  font-family: $sans-serif-stack;
-  position: absolute;
-  top: $confirm-modal-content-margin;
-  left: $confirm-modal-content-margin;
-  right: $confirm-modal-content-margin;
-  border: 1px solid $dark-gray;
-  background: rgb(255, 255, 255);
-  border-radius: 3px;
-  overflow: auto;
-  outline: none;
+
+$confirm-modal-content-margin-lg: 30%;
+
+.modal--confirm {
+  // font-family: $sans-serif-stack;
+  // position: absolute;
+  // top: $confirm-modal-content-margin;
+  // left: $confirm-modal-content-margin;
+  // right: $confirm-modal-content-margin;
+  // border: 1px solid $dark-gray;
+  // background: rgb(255, 255, 255);
+  // border-radius: 3px;
+  // overflow: auto;
+  // outline: none;
+  bottom: auto;
   @include lg-up {
     top: $confirm-modal-content-margin-lg;
     left: $confirm-modal-content-margin-lg;
@@ -25,7 +29,7 @@
   flex-wrap: wrap;
 }
 
-.confirm-buttons {
+.modal-buttons--confirm {
   width: 100%;
   text-align: center;
   margin-top: 20px;

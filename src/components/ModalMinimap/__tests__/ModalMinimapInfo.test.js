@@ -36,7 +36,7 @@ it('handles clicks correctly', () => {
       toggleModal={toggleModal} />, container)
   })
 
-  const button = document.querySelector('.modal-header__button')
+  const button = document.querySelector('.modal__header-button')
 
   act(() => {
     button.dispatchEvent(new MouseEvent('click', { bubbles: true }))

@@ -31,15 +31,15 @@ export const FacetModal = props => {
       appElement={props.appElement ? props.appElement : Modal.setAppElement('#root')}
       isOpen={props.isOpen}
       onRequestClose={props.toggleModal}
-      className='modal-content--facet'
+      className='modal modal--facet'
       overlayClassName={{
-        base: 'modal-overlay--facet slide--right',
+        base: 'modal__overlay slide--right',
         afterOpen: 'slide--right--after-open',
         beforeClose: 'slide--right--before-close'
       }}
       closeTimeoutMS={200} >
-      <div className='modal-header--search'>
-        <h2 className='modal-header__title' aria-live='polite' aria-atomic='true'>
+      <div className='modal__header modal__header--search'>
+        <h2 className='modal__header-title' aria-live='polite' aria-atomic='true'>
           {`Filter ${props.resultsCount} Search ${props.resultsCount === 1 ? 'Result': 'Results'}`}
         </h2>
         <Button
@@ -48,7 +48,7 @@ export const FacetModal = props => {
           label='Save &amp; Close'
           handleClick={props.toggleModal} />
       </div>
-      <div className='modal-body--search'>
+      <div className='modal__body--search'>
         <Facet title='Date Range'>
           <YearInput
             id='startYear'

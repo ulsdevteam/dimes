@@ -121,15 +121,15 @@ export const ModalMyList = props => (
     appElement={props.appElement ? props.appElement : Modal.setAppElement('#root')}
     isOpen={props.isOpen}
     onRequestClose={props.toggleModal}
-    className='modal-content'
-    overlayClassName='modal-overlay'>
-    <div className='modal-header'>
-      <h2 className='modal-header__title'>{props.title}</h2>
-      <button className='modal-header__button' aria-label='Close' onClick={props.toggleModal}>
+    className='modal'
+    overlayClassName='modal__overlay'>
+    <div className='modal__header'>
+      <h2 className='modal__header-title'>{props.title}</h2>
+      <button className='modal__header-button' aria-label='Close' onClick={props.toggleModal}>
         <MaterialIcon icon='close'/>
       </button>
     </div>
-    <div className='modal-body'>
+    <div className='modal__body'>
       <div className='modal-list'>
         <ModalToggleListButton
           ignoreRestrictions={props.ignoreRestrictions}

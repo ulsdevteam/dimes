@@ -337,7 +337,7 @@
           isOpen={confirmDeleteAllModalOpen}
           message={
             <>Are you sure you want to remove all the items from your list?
-            <div className='confirm-buttons'>
+            <div className='modal-buttons--confirm'>
               <Button
                 className='btn--sm btn--orange'
                 label='Remove'
