@@ -73,7 +73,7 @@ export const truncateString = (text, maxLength) => {
   }
 }
 
-/** Sends a custom pageview event to Google Tag Manager.
+/** Sends a custom pageview event to Matomo Tag Manager.
 * This allows us to ensure that the correct page titles are sent.  */
 var done = false
 var prevTitle = ''
@@ -82,11 +82,11 @@ export const firePageViewEvent = title => {
     done = false
   }
   if (title && !done) {
-    if (window && window.dataLayer) {
-      let dataLayer = window.dataLayer || []
+    if (window && window._mtm) {
+      let dataLayer = window._mtm || [];
       dataLayer.push({
         'event': 'reactPageViewEvent'
-      })
+      });
       done = true
       prevTitle = title
     }
