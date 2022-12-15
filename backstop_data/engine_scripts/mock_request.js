@@ -37,7 +37,9 @@ module.exports = async (page, scenario, vp, isReference) => {
         });
       }
     } else {
-      console.log(fixturePath)
+      if (req.url().includes('api.rockarch.org') || req.url().includes('rac-vch')) {
+        console.log(fixturePath)
+      }
       req.continue();
     }
   })
