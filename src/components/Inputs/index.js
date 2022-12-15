@@ -86,6 +86,7 @@ export const DateInput = props => {
       filterDate={isWeekday}
       filterTime={filterPassedTime}
       onChange={(date:Date) => setStartDate(date)}
+      excludeDateIntervals={[{start: new Date(new Date().getFullYear(), 11, 22), end: new Date(new Date().getFullYear() + 1, 0, 2)}]}
       dateFormat="yyyy-MM-dd h:mm aa">
   </DatePicker>
   {props.helpText && <p className='help-text' aria-describedby={`desc-${props.id}`}>{props.helpText}</p>}
