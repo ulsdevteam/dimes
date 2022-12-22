@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker'
 import {useSelect} from 'downshift'
 import MaterialIcon from '../MaterialIcon'
 import classnames from 'classnames'
+import {  } from "../DateHelpers";
 
 import './styles.scss'
 import 'react-datepicker/dist/react-datepicker.css'
@@ -58,38 +59,25 @@ CheckBoxInput.defaultProps = {
   checked: true,
 }
 
-export const DateInput = props => {
-  // default date is two business days from now
-  const [startDate, setStartDate] = useState( new Date((new Date()).setDate( (new Date()).getDate() + Array(3, 2, 2, 2, 4, 4, 4)[new Date().getDay()] )) )
-  const isWeekday = (date) => {
-    const day = date.getDay();
-    return day !== 0 && day !== 6;
-  };
-  const filterPassedTime = (time) => {
-    const selectedDate = new Date(time);
-    return selectedDate.getHours() >= 9 && selectedDate.getHours() < 17;
-  };
-
+export const DateInput = ({className, defaultDate, handleChange, helpText, id, label, ...props}) => {
+  const [startDate, setStartDate] = useState(defaultDate || new Date())
+  
   useEffect(() => {
-    props.handleChange(startDate)
+    handleChange(startDate)
   }, [startDate, setStartDate])
   
   return(
   <>
-  <label htmlFor={props.id}>{props.label}</label>
+  <label htmlFor={id}>{label}</label>
   <DatePicker
-      className='dp__wrapper'
+      className={className || 'dp__wrapper'}
       selected={startDate}
-      // earliest date is next business day
-      minDate={new Date((new Date()).setDate((new Date()).getDate() + Array(2, 1, 1, 1, 1, 3, 3)[new Date().getDay()]))}
       showTimeSelect='true'
-      filterDate={isWeekday}
-      filterTime={filterPassedTime}
       onChange={(date:Date) => setStartDate(date)}
-      excludeDateIntervals={[{start: new Date(new Date().getFullYear(), 11, 22), end: new Date(new Date().getFullYear() + 1, 0, 2)}]}
-      dateFormat="yyyy-MM-dd h:mm aa">
+      dateFormat="yyyy-MM-dd h:mm aa"
+      {...props}>
   </DatePicker>
-  {props.helpText && <p className='help-text' aria-describedby={`desc-${props.id}`}>{props.helpText}</p>}
+  {helpText && <p className='help-text' aria-describedby={`desc-${id}`}>{helpText}</p>}
   </>
 )}
 
@@ -99,6 +87,7 @@ DateInput.propTypes = {
   helpText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  defaultDate: PropTypes.instanceOf(Date)
 };
 
 

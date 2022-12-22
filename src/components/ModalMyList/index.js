@@ -10,6 +10,7 @@ import { DateInput, SelectInput } from '../Inputs'
 import MaterialIcon from '../MaterialIcon'
 import { ModalSavedItemList } from '../ModalSavedItem'
 import { getFormattedDate } from '../Helpers'
+import { addBusinessDays, getHours, isWeekend } from 'date-fns'
 import './styles.scss'
 
 
@@ -336,7 +337,19 @@ export const ReadingRoomRequestModal = props => (
               helpText='Our reading rooms are open Monday - Friday from 9:00am to 4:45pm. We will confirm this appointment request with you before you arrive.'
               id='scheduledDate'
               label='Requested Visit Date'
-              type='date' />
+              type='date'
+              defaultDate={addBusinessDays(new Date(), 2)}
+              minDate={addBusinessDays(new Date(), 1)}
+              filterDate={date => !isWeekend(date)}
+              filterTime={date => {
+                const hour = getHours(date);
+                return hour >= 9 && hour < 17;
+              }}
+              excludeDateIntervals={[{
+                start: new Date(new Date().getFullYear(), 11, 22), 
+                end: new Date(new Date().getFullYear() + 1, 0, 2)
+              }]}
+              />
             <ErrorMessage
               id='scheduledDate-error'
               name='scheduledDate'
