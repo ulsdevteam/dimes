@@ -11,7 +11,7 @@
     width: calc(63% - #{$minimap-width});
   }
   &.hidden {
-    @include show-on-lg-up;
+    display: none;
   }
 }
 
@@ -24,7 +24,7 @@
   right: 0;
   position: fixed;
   z-index: 999;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   @include md-up {
@@ -40,6 +40,7 @@
 .loading__text {
   font-size: 75px;
   color: $pure-white;
+  display: none;
 }
 
 .content__title {
