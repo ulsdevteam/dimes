@@ -76,7 +76,7 @@ FormGroup.propTypes = {
   type: PropTypes.string
 }
 
-export const FormButtons = ({ isSubmitting, submitText, toggleModal }) => (
+export const FormButtons = ({ isSubmitting, submitText, helpText, toggleModal }) => (
   <div className='modal-form__buttons'>
     <button type='submit' disabled={isSubmitting} className='btn btn--orange btn--sm'>
       {submitText}
@@ -84,11 +84,13 @@ export const FormButtons = ({ isSubmitting, submitText, toggleModal }) => (
     <button type='reset' className='btn btn--gray btn--sm' onClick={toggleModal}>
       Cancel
     </button>
+    {helpText && <p className='help-text'>{helpText}</p>}
   </div>
 )
 
 FormButtons.propTypes = {
   isSubmitting: PropTypes.bool,
   submitText: PropTypes.string.isRequired,
+  helpText: PropTypes.string,
   toggleModal: PropTypes.func.isRequired
 }
