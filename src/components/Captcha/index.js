@@ -18,7 +18,7 @@ const Captcha = ({ className, form, handleCaptchaChange }) => {
   return (
     <div name='recaptcha' tabIndex='0' className={classnames('captcha', className)}>
       <ReCAPTCHA
-        sitekey='6LdQiSkTAAAAAPsOlHq_QmykPBEF9jdq3qQL_D9a'
+        sitekey='6Le2MWkcAAAAAKkAE1J45qBIh2E3Zxysyv_DsI2c'
         onChange={handleCaptchaChange}
         ref={recaptchaRef} />
     </div>
