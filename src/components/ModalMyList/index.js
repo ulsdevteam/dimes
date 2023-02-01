@@ -36,11 +36,10 @@ const FormatSelectInput = () => {
 
   const formatOptions = [
     {value: '', label: 'Select a format'},
-    {value: 'MP3', label: 'Audio (MP3)'},
-    {value: 'JPEG', label: 'JPEG'},
-    {value: 'MP4', label: 'Moving image (MP4)'},
-    {value: 'PDF', label: 'PDF'},
-    {value: 'TIFF', label: 'TIFF'}
+    {value: 'Digital Image ', label: 'Digital Image'},
+    {value: 'Photographic Print ', label: 'Photographic Print'},
+    {value: 'Audio/Video/Film', label: 'Audio/Video/Film'},
+    {value: 'Photocopy/Quickscan', label: 'Photocopy/Quickscan'}
   ]
 
   useEffect(() => {
@@ -256,6 +255,41 @@ EmailModal.propTypes = {
   toggleModal: PropTypes.func.isRequired,
 }
 
+const ReadingRoomSelect = () => {
+  const { setFieldValue } = useFormikContext();
+  const [site, setSite] = useState('')
+
+  const ReadingRoomLocations = [
+   { value: "", label: "Please select a reading room"},
+   { value: "ASCHILLMAN", label: "A&SC Hillman Library 320"},
+   { value: "ASCTHOMAS", label: "A&SC Thomas Boulevard"},
+   { value: "CAMUSIC", label: "Center for American Music Reading Room"}
+  ];
+
+  useEffect(() => {
+    setFieldValue('site', site)
+  }, [site, setSite])
+
+  return (
+    <div className='form-group'>
+      <SelectInput
+        className='select__modal'
+        id='site'
+        label='Select Reading Room Location'
+        name='site'
+        onChange={({selectedItem}) => setSite(selectedItem.value)}
+        options={ReadingRoomLocations}
+        required={true}
+        selectedItem={site || ''} />
+      <ErrorMessage
+        id='site-error'
+        name='site'
+        component='div'
+        className='modal-form__error' />
+    </div>
+  )
+}
+
 export const ReadingRoomRequestModal = props => (
   <ModalMyList
     appElement={props.appElement}
@@ -267,10 +301,11 @@ export const ReadingRoomRequestModal = props => (
     list={props.list}
     form={
       <Formik
-        initialValues={{scheduledDate: new Date(), questions: '', notes: '', items: props.submitList, recaptcha: ''}}
+        initialValues={{scheduledDate: new Date(), questions: '', notes: '', readingRoomID: '', site: '', items: props.submitList, recaptcha: ''}}
         validate={values => {
           const errors = {};
           if (!values.scheduledDate) errors.scheduledDate = 'Please provide the date of your research visit.';
+          if (!values.site) errors.site = 'Please select a location of a reading room.';
           if (!values.recaptcha) errors.recaptcha = 'Please complete this field.';
           if (!values.items.length) errors.items = 'No items have been selected to submit.'
           return errors;
@@ -296,10 +331,11 @@ export const ReadingRoomRequestModal = props => (
           <div className='form-group'>
             <Field
               component={DateInput}
+              // TODO: this handleChange alters the UI, but not the form submission ?!
               handleChange={date => setFieldValue('scheduledDate', date)}
-              helpText='Enter the date of your research visit (mm/dd/yyyy)'
+              helpText='Our reading rooms are open Monday - Friday from 9:00am to 4:45pm. We will confirm this appointment request with you before you arrive.'
               id='scheduledDate'
-              label='Scheduled Date *'
+              label='Requested Visit Date'
               type='date' />
             <ErrorMessage
               id='scheduledDate-error'
@@ -307,8 +343,9 @@ export const ReadingRoomRequestModal = props => (
               component='div'
               className='modal-form__error' />
           </div>
+          <ReadingRoomSelect />
           <FormGroup
-            label='Message for RAC staff'
+            label='Message for Pitt staff'
             helpText='255 characters maximum'
             name='questions'
             maxLength={255}
@@ -326,6 +363,7 @@ export const ReadingRoomRequestModal = props => (
               className='modal-form__error' />
           </div>
           <FormButtons
+            helpText='You may be requested to create a researcher registration account with us.'
             submitText={`Request ${props.submitList.length ? (props.submitList.length) : '0'} ${props.submitList.length !== 1 ? 'Items' : 'Item'}`}
             toggleModal={props.toggleModal}
             isSubmitting={isSubmitting} />
@@ -361,7 +399,7 @@ export const DuplicationRequestModal = props => (
     form={
       <>
         <div className='modal-form__intro'>
-          <strong>Please note:</strong> if you want a cost estimate for your order, email an archivist at <a href='mailto:archive@rockarch.org'>archive@rockarch.org</a>.
+          <strong>Please note:</strong> if you would like a cost estimate for your order, please email an archivist at <a href='mailto:archives-ref@pitt.edu'>archives-ref@pitt.edu</a>.
         </div>
         <Formik
           initialValues={{
@@ -369,14 +407,15 @@ export const DuplicationRequestModal = props => (
             description: 'Entire folder',
             questions: '',
             notes: '',
-            costs: false,
+	    site: 'ASCTHOMAS',
+            confirm: false,
             items: props.submitList,
             recaptcha: ''}}
           validate={values => {
             const errors = {};
             if (!values.format) errors.format = 'Please select your desired duplication format.';
             if (!values.recaptcha) errors.recaptcha = 'Please complete this field.';
-            if (!values.costs) errors.costs = 'We cannot process your request unless you agree to pay the costs of reproduction.';
+            if (!values.confirm) errors.confirm = 'Please check the box to acknowledge that an archivist may not be able to fulfill your requestat this time.';
             if (!values.items.length) errors.items = 'No items have been selected to submit.'
             return errors;
           }}
@@ -405,7 +444,7 @@ export const DuplicationRequestModal = props => (
               component='textarea'
               rows={5} />
             <FormGroup
-              label='Message for RAC staff'
+              label='Message for Pitt staff'
               helpText='255 characters maximum.'
               maxLength={255}
               name='questions'
@@ -413,14 +452,8 @@ export const DuplicationRequestModal = props => (
               rows={5} />
             <FormGroup
               label={<>
-                I agree to pay the duplication costs for this request. See our&nbsp;
-                <a target='_blank'
-                  rel='noopener noreferrer'
-                  title='opens in a new window'
-                  href='https://rockarch.org/collections/access-and-request-materials/#duplication-services-and-fee-schedule'>
-                  fee schedule
-                </a>.</>}
-              name='costs'
+                By checking this box, I acknowledge that archival staff may need to follow-up with me about this order before it can be placed.</>}
+              name='confirm'
               type='checkbox'
               required={true}
               errors={errors}
