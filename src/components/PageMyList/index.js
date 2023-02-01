@@ -103,7 +103,7 @@
         .post(uri, submitted)
         .then(res => {
           const form = document.createElement('form')
-          form.action = 'https://raccess.rockarch.org/aeon.dll'
+          form.action = 'https://pitt.aeon.atlas-sys.com/logon'
           form.method = 'post'
           Object.keys(res.data).forEach(key => {
             if (Array.isArray(res.data[key])) {
@@ -265,11 +265,6 @@
           <title>DIMES: My List</title>
         </Helmet>
         <div className='container mylist flex'>
-          <nav>
-            <a href='/' className='btn btn--new-search'>
-              <MaterialIcon icon='keyboard_arrow_left'/>Start a New Search
-            </a>
-          </nav>
           <main id='main' role='main'>
             <div className='mylist__header'>
               <h1 className='mylist__title'>My List</h1>
@@ -339,7 +334,7 @@
             <>Are you sure you want to remove all the items from your list?
             <div className='confirm-buttons'>
               <Button
-                className='btn--sm btn--orange'
+                className='btn--sm btn--gold'
                 label='Remove'
                 handleClick={() => {removeAllFromList(); setConfirmDeleteAllModalOpen(false)}} />
               <Button
