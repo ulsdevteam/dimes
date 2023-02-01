@@ -1,5 +1,4 @@
 import React from 'react'
-import SocialIcons from '../SocialIcons'
 import './styles.scss'
 
 const Footer = () => (
@@ -7,29 +6,25 @@ const Footer = () => (
     <div className='footer-primary'>
       <div className='wrapper'>
         <div className='container'>
-          <h2 className='footer-primary__title'>Rockefeller <span className='line-break'>Archive Center</span></h2>
+          <h2 className='footer-primary__title'>Archives &amp; Special Collections <br />University Library System <br />University of Pittsburgh</h2>
           <div className='footer-primary__address'>
-            <p className='footer-primary__text'>15 Dayton Avenue<br />
-               Sleepy Hollow, New York 10591</p>
-            <p className='footer-primary__text'>Phone: (914) 366-6300<br />
-               Fax: (914) 631-6017<br />
-               E-mail: <a className='footer-primary__link' href='mailto:archive@rockarch.org'>archive@rockarch.org</a></p>
+            <p className='footer-primary__text'><a href="https://library.pitt.edu/archives-special-collections">About A&SC</a></p>
+            <p className='footer-primary__text'><a href="https://library.pitt.edu/ask-archivist">Send us an email</a></p>
           </div>
           <div className='footer-primary__reading-room'>
-            <p className='footer-primary__text'>Reading Room Hours:</p>
-            <p className='footer-primary__text'>Monday-Friday<br />
-               10:00 a.m. to 5:00 p.m.<br />
-              <a className='footer-primary__link' href='https://rockarch.org/collections/access-and-request-materials/'>How to access and request materials</a>.</p>
-            <a className='footer-primary__link' href='https://rockarch.org/collections/access-and-request-materials/holiday-schedule/'>See holiday schedule</a>
+            <h3 className='footer-primary__subtitle'>Our reading rooms:</h3>
+            <p className='footer-primary__text'>
+              <strong>A&amp;SC at the Archives Service Center</strong><br />7500 Thomas Boulevard<br />Pittsburgh, PA 15208<br /><a href="tel:+14126483232">412-648-3232</a>
+            </p>
+            <p className='footer-primary__text'>
+              <strong>A&amp;SC at Hillman Library</strong><br />320 Hillman Library<br />University of Pittsburgh<br />3960 Forbes Avenue<br />Pittsburgh, PA 15260<br/ ><a href="tel:+14126488190">412-648-8190</a>
+            </p>
+            <p className='footer-primary__text'>
+              <strong>Center for American Music</strong><br />Stephen Foster Memorial<br />4301 Forbes Ave.<br />Pittsburgh, PA 15260<br /><a href="tel:+14126244100">412-624-4100</a>
+            </p>
           </div>
           <div className='footer-primary__social'>
-            <SocialIcons />
-            <p>
-              <a className='footer-primary__link footer-primary__policy-link' href='https://rockarch.org/about-us/accessibility/'>Accessibility Statement</a>
-              <a className='footer-primary__link footer-primary__policy-link' href='https://rockarch.org/about-us/privacy-policy/'>Privacy Policy</a>
-              <a className='footer-primary__link footer-primary__policy-link' href='https://docs.rockarch.org'>RAC Policies</a>
-            </p>
-            <p className='footer-primary__text'>Copyright © Rockefeller Archive Center. All rights reserved.</p>
+<a href="http://www.facebook.com/pittarchivesandspecialcollections/" name="Archives &amp; Special Collections Facebook"><img alt="Archives &amp; Special Collections Facebook" src="https://library.pitt.edu/sites/default/files/images/SocialMedia/icon_facebook.png" title="Archives &amp; Special Collections Facebook" /></a> <a href="https://pittarchives.tumblr.com/" name="Archives and Manuscripts Tumblr"><img alt="Archives and Manuscripts Tumblr" src="https://library.pitt.edu/sites/default/files/images/SocialMedia/icon_tumblr.png" /></a> <a href="https://instagram.com/pittarchives" name="Archives &amp; Special Collections Instagram"><img alt="Archives Instagram" src="https://library.pitt.edu/sites/default/files/images/SocialMedia/icon_instagram.png" title="Archives &amp; Special Collections Instagram" /></a> <a href="https://pittrarebooks.tumblr.com/" name="Rare Books Tumblr"><img alt="Rare Books Tumblr" src="https://library.pitt.edu/sites/default/files/images/SocialMedia/icon_tumblr.png" title="Rare Books Tumblr" /></a>&nbsp;<a href="https://twitter.com/pittarchives" name="Archives Twitter"><img alt="Archives Twitter" src="https://library.pitt.edu/sites/default/files/images/SocialMedia/icon_twitter.png" title="Archives Twitter" /></a>
           </div>
         </div>
       </div>
@@ -39,18 +34,6 @@ const Footer = () => (
         <div className='container'>
           <div className='footer-secondary__data'>
             <ul className='footer-secondary__list'>
-              <li className='footer-secondary__list-item'>
-                <a className='footer-secondary__link' href='https://docs.rockarch.org/argo-docs/'>Collections data API</a>
-              </li>
-              <li className='footer-secondary__list-item'>
-                <a className='footer-secondary__link' href='https://github.com/RockefellerArchiveCenter/data/'>Bulk data download</a>
-              </li>
-              <li className='footer-secondary__list-item'>
-                <a className='footer-secondary__link' href='https://docs.rockarch.org/archival-description-license/'>Licensing for descriptive metadata</a>
-              </li>
-              <li className='footer-secondary__list-item'>
-                <a className='footer-secondary__link' href='https://docs.rockarch.org/takedown-policy/'>Take-down policy</a>
-              </li>
             </ul>
           </div>
         </div>
