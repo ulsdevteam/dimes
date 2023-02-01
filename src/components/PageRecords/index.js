@@ -8,9 +8,6 @@ import classnames from 'classnames'
 import { Helmet } from 'react-helmet'
 import PageBackendError from '../PageBackendError'
 import ContextSwitcher from '../ContextSwitcher'
-import Minimap from '../Minimap'
-import MinimapButton from '../MinimapButton'
-import { ModalMinimap, ModalMinimapInfo } from '../ModalMinimap'
 import RecordsContent from '../RecordsContent'
 import RecordsDetail from '../RecordsDetail'
 import PageNotFound from '../PageNotFound'
@@ -24,17 +21,12 @@ const PageRecords = ({ myListCount, toggleInList }) => {
   const [childrenUri, setChildrenUri] = useState('')
   const [downloadSize, setDownloadSize] = useState('')
   const [found, setFound] = useState(true)
-  const [hasSeenMinimapIntro, setHasSeenMinimapIntro] = useState(true)
   const [isAncestorsLoading, setIsAncestorsLoading] = useState(true)
   const [isContentShown, setIsContentShown] = useState(false)
   const [isItemLoading, setIsItemLoading] = useState(true)
-  const [isMinimapLoading, setIsMinimapLoading] = useState(true)
-  const [isMinimapModalOpen, setIsMinimapModalOpen] = useState(false)
-  const [isMinimapInfoModalOpen, setIsMinimapInfoModalOpen] = useState(false)
   const [item, setItem] = useState({ group: {} })
   const [itemInitialLoad, setItemInitialLoad] = useState(true)
   const [itemUri, setItemUri] = useState('')
-  const [minimap, setMinimap] = useState({ hits: [] })
   const [params, setParams] = useState({})
   const [preExpanded, setPreExpanded] = useState([])
   const [updateMessage, setUpdateMessage] = useState('')
@@ -65,21 +57,6 @@ const PageRecords = ({ myListCount, toggleInList }) => {
   /** Show or hide the RecordsContent on mobile */
   const toggleIsContentShown = () => {
     setIsContentShown(!isContentShown)
-  }
-
-  /** Show or hide the Minimap modal (only used on mobile) */
-  const toggleMinimapModal = () => {
-    setIsMinimapModalOpen(!isMinimapModalOpen)
-  }
-
-  /** Show or hide the Minimap Information modal
-  * 1. Set localStorage variable once user interacts with the modal
-  */
-  const toggleMinimapInfoModal = () => {
-    setIsMinimapInfoModalOpen(!isMinimapInfoModalOpen)
-    !(!!localStorage.getItem(`${process.env.REACT_APP_MINIMAP_KEY}`)) &&
-      localStorage.setItem(`${process.env.REACT_APP_MINIMAP_KEY}`, 1) &&  /* 1 */
-      setHasSeenMinimapIntro(true)
   }
 
   /** Handles navigation using browser back button
@@ -157,21 +134,6 @@ const PageRecords = ({ myListCount, toggleInList }) => {
       }
   }, [childrenUri])
 
-  /** Fetches minimap data when item.group.identifier changes */
-  useEffect(() => {
-    if (item.group && item.group.identifier) {
-      if (Object.keys(params).length === 0) {
-        setIsMinimapLoading(false)
-      } else {
-        axios
-          .get(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}${item.group.identifier}/minimap`, params))
-          .then(res => setMinimap(res.data))
-          .catch(e => setBackendError(e))
-          .then(() => setIsMinimapLoading(false))
-      }
-    }
-  }, [item.group.identifier])
-
   /** Pushes a updated URL and state into browser history when itemUri changes */
   useEffect(() => {
     if (itemUri && !itemInitialLoad) {
@@ -187,8 +149,6 @@ const PageRecords = ({ myListCount, toggleInList }) => {
     const parsedParams = queryString.parse(search, { parseBooleans: true });
     setParams(parsedParams)
     setItemUri(fullUrl)
-    setHasSeenMinimapIntro(!!localStorage.getItem(`${process.env.REACT_APP_MINIMAP_KEY}`))
-    setIsMinimapInfoModalOpen(!(!!localStorage.getItem(`${process.env.REACT_APP_MINIMAP_KEY}`)))
   }, [])
 
   if (!found) {
@@ -205,7 +165,6 @@ const PageRecords = ({ myListCount, toggleInList }) => {
         <title>{ item.title }</title>
       </Helmet>
       <div className='container--full-width'>
-        {isDesktop ? null : <MinimapButton toggleMinimapModal={toggleMinimapModal}/>}
         <ContextSwitcher
           isContentShown={isContentShown}
           toggleIsContentShown={toggleIsContentShown} />
@@ -218,16 +177,7 @@ const PageRecords = ({ myListCount, toggleInList }) => {
           item={item}
           myListCount={myListCount}
           params={params}
-          toggleInList={toggleInList}
-          toggleMinimapModal={toggleMinimapInfoModal} />
-        {isDesktop ?
-          <div className={classnames('minimap__wrapper', {'bring-forward': !hasSeenMinimapIntro})}>
-            <Minimap
-              data={minimap}
-              isLoading={isMinimapLoading}
-              params={params} />
-          </div>
-          : null}
+          toggleInList={toggleInList} />
         <RecordsContent
           children={children}
           collection={parseCollection()}
@@ -241,16 +191,6 @@ const PageRecords = ({ myListCount, toggleInList }) => {
           setActiveRecords={setActiveRecords}
           toggleInList={toggleInList} />
       </div>
-      <ModalMinimapInfo
-        isOpen={isMinimapInfoModalOpen}
-        toggleModal={toggleMinimapInfoModal}
-        hasSeenMinimapIntro={hasSeenMinimapIntro} />
-      <ModalMinimap
-        data={minimap}
-        isLoading={isMinimapLoading}
-        isOpen={isMinimapModalOpen}
-        params={params}
-        toggleModal={toggleMinimapModal} />
     </React.Fragment>
   )
 }
