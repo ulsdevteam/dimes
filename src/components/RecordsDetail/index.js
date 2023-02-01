@@ -97,7 +97,7 @@ const PanelLinkedListSection = ({ listData, params, title }) =>  (
       <h3 className='panel__heading'>{title}</h3>
       <ul className='panel__list--unstyled'>
         {listData.map((item, index) => (
-        <li key={index} className='panel__text'><a href={appendParams(item.uri, params)}>{item.title}</a></li>))}
+        <li key={index} className='panel__text'><a name={appendParams(item.uri, params)}>{item.title}</a></li>))}
       </ul>
     </div>) :
     (null)
@@ -152,14 +152,6 @@ const RecordsDetail = props => {
 
   return (
   <div className={classnames('records__detail', {'hidden': props.isContentShown})}>
-    {isDesktop ? <Button
-      type='button'
-      className='btn--sm btn--transparent btn--minimap-info'
-      handleClick={props.toggleMinimapModal}
-      iconAfter='info'
-      label='about minimap'
-    /> : null
-    }
     <nav className='records__nav'>
       <a href={searchUrl} className='btn btn--back'>
         <MaterialIcon icon='keyboard_arrow_left'/>Back to Search
