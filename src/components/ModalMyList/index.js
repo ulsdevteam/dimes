@@ -10,8 +10,9 @@ import { DateInput, SelectInput } from '../Inputs'
 import MaterialIcon from '../MaterialIcon'
 import { ModalSavedItemList } from '../ModalSavedItem'
 import { getFormattedDate } from '../Helpers'
-import { addBusinessDays, getHours, isWeekend } from 'date-fns'
+import { addBusinessDays, getHours, isWeekend, parse, isWithinInterval } from 'date-fns'
 import './styles.scss'
+import axios from 'axios'
 
 
 const SubmitListInput = ({ submitList }) => {
@@ -258,7 +259,7 @@ EmailModal.propTypes = {
 
 const ReadingRoomSelect = () => {
   const { setFieldValue } = useFormikContext();
-  const [site, setSite] = useState('')
+  const [site, setSite] = useState('');
 
   const ReadingRoomLocations = [
    { value: "", label: "Please select a reading room"},
@@ -267,7 +268,7 @@ const ReadingRoomSelect = () => {
    { value: "CAMUSIC", label: "Center for American Music Reading Room"}
   ];
 
-  useEffect(() => {
+   useEffect(() => {
     setFieldValue('site', site)
   }, [site, setSite])
 
@@ -291,102 +292,118 @@ const ReadingRoomSelect = () => {
   )
 }
 
-export const ReadingRoomRequestModal = props => (
-  <ModalMyList
-    appElement={props.appElement}
-    title='Request in Reading Room'
-    handleChange={props.handleChange}
-    isOpen={props.isOpen}
-    toggleList={props.toggleList}
-    toggleModal={props.toggleModal}
-    list={props.list}
-    form={
-      <Formik
-        initialValues={{scheduledDate: new Date(), questions: '', notes: '', readingRoomID: '', site: '', items: props.submitList, recaptcha: ''}}
+export const ReadingRoomRequestModal = props => {
+  const [aeonReadingRooms, setAeonReadingRooms] = useState();
+  
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/reading-rooms`).then(response => {
+      setAeonReadingRooms(response.data);
+    });
+  }, []); // empty deps array means it runs once (?)
+
+  return (
+    <ModalMyList
+      appElement={props.appElement}
+      title='Request in Reading Room'
+      handleChange={props.handleChange}
+      isOpen={props.isOpen}
+      toggleList={props.toggleList}
+      toggleModal={props.toggleModal}
+      list={props.list}
+      form={<Formik
+        initialValues={{ scheduledDate: new Date(), questions: '', notes: '', readingRoomID: '', site: '', items: props.submitList, recaptcha: '' }}
         validate={values => {
-          const errors = {};
-          if (!values.scheduledDate) errors.scheduledDate = 'Please provide the date of your research visit.';
-          if (!values.site) errors.site = 'Please select a location of a reading room.';
-          if (!values.recaptcha) errors.recaptcha = 'Please complete this field.';
-          if (!values.items.length) errors.items = 'No items have been selected to submit.'
-          return errors;
-        }}
+          const errors = {}
+          if (!values.scheduledDate)
+            errors.scheduledDate = 'Please provide the date of your research visit.'
+          if (!values.site)
+            errors.site = 'Please select a location of a reading room.'
+          if (!values.recaptcha)
+            errors.recaptcha = 'Please complete this field.'
+          if (!values.items.length)
+            errors.items = 'No items have been selected to submit.'
+          return errors
+        } }
         onSubmit={(values, { setSubmitting }) => {
           props.toggleModal()
           /* In order for Aeon to accept requests, dates need to be formatted as MM/DD/YYYY */
           values.scheduledDate = getFormattedDate(values.scheduledDate)
           props.handleFormSubmit(
             `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/deliver-request/reading-room`,
-            values);
-          setSubmitting(false);
-        }}
+            values)
+          setSubmitting(false)
+        } }
       >
-      {({ errors, isSubmitting, setFieldValue, touched }) => (
-        <Form>
-          <SubmitListInput submitList={props.submitList} />
-          <ErrorMessage
-            id='items-error'
-            name='items'
-            component='div'
-            className='modal-form__error' />
-          <div className='form-group'>
-            <Field
-              component={DateInput}
-              // TODO: this handleChange alters the UI, but not the form submission ?!
-              handleChange={date => setFieldValue('scheduledDate', date)}
-              helpText='Our reading rooms are open Monday - Friday from 9:00am to 4:45pm. We will confirm this appointment request with you before you arrive.'
-              id='scheduledDate'
-              label='Requested Visit Date'
-              type='date'
-              defaultDate={addBusinessDays(new Date(), 2)}
-              minDate={addBusinessDays(new Date(), 1)}
-              filterDate={date => !isWeekend(date)}
-              filterTime={date => {
-                const hour = getHours(date);
-                return hour >= 9 && hour < 17;
-              }}
-              excludeDateIntervals={[{
-                start: new Date(new Date().getFullYear(), 11, 22), 
-                end: new Date(new Date().getFullYear() + 1, 0, 2)
-              }]}
-              />
-            <ErrorMessage
-              id='scheduledDate-error'
-              name='scheduledDate'
-              component='div'
-              className='modal-form__error' />
-          </div>
-          <ReadingRoomSelect />
-          <FormGroup
-            label='Message for Pitt staff'
-            helpText='255 characters maximum'
-            name='questions'
-            maxLength={255}
-            component='textarea'
-            rows={5} />
-          <div className='form-group'>
-            <Field
-              component={Captcha}
-              name='recaptcha'
-              handleCaptchaChange={(response) => setFieldValue('recaptcha', response)} />
-            <ErrorMessage
-              id='recaptcha-error'
-              name='recaptcha'
-              component='div'
-              className='modal-form__error' />
-          </div>
-          <FormButtons
-            helpText='You may be requested to create a researcher registration account with us.'
-            submitText={`Request ${props.submitList.length ? (props.submitList.length) : '0'} ${props.submitList.length !== 1 ? 'Items' : 'Item'}`}
-            toggleModal={props.toggleModal}
-            isSubmitting={isSubmitting} />
-          <FocusError />
-        </Form>
-      )}
-      </Formik>
-    }
-  />
-)
+        {({ errors, isSubmitting, setFieldValue, touched, values }) => {
+          const readingRoom = aeonReadingRooms.find(room => room.sites[0] === values.site);
+          return (
+            <Form>
+              <SubmitListInput submitList={props.submitList} />
+              <ErrorMessage
+                id='items-error'
+                name='items'
+                component='div'
+                className='modal-form__error' />
+              <div className='form-group'>
+                <Field
+                  component={DateInput}
+                  // TODO: this handleChange alters the UI, but not the form submission ?!
+                  handleChange={date => setFieldValue('scheduledDate', date)}
+                  helpText='Our reading rooms are open Monday - Friday from 9:00am to 4:45pm. We will confirm this appointment request with you before you arrive.'
+                  id='scheduledDate'
+                  label='Requested Visit Date'
+                  type='date'
+                  defaultDate={addBusinessDays(new Date(), 2)}
+                  minDate={addBusinessDays(new Date(), 1)}
+                  filterDate={date => readingRoom.openHours.some(x => x.dayOfWeek === date.getDay())}
+                  filterTime={date => {                    
+                    const hours = readingRoom.openHours.find(x => x.dayOfWeek === date.getDay());
+                    return isWithinInterval(date, {
+                      start: parse(hours.openTime, "HH:mm:ss", date),
+                      end: parse(hours.closeTime, "HH:mm:ss", date),
+                    });
+                  } }
+                  excludeDateIntervals={[{
+                    start: new Date(new Date().getFullYear(), 11, 22),
+                    end: new Date(new Date().getFullYear() + 1, 0, 2)
+                  }]} />
+                <ErrorMessage
+                  id='scheduledDate-error'
+                  name='scheduledDate'
+                  component='div'
+                  className='modal-form__error' />
+              </div>
+              <ReadingRoomSelect />
+              <FormGroup
+                label='Message for Pitt staff'
+                helpText='255 characters maximum'
+                name='questions'
+                maxLength={255}
+                component='textarea'
+                rows={5} />
+              <div className='form-group'>
+                <Field
+                  component={Captcha}
+                  name='recaptcha'
+                  handleCaptchaChange={(response) => setFieldValue('recaptcha', response)} />
+                <ErrorMessage
+                  id='recaptcha-error'
+                  name='recaptcha'
+                  component='div'
+                  className='modal-form__error' />
+              </div>
+              <FormButtons
+                helpText='You may be requested to create a researcher registration account with us.'
+                submitText={`Request ${props.submitList.length ? (props.submitList.length) : '0'} ${props.submitList.length !== 1 ? 'Items' : 'Item'}`}
+                toggleModal={props.toggleModal}
+                isSubmitting={isSubmitting} />
+              <FocusError />
+            </Form>
+          )
+        }}
+      </Formik>} />
+  )
+}
 
 ReadingRoomRequestModal.propTypes = {
   appElement: PropTypes.object,
