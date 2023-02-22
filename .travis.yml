@@ -18,8 +18,6 @@ script:
   - docker build .
   - CI=false yarn run build
   - yarn test
-before_deploy:
-  - sudo deploy_scripts/make_zip_react.sh $DEPLOY_ZIP_DIR $DEPLOY_ZIP_NAME
 deploy:
 - provider: s3
   access_key_id: $AWS_ACCESS_KEY
