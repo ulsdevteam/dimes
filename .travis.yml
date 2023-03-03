@@ -18,6 +18,8 @@ script:
   - docker build .
   - CI=false yarn run build
   - yarn test
+before_deploy:
+  - pip install awscli
 deploy:
 - provider: s3
   access_key_id: $AWS_ACCESS_KEY
