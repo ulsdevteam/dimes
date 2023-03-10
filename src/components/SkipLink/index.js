@@ -1,8 +1,7 @@
 import React from 'react'
-import './styles.scss'
 
 const SkipLink = () => (
-  <a href='#main' className='skip-link visually-hidden'>
+  <a href='#main' className='skip-link'>
     Skip to main content
   </a>
 )
