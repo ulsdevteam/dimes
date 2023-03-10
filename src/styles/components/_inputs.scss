@@ -147,8 +147,8 @@ select {
 
 .checkbox--online:not(:checked) + label,
 .checkbox--online:checked + label {
-  font-size: 14px;
-  padding: 13px 15px 13px 45px;
+  // font-size: 14px;
+  padding: 8px 15px 0 45px;
   background: $lighter-gray;
 }
 
@@ -267,7 +267,7 @@ select {
   text-align: left;
   & > .material-icon {
     position: absolute;
-    pointer-events: none;
+    // pointer-events: none;
   }
   &:focus {
     outline: none;
@@ -279,7 +279,7 @@ select {
   position: absolute;
   background-color: $pure-white;
   border-radius: 0;
-  box-sizing: border-box;
+  // box-sizing: border-box;
   list-style: none;
   top: 0px;
   padding-left: 0;
@@ -300,13 +300,13 @@ select {
   &.is-selected {
     font-weight: $font-weight-bold;
     &::after {
-      .material-icon {
-        font-size: 20px;
-        content: "check";
-        position: absolute;
-        right: 18px;
-        color: $burnt-orange;
-      }
+      font-family: Material Icons;
+      font-size: 20px;
+      font-weight: $font-weight-normal;
+      content: "check";
+      position: absolute;
+      right: 18px;
+      color: $burnt-orange;
     }
   }
 }

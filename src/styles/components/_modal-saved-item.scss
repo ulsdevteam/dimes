@@ -13,9 +13,12 @@
 .modal-item-group__items {
   list-style: none;
   padding-left: 0;
-  font-size: 15px;
   font-weight: $font-weight-bold;
   color: $dark-gray;
+}
+
+.modal-item-group__items label {
+  font-size: 15px;
 }
 
 .modal-item-group__title {
