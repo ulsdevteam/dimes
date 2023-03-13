@@ -7,9 +7,9 @@
 // }
 
 .search-form--home {
-  display: flex;
+  // display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
   max-width: 1300px;
   margin: 30px 30px 110px 30px;
   @include md-up {
@@ -54,12 +54,14 @@
   }
 }
 
+// TODO: remove `display: flex` once that change gets deployed in style library
 .input-group__search-controls {
   // @extend .input-group__search;
   display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  margin-top: 20px;
+  // justify-content: flex-start;
+  // flex-wrap: wrap;
+  // margin-top: 20px;
+  width: 100%;
   @include lg-up {
     width: calc(100% - 500px);
   }

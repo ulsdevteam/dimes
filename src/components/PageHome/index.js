@@ -13,7 +13,7 @@ const PageHome = () => (
     </Helmet>
     <div className='home'>
       <Hero />
-      <SearchForm className='search-form--home'/>
+      <SearchForm className='search search-form--home'/>
     </div>
   </>
 )
