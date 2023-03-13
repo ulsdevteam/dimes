@@ -148,7 +148,7 @@ select {
 .checkbox--online:not(:checked) + label,
 .checkbox--online:checked + label {
   // font-size: 14px;
-  padding: 8px 15px 0 45px;
+  padding: 13px 15px 13px 45px;
   background: $lighter-gray;
 }
 
@@ -300,13 +300,14 @@ select {
   &.is-selected {
     font-weight: $font-weight-bold;
     &::after {
-      font-family: Material Icons;
-      font-size: 20px;
-      font-weight: $font-weight-normal;
-      content: "check";
-      position: absolute;
-      right: 18px;
-      color: $burnt-orange;
+      .material-icon {
+        font-size: 20px;
+        // font-weight: $font-weight-normal;
+        content: "check";
+        position: absolute;
+        right: 18px;
+        color: $burnt-orange;
+      }
     }
   }
 }
