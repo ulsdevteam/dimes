@@ -11,7 +11,7 @@ const PageHome = () => (
       onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
       <title>DIMES: Online Collections and Catalog of Rockefeller Archive Center</title>
     </Helmet>
-    <div className='container--full-width home'>
+    <div className='home'>
       <Hero />
       <SearchForm className='search-form--home'/>
     </div>

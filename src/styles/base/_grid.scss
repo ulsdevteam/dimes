@@ -9,10 +9,10 @@ $grid-column: (
   box-sizing: border-box
 ); //does this work??
 
-.container--full-width {
-  width: 100%;
-  @include grid-container;
-}
+// .container--full-width {
+//   width: 100%;
+//   @include grid-container;
+// }
 
 .container {
   width: calc(100% - (#{$gutters-default}) * 2);
