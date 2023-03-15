@@ -18,9 +18,9 @@
 .backend-error__text {
   font-family: $sans-serif-stack;
   font-size: 20px;
-  & a {
-    text-decoration: underline;
-  }
+  // & a {
+  //   text-decoration: underline;
+  // }
 }
 
 .backend-error__header {
