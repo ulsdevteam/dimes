@@ -1,8 +1,9 @@
 import React from 'react'
-import {Nav, NavItem} from '../Nav'
+import { Nav, NavItem } from '../Nav'
+import LanguageSelector from '../LanguageSelector'
 import './styles.scss'
 
-const Header = ({ myListCount }) => (
+const Header = ({ myListCount, languages, onLanguageChange, locale }) => (
   <header className='header-secondary'>
     <div className='wrapper'>
       <div className='container'>
@@ -14,6 +15,11 @@ const Header = ({ myListCount }) => (
           <NavItem href='https://raccess.rockarch.org/' id='raccess' label='Sign in to RACcess' icon='arrow_right_alt' />
           <NavItem href='/list/' id='list' label={`My List${myListCount > 0 ? ` (${myListCount})` : ''}`} icon='arrow_right_alt' />
         </Nav>
+        <LanguageSelector
+            languages={languages}
+            onLanguageChange={onLanguageChange}
+            locale={locale}
+        />
       </div>
     </div>
   </header>)
