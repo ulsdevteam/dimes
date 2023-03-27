@@ -54,7 +54,7 @@ const App = () => {
 
   return (<LiveAnnouncer>
     <SkipLink />
-    <Header myListCount={myListCount} />
+    <Header myListCount={myListCount} languages={locales} onLanguageChange={onLanguageChange} locale={locale} />
     <main id='main' role='main'>
       <div className='wrapper' ref={mainWrapper}>
         <BrowserRouter>
