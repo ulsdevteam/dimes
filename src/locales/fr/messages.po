@@ -1,0 +1,169 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2023-03-06 15:17-0500\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: fr\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#. Footer.Primary.CompanyAddress.ZipCode
+#: src/components/Footer/index.js:27
+msgid "10591"
+msgstr "FRENCH: 10591"
+
+#. Footer.Primary.CompanyAddress.FirstLine
+#: src/components/Footer/index.js:21
+msgid "15 Dayton Avenue"
+msgstr "FRENCH: 15 Dayton Avenue"
+
+#. Footer.Primary.About.Accessibility.message
+#: src/components/Footer/index.js:94
+msgid "Accessibility Statement"
+msgstr "FRENCH: Accessibility Statement"
+
+#. Footer.Secondary.DataDownload.message
+#: src/components/Footer/index.js:152
+msgid "Bulk data download"
+msgstr "FRENCH: Bulk data download"
+
+#. Footer.Secondary.Api.message
+#: src/components/Footer/index.js:140
+msgid "Collections data API"
+msgstr "FRENCH: Collections data API"
+
+#. Footer.Primary.Copyright
+#: src/components/Footer/index.js:120
+msgid "Copyright © Rockefeller Archive Center. All rights reserved."
+msgstr "FRENCH: Copyright © Rockefeller Archive Center. All rights reserved."
+
+#. Footer.Primary.Company.Email
+#: src/components/Footer/index.js:38
+msgid "E-mail:<0>archive@rockarch.org</0>"
+msgstr "FRENCH: E-mail:<0>archive@rockarch.org</0>"
+
+#. Footer.Primary.Company.FaxNumber
+#: src/components/Footer/index.js:35
+msgid "Fax: (914) 631-6017"
+msgstr "FRENCH: Fax: (914) 631-6017"
+
+#. Footer.Primary.HowTo.message
+#: src/components/Footer/index.js:69
+msgid "How to access and request materials."
+msgstr "FRENCH: How to access and request materials."
+
+#. Footer.Secondary.License.message
+#: src/components/Footer/index.js:164
+msgid "Licensing for descriptive metadata"
+msgstr "FRENCH: Licensing for descriptive metadata"
+
+#. Footer.Primary.ReadingRoomHours.Hours
+#: src/components/Footer/index.js:58
+msgid "Monday-Friday <br /> 10:00am to 5:00pm <br />"
+msgstr "FRENCH: Monday-Friday <br /> 10:00am to 5:00pm <br />"
+
+#. Footer.Primary.Company.PhoneNumber
+#: src/components/Footer/index.js:32
+msgid "Phone: (914) 366-6300"
+msgstr "FRENCH: Phone: (914) 366-6300"
+
+#. Footer.Primary.About.PrivacyPolicy.message
+#: src/components/Footer/index.js:104
+msgid "Privacy Policy"
+msgstr "FRENCH: Privacy Policy"
+
+#. Footer.Primary.RAC.message
+#: src/components/Footer/index.js:114
+msgid "RAC Policies"
+msgstr "FRENCH: RAC Policies"
+
+#. Footer.Primary.ReadingRoomHours
+#: src/components/Footer/index.js:53
+msgid "Reading Room Hours:"
+msgstr "FRENCH: Reading Room Hours:"
+
+#. Footer.Primary.Title
+#: src/components/Footer/index.js:12
+msgid "Rockefeller<0>Archive Center</0>"
+msgstr "FRENCH: Rockefeller<0>Archive Center</0>"
+
+#. Footer.Primary.HolidaySchedule.message
+#: src/components/Footer/index.js:80
+msgid "See holiday schedule"
+msgstr "FRENCH: See holiday schedule"
+
+#. Footer.Primary.CompanyAddress.SecondLine
+#: src/components/Footer/index.js:24
+msgid "Sleeypy Hollow, New York"
+msgstr "FRENCH: Sleeypy Hollow, New York"
+
+#. Footer.Secondary.TakeDown.message
+#: src/components/Footer/index.js:176
+msgid "Take-down policy"
+msgstr "FRENCH: Take-down policy"
+
+#. Online only component in Helpers.js
+#: src/components/Helpers.js:61
+msgid "digital"
+msgstr "FRENCH: digital"
+
+#. Footer.Primary.RAC.href
+#: src/components/Footer/index.js:109
+msgid "https://docs.rockarch.org"
+msgstr "https://docs.rockarch.org"
+
+#. Footer.Secondary.License.href
+#: src/components/Footer/index.js:159
+msgid "https://docs.rockarch.org/archival-description-license/"
+msgstr "https://docs.rockarch.org/archival-description-license/"
+
+#. Footer.Secondary.Api.href
+#: src/components/Footer/index.js:135
+msgid "https://docs.rockarch.org/argo-docs/"
+msgstr "https://docs.rockarch.org/argo-docs/"
+
+#. Footer.Secondary.TakeDown.href
+#: src/components/Footer/index.js:171
+msgid "https://docs.rockarch.org/takedown-policy/"
+msgstr "https://docs.rockarch.org/takedown-policy/"
+
+#. Footer.Secondary.DataDownload.href
+#: src/components/Footer/index.js:147
+msgid "https://github.com/RockefellerArchiveCenter/data/"
+msgstr "https://github.com/RockefellerArchiveCenter/data/"
+
+#. Footer.Primary.About.Accessibility.href
+#: src/components/Footer/index.js:89
+msgid "https://rockarch.org/about-us/accessibility/"
+msgstr "https://rockarch.org/about-us/accessibility/"
+
+#. Footer.Primary.About.PrivacyPolicy.href
+#: src/components/Footer/index.js:99
+msgid "https://rockarch.org/about-us/privacy-policy/"
+msgstr "https://rockarch.org/about-us/privacy-policy/"
+
+#. Footer.Primary.HowTo.href
+#: src/components/Footer/index.js:63
+msgid "https://rockarch.org/collections/access-and-request-materials/"
+msgstr "https://rockarch.org/collections/access-and-request-materials/"
+
+#. Footer.Primary.HolidaySchedule.href
+#: src/components/Footer/index.js:75
+msgid "https://rockarch.org/collections/access-and-request-materials/holiday-schedule"
+msgstr "https://rockarch.org/collections/access-and-request-materials/holiday-schedule"
+
+#. Footer.Primary.Company.Email.href
+#: src/components/Footer/index.js:41
+msgid "mailto:archive@rockarch.org"
+msgstr "mailto:archive@rockarch.org"
+
+#. Pluralization of 
+#: src/components/Helpers.js:61
+msgid "{hitCount, plural, one {match} other {matches}}"
+msgstr "{hitCount, plural, one {FR:match} other {FR:matches}}"
