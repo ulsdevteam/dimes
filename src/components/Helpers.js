@@ -1,4 +1,5 @@
 import queryString from 'query-string'
+import { t, plural } from '@lingui/macro'
 
 /** Returns a string from a date object or string */
 export const dateString = dates => {
@@ -51,9 +52,18 @@ export const formatBytes = (bytes, decimals = 2) => {
 }
 
 /** Returns a human readable representation of a number of matches **/
-export const formatMatchString = (hitCount, online) => {
+export const formatMatchString = (hitCount, online) => {  
   const count = hitCount === 10000 ? `${hitCount}+` : hitCount
-  const suffix = online ? (hitCount === 1 ? 'digital match' : 'digital matches' ) : (hitCount === 1 ? 'match' : 'matches')
+  const pluralMatch = t({
+    comment: 'Pluralization of ',
+    message: plural(hitCount, {one: 'match', other: 'matches'})
+  })
+  const digital = t({
+    id: 'digital',
+    comment: 'Online only component in Helpers.js',
+    message: 'digital'
+  })
+  const suffix = (online ? digital + ' ' : '') + pluralMatch
   return `${count} ${suffix}`
 }
 
