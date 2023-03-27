@@ -1,0 +1,24 @@
+@import "../styles";
+
+.language-selector {
+  @include grid-column(11);
+  float: none;
+  margin: 0 auto;
+}
+
+.language-selector__select {
+  appearance: menulist-button;
+  color: white;
+  background-color: #192e49;
+  border-style: groove;
+  border-width: .2em;
+}
+
+.language-selector__select:focus {
+  border-color: white;
+}
+
+.language-selector__option {
+  color: white;
+  background-color: #000000;
+}
