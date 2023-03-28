@@ -54,16 +54,15 @@ export const formatBytes = (bytes, decimals = 2) => {
 /** Returns a human readable representation of a number of matches **/
 export const formatMatchString = (hitCount, online) => {  
   const count = hitCount === 10000 ? `${hitCount}+` : hitCount
-  const pluralMatch = t({
-    comment: 'Pluralization of ',
+  const physicalMatch = t({
+    comment: 'Pluralization of match(es)',
     message: plural(hitCount, {one: 'match', other: 'matches'})
   })
-  const digital = t({
-    id: 'digital',
-    comment: 'Online only component in Helpers.js',
-    message: 'digital'
+  const digitalMatch = t({
+    comment: 'Pluralization of digital match(es)',
+    message: plural(hitCount, {one: 'digital match', other: 'digital matches'})
   })
-  const suffix = (online ? digital + ' ' : '') + pluralMatch
+  const suffix = (online ? digitalMatch : physicalMatch)
   return `${count} ${suffix}`
 }
 

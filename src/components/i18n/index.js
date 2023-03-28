@@ -10,8 +10,6 @@ export const locales = [
 
 export const defaultLocale = 'en'
 
-export const defaultMessages = import(`../../locales/${defaultLocale}/messages`)
-
 i18n.loadLocaleData({
   en: { plurals: en },
   fr: { plurals: fr },
@@ -32,7 +30,8 @@ export async function dynamicActivate(locale, loading, setLocale, setLoading) {
       setLocale(defaultLocale)
     }
   } else {
-    i18n.load(locale, defaultMessages)
+    const { messages } = await import(`../../locales/${locale}/messages`)
+    i18n.load(locale, messages)
   }
   i18n.activate(locale)
   if (loading) {

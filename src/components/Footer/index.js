@@ -12,7 +12,7 @@ const Footer = () => (
             <Trans comment='Footer.Primary.Title'>
               Rockefeller
               <span className='line-break'>
-                  Archive Center
+                Archive Center
               </span>
             </Trans>
           </h2>
@@ -21,11 +21,19 @@ const Footer = () => (
               <Trans id='15 Dayton Avenue' comment='Footer.Primary.CompanyAddress.FirstLine'>
                 15 Dayton Avenue<br />
               </Trans>
-              <Trans id='Sleeypy Hollow, New York' comment='Footer.Primary.CompanyAddress.SecondLine'>
+              <Trans id='Sleepy Hollow, New York' comment='Footer.Primary.CompanyAddress.SecondLine'>
                 Sleepy Hollow, New York
               </Trans>
               <Trans id="10591" comment='Footer.Primary.CompanyAddress.ZipCode'>
                 10591
+              </Trans>
+              <br />
+              <Trans id="Footer.Fake.Test" comment='Footer.Fake.Test for opaque msgid'>
+                This is a test for an opaque msgid.
+              </Trans>
+              <br />
+              <Trans comment='Footer.Fake.Test.2 This is a test when msgid is not explicitly set'>
+                This is a test where the msgid is not explicitly set.
               </Trans>
             </p>
             <p className='footer-primary__text'>
