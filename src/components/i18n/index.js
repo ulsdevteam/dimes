@@ -1,5 +1,4 @@
 import { i18n } from '@lingui/core';
-import { t } from '@lingui/macro';
 import { en, fr, de } from 'make-plural/plurals';
 
 export const locales = [

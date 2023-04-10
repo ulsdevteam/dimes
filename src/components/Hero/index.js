@@ -1,5 +1,6 @@
 import React from 'react'
 import logo from '../../assets/homepage_logo.png'
+import { Trans } from '@lingui/macro'
 import './styles.scss'
 
 const Hero = () => (
@@ -8,7 +9,9 @@ const Hero = () => (
       <img aria-hidden='true' alt='' src={logo} />
     </div>
     <h1 className='hero__text'>
-      Search Our Collections.<br />Discover People and Organizations.<br />Access Digital Content.
+      <Trans comment='Message shown within the Hero'>
+        Search Our Collections.<br />Discover People and Organizations.<br />Access Digital Content.
+      </Trans>
     </h1>
   </div>)
 
