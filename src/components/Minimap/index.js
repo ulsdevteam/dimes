@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { appendParams } from '../Helpers'
 import { useResizeObserver } from '../Hooks'
+import { t, Trans, plural  } from '@lingui/macro'
 import './styles.scss'
 
 /**

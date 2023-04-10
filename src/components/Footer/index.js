@@ -9,7 +9,7 @@ const Footer = () => (
       <div className='wrapper'>
         <div className='container'>
           <h2 className='footer-primary__title'>
-            <Trans comment='Footer.Primary.Title'>
+            <Trans comment='Primary Title'>
               Rockefeller
               <span className='line-break'>
                 Archive Center
@@ -18,36 +18,26 @@ const Footer = () => (
           </h2>
           <div className='footer-primary__address'>
             <p className='footer-primary__text'>
-              <Trans id='15 Dayton Avenue' comment='Footer.Primary.CompanyAddress.FirstLine'>
-                15 Dayton Avenue<br />
-              </Trans>
-              <Trans id='Sleepy Hollow, New York' comment='Footer.Primary.CompanyAddress.SecondLine'>
+              <Trans comment='Full Company Address'>
+                15 Dayton Avenue
+                <br />
                 Sleepy Hollow, New York
-              </Trans>
-              <Trans id="10591" comment='Footer.Primary.CompanyAddress.ZipCode'>
+                <br />
                 10591
-              </Trans>
-              <br />
-              <Trans id="Footer.Fake.Test" comment='Footer.Fake.Test for opaque msgid'>
-                This is a test for an opaque msgid.
-              </Trans>
-              <br />
-              <Trans comment='Footer.Fake.Test.2 This is a test when msgid is not explicitly set'>
-                This is a test where the msgid is not explicitly set.
               </Trans>
             </p>
             <p className='footer-primary__text'>
-              <Trans comment='Footer.Primary.Company.PhoneNumber'>
+              <Trans comment='Comapny Phonenumber'>
                 Phone: (914) 366-6300
               </Trans><br />
-              <Trans comment='Footer.Primary.Company.FaxNumber'>
+              <Trans comment='Company Fax'>
                 Fax: (914) 631-6017
               </Trans><br />
-              <Trans comment='Footer.Primary.Company.Email'>
+              <Trans comment='Company Email'>
                 E-mail:
                 <a className='footer-primary__link' href={
                   t({
-                    comment: 'Footer.Primary.Company.Email.href',
+                    comment: 'Company Email link',
                     message: 'mailto:archive@rockarch.org'
                   })
                 }>
@@ -58,34 +48,33 @@ const Footer = () => (
           </div>
           <div className='footer-primary__reading-room'>
             <p className='footer-primary__text'>
-              <Trans id="Reading Room Hours:" comment='Footer.Primary.ReadingRoomHours'>
+              <Trans comment='Reading Room Hours message'>
                 Reading Room Hours:
               </Trans>
             </p>
             <p className='footer-primary__text'>
-              <Trans id="Monday-Friday <br /> 10:00am to 5:00pm <br />" comment='Footer.Primary.ReadingRoomHours.Hours'>
+              <Trans comment='Reading Room Actual Hours'>
                 Monday-Friday<br />
                 10:00 a.m. to 5:00 p.m.<br />
               </Trans>
               <a className='footer-primary__link' href={
                 t({
-                  id: 'https://rockarch.org/collections/access-and-request-materials/',
-                  comment: 'Footer.Primary.HowTo.href',
+                  comment: 'Access Materials link',
                   message: 'https://rockarch.org/collections/access-and-request-materials/'
                 })
               }>
-                <Trans id='How to access and request materials.' comment='Footer.Primary.HowTo.message'>
+                <Trans comment='How to Access materials message'>
                   How to access and request materials.
                 </Trans>
               </a>
             </p>
             <a className='footer-primary__link' href={
               t({
-                comment: 'Footer.Primary.HolidaySchedule.href',
+                comment: 'Holiday Schedule link',
                 message: 'https://rockarch.org/collections/access-and-request-materials/holiday-schedule'
               })
             }>
-              <Trans comment='Footer.Primary.HolidaySchedule.message'>
+              <Trans comment='Holiday Schedule message'>
                 See holiday schedule
               </Trans>
             </a>
@@ -95,21 +84,21 @@ const Footer = () => (
             <p>
               <a className='footer-primary__link footer-primary__policy-link' href={
                 t({
-                  message: 'https://rockarch.org/about-us/accessibility/',
-                  comment: 'Footer.Primary.About.Accessibility.href'
+                  comment: 'Accessibility Statement Link',
+                  message: 'https://rockarch.org/about-us/accessibility/'
                 })
               }>
-                <Trans comment='Footer.Primary.About.Accessibility.message'>
+                <Trans comment='Accessibility Statement message'>
                   Accessibility Statement
                 </Trans>
               </a>
               <a className='footer-primary__link footer-primary__policy-link' href={
                 t({
-                  message: 'https://rockarch.org/about-us/privacy-policy/',
-                  comment: 'Footer.Primary.About.PrivacyPolicy.href'
+                  comment: 'Privacy Policy link',
+                  message: 'https://rockarch.org/about-us/privacy-policy/'
                 })
               }>
-                <Trans comment='Footer.Primary.About.PrivacyPolicy.message'>
+                <Trans comment='Privacy Policy message'>
                   Privacy Policy
                 </Trans>
               </a>
@@ -125,7 +114,7 @@ const Footer = () => (
               </a>
             </p>
             <p className='footer-primary__text'>
-              <Trans comment='Footer.Primary.Copyright'>
+              <Trans comment='Copyright message'>
                 Copyright © Rockefeller Archive Center. All rights reserved.
               </Trans>
             </p>
@@ -141,11 +130,11 @@ const Footer = () => (
               <li className='footer-secondary__list-item'>
                 <a className='footer-secondary__link' href={
                   t({
-                    comment: 'Footer.Secondary.Api.href',
+                    comment: 'Collections data API link',
                     message: 'https://docs.rockarch.org/argo-docs/'
                   })
                 }>
-                  <Trans comment='Footer.Secondary.Api.message'>
+                  <Trans comment='Collections data API message'>
                     Collections data API
                   </Trans>
                 </a>
@@ -153,11 +142,11 @@ const Footer = () => (
               <li className='footer-secondary__list-item'>
                 <a className='footer-secondary__link' href={
                   t({
-                    message: 'https://github.com/RockefellerArchiveCenter/data/',
-                    comment: 'Footer.Secondary.DataDownload.href'
+                    comment: 'Bulk Data Download link',
+                    message: 'https://github.com/RockefellerArchiveCenter/data/'
                   })
                 }>
-                  <Trans comment='Footer.Secondary.DataDownload.message'>
+                  <Trans comment='Bulk Data Download message'>
                     Bulk data download
                   </Trans>
                 </a>
@@ -165,11 +154,11 @@ const Footer = () => (
               <li className='footer-secondary__list-item'>
                 <a className='footer-secondary__link' href={
                   t({
-                    message: 'https://docs.rockarch.org/archival-description-license/',
-                    comment: 'Footer.Secondary.License.href'
+                    comment: 'Licensing link',
+                    message: 'https://docs.rockarch.org/archival-description-license/'
                   })
                 }>
-                  <Trans comment='Footer.Secondary.License.message'>
+                  <Trans comment='Licensing message'>
                     Licensing for descriptive metadata
                   </Trans>
                 </a>
@@ -177,11 +166,11 @@ const Footer = () => (
               <li className='footer-secondary__list-item'>
                 <a className='footer-secondary__link' href={
                   t({
-                    message: 'https://docs.rockarch.org/takedown-policy/',
-                    comment: 'Footer.Secondary.TakeDown.href'
+                    comment: 'Take-down Policy link',
+                    message: 'https://docs.rockarch.org/takedown-policy/'
                   })
                 }>
-                  <Trans comment='Footer.Secondary.TakeDown.message'>
+                  <Trans comment='Take-down Policy message'>
                     Take-down policy
                   </Trans>
                 </a>
