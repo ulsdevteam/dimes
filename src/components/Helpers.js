@@ -1,5 +1,4 @@
 import queryString from 'query-string'
-import { useResizeObserver } from './Hooks'
 
 /** Returns a string from a date object or string */
 export const dateString = dates => {
@@ -93,9 +92,3 @@ export const firePageViewEvent = title => {
     }
   }
 }
-
-/** Checks the width of the window to determine if current device is mobile **/
-export const mobileSize = 580;
-
-/** Checks the width of the window to determine if current device is tablet **/
-export const desktopSize = 1024;
