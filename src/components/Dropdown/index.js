@@ -136,7 +136,7 @@ export const NavDropdown = () => (
       order={1}
       className='btn--navy btn--mobile-dropdown'
       label={t({
-        comment: 'Message shown on button within Dropdown list',
+        comment: 'Message shown on sign-in button',
         message: 'Sign in to RACcess'
       })}
       iconAfter='east'

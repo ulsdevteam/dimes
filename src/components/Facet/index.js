@@ -10,7 +10,7 @@ const ShowHideMore = ({id, isOpen, toggleOpen}) => {
   return (
     <Button
       ariaLabel={t({
-        comment: 'Show|Hide More Button',
+        comment: 'Aria label for Show|Hide More Button',
         message: 'Show all values'
       })}
       ariaPressed={isOpen}
