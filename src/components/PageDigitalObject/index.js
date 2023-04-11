@@ -4,10 +4,10 @@ import { useParams } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import MaterialIcon from '../MaterialIcon'
 import Viewer from '../Viewer'
-import { firePageViewEvent, isMobile } from '../Helpers'
+import { firePageViewEvent } from '../Helpers'
 import './styles.scss'
 
-const PageDigitalObject = () => {
+const PageDigitalObject = ({isMobile}) => {
 
   const [itemTitle, setItemTitle] = useState("")
   const { id, type } = useParams()
