@@ -1,6 +1,7 @@
 import React from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
 import { act } from 'react-dom/test-utils'
+import { t } from '@lingui/macro'
 import ListToggleButton from '..'
 
 import { object } from '../../../__fixtures__/object'
@@ -26,7 +27,7 @@ it('renders correctly in desktop and modal', () => {
   })
 
   const button = document.querySelector('button')
-  expect(button.textContent).toContain('Add to List')
+  expect(button.textContent).toContain(t({comment: "Test function", message: 'Add to List'}))
   expect(button).toHaveAttribute('aria-label', 'Add item to list')
   expect(button.className).not.toContain('saved')
 

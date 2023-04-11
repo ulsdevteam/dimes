@@ -27,7 +27,6 @@ const Header = ({ myListCount, languages, onLanguageChange, locale }) => (
               message: 'https://raccess.rockarch.org'
             })}
             label={t({
-              comment: 'Message shown on button within the Header',
               message: 'Sign in to RACcess'
             })} />
           <NavItem href='/list/' id='list'
