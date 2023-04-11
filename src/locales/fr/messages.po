@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2023-03-06 15:17-0500\n"
+"POT-Creation-Date: 2023-04-06 09:39-0400\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,165 +13,328 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#. Footer.Primary.CompanyAddress.ZipCode
-#: src/components/Footer/index.js:27
-msgid "10591"
-msgstr "FRENCH: 10591"
-
-#. Footer.Primary.CompanyAddress.FirstLine
+#. Full Company Address
 #: src/components/Footer/index.js:21
-msgid "15 Dayton Avenue"
-msgstr "FRENCH: 15 Dayton Avenue"
-
-#. Footer.Primary.About.Accessibility.message
-#: src/components/Footer/index.js:102
-msgid "Accessibility Statement"
-msgstr "FRENCH: Accessibility Statement"
-
-#. Footer.Secondary.DataDownload.message
-#: src/components/Footer/index.js:160
-msgid "Bulk data download"
-msgstr "FRENCH: Bulk data download"
-
-#. Footer.Secondary.Api.message
-#: src/components/Footer/index.js:148
-msgid "Collections data API"
-msgstr "FRENCH: Collections data API"
-
-#. Footer.Primary.Copyright
-#: src/components/Footer/index.js:128
-msgid "Copyright © Rockefeller Archive Center. All rights reserved."
-msgstr "FRENCH: Copyright © Rockefeller Archive Center. All rights reserved."
-
-#. Footer.Primary.Company.Email
-#: src/components/Footer/index.js:46
-msgid "E-mail:<0>archive@rockarch.org</0>"
-msgstr "FRENCH: E-mail:<0>archive@rockarch.org</0>"
-
-#. Footer.Primary.Company.FaxNumber
-#: src/components/Footer/index.js:43
-msgid "Fax: (914) 631-6017"
-msgstr "FRENCH: Fax: (914) 631-6017"
-
-#. Footer.Fake.Test for opaque msgid
-#: src/components/Footer/index.js:31
-msgid "Footer.Fake.Test"
+msgid "15 Dayton Avenue<0/>Sleepy Hollow, New York<1/>10591"
 msgstr ""
 
-#. Footer.Primary.HowTo.message
-#: src/components/Footer/index.js:77
-msgid "How to access and request materials."
-msgstr "FRENCH: How to access and request materials."
+#. The about section for minimaps.
+#: src/components/ModalMinimap/index.js:9
+msgid "<0>Jump to a part of the collection containing matches by clicking on an active square.</0><1>In the minimap diagram, each square represents part of this collection. Colored squares represent parts that contain one or more matches for your search.</1>"
+msgstr ""
 
-#. Footer.Secondary.License.message
-#: src/components/Footer/index.js:172
-msgid "Licensing for descriptive metadata"
-msgstr "FRENCH: Licensing for descriptive metadata"
+#. The introduction for minimaps.
+#: src/components/ModalMinimap/index.js:15
+msgid "<0>The minimap is a new feature that allows you to quickly jump to search matches in a collection by clicking on an active square.</0><1>In the minimap diagram, each square represents part of this collection. Colored squares represent parts that contain one or more matches for your search.</1>"
+msgstr ""
 
-#. Footer.Primary.ReadingRoomHours.Hours
+#. Accessibility Statement message
+#: src/components/Footer/index.js:91
+msgid "Accessibility Statement"
+msgstr ""
+
+#. Message shown on Dropdown button
+#: src/components/Dropdown/index.js:51
+msgid "Actions"
+msgstr ""
+
+#. Label for List Toggle button
+#: src/components/ListToggleButton/index.js:40
+msgid "Add"
+msgstr ""
+
+#. Aria label for List Toggle button
+#: src/components/ListToggleButton/index.js:32
+msgid "Add item to list"
+msgstr ""
+
+#. Label for List Toggle button
+#. Test function
+#: src/components/ListToggleButton/index.js:45
+#: src/components/ListToggleButton/__tests__/ListToggleButton.test.js:30
+msgid "Add to List"
+msgstr ""
+
+#. Bulk Data Download message
+#: src/components/Footer/index.js:149
+msgid "Bulk data download"
+msgstr ""
+
+#. Reset/Cancel Button for Form
+#: src/components/Form/index.js:86
+msgid "Cancel"
+msgstr ""
+
+#. Aria Label for a button to close a modal.
+#. Aria Label for a button to close modal minimap info.
+#. Aria Label for a button to close a modal minimap.
+#: src/components/ModalConfirm/index.js:17
+#: src/components/ModalMinimap/index.js:31
+#: src/components/ModalMinimap/index.js:68
+msgid "Close"
+msgstr ""
+
+#. Collections data API message
+#: src/components/Footer/index.js:137
+msgid "Collections data API"
+msgstr ""
+
+#. Copyright message
+#: src/components/Footer/index.js:117
+msgid "Copyright © Rockefeller Archive Center. All rights reserved."
+msgstr ""
+
+#. Message shown on button within Dropdown list
+#: src/components/Dropdown/index.js:102
+msgid "Download as .csv"
+msgstr ""
+
+#. Company Email
+#: src/components/Footer/index.js:36
+msgid "E-mail:<0>archive@rockarch.org</0>"
+msgstr ""
+
+#. Message shown on button within Dropdown list
+#: src/components/Dropdown/index.js:93
+msgid "Email List"
+msgstr ""
+
+#. Company Fax
+#: src/components/Footer/index.js:33
+msgid "Fax: (914) 631-6017"
+msgstr ""
+
+#. How to Access materials message
 #: src/components/Footer/index.js:66
-msgid "Monday-Friday <br /> 10:00am to 5:00pm <br />"
-msgstr "FRENCH: Monday-Friday <br /> 10:00am to 5:00pm <br />"
+msgid "How to access and request materials."
+msgstr ""
 
-#. Footer.Primary.Company.PhoneNumber
-#: src/components/Footer/index.js:40
+#. Message displayed to jump to specific section within minimap
+#: src/components/Minimap/index.js:53
+msgid "Jump to {0} {hitPlural} in this area: {hitTitles}"
+msgstr ""
+
+#. Licensing message
+#: src/components/Footer/index.js:161
+msgid "Licensing for descriptive metadata"
+msgstr ""
+
+#. Header for minimap
+#. Aria label for Minimap nav
+#. Header for modal minimap
+#: src/components/Minimap/index.js:79
+#: src/components/Minimap/index.js:83
+#: src/components/ModalMinimap/index.js:64
+msgid "Minimap"
+msgstr ""
+
+#. Reading Room Actual Hours
+#: src/components/Footer/index.js:56
+msgid "Monday-Friday<0/>10:00 a.m. to 5:00 p.m.<1/>"
+msgstr ""
+
+#. Message shown on button within Dropdown list
+#. Message shown on button within the Header
+#: src/components/Dropdown/index.js:150
+#: src/components/Header/index.js:34
+msgid "My List"
+msgstr ""
+
+#. Comapny Phonenumber
+#: src/components/Footer/index.js:30
 msgid "Phone: (914) 366-6300"
-msgstr "FRENCH: Phone: (914) 366-6300"
+msgstr ""
 
-#. Footer.Primary.About.PrivacyPolicy.message
-#: src/components/Footer/index.js:112
+#. Privacy Policy message
+#: src/components/Footer/index.js:101
 msgid "Privacy Policy"
-msgstr "FRENCH: Privacy Policy"
+msgstr ""
 
 #. Footer.Primary.RAC.message
-#: src/components/Footer/index.js:122
+#: src/components/Footer/index.js:111
 msgid "RAC Policies"
-msgstr "FRENCH: RAC Policies"
-
-#. Footer.Primary.ReadingRoomHours
-#: src/components/Footer/index.js:61
-msgid "Reading Room Hours:"
-msgstr "FRENCH: Reading Room Hours:"
-
-#. Footer.Primary.Title
-#: src/components/Footer/index.js:12
-msgid "Rockefeller<0>Archive Center</0>"
-msgstr "FRENCH: Rockefeller<0>Archive Center</0>"
-
-#. Footer.Primary.HolidaySchedule.message
-#: src/components/Footer/index.js:88
-msgid "See holiday schedule"
-msgstr "FRENCH: See holiday schedule"
-
-#. Footer.Primary.CompanyAddress.SecondLine
-#: src/components/Footer/index.js:24
-msgid "Sleepy Hollow, New York"
-msgstr "FRENCH: Sleepy Hollow, New York"
-
-#. Footer.Secondary.TakeDown.message
-#: src/components/Footer/index.js:184
-msgid "Take-down policy"
-msgstr "FRENCH: Take-down policy"
-
-#. Footer.Fake.Test.2 This is a test when msgid is not explicitly set
-#: src/components/Footer/index.js:35
-msgid "This is a test where the msgid is not explicitly set."
 msgstr ""
 
-#. Online only component in Helpers.js
-#: src/components/Helpers.js:61
-#~ msgid "digital"
-#~ msgstr "FRENCH: digital"
+#. Reading Room Hours message
+#: src/components/Footer/index.js:51
+msgid "Reading Room Hours:"
+msgstr ""
+
+#. Label for List Toggle button
+#: src/components/ListToggleButton/index.js:18
+msgid "Remove"
+msgstr ""
+
+#. Message shown on button within Dropdown list
+#: src/components/Dropdown/index.js:111
+msgid "Remove All Items"
+msgstr ""
+
+#. Label for List Toggle button
+#: src/components/ListToggleButton/index.js:23
+msgid "Remove from List"
+msgstr ""
+
+#. Aria label for List Toggle button
+#: src/components/ListToggleButton/index.js:10
+msgid "Remove item from list"
+msgstr ""
+
+#. Message shown on button within Dropdown list
+#: src/components/Dropdown/index.js:84
+msgid "Request Copies"
+msgstr ""
+
+#. Message shown on button within Dropdown list
+#: src/components/Dropdown/index.js:75
+msgid "Request in Reading Room"
+msgstr ""
+
+#. Primary Title
+#: src/components/Footer/index.js:12
+msgid "Rockefeller<0>Archive Center</0>"
+msgstr ""
+
+#. Message shown on button within Dropdown list
+#: src/components/Dropdown/index.js:62
+msgid "Schedule a Visit"
+msgstr ""
+
+#. Message shown within the Hero
+#: src/components/Hero/index.js:12
+msgid "Search Our Collections.<0/>Discover People and Organizations.<1/>Access Digital Content."
+msgstr ""
+
+#. Holiday Schedule message
+#: src/components/Footer/index.js:77
+msgid "See holiday schedule"
+msgstr ""
+
+#. Show|Hide More Button
+#: src/components/Facet/index.js:12
+msgid "Show all values"
+msgstr ""
+
+#. Message shown on sign-in button
+#: src/components/Dropdown/index.js:138
+#: src/components/Header/index.js:29
+msgid "Sign in to RACcess"
+msgstr ""
+
+#. Aria label for Calendar button
+#: src/components/Inputs/index.js:92
+msgid "Switch to the next month."
+msgstr ""
+
+#. Aria label for Calendar button
+#: src/components/Inputs/index.js:82
+msgid "Switch to the previous month."
+msgstr ""
+
+#. Take-down Policy message
+#: src/components/Footer/index.js:173
+msgid "Take-down policy"
+msgstr ""
+
+#. Subtitle displayed within the Header
+#: src/components/Header/index.js:18
+msgid "The Online Collection and Catalog of Rockefeller Archive Center"
+msgstr ""
+
+#. Button to view minimap
+#: src/components/MinimapButton/index.js:13
+msgid "View minimap"
+msgstr ""
+
+#. Title displayed within the Header
+#: src/components/Header/index.js:13
+msgid "dimes.rockarch.org"
+msgstr ""
 
 #. Footer.Primary.RAC.href
-#: src/components/Footer/index.js:117
+#: src/components/Footer/index.js:106
 msgid "https://docs.rockarch.org"
-msgstr "https://docs.rockarch.org"
+msgstr ""
 
-#. Footer.Secondary.License.href
-#: src/components/Footer/index.js:167
+#. Licensing link
+#: src/components/Footer/index.js:156
 msgid "https://docs.rockarch.org/archival-description-license/"
-msgstr "https://docs.rockarch.org/archival-description-license/"
+msgstr ""
 
-#. Footer.Secondary.Api.href
-#: src/components/Footer/index.js:143
+#. Collections data API link
+#: src/components/Footer/index.js:132
 msgid "https://docs.rockarch.org/argo-docs/"
-msgstr "https://docs.rockarch.org/argo-docs/"
+msgstr ""
 
-#. Footer.Secondary.TakeDown.href
-#: src/components/Footer/index.js:179
+#. Take-down Policy link
+#: src/components/Footer/index.js:168
 msgid "https://docs.rockarch.org/takedown-policy/"
-msgstr "https://docs.rockarch.org/takedown-policy/"
+msgstr ""
 
-#. Footer.Secondary.DataDownload.href
-#: src/components/Footer/index.js:155
+#. Bulk Data Download link
+#: src/components/Footer/index.js:144
 msgid "https://github.com/RockefellerArchiveCenter/data/"
-msgstr "https://github.com/RockefellerArchiveCenter/data/"
+msgstr ""
 
-#. Footer.Primary.About.Accessibility.href
-#: src/components/Footer/index.js:97
+#. Link used for sign-in within Dropdown list
+#. Link used for sign-in within the Header
+#: src/components/Dropdown/index.js:143
+#: src/components/Header/index.js:25
+msgid "https://raccess.rockarch.org"
+msgstr ""
+
+#. Accessibility Statement Link
+#: src/components/Footer/index.js:86
 msgid "https://rockarch.org/about-us/accessibility/"
-msgstr "https://rockarch.org/about-us/accessibility/"
+msgstr ""
 
-#. Footer.Primary.About.PrivacyPolicy.href
-#: src/components/Footer/index.js:107
+#. Privacy Policy link
+#: src/components/Footer/index.js:96
 msgid "https://rockarch.org/about-us/privacy-policy/"
-msgstr "https://rockarch.org/about-us/privacy-policy/"
+msgstr ""
 
-#. Footer.Primary.HowTo.href
-#: src/components/Footer/index.js:71
+#. Access Materials link
+#: src/components/Footer/index.js:61
 msgid "https://rockarch.org/collections/access-and-request-materials/"
-msgstr "https://rockarch.org/collections/access-and-request-materials/"
+msgstr ""
 
-#. Footer.Primary.HolidaySchedule.href
-#: src/components/Footer/index.js:83
+#. Holiday Schedule link
+#: src/components/Footer/index.js:72
 msgid "https://rockarch.org/collections/access-and-request-materials/holiday-schedule"
-msgstr "https://rockarch.org/collections/access-and-request-materials/holiday-schedule"
+msgstr ""
 
-#. Footer.Primary.Company.Email.href
-#: src/components/Footer/index.js:49
+#. Company Email link
+#: src/components/Footer/index.js:39
 msgid "mailto:archive@rockarch.org"
-msgstr "mailto:archive@rockarch.org"
+msgstr ""
+
+#. Tooltip for button
+#: src/components/Dropdown/index.js:68
+msgid "opens email"
+msgstr ""
+
+#. Message shown on list is closed
+#: src/components/Facet/index.js:26
+msgid "show all"
+msgstr ""
+
+#. Message shown when list is opened
+#: src/components/Facet/index.js:21
+msgid "show less"
+msgstr ""
+
+#. Pluralization of hit(s) for minimap boxes
+#: src/components/Minimap/index.js:49
+msgid "{0, plural, one {hit} other {hits}}"
+msgstr ""
+
+#: src/components/ModalMinimap/index.js:30
+msgid "{0, select, true {Minimap} other {Introducing the Minimap}}"
+msgstr ""
+
+#: src/components/ModalMinimap/index.js:30
+#~ msgid "{0, select, true {TRUE} false {False} other {OTHER}}"
+#~ msgstr ""
 
 #. Pluralization of digital match(es)
 #: src/components/Helpers.js:61
@@ -181,4 +344,4 @@ msgstr ""
 #. Pluralization of match(es)
 #: src/components/Helpers.js:57
 msgid "{hitCount, plural, one {match} other {matches}}"
-msgstr "{hitCount, plural, one {FR:match} other {FR:matches}}"
+msgstr ""
