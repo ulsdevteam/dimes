@@ -300,14 +300,15 @@ select {
   &.is-selected {
     font-weight: $font-weight-bold;
     &::after {
-      .material-icon {
-        font-size: 20px;
-        // font-weight: $font-weight-normal;
-        content: "check";
-        position: absolute;
-        right: 18px;
-        color: $burnt-orange;
-      }
+      // .material-icon {
+      font-family: Material Icons;
+      font-size: 20px;
+      // font-weight: $font-weight-normal;
+      content: "check";
+      position: absolute;
+      right: 18px;
+      color: $burnt-orange;
+      // }
     }
   }
 }

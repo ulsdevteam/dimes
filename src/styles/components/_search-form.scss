@@ -128,9 +128,17 @@
   padding: 16px 18px;
 }
 
+/**
+* Styles for the search button on the home page
+* 1. Removes the material-icon--space-before styles
+**/
 .search__submit-btn {
   @include md-up {
     min-width: 150px;
+
+    .material-icon {
+      margin: 0; /* 1 */
+    }
   }
 }
 
