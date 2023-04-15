@@ -1,24 +1,28 @@
 @import "../styles";
 
 .agent__attributes {
-  width: 100%;
-  display: flex;
-  margin-left: -$gutters-default;
-  margin-right: -$gutters-default;
+  // width: 100%;
+  // display: flex;
+  // margin-left: -$gutters-default;
+  // margin-right: -$gutters-default;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
 }
 
 .agent-attribute, .agent-note {
-  @include grid-column(12);
+  // @include grid-column(12);
   margin-bottom: 24px;
-  @include md-up  {
-    @include grid-column(4);
-  }
+  // @include md-up  {
+    // @include grid-column(4);
+  // }
   @include lg-up {
-    @include grid-column(3);
+    // @include grid-column(3);
     margin-bottom: 27px;
   }
 }
 
 .agent-attribute__value, .agent-note__value {
   white-space: pre-line;
+  margin: 0;
 }

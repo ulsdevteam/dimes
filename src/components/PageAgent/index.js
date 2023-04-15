@@ -28,7 +28,7 @@ const AgentNote = ({ source, text }) => (
 const AgentRelatedCollections = ({ agentTitle, collections, params }) => (
   collections.length ?
   (<div className='agent__related'>
-    <h2 className='agent__section-title'>Collections Related to {agentTitle}</h2>
+    <h2 className='agent__section-title heading--dotted-border'>Collections Related to {agentTitle}</h2>
     <CardList
       hideHitCount
       items={collections}
@@ -49,7 +49,7 @@ const AgentSidebar = ({ agentType, externalIdentifiers }) => {
   return (
   externalIdentifiers.length ?
   (<div className='agent__sidebar'>
-    <h2 className='agent__section-title'>More about this {agentType}</h2>
+    <h2 className='agent__section-title heading--dotted-border'>More about this {agentType}</h2>
     <ul className='list--unstyled'>{linkList}</ul>
   </div>) : (null)
 )}
@@ -233,26 +233,26 @@ const PageAgent = () => {
             <div className='agent__wrapper--description'>
               <div className='agent__main'>
                 <h1 className='agent__title'>{ agent.title || <Skeleton />}</h1>
-                  <div className='agent__description'>
-                    {isAttributesLoading ?
-                      (<AgentAttributeSkeleton />) :
-                      (<>
-                        { !!Object.keys(attributes).length || narrativeDescription ?
-                          <h2 className='agent__section-title'>Summary</h2> :
-                          null
-                        }
-                        <AgentAttributeList items={attributes} />
-                       </>)}
-                    {isAgentLoading ?
-                      (<AgentAttributeSkeleton />) :
-                      (<AgentNote source={narrativeDescriptionSource} text={narrativeDescription} />)}
-                  </div>
-                    {isCollectionsLoading ?
-                      (<AgentRelatedCollectionsSkeleton />) :
-                      (<AgentRelatedCollections
-                        agentTitle={agent.title}
-                        collections={collections}
-                        params={{...params, category: ''}} />) }
+                <div>
+                  {isAttributesLoading ?
+                    (<AgentAttributeSkeleton />) :
+                    (<>
+                      { !!Object.keys(attributes).length || narrativeDescription ?
+                        <h2 className='agent__section-title heading--dotted-border'>Summary</h2> :
+                        null
+                      }
+                      <AgentAttributeList items={attributes} />
+                      </>)}
+                  {isAgentLoading ?
+                    (<AgentAttributeSkeleton />) :
+                    (<AgentNote source={narrativeDescriptionSource} text={narrativeDescription} />)}
+                </div>
+                  {isCollectionsLoading ?
+                    (<AgentRelatedCollectionsSkeleton />) :
+                    (<AgentRelatedCollections
+                      agentTitle={agent.title}
+                      collections={collections}
+                      params={{...params, category: ''}} />) }
                 </div>
               <AgentSidebar agentType={agent.agent_type} externalIdentifiers={externalIdentifiers} />
             </div>
