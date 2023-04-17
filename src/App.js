@@ -40,8 +40,7 @@ const App = () => {
   return (<LiveAnnouncer>
     <SkipLink />
     <Header myListCount={myListCount} />
-    <main id='main' role='main'>
-      <div className='wrapper'>
+      <div className="wrapper">
         <BrowserRouter>
           <Routes>
             <Route path='/list' element={<PageMyList removeAllListItems={removeAllListItems} toggleInList={toggleInList} />} />
@@ -54,7 +53,6 @@ const App = () => {
           </Routes>
         </BrowserRouter>
       </div>
-    </main>
   <Footer/>
   </LiveAnnouncer>)
 }
