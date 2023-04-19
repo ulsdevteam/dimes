@@ -1,11 +1,17 @@
 @import "../styles";
 
+.saved-items {
+  margin-left: $gutters-default;
+}
+
 .saved-items__item-group,
 .saved-items__loading,
 .saved-items__empty {
-  @include grid-column(12);
+  // @include grid-column(12);
+  display: inline-block;
   border-top: 1px dotted $faded-navy;
   font-family: $sans-serif-stack;
+  width: 98%;
 }
 
 .saved-items__empty {
@@ -24,9 +30,10 @@
 }
 
 .saved-item {
-  @include grid-column(12);
+  // @include grid-column(12);
   margin-bottom: 40px;
-  float: left;
+  padding: 0 25px 0 15px;
+  // float: left;
 }
 
 .saved-item__row {
@@ -43,6 +50,7 @@
   flex-shrink: 0;
   flex-wrap: nowrap;
   align-items: flex-start;
+  gap: 10px;
   width: 100%;
   @include lg-up {
     width: unset;

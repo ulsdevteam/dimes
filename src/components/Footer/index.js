@@ -4,7 +4,7 @@ import SocialIcons from '../SocialIcons'
 const Footer = () => (
   <footer className='footer' role='contentinfo'>
     <div className='footer-primary'>
-      <div className='container'>
+      <div className='container grid'>
         <h2 className='footer-primary__title heading--dotted-border'>Rockefeller <span className='line-break'>Archive Center</span></h2>
         <div className='footer-primary__address'>
           <p className='footer-primary__text'>15 Dayton Avenue<br />
@@ -32,7 +32,7 @@ const Footer = () => (
       </div>
     </div>
     <div className='footer-secondary'>
-      <div className='container'>
+      <div className='container grid'>
         <ul className='footer-secondary__list'>
           <li className='footer-secondary__list-item'>
             <a className='footer-secondary__link' href='https://docs.rockarch.org/argo-docs/'>Collections data API</a>

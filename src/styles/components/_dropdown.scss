@@ -6,9 +6,9 @@
 //   // position: relative;
 // }
 
-// .dropdown__list {
-//   position: absolute;
-//   right: 0;
+.dropdown__list {
+  position: absolute;
+  right: 0;
   // list-style: none;
   // margin-top: 5px;
   // border-radius: 3px;
@@ -23,7 +23,7 @@
   // &.closed {
   //   opacity: 0;
   // }
-// }
+}
 
 // .dropdown__list--slide-left {
 //   &.open {
@@ -49,8 +49,7 @@
 // }
 
 .mylist__actions {
-  margin-top: 40px;
-  margin-bottom: 30px;
+  margin: 40px 30px 30px 0;
   display: block;
   float: right;
   // @include lg-up {
