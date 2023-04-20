@@ -30,11 +30,17 @@
     "sass": "^1.52.3",
     "url": "^0.11.0"
   },
+  "devDependencies": {
+    "backstopjs": "^6.2.1"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "reference": "backstop reference",
+    "backstop test": "backstop test",
+    "approve": "backstop approve"
   },
   "eslintConfig": {
     "extends": "react-app"
