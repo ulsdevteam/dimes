@@ -3,7 +3,6 @@ import classnames from 'classnames'
 import Button from '../Button'
 import PropTypes from 'prop-types'
 import { CheckBoxInput, SelectInput, TextInput } from '../Inputs'
-import { isMobile } from '../Helpers'
 import './styles.scss'
 
 const SearchForm = props => {
@@ -45,7 +44,7 @@ const SearchForm = props => {
             <Button
               className={ classnames({ 'btn--search': isHomePage, 'btn--search-results': !isHomePage })}
               type='submit'
-              label={isHomePage ? (isMobile ? null : 'Search') : null}
+              label={isHomePage ? (props.isMobile ? null : 'Search') : null}
               iconAfter='search'
               ariaLabel='Submit search'
             />

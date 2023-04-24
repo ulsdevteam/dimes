@@ -14,9 +14,9 @@ import { ModalMinimap, ModalMinimapInfo } from '../ModalMinimap'
 import RecordsContent from '../RecordsContent'
 import RecordsDetail from '../RecordsDetail'
 import PageNotFound from '../PageNotFound'
-import { appendParams, firePageViewEvent, formatBytes, isDesktop } from '../Helpers'
+import { appendParams, firePageViewEvent, formatBytes } from '../Helpers'
 
-const PageRecords = ({ myListCount, toggleInList }) => {
+const PageRecords = ({ isDesktop, isMobile, myListCount, toggleInList }) => {
 
   const [ancestors, setAncestors] = useState({})
   const [backendError, setBackendError] = useState({})
@@ -214,6 +214,7 @@ const PageRecords = ({ myListCount, toggleInList }) => {
           downloadSize={downloadSize}
           isAncestorsLoading={isAncestorsLoading}
           isContentShown={isContentShown}
+          isDesktop={isDesktop}
           isItemLoading={isItemLoading}
           item={item}
           myListCount={myListCount}
@@ -232,6 +233,7 @@ const PageRecords = ({ myListCount, toggleInList }) => {
           children={children}
           collection={parseCollection()}
           isContentShown={isContentShown}
+          isMobile={isMobile}
           myListCount={myListCount}
           offsetAfter={item.offset + 1}
           offsetBefore={item.offset}

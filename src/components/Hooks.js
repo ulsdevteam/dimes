@@ -31,7 +31,15 @@ export const useResizeObserver = ({ callback, element }) => {
       if (observer.current) {
         observer.current.observe(currentElement)
       }
-      observer.current = new ResizeObserver(callback)
+      observer.current = new ResizeObserver(entries => {
+        window.requestAnimationFrame(() => {
+          if (!Array.isArray(entries) || !entries.length) {
+            return;
+          }
+          callback()
+        });
+        
+      })
       observe()
       return () => {
         // Remove the observer as soon as the component is unmounted
