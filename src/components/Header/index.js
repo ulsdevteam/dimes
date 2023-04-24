@@ -1,10 +1,9 @@
 import React from 'react'
 import { Nav, NavItem } from '../Nav'
-import LanguageSelector from '../LanguageSelector'
-import { Trans, t } from '@lingui/macro'
+import { t, Trans } from '@lingui/macro'
 import './styles.scss'
 
-const Header = ({ myListCount, languages, onLanguageChange, locale }) => (
+const Header = ({ myListCount }) => (
   <header className='header-secondary'>
     <div className='wrapper'>
       <div className='container'>
@@ -37,11 +36,6 @@ const Header = ({ myListCount, languages, onLanguageChange, locale }) => (
               })+`${myListCount > 0 ? ` (${myListCount})` : ''}`
             } icon='arrow_right_alt' />
         </Nav>
-        <LanguageSelector
-            languages={languages}
-            onLanguageChange={onLanguageChange}
-            locale={locale}
-        />
       </div>
     </div>
   </header>)

@@ -13,7 +13,7 @@ import PageSearch from './components/PageSearch';
 import PageNotFound from './components/PageNotFound';
 import { fetchMyList, isItemSaved, removeItem, saveItem, saveMyList } from './components/MyListHelpers';
 
-const App = ({ locales, onLanguageChange, locale }) => {
+const App = () => {
   const [myListCount, setMyListCount] = useState(0)
 
   const countMyList = data => {
@@ -39,7 +39,7 @@ const App = ({ locales, onLanguageChange, locale }) => {
 
   return (<LiveAnnouncer>
     <SkipLink />
-    <Header myListCount={myListCount} languages={locales} onLanguageChange={onLanguageChange} locale={locale} />
+    <Header myListCount={myListCount} />
     <main id='main' role='main'>
       <div className='wrapper'>
         <BrowserRouter>
