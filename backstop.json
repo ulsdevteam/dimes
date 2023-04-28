@@ -22,15 +22,10 @@
   "requireSameDimensions": false,
   "scenarios": [
     {
-      "label": "Homepage",
-      "url": "http://localhost:3000/"
-    },
-    {
       "label": "Homepage Digital Checkbox",
       "url": "http://localhost:3000/",
       "clickSelector": "#main > div > div > form > div > div > div.input-group__search-controls > label",
-      "selectors": ["#main > div > div > form > div > div > div.input-group__search-controls"],
-      "delay": 1000
+      "delay": 3000
     },
     {
       "label": "Homepage Types Dropdown",
@@ -184,7 +179,7 @@
       "url": "http://localhost:3000/objects/3htvHFf2iEoEPdDUyeofYG?category=&limit=40&query=banana",
       "onBeforeScript": "mock_request.js",
       "clickSelectors": [
-        ".modal-header--minimap > button", 
+        ".modal-header--minimap > button",
         "#main > div > div > div.records__detail > button.btn.btn-add--detail"
       ],
       "delay": 3000
