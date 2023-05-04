@@ -1,12 +1,13 @@
 
+$confirm-modal-content-margin: 10%;
 $confirm-modal-content-margin-lg: 30%;
 
 .modal--confirm {
   // font-family: $sans-serif-stack;
   // position: absolute;
-  // top: $confirm-modal-content-margin;
-  // left: $confirm-modal-content-margin;
-  // right: $confirm-modal-content-margin;
+  top: $confirm-modal-content-margin;
+  left: $confirm-modal-content-margin;
+  right: $confirm-modal-content-margin;
   // border: 1px solid $dark-gray;
   // background: rgb(255, 255, 255);
   // border-radius: 3px;
@@ -33,4 +34,7 @@ $confirm-modal-content-margin-lg: 30%;
   width: 100%;
   text-align: center;
   margin-top: 20px;
+  & > .btn {
+    margin-right: 10px;
+  }
 }

@@ -51,7 +51,7 @@ const ModalSavedItemGroup = props => {
   return (
     <div className='modal-saved-items__item-group'>
       <h3 className='modal-item-group__title'>{props.title}</h3>
-      <ul className='modal-item-group__items'>
+      <ul className='modal-item-group__items list--unstyled'>
         {listItems}
       </ul>
     </div>
