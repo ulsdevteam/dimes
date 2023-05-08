@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Button from '../Button'
 import classnames from 'classnames'
-import { t } from '@lingui/macro'
+import { select, t } from '@lingui/macro'
 
 const MyListExportActions = ({ confirmDeleteAll, downloadCsv, emailList, isDownloading }) => (
   <div className='mylist__export-actions'>
@@ -16,7 +16,13 @@ const MyListExportActions = ({ confirmDeleteAll, downloadCsv, emailList, isDownl
       handleClick={emailList} />
     <Button
       className={classnames('btn--orange', 'btn--sm', {'loading-dots': isDownloading})}
-      label={t({ message: isDownloading ? 'Downloading' : 'Download as .CSV' }})}
+      label={t({
+        comment: 'Downloading label',
+        message: select(isDownloading, {
+          true: 'Downloading',
+          other: 'Download as .CSV'
+        })
+      })}
       handleClick={downloadCsv}
       disabled={isDownloading} />
     <Button
