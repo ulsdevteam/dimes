@@ -109,11 +109,8 @@ const PageDigitalObject = () => {
           title='opens in a new window'
           rel='noopener noreferrer'
           ><MaterialIcon icon='get_app' /> Download</a>
-        <div>
-          <a href={itemUrl} className='btn btn--sm btn--black'>
-            <MaterialIcon icon='keyboard_arrow_left' />Back to Item Details
-          </a>
-        </div>
+        <a href={itemUrl} className='btn btn--sm btn--black'>
+          <MaterialIcon icon='keyboard_arrow_left' />Back to Item Details</a>
       </div>
     </div>
   )
