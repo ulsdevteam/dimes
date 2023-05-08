@@ -83,7 +83,7 @@ it('renders with object data', () => {
   })
 
   const item = document.querySelector('.child__list-item')
-  expect(document.querySelector('.btn-add--content')).toBeInTheDocument()
+  expect(document.querySelector('.btn--content')).toBeInTheDocument()
   expect(item.textContent).toContain(child.title)
   expect(item.textContent).toContain(child.dates)
   if (child.description) {
@@ -140,7 +140,7 @@ it('handles list toggle clicks', () => {
             />, container)
   })
 
-  const button = document.querySelector('.btn-add--content')
+  const button = document.querySelector('.btn--content')
 
   act(() => {
     button.dispatchEvent(new MouseEvent('click', { bubbles: true }))

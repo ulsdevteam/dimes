@@ -161,7 +161,7 @@ const RecordsDetail = props => {
     /> : null
     }
     <nav className='records__nav'>
-      <a href={searchUrl} className='btn btn--sm btn--gray btn--back'>
+      <a href={searchUrl} className='btn btn--sm btn--gray'>
         <MaterialIcon icon='keyboard_arrow_left'/>Back to Search
       </a>
     </nav>
@@ -169,15 +169,15 @@ const RecordsDetail = props => {
     {props.item.type === 'object' &&
       <>
       <ListToggleButton
-        className='btn--sm btn--orange btn-add--detail'
+        className='btn--sm btn--orange btn--detail'
         isSaved={isSaved}
         item={props.item}
         toggleSaved={props.toggleInList} />
         {props.item.online &&
           <>
-          <a className='btn btn--sm btn--orange btn-launch--detail'
+          <a className='btn btn--sm btn--orange btn--detail'
             href={`${props.item.uri}/view`}>View Online <MaterialIcon icon='visibility' /></a>
-          <a className='btn btn--sm btn--orange btn-download--detail'
+          <a className='btn btn--sm btn--orange btn--detail'
             href={`${process.env.REACT_APP_S3_BASEURL}/pdfs/${identifier}`}
             target='_blank'
             title='opens in a new window'

@@ -156,11 +156,11 @@
 //   }
 // }
 
-.btn--back {
+// .btn--back {
   // @extend .btn--gray;
   // @extend .btn--sm;
-  margin-bottom: 0;
-}
+  // margin-bottom: 0;
+// }
 
 // .btn--back-item {
 //   // @extend .btn--black;
@@ -177,10 +177,11 @@
 .btn--new-search {
   // @extend .btn--back;
   // @extend .btn--sm;
-  margin-bottom: 0;
-  margin-top: 20px;
+  // margin-bottom: 0;
+  // margin-top: 20px;
+  margin: 20px 0 0 15px;
   position: absolute;
-  margin-left: $gutters-default;
+  // margin-left: $gutters-default;
 }
 
 // .btn--search {
@@ -210,8 +211,9 @@
 .btn--search-more {
   // @extend .btn--orange;
   // @extend .btn--sm;
-  margin-top: 15px;
-  margin-bottom: 40px;
+  margin: 15px 0 40px 0;
+  // margin-top: 15px;
+  // margin-bottom: 40px;
 }
 
 // .btn--dropdown {
@@ -243,38 +245,47 @@
 //TODO: figure out how to make the saved button dark-gray without using @extend
 @mixin records-btn {
   // @extend .btn--sm;
+  margin-right: 10px;
   padding: 8px;
   z-index: 998;
-  &:hover, &:focus {
-    color: $pure-white;
-  }
+  // &:hover, &:focus {
+  //   color: $pure-white;
+  // }
   // & .material-icon {
   //   @include icon-margin-left;
   // }
   // &.saved {
   //   @extend .btn--dark-gray;
-  }
-// }
+  // }
+}
 
-.btn-add--content {
+.btn--content {
   @include records-btn;
-  // @extend .btn--orange;
   @include md-up {
     position: relative;
   }
 }
 
-.btn-launch--content {
-  @include records-btn;
+// .btn-add--content {
+//   @include records-btn;
+  // @extend .btn--orange;
+  // margin-right: 10px;
+  // @include md-up {
+  //   position: relative;
+  // }
+// }
+
+// .btn-launch--content {
+//   @include records-btn;
   // @extend .btn--blue;
-  margin-right: 10px;
-}
+  // margin-right: 10px;
+// }
 
 @mixin records-detail-btn {
   @include records-btn;
   // @extend .btn--orange;
   width: 100%;
-  font-size: 10px;
+  // font-size: 10px;
   margin-bottom: 10px;
   text-align: center;
   @include md-up {
@@ -282,24 +293,33 @@
   }
 }
 
-.btn-add--detail {
+.btn--detail {
   @include records-detail-btn;
-}
-
-.btn-launch--detail {
-  @include records-detail-btn;
-  // @extend .btn--orange;
-  box-sizing: border-box;
+  margin: 0 10px 10px 0;
+  text-align: center;
   @include md-up {
-    margin-right: 10px;
+    width: unset;
   }
 }
 
-.btn-download--detail {
-  @include records-detail-btn;
+// .btn-add--detail {
+//   @include records-detail-btn;
+// }
+
+// .btn-launch--detail {
+//   @include records-detail-btn;
   // @extend .btn--orange;
-  box-sizing: border-box;
-}
+  // box-sizing: border-box;
+  // @include md-up {
+  //   margin-right: 10px;
+  // }
+// }
+
+// .btn-download--detail {
+//   @include records-detail-btn;
+  // @extend .btn--orange;
+  // box-sizing: border-box;
+// }
 
 // .btn--scroll-focused {
 //   & .material-icon {
@@ -311,7 +331,7 @@
   float: right;
   border: none;
   padding: 0px;
-  margin-right: 0px;
+  // margin-right: 0px;
   margin-top: 22px;
 }
 
