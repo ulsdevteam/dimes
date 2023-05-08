@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet'
 import MaterialIcon from '../MaterialIcon'
 import Viewer from '../Viewer'
 import { firePageViewEvent } from '../Helpers'
+import { Trans, t } from '@lingui/macro'
 import './styles.scss'
 
 const PageDigitalObject = ({isMobile}) => {
@@ -103,16 +104,23 @@ const PageDigitalObject = ({isMobile}) => {
         <TargetComponent {...targetProps} />
       </div>
       <div className='viewer-bar__buttons'>
-        <a className='btn btn--sm btn--orange'
-          href={`${process.env.REACT_APP_S3_BASEURL}/pdfs/${id}`}
-          target='_blank'
-          title='opens in a new window'
-          rel='noopener noreferrer'
+        <Trans comment='Download button for digital object'>
+          <a className='btn btn--sm btn--orange'
+            href={`${process.env.REACT_APP_S3_BASEURL}/pdfs/${id}`}
+            target='_blank'
+            title={t({
+              comment: 'Title for new window button',
+              message: 'opens in a new window'
+            })}
+            rel='noopener noreferrer'
           ><MaterialIcon icon='get_app' /> Download</a>
+        </Trans>
         <div>
-          <a href={itemUrl} className='btn btn--sm btn--black'>
-            <MaterialIcon icon='keyboard_arrow_left' />Back to Item Details
-          </a>
+          <Trans comment='Go back to Item details for digital object'>
+            <a href={itemUrl} className='btn btn--sm btn--black'>
+              <MaterialIcon icon='keyboard_arrow_left' />Back to Item Details
+            </a>
+          </Trans>
         </div>
       </div>
     </div>

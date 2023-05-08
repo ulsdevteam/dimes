@@ -13,11 +13,14 @@ import AgentAttributeList from '../AgentAttribute'
 import '../Button/styles.scss'
 import { appendParams, firePageViewEvent } from '../Helpers'
 import './styles.scss'
+import { Trans } from '@lingui/macro'
 
 const AgentNote = ({ source, text }) => (
   text ?
   (<div className={'agent__note'}>
-    <h3 className='agent-note__label'>Description</h3>
+    <Trans>
+      <h3 className='agent-note__label'>Description</h3>
+    </Trans>
     <p className='agent-note__value'>
       {text}
     </p>
@@ -49,7 +52,9 @@ const AgentSidebar = ({ agentType, externalIdentifiers }) => {
   return (
   externalIdentifiers.length ?
   (<div className='agent__sidebar'>
-    <h2 className='agent__section-title'>More about this {agentType}</h2>
+    <Trans>
+      <h2 className='agent__section-title'>More about this {agentType}</h2>
+    </Trans>
     <ul className='unstyled'>{linkList}</ul>
   </div>) : (null)
 )}

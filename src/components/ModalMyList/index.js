@@ -11,6 +11,7 @@ import MaterialIcon from '../MaterialIcon'
 import { ModalSavedItemList } from '../ModalSavedItem'
 import { getFormattedDate } from '../Helpers'
 import './styles.scss'
+import { Trans } from '@lingui/macro'
 
 
 const SubmitListInput = ({ submitList }) => {
@@ -361,7 +362,9 @@ export const DuplicationRequestModal = props => (
     form={
       <>
         <div className='modal-form__intro'>
-          <strong>Please note:</strong> if you want a cost estimate for your order, email an archivist at <a href='mailto:archive@rockarch.org'>archive@rockarch.org</a>.
+          <Trans comment='Note to user about a cost estimate'>
+            <strong>Please note:</strong> if you want a cost estimate for your order, email an archivist at <a href={t({message: 'mailto:archive@rockarch.org'})}>archive@rockarch.org</a>.
+          </Trans>
         </div>
         <Formik
           initialValues={{

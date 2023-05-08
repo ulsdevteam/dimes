@@ -70,7 +70,6 @@ export const ModalMinimap = props => (
         </Trans>
       </h2>
       <button className='modal-header__button' aria-label={t({
-        comment: 'Aria Label for a button to close a modal minimap.',
         message: 'Close'
       })} onClick={props.toggleModal}>
         <MaterialIcon icon='close' />
