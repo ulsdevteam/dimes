@@ -16,12 +16,19 @@ afterEach(() => {
 })
 
 const suggestions = ["foo", "bar"]
+const query = "bananas"
 
-it('renders props correctly', () => {
-  act(() => {render(<SearchNotFound suggestions={suggestions} />, container)})
+it('renders suggestions correctly', () => {
+  act(() => {render(<SearchNotFound suggestions={suggestions} query={query} />, container)})
   const list = document.querySelector('.suggestions')
   expect(list.children.length).toBe(suggestions.length)
   suggestions.map(s => {
     expect(list.textContent).toContain(s)
   })
+})
+
+it('renders missing query correctly', () => {
+  act(() => {render(<SearchNotFound suggestions={suggestions} query={''} />, container)})
+  const text = document.querySelector('.results__not-found--text')
+  expect(text.textContent).toContain('Please add a word or phrase to search for.')
 })
