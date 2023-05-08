@@ -259,27 +259,29 @@
   // }
 }
 
-.btn--content {
+@mixin btn--content {
   @include records-btn;
   @include md-up {
     position: relative;
   }
 }
 
-// .btn-add--content {
-//   @include records-btn;
+.btn-add--content {
+  @include btn--content;
+  // @include records-btn;
   // @extend .btn--orange;
   // margin-right: 10px;
   // @include md-up {
   //   position: relative;
   // }
-// }
+}
 
-// .btn-launch--content {
+.btn-launch--content {
+  @include btn--content;
 //   @include records-btn;
   // @extend .btn--blue;
   // margin-right: 10px;
-// }
+}
 
 @mixin records-detail-btn {
   @include records-btn;
