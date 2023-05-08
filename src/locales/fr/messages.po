@@ -18,14 +18,97 @@ msgstr ""
 msgid "15 Dayton Avenue<0/>Sleepy Hollow, New York<1/>10591"
 msgstr ""
 
+#. New Search button
+#: src/components/PageMyList/index.js:285
+msgid "<0/>Start a New Search"
+msgstr ""
+
+#. Download button for digital object
+#: src/components/PageDigitalObject/index.js:107
+msgid "<0><1/> Download</0>"
+msgstr ""
+
+#. Schedule a visit button
+#: src/components/MyListSidebar/index.js:9
+msgid "<0><1/> Schedule a Visit</0>"
+msgstr ""
+
+#. Go back to Item details for digital object
+#: src/components/PageDigitalObject/index.js:119
+msgid "<0><1/>Back to Item Details</0>"
+msgstr ""
+
+#. Social Icons Titles
+#: src/components/SocialIcons/index.js:6
+msgid "<0><1><2><3><4>Twitter Logo</4><5/></3></2></1><6><7><8><9>Facebook Logo</9><10/></8></7></6><11><12><13><14>Instagram Logo</14><15/></13></12></11><16><17><18><19>YouTube Logo</19><20/></18></17></16><21><22><23><24>Flickr Logo</24><25><26><27><28/><29/></27></26></25></23></22></21></0>"
+msgstr ""
+
+#. Page Home
+#: src/components/PageHome/index.js:10
+msgid "<0><1>DIMES: Online Collections and Catalog of Rockefeller Archive Center</1></0><2><3/><4/></2>"
+msgstr ""
+
+#. Page Not Found
+#: src/components/PageNotFound/index.js:9
+msgid "<0><1>Page Not Found</1></0><2><3><4/></3><5>Sorry, the requested page was not found!</5><6>Try <7>a search</7> to find what you're looking for.</6></2>"
+msgstr ""
+
+#. Page Backend Error
+#: src/components/PageBackendError/index.js:10
+msgid "<0><1>Page Not Found</1></0><2><3><4/></3><5>There was an error fetching data.</5><6>The request to {0} failed.</6><7>To report this problem, send us an email at <8>archive@rockarch.org</8>.</7><9>Error message:</9><10>{1}: {2}</10>{3}{4}</2>"
+msgstr ""
+
+#. Page Title for user's list
+#: src/components/PageMyList/index.js:278
+msgid "<0>DIMES: My List</0>"
+msgstr ""
+
+#: src/components/PageAgent/index.js:21
+msgid "<0>Description</0>"
+msgstr ""
+
+#. Search not found tips
+#: src/components/SearchNotFound/index.js:19
+msgid "<0>Have you tried doing the following:</0><1><2>Check for spelling errors or typos</2><3>Use fewer keywords</3><4>Clear search filter options</4></1>"
+msgstr ""
+
+#. Suggested terms message
+#: src/components/SearchNotFound/index.js:29
+msgid "<0>Here are some suggested search terms:</0>"
+msgstr ""
+
 #. The about section for minimaps.
 #: src/components/ModalMinimap/index.js:9
 msgid "<0>Jump to a part of the collection containing matches by clicking on an active square.</0><1>In the minimap diagram, each square represents part of this collection. Colored squares represent parts that contain one or more matches for your search.</1>"
 msgstr ""
 
+#: src/components/PageAgent/index.js:55
+msgid "<0>More about this {agentType}</0>"
+msgstr ""
+
+#. Header for user's list
+#: src/components/PageMyList/index.js:292
+msgid "<0>My List</0>"
+msgstr ""
+
+#. No search terms supplied message
+#: src/components/SearchNotFound/index.js:42
+msgid "<0>Please add a word or phrase to search for.</0>"
+msgstr ""
+
+#. Note to user about a cost estimate
+#: src/components/ModalMyList/index.js:365
+msgid "<0>Please note:</0> if you want a cost estimate for your order, email an archivist at <1>archive@rockarch.org</1>."
+msgstr ""
+
 #. The introduction for minimaps.
 #: src/components/ModalMinimap/index.js:15
 msgid "<0>The minimap is a new feature that allows you to quickly jump to search matches in a collection by clicking on an active square.</0><1>In the minimap diagram, each square represents part of this collection. Colored squares represent parts that contain one or more matches for your search.</1>"
+msgstr ""
+
+#. Message for showing an error for a request
+#: src/components/PageMyList/index.js:132
+msgid "<0>There was an error submitting your request.</0><1>The request to {0} failed with the message {1}: {2}.</1><2>{3}</2>"
 msgstr ""
 
 #. Accessibility Statement message
@@ -55,6 +138,16 @@ msgstr ""
 msgid "Add to List"
 msgstr ""
 
+#. Message while page loads for email submissions
+#: src/components/PageMyList/index.js:143
+msgid "Adding items to your message"
+msgstr ""
+
+#. Confirmation to delete all items from list
+#: src/components/PageMyList/index.js:358
+msgid "Are you sure you want to remove all the items from your list?<0><1/><2/></0>"
+msgstr ""
+
 #. Bulk Data Download message
 #: src/components/Footer/index.js:149
 msgid "Bulk data download"
@@ -67,16 +160,20 @@ msgstr ""
 
 #. Aria Label for a button to close a modal.
 #. Aria Label for a button to close modal minimap info.
-#. Aria Label for a button to close a modal minimap.
 #: src/components/ModalConfirm/index.js:17
-#: src/components/ModalMinimap/index.js:31
-#: src/components/ModalMinimap/index.js:68
+#: src/components/ModalMinimap/index.js:35
+#: src/components/ModalMinimap/index.js:72
 msgid "Close"
 msgstr ""
 
 #. Collections data API message
 #: src/components/Footer/index.js:137
 msgid "Collections data API"
+msgstr ""
+
+#. Remove all confrimation title
+#: src/components/PageMyList/index.js:371
+msgid "Confirm Remove All"
 msgstr ""
 
 #. Copyright message
@@ -95,8 +192,15 @@ msgid "E-mail:<0>archive@rockarch.org</0>"
 msgstr ""
 
 #. Message shown on button within Dropdown list
+#. Email list label
 #: src/components/Dropdown/index.js:93
+#: src/components/MyListExportActions/index.js:11
 msgid "Email List"
+msgstr ""
+
+#. Page Title when showing an error for a request
+#: src/components/PageMyList/index.js:128
+msgid "Error submitting request"
 msgstr ""
 
 #. Company Fax
@@ -124,7 +228,7 @@ msgstr ""
 #. Header for modal minimap
 #: src/components/Minimap/index.js:79
 #: src/components/Minimap/index.js:83
-#: src/components/ModalMinimap/index.js:64
+#: src/components/ModalMinimap/index.js:68
 msgid "Minimap"
 msgstr ""
 
@@ -136,13 +240,23 @@ msgstr ""
 #. Message shown on button within Dropdown list
 #. Message shown on button within the Header
 #: src/components/Dropdown/index.js:150
-#: src/components/Header/index.js:34
+#: src/components/Header/index.js:33
 msgid "My List"
 msgstr ""
 
 #. Comapny Phonenumber
 #: src/components/Footer/index.js:30
 msgid "Phone: (914) 366-6300"
+msgstr ""
+
+#. Page Title for sending an Aeon request
+#: src/components/PageMyList/index.js:98
+msgid "Preparing Request Data"
+msgstr ""
+
+#. Message while page loads for Aeon submissions
+#: src/components/PageMyList/index.js:102
+msgid "Preparing items for your request"
 msgstr ""
 
 #. Privacy Policy message
@@ -166,7 +280,9 @@ msgid "Remove"
 msgstr ""
 
 #. Message shown on button within Dropdown list
+#. Remove all items label
 #: src/components/Dropdown/index.js:111
+#: src/components/MyListExportActions/index.js:30
 msgid "Remove All Items"
 msgstr ""
 
@@ -210,15 +326,25 @@ msgstr ""
 msgid "See holiday schedule"
 msgstr ""
 
-#. Show|Hide More Button
+#. Page Title for sending an email
+#: src/components/PageMyList/index.js:139
+msgid "Sending Email"
+msgstr ""
+
+#. Aria label for Show|Hide More Button
 #: src/components/Facet/index.js:12
 msgid "Show all values"
 msgstr ""
 
 #. Message shown on sign-in button
 #: src/components/Dropdown/index.js:138
-#: src/components/Header/index.js:29
+#: src/components/Header/index.js:28
 msgid "Sign in to RACcess"
+msgstr ""
+
+#. Skip Link
+#: src/components/SkipLink/index.js:7
+msgid "Skip to main content"
 msgstr ""
 
 #. Aria label for Calendar button
@@ -237,7 +363,7 @@ msgid "Take-down policy"
 msgstr ""
 
 #. Subtitle displayed within the Header
-#: src/components/Header/index.js:18
+#: src/components/Header/index.js:17
 msgid "The Online Collection and Catalog of Rockefeller Archive Center"
 msgstr ""
 
@@ -247,7 +373,7 @@ msgid "View minimap"
 msgstr ""
 
 #. Title displayed within the Header
-#: src/components/Header/index.js:13
+#: src/components/Header/index.js:12
 msgid "dimes.rockarch.org"
 msgstr ""
 
@@ -279,8 +405,13 @@ msgstr ""
 #. Link used for sign-in within Dropdown list
 #. Link used for sign-in within the Header
 #: src/components/Dropdown/index.js:143
-#: src/components/Header/index.js:25
+#: src/components/Header/index.js:24
 msgid "https://raccess.rockarch.org"
+msgstr ""
+
+#. Aeon access point
+#: src/components/PageMyList/index.js:109
+msgid "https://raccess.rockarch.org/aeon.dll"
 msgstr ""
 
 #. Accessibility Statement Link
@@ -305,12 +436,18 @@ msgstr ""
 
 #. Company Email link
 #: src/components/Footer/index.js:39
+#: src/components/PageBackendError/index.js:19
 msgid "mailto:archive@rockarch.org"
 msgstr ""
 
 #. Tooltip for button
 #: src/components/Dropdown/index.js:68
 msgid "opens email"
+msgstr ""
+
+#. Title for new window button
+#: src/components/PageDigitalObject/index.js:111
+msgid "opens in a new window"
 msgstr ""
 
 #. Message shown on list is closed
@@ -344,4 +481,9 @@ msgstr ""
 #. Pluralization of match(es)
 #: src/components/Helpers.js:57
 msgid "{hitCount, plural, one {match} other {matches}}"
+msgstr ""
+
+#. Downloading label
+#: src/components/MyListExportActions/index.js:19
+msgid "{isDownloading, select, true {Downloading} other {Download as .CSV}}"
 msgstr ""
