@@ -32,8 +32,7 @@ const AgentRelatedCollections = ({ agentTitle, collections, params }) => (
     <CardList
       hideHitCount
       items={collections}
-      params={{...params, query: agentTitle}}
-      cardClassName='card--related-collections'/>
+      params={{...params, query: agentTitle}}/>
     { collections.length === 6 ?
       (<a href={`/search?query=${agentTitle}&category=collection`} className='btn btn--sm btn--orange btn--search-more'>Search More Related Collections</a>) :
       (null)
@@ -226,7 +225,7 @@ const PageAgent = () => {
         <div className='agent__wrapper'>
           <nav className="agent__nav">
             <a href={appendParams('/search', params)} className='btn btn--sm btn--gray btn--back'>
-              <span className='material-icon'>keyboard_arrow_left</span>Back to Search
+              <span className='material-icon material-icon--space-after'>keyboard_arrow_left</span>Back to Search
             </a>
           </nav>
           <main id='main' role='main'>

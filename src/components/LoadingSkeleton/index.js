@@ -79,7 +79,7 @@ export const AgentRelatedCollectionsSkeleton = () => (
     {Array(6)
       .fill()
       .map((item, index) => (
-        <li className='card card--related-collections' key={index}>
+        <li className='card' key={index}>
           <Skeleton />
           <h2 className='card__title'>
             <Skeleton count={3}/>
