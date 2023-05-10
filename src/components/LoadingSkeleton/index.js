@@ -3,7 +3,7 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 export const SearchSkeleton = () => (
-  <ul className='card-list'>
+  <ul className='card-list list--unstyled'>
     {Array(8)
       .fill()
       .map((item, index) => (
@@ -56,7 +56,7 @@ export const MyListSkeleton = () => (
   )}
   </React.Fragment>
 )
-
+// TODO: add a loading skeleton for the agent sidebar
 export const AgentAttributeSkeleton = () => (
   <div className='agent__attributes'>
     {Array(4)
@@ -75,7 +75,7 @@ export const AgentAttributeSkeleton = () => (
 )
 
 export const AgentRelatedCollectionsSkeleton = () => (
-  <ul className='card-list'>
+  <ul className='card-list list--unstyled card--related-collections'>
     {Array(6)
       .fill()
       .map((item, index) => (

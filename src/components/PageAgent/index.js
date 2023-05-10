@@ -30,6 +30,7 @@ const AgentRelatedCollections = ({ agentTitle, collections, params }) => (
   (<div className='agent__related'>
     <h2 className='agent__section-title heading--dotted-border'>Collections Related to {agentTitle}</h2>
     <CardList
+      className='card--related-collections'
       hideHitCount
       items={collections}
       params={{...params, query: agentTitle}}/>

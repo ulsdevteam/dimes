@@ -34,7 +34,7 @@ const Card = ({ category, className, date, hit_count, online_hit_count, params, 
     </div>
   </li>)
 
-const CardList = ({ items, params, cardClassName }) => {
+const CardList = ({ items, params, cardClassName, className }) => {
   const listItems = items.map(item =>
     <Card
       key={item.uri}
@@ -44,7 +44,7 @@ const CardList = ({ items, params, cardClassName }) => {
       date={item.dates?.length ? item.dates.map(d => d.expression).join(', ') : null} />
   )
   return (
-    <ul className='card-list'>
+    <ul className={classnames('card-list list--unstyled', className)}>
       {listItems}
     </ul>
   )
@@ -53,7 +53,7 @@ const CardList = ({ items, params, cardClassName }) => {
 CardList.propTypes = {
   items: PropTypes.array.isRequired,
   params: PropTypes.object,
-  cardClassName: PropTypes.string
+  cardClassName: PropTypes.string,
 }
 
 export default CardList
