@@ -32,7 +32,7 @@ const Footer = () => (
       </div>
     </div>
     <div className='footer-secondary'>
-      <div className='container grid'>
+      <div className='grid'>
         <ul className='footer-secondary__list'>
           <li className='footer-secondary__list-item'>
             <a className='footer-secondary__link' href='https://docs.rockarch.org/argo-docs/'>Collections data API</a>

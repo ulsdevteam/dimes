@@ -225,7 +225,7 @@ const PageAgent = () => {
       <div className='container--full-width'>
         <div className='agent__wrapper'>
           <nav className="agent__nav">
-            <a href={appendParams('/search', params)} className='btn btn--sm btn--gray btn--back'>
+            <a href={appendParams('/search', params)} className='btn btn--sm btn--gray'>
               <span className='material-icon material-icon--space-after'>keyboard_arrow_left</span>Back to Search
             </a>
           </nav>
