@@ -54,10 +54,9 @@
   }
 }
 
-// TODO: remove `display: flex` once that change gets deployed in style library
 .input-group__search-controls {
   // @extend .input-group__search;
-  display: flex;
+  // display: flex;
   // justify-content: flex-start;
   // flex-wrap: wrap;
   // margin-top: 20px;
@@ -100,9 +99,6 @@
   height: 46px;
 }
 
-//TODO: Where is this in the HTML? Our Style Library uses
-// .select__search--wrapper class, but can't find this in the HTML
-// to update it. Is it part of imported component styles?
 .select__search__wrapper {
   display: none;
   margin-right: 14px;

@@ -14,11 +14,9 @@ const Button = props => (
     aria-expanded={props.ariaExpanded}
     aria-pressed={props.ariaPressed}
     disabled={props.disabled} >
-      {/* TODO: option for material-icon--space-after for material icon */}
     { props.iconBefore &&
       <MaterialIcon icon={props.iconBefore} className='material-icon--space-after' />} {props.label} {props.iconAfter && <MaterialIcon icon={props.iconAfter} className='material-icon--space-before' />}
   </button>)
-  
 
 Button.propTypes = {
   type: PropTypes.oneOf(['button', 'submit', 'reset']),

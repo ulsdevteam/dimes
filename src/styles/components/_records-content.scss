@@ -273,6 +273,7 @@
 
 .child__text {
   font-size: 14px;
+  font-weight: $font-weight-normal;
   order: 2;
   @include md-up {
     order: unset

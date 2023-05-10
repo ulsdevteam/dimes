@@ -162,7 +162,7 @@ const RecordsDetail = props => {
     }
     <nav className='records__nav'>
       <a href={searchUrl} className='btn btn--sm btn--gray'>
-        <MaterialIcon icon='keyboard_arrow_left'/>Back to Search
+        <MaterialIcon icon='keyboard_arrow_left' className='material-icon--space-after'/>Back to Search
       </a>
     </nav>
     <h1 className='records__title'>{props.isItemLoading ? <Skeleton /> : props.item.title }</h1>
