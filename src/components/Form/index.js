@@ -55,7 +55,7 @@ export const FormGroup = (props) => {
         aria-describedby={describedBy()}
         aria-required={required} />
       { type === 'checkbox' && <label htmlFor={name}>{label}</label> }
-      { helpText && <p className='help-text' id={`desc-${name}`}>{helpText}</p> }
+      { helpText && <p className='input__help-text' id={`desc-${name}`}>{helpText}</p> }
       <ErrorMessage id={`${name}-error`} name={name} component='div' className='input__error' />
     </div>
   )

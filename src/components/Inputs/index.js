@@ -93,7 +93,7 @@ export const DateInput = props => (
       <DatePickerTable className='dp__table' />
     </DatePickerCalendar>
   </DatePicker>
-  {props.helpText && <p className='help-text' aria-describedby={`desc-${props.id}`}>{props.helpText}</p>}
+  {props.helpText && <p className='input__help-text' aria-describedby={`desc-${props.id}`}>{props.helpText}</p>}
   </>
 )
 
