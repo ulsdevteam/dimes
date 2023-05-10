@@ -5,6 +5,7 @@ import Button from '../Button'
 import Facet from '../Facet'
 import { YearInput } from '../Inputs'
 import './styles.scss'
+import { Plural, Trans, t } from '@lingui/macro'
 
 export const FacetModal = props => {
   var [startYear, setStartYear] = useState(0)
@@ -40,11 +41,16 @@ export const FacetModal = props => {
       closeTimeoutMS={200} >
       <div className='modal-header--search'>
         <h2 className='modal-header__title' aria-live='polite' aria-atomic='true'>
-          {`Filter ${props.resultsCount} Search ${props.resultsCount === 1 ? 'Result': 'Results'}`}
+          <Trans comment='Filter results message'>
+            <Plural value={props.resultsCount} one="Filter # Search Result" other="Filter # Results"/>
+          </Trans>
         </h2>
         <Button
           className='btn--blue btn--sm'
-          aria-label='Close'
+          aria-label={t({
+            comment: 'aria label for close',
+            message: 'Close'
+          })}
           label='Save &amp; Close'
           handleClick={props.toggleModal} />
       </div>

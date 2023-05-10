@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import MaterialIcon from '../MaterialIcon'
 import Button from '../Button'
-import { Trans } from '@lingui/macro'
+import { Trans, t } from '@lingui/macro'
 
 const MyListSidebar = ({ duplicationRequest, readingRoomRequest }) => (
   <aside className='mylist__sidebar'>
