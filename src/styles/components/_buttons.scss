@@ -134,15 +134,15 @@
 //   }
 // }
 
-// .btn--dark-gray {
-//   background: $light-med-gray;
-//   color: $pure-white;
-//   border: 1px solid $light-med-gray;
-//   &:hover {
-//     background: darken($light-med-gray, 5%);
-//     color: $pure-white;
-//   }
-// }
+.btn--dark-gray {
+  background: $light-med-gray;
+  color: $pure-white;
+  border: 1px solid $light-med-gray;
+  &:hover {
+    background: darken($light-med-gray, 5%);
+    color: $pure-white;
+  }
+}
 
 // .btn--black {
 //   background: $pure-black;
@@ -242,7 +242,6 @@
   }
 }
 
-//TODO: figure out how to make the saved button dark-gray without using @extend
 @mixin records-btn {
   // @extend .btn--sm;
   margin-right: 10px;
@@ -254,9 +253,9 @@
   // & .material-icon {
   //   @include icon-margin-left;
   // }
-  // &.saved {
-  //   @extend .btn--dark-gray;
-  // }
+  &.saved {
+    @extend .btn--dark-gray;
+  }
 }
 
 @mixin btn--content {
