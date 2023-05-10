@@ -11,7 +11,7 @@ import MaterialIcon from '../MaterialIcon'
 import { ModalSavedItemList } from '../ModalSavedItem'
 import { getFormattedDate } from '../Helpers'
 import './styles.scss'
-import { Trans } from '@lingui/macro'
+import { Trans, t } from '@lingui/macro'
 
 
 const SubmitListInput = ({ submitList }) => {
