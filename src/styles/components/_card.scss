@@ -128,13 +128,13 @@
 .card__type-label {
   @include card-type-label-text;
 
-  margin-top: 0;
+  margin: 0;
   order: 0;
   & .material-icon {
     font-size: 12px;
     padding-right: 6px;
     float: left;
-    // line-height: inherit;
+    line-height: inherit;
   }
   & svg {
     box-sizing: unset;
