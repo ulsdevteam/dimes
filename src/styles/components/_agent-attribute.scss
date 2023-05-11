@@ -1,18 +1,18 @@
 @import "../styles";
 
 .agent__attributes {
-  // width: 100%;
-  // display: flex;
+  width: 100%;
+  display: flex;
   // margin-left: -$gutters-default;
   // margin-right: -$gutters-default;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 15px;
+  column-gap: 15px;
 }
 
-.agent-attribute, .agent-note {
+.agent-attribute {
   // @include grid-column(12);
   margin-bottom: 24px;
+  min-width: 18%;
+  flex-grow: 1;
   // @include md-up  {
     // @include grid-column(4);
   // }
