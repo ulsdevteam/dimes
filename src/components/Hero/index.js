@@ -1,11 +1,10 @@
 import React from 'react'
-import logo from '../../assets/homepage_logo.png'
 import './styles.scss'
 
 const Hero = () => (
   <div className='hero'>
     <div className='hero__logo'>
-      <img aria-hidden='true' alt='' src={logo} />
+      <img alt='' src='https://assets.rockarch.org/assets/img/hero_logo.svg' />
     </div>
     <h1 className='hero__text'>
       Search Our Collections.<br />Discover People and Organizations.<br />Access Digital Content.
