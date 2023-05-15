@@ -78,7 +78,7 @@ const PanelFoundInSection = ({ ancestors, isItemLoading, params }) => (
   ancestors.title ?
     (<div className='panel__section'>
       <h3 className='panel__heading'>Found In</h3>
-      <ul className='found-in'>
+      <ul className='found-in list--unstyled'>
       {isItemLoading ?
         (<FoundInItemSkeleton/>) :
         (<FoundInItem
@@ -176,13 +176,13 @@ const RecordsDetail = props => {
         {props.item.online &&
           <>
           <a className='btn btn--sm btn--orange btn--detail'
-            href={`${props.item.uri}/view`}>View Online <MaterialIcon icon='visibility' /></a>
+            href={`${props.item.uri}/view`}>View Online <MaterialIcon icon='visibility' className='material-icon--space-before' /></a>
           <a className='btn btn--sm btn--orange btn--detail'
             href={`${process.env.REACT_APP_S3_BASEURL}/pdfs/${identifier}`}
             target='_blank'
             title='opens in a new window'
             rel='noopener noreferrer'
-            >Download <MaterialIcon icon='get_app' /></a>
+            >Download <MaterialIcon icon='get_app' className='material-icon--space-before' /></a>
             { props.downloadSize ?
               <p className='panel__text'>{`Acrobat PDF, ${props.downloadSize}`}</p> :
               <p className='panel__text'><Skeleton/></p> }

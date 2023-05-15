@@ -28,9 +28,11 @@
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
-  margin-bottom: 10px;
   @include md-up  {
     margin-top: 30px;
+  }
+  a {
+    margin-bottom: 0;
   }
 }
 
@@ -52,10 +54,9 @@
 }
 
 .found-in {
+  box-sizing: content-box;
   font-family: $sans-serif-stack;
   font-size: 13px;
-  list-style: none;
-  padding-left: 0;
   margin-top: 0;
   & svg {
     width: 13px;

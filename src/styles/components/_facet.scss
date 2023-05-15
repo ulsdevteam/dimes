@@ -4,6 +4,7 @@
 * Styles for search facets
 * 1. Positions legend inside fieldset instead of on top border line.
 * 2. Top padding calculated from top of facet items.
+* 3. Remove default fieldset margin
 **/
 .modal__body--search fieldset {
   position: relative; /* 1 */
@@ -15,6 +16,7 @@
   border-top: 1px solid $light-blue;
   // padding: 20px 40px 30px 40px;
   padding: 44px 40px 30px 40px; /* 2 */
+  margin-left: 0; /* 3 */
 }
 
 .facet:first-child {
@@ -23,7 +25,7 @@
 
 .facet legend {
   position: absolute; /* 1 */
-  top: 14px;
+  top: 20px;
   padding: 0px;
 }
 
@@ -37,6 +39,8 @@
 .facet__items {
   overflow: hidden;
   transition: $transition-default;
+  display: flex;
+  flex-direction: column;
 }
 
 // .facet__input {

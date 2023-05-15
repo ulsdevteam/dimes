@@ -49,11 +49,14 @@
   width: 100%;
   order: 1;
   margin-left: -37px;
-  margin-top: 10px;
   @include lg-up {
     width: unset;
     order: 0;
     margin-left: 0;
+  }
+  h2 {
+    border: none;
+    padding-bottom: 0;
   }
 }
 
