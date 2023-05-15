@@ -8,12 +8,12 @@
   right: 0;
   background: $pure-black;
   z-index: 998;
-  @include md-up {
-    top: 70px;
-  }
-  @include lg-up {
-    top: 60px;
-  }
+  // @include md-up {
+  //   top: 70px;
+  // }
+  // @include lg-up {
+  //   top: 60px;
+  // }
 }
 
 .mosaic-tile {
