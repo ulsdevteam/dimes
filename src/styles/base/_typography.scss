@@ -223,7 +223,7 @@
   margin-bottom: 30px;
   font-family: $sans-serif-stack;
   font-size: 24px;
-  color: $deep-navy;
+  color: $regal-blue;
   @include lg-up {
     font-size: 28px;
   }
@@ -239,14 +239,14 @@
   margin-bottom: 40px;
   font-family: $sans-serif-stack;
   font-size: 16px;
-  color: $dark-gray;
+  color: $night-grey;
 }
 
 .agent__section-title {
   text-transform: uppercase;
   font-family: $sans-serif-stack;
   font-size: 14px;
-  color: $deep-navy;
+  color: $regal-blue;
   padding-bottom: 12px;
   letter-spacing: 2px;
 }
@@ -258,13 +258,13 @@
   letter-spacing: 0.65px;
   text-transform: uppercase;
   margin: 0px;
-  color: $dark-gray;
+  color: $night-grey;
 }
 
 .agent-attribute__value, .agent-note__value, .agent-note__source {
   font-family: $sans-serif-stack;
   font-size: 16px;
-  color: $dark-gray;
+  color: $night-grey;
   line-height: 25px;
 }
 

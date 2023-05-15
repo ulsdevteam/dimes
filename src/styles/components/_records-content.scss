@@ -15,7 +15,7 @@
 }
 
 .loading {
-  background: $dark-gray;
+  background: $night-grey;
   opacity: 0.8;
   top: 60px;
   bottom: 58px;
@@ -38,20 +38,20 @@
 
 .loading__text {
   font-size: 75px;
-  color: $pure-white;
+  color: $white;
 }
 
 .content__title {
   font-family: $sans-serif-stack;
   font-size: 24px;
-  color: $deep-navy;
-  border-bottom: 1px dotted $deep-navy;
+  color: $regal-blue;
+  border-bottom: 1px dotted $regal-blue;
   margin-top: 0;
 }
 
 .collection__title {
   font-size: 21px;
-  color: $dark-gray;
+  color: $night-grey;
   margin-bottom: 0;
 }
 
@@ -66,7 +66,7 @@
   position: relative;
   &::before {
     content: "";
-    background: $orange-gray;
+    background: $silver-grey;
     width: 3px;
     height: 100%;
     position: absolute;
@@ -84,7 +84,7 @@
 }
 
 .child__list--bottom-level {
-  background-color: $pure-white;
+  background-color: $white;
   padding-left: 0px;
   &::before {
     content: none;
@@ -97,13 +97,13 @@
 }
 
 .child__list-accordion--bottom-level {
-  border: 3px solid $orange-gray;
+  border: 3px solid $silver-grey;
   margin-bottom: 15px;
   &:hover {
-    border-color: $red-orange;
+    border-color: $crusta-orange;
   }
   &:focus-within {
-    border-color: $deep-navy;
+    border-color: $regal-blue;
   }
 }
 
@@ -124,17 +124,17 @@
   position: relative;
   padding: 20px;
   &:focus-within, &.active {
-    border-color: $deep-navy;
+    border-color: $regal-blue;
   }
 }
 
 .child__list-item--object {
-  border-bottom: 1px solid $neutral-sand;
+  border-bottom: 1px solid $wan-white-grey;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   &:first-child {
-    border-top: 1px solid $neutral-sand;
+    border-top: 1px solid $wan-white-grey;
   }
   &:focus-within, &:hover, .active {
     background: $blue-gray;
@@ -143,9 +143,9 @@
 
 .child__list-item--collection {
   margin-bottom: 12px;
-  border: 3px solid $orange-gray;
+  border: 3px solid $silver-grey;
   border-radius: 3px;
-  box-shadow: 0 0 4px $light-gray;
+  box-shadow: 0 0 5px $wan-white-grey;
   & .material-icon {
     position: absolute;
     top: 15px;
@@ -156,15 +156,15 @@
     content: "";
     width: 9px;
     height: 3px;
-    border-bottom: 3px solid $orange-gray;
+    border-bottom: 3px solid $silver-grey;
     position: absolute;
     top: 20px;
     left: -12px;
   }
   &:hover {
-    border-color: $red-orange;
+    border-color: $crusta-orange;
     & .material-icon {
-      color: $red-orange;
+      color: $crusta-orange;
     }
   }
   &:hover.active {

@@ -12,8 +12,8 @@
   float: left;
   width: 100%;
   min-height: 100%;
-  background-color: $off-white;
-  border-top: 1px solid $neutral-sand;
+  background-color: $desert-grey;
+  border-top: 1px solid $wan-white-grey;
   padding: 30px 20px 18px;
   // box-sizing: border-box;
   font-size: 14px;
@@ -39,7 +39,7 @@
 
 .modal-form input, .modal-form textarea, .modal-form .select__modal__control {
   width: 100%;
-  border: 1px solid $dark-gray;
+  border: 1px solid $night-grey;
   padding: 10px;
   // box-sizing: border-box;
   &[type=checkbox] {
@@ -85,7 +85,7 @@
 // }
 
 .modal-form .is-invalid {
-    border: 1px solid $burnt-orange;
+    border: 1px solid $flame-orange;
 }
 
 .modal-form__buttons {

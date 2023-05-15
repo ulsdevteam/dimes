@@ -8,15 +8,15 @@
   height: 100vh;
   border-radius: 0px;
   // border: 1px solid $dark-gray;
-  background-color: $pale-blue;
+  background-color: $solitude-blue;
   @include md-up {
     width: 420px;
   }
 }
 
 .modal__header--search {
-  color: $deep-navy;
-  background-color: $pale-blue;
+  color: $regal-blue;
+  background-color: $solitude-blue;
   padding: 30px 30px 20px;
   height: auto;
   // float: left;

@@ -9,7 +9,7 @@
 .saved-items__empty {
   // @include grid-column(12);
   display: inline-block;
-  border-top: 1px dotted $faded-navy;
+  border-top: 1px dotted $regal-blue;
   font-family: $sans-serif-stack;
   width: 98%;
 }
@@ -68,10 +68,10 @@
   // color: $dark-gray;
   // line-height: 16px;
   & a {
-    color: $dark-gray;
+    color: $night-grey;
     &:hover,
     &:focus {
-      color: $red-orange;
+      color: $crusta-orange;
     }
   }
 }

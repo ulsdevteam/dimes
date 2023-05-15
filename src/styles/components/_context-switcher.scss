@@ -26,11 +26,11 @@
   opacity: 0;
   @include md-up {
     opacity: 1;
-    background: $off-white;
-    color: $dark-gray;
+    background: $desert-grey;
+    color: $night-grey;
     &:hover, &:focus {
-      background: $neutral-sand;
-      color: $dark-gray;
+      background: $wan-white-grey;
+      color: $night-grey;
     }
   }
 }

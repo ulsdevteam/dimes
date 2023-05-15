@@ -135,12 +135,12 @@
 // }
 
 .btn--dark-gray {
-  background: $light-med-gray;
-  color: $pure-white;
-  border: 1px solid $light-med-gray;
+  background: $dark-grey;
+  color: $white;
+  border: 1px solid $dark-grey;
   &:hover {
-    background: darken($light-med-gray, 5%);
-    color: $pure-white;
+    background: darken($dark-grey, 5%);
+    color: $white;
   }
 }
 

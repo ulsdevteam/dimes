@@ -3,7 +3,7 @@
 
 .modal-saved-items__item-group {
   // @include grid-column(12);
-  border-top: 1px dotted $faded-navy;
+  border-top: 1px dotted $regal-blue;
   // font-family: $sans-serif-stack;
   margin-left: 15px;
   &:first-of-type {
@@ -15,7 +15,7 @@
   // list-style: none;
   // padding-left: 0;
   font-weight: $font-weight-bold;
-  color: $dark-gray;
+  color: $night-grey;
 }
 
 .modal-item-group__items label {

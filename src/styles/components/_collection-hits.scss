@@ -7,7 +7,7 @@
 
 .collection-hits__info {
   @include collection-hits-text;
-  border-top: 1px solid $neutral-sand;
+  border-top: 1px solid $wan-white-grey;
   padding: 30px;
 }
 
@@ -16,7 +16,7 @@
   font-size: 12px;
   font-weight: $font-weight-bold;
   text-transform: uppercase;
-  color: $dark-gray;
+  color: $night-grey;
   letter-spacing: 0.5px;
   float: left;
   width: 100%;
@@ -44,15 +44,15 @@
   width: 100%;
   padding: 32px 30px;
   box-sizing: border-box;
-  border-top: 1px solid $neutral-sand;
+  border-top: 1px solid $wan-white-grey;
   &:last-of-type {
-    border-bottom: 1px solid $neutral-sand;
+    border-bottom: 1px solid $wan-white-grey;
   }
 }
 
 .collection-child__title {
   @include collection-hits-text;
   font-size: 18px;
-  color: $dark-gray;
+  color: $night-grey;
   margin: 0;
 }

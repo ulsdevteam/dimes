@@ -9,18 +9,18 @@
 }
 
 .accordion__button {
-  border-bottom: 1px dotted $deep-navy;
+  border-bottom: 1px dotted $regal-blue;
   font-family: inherit;
   font-size: 14px;
   text-transform: uppercase;
   font-weight: $font-weight-bold;
   letter-spacing: 2px;
-  color: $deep-navy;
+  color: $regal-blue;
   padding: 12px 0px;
   cursor: pointer;
   &:focus {
     outline: none;
-    border-bottom: 1px solid $deep-navy;
+    border-bottom: 1px solid $regal-blue;
     font-weight: $font-weight-heavy;
   }
   &::after {
@@ -44,7 +44,7 @@
   font-family: inherit;
   font-size: 12px;
   font-weight: $font-weight-extra-bold;
-  color: $dark-gray;
+  color: $night-grey;
   letter-spacing: 0.7px;
   text-transform: uppercase;
   margin-bottom: 5px;
@@ -54,18 +54,18 @@
 .panel__text {
   font-family: inherit;
   font-size: 15px;
-  color: $dark-gray;
+  color: $night-grey;
   line-height: inherit;
   white-space: pre-line;
 }
 
 .panel__text a {
-  color: $dark-gray;
+  color: $night-grey;
   // text-decoration: underline;
   // font-weight: $font-weight-normal;
-  &:hover, &:focus {
-    color: $red-orange;
-  }
+  // &:hover, &:focus {
+  //   color: $crusta-orange;
+  // }
 }
 
 .panel__text--narrative {

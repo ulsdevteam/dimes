@@ -2,7 +2,7 @@
 @import "./buttons";
 
 .records__detail {
-  background-color: $off-white;
+  background-color: $desert-grey;
   width: 100%;
   height: 100%;
   padding: 0px 30px 110px 30px;
@@ -39,7 +39,7 @@
 .records__title {
   font-family: $sans-serif-stack;
   font-size: 28px;
-  color: $deep-navy;
+  color: $regal-blue;
 }
 
 .panel__section {
@@ -62,7 +62,7 @@
     width: 13px;
     vertical-align: middle;
     padding-right: 2px;
-    fill: $deep-navy;
+    fill: $regal-blue;
   }
 }
 

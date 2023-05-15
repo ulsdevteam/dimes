@@ -13,7 +13,7 @@
 .facet {
   // font-family: $sans-serif-stack;
   // font-size: 14px;
-  border-top: 1px solid $light-blue;
+  border-top: 1px solid $water-blue;
   // padding: 20px 40px 30px 40px;
   padding: 44px 40px 30px 40px; /* 2 */
   margin-left: 0; /* 3 */
@@ -52,23 +52,21 @@
   // }
 // }
 
-//TODO: update color name/value
 .facet input[type=number] {
   padding: 7px 12px;
   width: 80px;
   float: left;
   margin-right: 13px;
   border-radius: 3px;
-  border: 1px solid $dark-gray;
+  border: 1px solid $night-grey;
   box-sizing: border-box;
 }
 
-// TODO: update color name/value
 .facet__show-hide {
   font-family: $sans-serif-stack;
   font-size: 12px;
   // font-weight: $font-weight-normal;
-  color: $deep-navy;
+  color: $regal-blue;
   text-decoration: underline;
   appearance: none;
   border: none;
