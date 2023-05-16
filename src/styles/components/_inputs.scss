@@ -149,7 +149,8 @@ select {
 .checkbox--online:checked + label {
   // font-size: 14px;
   padding: 13px 15px 13px 45px;
-  background: $lighter-gray;
+  // background: $lighter-gray;
+  background: darken($desert-grey, 4%);
 }
 
 .checkbox--online:checked + label {
@@ -295,7 +296,8 @@ select {
   font-family: $sans-serif-stack;
   cursor: pointer;
   &.is-focused {
-    background: $lighter-gray;
+    // background: $lighter-gray;
+    background: darken($desert-grey, 4%);
   }
   &.is-selected {
     font-weight: $font-weight-bold;

@@ -137,7 +137,8 @@
     border-top: 1px solid $wan-white-grey;
   }
   &:focus-within, &:hover, .active {
-    background: $blue-gray;
+    // background: $blue-gray;
+    background: desaturate(darken($solitude-blue, 7%),10%);
   }
 }
 
