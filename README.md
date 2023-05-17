@@ -26,27 +26,6 @@ The repository includes [BackstopJS](https://github.com/garris/BackstopJS) to te
 
 To add or update reference images, edit the scenarios in `backstop.json` and run `yarn reference`.
 
-## Dev deployment
-
-Updated images are built each time a commit is pushed to base. To deploy in vSphere, first update the image by pulling the most recent version:
-
-    $ docker -H {vsphere host}:{vsphere port} --tlsverify pull rockarch/dimes:development
-
-Get the ID of the running container
-
-    $ docker -H {vsphere host}:{vsphere port} --tlsverify container ls
-
-Then stop the running container:
-
-    $ docker -H {vsphere host}:{vsphere port} --tlsverify stop {container ID}
-
-Finally, start the updated container:
-
-    $ docker -H {vsphere host}:{vsphere port} --tlsverify run -d -p 3001:80 rockarch/dimes:development
-
-DIMES will then be available at the vSphere host, port 3001.
-
-
 ## License
 
 This code is released under an [MIT License](LICENSE).

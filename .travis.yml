@@ -19,39 +19,19 @@ script:
   - CI=false yarn run build
   - yarn test
 before_deploy:
-  - sudo deploy_scripts/make_zip_react.sh $DEPLOY_ZIP_DIR $DEPLOY_ZIP_NAME
+  - pip install awscli
 deploy:
-# - provider: s3
-#   access_key_id: $AWS_ACCESS_KEY
-#   secret_access_key: $AWS_SECRET_KEY
-#   local_dir: $LOCAL_DIR
-#   skip_cleanup: true
-#   on:
-#     repo: RockefellerArchiveCenter/${APPLICATION_NAME}
-#     branch: base
-#   bucket: $AWS_BUCKET_NAME
-#   region: us-east-1
 - provider: s3
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_KEY
-  local_dir: $DEPLOY_ZIP_DIR
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
+  local_dir: $LOCAL_DIR
   skip_cleanup: true
   on:
     repo: RockefellerArchiveCenter/${APPLICATION_NAME}
     branch: base
   bucket: $AWS_BUCKET_NAME
   region: us-east-1
-- provider: codedeploy
-  bucket: $AWS_BUCKET_NAME
-  key: $DEPLOY_ZIP_NAME
-  bundle_type: zip
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_KEY
-  application: ${APPLICATION_NAME}
-  deployment_group: DimesProduction
-  region: us-east-1
-  on:
-    repo: RockefellerArchiveCenter/${APPLICATION_NAME}
-    branch: base
+after_deploy:
+  - bash deploy_scripts/containers/invalidate_cloudfront_cache.sh
 notifications:
   email: false
