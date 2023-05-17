@@ -23,13 +23,13 @@
   "scenarios": [
     {
       "label": "Homepage Digital Checkbox",
-      "url": "http://localhost:3000/",
+      "url": "http://host.docker.internal:3000/",
       "clickSelector": "#main > div > div > form > div > div > div.input-group__search-controls > label",
       "delay": 3000
     },
     {
       "label": "Homepage Types Dropdown",
-      "url": "http://localhost:3000/",
+      "url": "http://host.docker.internal:3000/",
       "clickSelector": "#downshift-0-toggle-button",
       "delay": 1000,
       "viewports": [
@@ -47,13 +47,13 @@
     },
     {
       "label": "My List",
-      "url": "http://localhost:3000/list",
+      "url": "http://host.docker.internal:3000/list",
       "delay": 1000,
       "onBeforeScript": "mock_request.js"
     },
     {
       "label": "Requesting Unavailable Modal",
-      "url": "http://localhost:3000/list",
+      "url": "http://host.docker.internal:3000/list",
       "clickSelector": "#main > div.mylist__export-actions > button:nth-child(1)",
       "delay": 1000,
       "viewports": [
@@ -71,7 +71,7 @@
     },
     {
       "label": "Email Modal",
-      "url": "http://localhost:3000/list",
+      "url": "http://host.docker.internal:3000/list",
       "clickSelector": "#main > div.mylist__export-actions > button:nth-child(1)",
       "onBeforeScript": "mock_request.js",
       "delay": 1000,
@@ -90,7 +90,7 @@
     },
     {
       "label": "Remove All Items Modal",
-      "url": "http://localhost:3000/list",
+      "url": "http://host.docker.internal:3000/list",
       "clickSelector": "#main > div.mylist__export-actions > button:nth-child(3)",
       "delay": 1000,
       "viewports": [
@@ -108,10 +108,10 @@
     },
     {
       "label": "Reading Room Request Modal",
-      "url": "http://localhost:3000/list",
+      "url": "http://host.docker.internal:3000/list",
       "clickSelector": "#main > div > div > aside > button:nth-child(2)",
       "onBeforeScript": "mock_request.js",
-      "delay": 1000,
+      "delay": 3000,
       "viewports": [
         {
           "label": "tablet",
@@ -127,10 +127,10 @@
     },
     {
       "label": "Duplication Request Modal",
-      "url": "http://localhost:3000/list",
+      "url": "http://host.docker.internal:3000/list",
       "clickSelector": "#main > div > div > aside > button:nth-child(2)",
       "onBeforeScript": "mock_request.js",
-      "delay": 1000,
+      "delay": 3000,
       "viewports": [
         {
           "label": "tablet",
@@ -146,37 +146,37 @@
     },
     {
       "label": "Search",
-      "url": "http://localhost:3000/search?category=&limit=40&query=banana",
+      "url": "http://host.docker.internal:3000/search?category=&limit=40&query=banana",
       "onBeforeScript": "mock_request.js"
     },
     {
       "label": "Search Facets",
-      "url": "http://localhost:3000/search?category=&limit=40&query=banana",
+      "url": "http://host.docker.internal:3000/search?category=&limit=40&query=banana",
       "clickSelector": "#main > div > div > div.results > div.results__header > div.results__controls > button",
       "onBeforeScript": "mock_request.js",
       "delay": 5000
     },
     {
       "label": "Search Sort Dropdown",
-      "url": "http://localhost:3000/search?category=&limit=40&query=banana",
+      "url": "http://host.docker.internal:3000/search?category=&limit=40&query=banana",
       "clickSelector": "#downshift-1-toggle-button",
       "onBeforeScript": "mock_request.js"
     },
     {
       "label": "Minimap",
-      "url": "http://localhost:3000/collections/WY7fpswEV3oLhyjiArpHES?category=&limit=40&query=banana",
+      "url": "http://host.docker.internal:3000/collections/WY7fpswEV3oLhyjiArpHES?category=&limit=40&query=banana",
       "onBeforeScript": "mock_request.js"
     },
     {
       "label": "Collection",
-      "url": "http://localhost:3000/collections/WY7fpswEV3oLhyjiArpHES?category=&limit=40&query=banana",
+      "url": "http://host.docker.internal:3000/collections/WY7fpswEV3oLhyjiArpHES?category=&limit=40&query=banana",
       "onBeforeScript": "mock_request.js",
       "clickSelector": ".modal-header--minimap > button",
       "delay": 3000
     },
     {
       "label": "Object",
-      "url": "http://localhost:3000/objects/3htvHFf2iEoEPdDUyeofYG?category=&limit=40&query=banana",
+      "url": "http://host.docker.internal:3000/objects/3htvHFf2iEoEPdDUyeofYG?category=&limit=40&query=banana",
       "onBeforeScript": "mock_request.js",
       "clickSelectors": [
         ".modal-header--minimap > button",

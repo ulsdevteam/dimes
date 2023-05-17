@@ -19,7 +19,7 @@ Install dependencies and run the development server:
 
 The repository includes [BackstopJS](https://github.com/garris/BackstopJS) to test visual changes to the site by comparing a set of reference images for different screen sizes. Anytime the CSS styles are changed, use BackstopJS to test locally:
 
-1. Run the BackstopJS tests: `yarn backstop test`.
+1. Run the BackstopJS tests: `yarn backstop-test`.
 2. Review the results in the browser and look at the diff of any failed tests.
 3. To update the reference image files with the results of the last test images use: `yarn approve`. Subsequent tests will be compared against these updated reference files.
 4. Commit any updated reference images to the repository so that future tests will be compared against the most recent images.
