@@ -14,6 +14,9 @@
   // font-family: $sans-serif-stack;
   // font-size: 14px;
   border-top: 1px solid $water-blue;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   // padding: 20px 40px 30px 40px;
   padding: 44px 40px 30px 40px; /* 2 */
   margin-left: 0; /* 3 */
@@ -21,6 +24,7 @@
 
 .facet:first-child {
   border: 0px;
+  flex-direction: row;
 }
 
 .facet legend {
@@ -74,4 +78,5 @@
   letter-spacing: normal;
   text-transform: none;
   padding-left: 0;
+  margin-top: 3px;
 }
