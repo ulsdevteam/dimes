@@ -159,7 +159,7 @@
     {
       "label": "Search Sort Dropdown",
       "url": "http://host.docker.internal:3000/search?category=&limit=40&query=banana",
-      "clickSelector": "#downshift-1-toggle-button",
+      "clickSelector": "#downshift-4-toggle-button",
       "onBeforeScript": "mock_request.js"
     },
     {
