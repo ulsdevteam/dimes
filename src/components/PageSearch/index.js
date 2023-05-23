@@ -87,7 +87,7 @@ const PageSearch = () => {
           setSuggestions(suggestions)
         })
         .catch(err => setBackendError(err))
-    }
+      }
   }, [params])
 
   /** Executes search and sets results in state */
@@ -104,6 +104,8 @@ const PageSearch = () => {
         })
         .catch(err => setBackendError(err))
         .then(res => setInProgress(false));
+    } else {
+      setInProgress(false)
     }
   }, [params])
 
@@ -186,13 +188,14 @@ const PageSearch = () => {
         </div>
         <div className='results'>
           <h1 className={classnames('results__title', { 'loading-dots': inProgress })}>{inProgress ? "Searching" :
-            (resultsCount ?
-              (`Search Results ${params.query && `for “${params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`) :
-              (`Sorry, there are no search results ${params.query && `for “${params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`))
+            (params.query ? (resultsCount ?
+              (`Search Results ${`for “${params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`) :
+              (`Sorry, there are no search results ${`for “${params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`)): 
+              'No search query entered')
           }
           </h1>
           {!resultsCount && !inProgress ?
-            (<SearchNotFound suggestions={suggestions}/>) :
+            (<SearchNotFound suggestions={suggestions} query={params.query}/>) :
             <>
               <div className='results__header'>
                 <div className='results__summary'>

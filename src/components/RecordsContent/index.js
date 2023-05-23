@@ -12,7 +12,7 @@ import { Badge } from '../Badge'
 import ListToggleButton from '../ListToggleButton'
 import MaterialIcon from '../MaterialIcon'
 import QueryHighlighter from '../QueryHighlighter'
-import { appendParams, dateString, isMobile, formatMatchString, truncateString} from '../Helpers'
+import { appendParams, dateString, formatMatchString, truncateString} from '../Helpers'
 import { useOnScreen } from '../Hooks'
 import { isItemSaved } from '../MyListHelpers'
 import { RecordsChildSkeleton } from '../LoadingSkeleton'
@@ -227,13 +227,13 @@ export const RecordsChild = props => {
       <div className='child__buttons'>
         {item.online ? (
           <a className='btn btn--sm btn--blue btn-launch--content'
-             href={`${item.uri}/view`}>{isMobile? 'View' : 'View Online'}
+             href={`${item.uri}/view`}>{props.isMobile? 'View' : 'View Online'}
              <MaterialIcon icon='visibility' className='material-icon--space-before' /></a>) :
           (null)
         }
         <ListToggleButton
           className='btn--sm btn--orange btn-add--content'
-          isMobile={isMobile}
+          isMobile={props.isMobile}
           isSaved={isSaved}
           item={props.item}
           toggleSaved={toggleSaved} />

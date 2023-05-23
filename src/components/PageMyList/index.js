@@ -40,7 +40,6 @@
           if (allItems) {
             submitList.push(item.archivesspace_uri)
           } else {
-            console.log(item);
             item && item.isChecked && submitList.push(item.archivesspace_uri)
           }
         }
@@ -119,7 +118,7 @@
         })
         .catch(err => {
           const title = 'Error submitting request'
-          const message = `There was an error submitting your request. The error message was: ${err.toString()}`
+          const message = <><p>There was an error submitting your request.</p><p>{`The request to ${err.config.url} failed with the message ${err.code}: ${err.message}.`}</p><p>{`${err.config.data}`}</p></>
           handleConfirmData(title, message);
         })
     }

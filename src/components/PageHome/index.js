@@ -5,7 +5,7 @@ import SearchForm from '../SearchForm';
 import { firePageViewEvent } from '../Helpers';
 import './styles.scss';
 
-const PageHome = () => (
+const PageHome = ({isMobile}) => (
   <>
     <Helmet
       onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
@@ -13,7 +13,7 @@ const PageHome = () => (
     </Helmet>
     <div className='home'>
       <Hero />
-      <SearchForm className='search search-form--home'/>
+      <SearchForm className='search search-form--home' isMobile={isMobile}/>
     </div>
   </>
 )

@@ -15,27 +15,17 @@ Install dependencies and run the development server:
     $ yarn install
     $ yarn start
 
+### Visual regression testing
 
-## Dev deployment
+The repository includes [BackstopJS](https://github.com/garris/BackstopJS) to test visual changes to the site by comparing a set of reference images for different screen sizes. Anytime the CSS styles are changed, use BackstopJS to test locally:
 
-Updated images are built each time a commit is pushed to base. To deploy in vSphere, first update the image by pulling the most recent version:
+1. Run the development server: `yarn start`
+2. In another terminal, run the BackstopJS tests: `yarn backstop-test`.
+3. Review the results in the browser and look at the diff of any failed tests.
+4. To update the reference image files with the results of the last test images use: `yarn backstop-approve`. Subsequent tests will be compared against these updated reference files.
+5. Commit any updated reference images to the repository so that future tests will be compared against the most recent images.
 
-    $ docker -H {vsphere host}:{vsphere port} --tlsverify pull rockarch/dimes:development
-
-Get the ID of the running container
-
-    $ docker -H {vsphere host}:{vsphere port} --tlsverify container ls
-
-Then stop the running container:
-
-    $ docker -H {vsphere host}:{vsphere port} --tlsverify stop {container ID}
-
-Finally, start the updated container:
-
-    $ docker -H {vsphere host}:{vsphere port} --tlsverify run -d -p 3001:80 rockarch/dimes:development
-
-DIMES will then be available at the vSphere host, port 3001.
-
+To add or update reference images, edit the scenarios in `backstop.json` and run `yarn backstop-reference`.
 
 ## License
 

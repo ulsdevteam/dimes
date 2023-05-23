@@ -16,7 +16,7 @@ import ListToggleButton from '../ListToggleButton'
 import MaterialIcon from '../MaterialIcon'
 import QueryHighlighter from '../QueryHighlighter'
 import { DetailSkeleton, FoundInItemSkeleton } from '../LoadingSkeleton'
-import { appendParams, dateString, hasAccessOrUse, isDesktop, noteText, noteTextByType } from '../Helpers'
+import { appendParams, dateString, hasAccessOrUse, noteText, noteTextByType } from '../Helpers'
 import { isItemSaved } from '../MyListHelpers'
 import './styles.scss'
 
@@ -152,7 +152,7 @@ const RecordsDetail = props => {
 
   return (
   <div className={classnames('records__detail', {'hidden': props.isContentShown})}>
-    {isDesktop ? <Button
+    {props.isDesktop ? <Button
       type='button'
       className='btn--sm btn--transparent btn--minimap-info'
       handleClick={props.toggleMinimapModal}
