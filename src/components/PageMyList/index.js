@@ -264,7 +264,7 @@
           onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
           <title>DIMES: My List</title>
         </Helmet>
-        <div className='container mylist grid'>
+        <div className='mylist grid'>
           <nav>
             <a href='/' className='btn btn--sm btn--gray btn--new-search'>
               <MaterialIcon icon='keyboard_arrow_left' className='material-icon--space-after' />Start a New Search

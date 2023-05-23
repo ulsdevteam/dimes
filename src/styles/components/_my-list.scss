@@ -3,7 +3,7 @@
 .mylist main {
   // @include grid-column(12);
   grid-column: span 12;
-  margin-left: $gutters-default;
+  margin-left: 30px;
   @include lg-up {
     // width: 66%;
     // box-sizing: border-box;
