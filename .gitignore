@@ -11,6 +11,10 @@
 # production
 /build
 
+# BackstopJS
+backstop_data/html_report/
+bitmaps_test/
+
 # misc
 .DS_Store
 .env.local
