@@ -16,6 +16,7 @@ import { appendParams, dateString, formatMatchString, truncateString} from '../H
 import { useOnScreen } from '../Hooks'
 import { isItemSaved } from '../MyListHelpers'
 import { RecordsChildSkeleton } from '../LoadingSkeleton'
+import { Trans, t, select } from '@lingui/macro';
 import classnames from 'classnames'
 import './styles.scss'
 
@@ -227,7 +228,7 @@ export const RecordsChild = props => {
       <div className='child__buttons'>
         {item.online ? (
           <a className='btn btn-launch--content'
-             href={`${item.uri}/view`}>{props.isMobile? 'View' : 'View Online'}
+             href={`${item.uri}/view`}>{t({ message: props.isMobile? 'View' : 'View Online'})}
              <MaterialIcon icon='visibility' /></a>) :
           (null)
         }
@@ -390,9 +391,11 @@ const RecordsContent = props => {
     (<div className={classnames('records__content', {'hidden': !isContentShown})}>
       {isLoading ? (
         <div className='loading'>
-          <p id='content-loading' className='loading__text loading-dots'>Loading</p>
+            <Trans comment='Records content is loading'>
+              <p id='content-loading' className='loading__text loading-dots'>Loading</p>
+            </Trans>
         </div>) : (null)}
-      <h2 className='content__title'>Collection Content</h2>
+      <h2 className='content__title'><Trans comment='Collection Content title'>Collection Content</Trans></h2>
       <h3 className='collection__title'>{collection.title}</h3>
       <p className='collection__date'>{dateString(collection.dates)}</p>
       <p className='collection__text text--truncate'>

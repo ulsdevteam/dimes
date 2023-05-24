@@ -19,12 +19,18 @@ const MyListSidebar = ({ duplicationRequest, readingRoomRequest }) => (
     </Trans>
     <Button
       className='btn--orange btn--lg'
-      label='Request in Reading Room'
+      label={t({
+        comment: 'Shown to Request the item in a Reading Room',
+        message: 'Request in Reading Room'
+      })}
       iconBefore='local_library'
       handleClick={() => readingRoomRequest()} />
     <Button
       className='btn--orange btn--lg'
-      label='Request Copies'
+      label={t({
+        comment: 'Shown to request copies of an item',
+        message: 'Request Copies'
+      })}
       iconBefore='content_copy'
       handleClick={() => duplicationRequest()} />
   </aside>)

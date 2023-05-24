@@ -1,39 +1,20 @@
-import { i18n } from '@lingui/core';
-import { en, fr, de } from 'make-plural/plurals';
-
-export const locales = [
-  { id: 'en', label: 'English' },
-  { id: 'fr', label: 'Français' },
-  { id: 'de', label: 'Deutsch' }
-];
-
-export const defaultLocale = 'en'
+import { I18nProvider } from '@lingui/react'
+import { i18n } from '@lingui/core'
+import { en } from 'make-plural/plurals'
+import { messages } from '../../locales/en/messages'
 
 i18n.loadLocaleData({
-  en: { plurals: en },
-  fr: { plurals: fr },
+	en: { plurals: en }
 })
 
-  /**
-  * We do a dynamic import of just the catalog that we need
-  * @param locale any locale string
-  */
-export async function dynamicActivate(locale, loading, setLocale, setLoading) {
-  if (locale !== defaultLocale) {
-    try {
-      const { messages } = await import(`../../locales/${locale}/messages`)
-      i18n.load(locale, messages)
-    } catch (e) {
-      console.log(locale + " does not seem to be a valid locale.")
-      console.log("Reverting back to the default locale: " + defaultLocale)
-      setLocale(defaultLocale)
-    }
-  } else {
-    const { messages } = await import(`../../locales/${locale}/messages`)
-    i18n.load(locale, messages)
-  }
-  i18n.activate(locale)
-  if (loading) {
-    setLoading(!loading);
-  }
+i18n.load('en', messages)
+
+i18n.activate('en')
+
+export const I18nApp = ({ReactComponent}) => {
+  return (
+    <I18nProvider i18n={i18n}>
+      {ReactComponent}
+    </I18nProvider>
+  );
 }
