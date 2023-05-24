@@ -27,13 +27,15 @@ export const ModalMinimapInfo = props => (
     className='modal-content--minimap-info'
     overlayClassName='modal-overlay' >
     <div className='modal-header--minimap'>
-      <h2 className='modal-header__title--minimap'><Select comment=""
-        value={props.hasSeenMinimapIntro}
-        _true="Minimap"
-        other="Introducing the Minimap" />
+      <h2 className='modal-header__title--minimap'>
+        <Trans comment='Minimap header'>
+          <Select
+            value={props.hasSeenMinimapIntro}
+            _true="Minimap"
+            other="Introducing the Minimap" />
+        </Trans>
       </h2>
       <button className='modal-header__button' aria-label={t({
-        comment: 'Aria Label for a button to close modal minimap info.',
         message: 'Close'
       })} onClick={props.toggleModal}>
         <MaterialIcon icon='close' />

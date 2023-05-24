@@ -48,46 +48,55 @@ export const FacetModal = props => {
         <Button
           className='btn--blue btn--sm'
           aria-label={t({
-            comment: 'aria label for close',
+            comment: 'Aria label for close.',
             message: 'Close'
           })}
-          label='Save &amp; Close'
+          label={t({
+            comment: 'Shown for the user to save and close the filter',
+            message:'Save &amp; Close'
+          })}
           handleClick={props.toggleModal} />
       </div>
       <div className='modal-body--search'>
-        <Facet title='Date Range'>
+        <Facet title={t({
+          comment: 'title for Date Range',
+          message: 'Date Range'})}>
           <YearInput
             id='startYear'
-            label='Start Year'
+            label={t({
+              comment: 'Label for the start year input',
+              message: 'Start Year'})}
             className='hide-label'
             handleChange={e => { setStartYear(e.target.value) }}
             value={startYear} />
           <YearInput
             id='endYear'
-            label='End Year'
+            label={t({
+              comment: 'Label for the end year input',
+              message: 'End Year'})}
             className='hide-label'
             handleChange={e => { setEndYear(e.target.value) }}
             value={endYear} />
-          <Button className='btn--sm btn--gray' label='apply dates' handleClick={() => { props.handleDateChange(startYear, endYear) }} />
+          <Button className='btn--sm btn--gray' label={t({ comment: 'Label to apply dates shown from date range', message: 'apply dates' })} handleClick={() => { props.handleDateChange(startYear, endYear) }} />
         </Facet>
         <Facet
           handleChange={props.handleChange}
           items={props.data.format}
           paramKey='genre'
           params={toArray(props.params.genre)}
-          title='Format' />
+          title={t({ comment: 'Title for Format filter', message: 'Format' })} />
         <Facet
           handleChange={props.handleChange}
           items={props.data.creator}
           paramKey='creator'
           params={toArray(props.params.creator)}
-          title='Creator' />
+          title={t({ comment: 'Title for Creator filter', message: 'Creator' })} />
         <Facet
           handleChange={props.handleChange}
           items={props.data.subject}
           paramKey='subject'
           params={toArray(props.params.subject)}
-          title='Subject' />
+          title={t({ comment: 'Title for Subject filter', message: 'Subject' })} />
       </div>
     </Modal>
   )

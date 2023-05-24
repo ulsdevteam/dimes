@@ -15,7 +15,6 @@ const ModalConfirm = props => (
     <div className='modal-header'>
       <h2 className='modal-header__title'>{props.title}</h2>
       <button className='modal-header__button' aria-label={t({
-        comment: 'Aria Label for a button to close a modal.',
         message: 'Close'
       })} onClick={props.toggleModal}>
         <MaterialIcon icon='close' />

@@ -126,7 +126,6 @@
         .catch(err => {
           const title = t(
             {
-              comment: 'Page Title when showing an error for a request',
               message: 'Error submitting request'
             })
           const message = <Trans comment='Message for showing an error for a request' ><p>There was an error submitting your request.</p><p>{`The request to ${err.config.url} failed with the message ${err.code}: ${err.message}.`}</p><p>{`${err.config.data}`}</p></Trans>
@@ -146,13 +145,25 @@
       axios
         .post(uri, submitted)
         .then(res => {
-          const title = 'Email Sent'
-          var message = <p>{`Selected items in your list have been emailed to ${submitted.email}`}</p>
+          const title = t({
+            comment: 'Title displayed after emailing selected items',
+            message: 'Email Sent'
+          })
+          var message = <p>{t({
+            comment: 'Message displayed after emailing selected items',
+            message: `Selected items in your list have been emailed to ${submitted.email}`
+          })}</p>
           handleConfirmData(title, message);
         })
         .catch(err => {
-          const title = 'Error submitting request'
-          const message = `There was an error submitting your request. The error message was: ${err.toString()}`
+          const title = t({
+            comment: 'Title displayed when error occurs while submitting request',
+            message: 'Error submitting request'
+          })
+          const message = t({
+            comment: 'Message displayed when error occurs while submitting request',
+            message: `There was an error submitting your request. The error message was: ${err.toString()}`
+          })
           handleConfirmData(title, message);
         })
     }
@@ -342,8 +353,14 @@
         />
         <ModalConfirm
           isOpen={requestingUnavailableModalOpen}
-          message="Sorry, our system is unable to process requests right now. We're working to fix this! Please try again later."
-          title="Can't Complete Request"
+          message={t({
+            comment: 'Message shown when request failed',
+            message: "Sorry, our system is unable to process requests right now. We're working to fix this! Please try again later."
+          })}
+          title={t({
+            comment: 'Title shown when request failed',
+            message: "Can't Complete Request"
+          })}
           toggleModal={() => setRequestingUnavailableModalOpen(!requestingUnavailableModalOpen)}
         />
         <ModalConfirm

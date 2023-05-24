@@ -1,16 +1,14 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2023-04-06 09:39-0400\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Generator: @lingui/cli\n"
-"Language: en\n"
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
+"Language: \n"
 "Language-Team: \n"
+"Content-Type: \n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
 #. Full Company Address
@@ -18,8 +16,23 @@ msgstr ""
 msgid "15 Dayton Avenue<0/>Sleepy Hollow, New York<1/>10591"
 msgstr "15 Dayton Avenue<0/>Sleepy Hollow, New York<1/>10591"
 
+#. helptext for RAC staff message
+#: src/components/ModalMyList/index.js:414
+msgid "255 characters maximum"
+msgstr "255 characters maximum"
+
+#. Helptext for RAC staff message
+#: src/components/ModalMyList/index.js:556
+msgid "255 characters maximum."
+msgstr "255 characters maximum."
+
+#. Message to go back to previous search
+#: src/components/RecordsDetail/index.js:166
+msgid "<0/>Back to Search"
+msgstr "<0/>Back to Search"
+
 #. New Search button
-#: src/components/PageMyList/index.js:285
+#: src/components/PageMyList/index.js:296
 msgid "<0/>Start a New Search"
 msgstr "<0/>Start a New Search"
 
@@ -58,14 +71,25 @@ msgstr "<0><1>Page Not Found</1></0><2><3><4/></3><5>Sorry, the requested page w
 msgid "<0><1>Page Not Found</1></0><2><3><4/></3><5>There was an error fetching data.</5><6>The request to {0} failed.</6><7>To report this problem, send us an email at <8>archive@rockarch.org</8>.</7><9>Error message:</9><10>{1}: {2}</10>{3}{4}</2>"
 msgstr "<0><1>Page Not Found</1></0><2><3><4/></3><5>There was an error fetching data.</5><6>The request to {0} failed.</6><7>To report this problem, send us an email at <8>archive@rockarch.org</8>.</7><9>Error message:</9><10>{1}: {2}</10>{3}{4}</2>"
 
+#. Search Results title
+#: src/components/PageSearch/index.js:192
+msgid "<0><1>Search Results</1></0>"
+msgstr "<0><1>Search Results</1></0>"
+
 #. Page Title for user's list
-#: src/components/PageMyList/index.js:278
+#: src/components/PageMyList/index.js:289
 msgid "<0>DIMES: My List</0>"
 msgstr "<0>DIMES: My List</0>"
 
+#. Agent note Description
 #: src/components/PageAgent/index.js:21
 msgid "<0>Description</0>"
 msgstr "<0>Description</0>"
+
+#. Saved item found in message
+#: src/components/SavedItem/index.js:17
+msgid "<0>Found in: <1>{0}</1></0>"
+msgstr "<0>Found in: <1>{0}</1></0>"
 
 #. Search not found tips
 #: src/components/SearchNotFound/index.js:19
@@ -82,12 +106,23 @@ msgstr "<0>Here are some suggested search terms:</0>"
 msgid "<0>Jump to a part of the collection containing matches by clicking on an active square.</0><1>In the minimap diagram, each square represents part of this collection. Colored squares represent parts that contain one or more matches for your search.</1>"
 msgstr "<0>Jump to a part of the collection containing matches by clicking on an active square.</0><1>In the minimap diagram, each square represents part of this collection. Colored squares represent parts that contain one or more matches for your search.</1>"
 
-#: src/components/PageAgent/index.js:55
+#. Saved item last requested message
+#: src/components/SavedItem/index.js:18
+msgid "<0>Last requested on: {0}</0>"
+msgstr "<0>Last requested on: {0}</0>"
+
+#. Records content is loading
+#: src/components/RecordsContent/index.js:394
+msgid "<0>Loading</0>"
+msgstr "<0>Loading</0>"
+
+#. Agent Sidebar Header
+#: src/components/PageAgent/index.js:61
 msgid "<0>More about this {agentType}</0>"
 msgstr "<0>More about this {agentType}</0>"
 
 #. Header for user's list
-#: src/components/PageMyList/index.js:292
+#: src/components/PageMyList/index.js:303
 msgid "<0>My List</0>"
 msgstr "<0>My List</0>"
 
@@ -97,9 +132,14 @@ msgid "<0>Please add a word or phrase to search for.</0>"
 msgstr "<0>Please add a word or phrase to search for.</0>"
 
 #. Note to user about a cost estimate
-#: src/components/ModalMyList/index.js:365
+#: src/components/ModalMyList/index.js:484
 msgid "<0>Please note:</0> if you want a cost estimate for your order, email an archivist at <1>archive@rockarch.org</1>."
 msgstr "<0>Please note:</0> if you want a cost estimate for your order, email an archivist at <1>archive@rockarch.org</1>."
+
+#. summary message
+#: src/components/PageAgent/index.js:260
+msgid "<0>Summary</0>"
+msgstr "<0>Summary</0>"
 
 #. The introduction for minimaps.
 #: src/components/ModalMinimap/index.js:15
@@ -107,9 +147,24 @@ msgid "<0>The minimap is a new feature that allows you to quickly jump to search
 msgstr "<0>The minimap is a new feature that allows you to quickly jump to search matches in a collection by clicking on an active square.</0><1>In the minimap diagram, each square represents part of this collection. Colored squares represent parts that contain one or more matches for your search.</1>"
 
 #. Message for showing an error for a request
-#: src/components/PageMyList/index.js:132
+#: src/components/PageMyList/index.js:131
 msgid "<0>There was an error submitting your request.</0><1>The request to {0} failed with the message {1}: {2}.</1><2>{3}</2>"
 msgstr "<0>There was an error submitting your request.</0><1>The request to {0} failed with the message {1}: {2}.</1><2>{3}</2>"
+
+#. View Saved Item online
+#: src/components/SavedItem/index.js:22
+msgid "<0>View Online <1/></0>"
+msgstr "<0>View Online <1/></0>"
+
+#. Buttons for online records
+#: src/components/RecordsDetail/index.js:180
+msgid "<0>View Online <1/></0><2>Download <3/></2>{0}"
+msgstr "<0>View Online <1/></0><2>Download <3/></2>{0}"
+
+#. Back to search button
+#: src/components/PageAgent/index.js:246
+msgid "<0>keyboard_arrow_left</0>Back to Search"
+msgstr "<0>keyboard_arrow_left</0>Back to Search"
 
 #. Accessibility Statement message
 #: src/components/Footer/index.js:91
@@ -134,37 +189,78 @@ msgstr "Add item to list"
 #. Label for List Toggle button
 #. Test function
 #: src/components/ListToggleButton/index.js:45
-#: src/components/ListToggleButton/__tests__/ListToggleButton.test.js:30
+#: src/components/ListToggleButton/__tests__/ListToggleButton.test.js:31
 msgid "Add to List"
 msgstr "Add to List"
 
 #. Message while page loads for email submissions
-#: src/components/PageMyList/index.js:143
+#: src/components/PageMyList/index.js:142
 msgid "Adding items to your message"
 msgstr "Adding items to your message"
 
+#. Label for All Categories
+#: src/components/SearchForm/index.js:25
+msgid "All Types"
+msgstr "All Types"
+
+#. Missing email address error
+#: src/components/ModalMyList/index.js:222
+msgid "An email address is required."
+msgstr "An email address is required."
+
 #. Confirmation to delete all items from list
-#: src/components/PageMyList/index.js:358
+#: src/components/PageMyList/index.js:375
 msgid "Are you sure you want to remove all the items from your list?<0><1/><2/></0>"
 msgstr "Are you sure you want to remove all the items from your list?<0><1/><2/></0>"
+
+#. Label for MP3
+#: src/components/ModalMyList/index.js:48
+msgid "Audio (MP3)"
+msgstr "Audio (MP3)"
 
 #. Bulk Data Download message
 #: src/components/Footer/index.js:149
 msgid "Bulk data download"
 msgstr "Bulk data download"
 
+#. Title shown when request failed
+#: src/components/PageMyList/index.js:360
+msgid "Can't Complete Request"
+msgstr "Can't Complete Request"
+
 #. Reset/Cancel Button for Form
 #: src/components/Form/index.js:86
 msgid "Cancel"
 msgstr "Cancel"
 
-#. Aria Label for a button to close a modal.
-#. Aria Label for a button to close modal minimap info.
+#. Label for Category selector
+#: src/components/SearchForm/index.js:97
+msgid "Choose a search category"
+msgstr "Choose a search category"
+
+#. Aria label for close.
 #: src/components/ModalConfirm/index.js:17
-#: src/components/ModalMinimap/index.js:35
-#: src/components/ModalMinimap/index.js:72
+#: src/components/ModalMinimap/index.js:38
+#: src/components/ModalMinimap/index.js:74
+#: src/components/ModalMyList/index.js:167
+#: src/components/ModalSearch/index.js:50
 msgid "Close"
 msgstr "Close"
+
+#. Collection Content title
+#: src/components/RecordsContent/index.js:398
+msgid "Collection Content"
+msgstr "Collection Content"
+
+#. Label for Collections category
+#: src/components/SearchForm/index.js:32
+msgid "Collections"
+msgstr "Collections"
+
+#. Agent Related Collections
+#: src/components/PageAgent/index.js:39
+msgid "Collections Related to {agentTitle}"
+msgstr "Collections Related to {agentTitle}"
 
 #. Collections data API message
 #: src/components/Footer/index.js:137
@@ -172,7 +268,7 @@ msgid "Collections data API"
 msgstr "Collections data API"
 
 #. Remove all confrimation title
-#: src/components/PageMyList/index.js:371
+#: src/components/PageMyList/index.js:388
 msgid "Confirm Remove All"
 msgstr "Confirm Remove All"
 
@@ -181,8 +277,28 @@ msgstr "Confirm Remove All"
 msgid "Copyright © Rockefeller Archive Center. All rights reserved."
 msgstr "Copyright © Rockefeller Archive Center. All rights reserved."
 
+#. Title for Creator filter
+#: src/components/ModalSearch/index.js:93
+msgid "Creator"
+msgstr "Creator"
+
+#. title for Date Range
+#: src/components/ModalSearch/index.js:61
+msgid "Date Range"
+msgstr "Date Range"
+
+#. Label for Description of Materials Form
+#: src/components/ModalMyList/index.js:538
+msgid "Description of Materials"
+msgstr "Description of Materials"
+
+#. Update message for selected record
+#: src/components/PageRecords/index.js:118
+msgid "Details under heading 1 have been updated to describe the selected records titled {0}"
+msgstr "Details under heading 1 have been updated to describe the selected records titled {0}"
+
 #. Message shown on button within Dropdown list
-#: src/components/Dropdown/index.js:102
+#: src/components/Dropdown/index.js:101
 msgid "Download as .csv"
 msgstr "Download as .csv"
 
@@ -191,15 +307,45 @@ msgstr "Download as .csv"
 msgid "E-mail:<0>archive@rockarch.org</0>"
 msgstr "E-mail:<0>archive@rockarch.org</0>"
 
-#. Message shown on button within Dropdown list
+#. Label of Email Form
+#: src/components/ModalMyList/index.js:264
+msgid "Email *"
+msgstr "Email *"
+
 #. Email list label
 #: src/components/Dropdown/index.js:93
 #: src/components/MyListExportActions/index.js:11
 msgid "Email List"
 msgstr "Email List"
 
-#. Page Title when showing an error for a request
+#. Title displayed after emailing selected items
+#: src/components/PageMyList/index.js:148
+msgid "Email Sent"
+msgstr "Email Sent"
+
+#. Label for the end year input
+#: src/components/ModalSearch/index.js:74
+msgid "End Year"
+msgstr "End Year"
+
+#. Label for search textbox
+#: src/components/SearchForm/index.js:60
+msgid "Enter a search term"
+msgstr "Enter a search term"
+
+#. Helptext for scheduling date.
+#: src/components/ModalMyList/index.js:390
+msgid "Enter the date of your research visit (mm/dd/yyyy)"
+msgstr "Enter the date of your research visit (mm/dd/yyyy)"
+
+#. Initial description
+#: src/components/ModalMyList/index.js:491
+msgid "Entire folder"
+msgstr "Entire folder"
+
+#. Title displayed when error occurs while submitting request
 #: src/components/PageMyList/index.js:128
+#: src/components/PageMyList/index.js:159
 msgid "Error submitting request"
 msgstr "Error submitting request"
 
@@ -208,10 +354,47 @@ msgstr "Error submitting request"
 msgid "Fax: (914) 631-6017"
 msgstr "Fax: (914) 631-6017"
 
+#. Label for Filters button
+#: src/components/PageSearch/index.js:249
+msgid "Filters"
+msgstr "Filters"
+
+#. Label for format input
+#. Title for Format filter
+#: src/components/ModalMyList/index.js:73
+#: src/components/ModalSearch/index.js:87
+msgid "Format"
+msgstr "Format"
+
+#. Panel Format message
+#: src/components/RecordsDetail/index.js:64
+msgid "Formats"
+msgstr "Formats"
+
+#. Panel Found In message
+#: src/components/RecordsDetail/index.js:81
+msgid "Found In"
+msgstr "Found In"
+
+#. Founded by property
+#: src/components/PageAgent/index.js:194
+msgid "Founded by"
+msgstr "Founded by"
+
 #. How to Access materials message
 #: src/components/Footer/index.js:66
 msgid "How to access and request materials."
 msgstr "How to access and request materials."
+
+#. Label for duplicate request form
+#: src/components/ModalMyList/index.js:567
+msgid "I agree to pay the duplication costs for this request. See our <0>fee schedule</0>."
+msgstr "I agree to pay the duplication costs for this request. See our <0>fee schedule</0>."
+
+#. Invalid email error
+#: src/components/ModalMyList/index.js:229
+msgid "Invalid email address provided."
+msgstr "Invalid email address provided."
 
 #. Message displayed to jump to specific section within minimap
 #: src/components/Minimap/index.js:53
@@ -223,12 +406,28 @@ msgstr "Jump to {0} {hitPlural} in this area: {hitTitles}"
 msgid "Licensing for descriptive metadata"
 msgstr "Licensing for descriptive metadata"
 
+#. Location property
+#: src/components/PageAgent/index.js:195
+msgid "Location of Headquarters"
+msgstr "Location of Headquarters"
+
+#. Label of Message Form
+#: src/components/ModalMyList/index.js:287
+msgid "Message"
+msgstr "Message"
+
+#. Label for RAC staff message Form
+#: src/components/ModalMyList/index.js:410
+#: src/components/ModalMyList/index.js:553
+msgid "Message for RAC staff"
+msgstr "Message for RAC staff"
+
 #. Header for minimap
 #. Aria label for Minimap nav
 #. Header for modal minimap
 #: src/components/Minimap/index.js:79
 #: src/components/Minimap/index.js:83
-#: src/components/ModalMinimap/index.js:68
+#: src/components/ModalMinimap/index.js:70
 msgid "Minimap"
 msgstr "Minimap"
 
@@ -237,17 +436,87 @@ msgstr "Minimap"
 msgid "Monday-Friday<0/>10:00 a.m. to 5:00 p.m.<1/>"
 msgstr "Monday-Friday<0/>10:00 a.m. to 5:00 p.m.<1/>"
 
+#. Label for MP4
+#: src/components/ModalMyList/index.js:55
+msgid "Moving image (MP4)"
+msgstr "Moving image (MP4)"
+
 #. Message shown on button within Dropdown list
 #. Message shown on button within the Header
-#: src/components/Dropdown/index.js:150
+#: src/components/Dropdown/index.js:149
 #: src/components/Header/index.js:33
 msgid "My List"
 msgstr "My List"
+
+#. Nicknames property
+#: src/components/PageAgent/index.js:196
+msgid "Nicknames"
+msgstr "Nicknames"
+
+#. No selected items error
+#: src/components/ModalMyList/index.js:238
+#: src/components/ModalMyList/index.js:361
+#: src/components/ModalMyList/index.js:513
+msgid "No items have been selected to submit."
+msgstr "No items have been selected to submit."
+
+#. Message displayed when user has no saved items
+#: src/components/ModalSavedItem/index.js:78
+#: src/components/SavedItem/index.js:79
+msgid "No saved items."
+msgstr "No saved items."
+
+#. Occupations property
+#: src/components/PageAgent/index.js:191
+msgid "Occupations"
+msgstr "Occupations"
+
+#. Label for Organizations category
+#: src/components/SearchForm/index.js:46
+msgid "Organizations"
+msgstr "Organizations"
+
+#. Label for People category
+#: src/components/SearchForm/index.js:39
+msgid "People"
+msgstr "People"
 
 #. Comapny Phonenumber
 #: src/components/Footer/index.js:30
 msgid "Phone: (914) 366-6300"
 msgstr "Phone: (914) 366-6300"
+
+#. Place of birth property
+#: src/components/PageAgent/index.js:193
+msgid "Place of Birth"
+msgstr "Place of Birth"
+
+#. Captcha not completed error
+#: src/components/ModalMyList/index.js:234
+#: src/components/ModalMyList/index.js:358
+#: src/components/ModalMyList/index.js:506
+msgid "Please complete this field."
+msgstr "Please complete this field."
+
+#. Helptext for description of materials Form
+#: src/components/ModalMyList/index.js:542
+msgid "Please describe the materials you want reproduced. 255 characters maximum."
+msgstr "Please describe the materials you want reproduced. 255 characters maximum."
+
+#. Missing Scheduled Date error
+#: src/components/ModalMyList/index.js:354
+msgid "Please provide the date of your research visit."
+msgstr "Please provide the date of your research visit."
+
+#. No Format selected error
+#: src/components/ModalMyList/index.js:502
+msgid "Please select your desired duplication format."
+msgstr "Please select your desired duplication format."
+
+#. Positions held property
+#: src/components/PageAgent/index.js:192
+msgid "Positions Held"
+msgstr "Positions Held"
 
 #. Page Title for sending an Aeon request
 #: src/components/PageMyList/index.js:98
@@ -275,13 +544,15 @@ msgid "Reading Room Hours:"
 msgstr "Reading Room Hours:"
 
 #. Label for List Toggle button
+#. Label to remove saved item
 #: src/components/ListToggleButton/index.js:18
+#: src/components/SavedItem/index.js:25
 msgid "Remove"
 msgstr "Remove"
 
 #. Message shown on button within Dropdown list
 #. Remove all items label
-#: src/components/Dropdown/index.js:111
+#: src/components/Dropdown/index.js:110
 #: src/components/MyListExportActions/index.js:30
 msgid "Remove All Items"
 msgstr "Remove All Items"
@@ -297,12 +568,16 @@ msgid "Remove item from list"
 msgstr "Remove item from list"
 
 #. Message shown on button within Dropdown list
+#. Shown to request copies of an item
 #: src/components/Dropdown/index.js:84
+#: src/components/MyListSidebar/index.js:30
 msgid "Request Copies"
 msgstr "Request Copies"
 
 #. Message shown on button within Dropdown list
+#. Shown to Request the item in a Reading Room
 #: src/components/Dropdown/index.js:75
+#: src/components/MyListSidebar/index.js:22
 msgid "Request in Reading Room"
 msgstr "Request in Reading Room"
 
@@ -311,23 +586,63 @@ msgstr "Request in Reading Room"
 msgid "Rockefeller<0>Archive Center</0>"
 msgstr "Rockefeller<0>Archive Center</0>"
 
+#. Shown for the user to save and close the filter
+#: src/components/ModalSearch/index.js:54
+msgid "Save &amp; Close"
+msgstr "Save &amp; Close"
+
 #. Message shown on button within Dropdown list
 #: src/components/Dropdown/index.js:62
 msgid "Schedule a Visit"
 msgstr "Schedule a Visit"
+
+#. Label for scheduling date
+#: src/components/ModalMyList/index.js:395
+msgid "Scheduled Date *"
+msgstr "Scheduled Date *"
+
+#. Label for Search button
+#: src/components/SearchForm/index.js:78
+msgid "Search"
+msgstr "Search"
+
+#. Message to search for more related collections
+#: src/components/PageAgent/index.js:47
+msgid "Search More Related Collections"
+msgstr "Search More Related Collections"
 
 #. Message shown within the Hero
 #: src/components/Hero/index.js:12
 msgid "Search Our Collections.<0/>Discover People and Organizations.<1/>Access Digital Content."
 msgstr "Search Our Collections.<0/>Discover People and Organizations.<1/>Access Digital Content."
 
+#. Placeholder text for search textbox
+#: src/components/SearchForm/index.js:65
+msgid "Search..."
+msgstr "Search..."
+
 #. Holiday Schedule message
 #: src/components/Footer/index.js:77
 msgid "See holiday schedule"
 msgstr "See holiday schedule"
 
+#. label for selecting format labels
+#: src/components/ModalMyList/index.js:42
+msgid "Select a format"
+msgstr "Select a format"
+
+#. Message displayed after emailing selected items
+#: src/components/PageMyList/index.js:152
+msgid "Selected items in your list have been emailed to {0}"
+msgstr "Selected items in your list have been emailed to {0}"
+
+#. Send List sumbit message
+#: src/components/ModalMyList/index.js:315
+msgid "Send List"
+msgstr "Send List"
+
 #. Page Title for sending an email
-#: src/components/PageMyList/index.js:139
+#: src/components/PageMyList/index.js:138
 msgid "Sending Email"
 msgstr "Sending Email"
 
@@ -336,16 +651,73 @@ msgstr "Sending Email"
 msgid "Show all values"
 msgstr "Show all values"
 
+#. Label for digital matches only checkbox
+#: src/components/SearchForm/index.js:122
+msgid "Show only results with digital matches"
+msgstr "Show only results with digital matches"
+
 #. Message shown on sign-in button
-#: src/components/Dropdown/index.js:138
+#: src/components/Dropdown/index.js:137
 #: src/components/Header/index.js:28
 msgid "Sign in to RACcess"
 msgstr "Sign in to RACcess"
+
+#. Panel Extent Size message
+#: src/components/RecordsDetail/index.js:42
+msgid "Size"
+msgstr "Size"
 
 #. Skip Link
 #: src/components/SkipLink/index.js:7
 msgid "Skip to main content"
 msgstr "Skip to main content"
+
+#. External Identifier Title
+#: src/components/PageAgent/index.js:175
+msgid "Social Networks and Archival Context"
+msgstr "Social Networks and Archival Context"
+
+#. Message shown when request failed
+#: src/components/PageMyList/index.js:356
+msgid "Sorry, our system is unable to process requests right now. We're working to fix this! Please try again later."
+msgstr "Sorry, our system is unable to process requests right now. We're working to fix this! Please try again later."
+
+#. Sort by creator name label
+#: src/components/PageSearch/index.js:52
+msgid "Sort by creator name"
+msgstr "Sort by creator name"
+
+#. Sort by relevance label
+#: src/components/PageSearch/index.js:40
+msgid "Sort by relevance"
+msgstr "Sort by relevance"
+
+#. Sort by title label
+#: src/components/PageSearch/index.js:46
+msgid "Sort by title"
+msgstr "Sort by title"
+
+#. Label for sort results input
+#: src/components/PageSearch/index.js:264
+msgid "Sort search results"
+msgstr "Sort search results"
+
+#. Label for the start year input
+#: src/components/ModalSearch/index.js:66
+msgid "Start Year"
+msgstr "Start Year"
+
+#. Label of Subject Form
+#. Title for Subject filter
+#: src/components/ModalMyList/index.js:277
+#: src/components/ModalSearch/index.js:99
+msgid "Subject"
+msgstr "Subject"
+
+#. Aria Label for search submission button
+#: src/components/SearchForm/index.js:83
+msgid "Submit search"
+msgstr "Submit search"
 
 #. Aria label for Calendar button
 #: src/components/Inputs/index.js:92
@@ -367,15 +739,70 @@ msgstr "Take-down policy"
 msgid "The Online Collection and Catalog of Rockefeller Archive Center"
 msgstr "The Online Collection and Catalog of Rockefeller Archive Center"
 
+#. Message displayed when error occurs while submitting request
+#: src/components/PageMyList/index.js:163
+msgid "There was an error submitting your request. The error message was: {0}"
+msgstr "There was an error submitting your request. The error message was: {0}"
+
 #. Button to view minimap
 #: src/components/MinimapButton/index.js:13
 msgid "View minimap"
 msgstr "View minimap"
 
+#. External Identifier Title
+#: src/components/PageAgent/index.js:173
+msgid "Virtual International Authority File"
+msgstr "Virtual International Authority File"
+
+#. Costs not agreed to error
+#: src/components/ModalMyList/index.js:509
+msgid "We cannot process your request unless you agree to pay the costs of reproduction."
+msgstr "We cannot process your request unless you agree to pay the costs of reproduction."
+
+#. External Identifier Title
+#: src/components/PageAgent/index.js:174
+msgid "WorldCat Identities"
+msgstr "WorldCat Identities"
+
+#. About minimap message
+#: src/components/RecordsDetail/index.js:161
+msgid "about minimap"
+msgstr "about minimap"
+
+#. Label to apply dates shown from date range
+#: src/components/ModalSearch/index.js:80
+msgid "apply dates"
+msgstr "apply dates"
+
+#. Name for Category selector
+#: src/components/SearchForm/index.js:101
+msgid "category"
+msgstr "category"
+
+#. Name for duplicate request form costs
+#: src/components/ModalMyList/index.js:581
+msgid "costs"
+msgstr "costs"
+
+#: src/components/ModalMyList/index.js:546
+msgid "description"
+msgstr "description"
+
 #. Title displayed within the Header
 #: src/components/Header/index.js:12
 msgid "dimes.rockarch.org"
 msgstr "dimes.rockarch.org"
+
+#. Name of email form
+#: src/components/ModalMyList/index.js:268
+msgid "email"
+msgstr "email"
+
+#. Name for format input
+#: src/components/ModalMyList/index.js:77
+#: src/components/ModalMyList/index.js:87
+msgid "format"
+msgstr "format"
 
 #. Footer.Primary.RAC.href
 #: src/components/Footer/index.js:106
@@ -404,7 +831,7 @@ msgstr "https://github.com/RockefellerArchiveCenter/data/"
 
 #. Link used for sign-in within Dropdown list
 #. Link used for sign-in within the Header
-#: src/components/Dropdown/index.js:143
+#: src/components/Dropdown/index.js:142
 #: src/components/Header/index.js:24
 msgid "https://raccess.rockarch.org"
 msgstr "https://raccess.rockarch.org"
@@ -429,26 +856,106 @@ msgstr "https://rockarch.org/about-us/privacy-policy/"
 msgid "https://rockarch.org/collections/access-and-request-materials/"
 msgstr "https://rockarch.org/collections/access-and-request-materials/"
 
+#. Link for duplicate request services
+#: src/components/ModalMyList/index.js:575
+msgid "https://rockarch.org/collections/access-and-request-materials/#duplication-services-and-fee-schedule"
+msgstr "https://rockarch.org/collections/access-and-request-materials/#duplication-services-and-fee-schedule"
+
 #. Holiday Schedule link
 #: src/components/Footer/index.js:72
 msgid "https://rockarch.org/collections/access-and-request-materials/holiday-schedule"
 msgstr "https://rockarch.org/collections/access-and-request-materials/holiday-schedule"
 
+#. Twitter account link
+#: src/components/SocialIcons/index.js:8
+msgid "https://twitter.com/rockarch_org"
+msgstr "https://twitter.com/rockarch_org"
+
+#. Facebook account link
+#: src/components/SocialIcons/index.js:19
+msgid "https://www.facebook.com/RockefellerArchiveCenter"
+msgstr "https://www.facebook.com/RockefellerArchiveCenter"
+
+#. Flickr account link
+#: src/components/SocialIcons/index.js:52
+msgid "https://www.flickr.com/photos/147074352@N05/"
+msgstr "https://www.flickr.com/photos/147074352@N05/"
+
+#. Instagram account link
+#: src/components/SocialIcons/index.js:30
+msgid "https://www.instagram.com/rockefellerarchivecenter"
+msgstr "https://www.instagram.com/rockefellerarchivecenter"
+
+#. Youtube account link
+#: src/components/SocialIcons/index.js:41
+msgid "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
+msgstr "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
+
+#. Name of items error message
+#: src/components/ModalMyList/index.js:29
+#: src/components/ModalMyList/index.js:257
+#: src/components/ModalMyList/index.js:381
+#: src/components/ModalMyList/index.js:531
+msgid "items"
+msgstr "items"
+
 #. Company Email link
 #: src/components/Footer/index.js:39
+#: src/components/ModalMyList/index.js:485
 #: src/components/PageBackendError/index.js:19
 msgid "mailto:archive@rockarch.org"
 msgstr "mailto:archive@rockarch.org"
+
+#. Scheduling an appointment email link
+#: src/components/MyListSidebar/index.js:12
+msgid "mailto:archive@rockarch.org?subject=Scheduling a research appointment"
+msgstr "mailto:archive@rockarch.org?subject=Scheduling a research appointment"
+
+#. Name of message form
+#: src/components/ModalMyList/index.js:291
+msgid "message"
+msgstr "message"
+
+#. Name for digital matches only checkbox
+#: src/components/SearchForm/index.js:113
+msgid "online"
+msgstr "online"
 
 #. Tooltip for button
 #: src/components/Dropdown/index.js:68
 msgid "opens email"
 msgstr "opens email"
 
+#. Title for duplicate request
 #. Title for new window button
+#. Title message for opening an online item
+#: src/components/ModalMyList/index.js:571
 #: src/components/PageDigitalObject/index.js:111
+#: src/components/RecordsDetail/index.js:186
 msgid "opens in a new window"
 msgstr "opens in a new window"
+
+#. Name for RAC staff message Form
+#: src/components/ModalMyList/index.js:418
+#: src/components/ModalMyList/index.js:561
+msgid "questions"
+msgstr "questions"
+
+#. Name of recaptcha element
+#. Name of recaptcha error message
+#: src/components/ModalMyList/index.js:300
+#: src/components/ModalMyList/index.js:307
+#: src/components/ModalMyList/index.js:428
+#: src/components/ModalMyList/index.js:434
+#: src/components/ModalMyList/index.js:592
+#: src/components/ModalMyList/index.js:598
+msgid "recaptcha"
+msgstr "recaptcha"
+
+#. Name for scheduling date error
+#: src/components/ModalMyList/index.js:402
+msgid "scheduledDate"
+msgstr "scheduledDate"
 
 #. Message shown on list is closed
 #: src/components/Facet/index.js:26
@@ -460,18 +967,63 @@ msgstr "show all"
 msgid "show less"
 msgstr "show less"
 
+#. Name for sort results input
+#: src/components/PageSearch/index.js:259
+msgid "sort"
+msgstr "sort"
+
+#. Name of subject form
+#: src/components/ModalMyList/index.js:281
+msgid "subject"
+msgstr "subject"
+
+#. Message returned dependent on how many items selected
+#: src/components/ModalMyList/index.js:154
+msgid "{0, plural, =0 {selected: 0 items} other {selected: {1}}}"
+msgstr "{0, plural, =0 {selected: 0 items} other {selected: {1}}}"
+
+#. Filter results message
+#: src/components/ModalSearch/index.js:44
+msgid "{0, plural, one {Filter # Search Result} other {Filter # Results}}"
+msgstr "{0, plural, one {Filter # Search Result} other {Filter # Results}}"
+
 #. Pluralization of hit(s) for minimap boxes
 #: src/components/Minimap/index.js:49
 msgid "{0, plural, one {hit} other {hits}}"
 msgstr "{0, plural, one {hit} other {hits}}"
 
-#: src/components/ModalMinimap/index.js:30
+#. Minimap header
+#: src/components/ModalMinimap/index.js:31
 msgid "{0, select, true {Minimap} other {Introducing the Minimap}}"
 msgstr "{0, select, true {Minimap} other {Introducing the Minimap}}"
 
-#: src/components/ModalMinimap/index.js:30
-#~ msgid "{0, select, true {TRUE} false {False} other {OTHER}}"
-#~ msgstr "{0, select, true {TRUE} false {False} other {OTHER}}"
+#. Text for submiting item(s) request
+#: src/components/ModalMyList/index.js:441
+#: src/components/ModalMyList/index.js:605
+msgid "{0, select, true {Request {1} Items} other {Request {2} Item}}"
+msgstr "{0, select, true {Request {1} Items} other {Request {2} Item}}"
+
+#. Current Results shown of total results
+#: src/components/PageSearch/index.js:236
+#: src/components/PageSearch/index.js:290
+msgid "{0, select, true {{startItem}} other {{startItem}-{endItem} of {resultsCount} results}}"
+msgstr "{0, select, true {{startItem}} other {{startItem}-{endItem} of {resultsCount} results}}"
+
+#. Label for the end of the item
+#: src/components/PageAgent/index.js:139
+msgid "{agentType, select, organization {Date Disbanded} other {Date of Death}}"
+msgstr "{agentType, select, organization {Date Disbanded} other {Date of Death}}"
+
+#. Label for the start of the item
+#: src/components/PageAgent/index.js:135
+msgid "{agentType, select, organization {Date Established} other {Date of Birth}}"
+msgstr "{agentType, select, organization {Date Established} other {Date of Birth}}"
+
+#. Label for item (de)selection
+#: src/components/ModalMyList/index.js:118
+#: src/components/ModalMyList/index.js:127
+msgid "{deselect, select, true {Deselect all items} other {Select all items}}"
+msgstr "{deselect, select, true {Deselect all items} other {Select all items}}"
 
 #. Pluralization of digital match(es)
 #: src/components/Helpers.js:61
@@ -483,7 +1035,17 @@ msgstr "{hitCount, plural, one {digital match} other {digital matches}}"
 msgid "{hitCount, plural, one {match} other {matches}}"
 msgstr "{hitCount, plural, one {match} other {matches}}"
 
+#. Search Results header
+#: src/components/PageSearch/index.js:209
+msgid "{inProgress, select, true {Searching} other {{0, select, false {No search query entered} other {{resultsCount, plural, =0 {Sorry, there are no search results for {1}} other {Search Results for {2}}}}}}}"
+msgstr "{inProgress, select, true {Searching} other {{0, select, false {No search query entered} other {{resultsCount, plural, =0 {Sorry, there are no search results for {1}} other {Search Results for {2}}}}}}}"
+
 #. Downloading label
 #: src/components/MyListExportActions/index.js:19
 msgid "{isDownloading, select, true {Downloading} other {Download as .CSV}}"
 msgstr "{isDownloading, select, true {Downloading} other {Download as .CSV}}"
+
+#. Agent Note source
+#: src/components/PageAgent/index.js:28
+msgid "{source, select, null {Source: Rockefeller Archive Center} other {Source: {source}}}"
+msgstr "{source, select, null {Source: Rockefeller Archive Center} other {Source: {source}}}"

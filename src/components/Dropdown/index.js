@@ -91,7 +91,6 @@ export const MyListDropdown = ({ downloadCsv, duplicationRequest, emailList, rea
         order={4}
         className='btn--orange btn--dropdown dropdown__item--orange'
         label={t({
-          comment: 'Message shown on button within Dropdown list',
           message: 'Email List'
         })}
         iconBefore='email'

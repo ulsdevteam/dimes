@@ -11,7 +11,7 @@ import MaterialIcon from '../MaterialIcon'
 import { ModalSavedItemList } from '../ModalSavedItem'
 import { getFormattedDate } from '../Helpers'
 import './styles.scss'
-import { Trans, t } from '@lingui/macro'
+import { Plural, Trans, select, t } from '@lingui/macro'
 
 
 const SubmitListInput = ({ submitList }) => {
@@ -26,7 +26,9 @@ const SubmitListInput = ({ submitList }) => {
   return (
     <Field
       type='hidden'
-      name='items'/>
+      name={t({
+        message: 'items'
+      })} />
   )
 }
 
@@ -36,10 +38,25 @@ const FormatSelectInput = () => {
   const [format, setFormat] = useState('')
 
   const formatOptions = [
-    {value: '', label: 'Select a format'},
-    {value: 'MP3', label: 'Audio (MP3)'},
+    {
+      value: '', label: t({
+        comment: 'label for selecting format labels',
+        message: 'Select a format'
+      })
+    },
+    {
+      value: 'MP3', label: t({
+        comment: 'Label for MP3',
+        message: 'Audio (MP3)'
+      })
+    },
     {value: 'JPEG', label: 'JPEG'},
-    {value: 'MP4', label: 'Moving image (MP4)'},
+    {
+      value: 'MP4', label: t({
+        comment: 'Label for MP4',
+        message: 'Moving image (MP4)'
+      })
+    },
     {value: 'PDF', label: 'PDF'},
     {value: 'TIFF', label: 'TIFF'}
   ]
@@ -53,15 +70,21 @@ const FormatSelectInput = () => {
       <SelectInput
         className='select__modal'
         id='format'
-        label='Format'
-        name='format'
+        label={t({
+          comment: 'Label for format input',
+          message: 'Format'
+        })}
+        name={t({
+          comment: 'Name for format input',
+          message: 'format'
+        })}
         onChange={({selectedItem}) => setFormat(selectedItem.value)}
         options={formatOptions}
         required={true}
         selectedItem={format || ''} />
       <ErrorMessage
         id='format-error'
-        name='format'
+        name={t({ message: 'format' })}
         component='div'
         className='modal-form__error' />
     </div>
@@ -92,8 +115,23 @@ export const ModalToggleListButton = ({ ignoreRestrictions, items, toggleList })
     <Button
       className='btn--sm btn--gray'
       handleClick={() => toggleList(!deselect, ignoreRestrictions)}
-      label={deselect ? 'Deselect all items' : 'Select all items'}
-      ariaLabel={deselect ? 'Deselect all items' : 'Select all items'}
+      label={t({
+        comment: 'Label for item (de)selection',
+        message: select(
+          deselect, {
+            true: 'Deselect all items',
+            other: 'Select all items'
+          }
+        )
+      })}
+      ariaLabel={t({
+        message: select(
+          deselect, {
+            true: 'Deselect all items',
+            other: 'Select all items'
+          }
+        )
+      })}
       ariaPressed={deselect}
       iconBefore={deselect ? 'check_box_outline_blank' : 'check_box'} />
   )
@@ -113,7 +151,7 @@ export const SelectedTotals = ({ items }) => {
       {...total, [current.type]: parseFloat(current.value)}
   ), {})
   const extents = Object.entries(totals).map(e => pluralize(e[0], e[1], true))
-  return (extents.length ? <p className='selected-totals'>{`selected: ${extents.join(', ')}`}</p> : <p className='selected-totals'>selected: 0 items</p>)
+  return <p className='selected-totals'><Trans comment='Message returned dependent on how many items selected' ><Plural value={extents.length} _0="selected: 0 items" other={`selected: ${extents.join(', ')}`} /></Trans></p>
 }
 
 
@@ -126,7 +164,7 @@ export const ModalMyList = props => (
     overlayClassName='modal-overlay'>
     <div className='modal-header'>
       <h2 className='modal-header__title'>{props.title}</h2>
-      <button className='modal-header__button' aria-label='Close' onClick={props.toggleModal}>
+      <button className='modal-header__button' aria-label={t({ message: 'Close' })} onClick={props.toggleModal}>
         <MaterialIcon icon='close'/>
       </button>
     </div>
@@ -181,14 +219,26 @@ export const EmailModal = props => (
         validate={values => {
           const errors = {};
           if (!values.email) {
-            errors.email = 'An email address is required.';
+            errors.email = t({
+              comment: 'Missing email address error',
+              message: 'An email address is required.'
+            });
           } else if (
             !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
           ) {
-            errors.email = 'Invalid email address provided.';
+            errors.email = t({
+              comment: 'Invalid email error',
+              message: 'Invalid email address provided.'
+            });
           }
-          if (!values.recaptcha) errors.recaptcha = 'Please complete this field.';
-          if (!values.items.length) errors.items = 'No items have been selected to submit.'
+          if (!values.recaptcha) errors.recaptcha = t({
+            comment: 'Captcha not completed error',
+            message: 'Please complete this field.'
+          });
+          if (!values.items.length) errors.items = t({
+            comment: 'No selected items error',
+            message: 'No items have been selected to submit.'
+          })
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
@@ -204,38 +254,68 @@ export const EmailModal = props => (
           <SubmitListInput submitList={props.submitList} />
           <ErrorMessage
             id='items-error'
-            name='items'
+              name={t({
+                comment: 'Name of items error message',
+                message: 'items'
+              })}
             component='div'
             className='modal-form__error' />
           <FormGroup
-            label='Email *'
-            name='email'
+            label={t({
+              comment: 'Label of Email Form',
+              message: 'Email *'
+            })}
+            name={t({
+              comment: 'Name of email form',
+              message: 'email'
+            })}
             type='email'
             required={true}
             errors={errors}
             touched={touched} />
           <FormGroup
-            label='Subject'
-            name='subject'
+            label={t({
+              comment: 'Label of Subject Form',
+              message: 'Subject'
+            })}
+            name={t({
+              comment: 'Name of subject form',
+              message: 'subject'
+            })}
             type='text' />
           <FormGroup
-            label='Message'
-            name='message'
+            label={t({
+              comment: 'Label of Message Form',
+              message: 'Message'
+            })}
+            name={t({
+              comment: 'Name of message form',
+              message: 'message'
+            })}
             component='textarea'
             rows={5} />
           <div className='form-group'>
             <Field
               component={Captcha}
-              name='recaptcha'
+              name={t({
+                comment: 'Name of recaptcha element',
+                message: 'recaptcha'
+              })}
               handleCaptchaChange={(response) => setFieldValue('recaptcha', response)} />
             <ErrorMessage
               id='recaptcha-error'
-              name='recaptcha'
+              name={t({
+                comment: 'Name of recaptcha error message',
+                message: 'recaptcha'
+              })}
               component='div'
               className='modal-form__error' />
           </div>
           <FormButtons
-            submitText='Send List'
+            submitText={t({
+              comment: 'Send List sumbit message',
+              message: 'Send List'
+            })}
             toggleModal={props.toggleModal}
             isSubmitting={isSubmitting} />
           <FocusError />
@@ -271,9 +351,16 @@ export const ReadingRoomRequestModal = props => (
         initialValues={{scheduledDate: new Date(), questions: '', notes: '', items: props.submitList, recaptcha: ''}}
         validate={values => {
           const errors = {};
-          if (!values.scheduledDate) errors.scheduledDate = 'Please provide the date of your research visit.';
-          if (!values.recaptcha) errors.recaptcha = 'Please complete this field.';
-          if (!values.items.length) errors.items = 'No items have been selected to submit.'
+          if (!values.scheduledDate) errors.scheduledDate = t({
+            comment: 'Missing Scheduled Date error',
+            message: 'Please provide the date of your research visit.'
+          });
+          if (!values.recaptcha) errors.recaptcha = t({
+            message: 'Please complete this field.'
+          });
+          if (!values.items.length) errors.items = t({
+            message: 'No items have been selected to submit.'
+          })
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
@@ -291,43 +378,75 @@ export const ReadingRoomRequestModal = props => (
           <SubmitListInput submitList={props.submitList} />
           <ErrorMessage
             id='items-error'
-            name='items'
+            name={t({
+              message: 'items'
+            })}
             component='div'
             className='modal-form__error' />
           <div className='form-group'>
             <Field
               component={DateInput}
               handleChange={date => setFieldValue('scheduledDate', date)}
-              helpText='Enter the date of your research visit (mm/dd/yyyy)'
+              helpText={t({
+                comment: 'Helptext for scheduling date.',
+                message: 'Enter the date of your research visit (mm/dd/yyyy)'
+              })}
               id='scheduledDate'
-              label='Scheduled Date *'
+              label={t({
+                comment: 'Label for scheduling date',
+                message: 'Scheduled Date *'
+              })}
               type='date' />
             <ErrorMessage
               id='scheduledDate-error'
-              name='scheduledDate'
+              name={t({
+                comment: 'Name for scheduling date error',
+                message: 'scheduledDate'
+              })}
               component='div'
               className='modal-form__error' />
           </div>
           <FormGroup
-            label='Message for RAC staff'
-            helpText='255 characters maximum'
-            name='questions'
+            label={t({
+              comment: 'Label for RAC staff message Form',
+              message: 'Message for RAC staff'
+            })}
+            helpText={t({
+              comment: 'helptext for RAC staff message',
+              message: '255 characters maximum'
+            })}
+            name={t({
+              comment: 'Name for RAC staff message Form',
+              message: 'questions'
+            })}
             maxLength={255}
             component='textarea'
             rows={5} />
           <div className='form-group'>
             <Field
               component={Captcha}
-              name='recaptcha'
+              name={t({
+                message: 'recaptcha'
+              })}
               handleCaptchaChange={(response) => setFieldValue('recaptcha', response)} />
             <ErrorMessage
               id='recaptcha-error'
-              name='recaptcha'
+              name={t({
+                message: 'recaptcha'
+              })}
               component='div'
               className='modal-form__error' />
           </div>
           <FormButtons
-            submitText={`Request ${props.submitList.length ? (props.submitList.length) : '0'} ${props.submitList.length !== 1 ? 'Items' : 'Item'}`}
+              submitText={t({
+                comment: 'Text for submiting item(s) request',
+                message: select(
+                  props.submitList.length !== 1, {
+                    true: `Request ${props.submitList.length} Items`,
+                    other: `Request ${props.submitList.length} Item`
+                  }
+                )
+              })}
             toggleModal={props.toggleModal}
             isSubmitting={isSubmitting} />
           <FocusError />
@@ -369,7 +488,10 @@ export const DuplicationRequestModal = props => (
         <Formik
           initialValues={{
             format: '',
-            description: 'Entire folder',
+            description: t({
+              comment: 'Initial description',
+              message: 'Entire folder'
+            }),
             questions: '',
             notes: '',
             costs: false,
@@ -377,10 +499,20 @@ export const DuplicationRequestModal = props => (
             recaptcha: ''}}
           validate={values => {
             const errors = {};
-            if (!values.format) errors.format = 'Please select your desired duplication format.';
-            if (!values.recaptcha) errors.recaptcha = 'Please complete this field.';
-            if (!values.costs) errors.costs = 'We cannot process your request unless you agree to pay the costs of reproduction.';
-            if (!values.items.length) errors.items = 'No items have been selected to submit.'
+            if (!values.format) errors.format = t({
+              comment: 'No Format selected error',
+              message: 'Please select your desired duplication format.'
+            });
+            if (!values.recaptcha) errors.recaptcha = t({
+              message: 'Please complete this field.'
+            });
+            if (!values.costs) errors.costs = t({
+              comment: 'Costs not agreed to error',
+              message: 'We cannot process your request unless you agree to pay the costs of reproduction.'
+            });
+            if (!values.items.length) errors.items = t({
+              message: 'No items have been selected to submit.'
+            })
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
@@ -396,34 +528,60 @@ export const DuplicationRequestModal = props => (
             <SubmitListInput submitList={props.submitList} />
             <ErrorMessage
               id='items-error'
-              name='items'
+                name={t({
+                  message: 'items'
+                })}
               component='div'
               className='modal-form__error' />
             <FormatSelectInput />
             <FormGroup
-              label='Description of Materials'
-              helpText='Please describe the materials you want reproduced. 255 characters maximum.'
-              name='description'
+                label={t({
+                  comment: 'Label for Description of Materials Form',
+                  message: 'Description of Materials'
+                })}
+                helpText={t({
+                  comment: 'Helptext for description of materials Form',
+                  message: 'Please describe the materials you want reproduced. 255 characters maximum.'
+                })}
+                name={t({
+                  message: 'description'
+                })}
               maxLength={255}
               component='textarea'
               rows={5} />
             <FormGroup
-              label='Message for RAC staff'
-              helpText='255 characters maximum.'
+                label={t({
+                  message: 'Message for RAC staff'
+                })}
+                helpText={t({
+                  comment: 'Helptext for RAC staff message',
+                  message: '255 characters maximum.'
+                })}
               maxLength={255}
-              name='questions'
+                name={t({
+                  message: 'questions'
+                })}
               component='textarea'
               rows={5} />
             <FormGroup
-              label={<>
+              label={<Trans comment='Label for duplicate request form'>
                 I agree to pay the duplication costs for this request. See our&nbsp;
                 <a target='_blank'
                   rel='noopener noreferrer'
-                  title='opens in a new window'
-                  href='https://rockarch.org/collections/access-and-request-materials/#duplication-services-and-fee-schedule'>
+                    title={t({
+                      comment: 'Title for duplicate request',
+                      message: 'opens in a new window'
+                    })}
+                    href={t({
+                      comment: 'Link for duplicate request services',
+                      message: 'https://rockarch.org/collections/access-and-request-materials/#duplication-services-and-fee-schedule'
+                    })}>
                   fee schedule
-                </a>.</>}
-              name='costs'
+                </a>.</Trans>}
+                name={t({
+                  comment: 'Name for duplicate request form costs',
+                  message: 'costs'
+                })}
               type='checkbox'
               required={true}
               errors={errors}
@@ -431,16 +589,27 @@ export const DuplicationRequestModal = props => (
             <div className='form-group'>
               <Field
                 component={Captcha}
-                name='recaptcha'
+                  name={t({
+                    message: 'recaptcha'
+                  })}
                 handleCaptchaChange={(response) => setFieldValue('recaptcha', response)} />
               <ErrorMessage
                 id='captcha-error'
-                name='recaptcha'
+                  name={t({
+                    message: 'recaptcha'
+                  })}
                 component='div'
                 className='modal-form__error' />
             </div>
             <FormButtons
-              submitText={`Request ${props.submitList.length ? (props.submitList.length) : '0'} ${props.submitList.length !== 1 ? 'Items' : 'Item'}`}
+              submitText={t({
+                message: select(
+                  props.submitList.length !== 1, {
+                    true: `Request ${props.submitList.length} Items`,
+                    other: `Request ${props.submitList.length} Item`
+                  }
+                )
+              })}
               toggleModal={props.toggleModal}
               isSubmitting={isSubmitting} />
             <FocusError />
