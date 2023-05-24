@@ -1,6 +1,7 @@
 import React from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
 import { act } from 'react-dom/test-utils'
+import { I18nApp } from '../../i18n'
 import { FormButtons } from '..'
 
 let container = null
@@ -17,7 +18,7 @@ afterEach(() => {
 
 it('renders props correctly', () => {
   act(() => {
-    render(<FormButtons submitText='foo' toggleModal={jest.fn()} />, container)
+    render(<I18nApp ReactComponent={<FormButtons submitText='foo' toggleModal={jest.fn()} />} />, container)
   })
 
   const submit = document.querySelector('div > button[type=submit]')
@@ -29,7 +30,7 @@ it('renders props correctly', () => {
 it('handles clicks correctly', () => {
   const toggleModal = jest.fn()
   act(() => {
-    render(<FormButtons submitText='foo' toggleModal={toggleModal} />, container)
+    render(<I18nApp ReactComponent={<FormButtons submitText='foo' toggleModal={toggleModal} />} />, container)
   })
 
   const cancel = document.querySelector('div > button[type=reset]')

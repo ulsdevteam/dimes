@@ -12,6 +12,7 @@ import {
 import { checkedList } from '../../../__fixtures__/checkedList'
 import { resolvedList } from '../../../__fixtures__/resolvedList'
 import { submitList } from '../../../__fixtures__/submitList'
+import { I18nApp } from '../../i18n'
 
 let container = null
 beforeEach(() => {
@@ -36,7 +37,7 @@ jest.mock('axios')
 
 it('renders props correctly', async () => {
   act(() => {
-    render(<ModalMyList
+    render(<I18nApp ReactComponent={<ModalMyList
       appElement={container}
       handleChange={jest.fn()}
       ignoreRestrictions={true}
@@ -44,7 +45,7 @@ it('renders props correctly', async () => {
       list={resolvedList}
       setSubmit={jest.fn()}
       title='foo'
-      toggleModal={jest.fn()} />, container)
+      toggleModal={jest.fn()} />} />, container)
   })
 
   const selectButton = document.querySelector('.modal-list > button')
@@ -58,7 +59,7 @@ it('renders props correctly', async () => {
   })
 
   act(() => {
-    render(<ModalMyList
+    render(<I18nApp ReactComponent={<ModalMyList
       appElement={container}
       handleChange={jest.fn()}
       ignoreRestrictions={true}
@@ -66,7 +67,7 @@ it('renders props correctly', async () => {
       list={checkedList}
       setSubmit={jest.fn()}
       title='foo'
-      toggleModal={jest.fn()} />, container)
+      toggleModal={jest.fn()} />} />, container)
   })
 
   await act(async () => {
@@ -77,7 +78,7 @@ it('renders props correctly', async () => {
 
 it('renders email modal props correctly', async () => {
   act(() => {
-    render(<EmailModal
+    render(<I18nApp ReactComponent={<EmailModal
       appElement={container}
       handleChange={jest.fn()}
       handleFormSubmit={jest.fn()}
@@ -87,7 +88,7 @@ it('renders email modal props correctly', async () => {
       setSubmit={jest.fn()}
       submitList={submitList}
       toggleList={jest.fn()}
-      toggleModal={jest.fn()} />, container)
+      toggleModal={jest.fn()} />} />, container)
   })
 
   const form = document.querySelector('.modal-form')
@@ -104,7 +105,7 @@ it('renders email modal props correctly', async () => {
 
 it('validates email modal form correctly', async () => {
   act(() => {
-    render(<EmailModal
+    render(<I18nApp ReactComponent={<EmailModal
       appElement={container}
       handleChange={jest.fn()}
       handleFormSubmit={jest.fn()}
@@ -114,7 +115,7 @@ it('validates email modal form correctly', async () => {
       setSubmit={jest.fn()}
       submitList={submitList}
       toggleList={jest.fn()}
-      toggleModal={jest.fn()} />, container)
+      toggleModal={jest.fn()} />} />, container)
   })
 
   const form = document.querySelector('.modal-form')
@@ -129,7 +130,7 @@ it('validates email modal form correctly', async () => {
 
 it('renders reading room modal props correctly', async () => {
   act(() => {
-    render(<ReadingRoomRequestModal
+    render(<I18nApp ReactComponent={<ReadingRoomRequestModal
       appElement={container}
       handleChange={jest.fn()}
       handleFormSubmit={jest.fn()}
@@ -139,7 +140,7 @@ it('renders reading room modal props correctly', async () => {
       setSubmit={jest.fn()}
       submitList={submitList}
       toggleList={jest.fn()}
-      toggleModal={jest.fn()} />, container)
+      toggleModal={jest.fn()} />} />, container)
   })
 
   const form = document.querySelector('.modal-form')
@@ -155,7 +156,7 @@ it('renders reading room modal props correctly', async () => {
 
 it('validates reading room modal form correctly', async () => {
   act(() => {
-    render(<ReadingRoomRequestModal
+    render(<I18nApp ReactComponent={<ReadingRoomRequestModal
       appElement={container}
       handleChange={jest.fn()}
       handleFormSubmit={jest.fn()}
@@ -165,7 +166,7 @@ it('validates reading room modal form correctly', async () => {
       setSubmit={jest.fn()}
       submitList={submitList}
       toggleList={jest.fn()}
-      toggleModal={jest.fn()} />, container)
+      toggleModal={jest.fn()} />} />, container)
   })
 
   const form = document.querySelector('.modal-form')
@@ -179,7 +180,7 @@ it('validates reading room modal form correctly', async () => {
 
 it('renders duplication modal props correctly', async () => {
   act(() => {
-    render(<DuplicationRequestModal
+    render(<I18nApp ReactComponent={<DuplicationRequestModal
       appElement={container}
       handleChange={jest.fn()}
       handleFormSubmit={jest.fn()}
@@ -189,7 +190,7 @@ it('renders duplication modal props correctly', async () => {
       setSubmit={jest.fn()}
       submitList={submitList}
       toggleList={jest.fn()}
-      toggleModal={jest.fn()} />, container)
+      toggleModal={jest.fn()} />} />, container)
   })
 
   const form = document.querySelector('.modal-form')
@@ -205,7 +206,7 @@ it('renders duplication modal props correctly', async () => {
 
 it('validates duplication modal form correctly', async () => {
   act(() => {
-    render(<DuplicationRequestModal
+    render(<I18nApp ReactComponent={<DuplicationRequestModal
       appElement={container}
       handleChange={jest.fn()}
       handleFormSubmit={jest.fn()}
@@ -215,7 +216,7 @@ it('validates duplication modal form correctly', async () => {
       setSubmit={jest.fn()}
       submitList={submitList}
       toggleList={jest.fn()}
-      toggleModal={jest.fn()} />, container)
+      toggleModal={jest.fn()} />} />, container)
   })
 
   const form = document.querySelector('.modal-form')

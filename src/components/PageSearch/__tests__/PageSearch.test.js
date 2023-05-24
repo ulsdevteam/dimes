@@ -4,6 +4,7 @@ import { render, unmountComponentAtNode } from 'react-dom'
 import { Route, Routes, MemoryRouter } from 'react-router-dom';
 import { act } from 'react-dom/test-utils'
 import PageSearch from '..'
+import { I18nApp } from '../../i18n';
 
 import { tileItems } from '../../../__fixtures__/tileItems'
 import { facet } from '../../../__fixtures__/facet'
@@ -39,11 +40,13 @@ it('renders props correctly', async () => {
 
   await act(async () => {
     await render(
-      <MemoryRouter initialEntries={['/search?query=banana']}>
-        <Routes>
-          <Route path='/search' element={<PageSearch />} />
-        </Routes>
-      </MemoryRouter>, container)
+      <I18nApp ReactComponent={
+        <MemoryRouter initialEntries={['/search?query=banana']}>
+          <Routes>
+            <Route path='/search' element={<PageSearch />} />
+          </Routes>
+        </MemoryRouter>
+      } />, container)
   })
 
   const title = await document.querySelector('h1')

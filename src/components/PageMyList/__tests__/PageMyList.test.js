@@ -6,6 +6,7 @@ import PageMyList from '..'
 
 import { resolvedList } from '../../../__fixtures__/resolvedList'
 import { parsedItem } from '../../../__fixtures__/parsedItem'
+import { I18nApp } from '../../i18n'
 
 let container = null
 beforeEach(() => {
@@ -42,9 +43,9 @@ it('renders props correctly', async () => {
   })
 
   await act(async () => {
-    await render(<PageMyList
+    await render(<I18nApp ReactComponent={<PageMyList
       removeAllListItems={jest.fn()}
-      toggleInList={jest.fn()} />, container)
+      toggleInList={jest.fn()} />} />, container)
   })
 
   const list = await document.querySelector('.saved-items')
