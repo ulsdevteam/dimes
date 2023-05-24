@@ -1,6 +1,7 @@
 import React from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
 import { act } from 'react-dom/test-utils'
+import { I18nApp } from '../../i18n'
 import { MyListDropdown, NavDropdown } from '..'
 
 let container = null
@@ -17,12 +18,12 @@ afterEach(() => {
 
 it('renders props correctly', () => {
   act(() => {
-    render(<MyListDropdown
+    render(<I18nApp ReactComponent={<MyListDropdown
       downloadCsv={jest.fn()}
       duplicationRequest={jest.fn()}
       emailList={jest.fn()}
       readingRoomRequest={jest.fn()}
-      removeAllItems={jest.fn()} />, container)
+      removeAllItems={jest.fn()} />} />, container)
   })
 
   const dropdown = document.querySelector('.dropdown')
@@ -35,7 +36,7 @@ it('renders props correctly', () => {
 
 it('renders without crashing', () => {
   act(() => {
-    render(<NavDropdown />, container)
+    render(<I18nApp ReactComponent={<NavDropdown />} />, container)
   })
 
   const dropdown = document.querySelector('.dropdown')

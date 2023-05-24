@@ -1,6 +1,7 @@
 import React from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
 import { act } from 'react-dom/test-utils'
+import { I18nApp } from '../../i18n'
 import { t } from '@lingui/macro'
 import ListToggleButton from '..'
 
@@ -20,10 +21,10 @@ afterEach(() => {
 
 it('renders correctly in desktop and modal', () => {
   act(() => {
-    render(<ListToggleButton
+    render(<I18nApp ReactComponent={<ListToggleButton
       isSaved={false}
       item={object}
-      toggleSaved={jest.fn()} />, container)
+      toggleSaved={jest.fn()} />} />, container)
   })
 
   const button = document.querySelector('button')
@@ -32,10 +33,10 @@ it('renders correctly in desktop and modal', () => {
   expect(button.className).not.toContain('saved')
 
   act(() => {
-    render(<ListToggleButton
+    render(<I18nApp ReactComponent={<ListToggleButton
       isSaved
       item={object}
-      toggleSaved={jest.fn()} />, container)
+      toggleSaved={jest.fn()} />} />, container)
   })
 
   expect(button.textContent).toContain('Remove from List')
@@ -43,21 +44,21 @@ it('renders correctly in desktop and modal', () => {
   expect(button.className).toContain('saved')
 
   act(() => {
-    render(<ListToggleButton
+    render(<I18nApp ReactComponent={<ListToggleButton
       isMobile
       isSaved={false}
       item={object}
-      toggleSaved={jest.fn()} />, container)
+      toggleSaved={jest.fn()} />} />, container)
   })
 
   expect(button.textContent).toContain('Add')
 
   act(() => {
-    render(<ListToggleButton
+    render(<I18nApp ReactComponent={<ListToggleButton
       isMobile
       isSaved
       item={object}
-      toggleSaved={jest.fn()} />, container)
+      toggleSaved={jest.fn()} />} />, container)
   })
 
   expect(button.textContent).toContain('Remove')
@@ -67,10 +68,10 @@ it('handles clicks correctly', () => {
   const toggleSaved = jest.fn()
 
   act(() => {
-    render(<ListToggleButton
+    render(<I18nApp ReactComponent={<ListToggleButton
       isSaved={false}
       item={object}
-      toggleSaved={toggleSaved} />, container)
+      toggleSaved={toggleSaved} />} />, container)
   })
 
   const button = document.querySelector('button')

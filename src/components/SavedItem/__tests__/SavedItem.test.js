@@ -4,6 +4,7 @@ import { act } from 'react-dom/test-utils'
 import { SavedItemList } from '..'
 
 import { resolvedList } from '../../../__fixtures__/resolvedList'
+import { I18nApp } from '../../i18n'
 
 let container = null
 beforeEach(() => {
@@ -19,10 +20,10 @@ afterEach(() => {
 
 it('renders props correctly', () => {
   act(() => {
-    render(<SavedItemList
+    render(<I18nApp ReactComponent={<SavedItemList
       items={resolvedList}
       isLoading={false}
-      removeFromList={jest.fn()} />, container)
+      removeFromList={jest.fn()} />} />, container)
   })
 
   const list = document.querySelector('.saved-items')
@@ -39,10 +40,10 @@ it('renders props correctly', () => {
   expect(itemDescription).not.toContain('.btn .btn--blue .btn--sm')
 
   act(() => {
-    render(<SavedItemList
+    render(<I18nApp ReactComponent={<SavedItemList
       items={[]}
       isLoading={false}
-      removeFromList={jest.fn()} />, container)
+      removeFromList={jest.fn()} />} />, container)
   })
 
   expect(list.textContent).toBe('No saved items.')
@@ -52,10 +53,11 @@ it('handles clicks', () => {
   const handleClick = jest.fn()
 
   act(() => {
-    render(<SavedItemList
+    render(<I18nApp ReactComponent={<SavedItemList
       items={resolvedList}
       isLoading={false}
-      removeFromList={handleClick} />, container)
+      removeFromList={handleClick} />
+    } />, container)
   })
 
   const button = document.querySelector('.btn.btn--gray.btn--sm')
