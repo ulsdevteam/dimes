@@ -19,7 +19,7 @@ const CategoryLabel = ({ category }) => {
       icon = 'archive_box'
   }
   return (
-    <div className={classnames('card__body-text', 'card__type-label', category)}><MaterialIcon icon={icon} />{category}</div>
+    <div className={classnames('card__body-text', 'card__type-label m-0', category)}><MaterialIcon icon={icon} />{category}</div>
   )
 }
 
@@ -44,7 +44,7 @@ const CardList = ({ items, params, cardClassName, className }) => {
       date={item.dates?.length ? item.dates.map(d => d.expression).join(', ') : null} />
   )
   return (
-    <ul className={classnames('card-list list--unstyled', className)}>
+    <ul className={classnames('card-list list--unstyled mt-40 mb-32', className)}>
       {listItems}
     </ul>
   )

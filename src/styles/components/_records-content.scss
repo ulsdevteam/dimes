@@ -4,7 +4,7 @@
   font-family: $sans-serif-stack;
   width: 100%;
   float: left;
-  padding: 40px 30px;
+  // padding: 40px 30px;
   box-sizing: border-box;
   @include lg-up {
     width: calc(63% - #{$minimap-width});
@@ -46,13 +46,14 @@
   font-size: 24px;
   color: $regal-blue;
   border-bottom: 1px dotted $regal-blue;
-  margin-top: 0;
+  // margin-top: 0;
+  // padding-bottom: 0
 }
 
 .collection__title {
   font-size: 21px;
   color: $night-grey;
-  margin-bottom: 0;
+  // margin-bottom: 0;
 }
 
 .collection__text {

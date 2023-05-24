@@ -38,7 +38,7 @@ export const FacetModal = props => {
         beforeClose: 'slide--right--before-close'
       }}
       closeTimeoutMS={200} >
-      <div className='modal__header modal__header--search'>
+      <div className='modal__header modal__header--search pt-30 px-30 pb-20'>
         <h2 className='modal__header-title' aria-live='polite' aria-atomic='true'>
           {`Filter ${props.resultsCount} Search ${props.resultsCount === 1 ? 'Result': 'Results'}`}
         </h2>

@@ -52,7 +52,7 @@ export const MyListDropdown = ({ downloadCsv, duplicationRequest, emailList, rea
   <Dropdown
     label='Actions'
     iconBefore='settings'
-    className='mylist__actions hide-on-lg-up'
+    className='mylist__actions hide-on-lg-up mt-40 mr-30 mb-30'
     buttonClassName='btn btn--orange btn--md'
     listClassName='dropdown__list--orange dropdown__list--slide-down'
     role='menu'>

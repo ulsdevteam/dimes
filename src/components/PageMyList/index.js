@@ -263,15 +263,15 @@
           onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
           <title>DIMES: My List</title>
         </Helmet>
-        <div className='mylist grid'>
+        <div className='mylist grid container--full-width'>
           <nav>
-            <a href='/' className='btn btn--sm btn--gray btn--new-search'>
+            <a href='/' className='btn btn--sm btn--gray btn--new-search mt-20 ml-30'>
               <MaterialIcon icon='keyboard_arrow_left' className='material-icon--space-after' />Start a New Search
             </a>
           </nav>
-          <main id='main' role='main'>
-            <div className='mylist__header'>
-              <h1 className='mylist__title'>My List</h1>
+          <main id='main' role='main' className='ml-30'>
+            <div className='ml-15'>
+              <h1 className='mylist__title my-30'>My List</h1>
               <MyListDropdown
                 downloadCsv={downloadCsv}
                 duplicationRequest={() => isRequestingAvailable ? setDuplicationModalOpen(true) : setRequestingUnavailableModalOpen(true)}
@@ -336,7 +336,7 @@
           isOpen={confirmDeleteAllModalOpen}
           message={
             <>Are you sure you want to remove all the items from your list?
-            <div className='modal-buttons--confirm'>
+            <div className='modal-buttons--confirm mt-20'>
               <Button
                 className='btn--sm btn--orange'
                 label='Remove'

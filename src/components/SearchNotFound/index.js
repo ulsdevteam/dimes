@@ -14,7 +14,7 @@ const SearchNotFound = ({suggestions, query}) => {
 
   if (query) {
     return (
-      <div className='results__not-found'>
+      <div className='mb-60'>
         <p className="results__not-found--text">Have you tried doing the following:</p>
         <ul className="results__not-found--text">
           <li>Check for spelling errors or typos</li>
@@ -33,7 +33,7 @@ const SearchNotFound = ({suggestions, query}) => {
     )
   } else {
     return (
-      <div className='results__not-found'>
+      <div className='mb-60'>
         <p className="results__not-found--text">Please add a word or phrase to search for.</p>
       </div>
     )

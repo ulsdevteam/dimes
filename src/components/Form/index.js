@@ -39,7 +39,7 @@ export const FormGroup = (props) => {
     }
   }
   return (
-    <div className='form-group'>
+    <div className='form-group mx-0'>
       { type !== 'checkbox' && <label htmlFor={name}>{label}</label> }
       <Field
         tabIndex='0'
@@ -77,7 +77,7 @@ FormGroup.propTypes = {
 }
 
 export const FormButtons = ({ isSubmitting, submitText, toggleModal }) => (
-  <div className='modal-form__buttons'>
+  <div className='modal-form__buttons my-10 mx-0'>
     <button type='submit' disabled={isSubmitting} className='btn btn--orange btn--sm'>
       {submitText}
     </button>

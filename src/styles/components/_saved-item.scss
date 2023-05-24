@@ -16,23 +16,23 @@
 
 .saved-items__empty {
   font-family: $sans-serif-stack;
-  padding: 20px 0px;
-  margin-top: 20px
+  // padding: 20px 0px; mt-20 py-20 px-0
+  // margin-top: 20px
 }
 
 .item-group__title {
   font-size: 20px;
   // color: $dark-gray;
   border-bottom: none;
-  margin-top: 24px;
-  margin-bottom: 30px;
-  padding: 0;
+  // margin-top: 24px;
+  // margin-bottom: 30px;
+  // padding: 0;
 }
 
 .saved-item {
   // @include grid-column(12);
-  margin-bottom: 40px;
-  padding: 0 22px 0 15px;
+  // margin-bottom: 40px;
+  // padding: 0 22px 0 15px;
   // float: left;
 }
 
@@ -59,7 +59,7 @@
 
 .saved-item__item-description {
   min-width: 0;
-  padding-right: 20px;
+  // padding-right: 20px;
 }
 
 @mixin saved-item-text {
@@ -78,7 +78,7 @@
 
 .saved-item__title {
   @include saved-item-text;
-  margin: 0 0 5px 0;
+  // margin: 0 0 5px 0;
   font-size: 20px;
   // & a {
   //   color: inherit;

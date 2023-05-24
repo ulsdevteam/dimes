@@ -187,7 +187,7 @@ const PageSearch = () => {
             category={params.category} />
         </div>
         <div className='results'>
-          <h1 className={classnames('results__title', { 'loading-dots': inProgress })}>{inProgress ? "Searching" :
+          <h1 className={classnames('results__title mt-30 mb-13', { 'loading-dots': inProgress })}>{inProgress ? "Searching" :
             (params.query ? (resultsCount ?
               (`Search Results ${`for “${params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`) :
               (`Sorry, there are no search results ${`for “${params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`)): 
@@ -210,7 +210,7 @@ const PageSearch = () => {
                     handleClick={() => toggleFacetModal()}
                     label='Filters'
                     iconBefore='filter_alt'
-                    className='btn--light-blue btn--filter' />
+                    className='btn--light-blue btn--filter mr-16' />
                   <SelectInput
                     className='select__sort'
                     hideLabel
@@ -236,7 +236,7 @@ const PageSearch = () => {
                   (<CardList
                     items={items}
                     params={params} />)}
-              <div className='results__footer'>
+              <div className='results__footer mb-30'>
                 <div className='results__summary'>
                   <p className='results__summary--text'>
                     {inProgress ? (<Skeleton />) : (`${startItem === endItem ?

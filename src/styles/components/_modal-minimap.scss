@@ -44,7 +44,7 @@
   display: flex;
   justify-content: space-between;
   line-height: 1.15;
-  margin: 14px 14px 0;
+  // margin: 14px 14px 0;
 }
 
 .modal__header-title--minimap {
@@ -53,12 +53,12 @@
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 3px;
-  margin: 0;
-  padding: 5px 0 0 11px;
+  // margin: 0;
+  // padding: 5px 0 0 11px; pt-5 pl-24
 }
 
 .modal__body--minimap {
-  padding: 0 24px 24px;
+  // padding: 0 24px 24px;
   font-size: 13px;
   height: calc(100% - 23px);
   line-height: 1.15;

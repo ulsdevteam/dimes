@@ -102,7 +102,7 @@ const PageDigitalObject = ({isMobile}) => {
       <div className='viewer-bar__title'>
         <TargetComponent {...targetProps} />
       </div>
-      <div className='viewer-bar__buttons'>
+      <div className='viewer-bar__buttons mt-5'>
         <a className='btn btn--sm btn--orange'
           href={`${process.env.REACT_APP_S3_BASEURL}/pdfs/${id}`}
           target='_blank'

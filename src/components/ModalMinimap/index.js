@@ -25,13 +25,13 @@ export const ModalMinimapInfo = props => (
     onRequestClose={props.toggleModal}
     className='modal modal--minimap'
     overlayClassName='modal__overlay' >
-    <div className='modal__header--minimap'>
-      <h2 className='modal__header-title--minimap'>{ props.hasSeenMinimapIntro ? 'Minimap' : 'Introducing the Minimap' }</h2>
+    <div className='modal__header--minimap mt-14 mr-14'>
+      <h2 className='modal__header-title--minimap m-0 pt-5 pb-0 pl-24'>{ props.hasSeenMinimapIntro ? 'Minimap' : 'Introducing the Minimap' }</h2>
       <button className='modal__header-button' aria-label='Close' onClick={props.toggleModal}>
         <MaterialIcon icon='close' />
       </button>
     </div>
-    <div className='modal__body--minimap'>
+    <div className='modal__body--minimap pt-0 px-24 pb-24'>
       {props.hasSeenMinimapIntro ? minimapAboutText : minimapIntroText}
     </div>
   </Modal>
@@ -54,13 +54,13 @@ export const ModalMinimap = props => (
       afterOpen: 'slide--left--after-open',
       beforeClose: 'slide--left--before-close'
     }} >
-    <div className='modal__header--minimap'>
-      <h2 className='modal__header-title--minimap'>Minimap</h2>
+    <div className='modal__header--minimap mt-14 mr-14'>
+      <h2 className='modal__header-title--minimap m-0 m-0 pt-5 pb-0 pl-24'>Minimap</h2>
       <button className='modal__header-button' aria-label='Close' onClick={props.toggleModal}>
         <MaterialIcon icon='close' />
       </button>
     </div>
-    <div className='modal__body--minimap'>
+    <div className='modal__body--minimap pt-0 px-24 pb-24'>
       {minimapAboutText}
       <div className='minimap__wrapper--modal'>
         <Minimap

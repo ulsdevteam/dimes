@@ -48,7 +48,7 @@ const FormatSelectInput = () => {
   }, [format, setFieldValue])
 
   return (
-    <div className='form-group'>
+    <div className='form-group mx-0'>
       <SelectInput
         className='select__modal'
         id='format'
@@ -112,7 +112,7 @@ export const SelectedTotals = ({ items }) => {
       {...total, [current.type]: parseFloat(current.value)}
   ), {})
   const extents = Object.entries(totals).map(e => pluralize(e[0], e[1], true))
-  return (extents.length ? <p className='selected-totals'>{`selected: ${extents.join(', ')}`}</p> : <p className='selected-totals'>selected: 0 items</p>)
+  return (extents.length ? <p className='selected-totals mt-10'>{`selected: ${extents.join(', ')}`}</p> : <p className='selected-totals mt-10'>selected: 0 items</p>)
 }
 
 
@@ -129,8 +129,8 @@ export const ModalMyList = props => (
         <MaterialIcon icon='close'/>
       </button>
     </div>
-    <div className='modal__body'>
-      <div className='modal-list'>
+    <div className='modal__body p-0'>
+      <div className='modal-list py-30 px-20'>
         <ModalToggleListButton
           ignoreRestrictions={props.ignoreRestrictions}
           items={props.list}
@@ -142,7 +142,7 @@ export const ModalMyList = props => (
           handleChange={props.handleChange} />
         <SelectedTotals items={props.list} />
       </div>
-      <div className='modal-form'>
+      <div className='modal-form pt-30 px-20 pb-18'>
         {props.form}
       </div>
     </div>
@@ -222,7 +222,7 @@ export const EmailModal = props => (
             name='message'
             component='textarea'
             rows={5} />
-          <div className='form-group'>
+          <div className='form-group mx-0'>
             <Field
               component={Captcha}
               name='recaptcha'
@@ -293,7 +293,7 @@ export const ReadingRoomRequestModal = props => (
             name='items'
             component='div'
             className='input__error' />
-          <div className='form-group'>
+          <div className='form-group mx-0'>
             <Field
               component={DateInput}
               handleChange={date => setFieldValue('scheduledDate', date)}
@@ -314,7 +314,7 @@ export const ReadingRoomRequestModal = props => (
             maxLength={255}
             component='textarea'
             rows={5} />
-          <div className='form-group'>
+          <div className='form-group mx-0'>
             <Field
               component={Captcha}
               name='recaptcha'
@@ -360,7 +360,7 @@ export const DuplicationRequestModal = props => (
     list={props.list}
     form={
       <>
-        <div className='modal-form__intro'>
+        <div className='mb-20'>
           <strong>Please note:</strong> if you want a cost estimate for your order, email an archivist at <a href='mailto:archive@rockarch.org'>archive@rockarch.org</a>.
         </div>
         <Formik
@@ -425,7 +425,7 @@ export const DuplicationRequestModal = props => (
               required={true}
               errors={errors}
               touched={touched} />
-            <div className='form-group'>
+            <div className='form-group mx-0'>
               <Field
                 component={Captcha}
                 name='recaptcha'

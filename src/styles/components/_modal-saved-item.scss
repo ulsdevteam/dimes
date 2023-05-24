@@ -5,7 +5,7 @@
   // @include grid-column(12);
   border-top: 1px dotted $regal-blue;
   // font-family: $sans-serif-stack;
-  margin-left: 15px;
+  // margin-left: 15px;
   &:first-of-type {
     margin-top: 22px;
   }
@@ -16,7 +16,7 @@
   // padding-left: 0;
   font-weight: $font-weight-bold;
   color: $night-grey;
-  margin: 15px 0;
+  // margin: 15px 0;
 }
 
 .modal-item-group__items label {
@@ -26,12 +26,11 @@
 .modal-item-group__title {
   @extend .item-group__title;
   font-size: 15px;
-  margin: 20px 0px 20px 0;
+  // margin: 20px 0px 20px 0;
 }
 
 .modal-saved-item {
-  margin-bottom: 15px;
-
+  // margin-bottom: 15px;
   label::before {
     margin-top: 3px;
   }

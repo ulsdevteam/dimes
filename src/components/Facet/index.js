@@ -10,7 +10,7 @@ const ShowHideMore = ({id, isOpen, toggleOpen}) => {
     <Button
       ariaLabel='Show all values'
       ariaPressed={isOpen}
-      className='facet__show-hide'
+      className='facet__show-hide mt-3 pl-0'
       label={isOpen ? 'show less' : 'show all'}
       handleClick={() => toggleOpen(isOpen)} />
   )
@@ -46,8 +46,8 @@ const Facet = ({ children, handleChange, items, paramKey, params, title }) => {
   return (
     facetItems.length || children ?
     (
-      <fieldset className='facet'>
-        {title && <legend id={title}><h3 className='facet__title'>{title}</h3></legend>}
+      <fieldset className='facet pt-44 pb-30 px-40 ml-0'>
+        {title && <legend id={title}><h3 className='facet__title p-0 m-0'>{title}</h3></legend>}
         {children && children}
         {facetItems && <div className={classnames('facet__items', {'open': isOpen})}>{facetItems}</div>}
         {items && items.length > 5 && <ShowHideMore id={paramKey} isOpen={isOpen} toggleOpen={toggleOpen} />}

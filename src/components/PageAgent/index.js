@@ -16,8 +16,8 @@ import './styles.scss'
 
 const AgentNote = ({ source, text }) => (
   text ?
-  (<div className={'agent__note'}>
-    <h3 className='agent-note__label'>Description</h3>
+  (<div className={'agent__note mb-27'}>
+    <h3 className='agent-note__label m-0'>Description</h3>
     <p className='agent-note__value'>
       {text}
     </p>
@@ -28,14 +28,14 @@ const AgentNote = ({ source, text }) => (
 const AgentRelatedCollections = ({ agentTitle, collections, params }) => (
   collections.length ?
   (<div className='agent__related'>
-    <h2 className='agent__section-title heading--dotted-border'>Collections Related to {agentTitle}</h2>
+    <h2 className='agent__section-title heading--dotted-border pb-12'>Collections Related to {agentTitle}</h2>
     <CardList
       className='card--related-collections'
       hideHitCount
       items={collections}
       params={{...params, query: agentTitle}}/>
     { collections.length === 6 ?
-      (<a href={`/search?query=${agentTitle}&category=collection`} className='btn btn--sm btn--orange btn--search-more'>Search More Related Collections</a>) :
+      (<a href={`/search?query=${agentTitle}&category=collection`} className='btn btn--sm btn--orange mt-15 mb-40'>Search More Related Collections</a>) :
       (null)
     }
   </div>) : (null)
@@ -44,12 +44,12 @@ const AgentRelatedCollections = ({ agentTitle, collections, params }) => (
 const AgentSidebar = ({ agentType, externalIdentifiers }) => {
   const linkList = externalIdentifiers.map(i =>  (
     <li key={i.url}>
-      <a className='btn btn--md btn--gray btn--agent-identifier' href={i.url}>{i.title}</a>
+      <a className='btn btn--md btn--gray btn--agent-identifier mb-10' href={i.url}>{i.title}</a>
     </li>))
   return (
   externalIdentifiers.length ?
   (<div className='agent__sidebar'>
-    <h2 className='agent__section-title heading--dotted-border'>More about this {agentType}</h2>
+    <h2 className='agent__section-title heading--dotted-border pb-12'>More about this {agentType}</h2>
     <ul className='list--unstyled'>{linkList}</ul>
   </div>) : (null)
 )}
@@ -224,7 +224,7 @@ const PageAgent = () => {
       </Helmet>
       <div className='container--full-width'>
         <div className='agent__wrapper'>
-          <nav className="agent__nav">
+          <nav className="mt-30">
             <a href={appendParams('/search', params)} className='btn btn--sm btn--gray'>
               <span className='material-icon material-icon--space-after'>keyboard_arrow_left</span>Back to Search
             </a>
@@ -232,13 +232,13 @@ const PageAgent = () => {
           <main id='main' role='main'>
             <div className='agent__wrapper--description'>
               <div className='agent__main'>
-                <h1 className='agent__title'>{ agent.title || <Skeleton />}</h1>
+                <h1 className='agent__title mt-0 mb-30'>{ agent.title || <Skeleton />}</h1>
                 <div>
                   {isAttributesLoading ?
                     (<AgentAttributeSkeleton />) :
                     (<>
                       { !!Object.keys(attributes).length || narrativeDescription ?
-                        <h2 className='agent__section-title heading--dotted-border'>Summary</h2> :
+                        <h2 className='agent__section-title heading--dotted-border pb-12'>Summary</h2> :
                         null
                       }
                       <AgentAttributeList items={attributes} />

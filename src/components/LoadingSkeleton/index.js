@@ -3,7 +3,7 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 export const SearchSkeleton = () => (
-  <ul className='card-list list--unstyled'>
+  <ul className='card-list list--unstyled mt-40 mb-32'>
     {Array(8)
       .fill()
       .map((item, index) => (
@@ -27,13 +27,13 @@ export const MyListSkeleton = () => (
     .fill()
     .map((item, index) => (
       <div key={index} className='saved-items__item-group'>
-        <h2 className='item-group__title'>
+        <h2 className='item-group__title mt-24 mb-30 p-0'>
           <Skeleton />
         </h2>
         <div className='item-group__items'>
-          <div className='saved-item'>
-            <div className='saved-item__item-description'>
-              <h3 className='saved-item__title'>
+          <div className='saved-item mb-40 py-0 pr-22 pl-15'>
+            <div className='saved-item__item-description pr-20'>
+              <h3 className='saved-item__title mt-0 mx-0 mb-5'>
                 <Skeleton />
               </h3>
               <p className='saved-item__date'>
@@ -63,7 +63,7 @@ export const AgentAttributeSkeleton = () => (
       .fill()
       .map((item, index) => (
         <div key={index} className='agent-attribute'>
-          <p className='agent-attribute__label'>
+          <p className='agent-attribute__label m-0'>
             <Skeleton />
           </p>
           <p className='agent-attribute__value'>
@@ -75,7 +75,7 @@ export const AgentAttributeSkeleton = () => (
 )
 
 export const AgentRelatedCollectionsSkeleton = () => (
-  <ul className='card-list list--unstyled card--related-collections'>
+  <ul className='card-list list--unstyled card--related-collections mt-40 mb-32'>
     {Array(6)
       .fill()
       .map((item, index) => (
@@ -96,7 +96,7 @@ export const AgentRelatedCollectionsSkeleton = () => (
 export const DetailSkeleton = () => (
   <>
     <h3 className='panel__heading'><Skeleton /></h3>
-    <ul className='panel__list--unstyled'>
+    <ul className='panel__list--unstyled pl-0 mt-0'>
       <li><Skeleton /></li>
     </ul>
   </>

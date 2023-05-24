@@ -64,7 +64,7 @@ CheckBoxInput.defaultProps = {
 export const DateInput = props => (
   <>
   <DatePicker
-      className='dp__wrapper'
+      className='mb-2'
       initialDate={new Date()}
       minDate={new Date()}
       onSelect={date => props.handleChange(date)}>
@@ -75,16 +75,16 @@ export const DateInput = props => (
       id={props.id}
       name={props.name} />
     <DatePickerCalendar className='dp__calendar'>
-      <div className='dp__top-bar'>
+      <div className='dp__top-bar mb-12'>
         <DatePickerButton
-          className='dp__button'
+          className='dp__button py-2 px-6'
           aria-label='Switch to the previous month.'
           updateMonth={({ prev }) => prev()} >
           <MaterialIcon icon='west' />
         </DatePickerButton>
-        <DatePickerMonth className='dp__month' />
+        <DatePickerMonth className='dp__month px-16 py-0' />
         <DatePickerButton
-          className='dp__button'
+          className='dp__button py-2 px-6'
           aria-label='Switch to the next month.'
           updateMonth={({ next }) => next()} >
           <MaterialIcon icon='east' />
@@ -129,7 +129,7 @@ export const SelectInput = props => {
         {selectedItem && selectedItem.label}
         <MaterialIcon icon={props.iconAfter ? props.iconAfter : 'unfold_more'} />
       </button>
-      <ul className={classnames('select__menu', `${props.className}__menu`, {'open': isOpen})} {...getMenuProps()}>
+      <ul className={classnames('select__menu', 'm-0', 'pl-0', `${props.className}__menu`, {'open': isOpen})} {...getMenuProps()}>
         {isOpen &&
           props.options.map((option, index) => (
             <li className={classnames(

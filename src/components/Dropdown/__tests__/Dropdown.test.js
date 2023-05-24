@@ -26,7 +26,7 @@ it('renders props correctly', () => {
   })
 
   const dropdown = document.querySelector('.dropdown')
-  expect(dropdown.className).toBe('dropdown mylist__actions hide-on-lg-up')
+  expect(dropdown.className).toBe('dropdown mylist__actions hide-on-lg-up mt-40 mr-30 mb-30')
   const button = document.querySelector('.dropdown > button')
   expect(button.className).toBe('btn btn--orange btn--md closed')
   const list = document.querySelector('.dropdown > div')

@@ -4,7 +4,7 @@ import MaterialIcon from '../MaterialIcon'
 import Button from '../Button'
 
 const MyListSidebar = ({ duplicationRequest, readingRoomRequest }) => (
-  <aside className='mylist__sidebar'>
+  <aside className='mylist__sidebar py-60 pr-0 pl-40 mr--15'>
     <a
       className='btn btn--orange btn--lg'
       href='mailto:archive@rockarch.org?subject=Scheduling a research appointment'
