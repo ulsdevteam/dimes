@@ -3,6 +3,7 @@ import { render, unmountComponentAtNode } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 import SearchNotFound from '..'
 import { I18nApp } from '../../i18n'
+import { t } from '@lingui/macro'
 
 let container = null
 beforeEach(() => {
@@ -39,5 +40,8 @@ it('renders missing query correctly', () => {
     } />, container)
   })
   const text = document.querySelector('.results__not-found--text')
-  expect(text.textContent).toContain('Please add a word or phrase to search for.')
+  expect(text.textContent).toContain(t({
+    comment: 'Missing word/phrase Test',
+    message: 'Please add a word or phrase to search for.'
+  }))
 })

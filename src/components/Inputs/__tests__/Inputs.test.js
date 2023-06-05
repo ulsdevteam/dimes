@@ -1,6 +1,7 @@
 import React from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
 import { act } from 'react-dom/test-utils'
+import { t } from '@lingui/macro'
 import { I18nApp } from '../../i18n'
 import {
   CheckBoxInput,
