@@ -191,7 +191,7 @@ msgstr ""
 #: src/components/ListToggleButton/index.js:45
 #: src/components/ListToggleButton/__tests__/ListToggleButton.test.js:31
 msgid "Add to List"
-msgstr ""
+msgstr "FR: Add to List"
 
 #. Message while page loads for email submissions
 #: src/components/PageMyList/index.js:142
