@@ -2,6 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 import { I18nApp } from '../../i18n'
+import { t } from '@lingui/macro'
 import ContextSwitcher from '..'
 
 it('renders props correctly', () => {
@@ -16,7 +17,10 @@ it('renders props correctly', () => {
 
   const switcher = document.querySelector('.toggle-wrapper > button')
   expect(switcher.className).toBe('btn toggle-context')
-  expect(switcher.textContent).toContain('Collection Content')
+  expect(switcher.textContent).toContain(t({
+    comment: 'switcher label text content',
+    message: 'Collection Content'
+  }))
 
   act(() => {
     render(<I18nApp ReactComponent={<ContextSwitcher
@@ -25,5 +29,8 @@ it('renders props correctly', () => {
   })
 
   expect(switcher.className).toBe('btn toggle-context')
-  expect(switcher.textContent).toContain('Collection Details')
+  expect(switcher.textContent).toContain(t({
+    comment: 'switcher label text content',
+    message: 'Collection Details'
+  }))
 })

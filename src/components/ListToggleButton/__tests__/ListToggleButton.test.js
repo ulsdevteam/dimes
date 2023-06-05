@@ -28,8 +28,14 @@ it('renders correctly in desktop and modal', () => {
   })
 
   const button = document.querySelector('button')
-  expect(button.textContent).toContain(t({comment: "Test function", message: 'Add to List'}))
-  expect(button).toHaveAttribute('aria-label', 'Add item to list')
+  expect(button.textContent).toContain(t({
+    comment: "Test Add button label",
+    message: 'Add to List'
+  }))
+  expect(button).toHaveAttribute('aria-label', t({
+    comment: "Test Add button aria label",
+    message: 'Add item to list'
+  }))
   expect(button.className).not.toContain('saved')
 
   act(() => {
@@ -39,8 +45,14 @@ it('renders correctly in desktop and modal', () => {
       toggleSaved={jest.fn()} />} />, container)
   })
 
-  expect(button.textContent).toContain('Remove from List')
-  expect(button).toHaveAttribute('aria-label', 'Remove item from list')
+  expect(button.textContent).toContain(t({
+    comment: "Test Remove button label",
+    message: 'Remove from List'
+  }))
+  expect(button).toHaveAttribute('aria-label', t({
+    comment: "Test Remove button aria label",
+    message: 'Remove item from list'
+  }))
   expect(button.className).toContain('saved')
 
   act(() => {
@@ -51,7 +63,10 @@ it('renders correctly in desktop and modal', () => {
       toggleSaved={jest.fn()} />} />, container)
   })
 
-  expect(button.textContent).toContain('Add')
+  expect(button.textContent).toContain(t({
+    comment: "Test Remove button label",
+    message: 'Add'
+  }))
 
   act(() => {
     render(<I18nApp ReactComponent={<ListToggleButton
@@ -61,7 +76,10 @@ it('renders correctly in desktop and modal', () => {
       toggleSaved={jest.fn()} />} />, container)
   })
 
-  expect(button.textContent).toContain('Remove')
+  expect(button.textContent).toContain(t({
+    comment: "Test Remove button label",
+    message: 'Remove'
+  }))
 })
 
 it('handles clicks correctly', () => {
