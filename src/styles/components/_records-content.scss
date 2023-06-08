@@ -61,6 +61,7 @@
 }
 
 .child__list {
+  box-sizing: content-box;
   list-style: none;
   transition: $transition-default;
   padding-left: 20px;
