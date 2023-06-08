@@ -54,7 +54,7 @@ export const MyListDropdown = ({ downloadCsv, duplicationRequest, emailList, rea
     iconBefore='settings'
     className='mylist__actions hide-on-lg-up mt-40 mr-30 mb-30'
     buttonClassName='btn btn--orange btn--md'
-    listClassName='dropdown__list--orange dropdown__list--slide-down'
+    listClassName='dropdown__list--orange dropdown__list--slide-down mylist__actions--dropdown'
     role='menu'>
       <DropdownItem
         order={1}

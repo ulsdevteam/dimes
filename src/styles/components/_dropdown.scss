@@ -6,9 +6,9 @@
 //   // position: relative;
 // }
 
-.dropdown__list {
-  position: absolute;
-  right: 0;
+// .dropdown__list {
+  // position: absolute;
+  // right: 0;
   // list-style: none;
   // margin-top: 5px;
   // border-radius: 3px;
@@ -23,7 +23,7 @@
   // &.closed {
   //   opacity: 0;
   // }
-}
+// }
 
 // .dropdown__list--slide-left {
 //   &.open {
@@ -55,6 +55,11 @@
   // @include lg-up {
   //   display: none;
   // }
+}
+
+.mylist__actions--dropdown {
+  position: absolute;
+  right: 0;
 }
 
 // .nav-mobile__btn {

@@ -30,7 +30,7 @@ it('renders props correctly', () => {
   const button = document.querySelector('.dropdown > button')
   expect(button.className).toBe('btn btn--orange btn--md closed')
   const list = document.querySelector('.dropdown > div')
-  expect(list.className).toBe('dropdown__list dropdown__list--orange dropdown__list--slide-down closed')
+  expect(list.className).toBe('dropdown__list dropdown__list--orange dropdown__list--slide-down mylist__actions--dropdown closed')
 })
 
 it('renders without crashing', () => {
