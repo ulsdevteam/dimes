@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet'
 import MaterialIcon from '../MaterialIcon'
 import Viewer from '../Viewer'
 import { firePageViewEvent } from '../Helpers'
+import { I18nApp } from '../i18n'
 import { Trans, t } from '@lingui/macro'
 import './styles.scss'
 
@@ -99,7 +100,7 @@ const PageDigitalObject = ({isMobile}) => {
 
   /** Custom top bar which includes additional classes  so we can style things as we want to **/
   const CustomTopBarTitle = ({ TargetComponent, targetProps  }) => (
-    <div className='viewer-bar'>
+    <I18nApp ReactComponent={<div className='viewer-bar'>
       <div className='viewer-bar__title'>
         <TargetComponent {...targetProps} />
       </div>
@@ -123,7 +124,7 @@ const PageDigitalObject = ({isMobile}) => {
           </Trans>
         </div>
       </div>
-    </div>
+    </div>} />
   )
 
   /** Adds CustomTopBarTitle to Mirador plugins */
@@ -137,6 +138,9 @@ const PageDigitalObject = ({isMobile}) => {
 
   return (
     <>
+      <div>
+        TESTING THIS IS A TEST
+      </div>
       <Helmet
         onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
         <title>{ itemTitle }</title>
