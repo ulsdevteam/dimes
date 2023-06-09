@@ -16,7 +16,7 @@ const Footer = () => (
         <div className='footer-primary__reading-room'>
           <p className='footer-primary__text'>Reading Room Hours:</p>
           <p className='footer-primary__text'>Monday-Friday<br />
-              10:00 a.m. to 5:00 p.m.<br />
+              9:00 a.m. to 5:00 p.m.<br />
             <a className='footer-primary__link' href='https://rockarch.org/collections/access-and-request-materials/'>How to access and request materials</a>.</p>
           <a className='footer-primary__link' href='https://rockarch.org/collections/access-and-request-materials/holiday-schedule/'>See holiday schedule</a>
         </div>
