@@ -228,7 +228,14 @@ export const RecordsChild = props => {
       <div className='child__buttons'>
         {item.online ? (
           <a className='btn btn-launch--content'
-             href={`${item.uri}/view`}>{t({ message: props.isMobile? 'View' : 'View Online'})}
+            href={`${item.uri}/view`}>{
+              t({
+                message: select(props.isMobile, {
+                  true: 'View',
+                  other: 'View Online'
+                })
+              })
+            }
              <MaterialIcon icon='visibility' /></a>) :
           (null)
         }
