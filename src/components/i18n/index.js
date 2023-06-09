@@ -1,11 +1,6 @@
 import { I18nProvider } from '@lingui/react'
 import { i18n } from '@lingui/core'
-import { en } from 'make-plural/plurals'
 import { messages } from '../../locales/en/messages'
-
-i18n.loadLocaleData({
-	en: { plurals: en }
-})
 
 i18n.load('en', messages)
 
