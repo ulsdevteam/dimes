@@ -11,7 +11,7 @@ const PageBackendError = ({error}) => (
       onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
       <title>Page Not Found</title>
     </Helmet>
-    <div className='backend-error mt-60'>
+    <main id='main' className='backend-error mt-60'>
       <span className='not-found__icon'><MaterialIcon icon='error_outline' /></span>
       <h1 className='backend-error__title'>There was an error fetching data.</h1>
       <p className='backend-error__text'>The request to {error.config.url} failed.</p>
@@ -24,7 +24,7 @@ const PageBackendError = ({error}) => (
           <p className='backend-error__header mt-18'>Request data:</p>
           <p className='backend-error__message'>{error.config.data}</p>
         </> : null}
-    </div>
+    </main>
   </>
 )
 

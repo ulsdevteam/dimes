@@ -11,10 +11,10 @@ const PageHome = ({isMobile}) => (
       onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
       <title>DIMES: Online Collections and Catalog of Rockefeller Archive Center</title>
     </Helmet>
-    <div className='home'>
+    <main id='main' className='home'>
       <Hero />
       <SearchForm className='search search-form--home' isMobile={isMobile}/>
-    </div>
+    </main>
   </>
 )
 

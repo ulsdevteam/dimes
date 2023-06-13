@@ -229,7 +229,7 @@ const PageAgent = () => {
               <span className='material-icon material-icon--space-after'>keyboard_arrow_left</span>Back to Search
             </a>
           </nav>
-          <main id='main' role='main'>
+          <main id='main' className="mt-60">
             <div className='agent__wrapper--description'>
               <div className='agent__main'>
                 <h1 className='agent__title mt-0 mb-30'>{ agent.title || <Skeleton />}</h1>

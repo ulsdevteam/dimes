@@ -269,7 +269,7 @@
               <MaterialIcon icon='keyboard_arrow_left' className='material-icon--space-after' />Start a New Search
             </a>
           </nav>
-          <main id='main' role='main' className='ml-30'>
+          <main id='main' className='mt-60 ml-30'>
             <div className='ml-15'>
               <h1 className='mylist__title my-30'>My List</h1>
               <MyListDropdown

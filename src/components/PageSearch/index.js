@@ -186,7 +186,7 @@ const PageSearch = () => {
             online={params.online}
             category={params.category} />
         </div>
-        <div className='results'>
+        <main id='main' className='results'>
           <h1 className={classnames('results__title mt-30 mb-13', { 'loading-dots': inProgress })}>{inProgress ? "Searching" :
             (params.query ? (resultsCount ?
               (`Search Results ${`for “${params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`) :
@@ -255,8 +255,8 @@ const PageSearch = () => {
               </div>
             </div>
           </>
-        }
-        </div>
+          }
+        </main>
       </div>
       <FacetModal
         isOpen={facetIsOpen}
