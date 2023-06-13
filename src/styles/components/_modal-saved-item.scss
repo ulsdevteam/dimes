@@ -2,21 +2,15 @@
 @import "./saved-item";
 
 .modal-saved-items__item-group {
-  // @include grid-column(12);
   border-top: 1px dotted $regal-blue;
-  // font-family: $sans-serif-stack;
-  // margin-left: 15px;
   &:first-of-type {
     margin-top: 22px;
   }
 }
 
 .modal-item-group__items {
-  // list-style: none;
-  // padding-left: 0;
   font-weight: $font-weight-bold;
   color: $night-grey;
-  // margin: 15px 0;
 }
 
 .modal-item-group__items label {
@@ -26,26 +20,13 @@
 .modal-item-group__title {
   @extend .item-group__title;
   font-size: 15px;
-  // margin: 20px 0px 20px 0;
 }
 
 .modal-saved-item {
-  // margin-bottom: 15px;
   label::before {
     margin-top: 3px;
   }
 }
-
-// .modal-saved-item__inputs {
-  // @include grid-column(1);
-// }
-
-// .modal-saved-item__item-description  {
-//   @include grid-column(11);
-//   @include lg-up {
-//     @include grid-column(9);
-//   }
-// }
 
 .modal-saved-item__title {
   @extend .saved-item__title;

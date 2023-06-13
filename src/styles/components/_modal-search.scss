@@ -1,5 +1,4 @@
 .modal--facet {
-  // @extend .modal-content;
   bottom: auto;
   top: 0;
   left: 0;
@@ -7,7 +6,6 @@
   max-width: 420px;
   height: 100vh;
   border-radius: 0px;
-  // border: 1px solid $dark-gray;
   background-color: $solitude-blue;
   @include md-up {
     width: 420px;
@@ -17,11 +15,5 @@
 .modal__header--search {
   color: $regal-blue;
   background-color: $solitude-blue;
-  // padding: 30px 30px 20px;
   height: auto;
-  // float: left;
-  // width: 100%;
-  // box-sizing: border-box;
-  // display: flex;
-  // justify-content: space-between;
 }

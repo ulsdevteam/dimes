@@ -7,7 +7,6 @@
 .saved-items__item-group,
 .saved-items__loading,
 .saved-items__empty {
-  // @include grid-column(12);
   display: inline-block;
   border-top: 1px dotted $regal-blue;
   font-family: $sans-serif-stack;
@@ -16,8 +15,6 @@
 
 .saved-items__empty {
   font-family: $sans-serif-stack;
-  // padding: 20px 0px; mt-20 py-20 px-0
-  // margin-top: 20px
 }
 
 .item-group__title {

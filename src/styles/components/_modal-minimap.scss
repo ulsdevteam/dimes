@@ -1,28 +1,4 @@
-// .modal {
-//   font-family: $sans-serif-stack;
-//   position: absolute;
-//   border: 1px solid $dark-gray;
-//   background: rgb(255, 255, 255);
-//   border-radius: 3px;
-//   overflow: auto;
-//   outline: none;
-// }
-
-// .modal-content--minimap {
-//   @extend .modal-content;
-//   top: 60px;
-//   bottom: 0;
-//   left: 0;
-//   right: 0;
-//   @include md-up {
-//     top: 70px;
-//     right: 0;
-//     left: 50%;
-//   }
-// }
-
 .modal--minimap {
-  // @extend .modal-content;
   top: 70px;
   right: 40px;
   left: 40px;
@@ -44,21 +20,16 @@
   display: flex;
   justify-content: space-between;
   line-height: 1.15;
-  // margin: 14px 14px 0;
 }
 
 .modal__header-title--minimap {
-  // @extend .modal-header__title;
   color: inherit;
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 3px;
-  // margin: 0;
-  // padding: 5px 0 0 11px; pt-5 pl-24
 }
 
 .modal__body--minimap {
-  // padding: 0 24px 24px;
   font-size: 13px;
   height: calc(100% - 23px);
   line-height: 1.15;

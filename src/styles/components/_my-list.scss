@@ -1,24 +1,14 @@
 @import "../styles";
 
 .mylist main {
-  // @include grid-column(12);
   grid-column: span 12;
-  // margin-left: 30px;
   @include lg-up {
-    // width: 66%;
-    // box-sizing: border-box;
     grid-column: 1 / span 8
   }
 }
 
-// .mylist__header {
-  // @include grid-column(12);
-  // margin-left: $gutters-default;
-// }
-
 .mylist__export-actions {
   @include show-on-lg-up;
-  // padding-bottom: 30px;
 }
 
 .mylist__export-actions .btn {
@@ -27,24 +17,10 @@
 
 //TODO: .btn--lg styles in DIMES made these bold. Should that be updated in the Style Library, or added here?
 .mylist__sidebar {
-  // width: 34%;
   align-content: start;
   background: $desert-grey;
   gap: 12px;
   grid-column: 9 / span 4;
   justify-items: start;
-  // float: right;
-  // margin-right: -$gutters-default;
-  // padding: 60px 0px 60px 40px;
-  // box-sizing: border-box;
-  // display: flex;
-  // flex-direction: column;
-  // & > .btn {
-  //   align-self: start;
-  // }
   @include show-on-lg-up;
 }
-
-// .mylist__title {
-  // margin-top: 40px;
-// }

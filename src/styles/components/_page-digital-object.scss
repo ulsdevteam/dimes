@@ -8,12 +8,6 @@
   right: 0;
   background: $black;
   z-index: 998;
-  // @include md-up {
-  //   top: 70px;
-  // }
-  // @include lg-up {
-  //   top: 60px;
-  // }
 }
 
 .mosaic-tile {
@@ -64,7 +58,6 @@
   width:100%;
   order: 0;
   display: flex;
-  // margin-top: 5px;
   justify-content: flex-end;
   @include lg-up {
     width: unset;
