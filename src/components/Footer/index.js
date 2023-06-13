@@ -27,7 +27,7 @@ const Footer = () => (
               </Trans>
             </p>
             <p className='footer-primary__text'>
-              <Trans comment='Comapny Phonenumber'>
+              <Trans comment='Company Phonenumber'>
                 Phone: (914) 366-6300
               </Trans><br />
               <Trans comment='Company Fax'>
