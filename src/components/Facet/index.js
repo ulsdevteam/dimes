@@ -24,7 +24,7 @@ const ShowHideMore = ({id, isOpen, toggleOpen}) => {
         })
         :
         t({
-          comment: 'Message shown on list is closed',
+          comment: 'Message shown when list is closed',
           message: 'show all'
         })
       }
