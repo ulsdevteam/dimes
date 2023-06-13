@@ -1,5 +1,6 @@
 import React from 'react'
 import SocialIcons from '../SocialIcons'
+import { PrimaryLinkAccessMaterials, PrimaryLinkAccessibilityPolicy, PrimaryLinkEmail, PrimaryLinkHoliday, PrimaryLinkPrivacyPolicy, PrimaryLinkRACPolicy } from '../PrimaryLink'
 import { t, Trans } from '@lingui/macro'
 import './styles.scss'
 
@@ -34,15 +35,8 @@ const Footer = () => (
                 Fax: (914) 631-6017
               </Trans><br />
               <Trans comment='Company Email'>
-                E-mail:
-                <a className='footer-primary__link' href={
-                  t({
-                    comment: 'Company Email link',
-                    message: 'mailto:archive@rockarch.org'
-                  })
-                }>
-                  archive@rockarch.org
-                </a>
+                E-mail: 
+                <PrimaryLinkEmail />
               </Trans>
             </p>
           </div>
@@ -57,61 +51,16 @@ const Footer = () => (
                 Monday-Friday<br />
                 10:00 a.m. to 5:00 p.m.<br />
               </Trans>
-              <a className='footer-primary__link' href={
-                t({
-                  comment: 'Access Materials link',
-                  message: 'https://rockarch.org/collections/access-and-request-materials/'
-                })
-              }>
-                <Trans comment='How to Access materials message'>
-                  How to access and request materials.
-                </Trans>
-              </a>
+              <PrimaryLinkAccessMaterials />
             </p>
-            <a className='footer-primary__link' href={
-              t({
-                comment: 'Holiday Schedule link',
-                message: 'https://rockarch.org/collections/access-and-request-materials/holiday-schedule'
-              })
-            }>
-              <Trans comment='Holiday Schedule message'>
-                See holiday schedule
-              </Trans>
-            </a>
+            <PrimaryLinkHoliday />
           </div>
           <div className='footer-primary__social'>
             <SocialIcons />
             <p>
-              <a className='footer-primary__link footer-primary__policy-link' href={
-                t({
-                  comment: 'Accessibility Statement Link',
-                  message: 'https://rockarch.org/about-us/accessibility/'
-                })
-              }>
-                <Trans comment='Accessibility Statement message'>
-                  Accessibility Statement
-                </Trans>
-              </a>
-              <a className='footer-primary__link footer-primary__policy-link' href={
-                t({
-                  comment: 'Privacy Policy link',
-                  message: 'https://rockarch.org/about-us/privacy-policy/'
-                })
-              }>
-                <Trans comment='Privacy Policy message'>
-                  Privacy Policy
-                </Trans>
-              </a>
-              <a className='footer-primary__link footer-primary__policy-link' href={
-                t({
-                  message: 'https://docs.rockarch.org',
-                  comment: 'Footer.Primary.RAC.href'
-                })
-              }>
-                <Trans comment='Footer.Primary.RAC.message'>
-                  RAC Policies
-                </Trans>
-              </a>
+              <PrimaryLinkAccessibilityPolicy />
+              <PrimaryLinkPrivacyPolicy />
+              <PrimaryLinkRACPolicy />
             </p>
             <p className='footer-primary__text'>
               <Trans comment='Copyright message'>
