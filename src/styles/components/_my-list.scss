@@ -2,8 +2,10 @@
 
 .mylist main {
   grid-column: span 12;
+  margin-right: 15px;
   @include lg-up {
-    grid-column: 1 / span 8
+    grid-column: 1 / span 8;
+    margin-right: 0px;
   }
 }
 

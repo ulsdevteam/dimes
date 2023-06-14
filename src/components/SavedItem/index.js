@@ -79,7 +79,7 @@ export const SavedItemList = ({ isLoading, items, removeFromList }) => {
   }
 
   return (
-    <div className='saved-items'>
+    <div className='saved-items ml-15'>
       {isLoading ? <MyListSkeleton /> : groupItems(items)}
     </div>
   )
