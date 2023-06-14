@@ -176,6 +176,7 @@ select {
     background: darken($desert-grey, 4%);
   }
   &.is-selected {
+    color: $black;
     font-weight: $font-weight-bold;
     &::after {
       font-family: Material Icons;

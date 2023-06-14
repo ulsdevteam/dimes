@@ -19,6 +19,7 @@
 }
 
 .item-group__title {
+  color: $night-grey;
   font-size: 20px;
   border-bottom: none;
 }
@@ -62,6 +63,9 @@
 .saved-item__title {
   @include saved-item-text;
   font-size: 20px;
+  & a {
+    color: $regal-blue;
+  }
 }
 
 .saved-item__date {
