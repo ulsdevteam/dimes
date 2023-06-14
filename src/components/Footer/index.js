@@ -1,6 +1,7 @@
 import React from 'react'
 import SocialIcons from '../SocialIcons'
 import { PrimaryLinkAccessMaterials, PrimaryLinkAccessibilityPolicy, PrimaryLinkEmail, PrimaryLinkHoliday, PrimaryLinkPrivacyPolicy, PrimaryLinkRACPolicy } from '../PrimaryLink'
+import { SecondaryLinkCollectionsAPI, SecondaryLinkBulkData, SecondaryLinkLicensing, SecondaryLinkTakeDownPolicy } from '../SecondaryLink'
 import { t, Trans } from '@lingui/macro'
 import './styles.scss'
 
@@ -77,52 +78,16 @@ const Footer = () => (
           <div className='footer-secondary__data'>
             <ul className='footer-secondary__list'>
               <li className='footer-secondary__list-item'>
-                <a className='footer-secondary__link' href={
-                  t({
-                    comment: 'Collections data API link',
-                    message: 'https://docs.rockarch.org/argo-docs/'
-                  })
-                }>
-                  <Trans comment='Collections data API message'>
-                    Collections data API
-                  </Trans>
-                </a>
+                <SecondaryLinkCollectionsAPI />
               </li>
               <li className='footer-secondary__list-item'>
-                <a className='footer-secondary__link' href={
-                  t({
-                    comment: 'Bulk Data Download link',
-                    message: 'https://github.com/RockefellerArchiveCenter/data/'
-                  })
-                }>
-                  <Trans comment='Bulk Data Download message'>
-                    Bulk data download
-                  </Trans>
-                </a>
+                <SecondaryLinkBulkData />
               </li>
               <li className='footer-secondary__list-item'>
-                <a className='footer-secondary__link' href={
-                  t({
-                    comment: 'Licensing link',
-                    message: 'https://docs.rockarch.org/archival-description-license/'
-                  })
-                }>
-                  <Trans comment='Licensing message'>
-                    Licensing for descriptive metadata
-                  </Trans>
-                </a>
+                <SecondaryLinkLicensing />
               </li>
               <li className='footer-secondary__list-item'>
-                <a className='footer-secondary__link' href={
-                  t({
-                    comment: 'Take-down Policy link',
-                    message: 'https://docs.rockarch.org/takedown-policy/'
-                  })
-                }>
-                  <Trans comment='Take-down Policy message'>
-                    Take-down policy
-                  </Trans>
-                </a>
+                <SecondaryLinkTakeDownPolicy />
               </li>
             </ul>
           </div>
