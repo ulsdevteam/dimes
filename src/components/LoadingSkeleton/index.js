@@ -56,7 +56,7 @@ export const MyListSkeleton = () => (
   )}
   </React.Fragment>
 )
-// TODO: add a loading skeleton for the agent sidebar
+
 export const AgentAttributeSkeleton = () => (
   <div className='agent__attributes'>
     {Array(4)

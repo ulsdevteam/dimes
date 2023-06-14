@@ -27,7 +27,6 @@ const Dropdown = (props) => {
   const [label] = useState(props.label)
   const [listClassName] = useState(props.listClassName)
   const [role] = useState(props.role)
-  // TODO: use itemProps for MyListDropdown so that DropdownMenu component functions work correctly (children items all need to receive keyboard focus)
   const { buttonProps, itemProps, isOpen } = useDropdownMenu(props.children && props.children.length)
   const openIcon = iconBeforeOpen ? iconBeforeOpen : iconBefore
 
