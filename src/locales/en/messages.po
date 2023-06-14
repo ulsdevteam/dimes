@@ -244,7 +244,7 @@ msgid "<0>View Online <1/></0><2>Download <3/></2>{0}"
 msgstr "<0>View Online <1/></0><2>Download <3/></2>{0}"
 
 #. Full Company Address
-#: src/components/Footer/index.js:22
+#: src/components/Footer/index.js:23
 msgid "15 Dayton Avenue<0/>Sleepy Hollow, New York<1/>10591"
 msgstr "15 Dayton Avenue<0/>Sleepy Hollow, New York<1/>10591"
 
@@ -328,7 +328,7 @@ msgid "Audio (MP3)"
 msgstr "Audio (MP3)"
 
 #. Bulk Data Download message
-#: src/components/Footer/index.js:98
+#: src/components/SecondaryLink/index.js:35
 msgid "Bulk data download"
 msgstr "Bulk data download"
 
@@ -385,7 +385,7 @@ msgid "Collections"
 msgstr "Collections"
 
 #. Collections data API message
-#: src/components/Footer/index.js:86
+#: src/components/SecondaryLink/index.js:22
 msgid "Collections data API"
 msgstr "Collections data API"
 
@@ -400,7 +400,7 @@ msgid "Confirm Remove All"
 msgstr "Confirm Remove All"
 
 #. Copyright message
-#: src/components/Footer/index.js:66
+#: src/components/Footer/index.js:67
 msgid "Copyright © Rockefeller Archive Center. All rights reserved."
 msgstr "Copyright © Rockefeller Archive Center. All rights reserved."
 
@@ -451,7 +451,7 @@ msgid "Download as .csv"
 msgstr "Download as .csv"
 
 #. Company Email
-#: src/components/Footer/index.js:37
+#: src/components/Footer/index.js:38
 msgid "E-mail: <0/>"
 msgstr "E-mail: <0/>"
 
@@ -505,7 +505,7 @@ msgid "Error submitting request"
 msgstr "Error submitting request"
 
 #. Company Fax
-#: src/components/Footer/index.js:34
+#: src/components/Footer/index.js:35
 msgid "Fax: (914) 631-6017"
 msgstr "Fax: (914) 631-6017"
 
@@ -558,22 +558,22 @@ msgid "https://docs.rockarch.org"
 msgstr "https://docs.rockarch.org"
 
 #. Licensing link
-#: src/components/Footer/index.js:105
+#: src/components/SecondaryLink/index.js:44
 msgid "https://docs.rockarch.org/archival-description-license/"
 msgstr "https://docs.rockarch.org/archival-description-license/"
 
 #. Collections data API link
-#: src/components/Footer/index.js:81
+#: src/components/SecondaryLink/index.js:18
 msgid "https://docs.rockarch.org/argo-docs/"
 msgstr "https://docs.rockarch.org/argo-docs/"
 
 #. Take-down Policy link
-#: src/components/Footer/index.js:117
+#: src/components/SecondaryLink/index.js:57
 msgid "https://docs.rockarch.org/takedown-policy/"
 msgstr "https://docs.rockarch.org/takedown-policy/"
 
 #. Bulk Data Download link
-#: src/components/Footer/index.js:93
+#: src/components/SecondaryLink/index.js:31
 msgid "https://github.com/RockefellerArchiveCenter/data/"
 msgstr "https://github.com/RockefellerArchiveCenter/data/"
 
@@ -663,7 +663,7 @@ msgid "Jump to {0} {hitPlural} in this area: {hitTitles}"
 msgstr "Jump to {0} {hitPlural} in this area: {hitTitles}"
 
 #. Licensing message
-#: src/components/Footer/index.js:110
+#: src/components/SecondaryLink/index.js:48
 msgid "Licensing for descriptive metadata"
 msgstr "Licensing for descriptive metadata"
 
@@ -715,7 +715,7 @@ msgid "Minimap"
 msgstr "Minimap"
 
 #. Reading Room Actual Hours
-#: src/components/Footer/index.js:50
+#: src/components/Footer/index.js:51
 msgid "Monday-Friday<0/>10:00 a.m. to 5:00 p.m.<1/>"
 msgstr "Monday-Friday<0/>10:00 a.m. to 5:00 p.m.<1/>"
 
@@ -786,7 +786,7 @@ msgid "People"
 msgstr "People"
 
 #. Company Phonenumber
-#: src/components/Footer/index.js:31
+#: src/components/Footer/index.js:32
 msgid "Phone: (914) 366-6300"
 msgstr "Phone: (914) 366-6300"
 
@@ -860,7 +860,7 @@ msgid "RAC Policies"
 msgstr "RAC Policies"
 
 #. Reading Room Hours message
-#: src/components/Footer/index.js:45
+#: src/components/Footer/index.js:46
 msgid "Reading Room Hours:"
 msgstr "Reading Room Hours:"
 
@@ -922,7 +922,7 @@ msgid "Request in Reading Room"
 msgstr "Request in Reading Room"
 
 #. Primary Title
-#: src/components/Footer/index.js:13
+#: src/components/Footer/index.js:14
 msgid "Rockefeller<0>Archive Center</0>"
 msgstr "Rockefeller<0>Archive Center</0>"
 
@@ -1131,7 +1131,7 @@ msgid "Switch to the previous month."
 msgstr "Switch to the previous month."
 
 #. Take-down Policy message
-#: src/components/Footer/index.js:122
+#: src/components/SecondaryLink/index.js:61
 msgid "Take-down policy"
 msgstr "Take-down policy"
 
