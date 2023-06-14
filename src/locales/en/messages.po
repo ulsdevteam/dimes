@@ -114,7 +114,7 @@ msgid "<0/>Start a New Search"
 msgstr "<0/>Start a New Search"
 
 #. Download button for digital object
-#: src/components/PageDigitalObject/index.js:107
+#: src/components/PageDigitalObject/index.js:108
 msgid "<0><1/> Download</0>"
 msgstr "<0><1/> Download</0>"
 
@@ -124,7 +124,7 @@ msgid "<0><1/> Schedule a Visit</0>"
 msgstr "<0><1/> Schedule a Visit</0>"
 
 #. Go back to Item details for digital object
-#: src/components/PageDigitalObject/index.js:119
+#: src/components/PageDigitalObject/index.js:120
 msgid "<0><1/>Back to Item Details</0>"
 msgstr "<0><1/>Back to Item Details</0>"
 
@@ -244,7 +244,7 @@ msgid "<0>View Online <1/></0><2>Download <3/></2>{0}"
 msgstr "<0>View Online <1/></0><2>Download <3/></2>{0}"
 
 #. Full Company Address
-#: src/components/Footer/index.js:21
+#: src/components/Footer/index.js:22
 msgid "15 Dayton Avenue<0/>Sleepy Hollow, New York<1/>10591"
 msgstr "15 Dayton Avenue<0/>Sleepy Hollow, New York<1/>10591"
 
@@ -263,8 +263,8 @@ msgstr "255 characters maximum."
 msgid "about minimap"
 msgstr "about minimap"
 
-#. Accessibility Statement message
-#: src/components/Footer/index.js:91
+#. Accesibility Statement message
+#: src/components/PrimaryLink/index.js:63
 msgid "Accessibility Statement"
 msgstr "Accessibility Statement"
 
@@ -312,6 +312,11 @@ msgstr "An email address is required."
 msgid "apply dates"
 msgstr "apply dates"
 
+#. Company Email shown
+#: src/components/PrimaryLink/index.js:37
+msgid "archive@rockarch.org"
+msgstr "archive@rockarch.org"
+
 #. Confirmation to delete all items from list
 #: src/components/PageMyList/index.js:375
 msgid "Are you sure you want to remove all the items from your list?<0><1/><2/></0>"
@@ -323,7 +328,7 @@ msgid "Audio (MP3)"
 msgstr "Audio (MP3)"
 
 #. Bulk Data Download message
-#: src/components/Footer/index.js:149
+#: src/components/Footer/index.js:98
 msgid "Bulk data download"
 msgstr "Bulk data download"
 
@@ -380,7 +385,7 @@ msgid "Collections"
 msgstr "Collections"
 
 #. Collections data API message
-#: src/components/Footer/index.js:137
+#: src/components/Footer/index.js:86
 msgid "Collections data API"
 msgstr "Collections data API"
 
@@ -395,7 +400,7 @@ msgid "Confirm Remove All"
 msgstr "Confirm Remove All"
 
 #. Copyright message
-#: src/components/Footer/index.js:117
+#: src/components/Footer/index.js:66
 msgid "Copyright © Rockefeller Archive Center. All rights reserved."
 msgstr "Copyright © Rockefeller Archive Center. All rights reserved."
 
@@ -446,9 +451,9 @@ msgid "Download as .csv"
 msgstr "Download as .csv"
 
 #. Company Email
-#: src/components/Footer/index.js:36
-msgid "E-mail:<0>archive@rockarch.org</0>"
-msgstr "E-mail:<0>archive@rockarch.org</0>"
+#: src/components/Footer/index.js:37
+msgid "E-mail: <0/>"
+msgstr "E-mail: <0/>"
 
 #. Name of email form
 #: src/components/ModalMyList/index.js:268
@@ -500,7 +505,7 @@ msgid "Error submitting request"
 msgstr "Error submitting request"
 
 #. Company Fax
-#: src/components/Footer/index.js:33
+#: src/components/Footer/index.js:34
 msgid "Fax: (914) 631-6017"
 msgstr "Fax: (914) 631-6017"
 
@@ -543,32 +548,32 @@ msgid "Founded by"
 msgstr "Founded by"
 
 #. How to Access materials message
-#: src/components/Footer/index.js:66
+#: src/components/PrimaryLink/index.js:24
 msgid "How to access and request materials."
 msgstr "How to access and request materials."
 
 #. Footer.Primary.RAC.href
-#: src/components/Footer/index.js:106
+#: src/components/PrimaryLink/index.js:85
 msgid "https://docs.rockarch.org"
 msgstr "https://docs.rockarch.org"
 
 #. Licensing link
-#: src/components/Footer/index.js:156
+#: src/components/Footer/index.js:105
 msgid "https://docs.rockarch.org/archival-description-license/"
 msgstr "https://docs.rockarch.org/archival-description-license/"
 
 #. Collections data API link
-#: src/components/Footer/index.js:132
+#: src/components/Footer/index.js:81
 msgid "https://docs.rockarch.org/argo-docs/"
 msgstr "https://docs.rockarch.org/argo-docs/"
 
 #. Take-down Policy link
-#: src/components/Footer/index.js:168
+#: src/components/Footer/index.js:117
 msgid "https://docs.rockarch.org/takedown-policy/"
 msgstr "https://docs.rockarch.org/takedown-policy/"
 
 #. Bulk Data Download link
-#: src/components/Footer/index.js:144
+#: src/components/Footer/index.js:93
 msgid "https://github.com/RockefellerArchiveCenter/data/"
 msgstr "https://github.com/RockefellerArchiveCenter/data/"
 
@@ -585,17 +590,17 @@ msgid "https://raccess.rockarch.org/aeon.dll"
 msgstr "https://raccess.rockarch.org/aeon.dll"
 
 #. Accessibility Statement Link
-#: src/components/Footer/index.js:86
+#: src/components/PrimaryLink/index.js:59
 msgid "https://rockarch.org/about-us/accessibility/"
 msgstr "https://rockarch.org/about-us/accessibility/"
 
 #. Privacy Policy link
-#: src/components/Footer/index.js:96
+#: src/components/PrimaryLink/index.js:72
 msgid "https://rockarch.org/about-us/privacy-policy/"
 msgstr "https://rockarch.org/about-us/privacy-policy/"
 
 #. Access Materials link
-#: src/components/Footer/index.js:61
+#: src/components/PrimaryLink/index.js:20
 msgid "https://rockarch.org/collections/access-and-request-materials/"
 msgstr "https://rockarch.org/collections/access-and-request-materials/"
 
@@ -605,7 +610,7 @@ msgid "https://rockarch.org/collections/access-and-request-materials/#duplicatio
 msgstr "https://rockarch.org/collections/access-and-request-materials/#duplication-services-and-fee-schedule"
 
 #. Holiday Schedule link
-#: src/components/Footer/index.js:72
+#: src/components/PrimaryLink/index.js:46
 msgid "https://rockarch.org/collections/access-and-request-materials/holiday-schedule"
 msgstr "https://rockarch.org/collections/access-and-request-materials/holiday-schedule"
 
@@ -658,7 +663,7 @@ msgid "Jump to {0} {hitPlural} in this area: {hitTitles}"
 msgstr "Jump to {0} {hitPlural} in this area: {hitTitles}"
 
 #. Licensing message
-#: src/components/Footer/index.js:161
+#: src/components/Footer/index.js:110
 msgid "Licensing for descriptive metadata"
 msgstr "Licensing for descriptive metadata"
 
@@ -668,9 +673,9 @@ msgid "Location of Headquarters"
 msgstr "Location of Headquarters"
 
 #. Company Email link
-#: src/components/Footer/index.js:39
 #: src/components/ModalMyList/index.js:485
 #: src/components/PageBackendError/index.js:19
+#: src/components/PrimaryLink/index.js:33
 msgid "mailto:archive@rockarch.org"
 msgstr "mailto:archive@rockarch.org"
 
@@ -710,7 +715,7 @@ msgid "Minimap"
 msgstr "Minimap"
 
 #. Reading Room Actual Hours
-#: src/components/Footer/index.js:56
+#: src/components/Footer/index.js:50
 msgid "Monday-Friday<0/>10:00 a.m. to 5:00 p.m.<1/>"
 msgstr "Monday-Friday<0/>10:00 a.m. to 5:00 p.m.<1/>"
 
@@ -765,7 +770,7 @@ msgstr "opens email"
 #. Title for new window button
 #. Title message for opening an online item
 #: src/components/ModalMyList/index.js:571
-#: src/components/PageDigitalObject/index.js:111
+#: src/components/PageDigitalObject/index.js:112
 #: src/components/RecordsDetail/index.js:186
 msgid "opens in a new window"
 msgstr "opens in a new window"
@@ -780,8 +785,8 @@ msgstr "Organizations"
 msgid "People"
 msgstr "People"
 
-#. Comapny Phonenumber
-#: src/components/Footer/index.js:30
+#. Company Phonenumber
+#: src/components/Footer/index.js:31
 msgid "Phone: (914) 366-6300"
 msgstr "Phone: (914) 366-6300"
 
@@ -839,7 +844,7 @@ msgid "Preparing Request Data"
 msgstr "Preparing Request Data"
 
 #. Privacy Policy message
-#: src/components/Footer/index.js:101
+#: src/components/PrimaryLink/index.js:76
 msgid "Privacy Policy"
 msgstr "Privacy Policy"
 
@@ -850,12 +855,12 @@ msgid "questions"
 msgstr "questions"
 
 #. Footer.Primary.RAC.message
-#: src/components/Footer/index.js:111
+#: src/components/PrimaryLink/index.js:89
 msgid "RAC Policies"
 msgstr "RAC Policies"
 
 #. Reading Room Hours message
-#: src/components/Footer/index.js:51
+#: src/components/Footer/index.js:45
 msgid "Reading Room Hours:"
 msgstr "Reading Room Hours:"
 
@@ -917,7 +922,7 @@ msgid "Request in Reading Room"
 msgstr "Request in Reading Room"
 
 #. Primary Title
-#: src/components/Footer/index.js:12
+#: src/components/Footer/index.js:13
 msgid "Rockefeller<0>Archive Center</0>"
 msgstr "Rockefeller<0>Archive Center</0>"
 
@@ -974,7 +979,7 @@ msgid "Search..."
 msgstr "Search..."
 
 #. Holiday Schedule message
-#: src/components/Footer/index.js:77
+#: src/components/PrimaryLink/index.js:50
 msgid "See holiday schedule"
 msgstr "See holiday schedule"
 
@@ -1015,7 +1020,7 @@ msgstr "Send List"
 msgid "Sending Email"
 msgstr "Sending Email"
 
-#. Message shown on list is closed
+#. Message shown when list is closed
 #: src/components/Facet/index.js:26
 msgid "show all"
 msgstr "show all"
@@ -1126,7 +1131,7 @@ msgid "Switch to the previous month."
 msgstr "Switch to the previous month."
 
 #. Take-down Policy message
-#: src/components/Footer/index.js:173
+#: src/components/Footer/index.js:122
 msgid "Take-down policy"
 msgstr "Take-down policy"
 
