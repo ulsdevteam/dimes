@@ -2,10 +2,12 @@
 
 /**
 * Styles for search facets
-* 1. Positions legend inside fieldset instead of on top border line.
+* 1. Makes "Apply Dates" button wrap on mobile
+* 2. Positions legend inside fieldset instead of on top border line.
 **/
 .modal__body--search fieldset {
-  position: relative; /* 1 */
+  flex-wrap: wrap; /* 1 */
+  position: relative; /* 2 */
 }
 
 .facet {
