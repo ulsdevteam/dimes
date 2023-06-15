@@ -1,6 +1,7 @@
 import React from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
 import { act } from 'react-dom/test-utils'
+import { I18nApp } from '../../i18n'
 import ModalConfirm from '..'
 
 let container = null
@@ -17,12 +18,12 @@ afterEach(() => {
 
 it('renders props correctly', () => {
   act(() => {
-    render(<ModalConfirm
+    render(<I18nApp ReactComponent={<ModalConfirm
       appElement={container}
       isOpen
       message='foo'
       title='Bar'
-      toggleModal={jest.fn()} />, container)
+      toggleModal={jest.fn()} />} />, container)
   })
 
   const title = document.querySelector('.modal-header__title')
@@ -35,12 +36,12 @@ it('handles clicks correctly', () => {
   const toggleModal = jest.fn()
 
   act(() => {
-    render(<ModalConfirm
+    render(<I18nApp ReactComponent={<ModalConfirm
       appElement={container}
       isOpen
       message='foo'
       title='Bar'
-      toggleModal={toggleModal} />, container)
+      toggleModal={toggleModal} />} />, container)
   })
 
   const button = document.querySelector('.modal-header__button')

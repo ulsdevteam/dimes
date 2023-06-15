@@ -3,15 +3,31 @@ import PropTypes from 'prop-types'
 import Button from '../Button'
 import { CheckBoxInput } from '../Inputs'
 import classnames from 'classnames'
+import { t } from '@lingui/macro'
 import './styles.scss'
 
 const ShowHideMore = ({id, isOpen, toggleOpen}) => {
   return (
     <Button
-      ariaLabel='Show all values'
+      ariaLabel={t({
+        comment: 'Aria label for Show|Hide More Button',
+        message: 'Show all values'
+      })}
       ariaPressed={isOpen}
       className='facet__show-hide'
-      label={isOpen ? 'show less' : 'show all'}
+      label={
+        isOpen
+        ? 
+        t({
+          comment: 'Message shown when list is opened',
+          message: 'show less'
+        })
+        :
+        t({
+          comment: 'Message shown when list is closed',
+          message: 'show all'
+        })
+      }
       handleClick={() => toggleOpen(isOpen)} />
   )
 }

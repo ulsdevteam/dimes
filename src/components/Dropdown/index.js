@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import useDropdownMenu from 'react-accessible-dropdown-menu-hook'
 import MaterialIcon from '../MaterialIcon'
+import { t } from '@lingui/macro'
 import '../Button/styles.scss'
 import classnames from 'classnames'
 import './styles.scss'
@@ -47,7 +48,10 @@ const Dropdown = (props) => {
 
 export const MyListDropdown = ({ downloadCsv, duplicationRequest, emailList, readingRoomRequest, removeAllItems }) => (
   <Dropdown
-    label='Actions'
+    label={t({
+      comment: 'Message shown on Dropdown button',
+      message: 'Actions'
+    })}
     iconBefore='settings'
     className='mylist__actions'
     buttonClassName='btn btn--orange btn--md'
@@ -55,38 +59,58 @@ export const MyListDropdown = ({ downloadCsv, duplicationRequest, emailList, rea
       <DropdownItem
         order={1}
         className='btn--orange btn--dropdown dropdown__item--orange'
-        label='Schedule a Visit'
+        label={t({
+          comment: 'Message shown on button within Dropdown list',
+          message: 'Schedule a Visit'
+        })}
         iconBefore='account_balance'
         href='mailto:archive@rockarch.org?subject=Scheduling a research appointment'
-        title='opens email'/>
+        title={t({
+          comment: 'Tooltip for button',
+          message: 'opens email'
+        })} />
       <DropdownItem
         order={2}
         className='btn--orange btn--dropdown dropdown__item--orange'
-        label='Request in Reading Room'
+        label={t({
+          comment: 'Message shown on button within Dropdown list',
+          message: 'Request in Reading Room'
+        })}
         iconBefore='local_library'
         handleClick={readingRoomRequest}/>
       <DropdownItem
         order={3}
         className='btn--orange btn--dropdown dropdown__item--orange'
-        label='Request Copies'
+        label={t({
+          comment: 'Message shown on button within Dropdown list',
+          message: 'Request Copies'
+        })}
         iconBefore='content_copy'
         handleClick={duplicationRequest}/>
       <DropdownItem
         order={4}
         className='btn--orange btn--dropdown dropdown__item--orange'
-        label='Email List'
+        label={t({
+          message: 'Email List'
+        })}
         iconBefore='email'
         handleClick={emailList}/>
       <DropdownItem
         order={5}
         className='btn--orange btn--dropdown dropdown__item--orange'
-        label='Download as .csv'
+        label={t({
+          comment: 'Message shown on button within Dropdown list',
+          message: 'Download as .csv'
+        })}
         iconBefore='get_app'
         handleClick={downloadCsv}/>
       <DropdownItem
         order={6}
         className='btn--orange btn--dropdown dropdown__item--orange'
-        label='Remove All Items'
+        label={t({
+          comment: 'Message shown on button within Dropdown list',
+          message: 'Remove All Items'
+        })}
         iconBefore='delete'
         handleClick={removeAllItems}/>
     </Dropdown>
@@ -108,15 +132,24 @@ export const NavDropdown = () => (
     buttonClassName='btn nav-mobile__btn'
     listClassName='dropdown__list--mobile dropdown__list--navy dropdown__list--slide-left'>
       <DropdownItem
-        order={1}
-        className='btn--navy btn--mobile-dropdown'
-        label='Sign in to RACcess'
-        iconAfter='east'
-        href='https://raccess.rockarch.org' />
+      order={1}
+      className='btn--navy btn--mobile-dropdown'
+      label={t({
+        comment: 'Message shown on sign-in button',
+        message: 'Sign in to RACcess'
+      })}
+      iconAfter='east'
+      href={t({
+        comment: 'Link used for sign-in within Dropdown list',
+        message: 'https://raccess.rockarch.org'
+      })} />
       <DropdownItem
         order={2}
         className='btn--navy btn--mobile-dropdown'
-        label='My List'
+        label={t({
+          comment: 'Message shown on button within Dropdown list',
+          message: 'My List'
+        })}
         iconAfter='east'
         href='/list' />
     </Dropdown>

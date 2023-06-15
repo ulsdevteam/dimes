@@ -5,6 +5,7 @@ import Button from '../Button'
 import Facet from '../Facet'
 import { YearInput } from '../Inputs'
 import './styles.scss'
+import { Plural, Trans, t } from '@lingui/macro'
 
 export const FacetModal = props => {
   var [startYear, setStartYear] = useState(0)
@@ -40,48 +41,62 @@ export const FacetModal = props => {
       closeTimeoutMS={200} >
       <div className='modal-header--search'>
         <h2 className='modal-header__title' aria-live='polite' aria-atomic='true'>
-          {`Filter ${props.resultsCount} Search ${props.resultsCount === 1 ? 'Result': 'Results'}`}
+          <Trans comment='Filter results message'>
+            <Plural value={props.resultsCount} one="Filter # Search Result" other="Filter # Results"/>
+          </Trans>
         </h2>
         <Button
           className='btn--blue btn--sm'
-          aria-label='Close'
-          label='Save &amp; Close'
+          aria-label={t({
+            comment: 'Aria label for close.',
+            message: 'Close'
+          })}
+          label={t({
+            comment: 'Shown for the user to save and close the filter',
+            message:'Save &amp; Close'
+          })}
           handleClick={props.toggleModal} />
       </div>
       <div className='modal-body--search'>
-        <Facet title='Date Range'>
+        <Facet title={t({
+          comment: 'title for Date Range',
+          message: 'Date Range'})}>
           <YearInput
             id='startYear'
-            label='Start Year'
+            label={t({
+              comment: 'Label for the start year input',
+              message: 'Start Year'})}
             className='hide-label'
             handleChange={e => { setStartYear(e.target.value) }}
             value={startYear} />
           <YearInput
             id='endYear'
-            label='End Year'
+            label={t({
+              comment: 'Label for the end year input',
+              message: 'End Year'})}
             className='hide-label'
             handleChange={e => { setEndYear(e.target.value) }}
             value={endYear} />
-          <Button className='btn--sm btn--gray' label='apply dates' handleClick={() => { props.handleDateChange(startYear, endYear) }} />
+          <Button className='btn--sm btn--gray' label={t({ comment: 'Label to apply dates shown from date range', message: 'apply dates' })} handleClick={() => { props.handleDateChange(startYear, endYear) }} />
         </Facet>
         <Facet
           handleChange={props.handleChange}
           items={props.data.format}
           paramKey='genre'
           params={toArray(props.params.genre)}
-          title='Format' />
+          title={t({ comment: 'Title for Format filter', message: 'Format' })} />
         <Facet
           handleChange={props.handleChange}
           items={props.data.creator}
           paramKey='creator'
           params={toArray(props.params.creator)}
-          title='Creator' />
+          title={t({ comment: 'Title for Creator filter', message: 'Creator' })} />
         <Facet
           handleChange={props.handleChange}
           items={props.data.subject}
           paramKey='subject'
           params={toArray(props.params.subject)}
-          title='Subject' />
+          title={t({ comment: 'Title for Subject filter', message: 'Subject' })} />
       </div>
     </Modal>
   )
