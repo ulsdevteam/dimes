@@ -1,6 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
+import { I18nApp } from '../../i18n'
 import TileList from '..'
 
 import { tileItems } from '../../../__fixtures__/tileItems'
@@ -10,7 +11,7 @@ it('renders props correctly', () => {
   document.body.appendChild(div)
 
   act(() => {
-    render(<TileList items={tileItems} />, div)
+    render(<I18nApp ReactComponent={<TileList items={tileItems} />} />, div)
   })
 
   const tile = document.querySelector('.tile')
