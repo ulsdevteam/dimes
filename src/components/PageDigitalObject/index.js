@@ -116,13 +116,11 @@ const PageDigitalObject = ({isMobile}) => {
             rel='noopener noreferrer'
           ><MaterialIcon icon='get_app' /> Download</a>
         </Trans>
-        <div>
-          <Trans comment='Go back to Item details for digital object'>
-            <a href={itemUrl} className='btn btn--sm btn--black'>
-              <MaterialIcon icon='keyboard_arrow_left' className='material-icon--space-after' />Back to Item Details
-            </a>
-          </Trans>
-        </div>
+        <Trans comment='Go back to Item details for digital object'>
+          <a href={itemUrl} className='btn btn--sm btn--black'>
+            <MaterialIcon icon='keyboard_arrow_left' className='material-icon--space-after' />Back to Item Details
+          </a>
+        </Trans>
       </div>
     </div>} />
   )

@@ -299,26 +299,24 @@
             </a>
           </nav>
           <main id='main' className='mt-60 ml-30'>
-            <div className='ml-15'>
-              <Trans comment="Header for user's list" >
-                <h1 className='mylist__title my-30'>My List</h1>
-              </Trans>
-              <MyListDropdown
-                downloadCsv={downloadCsv}
-                duplicationRequest={() => isRequestingAvailable ? setDuplicationModalOpen(true) : setRequestingUnavailableModalOpen(true)}
-                emailList={() => isRequestingAvailable ? setEmailModalOpen(true) : setRequestingUnavailableModalOpen(true)}
-                readingRoomRequest={() => isRequestingAvailable ? setReadingRoomModalOpen(true) : setRequestingUnavailableModalOpen(true)}
-                removeAllItems={() => setConfirmDeleteAllModalOpen(true)} />
-            </div>
-            <MyListExportActions
-                confirmDeleteAll={() => setConfirmDeleteAllModalOpen(true)}
-                downloadCsv={downloadCsv}
-                emailList={() => isRequestingAvailable ? setEmailModalOpen(true) : setRequestingUnavailableModalOpen(true)}
-                isDownloading={isDownloading} />
-            <SavedItemList
-              items={savedList}
-              isLoading={isLoading}
-              removeFromList={removeFromList} />
+            <Trans comment="Header for user's list" >
+              <h1 className='mylist__title my-30 ml-15'>My List</h1>
+            </Trans>
+            <MyListDropdown
+              downloadCsv={downloadCsv}
+              duplicationRequest={() => isRequestingAvailable ? setDuplicationModalOpen(true) : setRequestingUnavailableModalOpen(true)}
+              emailList={() => isRequestingAvailable ? setEmailModalOpen(true) : setRequestingUnavailableModalOpen(true)}
+              readingRoomRequest={() => isRequestingAvailable ? setReadingRoomModalOpen(true) : setRequestingUnavailableModalOpen(true)}
+              removeAllItems={() => setConfirmDeleteAllModalOpen(true)} />
+          <MyListExportActions
+              confirmDeleteAll={() => setConfirmDeleteAllModalOpen(true)}
+              downloadCsv={downloadCsv}
+              emailList={() => isRequestingAvailable ? setEmailModalOpen(true) : setRequestingUnavailableModalOpen(true)}
+              isDownloading={isDownloading} />
+          <SavedItemList
+            items={savedList}
+            isLoading={isLoading}
+            removeFromList={removeFromList} />
           </main>
           <MyListSidebar
               duplicationRequest={() => isRequestingAvailable ? setDuplicationModalOpen(true) : setRequestingUnavailableModalOpen(true)}
