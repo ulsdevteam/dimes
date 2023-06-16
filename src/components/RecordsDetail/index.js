@@ -15,6 +15,7 @@ import Button from '../Button'
 import ListToggleButton from '../ListToggleButton'
 import MaterialIcon from '../MaterialIcon'
 import QueryHighlighter from '../QueryHighlighter'
+import { Trans, t } from '@lingui/macro'
 import { DetailSkeleton, FoundInItemSkeleton } from '../LoadingSkeleton'
 import { appendParams, dateString, hasAccessOrUse, noteText, noteTextByType } from '../Helpers'
 import { isItemSaved } from '../MyListHelpers'
@@ -38,7 +39,7 @@ const FoundInItem = ({ className, item, params, topLevel }) => (
 const PanelExtentSection = ({ extents }) => (
   extents ? (
   <div className='panel__section'>
-    <h3 className='panel__heading mt-10 mb-5'>Size</h3>
+    <h3 className='panel__heading mt-10 mb-5'><Trans comment='Panel Extent Size message'>Size</Trans></h3>
     <ul className='panel__list--unstyled pl-0 mt-0'>
       {extents.map((e, index) => {
         const extentArray = e.type.replace('_', ' ').split(' ').map((ext, i, arr) => (
@@ -60,7 +61,7 @@ const PanelFormatSection = ({ formats, notes }) => {
   return (
     displayFormats.length ? (
       <div className='panel__section'>
-        <h3 className='panel__heading mt-10 mb-5'>Formats</h3>
+        <h3 className='panel__heading mt-10 mb-5'><Trans comment='Panel Format message'>Formats</Trans></h3>
         <ul className='panel__list--unstyled pl-0 mt-0'>
           {filteredFormatText.length ?
             (<li className='panel__text'>{filteredFormatText.join('\n')}</li>) :
@@ -77,7 +78,7 @@ const PanelFormatSection = ({ formats, notes }) => {
 const PanelFoundInSection = ({ ancestors, isItemLoading, params }) => (
   ancestors.title ?
     (<div className='panel__section'>
-      <h3 className='panel__heading mt-10 mb-5'>Found In</h3>
+      <h3 className='panel__heading mt-10 mb-5'><Trans comment='Panel Found In message'>Found In</Trans></h3>
       <ul className='found-in list--unstyled'>
       {isItemLoading ?
         (<FoundInItemSkeleton/>) :
@@ -157,12 +158,14 @@ const RecordsDetail = props => {
       className='btn--sm btn--transparent btn--minimap-info mt-22 mr-0 p-0'
       handleClick={props.toggleMinimapModal}
       iconAfter='info'
-      label='about minimap'
+      label={t({ comment: 'About minimap message', message: 'about minimap' })}
     /> : null
     }
     <nav className='records__nav'>
       <a href={searchUrl} className='btn btn--sm btn--gray'>
-        <MaterialIcon icon='keyboard_arrow_left' className='material-icon--space-after'/>Back to Search
+        <Trans comment='Message to go back to previous search'>  
+          <MaterialIcon icon='keyboard_arrow_left' className='material-icon--space-after'/>Back to Search
+        </Trans>
       </a>
     </nav>
     <h1 className='records__title'>{props.isItemLoading ? <Skeleton /> : props.item.title }</h1>
@@ -174,19 +177,19 @@ const RecordsDetail = props => {
         item={props.item}
         toggleSaved={props.toggleInList} />
         {props.item.online &&
-          <>
+          <Trans comment='Buttons for online records'>
           <a className='btn btn--sm btn--orange btn--detail mr-10 mb-10 p-8'
-            href={`${props.item.uri}/view`}>View Online <MaterialIcon icon='visibility' className='material-icon--space-before' /></a>
+            href={`${props.item.uri}/view`}>View Online <MaterialIcon icon='visibility' /></a>
           <a className='btn btn--sm btn--orange btn--detail mr-10 mb-10 p-8'
             href={`${process.env.REACT_APP_S3_BASEURL}/pdfs/${identifier}`}
             target='_blank'
-            title='opens in a new window'
+            title={t({ comment: 'Title message for opening an online item', message: 'opens in a new window' })}
             rel='noopener noreferrer'
             >Download <MaterialIcon icon='get_app' className='material-icon--space-before' /></a>
             { props.downloadSize ?
               <p className='panel__text'>{`Acrobat PDF, ${props.downloadSize}`}</p> :
               <p className='panel__text'><Skeleton/></p> }
-          </>
+          </Trans>
         }
       </>
     }

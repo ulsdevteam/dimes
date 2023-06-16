@@ -1,8 +1,11 @@
 import React from 'react'
+import { Trans } from '@lingui/macro'
 
 const SkipLink = () => (
   <a href='#main' className='skip-link'>
-    Skip to main content
+    <Trans comment='Skip Link'>
+      Skip to main content
+    </Trans>
   </a>
 )
 

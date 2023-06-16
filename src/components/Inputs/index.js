@@ -10,6 +10,7 @@ import {
 import {useSelect} from 'downshift'
 import MaterialIcon from '../MaterialIcon'
 import classnames from 'classnames'
+import { t } from '@lingui/macro'
 import './styles.scss'
 
 
@@ -78,14 +79,20 @@ export const DateInput = props => (
       <div className='dp__top-bar mb-12'>
         <DatePickerButton
           className='dp__button py-2 px-6'
-          aria-label='Switch to the previous month.'
+            aria-label={t({
+              comment: 'Aria label for Calendar button',
+              message: 'Switch to the previous month.'
+            })}
           updateMonth={({ prev }) => prev()} >
           <MaterialIcon icon='west' />
         </DatePickerButton>
         <DatePickerMonth className='dp__month px-16 py-0' />
         <DatePickerButton
           className='dp__button py-2 px-6'
-          aria-label='Switch to the next month.'
+            aria-label={t({
+              comment: 'Aria label for Calendar button',
+              message: 'Switch to the next month.'
+            })}
           updateMonth={({ next }) => next()} >
           <MaterialIcon icon='east' />
         </DatePickerButton>

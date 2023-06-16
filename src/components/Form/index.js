@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Field, ErrorMessage, useFormikContext } from 'formik'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
+import { Trans } from '@lingui/macro'
 
 export const FocusError = () => {
   const { errors, isSubmitting, isValidating } = useFormikContext()
@@ -82,7 +83,9 @@ export const FormButtons = ({ isSubmitting, submitText, toggleModal }) => (
       {submitText}
     </button>
     <button type='reset' className='btn btn--gray btn--sm' onClick={toggleModal}>
-      Cancel
+      <Trans comment='Reset/Cancel Button for Form'>
+        Cancel
+      </Trans>
     </button>
   </div>
 )

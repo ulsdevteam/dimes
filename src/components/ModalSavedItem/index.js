@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { CheckBoxInput } from '../Inputs'
 import { RestrictionsSkeleton } from '../LoadingSkeleton'
+import { Trans } from '@lingui/macro'
 import './styles.scss'
 
 const ModalSavedItemsRestrictions = ({submit, submitReason}) => (
@@ -74,7 +75,7 @@ export const ModalSavedItemList = props => {
         groupUri={item.uri}
         ignoreRestrictions={props.ignoreRestrictions}
         handleChange={props.handleChange} />
-    )) : (<p className='saved-items__empty mt-20 py-20 px-0'>No saved items.</p>)
+    )) : (<p className='saved-items__empty mt-20 py-20 px-0'><Trans>No saved items.</Trans></p>)
   }
   return (
     <div className='modal-saved-items'>

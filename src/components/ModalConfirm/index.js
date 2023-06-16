@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Modal from 'react-modal'
 import MaterialIcon from '../MaterialIcon'
+import { t } from '@lingui/macro'
 import './styles.scss'
 
 const ModalConfirm = props => (
@@ -13,7 +14,9 @@ const ModalConfirm = props => (
     overlayClassName='modal__overlay'>
     <div className='modal__header'>
       <h2 className='modal__header-title'>{props.title}</h2>
-      <button className='modal__header-button' aria-label='Close' onClick={props.toggleModal}>
+      <button className='modal__header-button' aria-label={t({
+        message: 'Close'
+      })} onClick={props.toggleModal}>
         <MaterialIcon icon='close' />
       </button>
     </div>
