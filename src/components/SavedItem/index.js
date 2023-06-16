@@ -20,7 +20,7 @@ const SavedItem = props => (
       <div className='saved-item__buttons'>
         {props.online &&
           <Trans comment='View Saved Item online'><a className='btn btn--blue btn--sm'
-            href={`${props.uri}/view`}>View Online <MaterialIcon icon='visibility' /></a></Trans>}
+            href={`${props.uri}/view`}>View Online<MaterialIcon icon='visibility' className='material-icon--space-before'/></a></Trans>}
         <Button
           label={t({ comment: 'Label to remove saved item', message: 'Remove' })}
           className='btn--gray btn--sm'

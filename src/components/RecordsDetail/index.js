@@ -179,7 +179,7 @@ const RecordsDetail = props => {
         {props.item.online &&
           <Trans comment='Buttons for online records'>
           <a className='btn btn--sm btn--orange btn--detail mr-10 mb-10 p-8'
-            href={`${props.item.uri}/view`}>View Online <MaterialIcon icon='visibility' /></a>
+            href={`${props.item.uri}/view`}>View Online<MaterialIcon icon='visibility' className='material-icon--space-before'/></a>
           <a className='btn btn--sm btn--orange btn--detail mr-10 mb-10 p-8'
             href={`${process.env.REACT_APP_S3_BASEURL}/pdfs/${identifier}`}
             target='_blank'
