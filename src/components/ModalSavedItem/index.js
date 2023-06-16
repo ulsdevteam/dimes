@@ -15,7 +15,7 @@ const ModalSavedItem = props => {
   const { ignoreRestrictions, handleChange, isChecked, submitReason, title, submit, uri } = props
 
   return (
-    <li className='modal-saved-item mb-15'>
+    <li className='modal-saved-item mb-22'>
       <CheckBoxInput
         className='checkbox--orange'
         id={uri}
@@ -51,7 +51,7 @@ const ModalSavedItemGroup = props => {
   )
   return (
     <div className='modal-saved-items__item-group ml-15'>
-      <h3 className='modal-item-group__title my-20 mx-0'>{props.title}</h3>
+      <h3 className='modal-item-group__title my-22 mx-0'>{props.title}</h3>
       <ul className='modal-item-group__items list--unstyled my-15 mx-0'>
         {listItems}
       </ul>
