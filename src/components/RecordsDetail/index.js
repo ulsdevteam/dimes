@@ -38,7 +38,7 @@ const FoundInItem = ({ className, item, params, topLevel }) => (
 
 const PanelExtentSection = ({ extents }) => (
   extents ? (
-  <div className='panel__section'>
+  <div className='panel__section mr-15'>
     <h3 className='panel__heading mt-10 mb-5'><Trans comment='Panel Extent Size message'>Size</Trans></h3>
     <ul className='panel__list--unstyled pl-0 mt-0'>
       {extents.map((e, index) => {
@@ -60,7 +60,7 @@ const PanelFormatSection = ({ formats, notes }) => {
   const filteredFormatText = formatText.filter(i => i != null).filter(i => i !== '')
   return (
     displayFormats.length ? (
-      <div className='panel__section'>
+      <div className='panel__section mr-15'>
         <h3 className='panel__heading mt-10 mb-5'><Trans comment='Panel Format message'>Formats</Trans></h3>
         <ul className='panel__list--unstyled pl-0 mt-0'>
           {filteredFormatText.length ?
@@ -77,9 +77,9 @@ const PanelFormatSection = ({ formats, notes }) => {
 
 const PanelFoundInSection = ({ ancestors, isItemLoading, params }) => (
   ancestors.title ?
-    (<div className='panel__section'>
+    (<div className='panel__section mr-15'>
       <h3 className='panel__heading mt-10 mb-5'><Trans comment='Panel Found In message'>Found In</Trans></h3>
-      <ul className='found-in list--unstyled'>
+      <ul className='found-in list--unstyled mt-0'>
       {isItemLoading ?
         (<FoundInItemSkeleton/>) :
         (<FoundInItem
@@ -94,7 +94,7 @@ const PanelFoundInSection = ({ ancestors, isItemLoading, params }) => (
 
 const PanelLinkedListSection = ({ listData, params, title }) =>  (
   listData ?
-    (<div className='panel__section'>
+    (<div className='panel__section mr-15'>
       <h3 className='panel__heading mt-10 mb-5'>{title}</h3>
       <ul className='panel__list--unstyled pl-0 mt-0'>
         {listData.map((item, index) => (
@@ -106,7 +106,7 @@ const PanelLinkedListSection = ({ listData, params, title }) =>  (
 
 const PanelListSection = ({ listData, title }) =>  (
   listData ?
-    (<div className='panel__section'>
+    (<div className='panel__section mr-15'>
       <h3 className='panel__heading mt-10 mb-5'>{title}</h3>
       <ul className='panel__list--unstyled pl-0 mt-0'>
         {listData.map((item, index) => (
@@ -120,7 +120,7 @@ const PanelTextSection = ({ params, text, title }) => {
   const parsedQuery = params && params.query ? (params.query) : ('')
   return (
   text ?
-    (<div className='panel__section'>
+    (<div className='panel__section mr-15'>
       <h3 className='panel__heading mt-10 mb-5'>{title}</h3>
       <p className='panel__text--narrative'>
         <QueryHighlighter query={parsedQuery} text={text} />

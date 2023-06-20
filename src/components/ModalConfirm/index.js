@@ -21,7 +21,7 @@ const ModalConfirm = props => (
       </button>
     </div>
     <div className='modal-body--confirm'>
-      <div className='modal-message'>
+      <div className='modal-message px-40 py-40'>
         {props.message}
       </div>
     </div>

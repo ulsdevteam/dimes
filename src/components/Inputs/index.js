@@ -75,7 +75,7 @@ export const DateInput = props => (
       dateFormat={'MM/dd/yyyy'}
       id={props.id}
       name={props.name} />
-    <DatePickerCalendar className='dp__calendar'>
+    <DatePickerCalendar className='dp__calendar py-20 px-20'>
       <div className='dp__top-bar mb-12'>
         <DatePickerButton
           className='dp__button py-2 px-6'

@@ -44,7 +44,6 @@
 
 .panel__section {
   box-sizing: border-box;
-  margin-right: 15px;
 }
 
 .panel__section--flex {
@@ -57,7 +56,6 @@
   box-sizing: content-box;
   font-family: $sans-serif-stack;
   font-size: 13px;
-  margin-top: 0;
   & svg {
     width: 13px;
     vertical-align: middle;
