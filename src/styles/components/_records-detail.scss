@@ -6,7 +6,6 @@
   width: 100%;
   height: 100%;
   padding: 0px 30px 110px 30px;
-  box-sizing: border-box;
   float: left;
   font-family: $sans-serif-stack;
   &.hidden {
@@ -40,10 +39,6 @@
   font-family: $sans-serif-stack;
   font-size: 28px;
   color: $regal-blue;
-}
-
-.panel__section {
-  box-sizing: border-box;
 }
 
 .panel__section--flex {

@@ -4,7 +4,6 @@
   font-family: $sans-serif-stack;
   width: 100%;
   float: left;
-  box-sizing: border-box;
   @include lg-up {
     width: calc(63% - #{$minimap-width});
   }
