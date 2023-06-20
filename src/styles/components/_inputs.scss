@@ -169,13 +169,13 @@ select {
 }
 
 .select__option {
+  color: $black;
   font-family: $sans-serif-stack;
   cursor: pointer;
   &.is-focused {
     background: darken($desert-grey, 4%);
   }
   &.is-selected {
-    color: $black;
     font-weight: $font-weight-bold;
     &::after {
       font-family: Material Icons;
