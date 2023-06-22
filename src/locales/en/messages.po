@@ -1,15 +1,11 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language: \n"
-"Language-Team: \n"
-"Content-Type: \n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"POT-Creation-Date: 2023-06-22 12:14-0400\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: en\n"
 
 #. Message returned dependent on how many items selected
 #: src/components/ModalMyList/index.js:154
@@ -18,8 +14,8 @@ msgstr "{0, plural, =0 {selected: 0 items} other {selected: {1}}}"
 
 #. Filter results message
 #: src/components/ModalSearch/index.js:44
-msgid "{0, plural, one {Filter # Search Result} other {Filter # Results}}"
-msgstr "{0, plural, one {Filter # Search Result} other {Filter # Results}}"
+msgid "{0, plural, one {Filter # Search Result} other {Filter # Search Results}}"
+msgstr "{0, plural, one {Filter # Search Result} other {Filter # Search Results}}"
 
 #. Pluralization of hit(s) for minimap boxes
 #: src/components/Minimap/index.js:49
@@ -124,14 +120,19 @@ msgid "<0><1/> Schedule a Visit</0>"
 msgstr "<0><1/> Schedule a Visit</0>"
 
 #. Go back to Item details for digital object
-#: src/components/PageDigitalObject/index.js:120
+#: src/components/PageDigitalObject/index.js:119
 msgid "<0><1/>Back to Item Details</0>"
 msgstr "<0><1/>Back to Item Details</0>"
 
 #. Social Icons Titles
-#: src/components/SocialIcons/index.js:6
+#: src/components/SocialIcons/index.js:5
 msgid "<0><1><2><3><4>Twitter Logo</4><5/></3></2></1><6><7><8><9>Facebook Logo</9><10/></8></7></6><11><12><13><14>Instagram Logo</14><15/></13></12></11><16><17><18><19>YouTube Logo</19><20/></18></17></16><21><22><23><24>Flickr Logo</24><25><26><27><28/><29/></27></26></25></23></22></21></0>"
 msgstr "<0><1><2><3><4>Twitter Logo</4><5/></3></2></1><6><7><8><9>Facebook Logo</9><10/></8></7></6><11><12><13><14>Instagram Logo</14><15/></13></12></11><16><17><18><19>YouTube Logo</19><20/></18></17></16><21><22><23><24>Flickr Logo</24><25><26><27><28/><29/></27></26></25></23></22></21></0>"
+
+#. Page Title for user's list
+#: src/components/PageMyList/index.js:287
+msgid "<0><1>DIMES: My List</1></0>"
+msgstr "<0><1>DIMES: My List</1></0>"
 
 #. Page Home
 #: src/components/PageHome/index.js:10
@@ -157,11 +158,6 @@ msgstr "<0><1>Search Results</1></0>"
 #: src/components/PageAgent/index.js:21
 msgid "<0>Description</0>"
 msgstr "<0>Description</0>"
-
-#. Page Title for user's list
-#: src/components/PageMyList/index.js:289
-msgid "<0>DIMES: My List</0>"
-msgstr "<0>DIMES: My List</0>"
 
 #. Saved item found in message
 #: src/components/SavedItem/index.js:17
@@ -204,7 +200,7 @@ msgid "<0>More about this {agentType}</0>"
 msgstr "<0>More about this {agentType}</0>"
 
 #. Header for user's list
-#: src/components/PageMyList/index.js:303
+#: src/components/PageMyList/index.js:302
 msgid "<0>My List</0>"
 msgstr "<0>My List</0>"
 
@@ -235,18 +231,18 @@ msgstr "<0>There was an error submitting your request.</0><1>The request to {0} 
 
 #. View Saved Item online
 #: src/components/SavedItem/index.js:22
-msgid "<0>View Online <1/></0>"
-msgstr "<0>View Online <1/></0>"
+msgid "<0>View Online<1/></0>"
+msgstr "<0>View Online<1/></0>"
 
 #. Buttons for online records
 #: src/components/RecordsDetail/index.js:180
-msgid "<0>View Online <1/></0><2>Download <3/></2>{0}"
-msgstr "<0>View Online <1/></0><2>Download <3/></2>{0}"
+msgid "<0>View Online<1/></0><2>Download <3/></2>{0}"
+msgstr "<0>View Online<1/></0><2>Download <3/></2>{0}"
 
 #. Full Company Address
-#: src/components/Footer/index.js:23
-msgid "15 Dayton Avenue<0/>Sleepy Hollow, New York<1/>10591"
-msgstr "15 Dayton Avenue<0/>Sleepy Hollow, New York<1/>10591"
+#: src/components/Footer/index.js:21
+msgid "15 Dayton Avenue<0/>Sleepy Hollow, New York 10591"
+msgstr "15 Dayton Avenue<0/>Sleepy Hollow, New York 10591"
 
 #. helptext for RAC staff message
 #: src/components/ModalMyList/index.js:414
@@ -263,13 +259,13 @@ msgstr "255 characters maximum."
 msgid "about minimap"
 msgstr "about minimap"
 
-#. Accesibility Statement message
+#. Accessibility Statement message
 #: src/components/PrimaryLink/index.js:63
 msgid "Accessibility Statement"
 msgstr "Accessibility Statement"
 
 #. Message shown on Dropdown button
-#: src/components/Dropdown/index.js:51
+#: src/components/Dropdown/index.js:53
 msgid "Actions"
 msgstr "Actions"
 
@@ -318,7 +314,7 @@ msgid "archive@rockarch.org"
 msgstr "archive@rockarch.org"
 
 #. Confirmation to delete all items from list
-#: src/components/PageMyList/index.js:375
+#: src/components/PageMyList/index.js:373
 msgid "Are you sure you want to remove all the items from your list?<0><1/><2/></0>"
 msgstr "Are you sure you want to remove all the items from your list?<0><1/><2/></0>"
 
@@ -333,7 +329,7 @@ msgid "Bulk data download"
 msgstr "Bulk data download"
 
 #. Title shown when request failed
-#: src/components/PageMyList/index.js:360
+#: src/components/PageMyList/index.js:358
 msgid "Can't Complete Request"
 msgstr "Can't Complete Request"
 
@@ -361,7 +357,7 @@ msgstr "Choose a search category"
 #. Aria label for close.
 #: src/components/ModalConfirm/index.js:17
 #: src/components/ModalMinimap/index.js:38
-#: src/components/ModalMinimap/index.js:74
+#: src/components/ModalMinimap/index.js:73
 #: src/components/ModalMyList/index.js:167
 #: src/components/ModalSearch/index.js:50
 msgid "Close"
@@ -394,13 +390,13 @@ msgstr "Collections data API"
 msgid "Collections Related to {agentTitle}"
 msgstr "Collections Related to {agentTitle}"
 
-#. Remove all confrimation title
-#: src/components/PageMyList/index.js:388
+#. Remove all confirmation title
+#: src/components/PageMyList/index.js:386
 msgid "Confirm Remove All"
 msgstr "Confirm Remove All"
 
 #. Copyright message
-#: src/components/Footer/index.js:67
+#: src/components/Footer/index.js:63
 msgid "Copyright © Rockefeller Archive Center. All rights reserved."
 msgstr "Copyright © Rockefeller Archive Center. All rights reserved."
 
@@ -441,19 +437,19 @@ msgid "Details under heading 1 have been updated to describe the selected record
 msgstr "Details under heading 1 have been updated to describe the selected records titled {0}"
 
 #. Title displayed within the Header
-#: src/components/Header/index.js:12
+#: src/components/Header/index.js:10
 msgid "dimes.rockarch.org"
 msgstr "dimes.rockarch.org"
 
 #. Message shown on button within Dropdown list
-#: src/components/Dropdown/index.js:101
+#: src/components/Dropdown/index.js:108
 msgid "Download as .csv"
 msgstr "Download as .csv"
 
 #. Company Email
-#: src/components/Footer/index.js:38
-msgid "E-mail: <0/>"
-msgstr "E-mail: <0/>"
+#: src/components/Footer/index.js:34
+msgid "E-mail:<0/>"
+msgstr "E-mail:<0/>"
 
 #. Name of email form
 #: src/components/ModalMyList/index.js:268
@@ -468,7 +464,7 @@ msgid "Email *"
 msgstr "Email *"
 
 #. Email list label
-#: src/components/Dropdown/index.js:93
+#: src/components/Dropdown/index.js:99
 #: src/components/MyListExportActions/index.js:11
 msgid "Email List"
 msgstr "Email List"
@@ -505,7 +501,7 @@ msgid "Error submitting request"
 msgstr "Error submitting request"
 
 #. Company Fax
-#: src/components/Footer/index.js:35
+#: src/components/Footer/index.js:31
 msgid "Fax: (914) 631-6017"
 msgstr "Fax: (914) 631-6017"
 
@@ -579,8 +575,8 @@ msgstr "https://github.com/RockefellerArchiveCenter/data/"
 
 #. Link used for sign-in within Dropdown list
 #. Link used for sign-in within the Header
-#: src/components/Dropdown/index.js:142
-#: src/components/Header/index.js:24
+#: src/components/Dropdown/index.js:151
+#: src/components/Header/index.js:22
 msgid "https://raccess.rockarch.org"
 msgstr "https://raccess.rockarch.org"
 
@@ -615,27 +611,27 @@ msgid "https://rockarch.org/collections/access-and-request-materials/holiday-sch
 msgstr "https://rockarch.org/collections/access-and-request-materials/holiday-schedule"
 
 #. Twitter account link
-#: src/components/SocialIcons/index.js:8
+#: src/components/SocialIcons/index.js:7
 msgid "https://twitter.com/rockarch_org"
 msgstr "https://twitter.com/rockarch_org"
 
 #. Facebook account link
-#: src/components/SocialIcons/index.js:19
+#: src/components/SocialIcons/index.js:18
 msgid "https://www.facebook.com/RockefellerArchiveCenter"
 msgstr "https://www.facebook.com/RockefellerArchiveCenter"
 
 #. Flickr account link
-#: src/components/SocialIcons/index.js:52
+#: src/components/SocialIcons/index.js:51
 msgid "https://www.flickr.com/photos/147074352@N05/"
 msgstr "https://www.flickr.com/photos/147074352@N05/"
 
 #. Instagram account link
-#: src/components/SocialIcons/index.js:30
+#: src/components/SocialIcons/index.js:29
 msgid "https://www.instagram.com/rockefellerarchivecenter"
 msgstr "https://www.instagram.com/rockefellerarchivecenter"
 
 #. Youtube account link
-#: src/components/SocialIcons/index.js:41
+#: src/components/SocialIcons/index.js:40
 msgid "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
 msgstr "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
 
@@ -710,14 +706,14 @@ msgstr "Message for RAC staff"
 #. Header for modal minimap
 #: src/components/Minimap/index.js:79
 #: src/components/Minimap/index.js:83
-#: src/components/ModalMinimap/index.js:70
+#: src/components/ModalMinimap/index.js:69
 msgid "Minimap"
 msgstr "Minimap"
 
 #. Reading Room Actual Hours
-#: src/components/Footer/index.js:51
-msgid "Monday-Friday<0/>10:00 a.m. to 5:00 p.m.<1/>"
-msgstr "Monday-Friday<0/>10:00 a.m. to 5:00 p.m.<1/>"
+#: src/components/Footer/index.js:47
+msgid "Monday-Friday<0/>9:00 a.m. to 5:00 p.m.<1/>"
+msgstr "Monday-Friday<0/>9:00 a.m. to 5:00 p.m.<1/>"
 
 #. Label for MP4
 #: src/components/ModalMyList/index.js:55
@@ -726,8 +722,8 @@ msgstr "Moving image (MP4)"
 
 #. Message shown on button within Dropdown list
 #. Message shown on button within the Header
-#: src/components/Dropdown/index.js:149
-#: src/components/Header/index.js:33
+#: src/components/Dropdown/index.js:158
+#: src/components/Header/index.js:31
 msgid "My List"
 msgstr "My List"
 
@@ -762,7 +758,7 @@ msgid "online"
 msgstr "online"
 
 #. Tooltip for button
-#: src/components/Dropdown/index.js:68
+#: src/components/Dropdown/index.js:72
 msgid "opens email"
 msgstr "opens email"
 
@@ -786,7 +782,7 @@ msgid "People"
 msgstr "People"
 
 #. Company Phonenumber
-#: src/components/Footer/index.js:32
+#: src/components/Footer/index.js:28
 msgid "Phone: (914) 366-6300"
 msgstr "Phone: (914) 366-6300"
 
@@ -860,7 +856,7 @@ msgid "RAC Policies"
 msgstr "RAC Policies"
 
 #. Reading Room Hours message
-#: src/components/Footer/index.js:46
+#: src/components/Footer/index.js:42
 msgid "Reading Room Hours:"
 msgstr "Reading Room Hours:"
 
@@ -884,7 +880,7 @@ msgstr "Remove"
 
 #. Message shown on button within Dropdown list
 #. Remove all items label
-#: src/components/Dropdown/index.js:110
+#: src/components/Dropdown/index.js:118
 #: src/components/MyListExportActions/index.js:30
 msgid "Remove All Items"
 msgstr "Remove All Items"
@@ -909,30 +905,30 @@ msgstr "Request 4 Items"
 
 #. Message shown on button within Dropdown list
 #. Shown to request copies of an item
-#: src/components/Dropdown/index.js:84
+#: src/components/Dropdown/index.js:89
 #: src/components/MyListSidebar/index.js:30
 msgid "Request Copies"
 msgstr "Request Copies"
 
 #. Message shown on button within Dropdown list
 #. Shown to Request the item in a Reading Room
-#: src/components/Dropdown/index.js:75
+#: src/components/Dropdown/index.js:79
 #: src/components/MyListSidebar/index.js:22
 msgid "Request in Reading Room"
 msgstr "Request in Reading Room"
 
 #. Primary Title
-#: src/components/Footer/index.js:14
+#: src/components/Footer/index.js:12
 msgid "Rockefeller<0>Archive Center</0>"
 msgstr "Rockefeller<0>Archive Center</0>"
 
 #. Shown for the user to save and close the filter
 #: src/components/ModalSearch/index.js:54
-msgid "Save &amp; Close"
-msgstr "Save &amp; Close"
+msgid "Save & Close"
+msgstr "Save & Close"
 
 #. Message shown on button within Dropdown list
-#: src/components/Dropdown/index.js:62
+#: src/components/Dropdown/index.js:65
 msgid "Schedule a Visit"
 msgstr "Schedule a Visit"
 
@@ -959,7 +955,7 @@ msgid "Search More Related Collections"
 msgstr "Search More Related Collections"
 
 #. Message shown within the Hero
-#: src/components/Hero/index.js:12
+#: src/components/Hero/index.js:11
 msgid "Search Our Collections.<0/>Discover People and Organizations.<1/>Access Digital Content."
 msgstr "Search Our Collections.<0/>Discover People and Organizations.<1/>Access Digital Content."
 
@@ -1041,8 +1037,8 @@ msgid "Show only results with digital matches"
 msgstr "Show only results with digital matches"
 
 #. Message shown on sign-in button
-#: src/components/Dropdown/index.js:137
-#: src/components/Header/index.js:28
+#: src/components/Dropdown/index.js:146
+#: src/components/Header/index.js:26
 msgid "Sign in to RACcess"
 msgstr "Sign in to RACcess"
 
@@ -1052,7 +1048,7 @@ msgid "Size"
 msgstr "Size"
 
 #. Skip Link
-#: src/components/SkipLink/index.js:7
+#: src/components/SkipLink/index.js:6
 msgid "Skip to main content"
 msgstr "Skip to main content"
 
@@ -1062,7 +1058,7 @@ msgid "Social Networks and Archival Context"
 msgstr "Social Networks and Archival Context"
 
 #. Message shown when request failed
-#: src/components/PageMyList/index.js:356
+#: src/components/PageMyList/index.js:354
 msgid "Sorry, our system is unable to process requests right now. We're working to fix this! Please try again later."
 msgstr "Sorry, our system is unable to process requests right now. We're working to fix this! Please try again later."
 
@@ -1136,7 +1132,7 @@ msgid "Take-down policy"
 msgstr "Take-down policy"
 
 #. Subtitle displayed within the Header
-#: src/components/Header/index.js:17
+#: src/components/Header/index.js:15
 msgid "The Online Collection and Catalog of Rockefeller Archive Center"
 msgstr "The Online Collection and Catalog of Rockefeller Archive Center"
 
