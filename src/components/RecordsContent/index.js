@@ -227,7 +227,7 @@ export const RecordsChild = props => {
       </div>
       <div className='child__buttons'>
         {item.online ? (
-          <a className='btn btn-launch--content'
+          <a className='btn btn--sm btn--blue btn-launch--content mr-10 p-8'
             href={`${item.uri}/view`}>{
               t({
                 message: select(props.isMobile, {
@@ -236,11 +236,11 @@ export const RecordsChild = props => {
                 })
               })
             }
-             <MaterialIcon icon='visibility' /></a>) :
+             <MaterialIcon icon='visibility' className='material-icon--space-before' /></a>) :
           (null)
         }
         <ListToggleButton
-          className='btn-add--content'
+          className='btn--sm btn--orange btn-add--content mr-10 p-8'
           isMobile={props.isMobile}
           isSaved={isSaved}
           item={props.item}
@@ -395,15 +395,15 @@ const RecordsContent = props => {
 
   return (
   children ?
-    (<div className={classnames('records__content', {'hidden': !isContentShown})}>
+    (<div className={classnames('records__content', 'py-40', 'px-30', {'hidden': !isContentShown})}>
       {isLoading ? (
         <div className='loading'>
             <Trans comment='Records content is loading'>
               <p id='content-loading' className='loading__text loading-dots'>Loading</p>
             </Trans>
         </div>) : (null)}
-      <h2 className='content__title'><Trans comment='Collection Content title'>Collection Content</Trans></h2>
-      <h3 className='collection__title'>{collection.title}</h3>
+      <h2 className='content__title mt-0 pb-0'><Trans comment='Collection Content title'>Collection Content</Trans></h2>
+      <h3 className='collection__title mb-0'>{collection.title}</h3>
       <p className='collection__date'>{dateString(collection.dates)}</p>
       <p className='collection__text text--truncate'>
         {truncateString(collection.description, 180)}

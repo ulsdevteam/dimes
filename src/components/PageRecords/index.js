@@ -208,7 +208,7 @@ const PageRecords = ({ isDesktop, isMobile, myListCount, toggleInList }) => {
         onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
         <title>{ item.title }</title>
       </Helmet>
-      <div className='container--full-width'>
+      <main id='main' className='container--full-width'>
         {isDesktop ? null : <MinimapButton toggleMinimapModal={toggleMinimapModal}/>}
         <ContextSwitcher
           isContentShown={isContentShown}
@@ -246,7 +246,7 @@ const PageRecords = ({ isDesktop, isMobile, myListCount, toggleInList }) => {
           preExpanded={preExpanded}
           setActiveRecords={setActiveRecords}
           toggleInList={toggleInList} />
-      </div>
+      </main>
       <ModalMinimapInfo
         isOpen={isMinimapInfoModalOpen}
         toggleModal={toggleMinimapInfoModal}

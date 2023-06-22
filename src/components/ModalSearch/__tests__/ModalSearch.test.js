@@ -58,7 +58,7 @@ it('handles clicks', () => {
       toggleModal={jest.fn()} />} />, container)
   })
 
-  const apply = document.querySelector('.modal-body--search .btn')
+  const apply = document.querySelector('.modal__body--search .btn')
 
   act(() => {
     apply.dispatchEvent(new MouseEvent('click', { bubbles: true }))

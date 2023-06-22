@@ -10,18 +10,18 @@ const ModalConfirm = props => (
     appElement={props.appElement ? props.appElement : Modal.setAppElement('#root')}
     isOpen={props.isOpen}
     onRequestClose={props.toggleModal}
-    className='modal-content--confirm'
-    overlayClassName='modal-overlay'>
-    <div className='modal-header'>
-      <h2 className='modal-header__title'>{props.title}</h2>
-      <button className='modal-header__button' aria-label={t({
+    className='modal modal--confirm'
+    overlayClassName='modal__overlay'>
+    <div className='modal__header'>
+      <h2 className='modal__header-title'>{props.title}</h2>
+      <button className='modal__header-button' aria-label={t({
         message: 'Close'
       })} onClick={props.toggleModal}>
         <MaterialIcon icon='close' />
       </button>
     </div>
     <div className='modal-body--confirm'>
-      <div className='modal-message'>
+      <div className='modal-message px-40 py-40'>
         {props.message}
       </div>
     </div>

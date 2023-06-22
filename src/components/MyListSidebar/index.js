@@ -5,7 +5,7 @@ import Button from '../Button'
 import { Trans, t } from '@lingui/macro'
 
 const MyListSidebar = ({ duplicationRequest, readingRoomRequest }) => (
-  <aside className='mylist__sidebar'>
+  <aside className='mylist__sidebar py-60 pr-0 pl-40 mr--15'>
     <Trans comment='Schedule a visit button'>
       <a
         className='btn btn--orange btn--lg'

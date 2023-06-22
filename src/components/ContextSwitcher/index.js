@@ -8,7 +8,7 @@ import './styles.scss'
 const ContextSwitcher = ({isContentShown, toggleIsContentShown}) => (
   <div className='toggle-wrapper'>
     <Button
-      className={classnames('toggle-context')}
+      className={classnames('btn--lg', 'btn--orange', 'toggle-context', 'mb-0')}
       iconBefore={isContentShown ? 'west' : null}
       iconAfter={isContentShown ? null : 'east'}
       label={t({

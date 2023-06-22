@@ -10,7 +10,7 @@ const SearchForm = props => {
   var [category, setCategory] = useState(props.category || '')
   var [online, setOnline] = useState(props.online)
   var [query, setQuery] = useState(props.query)
-  const isHomePage = props.className === 'search-form--home'
+  const isHomePage = props.className === 'search search-form--home'
 
   /** Sets the search category, query and online checkbox */
   useEffect(() => {
@@ -51,7 +51,7 @@ const SearchForm = props => {
   ]
 
   return (
-    <form className='form--search' role='search' action='/search' method='get'>
+    <form role='search' action='/search' method='get'>
       <div className="wrapper">
         <div className={props.className}>
           <div className={classnames('input-group__search', { 'input-group__search-results': !isHomePage })}>
@@ -73,7 +73,7 @@ const SearchForm = props => {
               required
             />
             <Button
-              className={ classnames({ 'btn--search': isHomePage, 'btn--search-results': !isHomePage })}
+              className={ classnames({ 'btn--orange search__submit-btn': isHomePage, 'btn btn--orange search__submit-btn search__results-submit-btn': !isHomePage })}
               type='submit'
               label={isHomePage ? (props.isMobile ? null : t({
                 comment: 'Label for Search button',
