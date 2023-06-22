@@ -27,11 +27,11 @@ it('renders props correctly', () => {
   })
 
   const dropdown = document.querySelector('.dropdown')
-  expect(dropdown.className).toBe('dropdown mylist__actions')
+  expect(dropdown.className).toBe('dropdown mylist__actions hide-on-lg-up mt-40 mr-30 mb-30')
   const button = document.querySelector('.dropdown > button')
   expect(button.className).toBe('btn btn--orange btn--md closed')
   const list = document.querySelector('.dropdown > div')
-  expect(list.className).toBe('dropdown__list dropdown__list--orange dropdown__list--slide-down closed')
+  expect(list.className).toBe('dropdown__list dropdown__list--orange dropdown__list--slide-down mylist__actions--dropdown closed')
 })
 
 it('renders without crashing', () => {
@@ -42,7 +42,7 @@ it('renders without crashing', () => {
   const dropdown = document.querySelector('.dropdown')
   expect(dropdown.className).toBe('dropdown hide-on-lg-up')
   const button = document.querySelector('.dropdown > button')
-  expect(button.className).toBe('btn nav-mobile__btn closed')
+  expect(button.className).toBe('btn btn--navy nav__btn--mobile closed')
   const list = document.querySelector('.dropdown > div')
   expect(list.className).toBe('dropdown__list dropdown__list--mobile dropdown__list--navy dropdown__list--slide-left closed')
 })

@@ -5,7 +5,7 @@ import classnames from 'classnames'
 import { select, t } from '@lingui/macro'
 
 const MyListExportActions = ({ confirmDeleteAll, downloadCsv, emailList, isDownloading }) => (
-  <div className='mylist__export-actions'>
+  <div className='mylist__export-actions pb-30'>
     <Button
       className='btn--orange btn--sm'
       label={t({

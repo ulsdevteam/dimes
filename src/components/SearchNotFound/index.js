@@ -5,7 +5,7 @@ import { Trans } from '@lingui/macro'
 
 const SuggestionItem = ({text}) => (
   <li>
-    <a className="results__not-found--link" href={`/search?query=${text}`}>{text}</a>
+    <a className="results__not-found--text" href={`/search?query=${text}`}>{text}</a>
   </li>
 )
 
@@ -15,7 +15,7 @@ const SearchNotFound = ({suggestions, query}) => {
 
   if (query) {
     return (
-      <div className='results__not-found'>
+      <div className='mb-60'>
         <Trans comment='Search not found tips'>
           <p className="results__not-found--text">Have you tried doing the following:</p>
           <ul className="results__not-found--text">
@@ -29,7 +29,7 @@ const SearchNotFound = ({suggestions, query}) => {
             <Trans comment='Suggested terms message'>
               <p className="results__not-found--text">Here are some suggested search terms:</p>
             </Trans>
-            <ul className="suggestions unstyled">
+            <ul className="suggestions list--unstyled">
               {suggestionList}
             </ul>
           </>
@@ -38,15 +38,13 @@ const SearchNotFound = ({suggestions, query}) => {
     )
   } else {
     return (
-      <div className='results__not-found'>
+      <div className='mb-60'>
         <Trans comment='No search terms supplied message'>
           <p className="results__not-found--text">Please add a word or phrase to search for.</p>
         </Trans>
       </div>
     )
   }
-  
-
 }
 
 export default SearchNotFound

@@ -62,7 +62,7 @@ const Minimap = ({ data, isLoading, params, rowCount=4 }) => {
           className={classnames('minimap__box', hitClass, { [`${hitClass}--active`]: isAreaActive })}
           title={message} >
         <span className='visually-hidden'>{message}</span>
-        <span className="material-icons" aria-hidden="true">check</span>
+        <span className="material-icon" aria-hidden="true">check</span>
       </a>
       :
       <div

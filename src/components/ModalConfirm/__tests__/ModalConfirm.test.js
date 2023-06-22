@@ -26,7 +26,7 @@ it('renders props correctly', () => {
       toggleModal={jest.fn()} />} />, container)
   })
 
-  const title = document.querySelector('.modal-header__title')
+  const title = document.querySelector('.modal__header-title')
   const message = document.querySelector('.modal-message')
   expect(title.textContent).toBe('Bar')
   expect(message.textContent).toBe('foo')
@@ -44,7 +44,7 @@ it('handles clicks correctly', () => {
       toggleModal={toggleModal} />} />, container)
   })
 
-  const button = document.querySelector('.modal-header__button')
+  const button = document.querySelector('.modal__header-button')
 
   act(() => {
     button.dispatchEvent(new MouseEvent('click', { bubbles: true }))

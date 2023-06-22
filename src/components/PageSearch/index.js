@@ -15,7 +15,7 @@ import { SearchPagination } from '../Pagination'
 import { Plural, Select, Trans, t } from '@lingui/macro'
 import SearchForm from '../SearchForm'
 import SearchNotFound from '../SearchNotFound'
-import TileList from '../Tile'
+import CardList from '../Card'
 import { appendParams, firePageViewEvent } from '../Helpers'
 import './styles.scss'
 
@@ -204,8 +204,8 @@ const PageSearch = () => {
             online={params.online}
             category={params.category} />
         </div>
-        <div className='results'>
-          <h1 className={classnames('results__title', { 'loading-dots': inProgress })}>
+        <main id='main' className='results'>
+          <h1 className={classnames('results__title mt-30 mb-13', { 'loading-dots': inProgress })}>
             <Trans comment='Search Results header'>
               <Select
                 value={inProgress}
@@ -251,7 +251,7 @@ const PageSearch = () => {
                       message: 'Filters'
                     })}
                     iconBefore='filter_alt'
-                    className='btn--filter' />
+                    className='btn--light-blue btn--filter mr-16' />
                   <SelectInput
                     className='select__sort'
                     hideLabel
@@ -280,10 +280,10 @@ const PageSearch = () => {
               </div>
               { inProgress ?
                   (<SearchSkeleton />) :
-                  (<TileList
+                  (<CardList
                     items={items}
                     params={params} />)}
-              <div className='results__footer'>
+              <div className='results__footer mb-30'>
                 <div className='results__summary'>
                   <p className='results__summary--text'>
                     {inProgress ? (<Skeleton />) :
@@ -306,8 +306,8 @@ const PageSearch = () => {
               </div>
             </div>
           </>
-        }
-        </div>
+          }
+        </main>
       </div>
       <FacetModal
         isOpen={facetIsOpen}

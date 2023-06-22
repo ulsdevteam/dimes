@@ -50,7 +50,7 @@ it('renders props correctly', async () => {
   })
 
   const selectButton = document.querySelector('.modal-list > button')
-  const title = document.querySelector('.modal-header__title')
+  const title = document.querySelector('.modal__header-title')
   const totals = document.querySelector('.selected-totals')
 
   await act(async () => {

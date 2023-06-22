@@ -22,7 +22,7 @@ it('renders nav props correctly', () => {
   })
 
   const nav = document.querySelector('nav')
-  expect(nav.className).toBe('nav foo')
+  expect(nav.className).toBe('nav-right foo')
   expect(nav).toHaveAttribute('aria-label', 'bar')
 })
 

@@ -32,15 +32,15 @@ export const FacetModal = props => {
       appElement={props.appElement ? props.appElement : Modal.setAppElement('#root')}
       isOpen={props.isOpen}
       onRequestClose={props.toggleModal}
-      className='modal-content--facet'
+      className='modal modal--facet'
       overlayClassName={{
-        base: 'modal-overlay--facet slide--right',
+        base: 'modal__overlay slide--right',
         afterOpen: 'slide--right--after-open',
         beforeClose: 'slide--right--before-close'
       }}
       closeTimeoutMS={200} >
-      <div className='modal-header--search'>
-        <h2 className='modal-header__title' aria-live='polite' aria-atomic='true'>
+      <div className='modal__header modal__header--search pt-30 px-30 pb-20'>
+        <h2 className='modal__header-title' aria-live='polite' aria-atomic='true'>
           <Trans comment='Filter results message'>
             <Plural value={props.resultsCount} one="Filter # Search Result" other="Filter # Results"/>
           </Trans>
@@ -57,7 +57,7 @@ export const FacetModal = props => {
           })}
           handleClick={props.toggleModal} />
       </div>
-      <div className='modal-body--search'>
+      <div className='modal__body--search'>
         <Facet title={t({
           comment: 'title for Date Range',
           message: 'Date Range'})}>

@@ -46,7 +46,7 @@ it('renders props correctly', async () => {
   })
 
   const title = await document.querySelector('h1')
-  const children = await document.querySelector('.tile-list')
+  const children = await document.querySelector('.card-list')
 
   expect(title.textContent).toBe('Rockefeller, Nelson A. (Nelson Aldrich)')
   expect(children.children.length).toBe(8)

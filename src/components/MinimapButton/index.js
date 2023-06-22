@@ -9,7 +9,7 @@ const MinimapButton = ({ toggleMinimapModal }) => (
     <span aria-hidden='true'>
       <img className='btn--minimap__icon' alt='' src={minimapIcon} />
     </span>
-    <div className='btn--minimap__text'>
+    <div className='btn--minimap__text ml-10'>
       <Trans comment='Button to view minimap'>
         View minimap
       </Trans>

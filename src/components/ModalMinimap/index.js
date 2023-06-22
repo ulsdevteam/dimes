@@ -24,10 +24,10 @@ export const ModalMinimapInfo = props => (
     appElement={props.appElement ? props.appElement : Modal.setAppElement('#root')}
     isOpen={props.isOpen}
     onRequestClose={props.toggleModal}
-    className='modal-content--minimap-info'
-    overlayClassName='modal-overlay' >
-    <div className='modal-header--minimap'>
-      <h2 className='modal-header__title--minimap'>
+    className='modal modal--minimap'
+    overlayClassName='modal__overlay' >
+    <div className='modal__header--minimap mt-14 mr-14'>
+      <h2 className='modal__header-title--minimap m-0 pt-5 pb-0 pl-24'>
         <Trans comment='Minimap header'>
           <Select
             value={props.hasSeenMinimapIntro}
@@ -35,13 +35,13 @@ export const ModalMinimapInfo = props => (
             other="Introducing the Minimap" />
         </Trans>
       </h2>
-      <button className='modal-header__button' aria-label={t({
+      <button className='modal__header-button' aria-label={t({
         message: 'Close'
       })} onClick={props.toggleModal}>
         <MaterialIcon icon='close' />
       </button>
     </div>
-    <div className='modal-body--minimap'>
+    <div className='modal__body--minimap pt-0 px-24 pb-24'>
       {props.hasSeenMinimapIntro ? minimapAboutText : minimapIntroText}
     </div>
   </Modal>
@@ -59,25 +59,24 @@ export const ModalMinimap = props => (
     appElement={props.appElement ? props.appElement : Modal.setAppElement('#root')}
     isOpen={props.isOpen}
     onRequestClose={props.toggleModal}
-    className='modal-content--minimap'
     overlayClassName={{
-      base: 'modal-overlay slide--left',
+      base: 'modal__overlay slide--left',
       afterOpen: 'slide--left--after-open',
       beforeClose: 'slide--left--before-close'
     }} >
-    <div className='modal-header--minimap'>
-      <h2 className='modal-header__title--minimap'>
+    <div className='modal__header--minimap mt-14 mr-14'>
+      <h2 className='modal__header-title--minimap m-0 m-0 pt-5 pb-0 pl-24'>
         <Trans comment='Header for modal minimap'>
           Minimap
         </Trans>
       </h2>
-      <button className='modal-header__button' aria-label={t({
+      <button className='modal__header-button' aria-label={t({
         message: 'Close'
       })} onClick={props.toggleModal}>
         <MaterialIcon icon='close' />
       </button>
     </div>
-    <div className='modal-body--minimap'>
+    <div className='modal__body--minimap pt-0 px-24 pb-24'>
       {minimapAboutText}
       <div className='minimap__wrapper--modal'>
         <Minimap

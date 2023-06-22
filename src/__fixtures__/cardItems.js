@@ -1,4 +1,4 @@
-export const tileItems = [
+export const cardItems = [
     {
         "category": "collection",
         "dates": [

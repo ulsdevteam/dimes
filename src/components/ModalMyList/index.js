@@ -66,7 +66,7 @@ const FormatSelectInput = () => {
   }, [format, setFieldValue])
 
   return (
-    <div className='form-group'>
+    <div className='form-group mx-0'>
       <SelectInput
         className='select__modal'
         id='format'
@@ -86,7 +86,7 @@ const FormatSelectInput = () => {
         id='format-error'
         name={t({ message: 'format' })}
         component='div'
-        className='modal-form__error' />
+        className='input__error' />
     </div>
   )
 }
@@ -151,7 +151,7 @@ export const SelectedTotals = ({ items }) => {
       {...total, [current.type]: parseFloat(current.value)}
   ), {})
   const extents = Object.entries(totals).map(e => pluralize(e[0], e[1], true))
-  return <p className='selected-totals'><Trans comment='Message returned dependent on how many items selected' ><Plural value={extents.length} _0="selected: 0 items" other={`selected: ${extents.join(', ')}`} /></Trans></p>
+  return <p className='selected-totals mt-10'><Trans comment='Message returned dependent on how many items selected' ><Plural value={extents.length} _0="selected: 0 items" other={`selected: ${extents.join(', ')}`} /></Trans></p>
 }
 
 
@@ -160,16 +160,16 @@ export const ModalMyList = props => (
     appElement={props.appElement ? props.appElement : Modal.setAppElement('#root')}
     isOpen={props.isOpen}
     onRequestClose={props.toggleModal}
-    className='modal-content'
-    overlayClassName='modal-overlay'>
-    <div className='modal-header'>
-      <h2 className='modal-header__title'>{props.title}</h2>
-      <button className='modal-header__button' aria-label={t({ message: 'Close' })} onClick={props.toggleModal}>
+    className='modal'
+    overlayClassName='modal__overlay'>
+    <div className='modal__header'>
+      <h2 className='modal__header-title'>{props.title}</h2>
+      <button className='modal__header-button' aria-label={t({ message: 'Close' })} onClick={props.toggleModal}>
         <MaterialIcon icon='close'/>
       </button>
     </div>
-    <div className='modal-body'>
-      <div className='modal-list'>
+    <div className='modal__body p-0'>
+      <div className='modal-list py-30 px-20'>
         <ModalToggleListButton
           ignoreRestrictions={props.ignoreRestrictions}
           items={props.list}
@@ -181,7 +181,7 @@ export const ModalMyList = props => (
           handleChange={props.handleChange} />
         <SelectedTotals items={props.list} />
       </div>
-      <div className='modal-form'>
+      <div className='modal-form pt-30 px-20 pb-18'>
         {props.form}
       </div>
     </div>
@@ -259,7 +259,7 @@ export const EmailModal = props => (
                 message: 'items'
               })}
             component='div'
-            className='modal-form__error' />
+            className='input__error' />
           <FormGroup
             label={t({
               comment: 'Label of Email Form',
@@ -294,7 +294,7 @@ export const EmailModal = props => (
             })}
             component='textarea'
             rows={5} />
-          <div className='form-group'>
+          <div className='form-group mx-0'>
             <Field
               component={Captcha}
               name={t({
@@ -309,7 +309,7 @@ export const EmailModal = props => (
                 message: 'recaptcha'
               })}
               component='div'
-              className='modal-form__error' />
+              className='input__error' />
           </div>
           <FormButtons
             submitText={t({
@@ -382,8 +382,8 @@ export const ReadingRoomRequestModal = props => (
               message: 'items'
             })}
             component='div'
-            className='modal-form__error' />
-          <div className='form-group'>
+            className='input__error' />
+          <div className='form-group mx-0'>
             <Field
               component={DateInput}
               handleChange={date => setFieldValue('scheduledDate', date)}
@@ -404,7 +404,7 @@ export const ReadingRoomRequestModal = props => (
                 message: 'scheduledDate'
               })}
               component='div'
-              className='modal-form__error' />
+              className='input__error' />
           </div>
           <FormGroup
             label={t({
@@ -422,7 +422,7 @@ export const ReadingRoomRequestModal = props => (
             maxLength={255}
             component='textarea'
             rows={5} />
-          <div className='form-group'>
+          <div className='form-group mx-0'>
             <Field
               component={Captcha}
               name={t({
@@ -435,7 +435,7 @@ export const ReadingRoomRequestModal = props => (
                 message: 'recaptcha'
               })}
               component='div'
-              className='modal-form__error' />
+              className='input__error' />
           </div>
           <FormButtons
               submitText={t({
@@ -480,7 +480,7 @@ export const DuplicationRequestModal = props => (
     list={props.list}
     form={
       <>
-        <div className='modal-form__intro'>
+        <div className='mb-20'>
           <Trans comment='Note to user about a cost estimate'>
             <strong>Please note:</strong> if you want a cost estimate for your order, email an archivist at <a href={t({message: 'mailto:archive@rockarch.org'})}>archive@rockarch.org</a>.
           </Trans>
@@ -532,7 +532,7 @@ export const DuplicationRequestModal = props => (
                   message: 'items'
                 })}
               component='div'
-              className='modal-form__error' />
+              className='input__error' />
             <FormatSelectInput />
             <FormGroup
                 label={t({
@@ -586,7 +586,7 @@ export const DuplicationRequestModal = props => (
               required={true}
               errors={errors}
               touched={touched} />
-            <div className='form-group'>
+            <div className='form-group mx-0'>
               <Field
                 component={Captcha}
                   name={t({
@@ -599,7 +599,7 @@ export const DuplicationRequestModal = props => (
                     message: 'recaptcha'
                   })}
                 component='div'
-                className='modal-form__error' />
+                className='input__error' />
             </div>
             <FormButtons
               submitText={t({
