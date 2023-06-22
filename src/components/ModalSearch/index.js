@@ -53,7 +53,7 @@ export const FacetModal = props => {
           })}
           label={t({
             comment: 'Shown for the user to save and close the filter',
-            message:'Save &amp; Close'
+            message:'Save & Close'
           })}
           handleClick={props.toggleModal} />
       </div>
