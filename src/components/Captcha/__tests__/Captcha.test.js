@@ -17,5 +17,5 @@ it('renders props correctly', () => {
   })
 
   const captcha = document.querySelector('[name=recaptcha]')
-  expect(captcha.className).toBe('captcha foo')
+  expect(captcha.className).toBe('captcha my-10 mx-0 foo')
 })

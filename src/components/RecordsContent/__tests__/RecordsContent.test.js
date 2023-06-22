@@ -84,7 +84,7 @@ it('renders with object data', () => {
   })
 
   const item = document.querySelector('.child__list-item')
-  expect(document.querySelector('.btn-add--content')).toBeInTheDocument()
+  expect(document.querySelector('.btn-launch--content')).toBeInTheDocument()
   expect(item.textContent).toContain(child.title)
   expect(item.textContent).toContain(child.dates)
   if (child.description) {

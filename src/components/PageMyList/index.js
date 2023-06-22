@@ -286,35 +286,33 @@
             <title>DIMES: My List</title>
           </Trans>
         </Helmet>
-        <div className='container mylist flex'>
+        <div className='mylist grid container--full-width'>
           <nav>
-            <a href='/' className='btn btn--new-search'>
+            <a href='/' className='btn btn--sm btn--gray btn--new-search mt-20 ml-30'>
               <Trans comment='New Search button' >
-                <MaterialIcon icon='keyboard_arrow_left' />Start a New Search
+                <MaterialIcon icon='keyboard_arrow_left' className='material-icon--space-after' />Start a New Search
               </Trans>
             </a>
           </nav>
-          <main id='main' role='main'>
-            <div className='mylist__header'>
-              <Trans comment="Header for user's list" >
-                <h1 className='mylist__title'>My List</h1>
-              </Trans>
-              <MyListDropdown
-                downloadCsv={downloadCsv}
-                duplicationRequest={() => isRequestingAvailable ? setDuplicationModalOpen(true) : setRequestingUnavailableModalOpen(true)}
-                emailList={() => isRequestingAvailable ? setEmailModalOpen(true) : setRequestingUnavailableModalOpen(true)}
-                readingRoomRequest={() => isRequestingAvailable ? setReadingRoomModalOpen(true) : setRequestingUnavailableModalOpen(true)}
-                removeAllItems={() => setConfirmDeleteAllModalOpen(true)} />
-            </div>
-            <MyListExportActions
-                confirmDeleteAll={() => setConfirmDeleteAllModalOpen(true)}
-                downloadCsv={downloadCsv}
-                emailList={() => isRequestingAvailable ? setEmailModalOpen(true) : setRequestingUnavailableModalOpen(true)}
-                isDownloading={isDownloading} />
-            <SavedItemList
-              items={savedList}
-              isLoading={isLoading}
-              removeFromList={removeFromList} />
+          <main id='main' className='mt-60 ml-30'>
+            <Trans comment="Header for user's list" >
+              <h1 className='mylist__title my-30 ml-15'>My List</h1>
+            </Trans>
+            <MyListDropdown
+              downloadCsv={downloadCsv}
+              duplicationRequest={() => isRequestingAvailable ? setDuplicationModalOpen(true) : setRequestingUnavailableModalOpen(true)}
+              emailList={() => isRequestingAvailable ? setEmailModalOpen(true) : setRequestingUnavailableModalOpen(true)}
+              readingRoomRequest={() => isRequestingAvailable ? setReadingRoomModalOpen(true) : setRequestingUnavailableModalOpen(true)}
+              removeAllItems={() => setConfirmDeleteAllModalOpen(true)} />
+          <MyListExportActions
+              confirmDeleteAll={() => setConfirmDeleteAllModalOpen(true)}
+              downloadCsv={downloadCsv}
+              emailList={() => isRequestingAvailable ? setEmailModalOpen(true) : setRequestingUnavailableModalOpen(true)}
+              isDownloading={isDownloading} />
+          <SavedItemList
+            items={savedList}
+            isLoading={isLoading}
+            removeFromList={removeFromList} />
           </main>
           <MyListSidebar
               duplicationRequest={() => isRequestingAvailable ? setDuplicationModalOpen(true) : setRequestingUnavailableModalOpen(true)}
@@ -369,7 +367,7 @@
           isOpen={confirmDeleteAllModalOpen}
           message={
             <Trans comment='Confirmation to delete all items from list' >Are you sure you want to remove all the items from your list?
-            <div className='confirm-buttons'>
+            <div className='modal-buttons--confirm mt-20'>
               <Button
                 className='btn--sm btn--orange'
                 label='Remove'

@@ -104,7 +104,7 @@ const PageDigitalObject = ({isMobile}) => {
       <div className='viewer-bar__title'>
         <TargetComponent {...targetProps} />
       </div>
-      <div className='viewer-bar__buttons'>
+      <div className='viewer-bar__buttons mt-5 mr-10'>
         <Trans comment='Download button for digital object'>
           <a className='btn btn--sm btn--orange'
             href={`${process.env.REACT_APP_S3_BASEURL}/pdfs/${id}`}
@@ -116,13 +116,11 @@ const PageDigitalObject = ({isMobile}) => {
             rel='noopener noreferrer'
           ><MaterialIcon icon='get_app' /> Download</a>
         </Trans>
-        <div>
-          <Trans comment='Go back to Item details for digital object'>
-            <a href={itemUrl} className='btn btn--sm btn--black'>
-              <MaterialIcon icon='keyboard_arrow_left' />Back to Item Details
-            </a>
-          </Trans>
-        </div>
+        <Trans comment='Go back to Item details for digital object'>
+          <a href={itemUrl} className='btn btn--sm btn--black'>
+            <MaterialIcon icon='keyboard_arrow_left' className='material-icon--space-after' />Back to Item Details
+          </a>
+        </Trans>
       </div>
     </div>} />
   )

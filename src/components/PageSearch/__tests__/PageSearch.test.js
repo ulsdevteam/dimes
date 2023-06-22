@@ -6,7 +6,7 @@ import { act } from 'react-dom/test-utils'
 import PageSearch from '..'
 import { I18nApp } from '../../i18n';
 import { t } from '@lingui/macro';
-import { tileItems } from '../../../__fixtures__/tileItems'
+import { cardItems } from '../../../__fixtures__/cardItems'
 import { facet } from '../../../__fixtures__/facet'
 import { titleSuggest } from '../../../__fixtures__/suggest'
 
@@ -32,7 +32,7 @@ it('renders props correctly', async () => {
     } else if (url.includes('suggest')) {
       return Promise.resolve({data: titleSuggest})
     } else if (url.includes('search')) {
-      return Promise.resolve({data: {count: tileItems.length, results: tileItems}})
+      return Promise.resolve({data: {count: cardItems.length, results: cardItems}})
     } else {
       return Promise.reject(new Error('not found'))
     }

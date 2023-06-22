@@ -61,7 +61,7 @@ export const PrimaryLinkAccessibilityPolicy = () => (
       message: 'https://rockarch.org/about-us/accessibility/'
 		})}
 		text={t({
-			comment: 'Accesibility Statement message',
+			comment: 'Accessibility Statement message',
       message: 'Accessibility Statement'
     })}
   />
