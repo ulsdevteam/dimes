@@ -42,7 +42,7 @@ export const FacetModal = props => {
       <div className='modal__header modal__header--search pt-30 px-30 pb-20'>
         <h2 className='modal__header-title' aria-live='polite' aria-atomic='true'>
           <Trans comment='Filter results message'>
-            <Plural value={props.resultsCount} one="Filter # Search Result" other="Filter # Results"/>
+            <Plural value={props.resultsCount} one="Filter # Search Result" other="Filter # Search Results"/>
           </Trans>
         </h2>
         <Button
