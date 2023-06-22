@@ -239,9 +239,7 @@
       setSubmitList(constructSubmitList(savedList))
     }, [savedList])
 
-    /** Updates submit and submitReason if requesting is available
-    * 1. Resolve all promises before returning.
-    */
+    /** Updates submit and submitReason if requesting is available */
     useEffect(() => {
       /* Resolves savedList groups */
       function resolveGroups(list) {
@@ -253,17 +251,16 @@
       }
       /* Resolves submit status of items in savedList groups */
       async function resolveItemsStatus(group) {
-        const updatedItems = await Promise.all( /* 1 */
-          group.items.map(i => {
-            return axios
-              .post(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/process-request/parse`, { item: i.archivesspace_uri })
-              .then(res => {
-                return { ...i, submit: res.data.submit, submitReason: res.data.submit_reason}
-              })
-              .catch(err => setBackendError(err))
-          })
-        )
-        group.items = updatedItems
+        const groupUris = group.items.map(i => i.archivesspace_uri)
+        const updatedItems = await axios
+            .post(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/process-request/parse-batch`, { items: groupUris })
+            .then(res => {return res.data})
+            .catch(err => setBackendError(err))
+        const combinedItems = group.items.map(i => {
+          console.log(i)
+          const parsedItem = updatedItems.find(u => {console.log(u); return (u.uri === i.archivesspace_uri)})
+          return { ...i, submit: parsedItem.submit, submitReason: parsedItem.submit_reason }})
+        group.items = combinedItems
         return group
       }
 
