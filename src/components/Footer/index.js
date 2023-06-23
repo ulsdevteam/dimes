@@ -21,9 +21,7 @@ const Footer = () => (
             <Trans comment='Full Company Address'>
               15 Dayton Avenue
               <br />
-              Sleepy Hollow, New York
-              <br />
-              10591
+              Sleepy Hollow, New York 10591
             </Trans>
           </p>
           <p className='footer-primary__text'>

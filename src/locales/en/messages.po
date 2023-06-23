@@ -1,14 +1,16 @@
 msgid ""
 msgstr ""
+"POT-Creation-Date: 2023-06-22 12:14-0400\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: en\n"
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
-"Language: \n"
 "Language-Team: \n"
-"Content-Type: \n"
-"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
 #. Message returned dependent on how many items selected
@@ -18,8 +20,8 @@ msgstr "{0, plural, =0 {selected: 0 items} other {selected: {1}}}"
 
 #. Filter results message
 #: src/components/ModalSearch/index.js:44
-msgid "{0, plural, one {Filter # Search Result} other {Filter # Results}}"
-msgstr "{0, plural, one {Filter # Search Result} other {Filter # Results}}"
+msgid "{0, plural, one {Filter # Search Result} other {Filter # Search Results}}"
+msgstr "{0, plural, one {Filter # Search Result} other {Filter # Search Results}}"
 
 #. Pluralization of hit(s) for minimap boxes
 #: src/components/Minimap/index.js:49
@@ -133,6 +135,11 @@ msgstr "<0><1/>Back to Item Details</0>"
 msgid "<0><1><2><3><4>Twitter Logo</4><5/></3></2></1><6><7><8><9>Facebook Logo</9><10/></8></7></6><11><12><13><14>Instagram Logo</14><15/></13></12></11><16><17><18><19>YouTube Logo</19><20/></18></17></16><21><22><23><24>Flickr Logo</24><25><26><27><28/><29/></27></26></25></23></22></21></0>"
 msgstr "<0><1><2><3><4>Twitter Logo</4><5/></3></2></1><6><7><8><9>Facebook Logo</9><10/></8></7></6><11><12><13><14>Instagram Logo</14><15/></13></12></11><16><17><18><19>YouTube Logo</19><20/></18></17></16><21><22><23><24>Flickr Logo</24><25><26><27><28/><29/></27></26></25></23></22></21></0>"
 
+#. Page Title for user's list
+#: src/components/PageMyList/index.js:284
+msgid "<0><1>DIMES: My List</1></0>"
+msgstr "<0><1>DIMES: My List</1></0>"
+
 #. Page Home
 #: src/components/PageHome/index.js:10
 msgid "<0><1>DIMES: Online Collections and Catalog of Rockefeller Archive Center</1></0><2><3/><4/></2>"
@@ -160,8 +167,8 @@ msgstr "<0>Description</0>"
 
 #. Page Title for user's list
 #: src/components/PageMyList/index.js:286
-msgid "<0>DIMES: My List</0>"
-msgstr "<0>DIMES: My List</0>"
+#~ msgid "<0>DIMES: My List</0>"
+#~ msgstr "<0>DIMES: My List</0>"
 
 #. Saved item found in message
 #: src/components/SavedItem/index.js:17
@@ -255,8 +262,8 @@ msgstr "<0>View Online<1/></0><2>Download <3/></2>{0}"
 
 #. Full Company Address
 #: src/components/Footer/index.js:21
-msgid "15 Dayton Avenue<0/>Sleepy Hollow, New York<1/>10591"
-msgstr "15 Dayton Avenue<0/>Sleepy Hollow, New York<1/>10591"
+msgid "15 Dayton Avenue<0/>Sleepy Hollow, New York 10591"
+msgstr "15 Dayton Avenue<0/>Sleepy Hollow, New York 10591"
 
 #. helptext for RAC staff message
 #: src/components/ModalMyList/index.js:414
@@ -404,13 +411,13 @@ msgstr "Collections data API"
 msgid "Collections Related to {agentTitle}"
 msgstr "Collections Related to {agentTitle}"
 
-#. Remove all confrimation title
+#. Remove all confirmation title
 #: src/components/PageMyList/index.js:383
 msgid "Confirm Remove All"
 msgstr "Confirm Remove All"
 
 #. Copyright message
-#: src/components/Footer/index.js:65
+#: src/components/Footer/index.js:63
 msgid "Copyright © Rockefeller Archive Center. All rights reserved."
 msgstr "Copyright © Rockefeller Archive Center. All rights reserved."
 
@@ -466,7 +473,7 @@ msgstr "Download as .csv"
 #~ msgstr "E-mail: <0/>"
 
 #. Company Email
-#: src/components/Footer/index.js:36
+#: src/components/Footer/index.js:34
 msgid "E-mail:<0/>"
 msgstr "E-mail:<0/>"
 
@@ -520,7 +527,7 @@ msgid "Error submitting request"
 msgstr "Error submitting request"
 
 #. Company Fax
-#: src/components/Footer/index.js:33
+#: src/components/Footer/index.js:31
 msgid "Fax: (914) 631-6017"
 msgstr "Fax: (914) 631-6017"
 
@@ -735,7 +742,7 @@ msgstr "Minimap"
 #~ msgstr "Monday-Friday<0/>10:00 a.m. to 5:00 p.m.<1/>"
 
 #. Reading Room Actual Hours
-#: src/components/Footer/index.js:49
+#: src/components/Footer/index.js:47
 msgid "Monday-Friday<0/>9:00 a.m. to 5:00 p.m.<1/>"
 msgstr "Monday-Friday<0/>9:00 a.m. to 5:00 p.m.<1/>"
 
@@ -806,7 +813,7 @@ msgid "People"
 msgstr "People"
 
 #. Company Phonenumber
-#: src/components/Footer/index.js:30
+#: src/components/Footer/index.js:28
 msgid "Phone: (914) 366-6300"
 msgstr "Phone: (914) 366-6300"
 
@@ -880,7 +887,7 @@ msgid "RAC Policies"
 msgstr "RAC Policies"
 
 #. Reading Room Hours message
-#: src/components/Footer/index.js:44
+#: src/components/Footer/index.js:42
 msgid "Reading Room Hours:"
 msgstr "Reading Room Hours:"
 
@@ -948,8 +955,8 @@ msgstr "Rockefeller<0>Archive Center</0>"
 
 #. Shown for the user to save and close the filter
 #: src/components/ModalSearch/index.js:54
-msgid "Save &amp; Close"
-msgstr "Save &amp; Close"
+msgid "Save & Close"
+msgstr "Save & Close"
 
 #. Message shown on button within Dropdown list
 #: src/components/Dropdown/index.js:65

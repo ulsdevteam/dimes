@@ -75,22 +75,27 @@ export const AgentAttributeSkeleton = () => (
 )
 
 export const AgentRelatedCollectionsSkeleton = () => (
-  <ul className='card-list list--unstyled card--related-collections mt-40 mb-32'>
-    {Array(6)
-      .fill()
-      .map((item, index) => (
-        <li className='card' key={index}>
-          <Skeleton />
-          <h2 className='card__title'>
-            <Skeleton count={3}/>
-          </h2>
-          <p className='card__date'>
+  <div className='agent__related'>
+    <h2 className='agent__section-title pb-12'>
+      <Skeleton />
+    </h2>
+    <ul className='card-list list--unstyled card--related-collections mt-40 mb-32'>
+      {Array(6)
+        .fill()
+        .map((item, index) => (
+          <li className='card' key={index}>
             <Skeleton />
-          </p>
-        </li>
-      )
-    )}
-  </ul>
+            <h2 className='card__title'>
+              <Skeleton count={3}/>
+            </h2>
+            <p className='card__date'>
+              <Skeleton />
+            </p>
+          </li>
+        )
+      )}
+    </ul>
+  </div>
 )
 
 export const DetailSkeleton = () => (
@@ -129,7 +134,7 @@ export const RecordsChildSkeleton = React.forwardRef((props, ref) => (
 ))
 
 export const RestrictionsSkeleton = () => (
-  <div><Skeleton /></div>
+  <div className="mt-10"><Skeleton /></div>
 )
 
 export const MinimapSkeleton = ({totalBoxes}) => {
