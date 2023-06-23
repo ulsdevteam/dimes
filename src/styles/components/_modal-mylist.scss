@@ -54,6 +54,10 @@
   margin-bottom: 5px;
 }
 
+.select__modal__option {
+  padding: 5px 10px;
+}
+
 // font-weight for checkboxes
 .modal-form input[type=checkbox] + label {
   font-weight: $font-weight-normal;

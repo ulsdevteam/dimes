@@ -281,12 +281,12 @@
     }
     return (
       <>
-        <Helmet
-          onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
-          <Trans comment="Page Title for user's list">
+        <Trans comment="Page Title for user's list">
+          <Helmet
+            onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
             <title>DIMES: My List</title>
-          </Trans>
-        </Helmet>
+          </Helmet>
+        </Trans>
         <div className='mylist grid container--full-width'>
           <nav>
             <a href='/' className='btn btn--sm btn--gray btn--new-search mt-20 ml-30'>
@@ -381,7 +381,7 @@
             </Trans>
           }
           title={t({
-            comment: 'Remove all confrimation title',
+            comment: 'Remove all confirmation title',
             message: 'Confirm Remove All'
           })}
           toggleModal={() => setConfirmDeleteAllModalOpen(!confirmDeleteAllModalOpen)}
