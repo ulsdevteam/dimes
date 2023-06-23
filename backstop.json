@@ -172,7 +172,7 @@
       "url": "http://host.docker.internal:3000/collections/WY7fpswEV3oLhyjiArpHES?category=&limit=40&query=banana",
       "onBeforeScript": "mock_request.js",
       "clickSelector": ".modal__header--minimap > button",
-      "delay": 5000
+      "delay": 7000
     },
     {
       "label": "Object",
