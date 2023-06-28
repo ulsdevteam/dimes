@@ -227,6 +227,11 @@ const PageAgent = () => {
     }
   }, [wikidata])
 
+   /** Constructs the URL for the 'Back to Search' button */
+   const searchUrl = (
+    params && params.query ? appendParams('/search/', params) : '/'
+  )
+
   if (!found) {
     return (<PageNotFound />)
   }
@@ -242,7 +247,7 @@ const PageAgent = () => {
       <div className='container--full-width'>
         <div className='agent__wrapper'>
           <nav className="mt-30">
-            <a href={appendParams('/search', params)} className='btn btn--sm btn--gray'>
+            <a href={searchUrl} className='btn btn--sm btn--gray'>
               <Trans comment='Back to search button'>
                 <span className='material-icon material-icon--space-after'>keyboard_arrow_left</span>Back to Search
               </Trans>
