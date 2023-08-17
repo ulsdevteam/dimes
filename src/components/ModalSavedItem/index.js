@@ -5,9 +5,7 @@ import { Trans } from '@lingui/macro'
 import './styles.scss'
 
 const ModalSavedItemsRestrictions = ({submit, submitReason}) => (
-  typeof submit === 'undefined' ?
-    (null) :
-    (submitReason ? (<div className='input__error'>{submitReason}</div>) : (null))
+  submitReason ? (<div className='input__error'>{submitReason}</div>) : (null)
 )
 
 const ModalSavedItem = props => {
