@@ -168,6 +168,7 @@ export const ModalMyList = props => (
         <MaterialIcon icon='close'/>
       </button>
     </div>
+    {props.list.every(listGroup => (listGroup.items.every(item => item.submit !== undefined))) ? (
     <div className='modal__body p-0'>
       <div className='modal-list py-30 px-20'>
         <ModalToggleListButton
@@ -180,11 +181,20 @@ export const ModalMyList = props => (
           items={props.list}
           handleChange={props.handleChange} />
         <SelectedTotals items={props.list} />
+        <ModalToggleListButton
+          ignoreRestrictions={props.ignoreRestrictions}
+          items={props.list}
+          toggleList={props.toggleList} />
       </div>
       <div className='modal-form pt-30 px-20 pb-18'>
         {props.form}
       </div>
-    </div>
+    </div>) :
+    (<div className='modal__body p-20'>
+      <p className='loading-dots'>
+        <Trans comment='Message while MyList modal loads items'>Preparing items</Trans>
+      </p>
+    </div>)}
   </Modal>
 )
 

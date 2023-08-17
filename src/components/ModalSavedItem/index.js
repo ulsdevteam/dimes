@@ -1,13 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { CheckBoxInput } from '../Inputs'
-import { RestrictionsSkeleton } from '../LoadingSkeleton'
 import { Trans } from '@lingui/macro'
 import './styles.scss'
 
 const ModalSavedItemsRestrictions = ({submit, submitReason}) => (
   typeof submit === 'undefined' ?
-    (<RestrictionsSkeleton />) :
+    (null) :
     (submitReason ? (<div className='input__error'>{submitReason}</div>) : (null))
 )
 
