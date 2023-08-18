@@ -399,7 +399,7 @@ const RecordsContent = props => {
       {isLoading ? (
         <div className='loading'>
             <Trans comment='Records content is loading'>
-              <p id='content-loading' className='loading__text loading-dots'>Loading</p>
+              <p id='content-loading' className='records-loading__text loading-dots'>Loading</p>
             </Trans>
         </div>) : (null)}
       <h2 className='content__title mt-0 pb-0'><Trans comment='Collection Content title'>Collection Content</Trans></h2>

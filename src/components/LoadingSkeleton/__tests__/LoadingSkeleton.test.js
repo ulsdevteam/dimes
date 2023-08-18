@@ -7,7 +7,6 @@ import {
   FoundInItemSkeleton,
   MinimapSkeleton,
   RecordsChildSkeleton,
-  RestrictionsSkeleton,
   SearchSkeleton,
   MyListSkeleton
 } from '..'
@@ -46,10 +45,6 @@ it('renders without crashing', () => {
 
 it('renders without crashing', () => {
   render(<I18nApp ReactComponent={<RecordsChildSkeleton />} />, container)
-})
-
-it('renders without crashing', () => {
-  render(<I18nApp ReactComponent={<RestrictionsSkeleton />} />, container)
 })
 
 it('renders without crashing', () => {
