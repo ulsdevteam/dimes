@@ -190,8 +190,8 @@ export const ModalMyList = props => (
         {props.form}
       </div>
     </div>) :
-    (<div className='modal__body p-20'>
-      <p className='loading-dots'>
+    (<div className='modal__body'>
+      <p className='loading-dots modal-loading__text'>
         <Trans comment='Message while MyList modal loads items'>Preparing items</Trans>
       </p>
     </div>)}
