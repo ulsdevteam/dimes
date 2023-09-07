@@ -262,8 +262,7 @@ const ReadingRoomSelect = () => {
   const ReadingRoomLocations = [
    { value: "", label: "Please select a reading room"},
    { value: "ASCHILLMAN", label: "A&SC Hillman Library 320"},
-   { value: "ASCTHOMAS", label: "A&SC Thomas Boulevard"},
-   { value: "CAMUSIC", label: "Center for American Music Reading Room"}
+   { value: "ASCTHOMAS", label: "A&SC Thomas Boulevard"}
   ];
 
   useEffect(() => {
