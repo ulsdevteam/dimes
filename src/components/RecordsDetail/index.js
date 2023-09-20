@@ -21,6 +21,14 @@ import { appendParams, dateString, hasAccessOrUse, noteText, noteTextByType } fr
 import { isItemSaved } from '../MyListHelpers'
 import './styles.scss'
 
+const flattenObject = (obj, flattened = []) => {
+  flattened.push(obj.title);
+  if (obj.child) {
+    flattenObject(obj.child, flattened)
+  }
+  return flattened
+}
+
 const FoundInItem = ({ className, item, params, topLevel }) => (
   <>
     <li className={className}>
@@ -151,6 +159,16 @@ const RecordsDetail = props => {
     props.item.uri && props.item.uri.split('/')[props.item.uri.split('/').length - 1]
   )
 
+  /** Returns a citation string */
+  const citation = (
+    [props.item.date, props.item.title]
+      .concat(flattenObject(props.ancestors))
+      .concat(t({ comment: 'Institution name for citation', message: 'Rockefeller Archive Center' }))
+      .concat(window.location.origin + window.location.pathname)
+      .filter(n => n)
+      .join('; ')
+  )
+
   return (
   <div className={classnames('records__detail', {'hidden': props.isContentShown})}>
     {props.isDesktop ? <Button
@@ -176,21 +194,27 @@ const RecordsDetail = props => {
         isSaved={isSaved}
         item={props.item}
         toggleSaved={props.toggleInList} />
-        {props.item.online &&
-          <Trans comment='Buttons for online records'>
-          <a className='btn btn--sm btn--orange btn--detail mr-10 mb-10 p-8'
-            href={`${props.item.uri}/view`}>View Online<MaterialIcon icon='visibility' className='material-icon--space-before'/></a>
-          <a className='btn btn--sm btn--orange btn--detail mr-10 mb-10 p-8'
-            href={`${process.env.REACT_APP_S3_BASEURL}/pdfs/${identifier}`}
-            target='_blank'
-            title={t({ comment: 'Title message for opening an online item', message: 'opens in a new window' })}
-            rel='noopener noreferrer'
-            >Download <MaterialIcon icon='get_app' className='material-icon--space-before' /></a>
-            { props.downloadSize ?
-              <p className='panel__text'>{`Acrobat PDF, ${props.downloadSize}`}</p> :
-              <p className='panel__text'><Skeleton/></p> }
-          </Trans>
-        }
+      <Trans comment='Button to copy citation text'>
+        <button className='btn btn--sm btn--orange btn--detail mr-10 mb-10 p-8'
+          onClick={() => {navigator.clipboard.writeText(citation)}}>
+          <MaterialIcon icon='edit' className='material-icon--space-after'/>Copy Citation
+        </button>
+      </Trans>
+      {props.item.online &&
+        <Trans comment='Buttons for online records'>
+        <a className='btn btn--sm btn--orange btn--detail mr-10 mb-10 p-8'
+          href={`${props.item.uri}/view`}>View Online<MaterialIcon icon='visibility' className='material-icon--space-before'/></a>
+        <a className='btn btn--sm btn--orange btn--detail mr-10 mb-10 p-8'
+          href={`${process.env.REACT_APP_S3_BASEURL}/pdfs/${identifier}`}
+          target='_blank'
+          title={t({ comment: 'Title message for opening an online item', message: 'opens in a new window' })}
+          rel='noopener noreferrer'
+          >Download <MaterialIcon icon='get_app' className='material-icon--space-before' /></a>
+          { props.downloadSize ?
+            <p className='panel__text'>{`Acrobat PDF, ${props.downloadSize}`}</p> :
+            <p className='panel__text'><Skeleton/></p> }
+        </Trans>
+      }
       </>
     }
     <Accordion className='accordion mt-20' preExpanded={['summary']} allowZeroExpanded={true}>
