@@ -214,7 +214,7 @@ const PageAgent = () => {
               }
             })
           ).then(v => {
-            const valuesList = v.filter(e => e != null).join(', ')
+            const valuesList = [...new Set(v)].filter(e => e != null).join(', ')
             setAttributes(a => { return { ...a, [p.label]: valuesList }})
           })
         })
