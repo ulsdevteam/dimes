@@ -1,358 +1,485 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2023-06-22 12:14-0400\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Generator: @lingui/cli\n"
-"Language: en\n"
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-09-28 09:44-0400\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Plural-Forms: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #. Message returned dependent on how many items selected
 #: src/components/ModalMyList/index.js:154
 msgid "{0, plural, =0 {selected: 0 items} other {selected: {1}}}"
-msgstr "{0, plural, =0 {selected: 0 items} other {selected: {1}}}"
+msgstr "{0, plural, =0 {selected: 0 elementi} other {selected: {1}}}"
 
 #. Filter results message
 #: src/components/ModalSearch/index.js:44
-msgid "{0, plural, one {Filter # Search Result} other {Filter # Search Results}}"
-msgstr "{0, plural, one {Filter # Search Result} other {Filter # Search Results}}"
+msgid ""
+"{0, plural, one {Filter # Search Result} other {Filter # Search Results}}"
+msgstr ""
+"{0, plural, one {Filtro # Risultato della ricerca} other {Filtro # "
+"Risultati della ricerca}}"
 
 #. Pluralization of hit(s) for minimap boxes
 #: src/components/Minimap/index.js:49
+#, fuzzy
 msgid "{0, plural, one {hit} other {hits}}"
 msgstr "{0, plural, one {hit} other {hits}}"
 
 #. Current Results shown of total results
 #: src/components/PageSearch/index.js:236
 #: src/components/PageSearch/index.js:290
-msgid "{0, select, true {{startItem}} other {{startItem}-{endItem} of {resultsCount} results}}"
-msgstr "{0, select, true {{startItem}} other {{startItem}-{endItem} of {resultsCount} results}}"
+#, fuzzy
+msgid ""
+"{0, select, true {{startItem}} other {{startItem}-{endItem} of "
+"{resultsCount} results}}"
+msgstr ""
+"{0, select, true {{startItem}} altri {{startItem}-{endItem} di "
+"{resultsCount} risultati}}"
 
 #. Minimap header
 #: src/components/ModalMinimap/index.js:31
+#, fuzzy
 msgid "{0, select, true {Minimap} other {Introducing the Minimap}}"
-msgstr "{0, select, true {Minimap} other {Introducing the Minimap}}"
+msgstr "{0, select, true {Minimap} other {Introduzione della minimappa}}"
 
 #. Text for submiting item(s) request
 #: src/components/ModalMyList/index.js:451
 #: src/components/ModalMyList/index.js:615
+#, fuzzy
 msgid "{0, select, true {Request {1} Items} other {Request {2} Item}}"
-msgstr "{0, select, true {Request {1} Items} other {Request {2} Item}}"
+msgstr ""
+"{0, select, true {Richiesta {1} Articoli} other {Richiesta {2} Articolo}}"
 
 #: src/components/RecordsContent/index.js:232
+#, fuzzy
 msgid "{0, select, true {View} other {View Online}}"
-msgstr "{0, select, true {View} other {View Online}}"
+msgstr "{0, select, true {View} other {Vedi online}}"
 
 #. Label for the end of the item
 #: src/components/PageAgent/index.js:139
-msgid "{agentType, select, organization {Date Disbanded} other {Date of Death}}"
-msgstr "{agentType, select, organization {Date Disbanded} other {Date of Death}}"
+#, fuzzy
+msgid ""
+"{agentType, select, organization {Date Disbanded} other {Date of Death}}"
+msgstr ""
+"{agentType, select, organization {Date Disbanded} other {Date of Death}}"
 
 #. Label for the start of the item
 #: src/components/PageAgent/index.js:135
-msgid "{agentType, select, organization {Date Established} other {Date of Birth}}"
-msgstr "{agentType, select, organization {Date Established} other {Date of Birth}}"
+#, fuzzy
+msgid ""
+"{agentType, select, organization {Date Established} other {Date of Birth}}"
+msgstr ""
+"{agentType, select, organization {Data di fondazione} other {Data di "
+"nascita}}"
 
 #. Label for item (de)selection
 #: src/components/ModalMyList/index.js:118
 #: src/components/ModalMyList/index.js:127
+#, fuzzy
 msgid "{deselect, select, true {Deselect all items} other {Select all items}}"
-msgstr "{deselect, select, true {Deselect all items} other {Select all items}}"
+msgstr "{deselect, select, true {Deseleziona tutti gli elementi} other {Seleziona tutti gli elementi}}"
 
 #. Pluralization of digital match(es)
 #: src/components/Helpers.js:61
+#, fuzzy
 msgid "{hitCount, plural, one {digital match} other {digital matches}}"
-msgstr "{hitCount, plural, one {digital match} other {digital matches}}"
+msgstr "{hitCount, plural, one {partita digitale} other {partite digitali}}"
 
 #. Pluralization of match(es)
 #: src/components/Helpers.js:57
+#, fuzzy
 msgid "{hitCount, plural, one {match} other {matches}}"
 msgstr "{hitCount, plural, one {match} other {matches}}"
 
 #. Search Results header
 #: src/components/PageSearch/index.js:209
-msgid "{inProgress, select, true {Searching} other {{0, select, false {No search query entered} other {{resultsCount, plural, =0 {Sorry, there are no search results for {1}} other {Search Results for {2}}}}}}}"
-msgstr "{inProgress, select, true {Searching} other {{0, select, false {No search query entered} other {{resultsCount, plural, =0 {Sorry, there are no search results for {1}} other {Search Results for {2}}}}}}}"
+#, fuzzy
+msgid ""
+"{inProgress, select, true {Searching} other {{0, select, false {No search "
+"query entered} other {{resultsCount, plural, =0 {Sorry, there are no search "
+"results for {1}} other {Search Results for {2}}}}}}}"
+msgstr ""
+"{inProgress, select, true {Searching} other {{0, select, false {Nessuna "
+"query di ricerca inserita} other {{resultsCount, plural, =0 {Spiacente, non "
+"ci sono risultati di ricerca per {1}} other {Risultati di ricerca per "
+"{2}}}}}}}"
 
 #. Label for Context Switcher
 #: src/components/ContextSwitcher/index.js:14
-msgid "{isContentShown, select, true {Collection Details} other {Collection Content}}"
-msgstr "{isContentShown, select, true {Collection Details} other {Collection Content}}"
+#, fuzzy
+msgid ""
+"{isContentShown, select, true {Collection Details} other {Collection "
+"Content}}"
+msgstr ""
+"{isContentShown, select, true {Dettagli della collezione} other {Contenuto "
+"della collezione}}"
 
 #. Downloading label
 #: src/components/MyListExportActions/index.js:19
+#, fuzzy
 msgid "{isDownloading, select, true {Downloading} other {Download as .CSV}}"
 msgstr "{isDownloading, select, true {Downloading} other {Download as .CSV}}"
 
 #. Label for Add List Toggle button
 #: src/components/ListToggleButton/index.js:36
+#, fuzzy
 msgid "{isMobile, select, true {Add} other {Add to List}}"
-msgstr "{isMobile, select, true {Add} other {Add to List}}"
+msgstr "{isMobile, select, true {Add} other {Aggiungi alla lista}}"
 
 #. Label for Remove List Toggle button
 #: src/components/ListToggleButton/index.js:17
+#, fuzzy
 msgid "{isMobile, select, true {Remove} other {Remove from List}}"
-msgstr "{isMobile, select, true {Remove} other {Remove from List}}"
+msgstr "{isMobile, select, true {Remove} other {Rimuovi dall'elenco}}"
 
 #. Agent Note source
 #: src/components/PageAgent/index.js:28
-msgid "{source, select, null {Source: Rockefeller Archive Center} other {Source: {source}}}"
-msgstr "{source, select, null {Source: Rockefeller Archive Center} other {Source: {source}}}"
+#, fuzzy
+msgid ""
+"{source, select, null {Source: Rockefeller Archive Center} other {Source: "
+"{source}}}"
+msgstr ""
+"{source, select, null {Fonte: Rockefeller Archive Center} other {Fonte: "
+"{source}}}"
 
 #. Message to go back to previous search
 #: src/components/RecordsDetail/index.js:166
+#, fuzzy
 msgid "<0/>Back to Search"
-msgstr "<0/>Back to Search"
+msgstr "<0/>Torna alla ricerca"
 
 #. New Search button
 #: src/components/PageMyList/index.js:293
+#, fuzzy
 msgid "<0/>Start a New Search"
-msgstr "<0/>Start a New Search"
+msgstr "<0/>Avviare una nuova ricerca"
 
 #. Download button for digital object
 #: src/components/PageDigitalObject/index.js:108
+#, fuzzy
 msgid "<0><1/> Download</0>"
-msgstr "<0><1/> Download</0>"
+msgstr "<0><1/> Scaricare</0>"
 
 #. Schedule a visit button
 #: src/components/MyListSidebar/index.js:9
+#, fuzzy
 msgid "<0><1/> Schedule a Visit</0>"
-msgstr "<0><1/> Schedule a Visit</0>"
+msgstr "<0><1/> Programmare una visita</0>"
 
 #. Go back to Item details for digital object
 #: src/components/PageDigitalObject/index.js:119
+#, fuzzy
 msgid "<0><1/>Back to Item Details</0>"
-msgstr "<0><1/>Back to Item Details</0>"
+msgstr "<0><1/>Torna ai dettagli dell'articolo</0>"
 
 #. Social Icons Titles
 #: src/components/SocialIcons/index.js:5
-msgid "<0><1><2><3><4>Twitter Logo</4><5/></3></2></1><6><7><8><9>Facebook Logo</9><10/></8></7></6><11><12><13><14>Instagram Logo</14><15/></13></12></11><16><17><18><19>YouTube Logo</19><20/></18></17></16><21><22><23><24>Flickr Logo</24><25><26><27><28/><29/></27></26></25></23></22></21></0>"
-msgstr "<0><1><2><3><4>Twitter Logo</4><5/></3></2></1><6><7><8><9>Facebook Logo</9><10/></8></7></6><11><12><13><14>Instagram Logo</14><15/></13></12></11><16><17><18><19>YouTube Logo</19><20/></18></17></16><21><22><23><24>Flickr Logo</24><25><26><27><28/><29/></27></26></25></23></22></21></0>"
+#, fuzzy
+msgid ""
+"<0><1><2><3><4>Twitter Logo</4><5/></3></2></1><6><7><8><9>Facebook "
+"Logo</9><10/></8></7></6><11><12><13><14>Instagram Logo</14><15/"
+"></13></12></11><16><17><18><19>YouTube Logo</19><20/"
+"></18></17></16><21><22><23><24>Flickr Logo</24><25><26><27><28/><29/"
+"></27></26></25></23></22></21></0>"
+msgstr ""
+"<0><1><2><3><4>Logo Twitter</4><5/></3></2></1><6><7><8><9>Logo "
+"Facebook</9><10/></8></7></6><11><12><13><14>Logo Instagram</14><15/"
+"></13></12></11><16><17><18><19>Logo YouTube</19><20/"
+"></18></17></16><21><22><23><24>Logo Flickr</24><25><26><27><28/><29/"
+"></27></26></25></23></22></21></0>"
 
 #. Page Title for user's list
 #: src/components/PageMyList/index.js:284
+#, fuzzy
 msgid "<0><1>DIMES: My List</1></0>"
-msgstr "<0><1>DIMES: My List</1></0>"
+msgstr "<0><1>DIMES: Il mio elenco</1></0>"
 
 #. Page Home
 #: src/components/PageHome/index.js:10
-msgid "<0><1>DIMES: Online Collections and Catalog of Rockefeller Archive Center</1></0><2><3/><4/></2>"
-msgstr "<0><1>DIMES: Online Collections and Catalog of Rockefeller Archive Center</1></0><2><3/><4/></2>"
+#, fuzzy
+msgid ""
+"<0><1>DIMES: Online Collections and Catalog of Rockefeller Archive "
+"Center</1></0><2><3/><4/></2>"
+msgstr ""
+"<0><1>DIMES: Collezioni e catalogo online del Centro Archivi "
+"Rockefeller</1></0><2><3/><4/></2>"
 
 #. Page Not Found
 #: src/components/PageNotFound/index.js:9
-msgid "<0><1>Page Not Found</1></0><2><3><4/></3><5>Sorry, the requested page was not found!</5><6>Try <7>a search</7> to find what you're looking for.</6></2>"
-msgstr "<0><1>Page Not Found</1></0><2><3><4/></3><5>Sorry, the requested page was not found!</5><6>Try <7>a search</7> to find what you're looking for.</6></2>"
+#, fuzzy
+msgid ""
+"<0><1>Page Not Found</1></0><2><3><4/></3><5>Sorry, the requested page was "
+"not found!</5><6>Try <7>a search</7> to find what you're looking for.</6></2>"
+msgstr ""
+"<0><1>Pagina non trovata</1></0><2><3><4/></3><5>Siamo spiacenti, la pagina "
+"richiesta non è stata trovata!</5><6>Provi a <7>effettuare una ricerca</7> "
+"per trovare ciò che sta cercando.</6></2>"
 
 #. Page Backend Error
 #: src/components/PageBackendError/index.js:10
-msgid "<0><1>Page Not Found</1></0><2><3><4/></3><5>There was an error fetching data.</5><6>The request to {0} failed.</6><7>To report this problem, send us an email at <8>archive@rockarch.org</8>.</7><9>Error message:</9><10>{1}: {2}</10>{3}{4}</2>"
-msgstr "<0><1>Page Not Found</1></0><2><3><4/></3><5>There was an error fetching data.</5><6>The request to {0} failed.</6><7>To report this problem, send us an email at <8>archive@rockarch.org</8>.</7><9>Error message:</9><10>{1}: {2}</10>{3}{4}</2>"
+#, fuzzy
+msgid ""
+"<0><1>Page Not Found</1></0><2><3><4/></3><5>There was an error fetching "
+"data.</5><6>The request to {0} failed.</6><7>To report this problem, send us "
+"an email at <8>archive@rockarch.org</8>.</7><9>Error message:</9><10>{1}: {2}"
+"</10>{3}{4}</2>"
+msgstr ""
+"<0><1>Pagina non trovata</1></0><2><3><4/></3><5>Si è verificato un errore "
+"nel recupero dei dati.</5><6>La richiesta a {0} è fallita.</6><7>Per "
+"segnalare il problema, inviare un'e-mail a <8>archive@rockarch.org."
+"</8></7><9>Messaggio di errore:</9><10>{1}: {2}</10>{3}{4}</2>"
 
 #. Search Results title
 #: src/components/PageSearch/index.js:192
+#, fuzzy
 msgid "<0><1>Search Results</1></0>"
-msgstr "<0><1>Search Results</1></0>"
+msgstr "<0><1>Risultati della ricerca</1></0>"
 
 #. Agent note Description
 #: src/components/PageAgent/index.js:21
+#, fuzzy
 msgid "<0>Description</0>"
-msgstr "<0>Description</0>"
-
-#. Page Title for user's list
-#: src/components/PageMyList/index.js:286
-#~ msgid "<0>DIMES: My List</0>"
-#~ msgstr "<0>DIMES: My List</0>"
+msgstr "<0>Descrizione</0>"
 
 #. Saved item found in message
 #: src/components/SavedItem/index.js:17
+#, fuzzy
 msgid "<0>Found in: <1>{0}</1></0>"
-msgstr "<0>Found in: <1>{0}</1></0>"
+msgstr "<0>Trovato in: <1>{0}</1></0>"
 
 #. Search not found tips
 #: src/components/SearchNotFound/index.js:19
-msgid "<0>Have you tried doing the following:</0><1><2>Check for spelling errors or typos</2><3>Use fewer keywords</3><4>Clear search filter options</4></1>"
-msgstr "<0>Have you tried doing the following:</0><1><2>Check for spelling errors or typos</2><3>Use fewer keywords</3><4>Clear search filter options</4></1>"
+#, fuzzy
+msgid ""
+"<0>Have you tried doing the following:</0><1><2>Check for spelling errors or "
+"typos</2><3>Use fewer keywords</3><4>Clear search filter options</4></1>"
+msgstr ""
+"<0>Avete provato a fare quanto segue:</0><1><2>Controllare gli errori di "
+"ortografia o di battitura</2><3>Utilizzare meno parole "
+"chiave</3><4>Cancellare le opzioni del filtro di ricerca</4></1>"
 
 #. Suggested terms message
 #: src/components/SearchNotFound/index.js:29
+#, fuzzy
 msgid "<0>Here are some suggested search terms:</0>"
-msgstr "<0>Here are some suggested search terms:</0>"
+msgstr "<0>Ecco alcuni termini di ricerca suggeriti:</0>"
 
 #. The about section for minimaps.
 #: src/components/ModalMinimap/index.js:9
-msgid "<0>Jump to a part of the collection containing matches by clicking on an active square.</0><1>In the minimap diagram, each square represents part of this collection. Colored squares represent parts that contain one or more matches for your search.</1>"
-msgstr "<0>Jump to a part of the collection containing matches by clicking on an active square.</0><1>In the minimap diagram, each square represents part of this collection. Colored squares represent parts that contain one or more matches for your search.</1>"
+#, fuzzy
+msgid ""
+"<0>Jump to a part of the collection containing matches by clicking on an "
+"active square.</0><1>In the minimap diagram, each square represents part of "
+"this collection. Colored squares represent parts that contain one or more "
+"matches for your search.</1>"
+msgstr ""
+"<0>Per passare a una parte della collezione contenente le corrispondenze, "
+"fare clic su un riquadro attivo.</0><1>Nel diagramma della minimappa, ogni "
+"quadrato rappresenta una parte della raccolta. I quadrati colorati "
+"rappresentano le parti che contengono una o più corrispondenze per la "
+"ricerca.</1>"
 
 #. Back to search button
 #: src/components/PageAgent/index.js:251
+#, fuzzy
 msgid "<0>keyboard_arrow_left</0>Back to Search"
-msgstr "<0>keyboard_arrow_left</0>Back to Search"
+msgstr "<0>tastiera_freccia_sinistraTorna</0>alla ricerca"
 
 #. Saved item last requested message
 #: src/components/SavedItem/index.js:18
+#, fuzzy
 msgid "<0>Last requested on: {0}</0>"
-msgstr "<0>Last requested on: {0}</0>"
+msgstr "<0>Ultima richiesta il: {0}</0>"
 
 #. Records content is loading
 #: src/components/RecordsContent/index.js:401
+#, fuzzy
 msgid "<0>Loading</0>"
-msgstr "<0>Loading</0>"
+msgstr "<0>Caricamento</0>"
 
 #. Agent Sidebar Header
 #: src/components/PageAgent/index.js:61
+#, fuzzy
 msgid "<0>More about this {agentType}</0>"
-msgstr "<0>More about this {agentType}</0>"
+msgstr "<0>Per saperne di più {agentType}</0>"
 
 #. Header for user's list
 #: src/components/PageMyList/index.js:299
+#, fuzzy
 msgid "<0>My List</0>"
-msgstr "<0>My List</0>"
+msgstr "<0>Il mio elenco</0>"
 
 #. No search terms supplied message
 #: src/components/SearchNotFound/index.js:42
+#, fuzzy
 msgid "<0>Please add a word or phrase to search for.</0>"
-msgstr "<0>Please add a word or phrase to search for.</0>"
+msgstr "<0>Aggiungete una parola o una frase da cercare.</0>"
 
 #. Note to user about a cost estimate
 #: src/components/ModalMyList/index.js:494
-msgid "<0>Please note:</0> if you want a cost estimate for your order, email an archivist at <1>archive@rockarch.org</1>."
-msgstr "<0>Please note:</0> if you want a cost estimate for your order, email an archivist at <1>archive@rockarch.org</1>."
+msgid ""
+"<0>Please note:</0> if you want a cost estimate for your order, email an "
+"archivist at <1>archive@rockarch.org</1>."
+msgstr ""
+"<0>Nota bene:</0> se desiderate un preventivo per il vostro ordine, inviate "
+"un'e-mail a un archivista all'indirizzo <1>archive@rockarch.org</1>."
 
 #. summary message
 #: src/components/PageAgent/index.js:265
+#, fuzzy
 msgid "<0>Summary</0>"
-msgstr "<0>Summary</0>"
+msgstr "<0>Sintesi</0>"
 
 #. The introduction for minimaps.
 #: src/components/ModalMinimap/index.js:15
-msgid "<0>The minimap is a new feature that allows you to quickly jump to search matches in a collection by clicking on an active square.</0><1>In the minimap diagram, each square represents part of this collection. Colored squares represent parts that contain one or more matches for your search.</1>"
-msgstr "<0>The minimap is a new feature that allows you to quickly jump to search matches in a collection by clicking on an active square.</0><1>In the minimap diagram, each square represents part of this collection. Colored squares represent parts that contain one or more matches for your search.</1>"
+#, fuzzy
+msgid ""
+"<0>The minimap is a new feature that allows you to quickly jump to search "
+"matches in a collection by clicking on an active square.</0><1>In the "
+"minimap diagram, each square represents part of this collection. Colored "
+"squares represent parts that contain one or more matches for your search.</1>"
+msgstr ""
+"<0>La minimappa è una nuova funzione che consente di passare rapidamente "
+"alle corrispondenze di ricerca in una raccolta facendo clic su un quadrato "
+"attivo.</0><1>Nel diagramma della minimappa, ogni quadrato rappresenta una "
+"parte della raccolta. I quadrati colorati rappresentano le parti che "
+"contengono una o più corrispondenze per la ricerca.</1>"
 
 #. Message for showing an error for a request
 #: src/components/PageMyList/index.js:131
-msgid "<0>There was an error submitting your request.</0><1>The request to {0} failed with the message {1}: {2}.</1><2>{3}</2>"
-msgstr "<0>There was an error submitting your request.</0><1>The request to {0} failed with the message {1}: {2}.</1><2>{3}</2>"
+#, fuzzy
+msgid ""
+"<0>There was an error submitting your request.</0><1>The request to {0} "
+"failed with the message {1}: {2}.</1><2>{3}</2>"
+msgstr ""
+"<0>Si è verificato un errore nell'invio della richiesta.</0><1>La richiesta "
+"a {0} è fallita con il messaggio {1}: {2}.</1><2>{3}</2>"
 
 #. View Saved Item online
 #: src/components/SavedItem/index.js:22
-#~ msgid "<0>View Online <1/></0>"
-#~ msgstr "<0>View Online <1/></0>"
-
-#. Buttons for online records
-#: src/components/RecordsDetail/index.js:180
-#~ msgid "<0>View Online <1/></0><2>Download <3/></2>{0}"
-#~ msgstr "<0>View Online <1/></0><2>Download <3/></2>{0}"
-
-#. View Saved Item online
-#: src/components/SavedItem/index.js:22
+#, fuzzy
 msgid "<0>View Online<1/></0>"
-msgstr "<0>View Online<1/></0>"
+msgstr "<0>Visualizza in linea <1/></0>"
 
 #. Buttons for online records
 #: src/components/RecordsDetail/index.js:180
+#, fuzzy
 msgid "<0>View Online<1/></0><2>Download <3/></2>{0}"
-msgstr "<0>View Online<1/></0><2>Download <3/></2>{0}"
+msgstr "<0>Visualizza in linea <1/></0><2>Scaricamento <3/></2>{0}"
 
 #. Full Company Address
 #: src/components/Footer/index.js:21
+#, fuzzy
 msgid "15 Dayton Avenue<0/>Sleepy Hollow, New York 10591"
 msgstr "15 Dayton Avenue<0/>Sleepy Hollow, New York 10591"
 
 #. helptext for RAC staff message
 #: src/components/ModalMyList/index.js:424
+#, fuzzy
 msgid "255 characters maximum"
-msgstr "255 characters maximum"
+msgstr "255 caratteri al massimo"
 
 #. Helptext for RAC staff message
 #: src/components/ModalMyList/index.js:566
+#, fuzzy
 msgid "255 characters maximum."
-msgstr "255 characters maximum."
+msgstr "255 caratteri al massimo."
 
 #. About minimap message
 #: src/components/RecordsDetail/index.js:161
+#, fuzzy
 msgid "about minimap"
-msgstr "about minimap"
+msgstr "su minimap"
 
 #. Accessibility Statement message
 #: src/components/PrimaryLink/index.js:63
 msgid "Accessibility Statement"
-msgstr "Accessibility Statement"
+msgstr "Stato accessibilità"
 
 #. Message shown on Dropdown button
 #: src/components/Dropdown/index.js:53
 msgid "Actions"
-msgstr "Actions"
+msgstr "Azioni"
 
 #. Test Remove button label
 #: src/components/ListToggleButton/__tests__/ListToggleButton.test.js:66
 msgid "Add"
-msgstr "Add"
+msgstr "Aggiungi"
 
 #. Test Add button aria label
 #. Aria label for List Toggle button
 #: src/components/ListToggleButton/__tests__/ListToggleButton.test.js:35
 #: src/components/ListToggleButton/index.js:29
 msgid "Add item to list"
-msgstr "Add item to list"
+msgstr "Aggiungi elemento all'elenco"
 
 #. Test Add button label
 #: src/components/ListToggleButton/__tests__/ListToggleButton.test.js:31
 msgid "Add to List"
-msgstr "Add to List"
+msgstr "Aggiungi a elenco"
 
 #. Message while page loads for email submissions
 #: src/components/PageMyList/index.js:142
+#, fuzzy
 msgid "Adding items to your message"
-msgstr "Adding items to your message"
+msgstr "Aggiunta di elementi al messaggio"
 
 #. Label for All Categories
 #: src/components/SearchForm/index.js:25
 msgid "All Types"
-msgstr "All Types"
+msgstr "Tutti i tipi"
 
 #. Modal Form Missing Email Address Test
 #. Missing email address error
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:159
 #: src/components/ModalMyList/index.js:232
+#, fuzzy
 msgid "An email address is required."
-msgstr "An email address is required."
+msgstr "È richiesto un indirizzo e-mail."
 
 #. Label to apply dates shown from date range
 #: src/components/ModalSearch/index.js:80
+#, fuzzy
 msgid "apply dates"
-msgstr "apply dates"
+msgstr "applicare le date"
 
 #. Company Email shown
 #: src/components/PrimaryLink/index.js:37
+#, fuzzy
 msgid "archive@rockarch.org"
 msgstr "archive@rockarch.org"
 
 #. Confirmation to delete all items from list
 #: src/components/PageMyList/index.js:370
-msgid "Are you sure you want to remove all the items from your list?<0><1/><2/></0>"
-msgstr "Are you sure you want to remove all the items from your list?<0><1/><2/></0>"
+#, fuzzy
+msgid ""
+"Are you sure you want to remove all the items from your list?<0><1/><2/></0>"
+msgstr ""
+"Siete sicuri di voler rimuovere tutti gli elementi dall'elenco?<0><1/><2/"
+"></0>"
 
 #. Label for MP3
 #: src/components/ModalMyList/index.js:48
+#, fuzzy
 msgid "Audio (MP3)"
 msgstr "Audio (MP3)"
 
 #. Bulk Data Download message
 #: src/components/SecondaryLink/index.js:35
+#, fuzzy
 msgid "Bulk data download"
-msgstr "Bulk data download"
+msgstr "Download di dati in blocco"
 
 #. Title shown when request failed
 #: src/components/PageMyList/index.js:355
+#, fuzzy
 msgid "Can't Complete Request"
-msgstr "Can't Complete Request"
+msgstr "Impossibile completare la richiesta"
 
 #. Test Cancel Button Label
 #. Reset/Cancel Button for Form
@@ -363,17 +490,18 @@ msgstr "Can't Complete Request"
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:195
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:257
 msgid "Cancel"
-msgstr "Cancel"
+msgstr "Annulla"
 
 #. Name for Category selector
 #: src/components/SearchForm/index.js:101
 msgid "category"
-msgstr "category"
+msgstr "categoria"
 
 #. Label for Category selector
 #: src/components/SearchForm/index.js:97
+#, fuzzy
 msgid "Choose a search category"
-msgstr "Choose a search category"
+msgstr "Scegliere una categoria di ricerca"
 
 #. Aria label for close.
 #: src/components/ModalConfirm/index.js:17
@@ -382,98 +510,110 @@ msgstr "Choose a search category"
 #: src/components/ModalMyList/index.js:167
 #: src/components/ModalSearch/index.js:50
 msgid "Close"
-msgstr "Close"
+msgstr "Chiudi"
 
 #. switcher label text content
 #. Collection Content title
 #: src/components/ContextSwitcher/__tests__/ContextSwitcher.test.js:20
 #: src/components/RecordsContent/index.js:405
+#, fuzzy
 msgid "Collection Content"
-msgstr "Collection Content"
+msgstr "Contenuto della collezione"
 
 #. switcher label text content
 #: src/components/ContextSwitcher/__tests__/ContextSwitcher.test.js:32
+#, fuzzy
 msgid "Collection Details"
-msgstr "Collection Details"
+msgstr "Dettagli della collezione"
 
 #. Label for Collections category
 #: src/components/SearchForm/index.js:32
 msgid "Collections"
-msgstr "Collections"
+msgstr "Collezioni"
 
 #. Collections data API message
 #: src/components/SecondaryLink/index.js:22
+#, fuzzy
 msgid "Collections data API"
-msgstr "Collections data API"
+msgstr "Dati delle collezioni API"
 
 #. Agent Related Collections
 #: src/components/PageAgent/index.js:39
+#, fuzzy
 msgid "Collections Related to {agentTitle}"
-msgstr "Collections Related to {agentTitle}"
+msgstr "Collezioni relative a {agentTitle}"
 
 #. Remove all confirmation title
 #: src/components/PageMyList/index.js:383
+#, fuzzy
 msgid "Confirm Remove All"
-msgstr "Confirm Remove All"
+msgstr "Conferma Rimuovi tutto"
 
 #. Copyright message
 #: src/components/Footer/index.js:63
+#, fuzzy
 msgid "Copyright © Rockefeller Archive Center. All rights reserved."
-msgstr "Copyright © Rockefeller Archive Center. All rights reserved."
+msgstr "Copyright © Rockefeller Archive Center. Tutti i diritti riservati."
 
 #. Name for duplicate request form costs
 #: src/components/ModalMyList/index.js:591
+#, fuzzy
 msgid "costs"
-msgstr "costs"
+msgstr "costi"
 
 #. Title for Creator filter
 #: src/components/ModalSearch/index.js:93
 msgid "Creator"
-msgstr "Creator"
+msgstr "Creatore"
 
 #. title for Date Range
 #: src/components/ModalSearch/index.js:61
 msgid "Date Range"
-msgstr "Date Range"
+msgstr "Intervallo di date"
 
 #: src/components/ModalMyList/index.js:556
 msgid "description"
-msgstr "description"
+msgstr "descrizione"
 
 #. Description Modal Form Test
 #. Label for Description of Materials Form
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:246
 #: src/components/ModalMyList/index.js:548
+#, fuzzy
 msgid "Description of Materials"
-msgstr "Description of Materials"
+msgstr "Descrizione dei materiali"
 
 #. Button Deselect all items Test
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:81
+#, fuzzy
 msgid "Deselect all items"
-msgstr "Deselect all items"
+msgstr "Deselezionare tutti gli elementi"
 
 #. Update message for selected record
 #: src/components/PageRecords/index.js:118
-msgid "Details under heading 1 have been updated to describe the selected records titled {0}"
-msgstr "Details under heading 1 have been updated to describe the selected records titled {0}"
+#, fuzzy
+msgid ""
+"Details under heading 1 have been updated to describe the selected records "
+"titled {0}"
+msgstr ""
+"I dettagli della rubrica 1 sono stati aggiornati per descrivere i record "
+"selezionati intitolati {0}"
 
 #. Title displayed within the Header
 #: src/components/Header/index.js:10
+#, fuzzy
 msgid "dimes.rockarch.org"
 msgstr "dimes.rockarch.org"
 
 #. Message shown on button within Dropdown list
 #: src/components/Dropdown/index.js:108
+#, fuzzy
 msgid "Download as .csv"
-msgstr "Download as .csv"
-
-#. Company Email
-#: src/components/Footer/index.js:38
-#~ msgid "E-mail: <0/>"
-#~ msgstr "E-mail: <0/>"
+msgstr "Scarica come .csv"
 
 #. Company Email
 #: src/components/Footer/index.js:34
+#, fuzzy
 msgid "E-mail:<0/>"
 msgstr "E-mail:<0/>"
 
@@ -493,183 +633,222 @@ msgstr "Email *"
 #: src/components/Dropdown/index.js:99
 #: src/components/MyListExportActions/index.js:11
 msgid "Email List"
-msgstr "Email List"
+msgstr "Lista Email"
 
 #. Title displayed after emailing selected items
 #: src/components/PageMyList/index.js:148
 msgid "Email Sent"
-msgstr "Email Sent"
+msgstr "Email inviata"
 
 #. Label for the end year input
 #: src/components/ModalSearch/index.js:74
+#, fuzzy
 msgid "End Year"
-msgstr "End Year"
+msgstr "Fine anno"
 
 #. Label for search textbox
 #: src/components/SearchForm/index.js:60
 msgid "Enter a search term"
-msgstr "Enter a search term"
+msgstr "Inserisci un termine da ricercare"
 
 #. Helptext for scheduling date.
 #: src/components/ModalMyList/index.js:400
+#, fuzzy
 msgid "Enter the date of your research visit (mm/dd/yyyy)"
-msgstr "Enter the date of your research visit (mm/dd/yyyy)"
+msgstr "Inserire la data della visita di ricerca (mm/dd/yyyy)"
 
 #. Initial description
 #: src/components/ModalMyList/index.js:501
+#, fuzzy
 msgid "Entire folder"
-msgstr "Entire folder"
+msgstr "Intera cartella"
 
 #. Title displayed when error occurs while submitting request
 #: src/components/PageMyList/index.js:128
 #: src/components/PageMyList/index.js:159
+#, fuzzy
 msgid "Error submitting request"
-msgstr "Error submitting request"
+msgstr "Errore nell'invio della richiesta"
 
 #. Company Fax
 #: src/components/Footer/index.js:31
+#, fuzzy
 msgid "Fax: (914) 631-6017"
 msgstr "Fax: (914) 631-6017"
 
 #. Label for Filters button
 #: src/components/PageSearch/index.js:249
 msgid "Filters"
-msgstr "Filters"
+msgstr "Filtri"
 
 #. Name for format input
 #: src/components/ModalMyList/index.js:77
 #: src/components/ModalMyList/index.js:87
 msgid "format"
-msgstr "format"
+msgstr "formato"
 
 #. Label for format input
 #. Title for Format filter
 #: src/components/ModalMyList/index.js:73
 #: src/components/ModalSearch/index.js:87
 msgid "Format"
-msgstr "Format"
+msgstr "Formato"
 
 #. Panel Format message
 #: src/components/RecordsDetail/index.js:64
 msgid "Formats"
-msgstr "Formats"
+msgstr "Formati"
 
 #. Panel Found In message
 #: src/components/RecordsDetail/index.js:81
+#, fuzzy
 msgid "Found In"
-msgstr "Found In"
+msgstr "Trovato in"
 
 #. Found In Test
 #: src/components/SavedItem/__tests__/SavedItem.test.js:38
+#, fuzzy
 msgid "Found in:"
-msgstr "Found in:"
+msgstr "Trovato in:"
 
 #. Founded by property
 #: src/components/PageAgent/index.js:194
+#, fuzzy
 msgid "Founded by"
-msgstr "Founded by"
+msgstr "Fondato da"
 
 #. How to Access materials message
 #: src/components/PrimaryLink/index.js:24
+#, fuzzy
 msgid "How to access and request materials."
-msgstr "How to access and request materials."
+msgstr "Come accedere e richiedere i materiali."
 
 #. Footer.Primary.RAC.href
 #: src/components/PrimaryLink/index.js:85
+#, fuzzy
 msgid "https://docs.rockarch.org"
 msgstr "https://docs.rockarch.org"
 
 #. Licensing link
 #: src/components/SecondaryLink/index.js:44
+#, fuzzy
 msgid "https://docs.rockarch.org/archival-description-license/"
 msgstr "https://docs.rockarch.org/archival-description-license/"
 
 #. Collections data API link
 #: src/components/SecondaryLink/index.js:18
+#, fuzzy
 msgid "https://docs.rockarch.org/argo-docs/"
 msgstr "https://docs.rockarch.org/argo-docs/"
 
 #. Take-down Policy link
 #: src/components/SecondaryLink/index.js:57
+#, fuzzy
 msgid "https://docs.rockarch.org/takedown-policy/"
 msgstr "https://docs.rockarch.org/takedown-policy/"
 
 #. Bulk Data Download link
 #: src/components/SecondaryLink/index.js:31
+#, fuzzy
 msgid "https://github.com/RockefellerArchiveCenter/data/"
 msgstr "https://github.com/RockefellerArchiveCenter/data/"
 
 #. Link used for sign-in within Dropdown list
 #. Link used for sign-in within the Header
-#: src/components/Dropdown/index.js:151
-#: src/components/Header/index.js:22
+#: src/components/Dropdown/index.js:151 src/components/Header/index.js:22
+#, fuzzy
 msgid "https://raccess.rockarch.org"
 msgstr "https://raccess.rockarch.org"
 
 #. Aeon access point
 #: src/components/PageMyList/index.js:109
+#, fuzzy
 msgid "https://raccess.rockarch.org/aeon.dll"
 msgstr "https://raccess.rockarch.org/aeon.dll"
 
 #. Accessibility Statement Link
 #: src/components/PrimaryLink/index.js:59
+#, fuzzy
 msgid "https://rockarch.org/about-us/accessibility/"
 msgstr "https://rockarch.org/about-us/accessibility/"
 
 #. Privacy Policy link
 #: src/components/PrimaryLink/index.js:72
+#, fuzzy
 msgid "https://rockarch.org/about-us/privacy-policy/"
 msgstr "https://rockarch.org/about-us/privacy-policy/"
 
 #. Access Materials link
 #: src/components/PrimaryLink/index.js:20
+#, fuzzy
 msgid "https://rockarch.org/collections/access-and-request-materials/"
 msgstr "https://rockarch.org/collections/access-and-request-materials/"
 
 #. Link for duplicate request services
 #: src/components/ModalMyList/index.js:585
-msgid "https://rockarch.org/collections/access-and-request-materials/#duplication-services-and-fee-schedule"
-msgstr "https://rockarch.org/collections/access-and-request-materials/#duplication-services-and-fee-schedule"
+#, fuzzy
+msgid ""
+"https://rockarch.org/collections/access-and-request-materials/#duplication-"
+"services-and-fee-schedule"
+msgstr ""
+"https://rockarch.org/collections/access-and-request-materials/#duplication-"
+"services-and-fee-schedule"
 
 #. Holiday Schedule link
 #: src/components/PrimaryLink/index.js:46
-msgid "https://rockarch.org/collections/access-and-request-materials/holiday-schedule"
-msgstr "https://rockarch.org/collections/access-and-request-materials/holiday-schedule"
+#, fuzzy
+msgid ""
+"https://rockarch.org/collections/access-and-request-materials/holiday-"
+"schedule"
+msgstr ""
+"https://rockarch.org/collections/access-and-request-materials/holiday-"
+"schedule"
 
 #. Twitter account link
 #: src/components/SocialIcons/index.js:7
+#, fuzzy
 msgid "https://twitter.com/rockarch_org"
 msgstr "https://twitter.com/rockarch_org"
 
 #. Facebook account link
 #: src/components/SocialIcons/index.js:18
+#, fuzzy
 msgid "https://www.facebook.com/RockefellerArchiveCenter"
 msgstr "https://www.facebook.com/RockefellerArchiveCenter"
 
 #. Flickr account link
 #: src/components/SocialIcons/index.js:51
+#, fuzzy
 msgid "https://www.flickr.com/photos/147074352@N05/"
 msgstr "https://www.flickr.com/photos/147074352@N05/"
 
 #. Instagram account link
 #: src/components/SocialIcons/index.js:29
+#, fuzzy
 msgid "https://www.instagram.com/rockefellerarchivecenter"
 msgstr "https://www.instagram.com/rockefellerarchivecenter"
 
 #. Youtube account link
 #: src/components/SocialIcons/index.js:40
+#, fuzzy
 msgid "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
 msgstr "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
 
 #. Label for duplicate request form
 #: src/components/ModalMyList/index.js:577
-msgid "I agree to pay the duplication costs for this request. See our <0>fee schedule</0>."
-msgstr "I agree to pay the duplication costs for this request. See our <0>fee schedule</0>."
+#, fuzzy
+msgid ""
+"I agree to pay the duplication costs for this request. See our <0>fee "
+"schedule</0>."
+msgstr ""
+"Accetto di pagare i costi di duplicazione per questa richiesta. Vedere il "
+"nostro <0>tariffario</0>."
 
 #. Invalid email error
 #: src/components/ModalMyList/index.js:239
+#, fuzzy
 msgid "Invalid email address provided."
-msgstr "Invalid email address provided."
+msgstr "Indirizzo e-mail non valido."
 
 #. Name of items error message
 #: src/components/ModalMyList/index.js:29
@@ -677,46 +856,52 @@ msgstr "Invalid email address provided."
 #: src/components/ModalMyList/index.js:391
 #: src/components/ModalMyList/index.js:541
 msgid "items"
-msgstr "items"
+msgstr "oggetti"
 
 #. Message displayed to jump to specific section within minimap
 #: src/components/Minimap/index.js:53
+#, fuzzy
 msgid "Jump to {0} {hitPlural} in this area: {hitTitles}"
-msgstr "Jump to {0} {hitPlural} in this area: {hitTitles}"
+msgstr "Passare a {0} {hitPlural} in quest'area: {hitTitles}"
 
 #. Licensing message
 #: src/components/SecondaryLink/index.js:48
+#, fuzzy
 msgid "Licensing for descriptive metadata"
-msgstr "Licensing for descriptive metadata"
+msgstr "Licenze per i metadati descrittivi"
 
 #. Location property
 #: src/components/PageAgent/index.js:195
+#, fuzzy
 msgid "Location of Headquarters"
-msgstr "Location of Headquarters"
+msgstr "Posizione della sede centrale"
 
 #. Company Email link
 #: src/components/ModalMyList/index.js:495
 #: src/components/PageBackendError/index.js:19
 #: src/components/PrimaryLink/index.js:33
+#, fuzzy
 msgid "mailto:archive@rockarch.org"
 msgstr "mailto:archive@rockarch.org"
 
 #. Scheduling an appointment email link
 #: src/components/MyListSidebar/index.js:12
+#, fuzzy
 msgid "mailto:archive@rockarch.org?subject=Scheduling a research appointment"
-msgstr "mailto:archive@rockarch.org?subject=Scheduling a research appointment"
+msgstr ""
+"mailto:archive@rockarch.org?subject=Scheduling un appuntamento di ricerca"
 
 #. Name of message form
 #: src/components/ModalMyList/index.js:301
 msgid "message"
-msgstr "message"
+msgstr "messaggio"
 
 #. Message Modal Form Test
 #. Label of Message Form
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:119
 #: src/components/ModalMyList/index.js:297
 msgid "Message"
-msgstr "Message"
+msgstr "Messaggio"
 
 #. Message Modal Form Test
 #. Label for RAC staff message Form
@@ -724,64 +909,65 @@ msgstr "Message"
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:250
 #: src/components/ModalMyList/index.js:420
 #: src/components/ModalMyList/index.js:563
+#, fuzzy
 msgid "Message for RAC staff"
-msgstr "Message for RAC staff"
+msgstr "Messaggio per il personale RAC"
 
 #. Header for minimap
 #. Aria label for Minimap nav
 #. Header for modal minimap
-#: src/components/Minimap/index.js:79
-#: src/components/Minimap/index.js:83
+#: src/components/Minimap/index.js:79 src/components/Minimap/index.js:83
 #: src/components/ModalMinimap/index.js:69
+#, fuzzy
 msgid "Minimap"
 msgstr "Minimap"
 
 #. Reading Room Actual Hours
-#: src/components/Footer/index.js:51
-#~ msgid "Monday-Friday<0/>10:00 a.m. to 5:00 p.m.<1/>"
-#~ msgstr "Monday-Friday<0/>10:00 a.m. to 5:00 p.m.<1/>"
-
-#. Reading Room Actual Hours
 #: src/components/Footer/index.js:47
+#, fuzzy
 msgid "Monday-Friday<0/>9:00 a.m. to 5:00 p.m.<1/>"
-msgstr "Monday-Friday<0/>9:00 a.m. to 5:00 p.m.<1/>"
+msgstr "Dal lunedì al venerdì<0/>dalle 9:00 alle 17:00.<1/>"
 
 #. Label for MP4
 #: src/components/ModalMyList/index.js:55
+#, fuzzy
 msgid "Moving image (MP4)"
-msgstr "Moving image (MP4)"
+msgstr "Immagine in movimento (MP4)"
 
 #. Message shown on button within Dropdown list
 #. Message shown on button within the Header
-#: src/components/Dropdown/index.js:158
-#: src/components/Header/index.js:31
+#: src/components/Dropdown/index.js:158 src/components/Header/index.js:31
 msgid "My List"
-msgstr "My List"
+msgstr "La mia lista"
 
 #. Nicknames property
 #: src/components/PageAgent/index.js:196
+#, fuzzy
 msgid "Nicknames"
-msgstr "Nicknames"
+msgstr "Soprannomi"
 
 #. No selected items error
 #: src/components/ModalMyList/index.js:248
 #: src/components/ModalMyList/index.js:371
 #: src/components/ModalMyList/index.js:523
+#, fuzzy
 msgid "No items have been selected to submit."
-msgstr "No items have been selected to submit."
+msgstr "Non sono stati selezionati articoli da inviare."
 
 #. Empty Saved Items Test
 #. Message displayed when user has no saved items
 #: src/components/ModalSavedItem/index.js:75
 #: src/components/SavedItem/__tests__/SavedItem.test.js:52
 #: src/components/SavedItem/index.js:79
+#, fuzzy
 msgid "No saved items."
-msgstr "No saved items."
+msgstr "Nessun elemento salvato."
 
 #. Occupations property
 #: src/components/PageAgent/index.js:191
+#, fuzzy
 msgid "Occupations"
-msgstr "Occupations"
+msgstr "Occupazioni"
 
 #. Name for digital matches only checkbox
 #: src/components/SearchForm/index.js:113
@@ -790,8 +976,9 @@ msgstr "online"
 
 #. Tooltip for button
 #: src/components/Dropdown/index.js:72
+#, fuzzy
 msgid "opens email"
-msgstr "opens email"
+msgstr "apre l'e-mail"
 
 #. Title for duplicate request
 #. Title for new window button
@@ -800,32 +987,35 @@ msgstr "opens email"
 #: src/components/PageDigitalObject/index.js:112
 #: src/components/RecordsDetail/index.js:186
 msgid "opens in a new window"
-msgstr "opens in a new window"
+msgstr "si apre in una nuova finestra"
 
 #. Label for Organizations category
 #: src/components/SearchForm/index.js:46
 msgid "Organizations"
-msgstr "Organizations"
+msgstr "Organizzazioni"
 
 #. Label for People category
 #: src/components/SearchForm/index.js:39
 msgid "People"
-msgstr "People"
+msgstr "Persone"
 
 #. Company Phonenumber
 #: src/components/Footer/index.js:28
+#, fuzzy
 msgid "Phone: (914) 366-6300"
-msgstr "Phone: (914) 366-6300"
+msgstr "Telefono: (914) 366-6300"
 
 #. Place of birth property
 #: src/components/PageAgent/index.js:193
+#, fuzzy
 msgid "Place of Birth"
-msgstr "Place of Birth"
+msgstr "Luogo di nascita"
 
 #. Missing word/phrase Test
 #: src/components/SearchNotFound/__tests__/SearchNotFound.test.js:43
+#, fuzzy
 msgid "Please add a word or phrase to search for."
-msgstr "Please add a word or phrase to search for."
+msgstr "Aggiungete una parola o una frase da cercare."
 
 #. Modal Form Missing Field Test
 #. Captcha not completed error
@@ -835,45 +1025,55 @@ msgstr "Please add a word or phrase to search for."
 #: src/components/ModalMyList/index.js:244
 #: src/components/ModalMyList/index.js:368
 #: src/components/ModalMyList/index.js:516
+#, fuzzy
 msgid "Please complete this field."
-msgstr "Please complete this field."
+msgstr "Compilare questo campo."
 
 #. Helptext for description of materials Form
 #: src/components/ModalMyList/index.js:552
-msgid "Please describe the materials you want reproduced. 255 characters maximum."
-msgstr "Please describe the materials you want reproduced. 255 characters maximum."
+#, fuzzy
+msgid ""
+"Please describe the materials you want reproduced. 255 characters maximum."
+msgstr ""
+"Descrivere il materiale che si desidera riprodurre. 255 caratteri al massimo."
 
 #. Missing Scheduled Date error
 #: src/components/ModalMyList/index.js:364
+#, fuzzy
 msgid "Please provide the date of your research visit."
-msgstr "Please provide the date of your research visit."
+msgstr "Indicare la data della visita di ricerca."
 
 #. Duplication Format Message Test
 #. No Format selected error
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:287
 #: src/components/ModalMyList/index.js:512
+#, fuzzy
 msgid "Please select your desired duplication format."
-msgstr "Please select your desired duplication format."
+msgstr "Selezionare il formato di duplicazione desiderato."
 
 #. Positions held property
 #: src/components/PageAgent/index.js:192
+#, fuzzy
 msgid "Positions Held"
-msgstr "Positions Held"
+msgstr "Posizioni ricoperte"
 
 #. Message while MyList modal loads items
 #: src/components/ModalMyList/index.js:195
+#, fuzzy
 msgid "Preparing items"
-msgstr "Preparing items"
+msgstr "Preparazione degli articoli"
 
 #. Message while page loads for Aeon submissions
 #: src/components/PageMyList/index.js:102
+#, fuzzy
 msgid "Preparing items for your request"
-msgstr "Preparing items for your request"
+msgstr "Preparazione degli articoli per la vostra richiesta"
 
 #. Page Title for sending an Aeon request
 #: src/components/PageMyList/index.js:98
+#, fuzzy
 msgid "Preparing Request Data"
-msgstr "Preparing Request Data"
+msgstr "Preparazione dei dati della richiesta"
 
 #. Privacy Policy message
 #: src/components/PrimaryLink/index.js:76
@@ -884,17 +1084,19 @@ msgstr "Privacy Policy"
 #: src/components/ModalMyList/index.js:428
 #: src/components/ModalMyList/index.js:571
 msgid "questions"
-msgstr "questions"
+msgstr "domande"
 
 #. Footer.Primary.RAC.message
 #: src/components/PrimaryLink/index.js:89
+#, fuzzy
 msgid "RAC Policies"
-msgstr "RAC Policies"
+msgstr "Politiche RAC"
 
 #. Reading Room Hours message
 #: src/components/Footer/index.js:42
+#, fuzzy
 msgid "Reading Room Hours:"
-msgstr "Reading Room Hours:"
+msgstr "Orari della sala di lettura:"
 
 #. Name of recaptcha element
 #. Name of recaptcha error message
@@ -904,6 +1106,7 @@ msgstr "Reading Room Hours:"
 #: src/components/ModalMyList/index.js:444
 #: src/components/ModalMyList/index.js:602
 #: src/components/ModalMyList/index.js:608
+#, fuzzy
 msgid "recaptcha"
 msgstr "recaptcha"
 
@@ -912,231 +1115,269 @@ msgstr "recaptcha"
 #: src/components/ListToggleButton/__tests__/ListToggleButton.test.js:79
 #: src/components/SavedItem/index.js:25
 msgid "Remove"
-msgstr "Remove"
+msgstr "Rimuovi"
 
 #. Message shown on button within Dropdown list
 #. Remove all items label
 #: src/components/Dropdown/index.js:118
 #: src/components/MyListExportActions/index.js:30
 msgid "Remove All Items"
-msgstr "Remove All Items"
+msgstr "Rimuovi tutti gli elementi"
 
 #. Test Remove button label
 #: src/components/ListToggleButton/__tests__/ListToggleButton.test.js:48
 msgid "Remove from List"
-msgstr "Remove from List"
+msgstr "Rimuovi dalla Lista"
 
 #. Test Remove button aria label
 #. Aria label for List Toggle button
 #: src/components/ListToggleButton/__tests__/ListToggleButton.test.js:52
 #: src/components/ListToggleButton/index.js:10
+#, fuzzy
 msgid "Remove item from list"
-msgstr "Remove item from list"
+msgstr "Rimuovere un elemento dall'elenco"
 
 #. Request items Modal Form Test
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:191
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:254
+#, fuzzy
 msgid "Request 4 Items"
-msgstr "Request 4 Items"
+msgstr "Richiesta di 4 articoli"
 
 #. Message shown on button within Dropdown list
 #. Shown to request copies of an item
-#: src/components/Dropdown/index.js:89
-#: src/components/MyListSidebar/index.js:30
+#: src/components/Dropdown/index.js:89 src/components/MyListSidebar/index.js:30
+#, fuzzy
 msgid "Request Copies"
-msgstr "Request Copies"
+msgstr "Richiesta di copie"
 
 #. Message shown on button within Dropdown list
 #. Shown to Request the item in a Reading Room
-#: src/components/Dropdown/index.js:79
-#: src/components/MyListSidebar/index.js:22
+#: src/components/Dropdown/index.js:79 src/components/MyListSidebar/index.js:22
+#, fuzzy
 msgid "Request in Reading Room"
-msgstr "Request in Reading Room"
+msgstr "Richiesta in Sala di lettura"
 
 #. Primary Title
 #: src/components/Footer/index.js:12
+#, fuzzy
 msgid "Rockefeller<0>Archive Center</0>"
-msgstr "Rockefeller<0>Archive Center</0>"
+msgstr "<0>Centro</0> RockefellerArchive"
 
 #. Shown for the user to save and close the filter
 #: src/components/ModalSearch/index.js:54
 msgid "Save & Close"
-msgstr "Save & Close"
+msgstr "Salva & Chiudi"
 
 #. Message shown on button within Dropdown list
 #: src/components/Dropdown/index.js:65
+#, fuzzy
 msgid "Schedule a Visit"
-msgstr "Schedule a Visit"
+msgstr "Programmare una visita"
 
 #. Scheduled Date Modal Form Test
 #. Label for scheduling date
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:184
 #: src/components/ModalMyList/index.js:405
+#, fuzzy
 msgid "Scheduled Date *"
-msgstr "Scheduled Date *"
+msgstr "Data prevista *"
 
 #. Name for scheduling date error
 #: src/components/ModalMyList/index.js:412
+#, fuzzy
 msgid "scheduledDate"
-msgstr "scheduledDate"
+msgstr "data prevista"
 
 #. Label for Search button
 #: src/components/SearchForm/index.js:78
 msgid "Search"
-msgstr "Search"
+msgstr "Cerca"
 
 #. Message to search for more related collections
 #: src/components/PageAgent/index.js:47
+#, fuzzy
 msgid "Search More Related Collections"
-msgstr "Search More Related Collections"
+msgstr "Cerca altre collezioni correlate"
 
 #. Message shown within the Hero
 #: src/components/Hero/index.js:11
-msgid "Search Our Collections.<0/>Discover People and Organizations.<1/>Access Digital Content."
-msgstr "Search Our Collections.<0/>Discover People and Organizations.<1/>Access Digital Content."
+#, fuzzy
+msgid ""
+"Search Our Collections.<0/>Discover People and Organizations.<1/>Access "
+"Digital Content."
+msgstr ""
+"Cerca nelle nostre collezioni.<0/>Scopri persone e organizzazioni.<1/>Accedi "
+"ai contenuti digitali."
 
 #. Page Home Test
 #: src/components/PageHome/__tests__/PageHome.test.js:26
-msgid "Search Our Collections.Discover People and Organizations.Access Digital Content."
-msgstr "Search Our Collections.Discover People and Organizations.Access Digital Content."
+#, fuzzy
+msgid ""
+"Search Our Collections.Discover People and Organizations.Access Digital "
+"Content."
+msgstr ""
+"Cerca nelle nostre collezioni.Scopri persone e organizzazioni.Accedi ai "
+"contenuti digitali."
 
 #. Search Results for Test
 #: src/components/PageSearch/__tests__/PageSearch.test.js:54
 msgid "Search Results for"
-msgstr "Search Results for"
+msgstr "Risultati della ricerca per"
 
 #. Placeholder text for search textbox
 #: src/components/SearchForm/index.js:65
 msgid "Search..."
-msgstr "Search..."
+msgstr "Cerca..."
 
 #. Holiday Schedule message
 #: src/components/PrimaryLink/index.js:50
+#, fuzzy
 msgid "See holiday schedule"
-msgstr "See holiday schedule"
+msgstr "Vedi il programma delle vacanze"
 
 #. label for selecting format labels
 #: src/components/ModalMyList/index.js:42
+#, fuzzy
 msgid "Select a format"
-msgstr "Select a format"
+msgstr "Selezionare un formato"
 
 #. Button Select all items Test
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:57
+#, fuzzy
 msgid "Select all items"
-msgstr "Select all items"
+msgstr "Seleziona tutti gli articoli"
 
 #. Message displayed after emailing selected items
 #: src/components/PageMyList/index.js:152
+#, fuzzy
 msgid "Selected items in your list have been emailed to {0}"
-msgstr "Selected items in your list have been emailed to {0}"
+msgstr ""
+"Gli articoli selezionati nella tua lista sono stati inviati via email a {0}"
 
 #. Button Select all items Test
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:85
+#, fuzzy
 msgid "selected:"
-msgstr "selected:"
+msgstr "selezionati:"
 
 #. totals empty Test
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:62
+#, fuzzy
 msgid "selected: 0 items"
-msgstr "selected: 0 items"
+msgstr "selezionato: 0 articoli"
 
 #. Modal Form Submit Test
 #. Send List sumbit message
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:123
 #: src/components/ModalMyList/index.js:325
+#, fuzzy
 msgid "Send List"
-msgstr "Send List"
+msgstr "Elenco degli invii"
 
 #. Page Title for sending an email
 #: src/components/PageMyList/index.js:138
+#, fuzzy
 msgid "Sending Email"
-msgstr "Sending Email"
+msgstr "Invio di e-mail"
 
 #. Message shown when list is closed
 #: src/components/Facet/index.js:26
 msgid "show all"
-msgstr "show all"
+msgstr "mostra tutto"
 
 #. Aria label for Show|Hide More Button
 #: src/components/Facet/index.js:12
+#, fuzzy
 msgid "Show all values"
-msgstr "Show all values"
+msgstr "Mostra tutti i valori"
 
 #. Message shown when list is opened
 #: src/components/Facet/index.js:21
 msgid "show less"
-msgstr "show less"
+msgstr "mostra meno"
 
 #. Label for digital matches only checkbox
 #: src/components/SearchForm/index.js:122
+#, fuzzy
 msgid "Show only results with digital matches"
-msgstr "Show only results with digital matches"
+msgstr "Mostra solo i risultati con le corrispondenze digitali"
 
 #. Message shown on sign-in button
-#: src/components/Dropdown/index.js:146
-#: src/components/Header/index.js:26
+#: src/components/Dropdown/index.js:146 src/components/Header/index.js:26
+#, fuzzy
 msgid "Sign in to RACcess"
-msgstr "Sign in to RACcess"
+msgstr "Accedi a RACcess"
 
 #. Panel Extent Size message
 #: src/components/RecordsDetail/index.js:42
 msgid "Size"
-msgstr "Size"
+msgstr "Dimensione"
 
 #. Skip Link
 #: src/components/SkipLink/index.js:6
 msgid "Skip to main content"
-msgstr "Skip to main content"
+msgstr "Vai al contenuto principale"
 
 #. External Identifier Title
 #: src/components/PageAgent/index.js:175
+#, fuzzy
 msgid "Social Networks and Archival Context"
-msgstr "Social Networks and Archival Context"
+msgstr "Reti sociali e contesto archivistico"
 
 #. Message shown when request failed
 #: src/components/PageMyList/index.js:351
-msgid "Sorry, our system is unable to process requests right now. We're working to fix this! Please try again later."
-msgstr "Sorry, our system is unable to process requests right now. We're working to fix this! Please try again later."
+#, fuzzy
+msgid ""
+"Sorry, our system is unable to process requests right now. We're working to "
+"fix this! Please try again later."
+msgstr ""
+"Siamo spiacenti, il nostro sistema non è in grado di elaborare le richieste "
+"in questo momento. Stiamo lavorando per risolvere il problema! Si prega di "
+"riprovare più tardi."
 
 #. Page Not Found Test
 #: src/components/PageNotFound/__tests__/PageNotFound.test.js:26
+#, fuzzy
 msgid "Sorry, the requested page was not found!"
-msgstr "Sorry, the requested page was not found!"
+msgstr "Spiacente, la pagina richiesta non è stata trovata!"
 
 #. Name for sort results input
 #: src/components/PageSearch/index.js:259
 msgid "sort"
-msgstr "sort"
+msgstr "ordina"
 
 #. Sort by creator name label
 #: src/components/PageSearch/index.js:52
+#, fuzzy
 msgid "Sort by creator name"
-msgstr "Sort by creator name"
+msgstr "Ordina per nome del creatore"
 
 #. Sort by relevance label
 #: src/components/PageSearch/index.js:40
 msgid "Sort by relevance"
-msgstr "Sort by relevance"
+msgstr "Ordina per pertinenza"
 
 #. Sort by title label
 #: src/components/PageSearch/index.js:46
 msgid "Sort by title"
-msgstr "Sort by title"
+msgstr "Ordina per titolo"
 
 #. Label for sort results input
 #: src/components/PageSearch/index.js:264
+#, fuzzy
 msgid "Sort search results"
-msgstr "Sort search results"
+msgstr "Ordina i risultati della ricerca"
 
 #. Label for the start year input
 #: src/components/ModalSearch/index.js:66
 msgid "Start Year"
-msgstr "Start Year"
+msgstr "Dall'Anno"
 
 #. Name of subject form
 #: src/components/ModalMyList/index.js:291
 msgid "subject"
-msgstr "subject"
+msgstr "soggetto"
 
 #. Subject Modal Form Test
 #. Label of Subject Form
@@ -1145,56 +1386,71 @@ msgstr "subject"
 #: src/components/ModalMyList/index.js:287
 #: src/components/ModalSearch/index.js:99
 msgid "Subject"
-msgstr "Subject"
+msgstr "Soggetto"
 
 #. Aria Label for search submission button
 #: src/components/SearchForm/index.js:83
 msgid "Submit search"
-msgstr "Submit search"
+msgstr "Avvia ricerca"
 
 #. Aria label for Calendar button
 #: src/components/Inputs/index.js:92
+#, fuzzy
 msgid "Switch to the next month."
-msgstr "Switch to the next month."
+msgstr "Passare al mese successivo."
 
 #. Aria label for Calendar button
 #: src/components/Inputs/index.js:82
+#, fuzzy
 msgid "Switch to the previous month."
-msgstr "Switch to the previous month."
+msgstr "Passare al mese precedente."
 
 #. Take-down Policy message
 #: src/components/SecondaryLink/index.js:61
+#, fuzzy
 msgid "Take-down policy"
-msgstr "Take-down policy"
+msgstr "Politica di rimozione"
 
 #. Subtitle displayed within the Header
 #: src/components/Header/index.js:15
+#, fuzzy
 msgid "The Online Collection and Catalog of Rockefeller Archive Center"
-msgstr "The Online Collection and Catalog of Rockefeller Archive Center"
+msgstr "La collezione e il catalogo online del Centro Archivi Rockefeller"
 
 #. Message displayed when error occurs while submitting request
 #: src/components/PageMyList/index.js:163
+#, fuzzy
 msgid "There was an error submitting your request. The error message was: {0}"
-msgstr "There was an error submitting your request. The error message was: {0}"
+msgstr ""
+"Si è verificato un errore nell'invio della richiesta. Il messaggio di errore "
+"è stato: {0}"
 
 #. Button to view minimap
 #: src/components/MinimapButton/index.js:13
+#, fuzzy
 msgid "View minimap"
-msgstr "View minimap"
+msgstr "Visualizza la minimappa"
 
 #. External Identifier Title
 #: src/components/PageAgent/index.js:173
+#, fuzzy
 msgid "Virtual International Authority File"
-msgstr "Virtual International Authority File"
+msgstr "Fascicolo dell'autorità internazionale virtuale"
 
 #. Payment Modal Form Test
 #. Costs not agreed to error
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:291
 #: src/components/ModalMyList/index.js:519
-msgid "We cannot process your request unless you agree to pay the costs of reproduction."
-msgstr "We cannot process your request unless you agree to pay the costs of reproduction."
+#, fuzzy
+msgid ""
+"We cannot process your request unless you agree to pay the costs of "
+"reproduction."
+msgstr ""
+"Non possiamo elaborare la vostra richiesta se non accettate di pagare i "
+"costi di riproduzione."
 
 #. External Identifier Title
 #: src/components/PageAgent/index.js:174
+#, fuzzy
 msgid "WorldCat Identities"
-msgstr "WorldCat Identities"
+msgstr "Identità WorldCat"
