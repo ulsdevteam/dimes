@@ -197,7 +197,7 @@ const RecordsDetail = props => {
       <Trans comment='Button to copy citation text'>
         <button className='btn btn--sm btn--orange btn--detail mr-10 mb-10 p-8'
           onClick={() => {navigator.clipboard.writeText(citation)}}>
-          <MaterialIcon icon='edit' className='material-icon--space-after'/>Copy Citation
+          Copy Citation<MaterialIcon icon='edit' className='material-icon--space-before'/>
         </button>
       </Trans>
       {props.item.online &&
