@@ -236,7 +236,7 @@ const PageSearch = () => {
                       <Trans comment='Current Results shown of total results'>
                         <Select
                           value={startItem === endItem}
-                          _true={startItem}
+                          _true={`${startItem} result`}
                           other={`${startItem}-${endItem} of ${resultsCount} results`}
                         />
                       </Trans>
