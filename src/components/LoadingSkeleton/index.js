@@ -133,10 +133,6 @@ export const RecordsChildSkeleton = React.forwardRef((props, ref) => (
   </div>
 ))
 
-export const RestrictionsSkeleton = () => (
-  <div className="mt-10"><Skeleton /></div>
-)
-
 export const MinimapSkeleton = ({totalBoxes}) => {
   return (
   <>

@@ -27,6 +27,7 @@ export const resolvedList = [{
     }],
     "parent": "A-B",
     "parent_ref": "/collections/RqT6DNkTTTM2kaFxtsGKbA",
+    "submit": true,
     "online": false,
     "archivesspace_uri": "/repositories/2/archival_objects/1053534"
   }, {
@@ -56,6 +57,7 @@ export const resolvedList = [{
     }],
     "parent": "A-B",
     "parent_ref": "/collections/RqT6DNkTTTM2kaFxtsGKbA",
+    "submit": true,
     "online": false,
     "archivesspace_uri": "/repositories/2/archival_objects/1053535"
   }]
