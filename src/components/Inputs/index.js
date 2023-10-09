@@ -1,12 +1,6 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import PropTypes from 'prop-types'
-import {
-  DatePicker,
-  DatePickerInput,
-  DatePickerMonth,
-  DatePickerTable,
-  DatePickerButton,
-  DatePickerCalendar} from '@reecelucas/react-datepicker'
+import DatePicker from 'react-datepicker'
 import {useSelect} from 'downshift'
 import MaterialIcon from '../MaterialIcon'
 import classnames from 'classnames'
@@ -62,47 +56,28 @@ CheckBoxInput.defaultProps = {
   checked: true,
 }
 
-export const DateInput = props => (
+export const DateInput = ({className, defaultDate, handleChange, helpText, id, label, ...props}) => {
+  const [startDate, setStartDate] = useState(defaultDate || new Date())
+
+  useEffect(() => {
+    handleChange(startDate)
+  }, [startDate, setStartDate])
+
+  return (
   <>
+  <label htmlFor={id}>{label}</label>
   <DatePicker
-      className='mb-2'
-      initialDate={new Date()}
-      minDate={new Date()}
-      onSelect={date => props.handleChange(date)}>
-    <label htmlFor={props.id}>{props.label}</label>
-    <DatePickerInput
-      className='dp__input'
-      dateFormat={'MM/dd/yyyy'}
-      id={props.id}
-      name={props.name} />
-    <DatePickerCalendar className='dp__calendar py-20 px-20'>
-      <div className='dp__top-bar mb-12'>
-        <DatePickerButton
-          className='dp__button py-2 px-6'
-            aria-label={t({
-              comment: 'Aria label for Calendar button',
-              message: 'Switch to the previous month.'
-            })}
-          updateMonth={({ prev }) => prev()} >
-          <MaterialIcon icon='west' />
-        </DatePickerButton>
-        <DatePickerMonth className='dp__month px-16 py-0' />
-        <DatePickerButton
-          className='dp__button py-2 px-6'
-            aria-label={t({
-              comment: 'Aria label for Calendar button',
-              message: 'Switch to the next month.'
-            })}
-          updateMonth={({ next }) => next()} >
-          <MaterialIcon icon='east' />
-        </DatePickerButton>
-      </div>
-      <DatePickerTable className='dp__table' />
-    </DatePickerCalendar>
+      className={className || 'dp__wrapper'}
+      selected={startDate}
+      showTimeSelect='true'
+      onChange={date => setStartDate(date)}
+      dateFormat="yyyy-MM-dd h:mm aa"
+      id={id}
+      {...props}>
   </DatePicker>
-  {props.helpText && <p className='input__help-text' aria-describedby={`desc-${props.id}`}>{props.helpText}</p>}
+  {helpText && <p className='input__help-text' aria-describedby={`desc-${id}`}>{helpText}</p>}
   </>
-)
+)}
 
 DateInput.propTypes = {
   className: PropTypes.string,
@@ -110,6 +85,7 @@ DateInput.propTypes = {
   helpText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  defaultDate: PropTypes.instanceOf(Date),
 };
 
 
