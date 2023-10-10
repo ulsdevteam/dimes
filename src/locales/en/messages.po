@@ -132,8 +132,8 @@ msgstr "<0><1/>Back to Item Details</0>"
 
 #. Button to copy citation text
 #: src/components/RecordsDetail/index.js:197
-msgid "<0><1/>Copy Citation</0>"
-msgstr "<0><1/>Copy Citation</0>"
+#~ msgid "<0><1/>Copy Citation</0>"
+#~ msgstr "<0><1/>Copy Citation</0>"
 
 #. Social Icons Titles
 #: src/components/SocialIcons/index.js:5
@@ -164,6 +164,11 @@ msgstr "<0><1>Page Not Found</1></0><2><3><4/></3><5>There was an error fetching
 #: src/components/PageSearch/index.js:192
 msgid "<0><1>Search Results</1></0>"
 msgstr "<0><1>Search Results</1></0>"
+
+#. Button to copy citation text
+#: src/components/RecordsDetail/index.js:197
+msgid "<0>Copy Citation<1/></0>"
+msgstr "<0>Copy Citation<1/></0>"
 
 #. Agent note Description
 #: src/components/PageAgent/index.js:21
