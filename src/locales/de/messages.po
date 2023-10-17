@@ -73,7 +73,7 @@ msgstr "{hitCount, plural, one {digitaler Treffer} other {digitale Treffer}}"
 #. Pluralization of match(es)
 #: src/components/Helpers.js:57
 msgid "{hitCount, plural, one {match} other {matches}}"
-msgstr "{hitCount, plural, one {match} other {matches}}"
+msgstr "{hitCount, plural, one {übereinstimmen} other {streichhölzer}}"
 
 #. Search Results header
 #: src/components/PageSearch/index.js:209

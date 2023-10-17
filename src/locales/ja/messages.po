@@ -98,7 +98,7 @@ msgstr "{isMobile, select, true {Add} other {リストに追加}}。"
 #. Label for Remove List Toggle button
 #: src/components/ListToggleButton/index.js:17
 msgid "{isMobile, select, true {Remove} other {Remove from List}}"
-msgstr "{isMobile, select, true {取り除く} other {リストから削除する}}"
+msgstr "{isMobile, select, true {Remove} other {リストから削除する}}"
 
 #. Agent Note source
 #: src/components/PageAgent/index.js:28
