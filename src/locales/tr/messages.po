@@ -6,325 +6,328 @@ msgstr ""
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: pt_BR\n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.3.2\n"
 
 #. Message returned dependent on how many items selected
 #: src/components/ModalMyList/index.js:154
 msgid "{0, plural, =0 {selected: 0 items} other {selected: {1}}}"
-msgstr "{0, plural, =0 {selecionado: 0 itens} other {selecionado: {1}}}"
+msgstr "{0, plural, =0 {seçilen: 0 öğe} other {seçilen: {1}}}"
 
 #. Filter results message
 #: src/components/ModalSearch/index.js:44
 msgid "{0, plural, one {Filter # Search Result} other {Filter # Search Results}}"
-msgstr "{0, plural, one {Filtro # Resultado da pesquisa} other {Filtro # Resultados da pesquisa}}"
+msgstr "{0, plural, one {Filtre # Arama Sonucu} other {Filtre # Arama Sonuçları}}"
 
 #. Pluralization of hit(s) for minimap boxes
 #: src/components/Minimap/index.js:49
 msgid "{0, plural, one {hit} other {hits}}"
-msgstr "{0, plural, one {sucesso} other {sucessos}}"
+msgstr "{0, plural, one {isabet} other {isabetler}}"
 
 #. Current Results shown of total results
 #: src/components/PageSearch/index.js:236
 #: src/components/PageSearch/index.js:290
 msgid "{0, select, true {{startItem}} other {{startItem}-{endItem} of {resultsCount} results}}"
-msgstr "{0, select, true {{startItem}} other {{startItem}-{endItem} de {resultsCount} resultados}}"
+msgstr "{0, select, true {{startItem}} other {{startItem}-{endItem} -den {resultsCount} results}}"
 
 #. Minimap header
 #: src/components/ModalMinimap/index.js:31
 msgid "{0, select, true {Minimap} other {Introducing the Minimap}}"
-msgstr "{0, select, true {Minimap} other {Apresentando o Minimapa}}"
+msgstr "{0, select, true {Minimap} other {Minimap Tanıtımı}}"
 
 #. Text for submiting item(s) request
 #: src/components/ModalMyList/index.js:451
 #: src/components/ModalMyList/index.js:615
 msgid "{0, select, true {Request {1} Items} other {Request {2} Item}}"
-msgstr "{0, select, true {Solicitar {1} Itens} other {Solicitar item {2}}}"
+msgstr "{0, select, true {Istemek {1} Öğeler} other {Istemek {2} Madde}}"
 
 #: src/components/RecordsContent/index.js:232
 msgid "{0, select, true {View} other {View Online}}"
-msgstr "{0, select, true {Ver} other {Ver online}}"
+msgstr "{0, select, true {Görüş} other {Çevrimiçi Görüntüle}}"
 
 #. Label for the end of the item
 #: src/components/PageAgent/index.js:139
 msgid "{agentType, select, organization {Date Disbanded} other {Date of Death}}"
-msgstr "{agentType, select, organization {Data de dissolução} other {Data da morte}}"
+msgstr "{agentType, select, organization {Dağıtılma Tarihi} other {Ölüm tarihi}}"
 
 #. Label for the start of the item
 #: src/components/PageAgent/index.js:135
 msgid "{agentType, select, organization {Date Established} other {Date of Birth}}"
-msgstr "{agentType, select, organization {Data Estabelecida} other {Date of Birth}}"
+msgstr "{agentType, select, organization {Kuruluş Tarihi} other {Doğum Tarihi}}"
 
 #. Label for item (de)selection
 #: src/components/ModalMyList/index.js:118
 #: src/components/ModalMyList/index.js:127
 msgid "{deselect, select, true {Deselect all items} other {Select all items}}"
-msgstr "{deselect, select, true {Desmarcar todos os itens} other {Selecionar todos os itens}}"
+msgstr "{deselect, select, true {Tüm öğelerin seçimini kaldır} other {Tüm öğeleri seç}}"
 
 #. Pluralization of digital match(es)
 #: src/components/Helpers.js:61
 msgid "{hitCount, plural, one {digital match} other {digital matches}}"
-msgstr "{hitCount, plural, one {correspondência digital} other {correspondências digitais}}"
+msgstr "{hitCount, plural, one {dijital eşleşme} other {dijital eşleşmeler}}"
 
 #. Pluralization of match(es)
 #: src/components/Helpers.js:57
 msgid "{hitCount, plural, one {match} other {matches}}"
-msgstr "{hitCount, plural, one {parelha} other {parelhas}}"
+msgstr "{hitCount, plural, one {maç} other {maçlar}}"
 
 #. Search Results header
 #: src/components/PageSearch/index.js:209
 msgid "{inProgress, select, true {Searching} other {{0, select, false {No search query entered} other {{resultsCount, plural, =0 {Sorry, there are no search results for {1}} other {Search Results for {2}}}}}}}"
-msgstr "{inProgress, select, true {Searching} other {{0, select, false {Nenhuma consulta de pesquisa inserida} other {{resultsCount, plural, =0 {Desculpe, não há resultados de pesquisa para {1}} other {Resultados da busca por {2}}}}}}}"
+msgstr "{inProgress, select, true {Aranıyor} other {{0, select, false {Arama sorgusu girilmemiş} other {{resultsCount, plural, =0 {Maalesef, {1} için arama sonucu yok} other {{2} için Arama Sonuçları}}}}}}"
 
 #. Label for Context Switcher
 #: src/components/ContextSwitcher/index.js:14
 msgid "{isContentShown, select, true {Collection Details} other {Collection Content}}"
-msgstr "{isContentShown, select, true {Detalhes da coleção} other {Conteúdo da coleção}}"
+msgstr "{isContentShown, select, true {Koleksiyon Detayları} other {Toplamak İçerik}}"
 
 #. Downloading label
 #: src/components/MyListExportActions/index.js:19
 msgid "{isDownloading, select, true {Downloading} other {Download as .CSV}}"
-msgstr "{isDownloading, select, true {Baixando} other {Baixe como .CSV}}"
+msgstr "{isDownloading, select, true {İndiriliyor} other {.CSV olarak indir}}"
 
 #. Label for Add List Toggle button
 #: src/components/ListToggleButton/index.js:36
 msgid "{isMobile, select, true {Add} other {Add to List}}"
-msgstr "{isMobile, select, true {Adicionar} other {Adicionar à lista}}"
+msgstr "{isMobile, select, true {Eklemek} other {Listeye Ekle}}"
 
 #. Label for Remove List Toggle button
 #: src/components/ListToggleButton/index.js:17
 msgid "{isMobile, select, true {Remove} other {Remove from List}}"
-msgstr "{isMobile, select, true {Remover} other {Remover da lista}}"
+msgstr "{isMobile, select, true {Kaldırmak} other {Listeden Kaldır}}"
 
 #. Agent Note source
 #: src/components/PageAgent/index.js:28
 msgid "{source, select, null {Source: Rockefeller Archive Center} other {Source: {source}}}"
-msgstr "{source, select, null {Fonte: Rockefeller Archive Center} other {Source: {source}}}"
+msgstr "{source, select, null {Kaynak: Rockefeller Arşiv Merkezi} other {Kaynak: {source}}}"
 
 #. Message to go back to previous search
 #: src/components/RecordsDetail/index.js:166
 msgid "<0/>Back to Search"
-msgstr "<0/>Voltar para a pesquisa"
+msgstr "<0/>Aramaya Geri Dön"
 
 #. New Search button
 #: src/components/PageMyList/index.js:293
 msgid "<0/>Start a New Search"
-msgstr "<0/>Iniciar uma nova pesquisa"
+msgstr "<0/>Yeni Bir Arama Başlatın"
 
 #. Download button for digital object
 #: src/components/PageDigitalObject/index.js:108
 msgid "<0><1/> Download</0>"
-msgstr "<0><1/> Baixar</0>"
+msgstr "<0><1/> İndir</0>"
 
 #. Schedule a visit button
 #: src/components/MyListSidebar/index.js:9
 msgid "<0><1/> Schedule a Visit</0>"
-msgstr "<0><1/> Agendar uma visita</0>"
+msgstr "<0><1/> Bir Ziyaret Planlayın</0>"
 
 #. Go back to Item details for digital object
 #: src/components/PageDigitalObject/index.js:119
 msgid "<0><1/>Back to Item Details</0>"
-msgstr "<0><1/>Voltar aos detalhes do item</0>"
+msgstr "<0><1/>Ürün Detaylarına Geri Dön</0>"
 
 #. Social Icons Titles
 #: src/components/SocialIcons/index.js:5
 msgid "<0><1><2><3><4>Twitter Logo</4><5/></3></2></1><6><7><8><9>Facebook Logo</9><10/></8></7></6><11><12><13><14>Instagram Logo</14><15/></13></12></11><16><17><18><19>YouTube Logo</19><20/></18></17></16><21><22><23><24>Flickr Logo</24><25><26><27><28/><29/></27></26></25></23></22></21></0>"
-msgstr "<0><1><2><3><4>Logotipo do Twitter</4><5/></3></2></1><6><7><8><9>Logotipo do Facebook</9><10/></8></7></6><11><12><13><14>Logotipo do Instagram</14><15/></13></12></11><16><17><18><19>Logotipo do YouTube</19><20/></18></17></16><21><22><23><24>Logotipo do Flickr</24><25><26><27><28/><29/></27></26></25></23></22></21></0>"
+msgstr "<0><1><2><3><4>Twitter Logosu</4><5/></3></2></1><6><7><8><9>Facebook Logosu</9><10/></8></7></6><11><12><13><14>Instagram Logosu</14><15/></13></12></11><16><17><18><19>YouTube Logosu</19><20/></18></17></16><21><22><23><24>Flickr Logosu</24><25><26><27><28/><29/></27></26></25></23></22></21></0>"
 
 #. Page Title for user's list
 #: src/components/PageMyList/index.js:284
 msgid "<0><1>DIMES: My List</1></0>"
-msgstr "<0><1>DIMES: Minha lista</1></0>"
+msgstr "<0><1>DIMES: Benim Listem</1></0>"
 
 #. Page Home
 #: src/components/PageHome/index.js:10
 msgid "<0><1>DIMES: Online Collections and Catalog of Rockefeller Archive Center</1></0><2><3/><4/></2>"
-msgstr "<0><1>DIMES: Coleções e catálogo on-line do Rockefeller Archive Center</1></0><2><3/><4/></2>"
+msgstr "<0><1>DIMES: Rockefeller Arşiv Merkezi Online Koleksiyonları ve Kataloğu</1></0><2><3/><4/></2>"
 
 #. Page Not Found
 #: src/components/PageNotFound/index.js:9
 msgid "<0><1>Page Not Found</1></0><2><3><4/></3><5>Sorry, the requested page was not found!</5><6>Try <7>a search</7> to find what you're looking for.</6></2>"
-msgstr "<0><1>Página não encontrada</1></0><2><3><4/></3><5>Desculpe, a página solicitada não foi encontrada!</5><6>Tente fazer <7>uma pesquisa</7> para encontrar o que você está procurando.</6></2>"
+msgstr "<0><1>Sayfa Bulunamadı</1></0><2><3><4/></3><5>Üzgünüz, istenen sayfa bulunamadı!</5><6>Aradığınızı bulmak için <7>bir arama</7> yapmayı deneyin.</6></2>"
 
 #. Page Backend Error
 #: src/components/PageBackendError/index.js:10
 msgid "<0><1>Page Not Found</1></0><2><3><4/></3><5>There was an error fetching data.</5><6>The request to {0} failed.</6><7>To report this problem, send us an email at <8>archive@rockarch.org</8>.</7><9>Error message:</9><10>{1}: {2}</10>{3}{4}</2>"
-msgstr "<0><1>Página não encontrada</1></0><2><3><4/></3><5>Ocorreu um erro ao buscar os dados.</5><6>A solicitação para {0} falhou.</6><7>Para relatar esse problema, envie-nos um e-mail para <8>archive@rockarch.org.</8></7><9>Mensagem de erro:</9><10>{1}: {2}</10>{3}{4}</2>"
+msgstr "<0><1>Sayfa Bulunamadı</1></0><2><3><4/></3><5>Veri alınırken bir hata oluştu.</5><6>{0} adresine yapılan istek başarısız oldu.</6><7>Bu sorunu bildirmek için bize <8>archive@rockarch.org</8> adresinden bir e-posta gönderin.</7><9>Hata mesajı:</9><10>{1}: {2}</10>{3}{4}</2>"
 
 #. Search Results title
 #: src/components/PageSearch/index.js:192
 msgid "<0><1>Search Results</1></0>"
-msgstr "<0><1>Resultados da pesquisa</1></0>"
+msgstr "<0><1>Arama Sonuçları</1></0>"
 
 #. Agent note Description
 #: src/components/PageAgent/index.js:21
 msgid "<0>Description</0>"
-msgstr "<0>Descrição</0>"
+msgstr "<0>Açıklama</0>"
 
 #. Page Title for user's list
+#: src/components/PageMyList/index.js:286
 #~ msgid "<0>DIMES: My List</0>"
-#~ msgstr "<0>DIMES: My List</0>"
+#~ msgstr "<0>DIMES: Benim Listem</0>"
 
 #. Saved item found in message
 #: src/components/SavedItem/index.js:17
 msgid "<0>Found in: <1>{0}</1></0>"
-msgstr "<0>Encontrado em: <1>{0}</1></0>"
+msgstr "<0>İçinde bulundu: <1>{0}</1></0>"
 
 #. Search not found tips
 #: src/components/SearchNotFound/index.js:19
 msgid "<0>Have you tried doing the following:</0><1><2>Check for spelling errors or typos</2><3>Use fewer keywords</3><4>Clear search filter options</4></1>"
-msgstr "<0>Você já tentou fazer o seguinte:</0><1><2>Verificar se há erros de ortografia ou de digitação</2><3>Usar menos palavras-chave</3><4>Limpar as opções de filtro de pesquisa</4></1>"
+msgstr "<0>Aşağıdakileri yapmayı denediniz mi?</0><1><2>Yazım hatalarını veya yazım yanlışlarını kontrol edin</2><3>Daha az anahtar kelime kullanın</3><4>Arama filtresi seçeneklerini temizleyin</4></1>"
 
 #. Suggested terms message
 #: src/components/SearchNotFound/index.js:29
 msgid "<0>Here are some suggested search terms:</0>"
-msgstr "<0>Aqui estão alguns termos de pesquisa sugeridos:</0>"
+msgstr "<0>İşte önerilen bazı arama terimleri:</0>"
 
 #. The about section for minimaps.
 #: src/components/ModalMinimap/index.js:9
 msgid "<0>Jump to a part of the collection containing matches by clicking on an active square.</0><1>In the minimap diagram, each square represents part of this collection. Colored squares represent parts that contain one or more matches for your search.</1>"
-msgstr "<0>Vá para uma parte da coleção que contenha correspondências clicando em um quadrado ativo.</0><1>No diagrama do minimapa, cada quadrado representa uma parte dessa coleção. Os quadrados coloridos representam partes que contêm uma ou mais correspondências para sua pesquisa.</1>"
+msgstr "<0>Etkin bir kareye tıklayarak koleksiyonun eşleşme içeren bir bölümüne atlayın.</0><1>Mini harita diyagramında, her kare bu koleksiyonun bir bölümünü temsil eder. Renkli kareler, aramanız için bir veya daha fazla eşleşme içeren kısımları temsil eder.</1>"
 
 #. Back to search button
 #: src/components/PageAgent/index.js:251
 msgid "<0>keyboard_arrow_left</0>Back to Search"
-msgstr "<0>keyboard_arrow_leftVoltar</0>à pesquisa"
+msgstr "<0>keyboard_arrow_left</0>Aramaya Geri Dön"
 
 #. Saved item last requested message
 #: src/components/SavedItem/index.js:18
 msgid "<0>Last requested on: {0}</0>"
-msgstr "<0>Última solicitação em: {0}</0>"
+msgstr "<0>Son talep tarihi: {0}</0>"
 
 #. Records content is loading
 #: src/components/RecordsContent/index.js:401
 msgid "<0>Loading</0>"
-msgstr "<0>Carregamento</0>"
+msgstr "<0>Yükleniyor</0>"
 
 #. Agent Sidebar Header
 #: src/components/PageAgent/index.js:61
 msgid "<0>More about this {agentType}</0>"
-msgstr "<0>Mais sobre isso {agentType}</0>"
+msgstr "<0>Bunun hakkında daha fazlası {agentType}</0>"
 
 #. Header for user's list
 #: src/components/PageMyList/index.js:299
 msgid "<0>My List</0>"
-msgstr "<0>Minha lista</0>"
+msgstr "<0>Benim Listem</0>"
 
 #. No search terms supplied message
 #: src/components/SearchNotFound/index.js:42
 msgid "<0>Please add a word or phrase to search for.</0>"
-msgstr "<0>Adicione uma palavra ou frase para pesquisar.</0>"
+msgstr "<0>Lütfen aramak için bir kelime veya cümle ekleyin.</0>"
 
 #. Note to user about a cost estimate
 #: src/components/ModalMyList/index.js:494
 msgid "<0>Please note:</0> if you want a cost estimate for your order, email an archivist at <1>archive@rockarch.org</1>."
-msgstr "<0>Observação:</0> se quiser uma estimativa de custo para seu pedido, envie um e-mail para um arquivista em <1>archive@rockarch.org.</1>"
+msgstr "<0>Lütfen dikkat:</0> Siparişiniz için bir maliyet tahmini istiyorsanız, <1>archive@rockarch.org</1> adresinden bir arşivciye e-posta gönderin."
 
 #. summary message
 #: src/components/PageAgent/index.js:265
 msgid "<0>Summary</0>"
-msgstr "<0>Resumo</0>"
+msgstr "<0>Özet</0>"
 
 #. The introduction for minimaps.
 #: src/components/ModalMinimap/index.js:15
 msgid "<0>The minimap is a new feature that allows you to quickly jump to search matches in a collection by clicking on an active square.</0><1>In the minimap diagram, each square represents part of this collection. Colored squares represent parts that contain one or more matches for your search.</1>"
-msgstr "<0>O minimapa é um novo recurso que permite saltar rapidamente para as correspondências de pesquisa em uma coleção clicando em um quadrado ativo.</0><1>No diagrama do minimapa, cada quadrado representa parte dessa coleção. Os quadrados coloridos representam partes que contêm uma ou mais correspondências para sua pesquisa.</1>"
+msgstr "<0>Mini harita, aktif bir kareye tıklayarak bir koleksiyondaki arama eşleşmelerine hızlı bir şekilde atlamanızı sağlayan yeni bir özelliktir.</0><1>Mini harita diyagramında, her kare bu koleksiyonun bir bölümünü temsil eder. Renkli kareler, aramanız için bir veya daha fazla eşleşme içeren kısımları temsil eder.</1>"
 
 #. Message for showing an error for a request
 #: src/components/PageMyList/index.js:131
 msgid "<0>There was an error submitting your request.</0><1>The request to {0} failed with the message {1}: {2}.</1><2>{3}</2>"
-msgstr "<0>Ocorreu um erro ao enviar sua solicitação.</0><1>A solicitação para {0} falhou com a mensagem {1}: {2}.</1><2>{3}</2>"
+msgstr "<0>İsteğinizi gönderirken bir hata oluştu.</0><1>{0} adresine yapılan istek {1}: {2} mesajı ile başarısız oldu.</1><2>{3}</2>"
 
 #. View Saved Item online
+#: src/components/SavedItem/index.js:22
 #~ msgid "<0>View Online <1/></0>"
-#~ msgstr "<0>View Online <1/></0>"
+#~ msgstr "<0>Çevrimiçi Görüntüle <1/></0>"
 
 #. Buttons for online records
+#: src/components/RecordsDetail/index.js:180
 #~ msgid "<0>View Online <1/></0><2>Download <3/></2>{0}"
-#~ msgstr "<0>View Online <1/></0><2>Download <3/></2>{0}"
+#~ msgstr "<0>Çevrimiçi Görüntüle <1/></0><2>İndir <3/></2>{0}"
 
 #. View Saved Item online
 #: src/components/SavedItem/index.js:22
 msgid "<0>View Online<1/></0>"
-msgstr "<0>Exibir on-line<1/></0>"
+msgstr "<0>Çevrimiçi Görüntüle<1/></0>"
 
 #. Buttons for online records
 #: src/components/RecordsDetail/index.js:180
 msgid "<0>View Online<1/></0><2>Download <3/></2>{0}"
-msgstr "<0>Exibir on-line<1/></0><2>Baixar <3/></2>{0}"
+msgstr "<0>Çevrimiçi Görüntüle<1/></0><2>İndirmek <3/></2>{0}"
 
 #. Full Company Address
 #: src/components/Footer/index.js:21
 msgid "15 Dayton Avenue<0/>Sleepy Hollow, New York 10591"
-msgstr "15 Dayton Avenue<0/>Sleepy Hollow, Nova York 10591"
+msgstr "15 Dayton Avenue<0/>Sleepy Hollow, New York 10591"
 
 #. helptext for RAC staff message
 #: src/components/ModalMyList/index.js:424
 msgid "255 characters maximum"
-msgstr "máximo de 255 caracteres"
+msgstr "maksimum 255 karakter"
 
 #. Helptext for RAC staff message
 #: src/components/ModalMyList/index.js:566
 msgid "255 characters maximum."
-msgstr "máximo de 255 caracteres."
+msgstr "maksimum 255 karakter."
 
 #. About minimap message
 #: src/components/RecordsDetail/index.js:161
 msgid "about minimap"
-msgstr "sobre o minimapa"
+msgstr "minimap hakkında"
 
 #. Accessibility Statement message
 #: src/components/PrimaryLink/index.js:63
 msgid "Accessibility Statement"
-msgstr "Declaração de Acessibilidade"
+msgstr "Erişilebilirlik Beyanı"
 
 #. Message shown on Dropdown button
 #: src/components/Dropdown/index.js:53
 msgid "Actions"
-msgstr "Ações"
+msgstr "Eylemler"
 
 #. Test Remove button label
 #: src/components/ListToggleButton/__tests__/ListToggleButton.test.js:66
 msgid "Add"
-msgstr "Adicionar"
+msgstr "Ekle"
 
 #. Test Add button aria label
 #. Aria label for List Toggle button
 #: src/components/ListToggleButton/__tests__/ListToggleButton.test.js:35
 #: src/components/ListToggleButton/index.js:29
 msgid "Add item to list"
-msgstr "Adicionar item à lista"
+msgstr "Öğeyi listeye ekle"
 
 #. Test Add button label
 #: src/components/ListToggleButton/__tests__/ListToggleButton.test.js:31
 msgid "Add to List"
-msgstr "Adicionar à Lista"
+msgstr "Listeye Ekle"
 
 #. Message while page loads for email submissions
 #: src/components/PageMyList/index.js:142
 msgid "Adding items to your message"
-msgstr "Adicionar itens à sua mensagem"
+msgstr "Mesajınıza öğe ekleme"
 
 #. Label for All Categories
 #: src/components/SearchForm/index.js:25
 msgid "All Types"
-msgstr "Todos os Tipos"
+msgstr "Tüm Türler"
 
 #. Modal Form Missing Email Address Test
 #. Missing email address error
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:159
 #: src/components/ModalMyList/index.js:232
 msgid "An email address is required."
-msgstr "E-mail Obrigatório."
+msgstr "Bir e-posta adresi gerekiyor."
 
 #. Label to apply dates shown from date range
 #: src/components/ModalSearch/index.js:80
 msgid "apply dates"
-msgstr "aplicar datas"
+msgstr "başvuru tari̇hleri̇"
 
 #. Company Email shown
 #: src/components/PrimaryLink/index.js:37
@@ -334,22 +337,22 @@ msgstr "archive@rockarch.org"
 #. Confirmation to delete all items from list
 #: src/components/PageMyList/index.js:370
 msgid "Are you sure you want to remove all the items from your list?<0><1/><2/></0>"
-msgstr "Tem certeza de que deseja remover todos os itens da sua lista?<0><1/><2/></0>"
+msgstr "Listenizdeki tüm öğeleri kaldırmak istediğinizden emin misiniz?<0><1/><2/></0>"
 
 #. Label for MP3
 #: src/components/ModalMyList/index.js:48
 msgid "Audio (MP3)"
-msgstr "Áudio (MP3)"
+msgstr "Ses (MP3)"
 
 #. Bulk Data Download message
 #: src/components/SecondaryLink/index.js:35
 msgid "Bulk data download"
-msgstr "Download de dados em massa"
+msgstr "Toplu veri indirme"
 
 #. Title shown when request failed
 #: src/components/PageMyList/index.js:355
 msgid "Can't Complete Request"
-msgstr "Não é possível concluir a solicitação"
+msgstr "Talep Tamamlanamıyor"
 
 #. Test Cancel Button Label
 #. Reset/Cancel Button for Form
@@ -360,17 +363,17 @@ msgstr "Não é possível concluir a solicitação"
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:195
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:257
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "İptal"
 
 #. Name for Category selector
 #: src/components/SearchForm/index.js:101
 msgid "category"
-msgstr "categoria"
+msgstr "kategori"
 
 #. Label for Category selector
 #: src/components/SearchForm/index.js:97
 msgid "Choose a search category"
-msgstr "Escolha uma categoria de pesquisa"
+msgstr "Bir arama kategorisi seçin"
 
 #. Aria label for close.
 #: src/components/ModalConfirm/index.js:17
@@ -379,80 +382,80 @@ msgstr "Escolha uma categoria de pesquisa"
 #: src/components/ModalMyList/index.js:167
 #: src/components/ModalSearch/index.js:50
 msgid "Close"
-msgstr "Fechar"
+msgstr "Kapat"
 
 #. switcher label text content
 #. Collection Content title
 #: src/components/ContextSwitcher/__tests__/ContextSwitcher.test.js:20
 #: src/components/RecordsContent/index.js:405
 msgid "Collection Content"
-msgstr "Conteúdo da coleção"
+msgstr "Koleksiyon İçeriği"
 
 #. switcher label text content
 #: src/components/ContextSwitcher/__tests__/ContextSwitcher.test.js:32
 msgid "Collection Details"
-msgstr "Detalhes da coleção"
+msgstr "Koleksiyon Detayları"
 
 #. Label for Collections category
 #: src/components/SearchForm/index.js:32
 msgid "Collections"
-msgstr "Coleções"
+msgstr "Koleksiyonlar"
 
 #. Collections data API message
 #: src/components/SecondaryLink/index.js:22
 msgid "Collections data API"
-msgstr "API de dados de coleções"
+msgstr "Koleksiyonlar veri API'si"
 
 #. Agent Related Collections
 #: src/components/PageAgent/index.js:39
 msgid "Collections Related to {agentTitle}"
-msgstr "Coleções relacionadas a {agentTitle}"
+msgstr "İlgili Koleksiyonlar {agentTitle}"
 
 #. Remove all confirmation title
 #: src/components/PageMyList/index.js:383
 msgid "Confirm Remove All"
-msgstr "Confirmar Remover tudo"
+msgstr "Onaylayın Tümünü Kaldır"
 
 #. Copyright message
 #: src/components/Footer/index.js:63
 msgid "Copyright © Rockefeller Archive Center. All rights reserved."
-msgstr "Direitos autorais © Rockefeller Archive Center. Todos os direitos reservados."
+msgstr "Telif Hakkı © Rockefeller Arşiv Merkezi. Tüm hakları saklıdır."
 
 #. Name for duplicate request form costs
 #: src/components/ModalMyList/index.js:591
 msgid "costs"
-msgstr "custos"
+msgstr "maliyetler"
 
 #. Title for Creator filter
 #: src/components/ModalSearch/index.js:93
 msgid "Creator"
-msgstr "Criador"
+msgstr "Oluşturan"
 
 #. title for Date Range
 #: src/components/ModalSearch/index.js:61
 msgid "Date Range"
-msgstr "Intervalo de datas"
+msgstr "Tarih aralığı"
 
 #: src/components/ModalMyList/index.js:556
 msgid "description"
-msgstr "descrição"
+msgstr "açıklama"
 
 #. Description Modal Form Test
 #. Label for Description of Materials Form
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:246
 #: src/components/ModalMyList/index.js:548
 msgid "Description of Materials"
-msgstr "Descrição dos materiais"
+msgstr "Malzemelerin Tanımı"
 
 #. Button Deselect all items Test
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:81
 msgid "Deselect all items"
-msgstr "Desmarcar todos os itens"
+msgstr "Tum ogelerin secimini kaldiriniz."
 
 #. Update message for selected record
 #: src/components/PageRecords/index.js:118
 msgid "Details under heading 1 have been updated to describe the selected records titled {0}"
-msgstr "Os detalhes do cabeçalho 1 foram atualizados para descrever os registros selecionados intitulados {0}"
+msgstr "Başlık 1 altındaki detaylar {0} başlıklı seçilmiş kayıtları tanımlayacak şekilde güncellenmiştir"
 
 #. Title displayed within the Header
 #: src/components/Header/index.js:10
@@ -462,113 +465,114 @@ msgstr "dimes.rockarch.org"
 #. Message shown on button within Dropdown list
 #: src/components/Dropdown/index.js:108
 msgid "Download as .csv"
-msgstr "Baixar como .csv"
+msgstr ".csv olarak indirin"
 
 #. Company Email
+#: src/components/Footer/index.js:38
 #~ msgid "E-mail: <0/>"
-#~ msgstr "E-mail: <0/>"
+#~ msgstr "E-posta: <0/>"
 
 #. Company Email
 #: src/components/Footer/index.js:34
 msgid "E-mail:<0/>"
-msgstr "E-mail:<0/>"
+msgstr "E-posta:<0/>"
 
 #. Name of email form
 #: src/components/ModalMyList/index.js:278
 msgid "email"
-msgstr "e-mail"
+msgstr "eposta"
 
 #. Email Modal Form Test
 #. Label of Email Form
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:111
 #: src/components/ModalMyList/index.js:274
 msgid "Email *"
-msgstr "E-mail *"
+msgstr "E-Posta *"
 
 #. Email list label
 #: src/components/Dropdown/index.js:99
 #: src/components/MyListExportActions/index.js:11
 msgid "Email List"
-msgstr "Lista de e-mail"
+msgstr "E-posta Listesi"
 
 #. Title displayed after emailing selected items
 #: src/components/PageMyList/index.js:148
 msgid "Email Sent"
-msgstr "Email enviado"
+msgstr "E-posta Gönderildi"
 
 #. Label for the end year input
 #: src/components/ModalSearch/index.js:74
 msgid "End Year"
-msgstr "Final do ano"
+msgstr "Yıl Sonu"
 
 #. Label for search textbox
 #: src/components/SearchForm/index.js:60
 msgid "Enter a search term"
-msgstr "Digite um termo de pesquisa"
+msgstr "Bir arama terimi girin"
 
 #. Helptext for scheduling date.
 #: src/components/ModalMyList/index.js:400
 msgid "Enter the date of your research visit (mm/dd/yyyy)"
-msgstr "Insira a data de sua visita de pesquisa (mm/dd/aaaa)"
+msgstr "Araştırma ziyaretinizin tarihini girin (aa/gg/yyyy)"
 
 #. Initial description
 #: src/components/ModalMyList/index.js:501
 msgid "Entire folder"
-msgstr "Pasta inteira"
+msgstr "Tüm klasör"
 
 #. Title displayed when error occurs while submitting request
 #: src/components/PageMyList/index.js:128
 #: src/components/PageMyList/index.js:159
 msgid "Error submitting request"
-msgstr "Erro ao enviar solicitação"
+msgstr "İstek gönderilirken hata oluştu"
 
 #. Company Fax
 #: src/components/Footer/index.js:31
 msgid "Fax: (914) 631-6017"
-msgstr "Fax: (914) 631-6017"
+msgstr "Faks: (914) 631-6017"
 
 #. Label for Filters button
 #: src/components/PageSearch/index.js:249
 msgid "Filters"
-msgstr "Filtros"
+msgstr "Filtreler"
 
 #. Name for format input
 #: src/components/ModalMyList/index.js:77
 #: src/components/ModalMyList/index.js:87
 msgid "format"
-msgstr "formato"
+msgstr "format"
 
 #. Label for format input
 #. Title for Format filter
 #: src/components/ModalMyList/index.js:73
 #: src/components/ModalSearch/index.js:87
 msgid "Format"
-msgstr "Formato"
+msgstr "Biçim"
 
 #. Panel Format message
 #: src/components/RecordsDetail/index.js:64
 msgid "Formats"
-msgstr "Formatos"
+msgstr "Formatlar"
 
 #. Panel Found In message
 #: src/components/RecordsDetail/index.js:81
 msgid "Found In"
-msgstr "Encontrado em"
+msgstr "İçinde Bulundu"
 
 #. Found In Test
 #: src/components/SavedItem/__tests__/SavedItem.test.js:38
 msgid "Found in:"
-msgstr "Encontrado em:"
+msgstr "İçinde bulundu:"
 
 #. Founded by property
 #: src/components/PageAgent/index.js:194
 msgid "Founded by"
-msgstr "Fundada por"
+msgstr "Tarafından kurulmuştur"
 
 #. How to Access materials message
 #: src/components/PrimaryLink/index.js:24
 msgid "How to access and request materials."
-msgstr "Como acessar e solicitar materiais."
+msgstr "Materyallere nasıl erişilir ve talep edilir."
 
 #. Footer.Primary.RAC.href
 #: src/components/PrimaryLink/index.js:85
@@ -660,12 +664,12 @@ msgstr "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
 #. Label for duplicate request form
 #: src/components/ModalMyList/index.js:577
 msgid "I agree to pay the duplication costs for this request. See our <0>fee schedule</0>."
-msgstr "Concordo em pagar os custos de duplicação desta solicitação. Consulte nossa <0>tabela de taxas</0>."
+msgstr "Bu talep için çoğaltma masraflarını ödemeyi kabul ediyorum. <0>Ücret tarif</0>emize bakınız."
 
 #. Invalid email error
 #: src/components/ModalMyList/index.js:239
 msgid "Invalid email address provided."
-msgstr "Endereço de e-mail inválido fornecido."
+msgstr "Geçersiz e-posta adresi verildi."
 
 #. Name of items error message
 #: src/components/ModalMyList/index.js:29
@@ -673,22 +677,22 @@ msgstr "Endereço de e-mail inválido fornecido."
 #: src/components/ModalMyList/index.js:391
 #: src/components/ModalMyList/index.js:541
 msgid "items"
-msgstr "itens"
+msgstr "öğeler"
 
 #. Message displayed to jump to specific section within minimap
 #: src/components/Minimap/index.js:53
 msgid "Jump to {0} {hitPlural} in this area: {hitTitles}"
-msgstr "Ir para {0} {hitPlural} nesta área: {hitTitles}"
+msgstr "Bu alanda {0} {hitPlural}'e atlayın: {hitTitles}"
 
 #. Licensing message
 #: src/components/SecondaryLink/index.js:48
 msgid "Licensing for descriptive metadata"
-msgstr "Licenciamento de metadados descritivos"
+msgstr "Açıklayıcı meta veriler için lisanslama"
 
 #. Location property
 #: src/components/PageAgent/index.js:195
 msgid "Location of Headquarters"
-msgstr "Localização da sede"
+msgstr "Genel Merkezin Yeri"
 
 #. Company Email link
 #: src/components/ModalMyList/index.js:495
@@ -700,19 +704,19 @@ msgstr "mailto:archive@rockarch.org"
 #. Scheduling an appointment email link
 #: src/components/MyListSidebar/index.js:12
 msgid "mailto:archive@rockarch.org?subject=Scheduling a research appointment"
-msgstr "mailto:archive@rockarch.org?subject=Scheduling um compromisso de pesquisa"
+msgstr "mailto:archive@rockarch.org?subject=Scheduling bir araştırma randevusu"
 
 #. Name of message form
 #: src/components/ModalMyList/index.js:301
 msgid "message"
-msgstr "mensagem"
+msgstr "mesaj"
 
 #. Message Modal Form Test
 #. Label of Message Form
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:119
 #: src/components/ModalMyList/index.js:297
 msgid "Message"
-msgstr "Mensagem"
+msgstr "Mesaj"
 
 #. Message Modal Form Test
 #. Label for RAC staff message Form
@@ -721,7 +725,7 @@ msgstr "Mensagem"
 #: src/components/ModalMyList/index.js:420
 #: src/components/ModalMyList/index.js:563
 msgid "Message for RAC staff"
-msgstr "Mensagem para a equipe do RAC"
+msgstr "RAC personeli için mesaj"
 
 #. Header for minimap
 #. Aria label for Minimap nav
@@ -730,40 +734,41 @@ msgstr "Mensagem para a equipe do RAC"
 #: src/components/Minimap/index.js:83
 #: src/components/ModalMinimap/index.js:69
 msgid "Minimap"
-msgstr "Minimapa"
+msgstr "Minimap"
 
 #. Reading Room Actual Hours
+#: src/components/Footer/index.js:51
 #~ msgid "Monday-Friday<0/>10:00 a.m. to 5:00 p.m.<1/>"
-#~ msgstr "Monday-Friday<0/>10:00 a.m. to 5:00 p.m.<1/>"
+#~ msgstr "Pazartesi-Cuma<0/>10:00 - 17:00 arası.<1/>"
 
 #. Reading Room Actual Hours
 #: src/components/Footer/index.js:47
 msgid "Monday-Friday<0/>9:00 a.m. to 5:00 p.m.<1/>"
-msgstr "Segunda-feira a sexta-feira<0/>9:00 a.m. a 5:00 p.m.<1/>"
+msgstr "Pazartesi-Cuma<0/>9:00 - 17:00 arası.<1/>"
 
 #. Label for MP4
 #: src/components/ModalMyList/index.js:55
 msgid "Moving image (MP4)"
-msgstr "Imagem em movimento (MP4)"
+msgstr "Hareketli görüntü (MP4)"
 
 #. Message shown on button within Dropdown list
 #. Message shown on button within the Header
 #: src/components/Dropdown/index.js:158
 #: src/components/Header/index.js:31
 msgid "My List"
-msgstr "Minha lista"
+msgstr "Listem"
 
 #. Nicknames property
 #: src/components/PageAgent/index.js:196
 msgid "Nicknames"
-msgstr "Apelidos"
+msgstr "Takma Adlar"
 
 #. No selected items error
 #: src/components/ModalMyList/index.js:248
 #: src/components/ModalMyList/index.js:371
 #: src/components/ModalMyList/index.js:523
 msgid "No items have been selected to submit."
-msgstr "Nenhum item foi selecionado para envio."
+msgstr "Gönderilmek üzere hiçbir öğe seçilmemiştir."
 
 #. Empty Saved Items Test
 #. Message displayed when user has no saved items
@@ -771,22 +776,22 @@ msgstr "Nenhum item foi selecionado para envio."
 #: src/components/SavedItem/__tests__/SavedItem.test.js:52
 #: src/components/SavedItem/index.js:79
 msgid "No saved items."
-msgstr "Nenhum item salvo."
+msgstr "Kayıtlı öğe yok."
 
 #. Occupations property
 #: src/components/PageAgent/index.js:191
 msgid "Occupations"
-msgstr "Profissões"
+msgstr "Meslekler"
 
 #. Name for digital matches only checkbox
 #: src/components/SearchForm/index.js:113
 msgid "online"
-msgstr "online"
+msgstr "çevrimiçi"
 
 #. Tooltip for button
 #: src/components/Dropdown/index.js:72
 msgid "opens email"
-msgstr "abre o e-mail"
+msgstr "e-posta açar"
 
 #. Title for duplicate request
 #. Title for new window button
@@ -795,32 +800,32 @@ msgstr "abre o e-mail"
 #: src/components/PageDigitalObject/index.js:112
 #: src/components/RecordsDetail/index.js:186
 msgid "opens in a new window"
-msgstr "abre numa nova janela"
+msgstr "yeni bir pencerede açılır"
 
 #. Label for Organizations category
 #: src/components/SearchForm/index.js:46
 msgid "Organizations"
-msgstr "Organizações"
+msgstr "organizasyonlar"
 
 #. Label for People category
 #: src/components/SearchForm/index.js:39
 msgid "People"
-msgstr "Pessoas"
+msgstr "Kişi"
 
 #. Company Phonenumber
 #: src/components/Footer/index.js:28
 msgid "Phone: (914) 366-6300"
-msgstr "Telefone: (914) 366-6300"
+msgstr "Telefon: (914) 366-6300"
 
 #. Place of birth property
 #: src/components/PageAgent/index.js:193
 msgid "Place of Birth"
-msgstr "Local de Nascimento"
+msgstr "Doğum yeri"
 
 #. Missing word/phrase Test
 #: src/components/SearchNotFound/__tests__/SearchNotFound.test.js:43
 msgid "Please add a word or phrase to search for."
-msgstr "Adicione uma palavra ou frase para pesquisar."
+msgstr "Lütfen aramak için bir kelime veya cümle ekleyin."
 
 #. Modal Form Missing Field Test
 #. Captcha not completed error
@@ -831,65 +836,65 @@ msgstr "Adicione uma palavra ou frase para pesquisar."
 #: src/components/ModalMyList/index.js:368
 #: src/components/ModalMyList/index.js:516
 msgid "Please complete this field."
-msgstr "Preencha este campo."
+msgstr "Lütfen bu alanı doldurunuz."
 
 #. Helptext for description of materials Form
 #: src/components/ModalMyList/index.js:552
 msgid "Please describe the materials you want reproduced. 255 characters maximum."
-msgstr "Descreva os materiais que você deseja reproduzir. máximo de 255 caracteres."
+msgstr "Lütfen çoğaltılmasını istediğiniz materyalleri açıklayın. maksimum 255 karakter."
 
 #. Missing Scheduled Date error
 #: src/components/ModalMyList/index.js:364
 msgid "Please provide the date of your research visit."
-msgstr "Informe a data de sua visita de pesquisa."
+msgstr "Lütfen araştırma ziyaretinizin tarihini belirtiniz."
 
 #. Duplication Format Message Test
 #. No Format selected error
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:287
 #: src/components/ModalMyList/index.js:512
 msgid "Please select your desired duplication format."
-msgstr "Selecione o formato de duplicação desejado."
+msgstr "Lütfen istediğiniz çoğaltma biçimini seçin."
 
 #. Positions held property
 #: src/components/PageAgent/index.js:192
 msgid "Positions Held"
-msgstr "Cargos ocupados"
+msgstr "Bulunduğu Pozisyonlar"
 
 #. Message while MyList modal loads items
 #: src/components/ModalMyList/index.js:195
 msgid "Preparing items"
-msgstr "Preparação de itens"
+msgstr "Öğeleri hazırlama"
 
 #. Message while page loads for Aeon submissions
 #: src/components/PageMyList/index.js:102
 msgid "Preparing items for your request"
-msgstr "Preparação de itens para sua solicitação"
+msgstr "Talebiniz için ürün hazırlama"
 
 #. Page Title for sending an Aeon request
 #: src/components/PageMyList/index.js:98
 msgid "Preparing Request Data"
-msgstr "Preparação dos dados da solicitação"
+msgstr "Talep Verilerinin Hazırlanması"
 
 #. Privacy Policy message
 #: src/components/PrimaryLink/index.js:76
 msgid "Privacy Policy"
-msgstr "Política de Privacidade"
+msgstr "Gizlilik Politikası"
 
 #. Name for RAC staff message Form
 #: src/components/ModalMyList/index.js:428
 #: src/components/ModalMyList/index.js:571
 msgid "questions"
-msgstr "questões"
+msgstr "Sorular"
 
 #. Footer.Primary.RAC.message
 #: src/components/PrimaryLink/index.js:89
 msgid "RAC Policies"
-msgstr "Políticas do RAC"
+msgstr "RAC Politikaları"
 
 #. Reading Room Hours message
 #: src/components/Footer/index.js:42
 msgid "Reading Room Hours:"
-msgstr "Horário da sala de leitura:"
+msgstr "Okuma Odası Saatleri:"
 
 #. Name of recaptcha element
 #. Name of recaptcha error message
@@ -907,231 +912,231 @@ msgstr "recaptcha"
 #: src/components/ListToggleButton/__tests__/ListToggleButton.test.js:79
 #: src/components/SavedItem/index.js:25
 msgid "Remove"
-msgstr "Remover"
+msgstr "Kaldır"
 
 #. Message shown on button within Dropdown list
 #. Remove all items label
 #: src/components/Dropdown/index.js:118
 #: src/components/MyListExportActions/index.js:30
 msgid "Remove All Items"
-msgstr "Remover Todos Itens"
+msgstr "Tüm Rotaları Sil"
 
 #. Test Remove button label
 #: src/components/ListToggleButton/__tests__/ListToggleButton.test.js:48
 msgid "Remove from List"
-msgstr "Remover da Lista"
+msgstr "Listeden kaldır"
 
 #. Test Remove button aria label
 #. Aria label for List Toggle button
 #: src/components/ListToggleButton/__tests__/ListToggleButton.test.js:52
 #: src/components/ListToggleButton/index.js:10
 msgid "Remove item from list"
-msgstr "Remover item da lista"
+msgstr "Öğeyi listeden kaldır"
 
 #. Request items Modal Form Test
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:191
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:254
 msgid "Request 4 Items"
-msgstr "Solicitação de 4 itens"
+msgstr "4 Ürün Talep Edin"
 
 #. Message shown on button within Dropdown list
 #. Shown to request copies of an item
 #: src/components/Dropdown/index.js:89
 #: src/components/MyListSidebar/index.js:30
 msgid "Request Copies"
-msgstr "Solicitar cópias"
+msgstr "Kopya Talep Edin"
 
 #. Message shown on button within Dropdown list
 #. Shown to Request the item in a Reading Room
 #: src/components/Dropdown/index.js:79
 #: src/components/MyListSidebar/index.js:22
 msgid "Request in Reading Room"
-msgstr "Solicitação na sala de leitura"
+msgstr "Okuma Odasında Talep"
 
 #. Primary Title
 #: src/components/Footer/index.js:12
 msgid "Rockefeller<0>Archive Center</0>"
-msgstr "RockefellerArchive<0>Center</0>"
+msgstr "RockefellerArşiv<0>Merkezi</0>"
 
 #. Shown for the user to save and close the filter
 #: src/components/ModalSearch/index.js:54
 msgid "Save & Close"
-msgstr "Salvar & Fechar"
+msgstr "Kaydet & Kapat"
 
 #. Message shown on button within Dropdown list
 #: src/components/Dropdown/index.js:65
 msgid "Schedule a Visit"
-msgstr "Agendar uma visita"
+msgstr "Bir Ziyaret Planlayın"
 
 #. Scheduled Date Modal Form Test
 #. Label for scheduling date
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:184
 #: src/components/ModalMyList/index.js:405
 msgid "Scheduled Date *"
-msgstr "Data programada *"
+msgstr "Planlanan Tarih *"
 
 #. Name for scheduling date error
 #: src/components/ModalMyList/index.js:412
 msgid "scheduledDate"
-msgstr "scheduledDate"
+msgstr "planlananTarih"
 
 #. Label for Search button
 #: src/components/SearchForm/index.js:78
 msgid "Search"
-msgstr "Pesquisar"
+msgstr "Arama"
 
 #. Message to search for more related collections
 #: src/components/PageAgent/index.js:47
 msgid "Search More Related Collections"
-msgstr "Pesquisar mais coleções relacionadas"
+msgstr "Daha Fazla İlgili Koleksiyon Ara"
 
 #. Message shown within the Hero
 #: src/components/Hero/index.js:11
 msgid "Search Our Collections.<0/>Discover People and Organizations.<1/>Access Digital Content."
-msgstr "Pesquise nossas coleções.<0/>Descubra pessoas e organizações.<1/>Acesse o conteúdo digital."
+msgstr "Koleksiyonlarımızda Arama Yapın.<0/>Kişi ve Kuruluşları Keşfedin.<1/>Dijital İçeriğe Erişin."
 
 #. Page Home Test
 #: src/components/PageHome/__tests__/PageHome.test.js:26
 msgid "Search Our Collections.Discover People and Organizations.Access Digital Content."
-msgstr "Pesquise nossas coleções, descubra pessoas e organizações, acesse o conteúdo digital."
+msgstr "Koleksiyonlarımızda Arama Yapın.Kişi ve Kuruluşları Keşfedin.Dijital İçeriğe Erişin."
 
 #. Search Results for Test
 #: src/components/PageSearch/__tests__/PageSearch.test.js:54
 msgid "Search Results for"
-msgstr "Resultados da Busca para"
+msgstr "Arama Sonuçları"
 
 #. Placeholder text for search textbox
 #: src/components/SearchForm/index.js:65
 msgid "Search..."
-msgstr "Pesquisar..."
+msgstr "Ara..."
 
 #. Holiday Schedule message
 #: src/components/PrimaryLink/index.js:50
 msgid "See holiday schedule"
-msgstr "Veja a programação de feriados"
+msgstr "Tatil programına bakın"
 
 #. label for selecting format labels
 #: src/components/ModalMyList/index.js:42
 msgid "Select a format"
-msgstr "Selecionar Formato"
+msgstr "Bir biçim seçin"
 
 #. Button Select all items Test
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:57
 msgid "Select all items"
-msgstr "Selecionar todos os itens"
+msgstr "Tümünü seç"
 
 #. Message displayed after emailing selected items
 #: src/components/PageMyList/index.js:152
 msgid "Selected items in your list have been emailed to {0}"
-msgstr "Os itens selecionados em sua lista foram enviados por e-mail para {0}"
+msgstr "Listenizdeki seçili öğeler {0} adresine e-posta ile gönderildi"
 
 #. Button Select all items Test
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:85
 msgid "selected:"
-msgstr "selecionado:"
+msgstr "seçildi:"
 
 #. totals empty Test
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:62
 msgid "selected: 0 items"
-msgstr "selecionados: 0 itens"
+msgstr "seçili: 0 öğe"
 
 #. Modal Form Submit Test
 #. Send List sumbit message
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:123
 #: src/components/ModalMyList/index.js:325
 msgid "Send List"
-msgstr "Enviar lista"
+msgstr "Liste Gönder"
 
 #. Page Title for sending an email
 #: src/components/PageMyList/index.js:138
 msgid "Sending Email"
-msgstr "Envio de e-mail"
+msgstr "E-posta Gönderme"
 
 #. Message shown when list is closed
 #: src/components/Facet/index.js:26
 msgid "show all"
-msgstr "mostrar todos"
+msgstr "Tümünü Göster"
 
 #. Aria label for Show|Hide More Button
 #: src/components/Facet/index.js:12
 msgid "Show all values"
-msgstr "Mostrar todos os valores"
+msgstr "Tüm değerleri göster"
 
 #. Message shown when list is opened
 #: src/components/Facet/index.js:21
 msgid "show less"
-msgstr "reduzir"
+msgstr "daha az göster"
 
 #. Label for digital matches only checkbox
 #: src/components/SearchForm/index.js:122
 msgid "Show only results with digital matches"
-msgstr "Mostrar apenas resultados com correspondências digitais"
+msgstr "Yalnızca dijital eşleşmeli sonuçları göster"
 
 #. Message shown on sign-in button
 #: src/components/Dropdown/index.js:146
 #: src/components/Header/index.js:26
 msgid "Sign in to RACcess"
-msgstr "Fazer login no RACcess"
+msgstr "RACcess'te oturum açın"
 
 #. Panel Extent Size message
 #: src/components/RecordsDetail/index.js:42
 msgid "Size"
-msgstr "Tamanho"
+msgstr "Boyut"
 
 #. Skip Link
 #: src/components/SkipLink/index.js:6
 msgid "Skip to main content"
-msgstr "Ir para o conteúdo principal"
+msgstr "Ana içeriğe geç"
 
 #. External Identifier Title
 #: src/components/PageAgent/index.js:175
 msgid "Social Networks and Archival Context"
-msgstr "Redes sociais e contexto de arquivo"
+msgstr "Sosyal Ağlar ve Arşiv Bağlamı"
 
 #. Message shown when request failed
 #: src/components/PageMyList/index.js:351
 msgid "Sorry, our system is unable to process requests right now. We're working to fix this! Please try again later."
-msgstr "Desculpe, nosso sistema não está conseguindo processar solicitações no momento. Estamos trabalhando para corrigir isso! Tente novamente mais tarde."
+msgstr "Üzgünüz, sistemimiz şu anda talepleri işleme koyamıyor. Bunu düzeltmek için çalışıyoruz! Lütfen daha sonra tekrar deneyin."
 
 #. Page Not Found Test
 #: src/components/PageNotFound/__tests__/PageNotFound.test.js:26
 msgid "Sorry, the requested page was not found!"
-msgstr "Desculpe, a página solicitada não foi encontrada!"
+msgstr "Üzgünüz, istenen sayfa bulunamadı!"
 
 #. Name for sort results input
 #: src/components/PageSearch/index.js:259
 msgid "sort"
-msgstr "ordenar"
+msgstr "sıra"
 
 #. Sort by creator name label
 #: src/components/PageSearch/index.js:52
 msgid "Sort by creator name"
-msgstr "Classificar por nome do criador"
+msgstr "Yaratıcı adına göre sırala"
 
 #. Sort by relevance label
 #: src/components/PageSearch/index.js:40
 msgid "Sort by relevance"
-msgstr "Classificar por relevância"
+msgstr "Alaka düzeyine göre sırala"
 
 #. Sort by title label
 #: src/components/PageSearch/index.js:46
 msgid "Sort by title"
-msgstr "Ordenar por título"
+msgstr "Başlığa göre sırala"
 
 #. Label for sort results input
 #: src/components/PageSearch/index.js:264
 msgid "Sort search results"
-msgstr "Classificar resultados de pesquisa"
+msgstr "Arama sonuçlarını sırala"
 
 #. Label for the start year input
 #: src/components/ModalSearch/index.js:66
 msgid "Start Year"
-msgstr "Ano de início"
+msgstr "Başlangıç ​​Yılı"
 
 #. Name of subject form
 #: src/components/ModalMyList/index.js:291
 msgid "subject"
-msgstr "assunto"
+msgstr "konu"
 
 #. Subject Modal Form Test
 #. Label of Subject Form
@@ -1140,56 +1145,56 @@ msgstr "assunto"
 #: src/components/ModalMyList/index.js:287
 #: src/components/ModalSearch/index.js:99
 msgid "Subject"
-msgstr "Assunto"
+msgstr "Konu"
 
 #. Aria Label for search submission button
 #: src/components/SearchForm/index.js:83
 msgid "Submit search"
-msgstr "Enviar pesquisa"
+msgstr "Aramayı gönder"
 
 #. Aria label for Calendar button
 #: src/components/Inputs/index.js:92
 msgid "Switch to the next month."
-msgstr "Mude para o mês seguinte."
+msgstr "Bir sonraki aya geçin."
 
 #. Aria label for Calendar button
 #: src/components/Inputs/index.js:82
 msgid "Switch to the previous month."
-msgstr "Mudar para o mês anterior."
+msgstr "Bir önceki aya geçin."
 
 #. Take-down Policy message
 #: src/components/SecondaryLink/index.js:61
 msgid "Take-down policy"
-msgstr "Política de retirada"
+msgstr "Geri alma politikası"
 
 #. Subtitle displayed within the Header
 #: src/components/Header/index.js:15
 msgid "The Online Collection and Catalog of Rockefeller Archive Center"
-msgstr "A coleção e o catálogo on-line do Rockefeller Archive Center"
+msgstr "Rockefeller Arşiv Merkezi Çevrimiçi Koleksiyonu ve Kataloğu"
 
 #. Message displayed when error occurs while submitting request
 #: src/components/PageMyList/index.js:163
 msgid "There was an error submitting your request. The error message was: {0}"
-msgstr "Ocorreu um erro ao enviar sua solicitação. A mensagem de erro foi: {0}"
+msgstr "İsteğinizi gönderirken bir hata oluştu. Hata mesajı şöyleydi: {0}"
 
 #. Button to view minimap
 #: src/components/MinimapButton/index.js:13
 msgid "View minimap"
-msgstr "Exibir minimapa"
+msgstr "Minimap'i görüntüle"
 
 #. External Identifier Title
 #: src/components/PageAgent/index.js:173
 msgid "Virtual International Authority File"
-msgstr "Arquivo virtual de autoridade internacional"
+msgstr "Sanal Uluslararası Yetki Dosyası"
 
 #. Payment Modal Form Test
 #. Costs not agreed to error
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:291
 #: src/components/ModalMyList/index.js:519
 msgid "We cannot process your request unless you agree to pay the costs of reproduction."
-msgstr "Não poderemos processar sua solicitação a menos que você concorde em pagar os custos de reprodução."
+msgstr "Çoğaltma masraflarını ödemeyi kabul etmediğiniz sürece talebinizi işleme koyamayız."
 
 #. External Identifier Title
 #: src/components/PageAgent/index.js:174
 msgid "WorldCat Identities"
-msgstr "Identidades do WorldCat"
+msgstr "WorldCat Kimlikleri"

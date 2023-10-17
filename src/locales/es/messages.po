@@ -16,7 +16,7 @@ msgstr ""
 #. Message returned dependent on how many items selected
 #: src/components/ModalMyList/index.js:154
 msgid "{0, plural, =0 {selected: 0 items} other {selected: {1}}}"
-msgstr "{0, plural, =0 {selected: 0 items} other {selected: {1}}}"
+msgstr "{0, plural, =0 {seleccionado: 0 elementos} other {seleccionado: {1}}}"
 
 #. Filter results message
 #: src/components/ModalSearch/index.js:44
@@ -26,7 +26,7 @@ msgstr "{0, plural, one {Filtro # Resultado de búsqueda} other {Filtro # Result
 #. Pluralization of hit(s) for minimap boxes
 #: src/components/Minimap/index.js:49
 msgid "{0, plural, one {hit} other {hits}}"
-msgstr "{0, plural, one {hit} other {hits}}"
+msgstr "{0, plural, one {el éxito} other {éxitos}}"
 
 #. Current Results shown of total results
 #: src/components/PageSearch/index.js:236
@@ -47,7 +47,7 @@ msgstr "{0, select, true {Petición {1} Artículos} other {Petición {2} Artícu
 
 #: src/components/RecordsContent/index.js:232
 msgid "{0, select, true {View} other {View Online}}"
-msgstr "{0, select, true {View} other {Ver en línea}}"
+msgstr "{0, select, true {Ver} other {Ver en línea}}"
 
 #. Label for the end of the item
 #: src/components/PageAgent/index.js:139
@@ -73,12 +73,12 @@ msgstr "{hitCount, plural, one {partida digital} other {partidas digitales}}"
 #. Pluralization of match(es)
 #: src/components/Helpers.js:57
 msgid "{hitCount, plural, one {match} other {matches}}"
-msgstr "{hitCount, plural, one {match} other {matches}}"
+msgstr "{hitCount, plural, one {el partido} other {partidos}}"
 
 #. Search Results header
 #: src/components/PageSearch/index.js:209
 msgid "{inProgress, select, true {Searching} other {{0, select, false {No search query entered} other {{resultsCount, plural, =0 {Sorry, there are no search results for {1}} other {Search Results for {2}}}}}}}"
-msgstr "{inProgress, select, true {Searching} other {{0, select, false {No se ha introducido ninguna consulta de búsqueda} other {{resultsCount, plural, =0 {Lo sentimos, no hay resultados de búsqueda para {1}} other {Resultados de búsqueda para {2}}}}}}}"
+msgstr "{inProgress, select, true {Buscando} other {{0, select, false {No se ha introducido ninguna consulta de búsqueda} other {{resultsCount, plural, =0 {Lo sentimos, no hay resultados de búsqueda para {1}} other {Resultados de búsqueda para {2}}}}}}}"
 
 #. Label for Context Switcher
 #: src/components/ContextSwitcher/index.js:14
@@ -88,17 +88,17 @@ msgstr "{isContentShown, select, true {Detalles de la colección} other {Conteni
 #. Downloading label
 #: src/components/MyListExportActions/index.js:19
 msgid "{isDownloading, select, true {Downloading} other {Download as .CSV}}"
-msgstr "{isDownloading, select, true {Downloading} other {Descargar como .CSV}}"
+msgstr "{isDownloading, select, true {Descargando} other {Descargar como .CSV}}"
 
 #. Label for Add List Toggle button
 #: src/components/ListToggleButton/index.js:36
 msgid "{isMobile, select, true {Add} other {Add to List}}"
-msgstr "{isMobile, select, true {Add} other {Añadir a la lista}}"
+msgstr "{isMobile, select, true {Agregar} other {Añadir a la lista}}"
 
 #. Label for Remove List Toggle button
 #: src/components/ListToggleButton/index.js:17
 msgid "{isMobile, select, true {Remove} other {Remove from List}}"
-msgstr "{isMobile, select, true {Remove} other {Eliminar de la lista}}"
+msgstr "{isMobile, select, true {Eliminar} other {Eliminar de la lista}}"
 
 #. Agent Note source
 #: src/components/PageAgent/index.js:28
@@ -192,7 +192,7 @@ msgstr "<0>Salte a una parte de la colección que contenga coincidencias haciend
 #. Back to search button
 #: src/components/PageAgent/index.js:251
 msgid "<0>keyboard_arrow_left</0>Back to Search"
-msgstr "<0>keyboard_arrow_leftVolver</0>a la búsqueda"
+msgstr "<0>keyboard_arrow_left</0>Volver a la búsqueda"
 
 #. Saved item last requested message
 #: src/components/SavedItem/index.js:18

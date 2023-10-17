@@ -16,7 +16,7 @@ msgstr ""
 #. Message returned dependent on how many items selected
 #: src/components/ModalMyList/index.js:154
 msgid "{0, plural, =0 {selected: 0 items} other {selected: {1}}}"
-msgstr "{0, plural, =0 {selected: 0 elementi} other {selected: {1}}}"
+msgstr "{0, plural, =0 {selezionato: 0 elementi} other {selezionato: {1}}}"
 
 #. Filter results message
 #: src/components/ModalSearch/index.js:44
@@ -26,13 +26,13 @@ msgstr "{0, plural, one {Filtro # Risultato della ricerca} other {Filtro # Risul
 #. Pluralization of hit(s) for minimap boxes
 #: src/components/Minimap/index.js:49
 msgid "{0, plural, one {hit} other {hits}}"
-msgstr "{0, plural, one {hit} other {hits}}"
+msgstr "{0, plural, one {il successo} other {successi}}"
 
 #. Current Results shown of total results
 #: src/components/PageSearch/index.js:236
 #: src/components/PageSearch/index.js:290
 msgid "{0, select, true {{startItem}} other {{startItem}-{endItem} of {resultsCount} results}}"
-msgstr "{0, select, true {{startItem}} altri {{startItem}-{endItem} di {resultsCount} risultati}}"
+msgstr "{0, select, true {{startItem}} other {{startItem}-{endItem} di {resultsCount} risultati}}"
 
 #. Minimap header
 #: src/components/ModalMinimap/index.js:31
@@ -47,12 +47,12 @@ msgstr "{0, select, true {Richiesta {1} Articoli} other {Richiesta {2} Articolo}
 
 #: src/components/RecordsContent/index.js:232
 msgid "{0, select, true {View} other {View Online}}"
-msgstr "{0, select, true {View} other {Visualizza in linea}}"
+msgstr "{0, select, true {Visualizzazione} other {Visualizza in linea}}"
 
 #. Label for the end of the item
 #: src/components/PageAgent/index.js:139
 msgid "{agentType, select, organization {Date Disbanded} other {Date of Death}}"
-msgstr "{agentType, select, organization {Date Disbanded} other {Date of Death}}"
+msgstr "{agentType, select, organization {Data di scioglimento} other {Data di morte}}"
 
 #. Label for the start of the item
 #: src/components/PageAgent/index.js:135
@@ -73,12 +73,12 @@ msgstr "{hitCount, plural, one {partita digitale} other {partite digitali}}"
 #. Pluralization of match(es)
 #: src/components/Helpers.js:57
 msgid "{hitCount, plural, one {match} other {matches}}"
-msgstr "{hitCount, plural, one {match} other {matches}}"
+msgstr "{hitCount, plural, one {la coppia} other {coppie}}"
 
 #. Search Results header
 #: src/components/PageSearch/index.js:209
 msgid "{inProgress, select, true {Searching} other {{0, select, false {No search query entered} other {{resultsCount, plural, =0 {Sorry, there are no search results for {1}} other {Search Results for {2}}}}}}}"
-msgstr "{inProgress, select, true {Searching} other {{0, select, false {Nessuna query di ricerca inserita} other {{resultsCount, plural, =0 {Spiacente, non ci sono risultati di ricerca per {1}} other {Risultati di ricerca per {2}}}}}}}"
+msgstr "{inProgress, select, true {Ricerca} other {{0, select, false {Nessuna query di ricerca inserita} other {{resultsCount, plural, =0 {Spiacente, non ci sono risultati di ricerca per {1}} other {Risultati di ricerca per {2}}}}}}}"
 
 #. Label for Context Switcher
 #: src/components/ContextSwitcher/index.js:14
@@ -88,17 +88,17 @@ msgstr "{isContentShown, select, true {Dettagli della collezione} other {Contenu
 #. Downloading label
 #: src/components/MyListExportActions/index.js:19
 msgid "{isDownloading, select, true {Downloading} other {Download as .CSV}}"
-msgstr "{isDownloading, select, true {Downloading} other {Download as .CSV}}"
+msgstr "{isDownloading, select, true {Download in corso} other {Scarica come .CSV}}"
 
 #. Label for Add List Toggle button
 #: src/components/ListToggleButton/index.js:36
 msgid "{isMobile, select, true {Add} other {Add to List}}"
-msgstr "{isMobile, select, true {Add} other {Aggiungi alla lista}}"
+msgstr "{isMobile, select, true {Aggiungere} other {Aggiungi alla lista}}"
 
 #. Label for Remove List Toggle button
 #: src/components/ListToggleButton/index.js:17
 msgid "{isMobile, select, true {Remove} other {Remove from List}}"
-msgstr "{isMobile, select, true {Remove} other {Rimuovi dall'elenco}}"
+msgstr "{isMobile, select, true {Rimuovere} other {Rimuovi dall'elenco}}"
 
 #. Agent Note source
 #: src/components/PageAgent/index.js:28

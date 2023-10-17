@@ -26,7 +26,7 @@ msgstr "{0, plural, one {Filter # Suchergebnis} other {Filter # Suchergebnisse}}
 #. Pluralization of hit(s) for minimap boxes
 #: src/components/Minimap/index.js:49
 msgid "{0, plural, one {hit} other {hits}}"
-msgstr "{0, plural, one {hit} other {hits}}"
+msgstr "{0, plural, one {der Hit} other {die Hits}}"
 
 #. Current Results shown of total results
 #: src/components/PageSearch/index.js:236
@@ -47,7 +47,7 @@ msgstr "{0, select, true {Anfrage {1} Posten} other {Anfrage {2} Posten}}"
 
 #: src/components/RecordsContent/index.js:232
 msgid "{0, select, true {View} other {View Online}}"
-msgstr "{0, select, true {View} other {Online ansehen}}"
+msgstr "{0, select, true {Ansehen} other {Online ansehen}}"
 
 #. Label for the end of the item
 #: src/components/PageAgent/index.js:139
@@ -78,7 +78,7 @@ msgstr "{hitCount, plural, one {übereinstimmen} other {streichhölzer}}"
 #. Search Results header
 #: src/components/PageSearch/index.js:209
 msgid "{inProgress, select, true {Searching} other {{0, select, false {No search query entered} other {{resultsCount, plural, =0 {Sorry, there are no search results for {1}} other {Search Results for {2}}}}}}}"
-msgstr "{inProgress, select, true {Searching} other {{0, select, false {Keine Suchanfrage eingegeben} other {{resultsCount, plural, =0 {Sorry, there are no search results for {1}} other {Suchergebnisse für {2}}}}}}}"
+msgstr "{inProgress, select, true {Suchen} other {{0, select, false {Keine Suchanfrage eingegeben} other {{resultsCount, plural, =0 {Leider gibt es keine Suchergebnisse für {1}} other {Suchergebnisse für {2}}}}}}}"
 
 #. Label for Context Switcher
 #: src/components/ContextSwitcher/index.js:14
@@ -88,17 +88,17 @@ msgstr "{isContentShown, select, true {Sammlungsdetails} other {Sammlungsinhalt}
 #. Downloading label
 #: src/components/MyListExportActions/index.js:19
 msgid "{isDownloading, select, true {Downloading} other {Download as .CSV}}"
-msgstr "{isDownloading, select, true {Downloading} other {Download als .CSV}}"
+msgstr "{isDownloading, select, true {Wird heruntergeladen} other {Herunterladen als .CSV}}"
 
 #. Label for Add List Toggle button
 #: src/components/ListToggleButton/index.js:36
 msgid "{isMobile, select, true {Add} other {Add to List}}"
-msgstr "{isMobile, select, true {Add} other {Zur Liste hinzufügen}}"
+msgstr "{isMobile, select, true {Hinzufügen} other {Zur Liste hinzufügen}}"
 
 #. Label for Remove List Toggle button
 #: src/components/ListToggleButton/index.js:17
 msgid "{isMobile, select, true {Remove} other {Remove from List}}"
-msgstr "{isMobile, select, true {Remove} other {Entfernen aus Liste}}"
+msgstr "{isMobile, select, true {Entfernen} other {Entfernen aus Liste}}"
 
 #. Agent Note source
 #: src/components/PageAgent/index.js:28
@@ -192,7 +192,7 @@ msgstr "<0>Springen Sie zu einem Teil der Sammlung, der Übereinstimmungen enth�
 #. Back to search button
 #: src/components/PageAgent/index.js:251
 msgid "<0>keyboard_arrow_left</0>Back to Search"
-msgstr "<0>keyboard_arrow_leftZurück</0>zur Suche"
+msgstr "<0>keyboard_arrow_left</0>Zurück zur Suche"
 
 #. Saved item last requested message
 #: src/components/SavedItem/index.js:18

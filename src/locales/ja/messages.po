@@ -16,23 +16,23 @@ msgstr ""
 #. Message returned dependent on how many items selected
 #: src/components/ModalMyList/index.js:154
 msgid "{0, plural, =0 {selected: 0 items} other {selected: {1}}}"
-msgstr "{0, plural, =0 {selected: 0 アイテム} other {selected: {1}}}"
+msgstr "{0, plural, =0 {選択された: 0 アイテム} other {選択された: {1}}}"
 
 #. Filter results message
 #: src/components/ModalSearch/index.js:44
 msgid "{0, plural, one {Filter # Search Result} other {Filter # Search Results}}"
-msgstr "{0, plural, one {Filter # 検索結果} other {Filter # 検索結果}}"
+msgstr "{0, plural, one {フィルター # 検索結果} other {フィルター # 検索結果}}"
 
 #. Pluralization of hit(s) for minimap boxes
 #: src/components/Minimap/index.js:49
 msgid "{0, plural, one {hit} other {hits}}"
-msgstr "{0, plural, one {hit} other {hits}}"
+msgstr "{0, plural, one {命中} other {命中}}"
 
 #. Current Results shown of total results
 #: src/components/PageSearch/index.js:236
 #: src/components/PageSearch/index.js:290
 msgid "{0, select, true {{startItem}} other {{startItem}-{endItem} of {resultsCount} results}}"
-msgstr "{0, select, true {{startItem}} other {{startItem}-{endItem} of {resultsCount} results}}"
+msgstr "{0, select, true {{startItem}} other {{startItem}-{endItem} の {resultsCount} results}}"
 
 #. Minimap header
 #: src/components/ModalMinimap/index.js:31
@@ -47,7 +47,7 @@ msgstr "{0, select, true {リクエスト {1} アイテム} other {リクエス�
 
 #: src/components/RecordsContent/index.js:232
 msgid "{0, select, true {View} other {View Online}}"
-msgstr "{0, select, true {View} other {オンラインで見る}}"
+msgstr "{0, select, true {観る} other {オンラインで見る}}"
 
 #. Label for the end of the item
 #: src/components/PageAgent/index.js:139
@@ -78,7 +78,7 @@ msgstr "{hitCount, plural, one {マッチ} other {マッチ}}"
 #. Search Results header
 #: src/components/PageSearch/index.js:209
 msgid "{inProgress, select, true {Searching} other {{0, select, false {No search query entered} other {{resultsCount, plural, =0 {Sorry, there are no search results for {1}} other {Search Results for {2}}}}}}}"
-msgstr "{inProgress, select, true {Searching} その他 {{0, select, false {検索クエリが入力されていません}} その他 {{resultsCount, plural, =0 {申し訳ありませんが、{1}の検索結果はありません}} その他 {{2}の検索結果}}}}"
+msgstr "{inProgress, select, true {検索中} その他 {{0, select, false {検索クエリが入力されていません}} その他 {{resultsCount, plural, =0 {申し訳ありませんが、{1}の検索結果はありません}} その他 {{2}の検索結果}}}}"
 
 #. Label for Context Switcher
 #: src/components/ContextSwitcher/index.js:14
@@ -88,17 +88,17 @@ msgstr "{isContentShown, select, true {コレクション詳細}} その他 {コ
 #. Downloading label
 #: src/components/MyListExportActions/index.js:19
 msgid "{isDownloading, select, true {Downloading} other {Download as .CSV}}"
-msgstr "{isDownloading, select, true {Downloading} other {.CSVとしてダウンロード}}"
+msgstr "{isDownloading, select, true {ダウンロード中} other {.CSVとしてダウンロード}}"
 
 #. Label for Add List Toggle button
 #: src/components/ListToggleButton/index.js:36
 msgid "{isMobile, select, true {Add} other {Add to List}}"
-msgstr "{isMobile, select, true {Add} other {リストに追加}}。"
+msgstr "{isMobile, select, true {追加} other {リストに追加}}。"
 
 #. Label for Remove List Toggle button
 #: src/components/ListToggleButton/index.js:17
 msgid "{isMobile, select, true {Remove} other {Remove from List}}"
-msgstr "{isMobile, select, true {Remove} other {リストから削除する}}"
+msgstr "{isMobile, select, true {取り除く} other {リストから削除する}}"
 
 #. Agent Note source
 #: src/components/PageAgent/index.js:28
