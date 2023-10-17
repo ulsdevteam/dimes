@@ -111,19 +111,19 @@ Resources:
       DistributionConfig:
         Aliases:
           - !FindInMap [DomainNames, Dimes, !Ref Environment]
-        # CacheBehaviors:
-        #   - PathPattern: "/FA*"
-        #     AllowedMethods:
-        #       - "GET"
-        #       - "HEAD"
-        #     CachePolicyId: !FindInMap [Resources, CachingOptimizedPolicyId, !Ref Environment]
-        #     Compress: false
-        #     LambdaFunctionAssociations:
-        #       - EventType: viewer-request
-        #         LambdaFunctionARN: !Ref lambdaFunctionVersion
-        #     TargetOriginId: !Sub dimes-${Environment}-s3-origin
-        #     ResponseHeadersPolicyId: !FindInMap [Resources, SecurityHeadersPolicyId, !Ref Environment]
-        #     ViewerProtocolPolicy: redirect-to-https
+        CacheBehaviors:
+          - PathPattern: "/FA*"
+            AllowedMethods:
+              - "GET"
+              - "HEAD"
+            CachePolicyId: !FindInMap [Resources, CachingOptimizedPolicyId, !Ref Environment]
+            Compress: false
+            LambdaFunctionAssociations:
+              - EventType: viewer-request
+                LambdaFunctionARN: !Ref lambdaFunctionVersion
+            TargetOriginId: !Sub dimes-${Environment}-s3-origin
+            ResponseHeadersPolicyId: !FindInMap [Resources, SecurityHeadersPolicyId, !Ref Environment]
+            ViewerProtocolPolicy: redirect-to-https
         DefaultCacheBehavior:
           AllowedMethods:
             - "GET"
@@ -140,10 +140,10 @@ Resources:
         Enabled: true
         HttpVersion: http2
         IPV6Enabled: true
-        # Logging:
-        #   Bucket: !FindInMap [Resources, LoggingBucket, !Ref Environment]
-        #   IncludeCookies: true
-        #   Prefix: !Sub dimes-${Environment}
+        Logging:
+          Bucket: !FindInMap [Resources, LoggingBucket, !Ref Environment]
+          IncludeCookies: true
+          Prefix: !Sub dimes-${Environment}
         Origins:
           - Id: !Sub dimes-${Environment}-s3-origin
             DomainName: !Sub rac-${Environment}-dimes.s3.${AWS::Region}.amazonaws.com
