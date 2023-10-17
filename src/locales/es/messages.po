@@ -222,7 +222,7 @@ msgstr "<0>Por favor, añada una palabra o frase a buscar.</0>"
 #. Note to user about a cost estimate
 #: src/components/ModalMyList/index.js:494
 msgid "<0>Please note:</0> if you want a cost estimate for your order, email an archivist at <1>archive@rockarch.org</1>."
-msgstr "<0>Nota:</0> si desea una estimación del coste de su pedido, envíe un correo electrónico a un archivero a <1>archive@rockarch.org.</1>"
+msgstr "<0>Nota:</0> si desea una estimación del coste de su pedido, envíe un correo electrónico a un archivero a <1>archive@rockarch.org</1>."
 
 #. summary message
 #: src/components/PageAgent/index.js:265
@@ -319,7 +319,7 @@ msgstr "Todos los tipos"
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:159
 #: src/components/ModalMyList/index.js:232
 msgid "An email address is required."
-msgstr "Se requiere correo electrónico"
+msgstr "Se requiere correo electrónico."
 
 #. Label to apply dates shown from date range
 #: src/components/ModalSearch/index.js:80
@@ -781,7 +781,7 @@ msgstr "Ocupaciones"
 #. Name for digital matches only checkbox
 #: src/components/SearchForm/index.js:113
 msgid "online"
-msgstr "Conectado"
+msgstr "conectado"
 
 #. Tooltip for button
 #: src/components/Dropdown/index.js:72
@@ -1096,7 +1096,7 @@ msgstr "Lo sentimos, nuestro sistema no puede procesar solicitudes en este momen
 #. Page Not Found Test
 #: src/components/PageNotFound/__tests__/PageNotFound.test.js:26
 msgid "Sorry, the requested page was not found!"
-msgstr "Lo sentimos, no se ha encontrado la página solicitada"
+msgstr "Lo sentimos, no se ha encontrado la página solicitada!"
 
 #. Name for sort results input
 #: src/components/PageSearch/index.js:259
