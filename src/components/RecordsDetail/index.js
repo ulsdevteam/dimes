@@ -143,6 +143,8 @@ const RecordsDetail = props => {
     return !props.isItemLoading && isItemSaved(props.item)
   })
 
+  var [citationCopied, setCitationCopied] = useState(false)
+
   /** Set isSaved in state after item finishes loading */
   useEffect(() => {
     const saved = !props.isItemLoading && isItemSaved(props.item)
@@ -169,6 +171,12 @@ const RecordsDetail = props => {
       .join('; ')
   )
 
+  const handleCitationButtonClick = () => {
+    setCitationCopied(true)
+    setTimeout(() => {setCitationCopied(false)}, '6000')
+  }
+  
+
   return (
   <div className={classnames('records__detail', {'hidden': props.isContentShown})}>
     {props.isDesktop ? <Button
@@ -194,12 +202,22 @@ const RecordsDetail = props => {
         isSaved={isSaved}
         item={props.item}
         toggleSaved={props.toggleInList} />
-      <Trans comment='Button to copy citation text'>
+      
+        <div className='tooltip__wrapper btn--detail'>
+        {citationCopied ? 
+          (<Trans comment='Confirmation message when citation copied'>
+              <div className='tooltip tooltip--top' role='alert'>
+                Citation information copied to clipboard.
+              </div>
+            </Trans>) : 
+        null }
+        <Trans comment='Button to copy citation text'>
         <button className='btn btn--sm btn--orange btn--detail mr-10 mb-10 p-8'
-          onClick={() => {navigator.clipboard.writeText(citation)}}>
-          Copy Citation<MaterialIcon icon='edit' className='material-icon--space-before'/>
+          onClick={() => {navigator.clipboard.writeText(citation); handleCitationButtonClick()}}>
+          Cite<MaterialIcon icon='edit' className='material-icon--space-before'/>
         </button>
-      </Trans>
+        </Trans>
+      </div>
       {props.item.online &&
         <Trans comment='Buttons for online records'>
         <a className='btn btn--sm btn--orange btn--detail mr-10 mb-10 p-8'

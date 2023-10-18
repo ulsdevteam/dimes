@@ -106,7 +106,7 @@ msgid "{source, select, null {Source: Rockefeller Archive Center} other {Source:
 msgstr "{source, select, null {Source: Rockefeller Archive Center} other {Source: {source}}}"
 
 #. Message to go back to previous search
-#: src/components/RecordsDetail/index.js:184
+#: src/components/RecordsDetail/index.js:192
 msgid "<0/>Back to Search"
 msgstr "<0/>Back to Search"
 
@@ -114,6 +114,11 @@ msgstr "<0/>Back to Search"
 #: src/components/PageMyList/index.js:293
 msgid "<0/>Start a New Search"
 msgstr "<0/>Start a New Search"
+
+#. Button to copy citation text
+#: src/components/RecordsDetail/index.js:205
+#~ msgid "<0>{0}<1>Cite<2/></1></0>"
+#~ msgstr "<0>{0}<1>Cite<2/></1></0>"
 
 #. Download button for digital object
 #: src/components/PageDigitalObject/index.js:108
@@ -165,10 +170,20 @@ msgstr "<0><1>Page Not Found</1></0><2><3><4/></3><5>There was an error fetching
 msgid "<0><1>Search Results</1></0>"
 msgstr "<0><1>Search Results</1></0>"
 
+#. Confirmation message when citation copied
+#: src/components/RecordsDetail/index.js:208
+msgid "<0>Citation information copied to clipboard.</0>"
+msgstr "<0>Citation information copied to clipboard.</0>"
+
+#. Button to copy citation text
+#: src/components/RecordsDetail/index.js:214
+msgid "<0>Cite<1/></0>"
+msgstr "<0>Cite<1/></0>"
+
 #. Button to copy citation text
 #: src/components/RecordsDetail/index.js:197
-msgid "<0>Copy Citation<1/></0>"
-msgstr "<0>Copy Citation<1/></0>"
+#~ msgid "<0>Copy Citation<1/></0>"
+#~ msgstr "<0>Copy Citation<1/></0>"
 
 #. Agent note Description
 #: src/components/PageAgent/index.js:21
@@ -266,7 +281,7 @@ msgid "<0>View Online<1/></0>"
 msgstr "<0>View Online<1/></0>"
 
 #. Buttons for online records
-#: src/components/RecordsDetail/index.js:204
+#: src/components/RecordsDetail/index.js:222
 msgid "<0>View Online<1/></0><2>Download <3/></2>{0}"
 msgstr "<0>View Online<1/></0><2>Download <3/></2>{0}"
 
@@ -286,7 +301,7 @@ msgid "255 characters maximum."
 msgstr "255 characters maximum."
 
 #. About minimap message
-#: src/components/RecordsDetail/index.js:179
+#: src/components/RecordsDetail/index.js:187
 msgid "about minimap"
 msgstr "about minimap"
 
@@ -808,7 +823,7 @@ msgstr "opens email"
 #. Title message for opening an online item
 #: src/components/ModalMyList/index.js:581
 #: src/components/PageDigitalObject/index.js:112
-#: src/components/RecordsDetail/index.js:210
+#: src/components/RecordsDetail/index.js:228
 msgid "opens in a new window"
 msgstr "opens in a new window"
 
@@ -964,7 +979,7 @@ msgid "Request in Reading Room"
 msgstr "Request in Reading Room"
 
 #. Institution name for citation
-#: src/components/RecordsDetail/index.js:166
+#: src/components/RecordsDetail/index.js:168
 msgid "Rockefeller Archive Center"
 msgstr "Rockefeller Archive Center"
 
