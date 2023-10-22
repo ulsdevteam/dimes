@@ -82,6 +82,11 @@ Resources:
               - 'sts:AssumeRole'
       ManagedPolicyArns:
         - "arn:aws:iam::016161564811:policy/dimesdevbound"
+      Tags:
+        - Key: Environment
+          Value: !Ref Environment
+        - Key: Application
+          Value: dimes
 
   cloudFrontFunction:
     Type: AWS::CloudFront::Function
