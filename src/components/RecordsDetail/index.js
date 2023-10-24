@@ -164,7 +164,7 @@ const RecordsDetail = props => {
   /** Returns a citation string */
   const dates = props.item.dates && props.item.dates.map(d => d.expression).join(', ')
   const citation = (
-    [... new Set([props.item.title, dates])]
+    [...new Set([props.item.title, dates])]
       .concat(flattenObject(props.ancestors))
       .concat(t({ comment: 'Institution name for citation', message: 'Rockefeller Archive Center' }))
       .concat(window.location.origin + window.location.pathname)
