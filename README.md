@@ -29,7 +29,30 @@ To add or update reference images, edit the scenarios in `backstop.json` and run
 
 ### Translation Development
 
+DIMES is currently translated into the following languages:
+  * Chinese (Simplified)
+  * French
+  * German
+  * Italian
+  * Japanese
+  * Korean
+  * Portuguese (Brazilian)
+  * Spanish
+  * Turkish
+
 The repository includes [linguijs](https://lingui.dev/) which is an [Open-source](https://github.com/lingui/js-lingui) Internationalization Framework.  This allows you to do translation work on the UI.
+
+Lingui requires a configuration file (located in the base directory and named `lingui.config.js`). See the [official documentation](https://lingui.dev/ref/conf) for full instructions on configuration.
+
+DIMES uses a [macro implementation](https://lingui.dev/guides/message-extraction#macro-usages) for message extraction. This means that all text with a `<Trans></Trans>` block will be automatically extracted for localization files.
+
+You just update the extractions any time new translation objects or languages are found:
+
+1. If adding a new language translation, add a new directory named after the language's ISO 639-1 code to `/src/locales/`. Then add that ISO 639-1 code to the `locales` array in `lingui.config.js`.
+2. From the base directory run `npm run extract` to automatically create or update `messages.po` files in all locale directories. This will not overwrite existing message files.
+3. Perform any translations needed.
+4. From the base directory run `npm run compile`. Fix any identified compilation errors.
+5. Commit updated code to the GitHub repository.
 
 ## License
 
