@@ -14,7 +14,7 @@ const MyListSidebar = ({ duplicationRequest, readingRoomRequest }) => (
           message: 'mailto:archive@rockarch.org?subject=Scheduling a research appointment'
         })}
         title='opens email'>
-        <MaterialIcon icon='account_balance' /> Schedule a Visit
+        <MaterialIcon icon='account_balance' className='material-icon--space-after' /> Schedule a Visit
       </a>
     </Trans>
     <Button
