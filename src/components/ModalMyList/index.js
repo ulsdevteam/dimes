@@ -406,15 +406,15 @@ const ReadingRoomDateInput = ({ readingRoom }) => {
         type='date'
         defaultDate={addBusinessDays(new Date(), readingRoom?.policies[0]?.appointmentMinLeadDays || 1)}
         minDate={addBusinessDays(new Date(), readingRoom?.policies[0]?.appointmentMinLeadDays || 1)}
-        filterDate={date => readingRoom?.openHours.some(x => x.dayOfWeek === date.getDay())}
-        filterTime={date => {
+        filterDate={process.env.REACT_APP_ENABLE_READING_ROOM_SELECT ? date => readingRoom?.openHours.some(x => x.dayOfWeek === date.getDay()) : null}
+        filterTime={process.env.REACT_APP_ENABLE_READING_ROOM_SELECT ? date => {
           if (readingRoom === undefined) return false;
           const hours = readingRoom.openHours.find(x => x.dayOfWeek === date.getDay());
           return isWithinInterval(date, {
             start: parse(hours.openTime, "HH:mm:ss", date),
             end: parse(hours.closeTime, "HH:mm:ss", date),
           });
-        }}
+        } : null}
         excludeDateIntervals={readingRoom?.closures.map(closure => ({
           start: startOfDay(parseISO(closure.startDate)),
           end: startOfDay(parseISO(closure.endDate)),
@@ -432,9 +432,11 @@ export const ReadingRoomRequestModal = props => {
   const [aeonReadingRooms, setAeonReadingRooms] = useState([]);
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/reading-rooms`).then(response => {
-      setAeonReadingRooms(response.data);
-    });
+    if (process.env.REACT_APP_ENABLE_READING_ROOM_SELECT) {
+      axios.get(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/reading-rooms`).then(response => {
+        setAeonReadingRooms(response.data);
+      });
+    }
   }, []); // empty deps array means it runs once
 
   return (
@@ -455,7 +457,7 @@ export const ReadingRoomRequestModal = props => {
             comment: 'Missing Scheduled Date error',
             message: 'Please provide the date of your research visit.'
           });
-          if (!values.site) errors.site = t({
+          if (process.env.REACT_APP_ENABLE_READING_ROOM_SELECT && !values.site) errors.site = t({
             message: 'Please select a location of a reading room.'
           })
           if (!values.recaptcha) errors.recaptcha = t({
@@ -486,7 +488,7 @@ export const ReadingRoomRequestModal = props => {
             })}
             component='div'
             className='input__error' />
-          <ReadingRoomSelect readingRooms={aeonReadingRooms} />
+          {process.env.REACT_APP_ENABLE_READING_ROOM_SELECT && <ReadingRoomSelect readingRooms={aeonReadingRooms} />}
           <ReadingRoomDateInput
             readingRoom={aeonReadingRooms.find(room => room.sites[0] === values.site)} />
           <FormGroup
