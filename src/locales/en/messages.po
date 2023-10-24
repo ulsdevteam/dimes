@@ -109,7 +109,7 @@ msgid "{source, select, null {Source: Rockefeller Archive Center} other {Source:
 msgstr "{source, select, null {Source: Rockefeller Archive Center} other {Source: {source}}}"
 
 #. Message to go back to previous search
-#: src/components/RecordsDetail/index.js:166
+#: src/components/RecordsDetail/index.js:193
 msgid "<0/>Back to Search"
 msgstr "<0/>Back to Search"
 
@@ -117,6 +117,11 @@ msgstr "<0/>Back to Search"
 #: src/components/PageMyList/index.js:293
 msgid "<0/>Start a New Search"
 msgstr "<0/>Start a New Search"
+
+#. Button to copy citation text
+#: src/components/RecordsDetail/index.js:205
+#~ msgid "<0>{0}<1>Cite<2/></1></0>"
+#~ msgstr "<0>{0}<1>Cite<2/></1></0>"
 
 #. Download button for digital object
 #: src/components/PageDigitalObject/index.js:108
@@ -132,6 +137,11 @@ msgstr "<0><1/> Schedule a Visit</0>"
 #: src/components/PageDigitalObject/index.js:119
 msgid "<0><1/>Back to Item Details</0>"
 msgstr "<0><1/>Back to Item Details</0>"
+
+#. Button to copy citation text
+#: src/components/RecordsDetail/index.js:197
+#~ msgid "<0><1/>Copy Citation</0>"
+#~ msgstr "<0><1/>Copy Citation</0>"
 
 #. Social Icons Titles
 #: src/components/SocialIcons/index.js:5
@@ -162,6 +172,21 @@ msgstr "<0><1>Page Not Found</1></0><2><3><4/></3><5>There was an error fetching
 #: src/components/PageSearch/index.js:192
 msgid "<0><1>Search Results</1></0>"
 msgstr "<0><1>Search Results</1></0>"
+
+#. Confirmation message when citation copied
+#: src/components/RecordsDetail/index.js:209
+msgid "<0>Citation information copied to clipboard.</0>"
+msgstr "<0>Citation information copied to clipboard.</0>"
+
+#. Button to copy citation text
+#: src/components/RecordsDetail/index.js:215
+msgid "<0>Cite<1/></0>"
+msgstr "<0>Cite<1/></0>"
+
+#. Button to copy citation text
+#: src/components/RecordsDetail/index.js:197
+#~ msgid "<0>Copy Citation<1/></0>"
+#~ msgstr "<0>Copy Citation<1/></0>"
 
 #. Agent note Description
 #: src/components/PageAgent/index.js:21
@@ -259,7 +284,7 @@ msgid "<0>View Online<1/></0>"
 msgstr "<0>View Online<1/></0>"
 
 #. Buttons for online records
-#: src/components/RecordsDetail/index.js:180
+#: src/components/RecordsDetail/index.js:223
 msgid "<0>View Online<1/></0><2>Download <3/></2>{0}"
 msgstr "<0>View Online<1/></0><2>Download <3/></2>{0}"
 
@@ -279,7 +304,7 @@ msgid "255 characters maximum."
 msgstr "255 characters maximum."
 
 #. About minimap message
-#: src/components/RecordsDetail/index.js:161
+#: src/components/RecordsDetail/index.js:188
 msgid "about minimap"
 msgstr "about minimap"
 
@@ -553,12 +578,12 @@ msgid "Format"
 msgstr "Format"
 
 #. Panel Format message
-#: src/components/RecordsDetail/index.js:64
+#: src/components/RecordsDetail/index.js:72
 msgid "Formats"
 msgstr "Formats"
 
 #. Panel Found In message
-#: src/components/RecordsDetail/index.js:81
+#: src/components/RecordsDetail/index.js:89
 msgid "Found In"
 msgstr "Found In"
 
@@ -801,7 +826,7 @@ msgstr "opens email"
 #. Title message for opening an online item
 #: src/components/ModalMyList/index.js:581
 #: src/components/PageDigitalObject/index.js:112
-#: src/components/RecordsDetail/index.js:186
+#: src/components/RecordsDetail/index.js:229
 msgid "opens in a new window"
 msgstr "opens in a new window"
 
@@ -956,6 +981,11 @@ msgstr "Request Copies"
 msgid "Request in Reading Room"
 msgstr "Request in Reading Room"
 
+#. Institution name for citation
+#: src/components/RecordsDetail/index.js:169
+msgid "Rockefeller Archive Center"
+msgstr "Rockefeller Archive Center"
+
 #. Primary Title
 #: src/components/Footer/index.js:14
 msgid "Rockefeller<0/>Archive Center"
@@ -1087,7 +1117,7 @@ msgid "Sign in to RACcess"
 msgstr "Sign in to RACcess"
 
 #. Panel Extent Size message
-#: src/components/RecordsDetail/index.js:42
+#: src/components/RecordsDetail/index.js:50
 msgid "Size"
 msgstr "Size"
 
