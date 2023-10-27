@@ -50,42 +50,23 @@ export const MyListDropdown = ({ downloadCsv, duplicationRequest, emailList, rea
     label='Actions'
     iconBefore='settings'
     className='mylist__actions'
-    buttonClassName='btn btn--orange btn--md'
+    buttonClassName='btn btn--gold btn--md'
     listClassName='dropdown__list--orange dropdown__list--slide-down'>
       <DropdownItem
         order={1}
-        className='btn--orange btn--dropdown dropdown__item--orange'
-        label='Schedule a Visit'
-        iconBefore='account_balance'
-        href='mailto:archive@rockarch.org?subject=Scheduling a research appointment'
-        title='opens email'/>
-      <DropdownItem
-        order={2}
-        className='btn--orange btn--dropdown dropdown__item--orange'
+        className='btn--gold btn--dropdown dropdown__item--orange'
         label='Request in Reading Room'
         iconBefore='local_library'
         handleClick={readingRoomRequest}/>
       <DropdownItem
-        order={3}
-        className='btn--orange btn--dropdown dropdown__item--orange'
+        order={2}
+        className='btn--gold btn--dropdown dropdown__item--orange'
         label='Request Copies'
         iconBefore='content_copy'
         handleClick={duplicationRequest}/>
       <DropdownItem
-        order={4}
-        className='btn--orange btn--dropdown dropdown__item--orange'
-        label='Email List'
-        iconBefore='email'
-        handleClick={emailList}/>
-      <DropdownItem
-        order={5}
-        className='btn--orange btn--dropdown dropdown__item--orange'
-        label='Download as .csv'
-        iconBefore='get_app'
-        handleClick={downloadCsv}/>
-      <DropdownItem
-        order={6}
-        className='btn--orange btn--dropdown dropdown__item--orange'
+        order={3}
+        className='btn--gold btn--dropdown dropdown__item--orange'
         label='Remove All Items'
         iconBefore='delete'
         handleClick={removeAllItems}/>
