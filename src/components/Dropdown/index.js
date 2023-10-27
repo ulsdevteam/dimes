@@ -54,19 +54,19 @@ export const MyListDropdown = ({ downloadCsv, duplicationRequest, emailList, rea
     listClassName='dropdown__list--orange dropdown__list--slide-down'>
       <DropdownItem
         order={1}
-        className='btn--gold btn--dropdown dropdown__item--orange'
+        className='btn--gold btn--dropdown dropdown__item--gold'
         label='Request in Reading Room'
         iconBefore='local_library'
         handleClick={readingRoomRequest}/>
       <DropdownItem
         order={2}
-        className='btn--gold btn--dropdown dropdown__item--orange'
+        className='btn--gold btn--dropdown dropdown__item--gold'
         label='Request Copies'
         iconBefore='content_copy'
         handleClick={duplicationRequest}/>
       <DropdownItem
         order={3}
-        className='btn--gold btn--dropdown dropdown__item--orange'
+        className='btn--gold btn--dropdown dropdown__item--gold'
         label='Remove All Items'
         iconBefore='delete'
         handleClick={removeAllItems}/>
