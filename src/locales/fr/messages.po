@@ -886,7 +886,7 @@ msgstr "questions"
 #. Footer.Primary.RAC.message
 #: src/components/PrimaryLink/index.js:89
 msgid "RAC Policies"
-msgstr "Politiques des CCR"
+msgstr "Politiques des RAC"
 
 #. Reading Room Hours message
 #: src/components/Footer/index.js:42

@@ -78,12 +78,12 @@ msgstr "{hitCount, plural, one {マッチ} other {マッチ}}"
 #. Search Results header
 #: src/components/PageSearch/index.js:209
 msgid "{inProgress, select, true {Searching} other {{0, select, false {No search query entered} other {{resultsCount, plural, =0 {Sorry, there are no search results for {1}} other {Search Results for {2}}}}}}}"
-msgstr "{inProgress, select, true {検索中} その他 {{0, select, false {検索クエリが入力されていません}} その他 {{resultsCount, plural, =0 {申し訳ありませんが、{1}の検索結果はありません}} その他 {{2}の検索結果}}}}"
+msgstr "{inProgress, select, true {検索中} other {{0, select, false {検索クエリが入力されていません} other {{resultsCount, plural, =0 {申し訳ありませんが、{1}の検索結果はありません} other {{2}の検索結果}}}}}}"
 
 #. Label for Context Switcher
 #: src/components/ContextSwitcher/index.js:14
 msgid "{isContentShown, select, true {Collection Details} other {Collection Content}}"
-msgstr "{isContentShown, select, true {コレクション詳細}} その他 {コレクション内容}}"
+msgstr "{isContentShown, select, true {コレクション詳細} other {コレクション内容}}"
 
 #. Downloading label
 #: src/components/MyListExportActions/index.js:19
