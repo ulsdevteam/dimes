@@ -29,7 +29,7 @@ deploy:
   on:
     repo: RockefellerArchiveCenter/${APPLICATION_NAME}
     all_branches: true
-    condition: TRAVIS_BRANCH =~ ^(staging|production)$
+    condition: TRAVIS_BRANCH =~ ^(development|production)$
   bucket: $AWS_BUCKET_NAME
   region: us-east-1
 after_deploy:
