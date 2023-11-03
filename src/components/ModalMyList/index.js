@@ -478,7 +478,7 @@ export const ReadingRoomRequestModal = props => {
           setSubmitting(false);
         }}
       >
-      {({ errors, isSubmitting, setFieldValue, touched }) => (
+      {({ errors, isSubmitting, setFieldValue, touched, values }) => (
         <Form>
           <SubmitListInput submitList={props.submitList} />
           <ErrorMessage
