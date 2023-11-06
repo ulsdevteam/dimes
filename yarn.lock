@@ -1889,6 +1889,11 @@
     "@lingui/message-utils" "4.4.2"
     unraw "^2.0.1"
 
+"@lingui/detect-locale@^4.5.0":
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/@lingui/detect-locale/-/detect-locale-4.5.0.tgz#ebdffd056a59799a04ded68e9424f2526f9b98cb"
+  integrity sha512-yiscpMZnAi5Sih1uow6tA3hZRTef7nX8lcQmMVEyTAvDjyY4T1TDcK599Rz1HaAb1NnLGuFUqZhn0aeULLGccw==
+
 "@lingui/format-po@4.4.2":
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/@lingui/format-po/-/format-po-4.4.2.tgz#dee94ada8f86c2674b28ff797892ca9e485cfafe"
