@@ -1,6 +1,6 @@
+import { detect, fromNavigator } from "@lingui/detect-locale";
 import { I18nProvider } from '@lingui/react'
 import { i18n } from '@lingui/core'
-import { messages } from '../../locales/en/messages'
 import { messages as cnMessages } from '../../locales/cn/messages'
 import { messages as deMessages } from '../../locales/de/messages'
 import { messages as enMessages } from '../../locales/en/messages'
@@ -25,7 +25,10 @@ i18n.load({
   tr: trMessages,
 });
 
-i18n.activate('en')
+// Set language from browser.
+const DEFAULT_FALLBACK = () => "en";
+const result = detect(fromNavigator(), DEFAULT_FALLBACK).split('-')[0]
+i18n.activate(result)
 
 export const I18nApp = ({ReactComponent}) => {
   return (
