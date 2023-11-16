@@ -93,6 +93,7 @@ msgstr "{isDownloading, select, true {下载} other {下载为 .CSV}}"
 #. Label for Add List Toggle button
 #: src/components/ListToggleButton/index.js:36
 msgid "{isMobile, select, true {Add} other {Add to List}}"
+msgstr "{isMobile, select, true {添加} other {添加到列表}}"
 
 #. Label for Remove List Toggle button
 #: src/components/ListToggleButton/index.js:17
