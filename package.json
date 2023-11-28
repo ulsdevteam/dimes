@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@lingui/cli": "^4.5.0",
     "@lingui/detect-locale": "^4.5.0",
     "@lingui/macro": "^4.2.1",
     "@lingui/react": "^4.2.1",
@@ -39,6 +38,7 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@blueprintjs/core": "^4.17.6",
     "@blueprintjs/icons": "^4.14.3",
+    "@lingui/cli": "^4.2.1",
     "babel-plugin-macros": "^3.1.0"
   },
   "scripts": {
