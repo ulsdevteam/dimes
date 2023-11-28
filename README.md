@@ -46,12 +46,18 @@ Lingui requires a configuration file (located in the base directory and named `l
 
 DIMES uses a [macro implementation](https://lingui.dev/guides/message-extraction#macro-usages) for message extraction. This means that all text with a `<Trans></Trans>` block will be automatically extracted for localization files.
 
-You just update the extractions any time new translation objects or languages are found:
+You must update the extractions any time new translation objects or languages are found:
 
-1. If adding a new language translation, add a new directory named after the language's ISO 639-1 code to `/src/locales/`. Then add that ISO 639-1 code to the `locales` array in `lingui.config.js`.
-2. From the base directory run `npm run extract` to automatically create or update `messages.po` files in all locale directories. This will not overwrite existing message files.
-3. Perform any translations needed.
-4. From the base directory run `npm run compile`. Fix any identified compilation errors.
+1. If adding a new language translation, add a new directory named after the language's ISO 639-1 code to
+  `/src/locales/`. Then add that ISO 639-1 code to the `locales` array in `lingui.config.js`.
+2. Run `$ yarn lingui-extract` to extract translation strings from application code. This should be run every
+  time the HTML structure of the application changes. Failure to run this will result in translated
+  strings being presented as random numbers and letters in the built application. It will automatically generate
+  a `messages.po` file in the language's `/src/locales/` directory.
+3. Add translations to each `msgstr` line in the created messages file.
+4. Run `$ yarn lingui-compile` to compile the locale files into Javascript files which are used by the application
+  to present translated strings. This command should be run whenever changes are made to any of the
+  locale files.
 5. Commit updated code to the GitHub repository.
 
 ## License
