@@ -21,6 +21,14 @@ import { appendParams, dateString, hasAccessOrUse, noteText, noteTextByType } fr
 import { isItemSaved } from '../MyListHelpers'
 import './styles.scss'
 
+const flattenObject = (obj, flattened = []) => {
+  flattened.push(obj.title);
+  if (obj.child) {
+    flattenObject(obj.child, flattened)
+  }
+  return flattened
+}
+
 const FoundInItem = ({ className, item, params, topLevel }) => (
   <>
     <li className={className}>
@@ -135,6 +143,8 @@ const RecordsDetail = props => {
     return !props.isItemLoading && isItemSaved(props.item)
   })
 
+  var [citationCopied, setCitationCopied] = useState(false)
+
   /** Set isSaved in state after item finishes loading */
   useEffect(() => {
     const saved = !props.isItemLoading && isItemSaved(props.item)
@@ -150,6 +160,23 @@ const RecordsDetail = props => {
   const identifier = (
     props.item.uri && props.item.uri.split('/')[props.item.uri.split('/').length - 1]
   )
+
+  /** Returns a citation string */
+  const dates = props.item.dates && props.item.dates.map(d => d.expression).join(', ')
+  const citation = (
+    [...new Set([props.item.title, dates])]
+      .concat(flattenObject(props.ancestors))
+      .concat(t({ comment: 'Institution name for citation', message: 'Rockefeller Archive Center' }))
+      .concat(window.location.origin + window.location.pathname)
+      .filter(n => n)
+      .join('; ')
+  )
+
+  const handleCitationButtonClick = () => {
+    setCitationCopied(true)
+    setTimeout(() => {setCitationCopied(false)}, '6000')
+  }
+  
 
   return (
   <div className={classnames('records__detail', {'hidden': props.isContentShown})}>
@@ -176,21 +203,37 @@ const RecordsDetail = props => {
         isSaved={isSaved}
         item={props.item}
         toggleSaved={props.toggleInList} />
-        {props.item.online &&
-          <Trans comment='Buttons for online records'>
-          <a className='btn btn--sm btn--orange btn--detail mr-10 mb-10 p-8'
-            href={`${props.item.uri}/view`}>View Online<MaterialIcon icon='visibility' className='material-icon--space-before'/></a>
-          <a className='btn btn--sm btn--orange btn--detail mr-10 mb-10 p-8'
-            href={`${process.env.REACT_APP_S3_BASEURL}/pdfs/${identifier}`}
-            target='_blank'
-            title={t({ comment: 'Title message for opening an online item', message: 'opens in a new window' })}
-            rel='noopener noreferrer'
-            >Download <MaterialIcon icon='get_app' className='material-icon--space-before' /></a>
-            { props.downloadSize ?
-              <p className='panel__text'>{`Acrobat PDF, ${props.downloadSize}`}</p> :
-              <p className='panel__text'><Skeleton/></p> }
-          </Trans>
-        }
+      
+        <div className='tooltip__wrapper btn--detail'>
+        {citationCopied ? 
+          (<Trans comment='Confirmation message when citation copied'>
+              <div className='tooltip tooltip--top' role='alert'>
+                Citation information copied to clipboard.
+              </div>
+            </Trans>) : 
+        null }
+        <Trans comment='Button to copy citation text'>
+        <button className='btn btn--sm btn--orange btn--detail mr-10 mb-10 p-8'
+          onClick={() => {navigator.clipboard.writeText(citation); handleCitationButtonClick()}}>
+          Cite<MaterialIcon icon='edit' className='material-icon--space-before'/>
+        </button>
+        </Trans>
+      </div>
+      {props.item.online &&
+        <Trans comment='Buttons for online records'>
+        <a className='btn btn--sm btn--orange btn--detail mr-10 mb-10 p-8'
+          href={`${props.item.uri}/view`}>View Online<MaterialIcon icon='visibility' className='material-icon--space-before'/></a>
+        <a className='btn btn--sm btn--orange btn--detail mr-10 mb-10 p-8'
+          href={`${process.env.REACT_APP_S3_BASEURL}/pdfs/${identifier}`}
+          target='_blank'
+          title={t({ comment: 'Title message for opening an online item', message: 'opens in a new window' })}
+          rel='noopener noreferrer'
+          >Download <MaterialIcon icon='get_app' className='material-icon--space-before' /></a>
+          { props.downloadSize ?
+            <p className='panel__text'>{`Acrobat PDF, ${props.downloadSize}`}</p> :
+            <p className='panel__text'><Skeleton/></p> }
+        </Trans>
+      }
       </>
     }
     <Accordion className='accordion mt-20' preExpanded={['summary']} allowZeroExpanded={true}>
