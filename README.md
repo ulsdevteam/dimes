@@ -41,7 +41,7 @@ DIMES is currently translated into the following languages:
   * Spanish
   * Turkish
 
-The repository includes [linguijs](https://lingui.dev/) which is an [Open-source](https://github.com/lingui/js-lingui) Internationalization Framework.  This allows you to do translation work on the UI.
+The repository includes [linguijs](https://lingui.dev/) which is an [Open-source](https://github.com/lingui/js-lingui) Internationalization Framework.  This allows you to translate static UI elements into other languages.
 
 Lingui requires a configuration file (located in the base directory and named `lingui.config.js`). See the [official documentation](https://lingui.dev/ref/conf) for full instructions on configuration.
 
