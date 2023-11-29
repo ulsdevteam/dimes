@@ -30,6 +30,9 @@ msgstr "{0, plural, one {맞음} other {조회수}}"
 
 #. Current Results shown of total results
 #: src/components/PageSearch/index.js:236
+msgid "{0, select, true {{startItem} result} other {{startItem}-{endItem} of {resultsCount} results}}"
+msgstr "{0, select, true {{startItem} result} other {{startItem}-{endItem} 중 {resultsCount} 결과}}"
+
 #: src/components/PageSearch/index.js:290
 msgid "{0, select, true {{startItem}} other {{startItem}-{endItem} of {resultsCount} results}}"
 msgstr "{0, select, true {{startItem}} other {{startItem}-{endItem} 중 {resultsCount} 결과}}"
@@ -106,7 +109,7 @@ msgid "{source, select, null {Source: Rockefeller Archive Center} other {Source:
 msgstr "{source, select, null {출처: 록펠러 아카이브 센터} other {출처: {source}}}"
 
 #. Message to go back to previous search
-#: src/components/RecordsDetail/index.js:166
+#: src/components/RecordsDetail/index.js:193
 msgid "<0/>Back to Search"
 msgstr "<0/>검색으로 돌아가기"
 
@@ -159,6 +162,16 @@ msgstr "<0><1>페이지를 찾을 수 없음</1></0><2><3><4/></3><5>데이터�
 #: src/components/PageSearch/index.js:192
 msgid "<0><1>Search Results</1></0>"
 msgstr "<0><1>검색 결과</1></0>"
+
+#. Confirmation message when citation copied
+#: src/components/RecordsDetail/index.js:209
+msgid "<0>Citation information copied to clipboard.</0>"
+msgstr "<0>인용 정보가 클립보드에 복사되었습니다.</0>"
+
+#. Button to copy citation text
+#: src/components/RecordsDetail/index.js:215
+msgid "<0>Cite<1/></0>"
+msgstr "<0>인용<1/></0>"
 
 #. Agent note Description
 #: src/components/PageAgent/index.js:21
@@ -253,12 +266,12 @@ msgid "<0>View Online<1/></0>"
 msgstr "<0>온라인 보기<1/></0>"
 
 #. Buttons for online records
-#: src/components/RecordsDetail/index.js:180
+#: src/components/RecordsDetail/index.js:223
 msgid "<0>View Online<1/></0><2>Download <3/></2>{0}"
 msgstr "<0>온라인 보기<1/></0><2>다운로드 <3/></2>{0}"
 
 #. Full Company Address
-#: src/components/Footer/index.js:21
+#: src/components/Footer/index.js:23
 msgid "15 Dayton Avenue<0/>Sleepy Hollow, New York 10591"
 msgstr "15 Dayton Avenue<0/>슬리피 할로우, 뉴욕 10591"
 
@@ -273,7 +286,7 @@ msgid "255 characters maximum."
 msgstr "최대 255자."
 
 #. About minimap message
-#: src/components/RecordsDetail/index.js:161
+#: src/components/RecordsDetail/index.js:188
 msgid "about minimap"
 msgstr "미니맵 정보"
 
@@ -414,7 +427,7 @@ msgid "Confirm Remove All"
 msgstr "모두 제거 확인"
 
 #. Copyright message
-#: src/components/Footer/index.js:63
+#: src/components/Footer/index.js:65
 msgid "Copyright © Rockefeller Archive Center. All rights reserved."
 msgstr "저작권 © 록펠러 아카이브 센터. 모든 권리 보유."
 
@@ -455,7 +468,7 @@ msgid "Details under heading 1 have been updated to describe the selected record
 msgstr "제목 1 아래의 세부 정보가 {0}이라는 제목의 선택된 레코드를 설명하도록 업데이트되었습니다"
 
 #. Title displayed within the Header
-#: src/components/Header/index.js:10
+#: src/components/Header/index.js:11
 msgid "dimes.rockarch.org"
 msgstr "dimes.rockarch.org"
 
@@ -469,7 +482,7 @@ msgstr ".csv로 다운로드"
 #~ msgstr "이메일: <0/>"
 
 #. Company Email
-#: src/components/Footer/index.js:34
+#: src/components/Footer/index.js:36
 msgid "E-mail:<0/>"
 msgstr "이메일:<0/>"
 
@@ -523,7 +536,7 @@ msgid "Error submitting request"
 msgstr "요청 제출 오류"
 
 #. Company Fax
-#: src/components/Footer/index.js:31
+#: src/components/Footer/index.js:33
 msgid "Fax: (914) 631-6017"
 msgstr "팩스: (914) 631-6017"
 
@@ -546,12 +559,12 @@ msgid "Format"
 msgstr "형식"
 
 #. Panel Format message
-#: src/components/RecordsDetail/index.js:64
+#: src/components/RecordsDetail/index.js:72
 msgid "Formats"
 msgstr "형식"
 
 #. Panel Found In message
-#: src/components/RecordsDetail/index.js:81
+#: src/components/RecordsDetail/index.js:89
 msgid "Found In"
 msgstr "발견 장소"
 
@@ -598,7 +611,7 @@ msgstr "https://github.com/RockefellerArchiveCenter/data/"
 #. Link used for sign-in within Dropdown list
 #. Link used for sign-in within the Header
 #: src/components/Dropdown/index.js:151
-#: src/components/Header/index.js:22
+#: src/components/Header/index.js:23
 msgid "https://raccess.rockarch.org"
 msgstr "https://raccess.rockarch.org"
 
@@ -737,7 +750,7 @@ msgstr "미니맵"
 #~ msgstr "월요일~금요일<0/>오전 10:00~오후 5:00<1/>"
 
 #. Reading Room Actual Hours
-#: src/components/Footer/index.js:47
+#: src/components/Footer/index.js:49
 msgid "Monday-Friday<0/>9:00 a.m. to 5:00 p.m.<1/>"
 msgstr "월요일~금요일<0/>오전 9:00~오후 5:00<1/>"
 
@@ -749,7 +762,7 @@ msgstr "움직이는 이미지(MP4)"
 #. Message shown on button within Dropdown list
 #. Message shown on button within the Header
 #: src/components/Dropdown/index.js:158
-#: src/components/Header/index.js:31
+#: src/components/Header/index.js:32
 msgid "My List"
 msgstr "내 목록"
 
@@ -793,7 +806,7 @@ msgstr "이메일 열기"
 #. Title message for opening an online item
 #: src/components/ModalMyList/index.js:581
 #: src/components/PageDigitalObject/index.js:112
-#: src/components/RecordsDetail/index.js:186
+#: src/components/RecordsDetail/index.js:229
 msgid "opens in a new window"
 msgstr "새 창에서 열기"
 
@@ -808,7 +821,7 @@ msgid "People"
 msgstr "인원"
 
 #. Company Phonenumber
-#: src/components/Footer/index.js:28
+#: src/components/Footer/index.js:30
 msgid "Phone: (914) 366-6300"
 msgstr "전화: (914) 366-6300"
 
@@ -887,7 +900,7 @@ msgid "RAC Policies"
 msgstr "RAC 정책"
 
 #. Reading Room Hours message
-#: src/components/Footer/index.js:42
+#: src/components/Footer/index.js:44
 msgid "Reading Room Hours:"
 msgstr "열람실 이용 시간:"
 
@@ -948,10 +961,20 @@ msgstr "사본 요청"
 msgid "Request in Reading Room"
 msgstr "열람실에서 요청하기"
 
+#. Institution name for citation
+#: src/components/RecordsDetail/index.js:169
+msgid "Rockefeller Archive Center"
+msgstr "록펠러 아카이브 센터"
+
+#. Primary Title
+#: src/components/Footer/index.js:14
+msgid "Rockefeller<0/>Archive Center"
+msgstr "록펠러<0/>아카이브 센터"
+
 #. Primary Title
 #: src/components/Footer/index.js:12
-msgid "Rockefeller<0>Archive Center</0>"
-msgstr "록펠러 아카이브<0>센터</0>"
+#~ msgid "Rockefeller<0>Archive Center</0>"
+#~ msgstr "록펠러 아카이브<0>센터</0>"
 
 #. Shown for the user to save and close the filter
 #: src/components/ModalSearch/index.js:54
@@ -1069,12 +1092,12 @@ msgstr "디지털 매치가 있는 결과만 표시"
 
 #. Message shown on sign-in button
 #: src/components/Dropdown/index.js:146
-#: src/components/Header/index.js:26
+#: src/components/Header/index.js:27
 msgid "Sign in to RACcess"
 msgstr "RACcess에 로그인"
 
 #. Panel Extent Size message
-#: src/components/RecordsDetail/index.js:42
+#: src/components/RecordsDetail/index.js:50
 msgid "Size"
 msgstr "크기"
 
@@ -1163,7 +1186,7 @@ msgid "Take-down policy"
 msgstr "게시 중단 정책"
 
 #. Subtitle displayed within the Header
-#: src/components/Header/index.js:15
+#: src/components/Header/index.js:16
 msgid "The Online Collection and Catalog of Rockefeller Archive Center"
 msgstr "록펠러 아카이브 센터의 온라인 컬렉션 및 카탈로그"
 

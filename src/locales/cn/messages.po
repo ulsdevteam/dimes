@@ -30,6 +30,9 @@ msgstr "{0, plural, one {击中} other {击中}}"
 
 #. Current Results shown of total results
 #: src/components/PageSearch/index.js:236
+msgid "{0, select, true {{startItem} result} other {{startItem}-{endItem} of {resultsCount} results}}"
+msgstr "{0, select, true {{startItem} result} other {{startItem}-{endItem} 的 {resultsCount} 结果}}"
+
 #: src/components/PageSearch/index.js:290
 msgid "{0, select, true {{startItem}} other {{startItem}-{endItem} of {resultsCount} results}}"
 msgstr "{0, select, true {{startItem}} other {{startItem}-{endItem} 的 {resultsCount} 结果中的其他}}"
@@ -106,7 +109,7 @@ msgid "{source, select, null {Source: Rockefeller Archive Center} other {Source:
 msgstr "{source, select, null {资料来源：洛克菲勒档案中心} other {来源： {source}}}"
 
 #. Message to go back to previous search
-#: src/components/RecordsDetail/index.js:166
+#: src/components/RecordsDetail/index.js:193
 msgid "<0/>Back to Search"
 msgstr "<0/>返回搜索"
 
@@ -159,6 +162,16 @@ msgstr "<0><1>未找到页面</1></0><2><3><4/></3><5>获取数据时出现错�
 #: src/components/PageSearch/index.js:192
 msgid "<0><1>Search Results</1></0>"
 msgstr "<0><1>搜索结果</1></0>"
+
+#. Confirmation message when citation copied
+#: src/components/RecordsDetail/index.js:209
+msgid "<0>Citation information copied to clipboard.</0>"
+msgstr "<0>引用信息复制到剪贴板。</0>"
+
+#. Button to copy citation text
+#: src/components/RecordsDetail/index.js:215
+msgid "<0>Cite<1/></0>"
+msgstr "<0>引用<1/></0>"
 
 #. Agent note Description
 #: src/components/PageAgent/index.js:21
@@ -253,12 +266,12 @@ msgid "<0>View Online<1/></0>"
 msgstr "<0>在线观看<1/></0>"
 
 #. Buttons for online records
-#: src/components/RecordsDetail/index.js:180
+#: src/components/RecordsDetail/index.js:223
 msgid "<0>View Online<1/></0><2>Download <3/></2>{0}"
 msgstr "<0>在线观看<1/></0><2>下载<3/></2>{0}"
 
 #. Full Company Address
-#: src/components/Footer/index.js:21
+#: src/components/Footer/index.js:23
 msgid "15 Dayton Avenue<0/>Sleepy Hollow, New York 10591"
 msgstr "15 Dayton Avenue<0/>Sleepy Hollow, New York 10591"
 
@@ -273,7 +286,7 @@ msgid "255 characters maximum."
 msgstr "最多 255 个字符."
 
 #. About minimap message
-#: src/components/RecordsDetail/index.js:161
+#: src/components/RecordsDetail/index.js:188
 msgid "about minimap"
 msgstr "关于最小地图"
 
@@ -414,7 +427,7 @@ msgid "Confirm Remove All"
 msgstr "确认全部删除"
 
 #. Copyright message
-#: src/components/Footer/index.js:63
+#: src/components/Footer/index.js:65
 msgid "Copyright © Rockefeller Archive Center. All rights reserved."
 msgstr "洛克菲勒档案中心版权所有。保留所有权利。"
 
@@ -455,7 +468,7 @@ msgid "Details under heading 1 have been updated to describe the selected record
 msgstr "标题 1 下的详细内容已更新，以描述题为 {0} 的选定记录。"
 
 #. Title displayed within the Header
-#: src/components/Header/index.js:10
+#: src/components/Header/index.js:11
 msgid "dimes.rockarch.org"
 msgstr "dimes.rockarch.org"
 
@@ -469,7 +482,7 @@ msgstr "以 .csv 格式下载"
 #~ msgstr "电子邮件：<0/>"
 
 #. Company Email
-#: src/components/Footer/index.js:34
+#: src/components/Footer/index.js:36
 msgid "E-mail:<0/>"
 msgstr "电子邮件：<0/>"
 
@@ -523,7 +536,7 @@ msgid "Error submitting request"
 msgstr "提交申请出错"
 
 #. Company Fax
-#: src/components/Footer/index.js:31
+#: src/components/Footer/index.js:33
 msgid "Fax: (914) 631-6017"
 msgstr "传真：（914）631-6017"
 
@@ -546,12 +559,12 @@ msgid "Format"
 msgstr "格式"
 
 #. Panel Format message
-#: src/components/RecordsDetail/index.js:64
+#: src/components/RecordsDetail/index.js:72
 msgid "Formats"
 msgstr "格式"
 
 #. Panel Found In message
-#: src/components/RecordsDetail/index.js:81
+#: src/components/RecordsDetail/index.js:89
 msgid "Found In"
 msgstr "发现"
 
@@ -598,7 +611,7 @@ msgstr "https://github.com/RockefellerArchiveCenter/data/"
 #. Link used for sign-in within Dropdown list
 #. Link used for sign-in within the Header
 #: src/components/Dropdown/index.js:151
-#: src/components/Header/index.js:22
+#: src/components/Header/index.js:23
 msgid "https://raccess.rockarch.org"
 msgstr "https://raccess.rockarch.org"
 
@@ -737,7 +750,7 @@ msgstr "迷你地图"
 #~ msgstr "周一至周五<0/>上午 10:00 至下午 5:00。<1/>"
 
 #. Reading Room Actual Hours
-#: src/components/Footer/index.js:47
+#: src/components/Footer/index.js:49
 msgid "Monday-Friday<0/>9:00 a.m. to 5:00 p.m.<1/>"
 msgstr "星期一至星期五<0/>上午 9:00 至下午 5:00。<1/>"
 
@@ -749,7 +762,7 @@ msgstr "活动图像 (MP4)"
 #. Message shown on button within Dropdown list
 #. Message shown on button within the Header
 #: src/components/Dropdown/index.js:158
-#: src/components/Header/index.js:31
+#: src/components/Header/index.js:32
 msgid "My List"
 msgstr "我的列表"
 
@@ -793,7 +806,7 @@ msgstr "打开电子邮件"
 #. Title message for opening an online item
 #: src/components/ModalMyList/index.js:581
 #: src/components/PageDigitalObject/index.js:112
-#: src/components/RecordsDetail/index.js:186
+#: src/components/RecordsDetail/index.js:229
 msgid "opens in a new window"
 msgstr "在新窗口打开"
 
@@ -808,7 +821,7 @@ msgid "People"
 msgstr "人"
 
 #. Company Phonenumber
-#: src/components/Footer/index.js:28
+#: src/components/Footer/index.js:30
 msgid "Phone: (914) 366-6300"
 msgstr "电话：（914）366-6300"
 
@@ -887,7 +900,7 @@ msgid "RAC Policies"
 msgstr "RAC 政策"
 
 #. Reading Room Hours message
-#: src/components/Footer/index.js:42
+#: src/components/Footer/index.js:44
 msgid "Reading Room Hours:"
 msgstr "阅览室开放时间:"
 
@@ -948,10 +961,20 @@ msgstr "索取副本"
 msgid "Request in Reading Room"
 msgstr "在阅览室提出申请"
 
+#. Institution name for citation
+#: src/components/RecordsDetail/index.js:169
+msgid "Rockefeller Archive Center"
+msgstr "洛克菲勒档案中心"
+
+#. Primary Title
+#: src/components/Footer/index.js:14
+msgid "Rockefeller<0/>Archive Center"
+msgstr "洛克菲勒<0/>档案中心"
+
 #. Primary Title
 #: src/components/Footer/index.js:12
-msgid "Rockefeller<0>Archive Center</0>"
-msgstr "洛克菲勒档案<0>中心</0>"
+#~ msgid "Rockefeller<0>Archive Center</0>"
+#~ msgstr "洛克菲勒档案<0>中心</0>"
 
 #. Shown for the user to save and close the filter
 #: src/components/ModalSearch/index.js:54
@@ -1069,12 +1092,12 @@ msgstr "只显示数字匹配的结果"
 
 #. Message shown on sign-in button
 #: src/components/Dropdown/index.js:146
-#: src/components/Header/index.js:26
+#: src/components/Header/index.js:27
 msgid "Sign in to RACcess"
 msgstr "登录 RACcess"
 
 #. Panel Extent Size message
-#: src/components/RecordsDetail/index.js:42
+#: src/components/RecordsDetail/index.js:50
 msgid "Size"
 msgstr "大小"
 
@@ -1163,7 +1186,7 @@ msgid "Take-down policy"
 msgstr "拆除政策"
 
 #. Subtitle displayed within the Header
-#: src/components/Header/index.js:15
+#: src/components/Header/index.js:16
 msgid "The Online Collection and Catalog of Rockefeller Archive Center"
 msgstr "洛克菲勒档案中心的在线收藏和目录"
 

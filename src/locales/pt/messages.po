@@ -30,6 +30,9 @@ msgstr "{0, plural, one {sucesso} other {sucessos}}"
 
 #. Current Results shown of total results
 #: src/components/PageSearch/index.js:236
+msgid "{0, select, true {{startItem} result} other {{startItem}-{endItem} of {resultsCount} results}}"
+msgstr "{0, select, true {{startItem} result} other {{startItem}-{endItem} de {resultsCount} resultados}}"
+
 #: src/components/PageSearch/index.js:290
 msgid "{0, select, true {{startItem}} other {{startItem}-{endItem} of {resultsCount} results}}"
 msgstr "{0, select, true {{startItem}} other {{startItem}-{endItem} de {resultsCount} resultados}}"
@@ -106,7 +109,7 @@ msgid "{source, select, null {Source: Rockefeller Archive Center} other {Source:
 msgstr "{source, select, null {Fonte: Rockefeller Archive Center} other {Source: {source}}}"
 
 #. Message to go back to previous search
-#: src/components/RecordsDetail/index.js:166
+#: src/components/RecordsDetail/index.js:193
 msgid "<0/>Back to Search"
 msgstr "<0/>Voltar para a pesquisa"
 
@@ -159,6 +162,16 @@ msgstr "<0><1>Página não encontrada</1></0><2><3><4/></3><5>Ocorreu um erro ao
 #: src/components/PageSearch/index.js:192
 msgid "<0><1>Search Results</1></0>"
 msgstr "<0><1>Resultados da pesquisa</1></0>"
+
+#. Confirmation message when citation copied
+#: src/components/RecordsDetail/index.js:209
+msgid "<0>Citation information copied to clipboard.</0>"
+msgstr "<0>Informações de citação copiadas para a área de transferência.</0>"
+
+#. Button to copy citation text
+#: src/components/RecordsDetail/index.js:215
+msgid "<0>Cite<1/></0>"
+msgstr "<0>Citar<1/></0>"
 
 #. Agent note Description
 #: src/components/PageAgent/index.js:21
@@ -253,12 +266,12 @@ msgid "<0>View Online<1/></0>"
 msgstr "<0>Exibir on-line<1/></0>"
 
 #. Buttons for online records
-#: src/components/RecordsDetail/index.js:180
+#: src/components/RecordsDetail/index.js:223
 msgid "<0>View Online<1/></0><2>Download <3/></2>{0}"
 msgstr "<0>Exibir on-line<1/></0><2>Baixar <3/></2>{0}"
 
 #. Full Company Address
-#: src/components/Footer/index.js:21
+#: src/components/Footer/index.js:23
 msgid "15 Dayton Avenue<0/>Sleepy Hollow, New York 10591"
 msgstr "15 Dayton Avenue<0/>Sleepy Hollow, Nova York 10591"
 
@@ -273,7 +286,7 @@ msgid "255 characters maximum."
 msgstr "máximo de 255 caracteres."
 
 #. About minimap message
-#: src/components/RecordsDetail/index.js:161
+#: src/components/RecordsDetail/index.js:188
 msgid "about minimap"
 msgstr "sobre o minimapa"
 
@@ -414,7 +427,7 @@ msgid "Confirm Remove All"
 msgstr "Confirmar Remover tudo"
 
 #. Copyright message
-#: src/components/Footer/index.js:63
+#: src/components/Footer/index.js:65
 msgid "Copyright © Rockefeller Archive Center. All rights reserved."
 msgstr "Direitos autorais © Rockefeller Archive Center. Todos os direitos reservados."
 
@@ -455,7 +468,7 @@ msgid "Details under heading 1 have been updated to describe the selected record
 msgstr "Os detalhes do cabeçalho 1 foram atualizados para descrever os registros selecionados intitulados {0}"
 
 #. Title displayed within the Header
-#: src/components/Header/index.js:10
+#: src/components/Header/index.js:11
 msgid "dimes.rockarch.org"
 msgstr "dimes.rockarch.org"
 
@@ -469,7 +482,7 @@ msgstr "Baixar como .csv"
 #~ msgstr "E-mail: <0/>"
 
 #. Company Email
-#: src/components/Footer/index.js:34
+#: src/components/Footer/index.js:36
 msgid "E-mail:<0/>"
 msgstr "E-mail:<0/>"
 
@@ -523,7 +536,7 @@ msgid "Error submitting request"
 msgstr "Erro ao enviar solicitação"
 
 #. Company Fax
-#: src/components/Footer/index.js:31
+#: src/components/Footer/index.js:33
 msgid "Fax: (914) 631-6017"
 msgstr "Fax: (914) 631-6017"
 
@@ -546,12 +559,12 @@ msgid "Format"
 msgstr "Formato"
 
 #. Panel Format message
-#: src/components/RecordsDetail/index.js:64
+#: src/components/RecordsDetail/index.js:72
 msgid "Formats"
 msgstr "Formatos"
 
 #. Panel Found In message
-#: src/components/RecordsDetail/index.js:81
+#: src/components/RecordsDetail/index.js:89
 msgid "Found In"
 msgstr "Encontrado em"
 
@@ -598,7 +611,7 @@ msgstr "https://github.com/RockefellerArchiveCenter/data/"
 #. Link used for sign-in within Dropdown list
 #. Link used for sign-in within the Header
 #: src/components/Dropdown/index.js:151
-#: src/components/Header/index.js:22
+#: src/components/Header/index.js:23
 msgid "https://raccess.rockarch.org"
 msgstr "https://raccess.rockarch.org"
 
@@ -737,7 +750,7 @@ msgstr "Minimapa"
 #~ msgstr "Monday-Friday<0/>10:00 a.m. to 5:00 p.m.<1/>"
 
 #. Reading Room Actual Hours
-#: src/components/Footer/index.js:47
+#: src/components/Footer/index.js:49
 msgid "Monday-Friday<0/>9:00 a.m. to 5:00 p.m.<1/>"
 msgstr "Segunda-feira a sexta-feira<0/>9:00 a.m. a 5:00 p.m.<1/>"
 
@@ -749,7 +762,7 @@ msgstr "Imagem em movimento (MP4)"
 #. Message shown on button within Dropdown list
 #. Message shown on button within the Header
 #: src/components/Dropdown/index.js:158
-#: src/components/Header/index.js:31
+#: src/components/Header/index.js:32
 msgid "My List"
 msgstr "Minha lista"
 
@@ -793,7 +806,7 @@ msgstr "abre o e-mail"
 #. Title message for opening an online item
 #: src/components/ModalMyList/index.js:581
 #: src/components/PageDigitalObject/index.js:112
-#: src/components/RecordsDetail/index.js:186
+#: src/components/RecordsDetail/index.js:229
 msgid "opens in a new window"
 msgstr "abre numa nova janela"
 
@@ -808,7 +821,7 @@ msgid "People"
 msgstr "Pessoas"
 
 #. Company Phonenumber
-#: src/components/Footer/index.js:28
+#: src/components/Footer/index.js:30
 msgid "Phone: (914) 366-6300"
 msgstr "Telefone: (914) 366-6300"
 
@@ -887,7 +900,7 @@ msgid "RAC Policies"
 msgstr "Políticas do RAC"
 
 #. Reading Room Hours message
-#: src/components/Footer/index.js:42
+#: src/components/Footer/index.js:44
 msgid "Reading Room Hours:"
 msgstr "Horário da sala de leitura:"
 
@@ -948,10 +961,20 @@ msgstr "Solicitar cópias"
 msgid "Request in Reading Room"
 msgstr "Solicitação na sala de leitura"
 
+#. Institution name for citation
+#: src/components/RecordsDetail/index.js:169
+msgid "Rockefeller Archive Center"
+msgstr "Rockefeller Archive Center"
+
+#. Primary Title
+#: src/components/Footer/index.js:14
+msgid "Rockefeller<0/>Archive Center"
+msgstr "Rockefeller<0/>Archive Center"
+
 #. Primary Title
 #: src/components/Footer/index.js:12
-msgid "Rockefeller<0>Archive Center</0>"
-msgstr "RockefellerArchive<0>Center</0>"
+#~ msgid "Rockefeller<0>Archive Center</0>"
+#~ msgstr "RockefellerArchive<0>Center</0>"
 
 #. Shown for the user to save and close the filter
 #: src/components/ModalSearch/index.js:54
@@ -1069,12 +1092,12 @@ msgstr "Mostrar apenas resultados com correspondências digitais"
 
 #. Message shown on sign-in button
 #: src/components/Dropdown/index.js:146
-#: src/components/Header/index.js:26
+#: src/components/Header/index.js:27
 msgid "Sign in to RACcess"
 msgstr "Fazer login no RACcess"
 
 #. Panel Extent Size message
-#: src/components/RecordsDetail/index.js:42
+#: src/components/RecordsDetail/index.js:50
 msgid "Size"
 msgstr "Tamanho"
 
@@ -1163,7 +1186,7 @@ msgid "Take-down policy"
 msgstr "Política de retirada"
 
 #. Subtitle displayed within the Header
-#: src/components/Header/index.js:15
+#: src/components/Header/index.js:16
 msgid "The Online Collection and Catalog of Rockefeller Archive Center"
 msgstr "A coleção e o catálogo on-line do Rockefeller Archive Center"
 
