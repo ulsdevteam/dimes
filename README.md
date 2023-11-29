@@ -53,7 +53,7 @@ You must update the extractions any time new translation objects or languages ar
   `/src/locales/`. Then add that ISO 639-1 code to the `locales` array in `lingui.config.js`.
 2. Run `$ yarn lingui-extract` to extract translation strings from application code. This should be run every
   time the HTML structure of the application changes. Failure to run this will result in translated
-  strings being presented as random numbers and letters in the built application. It will automatically generate
+  strings being presented as random numbers and letters in the built application. This command will automatically generate
   a `messages.po` file in the language's `/src/locales/` directory.
 3. Add translations to each `msgstr` line in the created messages file.
 4. Run `$ yarn lingui-compile` to compile the locale files into Javascript files which are used by the application
