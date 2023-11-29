@@ -47,8 +47,6 @@ Lingui requires a configuration file (located in the base directory and named `l
 
 DIMES uses a [macro implementation](https://lingui.dev/guides/message-extraction#macro-usages) for message extraction. This means that all text with a `<Trans></Trans>` block will be automatically extracted for localization files.
 
-You must update files used by lingui any time new translation objects or languages are found:
-
 #### Adding a new language
 
 1. If adding a new language translation, add a new directory named after the language's ISO 639-1 code to
