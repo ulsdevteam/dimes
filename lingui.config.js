@@ -2,6 +2,9 @@
 module.exports = {
 	locales: ["de", "en", "es", "fr", "it", "ja", "ko", "pt", "tr", "zh"],
 	sourceLocale: "en",
+	fallbackLocales: {
+		"default": "en"
+	},
 	catalogs: [{
 		path: "src/locales/{locale}/messages",
 		include: ["src"],
