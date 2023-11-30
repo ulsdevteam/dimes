@@ -1,7 +1,6 @@
 import { detect, fromNavigator } from "@lingui/detect-locale";
 import { I18nProvider } from '@lingui/react'
 import { i18n } from '@lingui/core'
-import { messages as cnMessages } from '../../locales/cn/messages'
 import { messages as deMessages } from '../../locales/de/messages'
 import { messages as enMessages } from '../../locales/en/messages'
 import { messages as esMessages } from '../../locales/es/messages'
@@ -11,9 +10,9 @@ import { messages as jaMessages } from '../../locales/ja/messages'
 import { messages as koMessages } from '../../locales/ko/messages'
 import { messages as ptMessages } from '../../locales/pt/messages'
 import { messages as trMessages } from '../../locales/tr/messages'
+import { messages as zhMessages } from '../../locales/zh/messages'
 
 i18n.load({
-  cn: cnMessages,
   de: deMessages,
   en: enMessages,
   es: esMessages,
@@ -23,6 +22,7 @@ i18n.load({
   ko: koMessages,
   pt: ptMessages,
   tr: trMessages,
+  zh: zhMessages,
 });
 
 // Set language from browser.
