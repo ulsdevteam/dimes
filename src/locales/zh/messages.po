@@ -21,7 +21,7 @@ msgstr "{0, plural, =0 {已选择：0 个项目} other {已选择：{1}}}"
 #. Filter results message
 #: src/components/ModalSearch/index.js:44
 msgid "{0, plural, one {Filter # Search Result} other {Filter # Search Results}}"
-msgstr "{0, plural, one {过滤器 #搜索结果} other {过滤器 #搜索结果}}"
+msgstr "{0, plural, one {过滤后的#搜索结果} other {过滤后的#搜索结果}}"
 
 #. Pluralization of hit(s) for minimap boxes
 #: src/components/Minimap/index.js:49
@@ -31,11 +31,11 @@ msgstr "{0, plural, one {击中} other {击中}}"
 #. Current Results shown of total results
 #: src/components/PageSearch/index.js:236
 msgid "{0, select, true {{startItem} result} other {{startItem}-{endItem} of {resultsCount} results}}"
-msgstr "{0, select, true {{startItem} result} other {{startItem}-{endItem} 的 {resultsCount} 结果}}"
+msgstr "{0, select, true {{startItem} result} other {{startItem}-{endItem} 的 {resultsCount} 搜索结果}}"
 
 #: src/components/PageSearch/index.js:290
 msgid "{0, select, true {{startItem}} other {{startItem}-{endItem} of {resultsCount} results}}"
-msgstr "{0, select, true {{startItem}} other {{startItem}-{endItem} 的 {resultsCount} 结果中的其他}}"
+msgstr "{0, select, true {{startItem}} other {{startItem}-{endItem} 的 {resultsCount} 搜索结果}}"
 
 #. Minimap header
 #: src/components/ModalMinimap/index.js:31
@@ -71,7 +71,7 @@ msgstr "{deselect, select, true {取消选择所有项目} other {选择所有�
 #. Pluralization of digital match(es)
 #: src/components/Helpers.js:61
 msgid "{hitCount, plural, one {digital match} other {digital matches}}"
-msgstr "{hitCount, plural, one {数字匹配} other {数字匹配}}"
+msgstr "{hitCount, plural, one {项匹配的数字化内容 } other {项匹配的数字化内容 }}"
 
 #. Pluralization of match(es)
 #: src/components/Helpers.js:57
@@ -81,12 +81,12 @@ msgstr "{hitCount, plural, one {匹配} other {匹配}}"
 #. Search Results header
 #: src/components/PageSearch/index.js:209
 msgid "{inProgress, select, true {Searching} other {{0, select, false {No search query entered} other {{resultsCount, plural, =0 {Sorry, there are no search results for {1}} other {Search Results for {2}}}}}}}"
-msgstr "{inProgress, select, true {搜寻中} other {{0, select, false {没有输入搜索查询} other {{resultsCount, plural, =0 {很抱歉，没有搜索结果 {1}} other {搜索结果 {2}}}}}}}"
+msgstr "{inProgress, select, true {搜寻中} other {{0, select, false {没有输入搜索查询} other {{resultsCount, plural, =0 {很抱歉，没有找到相应的搜索结果 {1}} other {的搜索结果 {2}}}}}}}"
 
 #. Label for Context Switcher
 #: src/components/ContextSwitcher/index.js:14
 msgid "{isContentShown, select, true {Collection Details} other {Collection Content}}"
-msgstr "{isContentShown, select, true {收藏细节} other {收藏内容}}."
+msgstr "{isContentShown, select, true {收藏细节} other {收藏内容目录}}."
 
 #. Downloading label
 #: src/components/MyListExportActions/index.js:19
@@ -126,7 +126,7 @@ msgstr "<0><1/> 下载</0>"
 #. Schedule a visit button
 #: src/components/MyListSidebar/index.js:9
 msgid "<0><1/> Schedule a Visit</0>"
-msgstr "<0><1/> 预约参观</0>"
+msgstr "<0><1/> 到访预约</0>"
 
 #. Go back to Item details for digital object
 #: src/components/PageDigitalObject/index.js:119
@@ -141,7 +141,7 @@ msgstr "<0><1><2><3><4>Twitter 徽标</4><5/></3></2></1><6><7><8><9>Facebook �
 #. Page Title for user's list
 #: src/components/PageMyList/index.js:284
 msgid "<0><1>DIMES: My List</1></0>"
-msgstr "<0><1>DIMES：我的清单</1></0>"
+msgstr "<0><1>DIMES：我的收藏目录</1></0>"
 
 #. Page Home
 #: src/components/PageHome/index.js:10
@@ -176,16 +176,16 @@ msgstr "<0>引用<1/></0>"
 #. Agent note Description
 #: src/components/PageAgent/index.js:21
 msgid "<0>Description</0>"
-msgstr "<0>说明</0>"
+msgstr "<0>背景说明</0>"
 
 #. Page Title for user's list
 #~ msgid "<0>DIMES: My List</0>"
-#~ msgstr "<0>DIMES：我的清单</0>"
+#~ msgstr "<0>DIMES：我的收藏目录</0>"
 
 #. Saved item found in message
 #: src/components/SavedItem/index.js:17
 msgid "<0>Found in: <1>{0}</1></0>"
-msgstr "<0>找到了 <1>{0}</1></0>"
+msgstr "<0>源自: <1>{0}</1></0>"
 
 #. Search not found tips
 #: src/components/SearchNotFound/index.js:19
@@ -225,7 +225,7 @@ msgstr "<0>更多相关信息{agentType}</0>"
 #. Header for user's list
 #: src/components/PageMyList/index.js:299
 msgid "<0>My List</0>"
-msgstr "<0>我的清单</0>"
+msgstr "<0>我的收藏目录</0>"
 
 #. No search terms supplied message
 #: src/components/SearchNotFound/index.js:42
@@ -235,7 +235,7 @@ msgstr "<0>请添加要搜索的单词或短语。</0>"
 #. Note to user about a cost estimate
 #: src/components/ModalMyList/index.js:494
 msgid "<0>Please note:</0> if you want a cost estimate for your order, email an archivist at <1>archive@rockarch.org</1>."
-msgstr "<0>请注意：</0>如果您想获得订单的成本估算，请发送电子邮件至<1>archive@rockarch.org</1> 联系档案管理员."
+msgstr "<0>请注意：</0>如果您想获得订单的费用估价，请发送电子邮件至<1>archive@rockarch.org</1> 联系档案管理员."
 
 #. summary message
 #: src/components/PageAgent/index.js:265
@@ -245,7 +245,7 @@ msgstr "<0>摘要</0>"
 #. The introduction for minimaps.
 #: src/components/ModalMinimap/index.js:15
 msgid "<0>The minimap is a new feature that allows you to quickly jump to search matches in a collection by clicking on an active square.</0><1>In the minimap diagram, each square represents part of this collection. Colored squares represent parts that contain one or more matches for your search.</1>"
-msgstr "<0>小地图是一项新功能，可让您通过单击活动方格快速跳转到集合中的搜索匹配项。</0><1>在缩略图中，每个方格都代表此收藏集的一部分。彩色方格代表包含一个或多个搜索匹配项的部分。</1>"
+msgstr "<0>点击活动方格，跳转到所匹配的专辑的一项内容。</0><1>在微缩位置图中，每个方格代表该专辑的一个内容。彩色方格代表包含一个或多个符合搜索条件的内容。</1>"
 
 #. Message for showing an error for a request
 #: src/components/PageMyList/index.js:131
@@ -254,21 +254,21 @@ msgstr "<0>提交请求时出现错误。</0><1>请求{0} 失败，显示信息{
 
 #. View Saved Item online
 #~ msgid "<0>View Online <1/></0>"
-#~ msgstr "<0>在线观看<1/></0>"
+#~ msgstr "<0>在线阅读<1/></0>"
 
 #. Buttons for online records
 #~ msgid "<0>View Online <1/></0><2>Download <3/></2>{0}"
-#~ msgstr "<0>在线观看<1/></0><2>下载<3/></2>{0}"
+#~ msgstr "<0>在线阅读<1/></0><2>下载<3/></2>{0}"
 
 #. View Saved Item online
 #: src/components/SavedItem/index.js:22
 msgid "<0>View Online<1/></0>"
-msgstr "<0>在线观看<1/></0>"
+msgstr "<0>在线阅读<1/></0>"
 
 #. Buttons for online records
 #: src/components/RecordsDetail/index.js:223
 msgid "<0>View Online<1/></0><2>Download <3/></2>{0}"
-msgstr "<0>在线观看<1/></0><2>下载<3/></2>{0}"
+msgstr "<0>在线阅读<1/></0><2>下载<3/></2>{0}"
 
 #. Full Company Address
 #: src/components/Footer/index.js:23
@@ -288,7 +288,7 @@ msgstr "最多 255 个字符."
 #. About minimap message
 #: src/components/RecordsDetail/index.js:188
 msgid "about minimap"
-msgstr "关于最小地图"
+msgstr "关于微缩位置图"
 
 #. Accessibility Statement message
 #: src/components/PrimaryLink/index.js:63
@@ -399,7 +399,7 @@ msgstr "关闭"
 #: src/components/ContextSwitcher/__tests__/ContextSwitcher.test.js:20
 #: src/components/RecordsContent/index.js:405
 msgid "Collection Content"
-msgstr "收藏内容"
+msgstr "收藏内容目录"
 
 #. switcher label text content
 #: src/components/ContextSwitcher/__tests__/ContextSwitcher.test.js:32
@@ -556,7 +556,7 @@ msgstr "格式"
 #: src/components/ModalMyList/index.js:73
 #: src/components/ModalSearch/index.js:87
 msgid "Format"
-msgstr "格式"
+msgstr "规格"
 
 #. Panel Format message
 #: src/components/RecordsDetail/index.js:72
@@ -566,12 +566,12 @@ msgstr "格式"
 #. Panel Found In message
 #: src/components/RecordsDetail/index.js:89
 msgid "Found In"
-msgstr "发现"
+msgstr "出处"
 
 #. Found In Test
 #: src/components/SavedItem/__tests__/SavedItem.test.js:38
 msgid "Found in:"
-msgstr "在以下位置找到:"
+msgstr "源自:"
 
 #. Founded by property
 #: src/components/PageAgent/index.js:194
@@ -734,7 +734,7 @@ msgstr "信息"
 #: src/components/ModalMyList/index.js:420
 #: src/components/ModalMyList/index.js:563
 msgid "Message for RAC staff"
-msgstr "给康复咨询中心工作人员的信息"
+msgstr "给洛克菲勒档案中心的档案管理员留言"
 
 #. Header for minimap
 #. Aria label for Minimap nav
@@ -959,7 +959,7 @@ msgstr "索取副本"
 #: src/components/Dropdown/index.js:79
 #: src/components/MyListSidebar/index.js:22
 msgid "Request in Reading Room"
-msgstr "在阅览室提出申请"
+msgstr "请求在阅览室阅读"
 
 #. Institution name for citation
 #: src/components/RecordsDetail/index.js:169
@@ -984,19 +984,19 @@ msgstr "保存并关闭"
 #. Message shown on button within Dropdown list
 #: src/components/Dropdown/index.js:65
 msgid "Schedule a Visit"
-msgstr "预约参观"
+msgstr "到访预约"
 
 #. Scheduled Date Modal Form Test
 #. Label for scheduling date
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:184
 #: src/components/ModalMyList/index.js:405
 msgid "Scheduled Date *"
-msgstr "预定日期 *"
+msgstr "计划来访日期 *"
 
 #. Name for scheduling date error
 #: src/components/ModalMyList/index.js:412
 msgid "scheduledDate"
-msgstr "预定日期"
+msgstr "计划来访日期"
 
 #. Label for Search button
 #: src/components/SearchForm/index.js:78
@@ -1011,7 +1011,7 @@ msgstr "搜索更多相关收藏"
 #. Message shown within the Hero
 #: src/components/Hero/index.js:11
 msgid "Search Our Collections.<0/>Discover People and Organizations.<1/>Access Digital Content."
-msgstr "搜索我们的馆藏。<0/>发现人物和组织。<1/>访问数字内容。"
+msgstr "探索我们的馆藏。<0/>发现历史人物和组织。<1/>访问数字化内容。"
 
 #. Page Home Test
 #: src/components/PageHome/__tests__/PageHome.test.js:26
@@ -1088,7 +1088,7 @@ msgstr "显示较少"
 #. Label for digital matches only checkbox
 #: src/components/SearchForm/index.js:122
 msgid "Show only results with digital matches"
-msgstr "只显示数字匹配的结果"
+msgstr "只显示与所搜寻的内容相匹配的数字化结果"
 
 #. Message shown on sign-in button
 #: src/components/Dropdown/index.js:146
