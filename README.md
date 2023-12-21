@@ -32,6 +32,10 @@ To add or update reference images, edit the scenarios in `backstop.json` and run
 
 The repository includes [linguijs](https://lingui.dev/) which is an [Open-source](https://github.com/lingui/js-lingui) Internationalization Framework.  This allows you to do translation work on the UI.
 
+### Aeon Reading Room Integration
+
+Available dates for reading rooms can be pulled from Aeon via the request broker by setting the `REACT_APP_ENABLE_READING_ROOM_SELECT` environment variable. Not setting this environment variable or leaving it blank will disable this feature.
+
 ## License
 
 This code is released under an [MIT License](LICENSE).
