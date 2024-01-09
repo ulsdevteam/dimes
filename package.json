@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@lingui/detect-locale": "^4.5.0",
     "@lingui/macro": "^4.2.1",
     "@lingui/react": "^4.2.1",
     "@reecelucas/react-datepicker": "^2.0.0",
@@ -39,7 +40,7 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@blueprintjs/core": "^4.17.6",
     "@blueprintjs/icons": "^4.14.3",
-    "@lingui/cli": "^4.2.1",
+    "@lingui/cli": "^4.5.0",
     "babel-plugin-macros": "^3.1.0"
   },
   "scripts": {
@@ -50,8 +51,8 @@
     "backstop-reference": "backstop reference --docker",
     "backstop-test": "backstop test --docker",
     "backstop-approve": "backstop approve",
-    "extract": "lingui extract",
-    "compile": "lingui compile"
+    "lingui-extract": "lingui extract",
+    "lingui-compile": "lingui compile"
   },
   "eslintConfig": {
     "extends": "react-app"
