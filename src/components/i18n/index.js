@@ -26,13 +26,14 @@ i18n.load({
 });
 
 // Set language from browser.
-const DEFAULT_FALLBACK = () => "en";
-const MESSAGES_LOADED = Object.keys(i18n._messages)
-let result = detect(fromNavigator(), DEFAULT_FALLBACK).split('-')[0]
-if (!MESSAGES_LOADED.includes(result)) {
-  result = DEFAULT_FALLBACK()
-}
-i18n.activate(result, '')
+// const DEFAULT_FALLBACK = () => "en";
+// const MESSAGES_LOADED = Object.keys(i18n._messages)
+// let result = detect(fromNavigator(), DEFAULT_FALLBACK).split('-')[0]
+// if (!MESSAGES_LOADED.includes(result)) {
+//   result = DEFAULT_FALLBACK()
+//}
+// i18n.activate(result, '')
+i18n.activate('en')
 
 export const I18nApp = ({ReactComponent}) => {
   return (
