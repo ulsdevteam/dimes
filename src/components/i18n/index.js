@@ -1,4 +1,4 @@
-import { detect, fromNavigator } from "@lingui/detect-locale";
+// import { detect, fromNavigator } from "@lingui/detect-locale";
 import { I18nProvider } from '@lingui/react'
 import { i18n } from '@lingui/core'
 import { messages as deMessages } from '../../locales/de/messages'
