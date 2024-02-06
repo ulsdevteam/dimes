@@ -224,114 +224,121 @@ export const EmailModal = props => (
     toggleModal={props.toggleModal}
     list={props.list}
     form={
-      <Formik
-        initialValues={{email: '', subject: '', message: '', items: props.submitList, recaptcha: ''}}
-        validate={values => {
-          const errors = {};
-          if (!values.email) {
-            errors.email = t({
-              comment: 'Missing email address error',
-              message: 'An email address is required.'
+      <>
+        <div className='mb-20'>
+            <Trans comment='Note to user about a cost estimate'>
+              <strong>Please note:</strong> if are emailing your list to an archivist at <a href={t({message: 'mailto:archive@rockarch.org'})}>archive@rockarch.org</a>, please include your name and email address in the Message field, otherwise we will have no means of contacting you to follow-up.
+            </Trans>
+          </div>
+        <Formik
+          initialValues={{email: '', subject: '', message: '', items: props.submitList, recaptcha: ''}}
+          validate={values => {
+            const errors = {};
+            if (!values.email) {
+              errors.email = t({
+                comment: 'Missing email address error',
+                message: 'An email address is required.'
+              });
+            } else if (
+              !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+            ) {
+              errors.email = t({
+                comment: 'Invalid email error',
+                message: 'Invalid email address provided.'
+              });
+            }
+            if (!values.recaptcha) errors.recaptcha = t({
+              comment: 'Captcha not completed error',
+              message: 'Please complete this field.'
             });
-          } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          ) {
-            errors.email = t({
-              comment: 'Invalid email error',
-              message: 'Invalid email address provided.'
-            });
-          }
-          if (!values.recaptcha) errors.recaptcha = t({
-            comment: 'Captcha not completed error',
-            message: 'Please complete this field.'
-          });
-          if (!values.items.length) errors.items = t({
-            comment: 'No selected items error',
-            message: 'No items have been selected to submit.'
-          })
-          return errors;
-        }}
-        onSubmit={(values, { setSubmitting }) => {
-          props.toggleModal()
-          props.handleFormSubmit(
-            `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/deliver-request/email`,
-            values);
-          setSubmitting(false);
-        }}
-      >
-      {({ errors, isSubmitting, setFieldValue, touched }) => (
-        <Form>
-          <SubmitListInput submitList={props.submitList} />
-          <ErrorMessage
-            id='items-error'
-              name={t({
-                comment: 'Name of items error message',
-                message: 'items'
-              })}
-            component='div'
-            className='input__error' />
-          <FormGroup
-            label={t({
-              comment: 'Label of Email Form',
-              message: 'Email *'
-            })}
-            name={t({
-              comment: 'Name of email form',
-              message: 'email'
-            })}
-            type='email'
-            required={true}
-            errors={errors}
-            touched={touched} />
-          <FormGroup
-            label={t({
-              comment: 'Label of Subject Form',
-              message: 'Subject'
-            })}
-            name={t({
-              comment: 'Name of subject form',
-              message: 'subject'
-            })}
-            type='text' />
-          <FormGroup
-            label={t({
-              comment: 'Label of Message Form',
-              message: 'Message'
-            })}
-            name={t({
-              comment: 'Name of message form',
-              message: 'message'
-            })}
-            component='textarea'
-            rows={5} />
-          <div className='form-group mx-0'>
-            <Field
-              component={Captcha}
-              name={t({
-                comment: 'Name of recaptcha element',
-                message: 'recaptcha'
-              })}
-              handleCaptchaChange={(response) => setFieldValue('recaptcha', response)} />
+            if (!values.items.length) errors.items = t({
+              comment: 'No selected items error',
+              message: 'No items have been selected to submit.'
+            })
+            return errors;
+          }}
+          onSubmit={(values, { setSubmitting }) => {
+            props.toggleModal()
+            props.handleFormSubmit(
+              `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/deliver-request/email`,
+              values);
+            setSubmitting(false);
+          }}
+        >
+        {({ errors, isSubmitting, setFieldValue, touched }) => (
+          <Form>
+            <SubmitListInput submitList={props.submitList} />
             <ErrorMessage
-              id='recaptcha-error'
-              name={t({
-                comment: 'Name of recaptcha error message',
-                message: 'recaptcha'
-              })}
+              id='items-error'
+                name={t({
+                  comment: 'Name of items error message',
+                  message: 'items'
+                })}
               component='div'
               className='input__error' />
-          </div>
-          <FormButtons
-            submitText={t({
-              comment: 'Send List sumbit message',
-              message: 'Send List'
-            })}
-            toggleModal={props.toggleModal}
-            isSubmitting={isSubmitting} />
-          <FocusError />
-        </Form>
-      )}
-      </Formik>
+            <FormGroup
+              label={t({
+                comment: 'Label of Email Form',
+                message: 'Email *'
+              })}
+              name={t({
+                comment: 'Name of email form',
+                message: 'email'
+              })}
+              type='email'
+              required={true}
+              errors={errors}
+              touched={touched} />
+            <FormGroup
+              label={t({
+                comment: 'Label of Subject Form',
+                message: 'Subject'
+              })}
+              name={t({
+                comment: 'Name of subject form',
+                message: 'subject'
+              })}
+              type='text' />
+            <FormGroup
+              label={t({
+                comment: 'Label of Message Form',
+                message: 'Message'
+              })}
+              name={t({
+                comment: 'Name of message form',
+                message: 'message'
+              })}
+              component='textarea'
+              rows={5} />
+            <div className='form-group mx-0'>
+              <Field
+                component={Captcha}
+                name={t({
+                  comment: 'Name of recaptcha element',
+                  message: 'recaptcha'
+                })}
+                handleCaptchaChange={(response) => setFieldValue('recaptcha', response)} />
+              <ErrorMessage
+                id='recaptcha-error'
+                name={t({
+                  comment: 'Name of recaptcha error message',
+                  message: 'recaptcha'
+                })}
+                component='div'
+                className='input__error' />
+            </div>
+            <FormButtons
+              submitText={t({
+                comment: 'Send List sumbit message',
+                message: 'Send List'
+              })}
+              toggleModal={props.toggleModal}
+              isSubmitting={isSubmitting} />
+            <FocusError />
+          </Form>
+        )}
+        </Formik>
+      </>
     }
   />
 )
@@ -498,12 +505,6 @@ export const DuplicationRequestModal = props => (
         <Formik
           initialValues={{
             format: '',
-            description: t({
-              comment: 'Initial description',
-              message: 'Entire folder'
-            }),
-            questions: '',
-            notes: '',
             costs: false,
             items: props.submitList,
             recaptcha: ''}}
@@ -544,35 +545,6 @@ export const DuplicationRequestModal = props => (
               component='div'
               className='input__error' />
             <FormatSelectInput />
-            <FormGroup
-                label={t({
-                  comment: 'Label for Description of Materials Form',
-                  message: 'Description of Materials'
-                })}
-                helpText={t({
-                  comment: 'Helptext for description of materials Form',
-                  message: 'Please describe the materials you want reproduced. 255 characters maximum.'
-                })}
-                name={t({
-                  message: 'description'
-                })}
-              maxLength={255}
-              component='textarea'
-              rows={5} />
-            <FormGroup
-                label={t({
-                  message: 'Message for RAC staff'
-                })}
-                helpText={t({
-                  comment: 'Helptext for RAC staff message',
-                  message: '255 characters maximum.'
-                })}
-              maxLength={255}
-                name={t({
-                  message: 'questions'
-                })}
-              component='textarea'
-              rows={5} />
             <FormGroup
               label={<Trans comment='Label for duplicate request form'>
                 I agree to pay the duplication costs for this request. See our&nbsp;
