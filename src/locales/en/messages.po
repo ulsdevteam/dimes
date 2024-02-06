@@ -118,11 +118,6 @@ msgstr "<0/>Back to Search"
 msgid "<0/>Start a New Search"
 msgstr "<0/>Start a New Search"
 
-#. Button to copy citation text
-#: src/components/RecordsDetail/index.js:205
-#~ msgid "<0>{0}<1>Cite<2/></1></0>"
-#~ msgstr "<0>{0}<1>Cite<2/></1></0>"
-
 #. Download button for digital object
 #: src/components/PageDigitalObject/index.js:108
 msgid "<0><1/> Download</0>"
@@ -137,11 +132,6 @@ msgstr "<0><1/> Schedule a Visit</0>"
 #: src/components/PageDigitalObject/index.js:119
 msgid "<0><1/>Back to Item Details</0>"
 msgstr "<0><1/>Back to Item Details</0>"
-
-#. Button to copy citation text
-#: src/components/RecordsDetail/index.js:197
-#~ msgid "<0><1/>Copy Citation</0>"
-#~ msgstr "<0><1/>Copy Citation</0>"
 
 #. Social Icons Titles
 #: src/components/SocialIcons/index.js:5
@@ -183,20 +173,10 @@ msgstr "<0>Citation information copied to clipboard.</0>"
 msgid "<0>Cite<1/></0>"
 msgstr "<0>Cite<1/></0>"
 
-#. Button to copy citation text
-#: src/components/RecordsDetail/index.js:197
-#~ msgid "<0>Copy Citation<1/></0>"
-#~ msgstr "<0>Copy Citation<1/></0>"
-
 #. Agent note Description
 #: src/components/PageAgent/index.js:21
 msgid "<0>Description</0>"
 msgstr "<0>Description</0>"
-
-#. Page Title for user's list
-#: src/components/PageMyList/index.js:286
-#~ msgid "<0>DIMES: My List</0>"
-#~ msgstr "<0>DIMES: My List</0>"
 
 #. Saved item found in message
 #: src/components/SavedItem/index.js:17
@@ -275,16 +255,6 @@ msgstr "<0>There was an error submitting your request.</0><1>The request to {0} 
 
 #. View Saved Item online
 #: src/components/SavedItem/index.js:22
-#~ msgid "<0>View Online <1/></0>"
-#~ msgstr "<0>View Online <1/></0>"
-
-#. Buttons for online records
-#: src/components/RecordsDetail/index.js:180
-#~ msgid "<0>View Online <1/></0><2>Download <3/></2>{0}"
-#~ msgstr "<0>View Online <1/></0><2>Download <3/></2>{0}"
-
-#. View Saved Item online
-#: src/components/SavedItem/index.js:22
 msgid "<0>View Online<1/></0>"
 msgstr "<0>View Online<1/></0>"
 
@@ -302,11 +272,6 @@ msgstr "15 Dayton Avenue<0/>Sleepy Hollow, New York 10591"
 #: src/components/ModalMyList/index.js:431
 msgid "255 characters maximum"
 msgstr "255 characters maximum"
-
-#. Helptext for RAC staff message
-#: src/components/ModalMyList/index.js:566
-#~ msgid "255 characters maximum."
-#~ msgstr "255 characters maximum."
 
 #. About minimap message
 #: src/components/RecordsDetail/index.js:188
@@ -469,17 +434,6 @@ msgstr "Creator"
 msgid "Date Range"
 msgstr "Date Range"
 
-#: src/components/ModalMyList/index.js:556
-#~ msgid "description"
-#~ msgstr "description"
-
-#. Description Modal Form Test
-#. Label for Description of Materials Form
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:246
-#: src/components/ModalMyList/index.js:548
-#~ msgid "Description of Materials"
-#~ msgstr "Description of Materials"
-
 #. Button Deselect all items Test
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:81
 msgid "Deselect all items"
@@ -499,11 +453,6 @@ msgstr "dimes.rockarch.org"
 #: src/components/Dropdown/index.js:108
 msgid "Download as .csv"
 msgstr "Download as .csv"
-
-#. Company Email
-#: src/components/Footer/index.js:38
-#~ msgid "E-mail: <0/>"
-#~ msgstr "E-mail: <0/>"
 
 #. Company Email
 #: src/components/Footer/index.js:36
@@ -547,11 +496,6 @@ msgstr "Enter a search term"
 #: src/components/ModalMyList/index.js:407
 msgid "Enter the date of your research visit (mm/dd/yyyy)"
 msgstr "Enter the date of your research visit (mm/dd/yyyy)"
-
-#. Initial description
-#: src/components/ModalMyList/index.js:501
-#~ msgid "Entire folder"
-#~ msgstr "Entire folder"
 
 #. Title displayed when error occurs while submitting request
 #: src/components/PageMyList/index.js:128
@@ -768,11 +712,6 @@ msgid "Minimap"
 msgstr "Minimap"
 
 #. Reading Room Actual Hours
-#: src/components/Footer/index.js:51
-#~ msgid "Monday-Friday<0/>10:00 a.m. to 5:00 p.m.<1/>"
-#~ msgstr "Monday-Friday<0/>10:00 a.m. to 5:00 p.m.<1/>"
-
-#. Reading Room Actual Hours
 #: src/components/Footer/index.js:49
 msgid "Monday-Friday<0/>9:00 a.m. to 5:00 p.m.<1/>"
 msgstr "Monday-Friday<0/>9:00 a.m. to 5:00 p.m.<1/>"
@@ -868,11 +807,6 @@ msgstr "Please add a word or phrase to search for."
 #: src/components/ModalMyList/index.js:517
 msgid "Please complete this field."
 msgstr "Please complete this field."
-
-#. Helptext for description of materials Form
-#: src/components/ModalMyList/index.js:552
-#~ msgid "Please describe the materials you want reproduced. 255 characters maximum."
-#~ msgstr "Please describe the materials you want reproduced. 255 characters maximum."
 
 #. Missing Scheduled Date error
 #: src/components/ModalMyList/index.js:371
@@ -992,11 +926,6 @@ msgstr "Rockefeller Archive Center"
 #: src/components/Footer/index.js:14
 msgid "Rockefeller<0/>Archive Center"
 msgstr "Rockefeller<0/>Archive Center"
-
-#. Primary Title
-#: src/components/Footer/index.js:12
-#~ msgid "Rockefeller<0>Archive Center</0>"
-#~ msgstr "Rockefeller<0>Archive Center</0>"
 
 #. Shown for the user to save and close the filter
 #: src/components/ModalSearch/index.js:54

@@ -178,10 +178,6 @@ msgstr "<0>Citare<1/></0>"
 msgid "<0>Description</0>"
 msgstr "<0>Descrizione</0>"
 
-#. Page Title for user's list
-#~ msgid "<0>DIMES: My List</0>"
-#~ msgstr "<0>DIMES: Il mio elenco</0>"
-
 #. Saved item found in message
 #: src/components/SavedItem/index.js:17
 msgid "<0>Found in: <1>{0}</1></0>"
@@ -259,16 +255,6 @@ msgstr "<0>Si è verificato un errore nell'invio della richiesta.</0><1>La richi
 
 #. View Saved Item online
 #: src/components/SavedItem/index.js:22
-#~ msgid "<0>View Online <1/></0>"
-#~ msgstr "<0>Visualizza in linea <1/></0>"
-
-#. Buttons for online records
-#: src/components/RecordsDetail/index.js:180
-#~ msgid "<0>View Online <1/></0><2>Download <3/></2>{0}"
-#~ msgstr "<0>Visualizza in linea <1/></0><2>Télécharger <3/></2>{0}"
-
-#. View Saved Item online
-#: src/components/SavedItem/index.js:22
 msgid "<0>View Online<1/></0>"
 msgstr "<0>Visualizza in linea <1/></0>"
 
@@ -286,11 +272,6 @@ msgstr "15 Dayton Avenue<0/>Sleepy Hollow, New York 10591"
 #: src/components/ModalMyList/index.js:431
 msgid "255 characters maximum"
 msgstr "255 caratteri al massimo"
-
-#. Helptext for RAC staff message
-#: src/components/ModalMyList/index.js:566
-#~ msgid "255 characters maximum."
-#~ msgstr "255 caratteri al massimo."
 
 #. About minimap message
 #: src/components/RecordsDetail/index.js:188
@@ -453,17 +434,6 @@ msgstr "Creatore"
 msgid "Date Range"
 msgstr "Intervallo di date"
 
-#: src/components/ModalMyList/index.js:556
-#~ msgid "description"
-#~ msgstr "descrizione"
-
-#. Description Modal Form Test
-#. Label for Description of Materials Form
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:246
-#: src/components/ModalMyList/index.js:548
-#~ msgid "Description of Materials"
-#~ msgstr "Descrizione dei materiali"
-
 #. Button Deselect all items Test
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:81
 msgid "Deselect all items"
@@ -483,10 +453,6 @@ msgstr "dimes.rockarch.org"
 #: src/components/Dropdown/index.js:108
 msgid "Download as .csv"
 msgstr "Scarica come .csv"
-
-#. Company Email
-#~ msgid "E-mail: <0/>"
-#~ msgstr "E-mail: <0/>"
 
 #. Company Email
 #: src/components/Footer/index.js:36
@@ -530,11 +496,6 @@ msgstr "Inserisci un termine da ricercare"
 #: src/components/ModalMyList/index.js:407
 msgid "Enter the date of your research visit (mm/dd/yyyy)"
 msgstr "Inserire la data della visita di ricerca (mm/dd/yyyy)"
-
-#. Initial description
-#: src/components/ModalMyList/index.js:501
-#~ msgid "Entire folder"
-#~ msgstr "Intera cartella"
 
 #. Title displayed when error occurs while submitting request
 #: src/components/PageMyList/index.js:128
@@ -751,10 +712,6 @@ msgid "Minimap"
 msgstr "Minimap"
 
 #. Reading Room Actual Hours
-#~ msgid "Monday-Friday<0/>10:00 a.m. to 5:00 p.m.<1/>"
-#~ msgstr "Lunedi-Venerdì<0/>dalle 9:00 alle 17:00<1/>"
-
-#. Reading Room Actual Hours
 #: src/components/Footer/index.js:49
 msgid "Monday-Friday<0/>9:00 a.m. to 5:00 p.m.<1/>"
 msgstr "Lunedi-Venerdì<0/>dalle 9:00 alle 17:00.<1/>"
@@ -850,11 +807,6 @@ msgstr "Aggiungete una parola o una frase da cercare."
 #: src/components/ModalMyList/index.js:517
 msgid "Please complete this field."
 msgstr "Compilare questo campo."
-
-#. Helptext for description of materials Form
-#: src/components/ModalMyList/index.js:552
-#~ msgid "Please describe the materials you want reproduced. 255 characters maximum."
-#~ msgstr "Descrivere il materiale che si desidera riprodurre. 255 caratteri al massimo."
 
 #. Missing Scheduled Date error
 #: src/components/ModalMyList/index.js:371
@@ -974,11 +926,6 @@ msgstr "Rockefeller Archive Center"
 #: src/components/Footer/index.js:14
 msgid "Rockefeller<0/>Archive Center"
 msgstr "Rockefeller<0/>Archive Center"
-
-#. Primary Title
-#: src/components/Footer/index.js:12
-#~ msgid "Rockefeller<0>Archive Center</0>"
-#~ msgstr "<0>Centro</0> RockefellerArchive"
 
 #. Shown for the user to save and close the filter
 #: src/components/ModalSearch/index.js:54
