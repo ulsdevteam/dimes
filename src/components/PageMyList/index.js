@@ -257,8 +257,7 @@
             .then(res => {return res.data})
             .catch(err => setBackendError(err))
         const combinedItems = group.items.map(i => {
-          console.log(i)
-          const parsedItem = updatedItems.find(u => {console.log(u); return (u.uri === i.archivesspace_uri)})
+          const parsedItem = updatedItems.find(u => {return (u.uri === i.archivesspace_uri)})
           return { ...i, submit: parsedItem.submit, submitReason: parsedItem.submit_reason }})
         group.items = combinedItems
         return group
