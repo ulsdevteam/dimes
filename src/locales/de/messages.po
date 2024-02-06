@@ -178,10 +178,6 @@ msgstr "<0>Zitieren<1/></0>"
 msgid "<0>Description</0>"
 msgstr "<0>Beschreibung</0>"
 
-#. Page Title for user's list
-#~ msgid "<0>DIMES: My List</0>"
-#~ msgstr "<0>DIMES: Meine Liste</0>"
-
 #. Saved item found in message
 #: src/components/SavedItem/index.js:17
 msgid "<0>Found in: <1>{0}</1></0>"
@@ -258,14 +254,6 @@ msgid "<0>There was an error submitting your request.</0><1>The request to {0} f
 msgstr "<0>Bei der Übermittlung Ihrer Anfrage ist ein Fehler aufgetreten.</0><1>Die Anfrage an {0} schlug mit der Meldung {1}: {2} fehl.</1><2>{3}</2>"
 
 #. View Saved Item online
-#~ msgid "<0>View Online <1/></0>"
-#~ msgstr "<0>Online ansehen <1/></0>"
-
-#. Buttons for online records
-#~ msgid "<0>View Online <1/></0><2>Download <3/></2>{0}"
-#~ msgstr "<0>Online ansehen <1/></0><2>Herunterladen <3/></2>{0}"
-
-#. View Saved Item online
 #: src/components/SavedItem/index.js:22
 msgid "<0>View Online<1/></0>"
 msgstr "<0>Online ansehen<1/></0>"
@@ -284,11 +272,6 @@ msgstr "15 Dayton Avenue<0/>Sleepy Hollow, New York 10591"
 #: src/components/ModalMyList/index.js:431
 msgid "255 characters maximum"
 msgstr "maximal 255 Zeichen"
-
-#. Helptext for RAC staff message
-#: src/components/ModalMyList/index.js:566
-#~ msgid "255 characters maximum."
-#~ msgstr "maximal 255 Zeichen."
 
 #. About minimap message
 #: src/components/RecordsDetail/index.js:188
@@ -451,17 +434,6 @@ msgstr "Ersteller"
 msgid "Date Range"
 msgstr "Datumsbereich"
 
-#: src/components/ModalMyList/index.js:556
-#~ msgid "description"
-#~ msgstr "deschreibung"
-
-#. Description Modal Form Test
-#. Label for Description of Materials Form
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:246
-#: src/components/ModalMyList/index.js:548
-#~ msgid "Description of Materials"
-#~ msgstr "Beschreibung der Materialien"
-
 #. Button Deselect all items Test
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:81
 msgid "Deselect all items"
@@ -481,10 +453,6 @@ msgstr "dimes.rockarch.org"
 #: src/components/Dropdown/index.js:108
 msgid "Download as .csv"
 msgstr "Als .csv herunterladen"
-
-#. Company Email
-#~ msgid "E-mail: <0/>"
-#~ msgstr "E-mail: <0/>"
 
 #. Company Email
 #: src/components/Footer/index.js:36
@@ -528,11 +496,6 @@ msgstr "Geben Sie einen Suchbegriff ein"
 #: src/components/ModalMyList/index.js:407
 msgid "Enter the date of your research visit (mm/dd/yyyy)"
 msgstr "Geben Sie das Datum Ihres Forschungsaufenthalts an (mm/dd/yyyy)"
-
-#. Initial description
-#: src/components/ModalMyList/index.js:501
-#~ msgid "Entire folder"
-#~ msgstr "Ganzer Ordner"
 
 #. Title displayed when error occurs while submitting request
 #: src/components/PageMyList/index.js:128
@@ -749,10 +712,6 @@ msgid "Minimap"
 msgstr "Minimap"
 
 #. Reading Room Actual Hours
-#~ msgid "Monday-Friday<0/>10:00 a.m. to 5:00 p.m.<1/>"
-#~ msgstr "Montag-Freitag<0/>10:00 Uhr bis 17:00 Uhr.<1/>"
-
-#. Reading Room Actual Hours
 #: src/components/Footer/index.js:49
 msgid "Monday-Friday<0/>9:00 a.m. to 5:00 p.m.<1/>"
 msgstr "Montag-Freitag<0/>9:00 Uhr bis 17:00 Uhr.<1/>"
@@ -848,11 +807,6 @@ msgstr "Bitte geben Sie ein Wort oder einen Satz ein, nach dem Sie suchen möcht
 #: src/components/ModalMyList/index.js:517
 msgid "Please complete this field."
 msgstr "Bitte füllen Sie dieses Feld aus."
-
-#. Helptext for description of materials Form
-#: src/components/ModalMyList/index.js:552
-#~ msgid "Please describe the materials you want reproduced. 255 characters maximum."
-#~ msgstr "Bitte beschreiben Sie die Materialien, die Sie reproduzieren möchten. maximal 255 Zeichen."
 
 #. Missing Scheduled Date error
 #: src/components/ModalMyList/index.js:371
@@ -972,11 +926,6 @@ msgstr "Rockefeller Archive Center"
 #: src/components/Footer/index.js:14
 msgid "Rockefeller<0/>Archive Center"
 msgstr "Rockefeller Archive Center"
-
-#. Primary Title
-#: src/components/Footer/index.js:12
-#~ msgid "Rockefeller<0>Archive Center</0>"
-#~ msgstr "<0>RockefellerArchivzentrum</0>"
 
 #. Shown for the user to save and close the filter
 #: src/components/ModalSearch/index.js:54
