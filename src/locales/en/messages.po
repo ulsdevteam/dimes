@@ -43,8 +43,8 @@ msgid "{0, select, true {Minimap} other {Introducing the Minimap}}"
 msgstr "{0, select, true {Minimap} other {Introducing the Minimap}}"
 
 #. Text for submiting item(s) request
-#: src/components/ModalMyList/index.js:451
-#: src/components/ModalMyList/index.js:615
+#: src/components/ModalMyList/index.js:458
+#: src/components/ModalMyList/index.js:587
 msgid "{0, select, true {Request {1} Items} other {Request {2} Item}}"
 msgstr "{0, select, true {Request {1} Items} other {Request {2} Item}}"
 
@@ -114,7 +114,7 @@ msgid "<0/>Back to Search"
 msgstr "<0/>Back to Search"
 
 #. New Search button
-#: src/components/PageMyList/index.js:293
+#: src/components/PageMyList/index.js:292
 msgid "<0/>Start a New Search"
 msgstr "<0/>Start a New Search"
 
@@ -149,7 +149,7 @@ msgid "<0><1><2><3><4>Twitter Logo</4><5/></3></2></1><6><7><8><9>Facebook Logo<
 msgstr "<0><1><2><3><4>Twitter Logo</4><5/></3></2></1><6><7><8><9>Facebook Logo</9><10/></8></7></6><11><12><13><14>Instagram Logo</14><15/></13></12></11><16><17><18><19>YouTube Logo</19><20/></18></17></16><21><22><23><24>Flickr Logo</24><25><26><27><28/><29/></27></26></25></23></22></21></0>"
 
 #. Page Title for user's list
-#: src/components/PageMyList/index.js:284
+#: src/components/PageMyList/index.js:283
 msgid "<0><1>DIMES: My List</1></0>"
 msgstr "<0><1>DIMES: My List</1></0>"
 
@@ -239,7 +239,7 @@ msgid "<0>More about this {agentType}</0>"
 msgstr "<0>More about this {agentType}</0>"
 
 #. Header for user's list
-#: src/components/PageMyList/index.js:299
+#: src/components/PageMyList/index.js:298
 msgid "<0>My List</0>"
 msgstr "<0>My List</0>"
 
@@ -249,7 +249,12 @@ msgid "<0>Please add a word or phrase to search for.</0>"
 msgstr "<0>Please add a word or phrase to search for.</0>"
 
 #. Note to user about a cost estimate
-#: src/components/ModalMyList/index.js:494
+#: src/components/ModalMyList/index.js:229
+msgid "<0>Please note:</0> if are emailing your list to an archivist at <1>archive@rockarch.org</1>, please include your name and email address in the Message field, otherwise we will have no means of contacting you to follow-up."
+msgstr "<0>Please note:</0> if are emailing your list to an archivist at <1>archive@rockarch.org</1>, please include your name and email address in the Message field, otherwise we will have no means of contacting you to follow-up."
+
+#. Note to user about a cost estimate
+#: src/components/ModalMyList/index.js:501
 msgid "<0>Please note:</0> if you want a cost estimate for your order, email an archivist at <1>archive@rockarch.org</1>."
 msgstr "<0>Please note:</0> if you want a cost estimate for your order, email an archivist at <1>archive@rockarch.org</1>."
 
@@ -294,14 +299,14 @@ msgid "15 Dayton Avenue<0/>Sleepy Hollow, New York 10591"
 msgstr "15 Dayton Avenue<0/>Sleepy Hollow, New York 10591"
 
 #. helptext for RAC staff message
-#: src/components/ModalMyList/index.js:424
+#: src/components/ModalMyList/index.js:431
 msgid "255 characters maximum"
 msgstr "255 characters maximum"
 
 #. Helptext for RAC staff message
 #: src/components/ModalMyList/index.js:566
-msgid "255 characters maximum."
-msgstr "255 characters maximum."
+#~ msgid "255 characters maximum."
+#~ msgstr "255 characters maximum."
 
 #. About minimap message
 #: src/components/RecordsDetail/index.js:188
@@ -348,7 +353,7 @@ msgstr "All Types"
 #. Modal Form Missing Email Address Test
 #. Missing email address error
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:159
-#: src/components/ModalMyList/index.js:232
+#: src/components/ModalMyList/index.js:238
 msgid "An email address is required."
 msgstr "An email address is required."
 
@@ -363,7 +368,7 @@ msgid "archive@rockarch.org"
 msgstr "archive@rockarch.org"
 
 #. Confirmation to delete all items from list
-#: src/components/PageMyList/index.js:370
+#: src/components/PageMyList/index.js:369
 msgid "Are you sure you want to remove all the items from your list?<0><1/><2/></0>"
 msgstr "Are you sure you want to remove all the items from your list?<0><1/><2/></0>"
 
@@ -378,7 +383,7 @@ msgid "Bulk data download"
 msgstr "Bulk data download"
 
 #. Title shown when request failed
-#: src/components/PageMyList/index.js:355
+#: src/components/PageMyList/index.js:354
 msgid "Can't Complete Request"
 msgstr "Can't Complete Request"
 
@@ -389,7 +394,7 @@ msgstr "Can't Complete Request"
 #: src/components/Form/index.js:86
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:127
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:195
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:257
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:249
 msgid "Cancel"
 msgstr "Cancel"
 
@@ -440,7 +445,7 @@ msgid "Collections Related to {agentTitle}"
 msgstr "Collections Related to {agentTitle}"
 
 #. Remove all confirmation title
-#: src/components/PageMyList/index.js:383
+#: src/components/PageMyList/index.js:382
 msgid "Confirm Remove All"
 msgstr "Confirm Remove All"
 
@@ -450,7 +455,7 @@ msgid "Copyright © Rockefeller Archive Center. All rights reserved."
 msgstr "Copyright © Rockefeller Archive Center. All rights reserved."
 
 #. Name for duplicate request form costs
-#: src/components/ModalMyList/index.js:591
+#: src/components/ModalMyList/index.js:563
 msgid "costs"
 msgstr "costs"
 
@@ -465,15 +470,15 @@ msgid "Date Range"
 msgstr "Date Range"
 
 #: src/components/ModalMyList/index.js:556
-msgid "description"
-msgstr "description"
+#~ msgid "description"
+#~ msgstr "description"
 
 #. Description Modal Form Test
 #. Label for Description of Materials Form
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:246
 #: src/components/ModalMyList/index.js:548
-msgid "Description of Materials"
-msgstr "Description of Materials"
+#~ msgid "Description of Materials"
+#~ msgstr "Description of Materials"
 
 #. Button Deselect all items Test
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:81
@@ -506,14 +511,14 @@ msgid "E-mail:<0/>"
 msgstr "E-mail:<0/>"
 
 #. Name of email form
-#: src/components/ModalMyList/index.js:278
+#: src/components/ModalMyList/index.js:284
 msgid "email"
 msgstr "email"
 
 #. Email Modal Form Test
 #. Label of Email Form
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:111
-#: src/components/ModalMyList/index.js:274
+#: src/components/ModalMyList/index.js:280
 msgid "Email *"
 msgstr "Email *"
 
@@ -539,14 +544,14 @@ msgid "Enter a search term"
 msgstr "Enter a search term"
 
 #. Helptext for scheduling date.
-#: src/components/ModalMyList/index.js:400
+#: src/components/ModalMyList/index.js:407
 msgid "Enter the date of your research visit (mm/dd/yyyy)"
 msgstr "Enter the date of your research visit (mm/dd/yyyy)"
 
 #. Initial description
 #: src/components/ModalMyList/index.js:501
-msgid "Entire folder"
-msgstr "Entire folder"
+#~ msgid "Entire folder"
+#~ msgstr "Entire folder"
 
 #. Title displayed when error occurs while submitting request
 #: src/components/PageMyList/index.js:128
@@ -655,7 +660,7 @@ msgid "https://rockarch.org/collections/access-and-request-materials/"
 msgstr "https://rockarch.org/collections/access-and-request-materials/"
 
 #. Link for duplicate request services
-#: src/components/ModalMyList/index.js:585
+#: src/components/ModalMyList/index.js:557
 msgid "https://rockarch.org/collections/access-and-request-materials/#duplication-services-and-fee-schedule"
 msgstr "https://rockarch.org/collections/access-and-request-materials/#duplication-services-and-fee-schedule"
 
@@ -690,20 +695,20 @@ msgid "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
 msgstr "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
 
 #. Label for duplicate request form
-#: src/components/ModalMyList/index.js:577
+#: src/components/ModalMyList/index.js:549
 msgid "I agree to pay the duplication costs for this request. See our <0>fee schedule</0>."
 msgstr "I agree to pay the duplication costs for this request. See our <0>fee schedule</0>."
 
 #. Invalid email error
-#: src/components/ModalMyList/index.js:239
+#: src/components/ModalMyList/index.js:245
 msgid "Invalid email address provided."
 msgstr "Invalid email address provided."
 
 #. Name of items error message
 #: src/components/ModalMyList/index.js:29
-#: src/components/ModalMyList/index.js:267
-#: src/components/ModalMyList/index.js:391
-#: src/components/ModalMyList/index.js:541
+#: src/components/ModalMyList/index.js:273
+#: src/components/ModalMyList/index.js:398
+#: src/components/ModalMyList/index.js:542
 msgid "items"
 msgstr "items"
 
@@ -723,7 +728,8 @@ msgid "Location of Headquarters"
 msgstr "Location of Headquarters"
 
 #. Company Email link
-#: src/components/ModalMyList/index.js:495
+#: src/components/ModalMyList/index.js:230
+#: src/components/ModalMyList/index.js:502
 #: src/components/PageBackendError/index.js:19
 #: src/components/PrimaryLink/index.js:33
 msgid "mailto:archive@rockarch.org"
@@ -735,23 +741,20 @@ msgid "mailto:archive@rockarch.org?subject=Scheduling a research appointment"
 msgstr "mailto:archive@rockarch.org?subject=Scheduling a research appointment"
 
 #. Name of message form
-#: src/components/ModalMyList/index.js:301
+#: src/components/ModalMyList/index.js:307
 msgid "message"
 msgstr "message"
 
 #. Message Modal Form Test
 #. Label of Message Form
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:119
-#: src/components/ModalMyList/index.js:297
+#: src/components/ModalMyList/index.js:303
 msgid "Message"
 msgstr "Message"
 
-#. Message Modal Form Test
 #. Label for RAC staff message Form
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:188
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:250
-#: src/components/ModalMyList/index.js:420
-#: src/components/ModalMyList/index.js:563
+#: src/components/ModalMyList/index.js:427
 msgid "Message for RAC staff"
 msgstr "Message for RAC staff"
 
@@ -792,9 +795,9 @@ msgid "Nicknames"
 msgstr "Nicknames"
 
 #. No selected items error
-#: src/components/ModalMyList/index.js:248
-#: src/components/ModalMyList/index.js:371
-#: src/components/ModalMyList/index.js:523
+#: src/components/ModalMyList/index.js:254
+#: src/components/ModalMyList/index.js:378
+#: src/components/ModalMyList/index.js:524
 msgid "No items have been selected to submit."
 msgstr "No items have been selected to submit."
 
@@ -824,7 +827,7 @@ msgstr "opens email"
 #. Title for duplicate request
 #. Title for new window button
 #. Title message for opening an online item
-#: src/components/ModalMyList/index.js:581
+#: src/components/ModalMyList/index.js:553
 #: src/components/PageDigitalObject/index.js:112
 #: src/components/RecordsDetail/index.js:229
 msgid "opens in a new window"
@@ -859,27 +862,27 @@ msgstr "Please add a word or phrase to search for."
 #. Captcha not completed error
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:155
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:222
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:284
-#: src/components/ModalMyList/index.js:244
-#: src/components/ModalMyList/index.js:368
-#: src/components/ModalMyList/index.js:516
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:276
+#: src/components/ModalMyList/index.js:250
+#: src/components/ModalMyList/index.js:375
+#: src/components/ModalMyList/index.js:517
 msgid "Please complete this field."
 msgstr "Please complete this field."
 
 #. Helptext for description of materials Form
 #: src/components/ModalMyList/index.js:552
-msgid "Please describe the materials you want reproduced. 255 characters maximum."
-msgstr "Please describe the materials you want reproduced. 255 characters maximum."
+#~ msgid "Please describe the materials you want reproduced. 255 characters maximum."
+#~ msgstr "Please describe the materials you want reproduced. 255 characters maximum."
 
 #. Missing Scheduled Date error
-#: src/components/ModalMyList/index.js:364
+#: src/components/ModalMyList/index.js:371
 msgid "Please provide the date of your research visit."
 msgstr "Please provide the date of your research visit."
 
 #. Duplication Format Message Test
 #. No Format selected error
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:287
-#: src/components/ModalMyList/index.js:512
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:279
+#: src/components/ModalMyList/index.js:513
 msgid "Please select your desired duplication format."
 msgstr "Please select your desired duplication format."
 
@@ -909,8 +912,7 @@ msgid "Privacy Policy"
 msgstr "Privacy Policy"
 
 #. Name for RAC staff message Form
-#: src/components/ModalMyList/index.js:428
-#: src/components/ModalMyList/index.js:571
+#: src/components/ModalMyList/index.js:435
 msgid "questions"
 msgstr "questions"
 
@@ -926,12 +928,12 @@ msgstr "Reading Room Hours:"
 
 #. Name of recaptcha element
 #. Name of recaptcha error message
-#: src/components/ModalMyList/index.js:310
-#: src/components/ModalMyList/index.js:317
-#: src/components/ModalMyList/index.js:438
-#: src/components/ModalMyList/index.js:444
-#: src/components/ModalMyList/index.js:602
-#: src/components/ModalMyList/index.js:608
+#: src/components/ModalMyList/index.js:316
+#: src/components/ModalMyList/index.js:323
+#: src/components/ModalMyList/index.js:445
+#: src/components/ModalMyList/index.js:451
+#: src/components/ModalMyList/index.js:574
+#: src/components/ModalMyList/index.js:580
 msgid "recaptcha"
 msgstr "recaptcha"
 
@@ -963,7 +965,7 @@ msgstr "Remove item from list"
 
 #. Request items Modal Form Test
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:191
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:254
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:246
 msgid "Request 4 Items"
 msgstr "Request 4 Items"
 
@@ -1009,12 +1011,12 @@ msgstr "Schedule a Visit"
 #. Scheduled Date Modal Form Test
 #. Label for scheduling date
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:184
-#: src/components/ModalMyList/index.js:405
+#: src/components/ModalMyList/index.js:412
 msgid "Scheduled Date *"
 msgstr "Scheduled Date *"
 
 #. Name for scheduling date error
-#: src/components/ModalMyList/index.js:412
+#: src/components/ModalMyList/index.js:419
 msgid "scheduledDate"
 msgstr "scheduledDate"
 
@@ -1081,7 +1083,7 @@ msgstr "selected: 0 items"
 #. Modal Form Submit Test
 #. Send List sumbit message
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:123
-#: src/components/ModalMyList/index.js:325
+#: src/components/ModalMyList/index.js:331
 msgid "Send List"
 msgstr "Send List"
 
@@ -1132,7 +1134,7 @@ msgid "Social Networks and Archival Context"
 msgstr "Social Networks and Archival Context"
 
 #. Message shown when request failed
-#: src/components/PageMyList/index.js:351
+#: src/components/PageMyList/index.js:350
 msgid "Sorry, our system is unable to process requests right now. We're working to fix this! Please try again later."
 msgstr "Sorry, our system is unable to process requests right now. We're working to fix this! Please try again later."
 
@@ -1172,7 +1174,7 @@ msgid "Start Year"
 msgstr "Start Year"
 
 #. Name of subject form
-#: src/components/ModalMyList/index.js:291
+#: src/components/ModalMyList/index.js:297
 msgid "subject"
 msgstr "subject"
 
@@ -1180,7 +1182,7 @@ msgstr "subject"
 #. Label of Subject Form
 #. Title for Subject filter
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:115
-#: src/components/ModalMyList/index.js:287
+#: src/components/ModalMyList/index.js:293
 #: src/components/ModalSearch/index.js:99
 msgid "Subject"
 msgstr "Subject"
@@ -1227,8 +1229,8 @@ msgstr "Virtual International Authority File"
 
 #. Payment Modal Form Test
 #. Costs not agreed to error
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:291
-#: src/components/ModalMyList/index.js:519
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:283
+#: src/components/ModalMyList/index.js:520
 msgid "We cannot process your request unless you agree to pay the costs of reproduction."
 msgstr "We cannot process your request unless you agree to pay the costs of reproduction."
 
