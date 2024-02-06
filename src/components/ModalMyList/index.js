@@ -226,7 +226,7 @@ export const EmailModal = props => (
     form={
       <>
         <div className='mb-20'>
-            <Trans comment='Note to user about a cost estimate'>
+            <Trans comment='Note to user about including name and email address'>
               <strong>Please note:</strong> if are emailing your list to an archivist at <a href={t({message: 'mailto:archive@rockarch.org'})}>archive@rockarch.org</a>, please include your name and email address in the Message field, otherwise we will have no means of contacting you to follow-up.
             </Trans>
           </div>
