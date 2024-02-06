@@ -235,7 +235,7 @@ msgstr "<0>検索する語句を追加してください。</0>"
 #. Note to user about including name and email address
 #: src/components/ModalMyList/index.js:229
 msgid "<0>Please note:</0> if are emailing your list to an archivist at <1>archive@rockarch.org</1>, please include your name and email address in the Message field, otherwise we will have no means of contacting you to follow-up."
-msgstr ""
+msgstr "<0>注意：</0> <1>archive@rockarch.org</1> のアーキビストにリストをEメールで送る場合は、メッセージ欄にお名前とEメールアドレスをご記入ください。"
 
 #. Note to user about a cost estimate
 #: src/components/ModalMyList/index.js:501
