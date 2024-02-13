@@ -80,11 +80,15 @@ export const DateInput = props => {
   <DatePicker
       className='dp__wrapper'
       selected={startDate}
-      // earliest date is next business day
-      minDate={new Date((new Date()).setDate((new Date()).getDate() + Array(2, 1, 1, 1, 1, 3, 3)[new Date().getDay()]))}
+      // earliest date is two buisness days from now
+      minDate={new Date((new Date()).setDate((new Date()).getDate() + Array(3, 2, 2, 2, 4, 4, 4)[new Date().getDay()]))}
       showTimeSelect='true'
       filterDate={isWeekday}
       filterTime={filterPassedTime}
+      // example date exclusions
+      // n.b. months are zero based in javascript
+      //excludeDates={[new Date(2024, 0, 15)]}
+      //excludeDateIntervals={[{start: new Date(2023, 11, 22), end: new Date(2024, 0, 1)}]}
       onChange={(date:Date) => setStartDate(date)}
       dateFormat="yyyy-MM-dd h:mm aa">
   </DatePicker>
