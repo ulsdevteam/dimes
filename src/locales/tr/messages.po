@@ -186,7 +186,7 @@ msgstr "<0>İçeri̇si̇nde Bulundu: <1>{0}</1></0>"
 #. Search not found tips
 #: src/components/SearchNotFound/index.js:19
 msgid "<0>Have you tried doing the following:</0><1><2>Check for spelling errors or typos</2><3>Use fewer keywords</3><4>Clear search filter options</4></1>"
-msgstr "<0>Aşağıdakileri yapmayı denediniz mi?</0><1><2>•	Yazım yanlışlarını kontrol edin</2><3>Daha az anahtar kelime kullanın</3><4>•	Arama filtresi seçeneklerini kaldırın</4></1>"
+msgstr "<0>Aşağıdakileri yapmayı denediniz mi?</0><1><2>Yazım yanlışlarını kontrol edin</2><3>Daha az anahtar kelime kullanın</3><4>•\tArama filtresi seçeneklerini kaldırın</4></1>"
 
 #. Suggested terms message
 #: src/components/SearchNotFound/index.js:29
