@@ -181,7 +181,7 @@ msgstr "<0>説明</0>"
 #. Saved item found in message
 #: src/components/SavedItem/index.js:17
 msgid "<0>Found in: <1>{0}</1></0>"
-msgstr "<0>で発見された： <1>{0}</1></0>"
+msgstr "<0>右資料内： <1>{0}</1></0>"
 
 #. Search not found tips
 #: src/components/SearchNotFound/index.js:19
@@ -191,7 +191,7 @@ msgstr "<0>以下のことを試しましたか？</0><1><2>スペルミスや�
 #. Suggested terms message
 #: src/components/SearchNotFound/index.js:29
 msgid "<0>Here are some suggested search terms:</0>"
-msgstr "<0>以下は推奨される検索キーワードである：</0>"
+msgstr "<0>他の可能性のある検索キーワード：</0>"
 
 #. The about section for minimaps.
 #: src/components/ModalMinimap/index.js:9
@@ -325,7 +325,7 @@ msgstr "有効なメールアドレスを入力してください."
 #. Label to apply dates shown from date range
 #: src/components/ModalSearch/index.js:80
 msgid "apply dates"
-msgstr "適用日"
+msgstr "適用期間"
 
 #. Company Email shown
 #: src/components/PrimaryLink/index.js:37
@@ -534,12 +534,12 @@ msgstr "フォーマット"
 #. Panel Found In message
 #: src/components/RecordsDetail/index.js:89
 msgid "Found In"
-msgstr "発見"
+msgstr "右資料内"
 
 #. Found In Test
 #: src/components/SavedItem/__tests__/SavedItem.test.js:38
 msgid "Found in:"
-msgstr "で発見された："
+msgstr "右資料内："
 
 #. Founded by property
 #: src/components/PageAgent/index.js:194
@@ -669,7 +669,7 @@ msgstr "記述的メタデータのライセンス"
 #. Location property
 #: src/components/PageAgent/index.js:195
 msgid "Location of Headquarters"
-msgstr "本社所在地"
+msgstr "所在地"
 
 #. Company Email link
 #: src/components/ModalMyList/index.js:230
@@ -746,7 +746,7 @@ msgstr "提出するアイテムが選択されていない。"
 #: src/components/SavedItem/__tests__/SavedItem.test.js:52
 #: src/components/SavedItem/index.js:79
 msgid "No saved items."
-msgstr "保存された項目がない。"
+msgstr "アイテムは保存されていません。"
 
 #. Occupations property
 #: src/components/PageAgent/index.js:191
@@ -858,7 +858,7 @@ msgstr "RACポリシー"
 #. Reading Room Hours message
 #: src/components/Footer/index.js:44
 msgid "Reading Room Hours:"
-msgstr "閲覧室の営業時間:"
+msgstr "閲覧室の開室時間:"
 
 #. Name of recaptcha element
 #. Name of recaptcha error message
@@ -935,7 +935,7 @@ msgstr "保存して閉じる"
 #. Message shown on button within Dropdown list
 #: src/components/Dropdown/index.js:65
 msgid "Schedule a Visit"
-msgstr "来店予約"
+msgstr "来館予約"
 
 #. Scheduled Date Modal Form Test
 #. Label for scheduling date
@@ -962,7 +962,7 @@ msgstr "関連コレクションをもっと探す"
 #. Message shown within the Hero
 #: src/components/Hero/index.js:11
 msgid "Search Our Collections.<0/>Discover People and Organizations.<1/>Access Digital Content."
-msgstr "コレクションを検索.<0/>人や組織を発見する.<1/>デジタルコンテンツにアクセスする."
+msgstr "コレクションを検索.<0/>人や組織を調査.<1/>デジタルコンテンツへのアクセス."
 
 #. Page Home Test
 #: src/components/PageHome/__tests__/PageHome.test.js:26
@@ -982,7 +982,7 @@ msgstr "検索…"
 #. Holiday Schedule message
 #: src/components/PrimaryLink/index.js:50
 msgid "See holiday schedule"
-msgstr "休日スケジュールを見る"
+msgstr "休日スケジュール"
 
 #. label for selecting format labels
 #: src/components/ModalMyList/index.js:42
@@ -1014,7 +1014,7 @@ msgstr "選択済み: 0 件"
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:123
 #: src/components/ModalMyList/index.js:331
 msgid "Send List"
-msgstr "送信リスト"
+msgstr "リストの送信"
 
 #. Page Title for sending an email
 #: src/components/PageMyList/index.js:138
