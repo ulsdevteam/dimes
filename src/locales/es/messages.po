@@ -45,8 +45,8 @@ msgstr "{0, select, true {Minimap} other {Introducción al minimapa}}"
 #. Text for submiting item(s) request
 #: src/components/ModalMyList/index.js:458
 #: src/components/ModalMyList/index.js:587
-msgid "{0, select, true {Request {1} Items} other {Request {2} Item}}"
-msgstr "{0, select, true {Petición {1} Artículos} other {Petición {2} Artículo}}"
+msgid "{0, select, true {Request {1} Item} other {Request {2} Items}}"
+msgstr "{0, select, true {Solicitar {1} Artículo} other {Solicitar {2} Artículos}}"
 
 #: src/components/RecordsContent/index.js:232
 msgid "{0, select, true {View} other {View Online}}"
@@ -71,17 +71,17 @@ msgstr "{deselect, select, true {Deseleccionar todos los elementos} other {Selec
 #. Pluralization of digital match(es)
 #: src/components/Helpers.js:61
 msgid "{hitCount, plural, one {digital match} other {digital matches}}"
-msgstr "{hitCount, plural, one {partida digital} other {partidas digitales}}"
+msgstr "{hitCount, plural, one {coincidencia digital} other {coincidencia digitales}}"
 
 #. Pluralization of match(es)
 #: src/components/Helpers.js:57
 msgid "{hitCount, plural, one {match} other {matches}}"
-msgstr "{hitCount, plural, one {el partido} other {partidos}}"
+msgstr "{hitCount, plural, one {el coincidencia} other {coincidencias}}"
 
 #. Search Results header
 #: src/components/PageSearch/index.js:209
 msgid "{inProgress, select, true {Searching} other {{0, select, false {No search query entered} other {{resultsCount, plural, =0 {Sorry, there are no search results for {1}} other {Search Results for {2}}}}}}}"
-msgstr "{inProgress, select, true {Buscando} other {{0, select, false {No se ha introducido ninguna consulta de búsqueda} other {{resultsCount, plural, =0 {Lo sentimos, no hay resultados de búsqueda para {1}} other {Resultados de búsqueda para {2}}}}}}}"
+msgstr "{inProgress, select, true {Buscando} other {{0, select, false {No se ha introducido ninguna consulta de búsqueda} other {{resultsCount, plural, =0 {Lo sentimos, no hay resultados para la búsqueda de {1}} other {Resultados para la búsqueda de {2}}}}}}}"
 
 #. Label for Context Switcher
 #: src/components/ContextSwitcher/index.js:14
@@ -181,17 +181,17 @@ msgstr "<0>Descripción</0>"
 #. Saved item found in message
 #: src/components/SavedItem/index.js:17
 msgid "<0>Found in: <1>{0}</1></0>"
-msgstr "<0>Encontrado en: <1>{0}</1></0>"
+msgstr "<0>Ubicación: <1>{0}</1></0>"
 
 #. Search not found tips
 #: src/components/SearchNotFound/index.js:19
 msgid "<0>Have you tried doing the following:</0><1><2>Check for spelling errors or typos</2><3>Use fewer keywords</3><4>Clear search filter options</4></1>"
-msgstr "<0>¿Ha intentado hacer lo siguiente?</0><1><2>Compruebe si hay errores ortográficos o tipográficos</2><3>Utilizar menos palabras clave</3><4>Borrar las opciones de filtro de búsqueda</4></1>"
+msgstr "<0>¿Ha intentado hacer lo siguiente?</0><1><2>Compruebe si hay errores ortográficos o tipográficos</2><3>Utilice menos palabras clave</3><4>Borre las opciones de filtro de búsqueda</4></1>"
 
 #. Suggested terms message
 #: src/components/SearchNotFound/index.js:29
 msgid "<0>Here are some suggested search terms:</0>"
-msgstr "<0>A continuación se sugieren algunos términos de búsqueda:</0>"
+msgstr "<0>A continuación se le sugieren algunos términos de búsqueda:</0>"
 
 #. The about section for minimaps.
 #: src/components/ModalMinimap/index.js:9
@@ -216,7 +216,7 @@ msgstr "<0>Cargando</0>"
 #. Agent Sidebar Header
 #: src/components/PageAgent/index.js:61
 msgid "<0>More about this {agentType}</0>"
-msgstr "<0>Más información {agentType}</0>"
+msgstr "<0>Más información acerca de {agentType}</0>"
 
 #. Header for user's list
 #: src/components/PageMyList/index.js:298
@@ -236,7 +236,7 @@ msgstr "<0>Nota:</0> si envía su lista por correo electrónico a un archivero d
 #. Note to user about a cost estimate
 #: src/components/ModalMyList/index.js:501
 msgid "<0>Please note:</0> if you want a cost estimate for your order, email an archivist at <1>archive@rockarch.org</1>."
-msgstr "<0>Nota:</0> si desea una estimación del coste de su pedido, envíe un correo electrónico a un archivero a <1>archive@rockarch.org</1>."
+msgstr "<0>Nota:</0> si desea una estimación del costo de su pedido, envíe un correo electrónico a un archivista a <1>archive@rockarch.org</1>."
 
 #. summary message
 #: src/components/PageAgent/index.js:265
@@ -276,7 +276,7 @@ msgstr "255 caracteres máximo"
 #. About minimap message
 #: src/components/RecordsDetail/index.js:188
 msgid "about minimap"
-msgstr "acerca de minimap"
+msgstr "acerca del minimapa"
 
 #. Accessibility Statement message
 #: src/components/PrimaryLink/index.js:63
@@ -313,7 +313,7 @@ msgstr "Añadir elementos al mensaje"
 #. Label for All Categories
 #: src/components/SearchForm/index.js:25
 msgid "All Types"
-msgstr "Todos los tipos"
+msgstr "Todas las categorías"
 
 #. Modal Form Missing Email Address Test
 #. Missing email address error
@@ -402,7 +402,7 @@ msgstr "Colecciones"
 #. Collections data API message
 #: src/components/SecondaryLink/index.js:22
 msgid "Collections data API"
-msgstr "API de datos de colecciones"
+msgstr "API de datos de las colecciones"
 
 #. Agent Related Collections
 #: src/components/PageAgent/index.js:39
@@ -469,13 +469,13 @@ msgstr "email"
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:111
 #: src/components/ModalMyList/index.js:280
 msgid "Email *"
-msgstr "Email *"
+msgstr "Correo electrónico *"
 
 #. Email list label
 #: src/components/Dropdown/index.js:99
 #: src/components/MyListExportActions/index.js:11
 msgid "Email List"
-msgstr "Lista de Email"
+msgstr "Enviar lista por correo electrónico "
 
 #. Title displayed after emailing selected items
 #: src/components/PageMyList/index.js:148
@@ -534,17 +534,17 @@ msgstr "Formatos"
 #. Panel Found In message
 #: src/components/RecordsDetail/index.js:89
 msgid "Found In"
-msgstr "Encontrado en"
+msgstr "Ubicación"
 
 #. Found In Test
 #: src/components/SavedItem/__tests__/SavedItem.test.js:38
 msgid "Found in:"
-msgstr "Encontrado en:"
+msgstr "Ubicación:"
 
 #. Founded by property
 #: src/components/PageAgent/index.js:194
 msgid "Founded by"
-msgstr "Fundada por"
+msgstr "Creado por"
 
 #. How to Access materials message
 #: src/components/PrimaryLink/index.js:24
@@ -641,7 +641,7 @@ msgstr "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
 #. Label for duplicate request form
 #: src/components/ModalMyList/index.js:549
 msgid "I agree to pay the duplication costs for this request. See our <0>fee schedule</0>."
-msgstr "Acepto pagar los gastos de duplicación de esta solicitud. Consulte nuestra <0>lista de tarifas</0>."
+msgstr "Acepto pagar los gastos de las copias de esta solicitud. Consulte nuestra <0>lista de tarifas</0>."
 
 #. Invalid email error
 #: src/components/ModalMyList/index.js:245
@@ -669,7 +669,7 @@ msgstr "Licencias para metadatos descriptivos"
 #. Location property
 #: src/components/PageAgent/index.js:195
 msgid "Location of Headquarters"
-msgstr "Ubicación de la sede"
+msgstr "Ubicación de oficinas centrales"
 
 #. Company Email link
 #: src/components/ModalMyList/index.js:230
@@ -700,7 +700,7 @@ msgstr "Mensaje"
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:188
 #: src/components/ModalMyList/index.js:427
 msgid "Message for RAC staff"
-msgstr "Mensaje para el personal de los CCR"
+msgstr "Mensaje para el personal del RAC"
 
 #. Header for minimap
 #. Aria label for Minimap nav
@@ -719,7 +719,7 @@ msgstr "De lunes a viernes<0/>de 9:00 a 17:00.<1/>"
 #. Label for MP4
 #: src/components/ModalMyList/index.js:55
 msgid "Moving image (MP4)"
-msgstr "Imagen en movimiento (MP4)"
+msgstr "Video (MP4)"
 
 #. Message shown on button within Dropdown list
 #. Message shown on button within the Header
@@ -828,17 +828,17 @@ msgstr "Cargos desempeñados"
 #. Message while MyList modal loads items
 #: src/components/ModalMyList/index.js:195
 msgid "Preparing items"
-msgstr "Preparar artículos"
+msgstr "Preparando artículos"
 
 #. Message while page loads for Aeon submissions
 #: src/components/PageMyList/index.js:102
 msgid "Preparing items for your request"
-msgstr "Preparar artículos para su solicitud"
+msgstr "Preparando artículos para su solicitud"
 
 #. Page Title for sending an Aeon request
 #: src/components/PageMyList/index.js:98
 msgid "Preparing Request Data"
-msgstr "Preparación de los datos de la solicitud"
+msgstr "Preparando de los datos de la solicitud"
 
 #. Privacy Policy message
 #: src/components/PrimaryLink/index.js:76
@@ -883,7 +883,7 @@ msgstr "Eliminar"
 #: src/components/Dropdown/index.js:118
 #: src/components/MyListExportActions/index.js:30
 msgid "Remove All Items"
-msgstr "Eliminar todos los ítems"
+msgstr "Eliminar todos los artículos"
 
 #. Test Remove button label
 #: src/components/ListToggleButton/__tests__/ListToggleButton.test.js:48
@@ -915,7 +915,7 @@ msgstr "Solicitar copias"
 #: src/components/Dropdown/index.js:79
 #: src/components/MyListSidebar/index.js:22
 msgid "Request in Reading Room"
-msgstr "Solicitud en la sala de lectura"
+msgstr "Solicitar en sala de lectura"
 
 #. Institution name for citation
 #: src/components/RecordsDetail/index.js:169
@@ -942,12 +942,12 @@ msgstr "Programar una Visita"
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:184
 #: src/components/ModalMyList/index.js:412
 msgid "Scheduled Date *"
-msgstr "Fecha prevista *"
+msgstr "Fecha *"
 
 #. Name for scheduling date error
 #: src/components/ModalMyList/index.js:419
 msgid "scheduledDate"
-msgstr "fecha programada"
+msgstr "fecha"
 
 #. Label for Search button
 #: src/components/SearchForm/index.js:78
@@ -962,7 +962,7 @@ msgstr "Buscar más colecciones relacionadas"
 #. Message shown within the Hero
 #: src/components/Hero/index.js:11
 msgid "Search Our Collections.<0/>Discover People and Organizations.<1/>Access Digital Content."
-msgstr "Buscar en nuestras colecciones.<0/>Descubrir personas y organizaciones.<1/>Acceder a contenidos digitales."
+msgstr "Busca en nuestras colecciones.<0/>Descubre a personas y organizaciones.<1/>Accede a contenidos digitales."
 
 #. Page Home Test
 #: src/components/PageHome/__tests__/PageHome.test.js:26
@@ -972,7 +972,7 @@ msgstr "Buscar en nuestras colecciones.Descubrir personas y organizaciones.Acced
 #. Search Results for Test
 #: src/components/PageSearch/__tests__/PageSearch.test.js:54
 msgid "Search Results for"
-msgstr "Resultados de búsqueda para"
+msgstr "Resultados para la búsqueda de"
 
 #. Placeholder text for search textbox
 #: src/components/SearchForm/index.js:65
@@ -1039,7 +1039,7 @@ msgstr "ver menos"
 #. Label for digital matches only checkbox
 #: src/components/SearchForm/index.js:122
 msgid "Show only results with digital matches"
-msgstr "Mostrar sólo resultados con coincidencias digitales"
+msgstr "Mostrar sólo los resultados con coincidencias digitales"
 
 #. Message shown on sign-in button
 #: src/components/Dropdown/index.js:146
@@ -1134,12 +1134,12 @@ msgstr "Cambiar al mes anterior."
 #. Take-down Policy message
 #: src/components/SecondaryLink/index.js:61
 msgid "Take-down policy"
-msgstr "Política de retirada"
+msgstr "Política para la retirada de materiales"
 
 #. Subtitle displayed within the Header
 #: src/components/Header/index.js:16
 msgid "The Online Collection and Catalog of Rockefeller Archive Center"
-msgstr "Colección y catálogo en línea del Rockefeller Archive Center"
+msgstr "La Colección y el catálogo en línea del Rockefeller Archive Center"
 
 #. Message displayed when error occurs while submitting request
 #: src/components/PageMyList/index.js:163
