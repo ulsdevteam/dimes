@@ -45,7 +45,7 @@ msgstr "{0, select, true {Minimap} other {Introducción al minimapa}}"
 #. Text for submiting item(s) request
 #: src/components/ModalMyList/index.js:458
 #: src/components/ModalMyList/index.js:587
-msgid "{0, select, true {Request {1} Item} other {Request {2} Items}}"
+msgid "{0, select, true {Request {1} Items} other {Request {2} Item}}"
 msgstr "{0, select, true {Solicitar {1} Artículo} other {Solicitar {2} Artículos}}"
 
 #: src/components/RecordsContent/index.js:232
