@@ -83,7 +83,7 @@ DIMES uses a [macro implementation](https://lingui.dev/guides/message-extraction
 
 ### Aeon Reading Room Integration
 
-Available dates for reading rooms can be pulled from Aeon via the request broker by setting the `REACT_APP_ENABLE_READING_ROOM_SELECT` environment variable. Not setting this environment variable or leaving it blank will disable this feature.
+Available dates for reading rooms can be pulled from Aeon via the request broker by setting the `REACT_APP_ENABLE_READING_ROOM_SELECT` environment variable. Not setting this environment variable or leaving it blank will disable this feature. Setting this environment variable to any string will activate it.
 
 ## License
 
