@@ -16,7 +16,7 @@ msgstr ""
 #. Message returned dependent on how many items selected
 #: src/components/ModalMyList/index.js:154
 msgid "{0, plural, =0 {selected: 0 items} other {selected: {1}}}"
-msgstr "{0, plural, =0 {Ausgewählt: 0 Einträge} other {Ausgewählt: {1}}}"
+msgstr "{0, plural, =0 {Ausgewählt: 0 Elemente} other {Ausgewählt: {1}}}"
 
 #. Filter results message
 #: src/components/ModalSearch/index.js:44
@@ -46,7 +46,7 @@ msgstr "{0, select, true {Minimap} other {Einführung in die Minimap}}"
 #: src/components/ModalMyList/index.js:458
 #: src/components/ModalMyList/index.js:587
 msgid "{0, select, true {Request {1} Items} other {Request {2} Item}}"
-msgstr "{0, select, true {Bestellen {1} Material} other {Bestellen {2} Material}}"
+msgstr "{0, select, true {Anfordern {1} Element} other {Anfordern {2} Elemente}}"
 
 #: src/components/RecordsContent/index.js:232
 msgid "{0, select, true {View} other {View Online}}"
@@ -216,7 +216,7 @@ msgstr "<0>Laden</0>"
 #. Agent Sidebar Header
 #: src/components/PageAgent/index.js:61
 msgid "<0>More about this {agentType}</0>"
-msgstr "<0>Mehr über {agentType}</0>"
+msgstr "<0>Mehr zu dieser {agentType}</0>"
 
 #. Header for user's list
 #: src/components/PageMyList/index.js:298
@@ -456,31 +456,31 @@ msgstr "Als .csv herunterladen"
 
 #. Company Email
 #: src/components/Footer/index.js:36
-msgid "E-mail:<0/>"
+msgid "E-Mail:<0/>"
 msgstr "E-Mail:<0/>"
 
 #. Name of email form
 #: src/components/ModalMyList/index.js:284
 msgid "email"
-msgstr "email"
+msgstr "E-Mail"
 
 #. Email Modal Form Test
 #. Label of Email Form
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:111
 #: src/components/ModalMyList/index.js:280
 msgid "Email *"
-msgstr "Email"
+msgstr "E-Mail *"
 
 #. Email list label
 #: src/components/Dropdown/index.js:99
 #: src/components/MyListExportActions/index.js:11
 msgid "Email List"
-msgstr "Als Email senden"
+msgstr "Liste per E-Mail versenden"
 
 #. Title displayed after emailing selected items
 #: src/components/PageMyList/index.js:148
 msgid "Email Sent"
-msgstr "Email Gesendet"
+msgstr "E-Mail Gesendet"
 
 #. Label for the end year input
 #: src/components/ModalSearch/index.js:74
@@ -833,7 +833,7 @@ msgstr "Vorbereiten von Einträge"
 #. Message while page loads for Aeon submissions
 #: src/components/PageMyList/index.js:102
 msgid "Preparing items for your request"
-msgstr "Vorbereiten von Einträge für Ihre Anfrage"
+msgstr "Vorbereiten von Einträge für Ihre Anfordern"
 
 #. Page Title for sending an Aeon request
 #: src/components/PageMyList/index.js:98
@@ -901,7 +901,7 @@ msgstr "Element aus der Liste entfernen"
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:191
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:246
 msgid "Request 4 Items"
-msgstr "4 Material bestellen"
+msgstr "Anfordern 4 Elemente"
 
 #. Message shown on button within Dropdown list
 #. Shown to request copies of an item
@@ -915,7 +915,7 @@ msgstr "Reproduktionen anfordern"
 #: src/components/Dropdown/index.js:79
 #: src/components/MyListSidebar/index.js:22
 msgid "Request in Reading Room"
-msgstr "In den Lesesaal bestellen"
+msgstr "In den Lesesaal Anfordern"
 
 #. Institution name for citation
 #: src/components/RecordsDetail/index.js:169
@@ -957,7 +957,7 @@ msgstr "Suche"
 #. Message to search for more related collections
 #: src/components/PageAgent/index.js:47
 msgid "Search More Related Collections"
-msgstr "Weitere verwandte Sammlungen suchen"
+msgstr "Weitere verwandte Sammlungen durchsuchen"
 
 #. Message shown within the Hero
 #: src/components/Hero/index.js:11
@@ -1065,7 +1065,7 @@ msgstr "Soziale Netzwerke und archivarischer Kontext"
 #. Message shown when request failed
 #: src/components/PageMyList/index.js:350
 msgid "Sorry, our system is unable to process requests right now. We're working to fix this! Please try again later."
-msgstr "Leider kann unser System im Moment keine Anfragen bearbeiten. Wir arbeiten an der Behebung des Problems! Bitte versuchen Sie es später noch einmal."
+msgstr "Leider kann unser System im Moment keine Anfordern bearbeiten. Wir arbeiten an der Behebung des Problems! Bitte versuchen Sie es später noch einmal."
 
 #. Page Not Found Test
 #: src/components/PageNotFound/__tests__/PageNotFound.test.js:26
@@ -1080,7 +1080,7 @@ msgstr "sortiere nach Relevanz"
 #. Sort by creator name label
 #: src/components/PageSearch/index.js:52
 msgid "Sort by creator name"
-msgstr "Sortiere nach Urheber"
+msgstr "Sortiere nach Name des Erstellers"
 
 #. Sort by relevance label
 #: src/components/PageSearch/index.js:40
