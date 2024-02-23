@@ -86,7 +86,7 @@ msgstr "{inProgress, select, true {Aranıyor} other {{0, select, false {Arama so
 #. Label for Context Switcher
 #: src/components/ContextSwitcher/index.js:14
 msgid "{isContentShown, select, true {Collection Details} other {Collection Content}}"
-msgstr "{isContentShown, select, true {Koleksiyon Detayları} other {Toplamak İçerik}}"
+msgstr "{isContentShown, select, true {Koleksiyon Detayları} other {Koleksiyon İçerik}}"
 
 #. Downloading label
 #: src/components/MyListExportActions/index.js:19
@@ -171,7 +171,7 @@ msgstr "<0>Alıntı bilgileri panoya kopyalandı.</0>"
 #. Button to copy citation text
 #: src/components/RecordsDetail/index.js:215
 msgid "<0>Cite<1/></0>"
-msgstr "<0>Alıntı yapın<1/></0>"
+msgstr "<0>Alıntıla yapın<1/></0>"
 
 #. Agent note Description
 #: src/components/PageAgent/index.js:21
@@ -186,7 +186,7 @@ msgstr "<0>İçeri̇si̇nde Bulundu: <1>{0}</1></0>"
 #. Search not found tips
 #: src/components/SearchNotFound/index.js:19
 msgid "<0>Have you tried doing the following:</0><1><2>Check for spelling errors or typos</2><3>Use fewer keywords</3><4>Clear search filter options</4></1>"
-msgstr "<0>Aşağıdakileri yapmayı denediniz mi?</0><1><2>Yazım yanlışlarını kontrol edin</2><3>Daha az anahtar kelime kullanın</3><4>•\tArama filtresi seçeneklerini kaldırın</4></1>"
+msgstr "<0>Aşağıdakileri yapmayı denediniz mi?</0><1><2>Yazım yanlışlarını kontrol edin</2><3>Daha az anahtar kelime kullanın</3><4>Temizleyin filtresi seçeneklerini</4></1>"
 
 #. Suggested terms message
 #: src/components/SearchNotFound/index.js:29
@@ -402,7 +402,7 @@ msgstr "Koleksiyonlar"
 #. Collections data API message
 #: src/components/SecondaryLink/index.js:22
 msgid "Collections data API"
-msgstr "Koleksiyonlar veri API'si"
+msgstr "Koleksiyon Verileri Uygulama Programlama Arabirimi (API)"
 
 #. Agent Related Collections
 #: src/components/PageAgent/index.js:39
@@ -843,7 +843,7 @@ msgstr "Talep Verilerinin Hazırlanması"
 #. Privacy Policy message
 #: src/components/PrimaryLink/index.js:76
 msgid "Privacy Policy"
-msgstr "Gizlilik Politikası"
+msgstr "Kişisel Verilere Dair Politika"
 
 #. Name for RAC staff message Form
 #: src/components/ModalMyList/index.js:435
@@ -915,7 +915,7 @@ msgstr "Kopya Talep Et"
 #: src/components/Dropdown/index.js:79
 #: src/components/MyListSidebar/index.js:22
 msgid "Request in Reading Room"
-msgstr "Okuma Odasina Materyal Talebi̇"
+msgstr "Okuma odası için talep"
 
 #. Institution name for citation
 #: src/components/RecordsDetail/index.js:169
