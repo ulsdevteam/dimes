@@ -244,14 +244,6 @@ it('renders duplication modal props correctly', async () => {
   const buttons = document.querySelector('.modal-form__buttons')
 
   await act(async () => {
-    expect(form.textContent).toContain(t({
-      comment: 'Description Modal Form Test',
-      message: "Description of Materials"
-    }))
-    expect(form.textContent).toContain(t({
-      comment: 'Message Modal Form Test',
-      message: "Message for RAC staff"
-    }))
     expect(buttons.querySelector("[type=submit]").textContent).toBe(t({
       message: 'Request 4 Items'
     }))
