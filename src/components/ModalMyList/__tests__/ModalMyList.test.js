@@ -26,6 +26,7 @@ beforeEach(() => {
       return Promise.reject(new Error('not found'))
     }
   })
+  axios.get.mockImplementation((url) => Promise.resolve({data:[]}))
 })
 
 afterEach(() => {
