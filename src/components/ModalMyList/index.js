@@ -12,6 +12,8 @@ import { ModalSavedItemList } from '../ModalSavedItem'
 import { getFormattedDate } from '../Helpers'
 import './styles.scss'
 import { Plural, Trans, select, t } from '@lingui/macro'
+import axios from 'axios'
+import { addBusinessDays, parse, parseISO, startOfDay, isWithinInterval } from 'date-fns'
 
 
 const SubmitListInput = ({ submitList }) => {
@@ -354,7 +356,97 @@ EmailModal.propTypes = {
   toggleModal: PropTypes.func.isRequired,
 }
 
-export const ReadingRoomRequestModal = props => (
+const ReadingRoomSelect = ({ readingRooms }) => {
+  const { setFieldValue } = useFormikContext();
+  const [site, setSite] = useState('');
+
+  const ReadingRoomLocations = readingRooms.map(readingRoom => ({
+    value: readingRoom.sites[0],
+    label: readingRoom.name,
+  }));
+  ReadingRoomLocations.unshift({
+    value: "",
+    label: t({message: "Please select a reading room"}),
+  });
+
+  useEffect(() => {
+    setFieldValue('site', site);
+  }, [site, setFieldValue]);
+
+  return (
+    <div className='form-group'>
+      <SelectInput
+        className='select__modal'
+        id='site'
+        label={t({message: 'Select Reading Room Location'})}
+        name='site'
+        onChange={({ selectedItem }) => setSite(selectedItem.value)}
+        options={ReadingRoomLocations}
+        required={true}
+        selectedItem={site || ''} />
+      <ErrorMessage
+        id='site-error'
+        name='site'
+        component='div'
+        className='modal-form__error' />
+    </div>
+  )
+}
+
+const ReadingRoomDateInput = ({ readingRoom }) => {
+  const { setFieldValue } = useFormikContext();
+
+  return (
+    <div className='form-group'>
+      <Field
+        component={DateInput}
+        handleChange={date => setFieldValue('scheduledDate', date)}
+        helpText={t({
+          comment: 'Helptext for scheduling date.',
+          message: 'Enter the date of your research visit (mm/dd/yyyy)'
+        })}
+        id='scheduledDate'
+        label={t({
+          comment: 'Label for scheduling date',
+          message: 'Scheduled Date *'
+        })}
+        type='date'
+        defaultDate={addBusinessDays(new Date(), readingRoom?.policies[0]?.appointmentMinLeadDays || 1)}
+        minDate={addBusinessDays(new Date(), readingRoom?.policies[0]?.appointmentMinLeadDays || 1)}
+        filterDate={!!process.env.REACT_APP_ENABLE_READING_ROOM_SELECT ? date => readingRoom?.openHours.some(x => x.dayOfWeek === date.getDay()) : null}
+        filterTime={!!process.env.REACT_APP_ENABLE_READING_ROOM_SELECT ? date => {
+          if (readingRoom === undefined) return false;
+          const hours = readingRoom.openHours.find(x => x.dayOfWeek === date.getDay());
+          return isWithinInterval(date, {
+            start: parse(hours.openTime, "HH:mm:ss", date),
+            end: parse(hours.closeTime, "HH:mm:ss", date),
+          });
+        } : null}
+        excludeDateIntervals={readingRoom?.closures.map(closure => ({
+          start: startOfDay(parseISO(closure.startDate)),
+          end: startOfDay(parseISO(closure.endDate)),
+        }))} />
+      <ErrorMessage
+        id='scheduledDate-error'
+        name='scheduledDate'
+        component='div'
+        className='modal-form__error' />
+    </div>
+  )
+}
+
+export const ReadingRoomRequestModal = props => { 
+  const [aeonReadingRooms, setAeonReadingRooms] = useState([]);
+
+  useEffect(() => {
+    if (!!process.env.REACT_APP_ENABLE_READING_ROOM_SELECT) {
+      axios.get(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/reading-rooms`).then(response => {
+        setAeonReadingRooms(response.data);
+      });
+    }
+  }, []); // empty deps array means it runs once
+
+  return (
   <ModalMyList
     appElement={props.appElement}
     title='Request in Reading Room'
@@ -372,6 +464,9 @@ export const ReadingRoomRequestModal = props => (
             comment: 'Missing Scheduled Date error',
             message: 'Please provide the date of your research visit.'
           });
+          if (!!process.env.REACT_APP_ENABLE_READING_ROOM_SELECT && !values.site) errors.site = t({
+            message: 'Please select a location of a reading room.'
+          })
           if (!values.recaptcha) errors.recaptcha = t({
             message: 'Please complete this field.'
           });
@@ -390,7 +485,7 @@ export const ReadingRoomRequestModal = props => (
           setSubmitting(false);
         }}
       >
-      {({ errors, isSubmitting, setFieldValue, touched }) => (
+      {({ errors, isSubmitting, setFieldValue, touched, values }) => (
         <Form>
           <SubmitListInput submitList={props.submitList} />
           <ErrorMessage
@@ -400,29 +495,9 @@ export const ReadingRoomRequestModal = props => (
             })}
             component='div'
             className='input__error' />
-          <div className='form-group mx-0'>
-            <Field
-              component={DateInput}
-              handleChange={date => setFieldValue('scheduledDate', date)}
-              helpText={t({
-                comment: 'Helptext for scheduling date.',
-                message: 'Enter the date of your research visit (mm/dd/yyyy)'
-              })}
-              id='scheduledDate'
-              label={t({
-                comment: 'Label for scheduling date',
-                message: 'Scheduled Date *'
-              })}
-              type='date' />
-            <ErrorMessage
-              id='scheduledDate-error'
-              name={t({
-                comment: 'Name for scheduling date error',
-                message: 'scheduledDate'
-              })}
-              component='div'
-              className='input__error' />
-          </div>
+          {!!process.env.REACT_APP_ENABLE_READING_ROOM_SELECT && <ReadingRoomSelect readingRooms={aeonReadingRooms} />}
+          <ReadingRoomDateInput
+            readingRoom={aeonReadingRooms.find(room => room.sites[0] === values.site)} />
           <FormGroup
             label={t({
               comment: 'Label for RAC staff message Form',
@@ -472,7 +547,7 @@ export const ReadingRoomRequestModal = props => (
       </Formik>
     }
   />
-)
+)}
 
 ReadingRoomRequestModal.propTypes = {
   appElement: PropTypes.object,

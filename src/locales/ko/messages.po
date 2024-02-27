@@ -31,7 +31,7 @@ msgstr "{0, plural, one {맞음} other {조회수}}"
 #. Current Results shown of total results
 #: src/components/PageSearch/index.js:236
 msgid "{0, select, true {{startItem} result} other {{startItem}-{endItem} of {resultsCount} results}}"
-msgstr "{0, select, true {{startItem} result} other {{startItem}-{endItem} 중 {resultsCount} 결과}}"
+msgstr "{0, select, true {{startItem} result} other {{startItem}-{endItem} 총 {resultsCount} 가지 결과}}"
 
 #: src/components/PageSearch/index.js:290
 msgid "{0, select, true {{startItem}} other {{startItem}-{endItem} of {resultsCount} results}}"
@@ -76,7 +76,7 @@ msgstr "{hitCount, plural, one {디지털 일치} other {디지털 일치}}"
 #. Pluralization of match(es)
 #: src/components/Helpers.js:57
 msgid "{hitCount, plural, one {match} other {matches}}"
-msgstr "{hitCount, plural, one {기타} other {성냥}}"
+msgstr "{hitCount, plural, one {일치} other {일치}}"
 
 #. Search Results header
 #: src/components/PageSearch/index.js:209
@@ -91,7 +91,7 @@ msgstr "{isContentShown, select, true {컬렉션 세부 정보} other {컬렉션
 #. Downloading label
 #: src/components/MyListExportActions/index.js:19
 msgid "{isDownloading, select, true {Downloading} other {Download as .CSV}}"
-msgstr "{isDownloading, select, true {다운로드 중} other {.CSV로 다운로드}}"
+msgstr "{isDownloading, select, true {다운로드 중} other {.CSV 파일로 다운로드하기}}"
 
 #. Label for Add List Toggle button
 #: src/components/ListToggleButton/index.js:36
@@ -186,7 +186,7 @@ msgstr "<0>발견 위치: <1>{0}</1></0>"
 #. Search not found tips
 #: src/components/SearchNotFound/index.js:19
 msgid "<0>Have you tried doing the following:</0><1><2>Check for spelling errors or typos</2><3>Use fewer keywords</3><4>Clear search filter options</4></1>"
-msgstr "<0>다음을 시도해 보셨나요?</0><1><2>맞춤법 오류 또는 오타 확인</2><3>키워드 사용 횟수 줄이기</3><4>검색 필터 옵션 지우기</4></1>"
+msgstr "<0>다음을 시도해 보셨나요?</0><1><2>맞춤법 오류 또는 오타 확인</2><3>키워드 줄이기</3><4>검색 필터 옵션 재설정</4></1>"
 
 #. Suggested terms message
 #: src/components/SearchNotFound/index.js:29
@@ -216,7 +216,7 @@ msgstr "<0>로드 중</0>"
 #. Agent Sidebar Header
 #: src/components/PageAgent/index.js:61
 msgid "<0>More about this {agentType}</0>"
-msgstr "<0>자세히 알아보기 {agentType}</0>"
+msgstr "<0>이에 대해 자세히 알아보기 {agentType}</0>"
 
 #. Header for user's list
 #: src/components/PageMyList/index.js:298
@@ -236,7 +236,7 @@ msgstr "<0>참고:</0> 목록을 아카이브 담당자에게 이메일( <1>arch
 #. Note to user about a cost estimate
 #: src/components/ModalMyList/index.js:501
 msgid "<0>Please note:</0> if you want a cost estimate for your order, email an archivist at <1>archive@rockarch.org</1>."
-msgstr "<0>참고:</0> 주문에 대한 비용 견적을 원하시면 아카이브 담당자에게 이메일( <1>archive@rockarch.org)로 문의하세요</1>."
+msgstr "<0>참고:</0> 원하시면 아카이브 담당자에게 문의하세요. 이메일: <1>archive@rockarch.org</1>"
 
 #. summary message
 #: src/components/PageAgent/index.js:265
@@ -281,7 +281,7 @@ msgstr "미니맵 정보"
 #. Accessibility Statement message
 #: src/components/PrimaryLink/index.js:63
 msgid "Accessibility Statement"
-msgstr "접근성 정책"
+msgstr "자료 검색 정책"
 
 #. Message shown on Dropdown button
 #: src/components/Dropdown/index.js:53
@@ -397,7 +397,7 @@ msgstr "수집 세부 정보"
 #. Label for Collections category
 #: src/components/SearchForm/index.js:32
 msgid "Collections"
-msgstr "콜렉션"
+msgstr "컬렉션"
 
 #. Collections data API message
 #: src/components/SecondaryLink/index.js:22
@@ -452,7 +452,7 @@ msgstr "dimes.rockarch.org"
 #. Message shown on button within Dropdown list
 #: src/components/Dropdown/index.js:108
 msgid "Download as .csv"
-msgstr ".csv로 다운로드"
+msgstr ".csv 파일로 다운로드하기"
 
 #. Company Email
 #: src/components/Footer/index.js:36
@@ -475,7 +475,7 @@ msgstr "이메일 *"
 #: src/components/Dropdown/index.js:99
 #: src/components/MyListExportActions/index.js:11
 msgid "Email List"
-msgstr "이메일 목록"
+msgstr "목록 이메일 전송"
 
 #. Title displayed after emailing selected items
 #: src/components/PageMyList/index.js:148
@@ -549,7 +549,7 @@ msgstr "설립자"
 #. How to Access materials message
 #: src/components/PrimaryLink/index.js:24
 msgid "How to access and request materials."
-msgstr "자료에 액세스하고 요청하는 방법."
+msgstr "자료를 검색하고 요청하는 방법."
 
 #. Footer.Primary.RAC.href
 #: src/components/PrimaryLink/index.js:85
@@ -641,7 +641,7 @@ msgstr "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
 #. Label for duplicate request form
 #: src/components/ModalMyList/index.js:549
 msgid "I agree to pay the duplication costs for this request. See our <0>fee schedule</0>."
-msgstr "이 요청에 대한 복제 비용을 지불하는 데 동의합니다. <0>수수료 일정을</0> 참조하세요."
+msgstr "이 자료를 복사하는 비용을 지불하는 것에 동의합니다. <0>수수료 일정을</0> 참조하세요."
 
 #. Invalid email error
 #: src/components/ModalMyList/index.js:245
@@ -687,14 +687,14 @@ msgstr "mailto:archive@rockarch.org?subject=Scheduling 연구 예약"
 #. Name of message form
 #: src/components/ModalMyList/index.js:307
 msgid "message"
-msgstr "메시지"
+msgstr "본문"
 
 #. Message Modal Form Test
 #. Label of Message Form
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:119
 #: src/components/ModalMyList/index.js:303
 msgid "Message"
-msgstr "메시지"
+msgstr "본문"
 
 #. Label for RAC staff message Form
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:188
@@ -719,7 +719,7 @@ msgstr "월요일~금요일<0/>오전 9:00~오후 5:00<1/>"
 #. Label for MP4
 #: src/components/ModalMyList/index.js:55
 msgid "Moving image (MP4)"
-msgstr "움직이는 이미지(MP4)"
+msgstr "동영상(MP4)"
 
 #. Message shown on button within Dropdown list
 #. Message shown on button within the Header
@@ -775,12 +775,12 @@ msgstr "새 창에서 열기"
 #. Label for Organizations category
 #: src/components/SearchForm/index.js:46
 msgid "Organizations"
-msgstr "조직"
+msgstr "기관"
 
 #. Label for People category
 #: src/components/SearchForm/index.js:39
 msgid "People"
-msgstr "인원"
+msgstr "인물"
 
 #. Company Phonenumber
 #: src/components/Footer/index.js:30
@@ -843,7 +843,7 @@ msgstr "요청 데이터 준비"
 #. Privacy Policy message
 #: src/components/PrimaryLink/index.js:76
 msgid "Privacy Policy"
-msgstr "개인 정보 정책"
+msgstr "개인정보 보호 정책"
 
 #. Name for RAC staff message Form
 #: src/components/ModalMyList/index.js:435
@@ -908,7 +908,7 @@ msgstr "4개 항목 요청"
 #: src/components/Dropdown/index.js:89
 #: src/components/MyListSidebar/index.js:30
 msgid "Request Copies"
-msgstr "사본 요청"
+msgstr "복사 요청"
 
 #. Message shown on button within Dropdown list
 #. Shown to Request the item in a Reading Room
@@ -942,7 +942,7 @@ msgstr "방문 예약하기"
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:184
 #: src/components/ModalMyList/index.js:412
 msgid "Scheduled Date *"
-msgstr "예약 날짜 *"
+msgstr "요청 날짜 *"
 
 #. Name for scheduling date error
 #: src/components/ModalMyList/index.js:419
@@ -962,12 +962,12 @@ msgstr "더 많은 관련 컬렉션 검색"
 #. Message shown within the Hero
 #: src/components/Hero/index.js:11
 msgid "Search Our Collections.<0/>Discover People and Organizations.<1/>Access Digital Content."
-msgstr "컬렉션 검색.<0/>인물 및 조직 검색.<1/>디지털 콘텐츠에 액세스합니다."
+msgstr "컬렉션 검색.<0/>인물 및 조직 검색.<1/>디지털 자료 이용."
 
 #. Page Home Test
 #: src/components/PageHome/__tests__/PageHome.test.js:26
 msgid "Search Our Collections.Discover People and Organizations.Access Digital Content."
-msgstr "컬렉션 검색, 인물 및 조직 검색, 디지털 콘텐츠 액세스."
+msgstr "컬렉션 검색. 인물 및 조직 검색. 디지털 자료 이용."
 
 #. Search Results for Test
 #: src/components/PageSearch/__tests__/PageSearch.test.js:54
@@ -1039,7 +1039,7 @@ msgstr "적게 표시"
 #. Label for digital matches only checkbox
 #: src/components/SearchForm/index.js:122
 msgid "Show only results with digital matches"
-msgstr "디지털 매치가 있는 결과만 표시"
+msgstr "디지털 원문이 있는 결과만 표시"
 
 #. Message shown on sign-in button
 #: src/components/Dropdown/index.js:146
@@ -1080,7 +1080,7 @@ msgstr "정렬"
 #. Sort by creator name label
 #: src/components/PageSearch/index.js:52
 msgid "Sort by creator name"
-msgstr "크리에이터 이름별로 정렬"
+msgstr "작성자명별로 정렬"
 
 #. Sort by relevance label
 #: src/components/PageSearch/index.js:40
@@ -1090,7 +1090,7 @@ msgstr "관련성별로 정렬"
 #. Sort by title label
 #: src/components/PageSearch/index.js:46
 msgid "Sort by title"
-msgstr "제목"
+msgstr "제목별로 정렬"
 
 #. Label for sort results input
 #: src/components/PageSearch/index.js:264
@@ -1139,7 +1139,7 @@ msgstr "게시 중단 정책"
 #. Subtitle displayed within the Header
 #: src/components/Header/index.js:16
 msgid "The Online Collection and Catalog of Rockefeller Archive Center"
-msgstr "록펠러 아카이브 센터의 온라인 컬렉션 및 카탈로그"
+msgstr "록펠러 아카이브 센터의 온라인 컬렉션과 목록"
 
 #. Message displayed when error occurs while submitting request
 #: src/components/PageMyList/index.js:163
