@@ -5,6 +5,7 @@ import {useSelect} from 'downshift'
 import MaterialIcon from '../MaterialIcon'
 import classnames from 'classnames'
 import { t } from '@lingui/macro'
+import "react-datepicker/dist/react-datepicker.css"
 import './styles.scss'
 
 
