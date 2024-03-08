@@ -16,7 +16,7 @@ msgstr ""
 #. Message returned dependent on how many items selected
 #: src/components/ModalMyList/index.js:154
 msgid "{0, plural, =0 {selected: 0 items} other {selected: {1}}}"
-msgstr "{0, plural, =0 {sélectionné : 0 éléments} other {sélectionné : {1}}}"
+msgstr "{0, plural, =0 {sélections : 0 éléments} other {sélections : {1}}}"
 
 #. Filter results message
 #: src/components/ModalSearch/index.js:44
@@ -96,12 +96,12 @@ msgstr "{isDownloading, select, true {Téléchargement} other {Télécharger au 
 #. Label for Add List Toggle button
 #: src/components/ListToggleButton/index.js:36
 msgid "{isMobile, select, true {Add} other {Add to List}}"
-msgstr "{isMobile, select, true {Ajouter} other {Ajouter à ma liste}}"
+msgstr "{isMobile, select, true {Ajouter} other {Ajouter au panier}}"
 
 #. Label for Remove List Toggle button
 #: src/components/ListToggleButton/index.js:17
 msgid "{isMobile, select, true {Remove} other {Remove from List}}"
-msgstr "{isMobile, select, true {Retirer} other {Retirer de ma liste}}"
+msgstr "{isMobile, select, true {Retirer} other {Supprimer du panier}}"
 
 #. Agent Note source
 #: src/components/PageAgent/index.js:28
@@ -116,7 +116,7 @@ msgstr "<0/>Retour à la recherche"
 #. New Search button
 #: src/components/PageMyList/index.js:292
 msgid "<0/>Start a New Search"
-msgstr "<0/>Commencer une nouvelle recherche"
+msgstr "<0/>Lancer une nouvelle recherche"
 
 #. Download button for digital object
 #: src/components/PageDigitalObject/index.js:108
@@ -131,7 +131,7 @@ msgstr "<0><1/> Planifier une visite</0>"
 #. Go back to Item details for digital object
 #: src/components/PageDigitalObject/index.js:119
 msgid "<0><1/>Back to Item Details</0>"
-msgstr "<0><1/>Retour aux détails de l'article</0>"
+msgstr "<0><1/>Retour au détails de l'objet</0>"
 
 #. Social Icons Titles
 #: src/components/SocialIcons/index.js:5
@@ -141,7 +141,7 @@ msgstr "<0><1><2><3><4>Logo Twitter</4><5/></3></2></1><6><7><8><9>Logo Facebook
 #. Page Title for user's list
 #: src/components/PageMyList/index.js:283
 msgid "<0><1>DIMES: My List</1></0>"
-msgstr "<0><1>DIMES : Ma liste</1></0>"
+msgstr "<0><1>DIMES : Mon panier</1></0>"
 
 #. Page Home
 #: src/components/PageHome/index.js:10
@@ -186,7 +186,7 @@ msgstr "<0>Trouvé dans : <1>{0}</1></0>"
 #. Search not found tips
 #: src/components/SearchNotFound/index.js:19
 msgid "<0>Have you tried doing the following:</0><1><2>Check for spelling errors or typos</2><3>Use fewer keywords</3><4>Clear search filter options</4></1>"
-msgstr "<0>Avez-vous essayé de faire ce qui suit :</0><1><2>Vérifier les fautes d'orthographe ou de frappe</2><3>Utiliser moins de mots-clés</3><4>Effacer les options du filtre de recherche</4></1>"
+msgstr "<0>Vous pouvez:</0><1><2>Vérifier l'orthographe des terms de recherche</2><3>Specifier un moins grand nombre des mots</3><4>Eliminer les filtres de recherche</4></1>"
 
 #. Suggested terms message
 #: src/components/SearchNotFound/index.js:29
@@ -196,7 +196,7 @@ msgstr "<0>Voici quelques suggestions de termes de recherche :</0>"
 #. The about section for minimaps.
 #: src/components/ModalMinimap/index.js:9
 msgid "<0>Jump to a part of the collection containing matches by clicking on an active square.</0><1>In the minimap diagram, each square represents part of this collection. Colored squares represent parts that contain one or more matches for your search.</1>"
-msgstr "<0>Accédez à une partie de la collection contenant des correspondances en cliquant sur un carré actif.</0><1>Dans le diagramme de la mini-carte, chaque carré représente une partie de cette collection. Les carrés colorés représentent les parties qui contiennent une ou plusieurs correspondances pour votre recherche.</1>"
+msgstr "<0>Cliquez sur un carré pour accéder aux résultats de votre recherche.</0><1>Dans la petite carte au longue de la page – le “minimap” -- chaque carré représente la position d’un ou de plusieurs résultats de votre recherche.</1>"
 
 #. Back to search button
 #: src/components/PageAgent/index.js:251
@@ -221,7 +221,7 @@ msgstr "<0>En savoir plus {agentType}</0>"
 #. Header for user's list
 #: src/components/PageMyList/index.js:298
 msgid "<0>My List</0>"
-msgstr "<0>Ma liste</0>"
+msgstr "<0>Mon panier</0>"
 
 #. No search terms supplied message
 #: src/components/SearchNotFound/index.js:42
@@ -236,7 +236,7 @@ msgstr "<0>Remarque :</0> si vous envoyez votre liste par courrier électronique
 #. Note to user about a cost estimate
 #: src/components/ModalMyList/index.js:501
 msgid "<0>Please note:</0> if you want a cost estimate for your order, email an archivist at <1>archive@rockarch.org</1>."
-msgstr "<0>Remarque :</0> si vous souhaitez obtenir un devis pour votre commande, envoyez un courriel à un archiviste à l'adresse <1>archive@rockarch.org</1>."
+msgstr "<0>Remarque :</0> Pour obtenir une estimation pour votre commande, veuillez envoyer un courriel à <1>archive@rockarch.org</1>."
 
 #. summary message
 #: src/components/PageAgent/index.js:265
@@ -256,7 +256,7 @@ msgstr "<0>Une erreur s'est produite lors de l'envoi de votre demande.</0><1>La 
 #. View Saved Item online
 #: src/components/SavedItem/index.js:22
 msgid "<0>View Online<1/></0>"
-msgstr "<0>Voir en ligne<1/></0>"
+msgstr "<0>Consulter en ligne<1/></0>"
 
 #. Buttons for online records
 #: src/components/RecordsDetail/index.js:223
@@ -276,12 +276,12 @@ msgstr "255 caractères maximum"
 #. About minimap message
 #: src/components/RecordsDetail/index.js:188
 msgid "about minimap"
-msgstr "à propos de minimap"
+msgstr "Que’est-ce que le minimap?"
 
 #. Accessibility Statement message
 #: src/components/PrimaryLink/index.js:63
 msgid "Accessibility Statement"
-msgstr "Déclaration d’accessibilité du RAC"
+msgstr "Accessibilité du RAC"
 
 #. Message shown on Dropdown button
 #: src/components/Dropdown/index.js:53
@@ -313,7 +313,7 @@ msgstr "Ajouter des éléments à votre message"
 #. Label for All Categories
 #: src/components/SearchForm/index.js:25
 msgid "All Types"
-msgstr "Tous les types"
+msgstr "Par Type D'Entité"
 
 #. Modal Form Missing Email Address Test
 #. Missing email address error
@@ -402,12 +402,12 @@ msgstr "Collections"
 #. Collections data API message
 #: src/components/SecondaryLink/index.js:22
 msgid "Collections data API"
-msgstr "API sur les données des collections"
+msgstr "API des données des collections RAC"
 
 #. Agent Related Collections
 #: src/components/PageAgent/index.js:39
 msgid "Collections Related to {agentTitle}"
-msgstr "Collections liées à {agentTitle}"
+msgstr "Collections liées à la {agentTitle}"
 
 #. Remove all confirmation title
 #: src/components/PageMyList/index.js:382
@@ -475,7 +475,7 @@ msgstr "Email *"
 #: src/components/Dropdown/index.js:99
 #: src/components/MyListExportActions/index.js:11
 msgid "Email List"
-msgstr "Envoyer"
+msgstr "Envoyer le panier"
 
 #. Title displayed after emailing selected items
 #: src/components/PageMyList/index.js:148
@@ -506,7 +506,7 @@ msgstr "Erreur dans l'envoi de la demande"
 #. Company Fax
 #: src/components/Footer/index.js:33
 msgid "Fax: (914) 631-6017"
-msgstr "Fax : (914) 631-6017"
+msgstr "Fax : +1 (914) 631-6017"
 
 #. Label for Filters button
 #: src/components/PageSearch/index.js:249
@@ -549,7 +549,7 @@ msgstr "Fondée par"
 #. How to Access materials message
 #: src/components/PrimaryLink/index.js:24
 msgid "How to access and request materials."
-msgstr "Comment accéder aux documents et les demander."
+msgstr "Comment accéder aux documents et les commander."
 
 #. Footer.Primary.RAC.href
 #: src/components/PrimaryLink/index.js:85
@@ -641,7 +641,7 @@ msgstr "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
 #. Label for duplicate request form
 #: src/components/ModalMyList/index.js:549
 msgid "I agree to pay the duplication costs for this request. See our <0>fee schedule</0>."
-msgstr "J’accepte de payer les frais de reproduction pour cette demande. Voir notre <0>grille tarifaire</0>."
+msgstr "J’accepte de payer les frais de reproduction pour cette demande. Voir notre <0>tarifs</0>."
 
 #. Invalid email error
 #: src/components/ModalMyList/index.js:245
@@ -669,7 +669,7 @@ msgstr "Licences pour les métadonnées descriptives"
 #. Location property
 #: src/components/PageAgent/index.js:195
 msgid "Location of Headquarters"
-msgstr "Localisation du siège"
+msgstr "Site du siège"
 
 #. Company Email link
 #: src/components/ModalMyList/index.js:230
@@ -714,7 +714,7 @@ msgstr "Mini-carte"
 #. Reading Room Actual Hours
 #: src/components/Footer/index.js:49
 msgid "Monday-Friday<0/>9:00 a.m. to 5:00 p.m.<1/>"
-msgstr "Lundi-vendredi<0/>9h00 à 17h00<1/>"
+msgstr "Lundi-vendredi<0/>9h - 17h<1/>"
 
 #. Label for MP4
 #: src/components/ModalMyList/index.js:55
@@ -726,7 +726,7 @@ msgstr "Image animée (MP4)"
 #: src/components/Dropdown/index.js:158
 #: src/components/Header/index.js:32
 msgid "My List"
-msgstr "Ma Liste"
+msgstr "Mon panier"
 
 #. Nicknames property
 #: src/components/PageAgent/index.js:196
@@ -780,12 +780,12 @@ msgstr "Organisations"
 #. Label for People category
 #: src/components/SearchForm/index.js:39
 msgid "People"
-msgstr "Personnes"
+msgstr "Noms"
 
 #. Company Phonenumber
 #: src/components/Footer/index.js:30
 msgid "Phone: (914) 366-6300"
-msgstr "Téléphone : (914) 366-6300"
+msgstr "Téléphone : +1 (914) 366-6300"
 
 #. Place of birth property
 #: src/components/PageAgent/index.js:193
@@ -828,12 +828,12 @@ msgstr "Postes occupés"
 #. Message while MyList modal loads items
 #: src/components/ModalMyList/index.js:195
 msgid "Preparing items"
-msgstr "Préparation des articles"
+msgstr "Préparation des objets"
 
 #. Message while page loads for Aeon submissions
 #: src/components/PageMyList/index.js:102
 msgid "Preparing items for your request"
-msgstr "Préparation des articles pour votre demande"
+msgstr "Préparation des objets pour votre demande"
 
 #. Page Title for sending an Aeon request
 #: src/components/PageMyList/index.js:98
@@ -858,7 +858,7 @@ msgstr "Politiques du RAC"
 #. Reading Room Hours message
 #: src/components/Footer/index.js:44
 msgid "Reading Room Hours:"
-msgstr "Heures d'ouverture de la salle de lecture :"
+msgstr "Horaires de la salle de lecture :"
 
 #. Name of recaptcha element
 #. Name of recaptcha error message
@@ -883,7 +883,7 @@ msgstr "Retirer"
 #: src/components/Dropdown/index.js:118
 #: src/components/MyListExportActions/index.js:30
 msgid "Remove All Items"
-msgstr "Retirer tous les éléments"
+msgstr "Tout supprimer"
 
 #. Test Remove button label
 #: src/components/ListToggleButton/__tests__/ListToggleButton.test.js:48
@@ -908,14 +908,14 @@ msgstr "Demander de 4 articles"
 #: src/components/Dropdown/index.js:89
 #: src/components/MyListSidebar/index.js:30
 msgid "Request Copies"
-msgstr "Demander une copie"
+msgstr "Commander en duplication"
 
 #. Message shown on button within Dropdown list
 #. Shown to Request the item in a Reading Room
 #: src/components/Dropdown/index.js:79
 #: src/components/MyListSidebar/index.js:22
 msgid "Request in Reading Room"
-msgstr "Demander en salle de lecture"
+msgstr "Commander en salle de lecture"
 
 #. Institution name for citation
 #: src/components/RecordsDetail/index.js:169
@@ -1007,14 +1007,14 @@ msgstr "choisi:"
 #. totals empty Test
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:62
 msgid "selected: 0 items"
-msgstr "sélectionné : 0 éléments"
+msgstr "sélections : 0 éléments"
 
 #. Modal Form Submit Test
 #. Send List sumbit message
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:123
 #: src/components/ModalMyList/index.js:331
 msgid "Send List"
-msgstr "Envoyer la liste"
+msgstr "Envoyer le panier"
 
 #. Page Title for sending an email
 #: src/components/PageMyList/index.js:138
@@ -1039,7 +1039,7 @@ msgstr "afficher moins"
 #. Label for digital matches only checkbox
 #: src/components/SearchForm/index.js:122
 msgid "Show only results with digital matches"
-msgstr "Afficher uniquement les résultats avec des correspondances numériques"
+msgstr "Afficher uniquement les résultats numériques"
 
 #. Message shown on sign-in button
 #: src/components/Dropdown/index.js:146
@@ -1050,7 +1050,7 @@ msgstr "Se connecter à RACcess"
 #. Panel Extent Size message
 #: src/components/RecordsDetail/index.js:50
 msgid "Size"
-msgstr "Importance matérielle"
+msgstr "Etendue"
 
 #. Skip Link
 #: src/components/SkipLink/index.js:6
