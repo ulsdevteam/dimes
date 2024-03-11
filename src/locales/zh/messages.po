@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Poedit 3.4\n"
 
 #. Message returned dependent on how many items selected
-#: src/components/ModalMyList/index.js:154
+#: src/components/ModalMyList/index.js:98
 msgid "{0, plural, =0 {selected: 0 items} other {selected: {1}}}"
 msgstr "{0, plural, =0 {已选择：0 个项目} other {已选择：{1}}}"
 
@@ -43,8 +43,8 @@ msgid "{0, select, true {Minimap} other {Introducing the Minimap}}"
 msgstr "{0, select, true {Minimap} other {引入最小图}}"
 
 #. Text for submiting item(s) request
-#: src/components/ModalMyList/index.js:458
-#: src/components/ModalMyList/index.js:587
+#: src/components/ModalMyList/index.js:475
+#: src/components/ModalMyList/index.js:625
 msgid "{0, select, true {Request {1} Items} other {Request {2} Item}}"
 msgstr "{0, select, true {请求 {1} 项目} other {请求 {2} 项目}}"
 
@@ -63,8 +63,8 @@ msgid "{agentType, select, organization {Date Established} other {Date of Birth}
 msgstr "{agentType, select, organization {成立日期} other {出生日期}}"
 
 #. Label for item (de)selection
-#: src/components/ModalMyList/index.js:118
-#: src/components/ModalMyList/index.js:127
+#: src/components/ModalMyList/index.js:62
+#: src/components/ModalMyList/index.js:71
 msgid "{deselect, select, true {Deselect all items} other {Select all items}}"
 msgstr "{deselect, select, true {取消选择所有项目} other {选择所有项目}}"
 
@@ -173,10 +173,20 @@ msgstr "<0>引用信息复制到剪贴板。</0>"
 msgid "<0>Cite<1/></0>"
 msgstr "<0>引用<1/></0>"
 
+#. Complete Request title
+#: src/components/ModalMyList/index.js:546
+msgid "<0>Complete Request</0>"
+msgstr ""
+
 #. Agent note Description
 #: src/components/PageAgent/index.js:21
 msgid "<0>Description</0>"
 msgstr "<0>背景说明</0>"
+
+#. Fees and limitations title
+#: src/components/ModalMyList/index.js:518
+msgid "<0>Fees and limitations</0>"
+msgstr ""
 
 #. Saved item found in message
 #: src/components/SavedItem/index.js:17
@@ -229,14 +239,9 @@ msgid "<0>Please add a word or phrase to search for.</0>"
 msgstr "<0>请添加要搜索的单词或短语。</0>"
 
 #. Note to user about including name and email address
-#: src/components/ModalMyList/index.js:229
+#: src/components/ModalMyList/index.js:173
 msgid "<0>Please note:</0> if are emailing your list to an archivist at <1>archive@rockarch.org</1>, please include your name and email address in the Message field, otherwise we will have no means of contacting you to follow-up."
 msgstr "<0>请注意：</0>如果要将您的名单通过电子邮件发送给<1>archive@rockarch.org</1> 的档案管理员<1>，</1>请在 \"信息 \"栏中注明您的姓名和电子邮件地址，否则我们将无法与您联系，无法跟进。"
-
-#. Note to user about a cost estimate
-#: src/components/ModalMyList/index.js:501
-msgid "<0>Please note:</0> if you want a cost estimate for your order, email an archivist at <1>archive@rockarch.org</1>."
-msgstr "<0>请注意：</0>如果您想获得订单的费用估价，请发送电子邮件至<1>archive@rockarch.org</1> 联系档案管理员."
 
 #. summary message
 #: src/components/PageAgent/index.js:265
@@ -263,13 +268,18 @@ msgstr "<0>在线阅读<1/></0>"
 msgid "<0>View Online<1/></0><2>Download <3/></2>{0}"
 msgstr "<0>在线阅读<1/></0><2>下载<3/></2>{0}"
 
+#. Fees and limitations information
+#: src/components/ModalMyList/index.js:521
+msgid "<0>We generally charge a <1>$25 flat fee per item</1>, with a limit of <2>20 items requested per calendar year</2>.</0><3>For more details, including exceptions for audiovisual and oversized materials, read about our <4>duplication services</4>.</3><5>For help or to request a publication quality scan, email an archivist at <6>archive@rockarch.org</6>.</5>"
+msgstr ""
+
 #. Full Company Address
 #: src/components/Footer/index.js:23
 msgid "15 Dayton Avenue<0/>Sleepy Hollow, New York 10591"
 msgstr "15 Dayton Avenue<0/>Sleepy Hollow, New York 10591"
 
 #. helptext for RAC staff message
-#: src/components/ModalMyList/index.js:431
+#: src/components/ModalMyList/index.js:448
 msgid "255 characters maximum"
 msgstr "最多 255 个字符"
 
@@ -317,8 +327,8 @@ msgstr "所有类型"
 
 #. Modal Form Missing Email Address Test
 #. Missing email address error
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:159
-#: src/components/ModalMyList/index.js:238
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:160
+#: src/components/ModalMyList/index.js:182
 msgid "An email address is required."
 msgstr "电子邮件地址为必填项."
 
@@ -337,11 +347,6 @@ msgstr "archive@rockarch.org"
 msgid "Are you sure you want to remove all the items from your list?<0><1/><2/></0>"
 msgstr "您确定要删除列表中的所有项目吗？<0><1/><2/></0>"
 
-#. Label for MP3
-#: src/components/ModalMyList/index.js:48
-msgid "Audio (MP3)"
-msgstr "音频（MP3）"
-
 #. Bulk Data Download message
 #: src/components/SecondaryLink/index.js:35
 msgid "Bulk data download"
@@ -357,9 +362,9 @@ msgstr "无法完成请求"
 #. Modal Form Reset Test
 #: src/components/Form/__tests__/Form.test.js:28
 #: src/components/Form/index.js:86
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:127
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:195
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:249
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:128
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:196
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:250
 msgid "Cancel"
 msgstr "取消"
 
@@ -377,7 +382,7 @@ msgstr "选择搜索类别"
 #: src/components/ModalConfirm/index.js:17
 #: src/components/ModalMinimap/index.js:38
 #: src/components/ModalMinimap/index.js:73
-#: src/components/ModalMyList/index.js:167
+#: src/components/ModalMyList/index.js:111
 #: src/components/ModalSearch/index.js:50
 msgid "Close"
 msgstr "关闭"
@@ -419,8 +424,8 @@ msgstr "确认全部删除"
 msgid "Copyright © Rockefeller Archive Center. All rights reserved."
 msgstr "洛克菲勒档案中心版权所有。保留所有权利。"
 
-#. Name for duplicate request form costs
-#: src/components/ModalMyList/index.js:563
+#. Name for duplication request form costs
+#: src/components/ModalMyList/index.js:601
 msgid "costs"
 msgstr "费用"
 
@@ -435,7 +440,7 @@ msgid "Date Range"
 msgstr "日期范围"
 
 #. Button Deselect all items Test
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:81
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:82
 msgid "Deselect all items"
 msgstr "取消选择所有项目"
 
@@ -460,14 +465,14 @@ msgid "E-mail:<0/>"
 msgstr "电子邮件：<0/>"
 
 #. Name of email form
-#: src/components/ModalMyList/index.js:284
+#: src/components/ModalMyList/index.js:228
 msgid "email"
 msgstr "电子邮件"
 
 #. Email Modal Form Test
 #. Label of Email Form
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:111
-#: src/components/ModalMyList/index.js:280
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:112
+#: src/components/ModalMyList/index.js:224
 msgid "Email *"
 msgstr "邮箱 *"
 
@@ -493,7 +498,7 @@ msgid "Enter a search term"
 msgstr "输入一个搜索词"
 
 #. Helptext for scheduling date.
-#: src/components/ModalMyList/index.js:407
+#: src/components/ModalMyList/index.js:346
 msgid "Enter the date of your research visit (mm/dd/yyyy)"
 msgstr "请输入研究访问日期（月/日/年）"
 
@@ -513,15 +518,7 @@ msgstr "传真：（914）631-6017"
 msgid "Filters"
 msgstr "筛选"
 
-#. Name for format input
-#: src/components/ModalMyList/index.js:77
-#: src/components/ModalMyList/index.js:87
-msgid "format"
-msgstr "格式"
-
-#. Label for format input
 #. Title for Format filter
-#: src/components/ModalMyList/index.js:73
 #: src/components/ModalSearch/index.js:87
 msgid "Format"
 msgstr "规格"
@@ -603,10 +600,12 @@ msgstr "https://rockarch.org/about-us/privacy-policy/"
 msgid "https://rockarch.org/collections/access-and-request-materials/"
 msgstr "https://rockarch.org/collections/access-and-request-materials/"
 
-#. Link for duplicate request services
-#: src/components/ModalMyList/index.js:557
-msgid "https://rockarch.org/collections/access-and-request-materials/#duplication-services-and-fee-schedule"
-msgstr "https://rockarch.org/collections/access-and-request-materials/#duplication-services-and-fee-schedule"
+#. Link for duplication request services
+#. Link for duplication request services
+#: src/components/ModalMyList/index.js:533
+#: src/components/ModalMyList/index.js:595
+msgid "https://rockarch.org/collections/access-and-request-materials/#duplication-services"
+msgstr ""
 
 #. Holiday Schedule link
 #: src/components/PrimaryLink/index.js:46
@@ -638,21 +637,21 @@ msgstr "https://www.instagram.com/rockefellerarchivecenter"
 msgid "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
 msgstr "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
 
-#. Label for duplicate request form
-#: src/components/ModalMyList/index.js:549
+#. Label for duplication request form
+#: src/components/ModalMyList/index.js:587
 msgid "I agree to pay the duplication costs for this request. See our <0>fee schedule</0>."
 msgstr "我同意支付此申请的复制费用。请参阅我们的<0>收费表</0>。"
 
 #. Invalid email error
-#: src/components/ModalMyList/index.js:245
+#: src/components/ModalMyList/index.js:189
 msgid "Invalid email address provided."
 msgstr "提供的电子邮件地址无效。"
 
 #. Name of items error message
-#: src/components/ModalMyList/index.js:29
-#: src/components/ModalMyList/index.js:273
-#: src/components/ModalMyList/index.js:398
-#: src/components/ModalMyList/index.js:542
+#: src/components/ModalMyList/index.js:31
+#: src/components/ModalMyList/index.js:217
+#: src/components/ModalMyList/index.js:435
+#: src/components/ModalMyList/index.js:581
 msgid "items"
 msgstr "项目"
 
@@ -672,8 +671,8 @@ msgid "Location of Headquarters"
 msgstr "总部所在地"
 
 #. Company Email link
-#: src/components/ModalMyList/index.js:230
-#: src/components/ModalMyList/index.js:502
+#: src/components/ModalMyList/index.js:174
+#: src/components/ModalMyList/index.js:542
 #: src/components/PageBackendError/index.js:19
 #: src/components/PrimaryLink/index.js:33
 msgid "mailto:archive@rockarch.org"
@@ -685,20 +684,20 @@ msgid "mailto:archive@rockarch.org?subject=Scheduling a research appointment"
 msgstr "mailto:archive@rockarch.org?subject=Scheduling 研究任命"
 
 #. Name of message form
-#: src/components/ModalMyList/index.js:307
+#: src/components/ModalMyList/index.js:251
 msgid "message"
 msgstr "信息"
 
 #. Message Modal Form Test
 #. Label of Message Form
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:119
-#: src/components/ModalMyList/index.js:303
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:120
+#: src/components/ModalMyList/index.js:247
 msgid "Message"
 msgstr "信息"
 
 #. Label for RAC staff message Form
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:188
-#: src/components/ModalMyList/index.js:427
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:189
+#: src/components/ModalMyList/index.js:444
 msgid "Message for RAC staff"
 msgstr "给洛克菲勒档案中心的档案管理员留言"
 
@@ -716,11 +715,6 @@ msgstr "迷你地图"
 msgid "Monday-Friday<0/>9:00 a.m. to 5:00 p.m.<1/>"
 msgstr "星期一至星期五<0/>上午 9:00 至下午 5:00。<1/>"
 
-#. Label for MP4
-#: src/components/ModalMyList/index.js:55
-msgid "Moving image (MP4)"
-msgstr "活动图像 (MP4)"
-
 #. Message shown on button within Dropdown list
 #. Message shown on button within the Header
 #: src/components/Dropdown/index.js:158
@@ -734,9 +728,9 @@ msgid "Nicknames"
 msgstr "昵称"
 
 #. No selected items error
-#: src/components/ModalMyList/index.js:254
-#: src/components/ModalMyList/index.js:378
-#: src/components/ModalMyList/index.js:524
+#: src/components/ModalMyList/index.js:198
+#: src/components/ModalMyList/index.js:415
+#: src/components/ModalMyList/index.js:563
 msgid "No items have been selected to submit."
 msgstr "没有选择要提交的项目。"
 
@@ -763,10 +757,12 @@ msgstr "在线"
 msgid "opens email"
 msgstr "打开电子邮件"
 
-#. Title for duplicate request
+#. Title for duplication services link
+#. Title for duplication request
 #. Title for new window button
 #. Title message for opening an online item
-#: src/components/ModalMyList/index.js:553
+#: src/components/ModalMyList/index.js:529
+#: src/components/ModalMyList/index.js:591
 #: src/components/PageDigitalObject/index.js:112
 #: src/components/RecordsDetail/index.js:229
 msgid "opens in a new window"
@@ -799,24 +795,30 @@ msgstr "请添加要搜索的单词或短语。"
 
 #. Modal Form Missing Field Test
 #. Captcha not completed error
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:155
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:222
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:276
-#: src/components/ModalMyList/index.js:250
-#: src/components/ModalMyList/index.js:375
-#: src/components/ModalMyList/index.js:517
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:156
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:223
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:277
+#: src/components/ModalMyList/index.js:194
+#: src/components/ModalMyList/index.js:412
+#: src/components/ModalMyList/index.js:556
 msgid "Please complete this field."
 msgstr "请填写此栏。"
 
 #. Missing Scheduled Date error
-#: src/components/ModalMyList/index.js:371
+#: src/components/ModalMyList/index.js:405
 msgid "Please provide the date of your research visit."
 msgstr "请提供研究访问的日期。"
 
+#: src/components/ModalMyList/index.js:409
+msgid "Please select a location of a reading room."
+msgstr ""
+
+#: src/components/ModalMyList/index.js:311
+msgid "Please select a reading room"
+msgstr ""
+
 #. Duplication Format Message Test
-#. No Format selected error
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:279
-#: src/components/ModalMyList/index.js:513
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:280
 msgid "Please select your desired duplication format."
 msgstr "请选择所需的复制格式。"
 
@@ -826,7 +828,7 @@ msgid "Positions Held"
 msgstr "曾任职务"
 
 #. Message while MyList modal loads items
-#: src/components/ModalMyList/index.js:195
+#: src/components/ModalMyList/index.js:139
 msgid "Preparing items"
 msgstr "准备项目"
 
@@ -846,7 +848,7 @@ msgid "Privacy Policy"
 msgstr "隐私政策"
 
 #. Name for RAC staff message Form
-#: src/components/ModalMyList/index.js:435
+#: src/components/ModalMyList/index.js:452
 msgid "questions"
 msgstr "问题"
 
@@ -862,12 +864,12 @@ msgstr "阅览室开放时间:"
 
 #. Name of recaptcha element
 #. Name of recaptcha error message
-#: src/components/ModalMyList/index.js:316
-#: src/components/ModalMyList/index.js:323
-#: src/components/ModalMyList/index.js:445
-#: src/components/ModalMyList/index.js:451
-#: src/components/ModalMyList/index.js:574
-#: src/components/ModalMyList/index.js:580
+#: src/components/ModalMyList/index.js:260
+#: src/components/ModalMyList/index.js:267
+#: src/components/ModalMyList/index.js:462
+#: src/components/ModalMyList/index.js:468
+#: src/components/ModalMyList/index.js:612
+#: src/components/ModalMyList/index.js:618
 msgid "recaptcha"
 msgstr "重新验证"
 
@@ -898,8 +900,8 @@ msgid "Remove item from list"
 msgstr "从列表中删除项目"
 
 #. Request items Modal Form Test
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:191
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:246
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:192
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:247
 msgid "Request 4 Items"
 msgstr "申请 4 个项目"
 
@@ -939,15 +941,10 @@ msgstr "到访预约"
 
 #. Scheduled Date Modal Form Test
 #. Label for scheduling date
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:184
-#: src/components/ModalMyList/index.js:412
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:185
+#: src/components/ModalMyList/index.js:351
 msgid "Scheduled Date *"
 msgstr "计划来访日期 *"
-
-#. Name for scheduling date error
-#: src/components/ModalMyList/index.js:419
-msgid "scheduledDate"
-msgstr "计划来访日期"
 
 #. Label for Search button
 #: src/components/SearchForm/index.js:78
@@ -984,15 +981,14 @@ msgstr "搜索..."
 msgid "See holiday schedule"
 msgstr "查看假期安排"
 
-#. label for selecting format labels
-#: src/components/ModalMyList/index.js:42
-msgid "Select a format"
-msgstr "选择一种格式"
-
 #. Button Select all items Test
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:57
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:58
 msgid "Select all items"
 msgstr "选择所有项目"
+
+#: src/components/ModalMyList/index.js:323
+msgid "Select Reading Room Location"
+msgstr ""
 
 #. Message displayed after emailing selected items
 #: src/components/PageMyList/index.js:152
@@ -1000,19 +996,19 @@ msgid "Selected items in your list have been emailed to {0}"
 msgstr "您清单中的选定项目已通过电子邮件发送至 {0}"
 
 #. Button Select all items Test
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:85
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:86
 msgid "selected:"
 msgstr "选择："
 
 #. totals empty Test
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:62
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:63
 msgid "selected: 0 items"
 msgstr "选定： 0 项"
 
 #. Modal Form Submit Test
 #. Send List sumbit message
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:123
-#: src/components/ModalMyList/index.js:331
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:124
+#: src/components/ModalMyList/index.js:275
 msgid "Send List"
 msgstr "发送列表"
 
@@ -1103,15 +1099,15 @@ msgid "Start Year"
 msgstr "开始年份"
 
 #. Name of subject form
-#: src/components/ModalMyList/index.js:297
+#: src/components/ModalMyList/index.js:241
 msgid "subject"
 msgstr "主题"
 
 #. Subject Modal Form Test
 #. Label of Subject Form
 #. Title for Subject filter
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:115
-#: src/components/ModalMyList/index.js:293
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:116
+#: src/components/ModalMyList/index.js:237
 #: src/components/ModalSearch/index.js:99
 msgid "Subject"
 msgstr "主题"
@@ -1120,16 +1116,6 @@ msgstr "主题"
 #: src/components/SearchForm/index.js:83
 msgid "Submit search"
 msgstr "搜索"
-
-#. Aria label for Calendar button
-#: src/components/Inputs/index.js:92
-msgid "Switch to the next month."
-msgstr "切换到下一个月。"
-
-#. Aria label for Calendar button
-#: src/components/Inputs/index.js:82
-msgid "Switch to the previous month."
-msgstr "切换到上个月。"
 
 #. Take-down Policy message
 #: src/components/SecondaryLink/index.js:61
@@ -1158,8 +1144,8 @@ msgstr "虚拟国际权威档案"
 
 #. Payment Modal Form Test
 #. Costs not agreed to error
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:283
-#: src/components/ModalMyList/index.js:520
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:284
+#: src/components/ModalMyList/index.js:559
 msgid "We cannot process your request unless you agree to pay the costs of reproduction."
 msgstr "除非您同意支付复制费用，否则我们无法处理您的申请。"
 

@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Poedit 3.3.2\n"
 
 #. Message returned dependent on how many items selected
-#: src/components/ModalMyList/index.js:154
+#: src/components/ModalMyList/index.js:98
 msgid "{0, plural, =0 {selected: 0 items} other {selected: {1}}}"
 msgstr "{0, plural, =0 {선택된 항목: 0개} other {선택됨: {1}}}"
 
@@ -43,8 +43,8 @@ msgid "{0, select, true {Minimap} other {Introducing the Minimap}}"
 msgstr "{0, select, true {Minimap} other {미니맵 소개}}"
 
 #. Text for submiting item(s) request
-#: src/components/ModalMyList/index.js:458
-#: src/components/ModalMyList/index.js:587
+#: src/components/ModalMyList/index.js:475
+#: src/components/ModalMyList/index.js:625
 msgid "{0, select, true {Request {1} Items} other {Request {2} Item}}"
 msgstr "{0, select, true {요청 {1} 항목} other {요청 {2} 항목}}"
 
@@ -63,8 +63,8 @@ msgid "{agentType, select, organization {Date Established} other {Date of Birth}
 msgstr "{agentType, select, organization {설립 날짜} other {생년월일}}"
 
 #. Label for item (de)selection
-#: src/components/ModalMyList/index.js:118
-#: src/components/ModalMyList/index.js:127
+#: src/components/ModalMyList/index.js:62
+#: src/components/ModalMyList/index.js:71
 msgid "{deselect, select, true {Deselect all items} other {Select all items}}"
 msgstr "{deselect, select, true {모든 항목 선택 취소} other {모든 항목 선택}}"
 
@@ -173,10 +173,20 @@ msgstr "<0>인용 정보가 클립보드에 복사되었습니다.</0>"
 msgid "<0>Cite<1/></0>"
 msgstr "<0>인용<1/></0>"
 
+#. Complete Request title
+#: src/components/ModalMyList/index.js:546
+msgid "<0>Complete Request</0>"
+msgstr ""
+
 #. Agent note Description
 #: src/components/PageAgent/index.js:21
 msgid "<0>Description</0>"
 msgstr "<0>설명</0>"
+
+#. Fees and limitations title
+#: src/components/ModalMyList/index.js:518
+msgid "<0>Fees and limitations</0>"
+msgstr ""
 
 #. Saved item found in message
 #: src/components/SavedItem/index.js:17
@@ -229,14 +239,9 @@ msgid "<0>Please add a word or phrase to search for.</0>"
 msgstr "<0>검색할 단어나 구문을 추가하세요.</0>"
 
 #. Note to user about including name and email address
-#: src/components/ModalMyList/index.js:229
+#: src/components/ModalMyList/index.js:173
 msgid "<0>Please note:</0> if are emailing your list to an archivist at <1>archive@rockarch.org</1>, please include your name and email address in the Message field, otherwise we will have no means of contacting you to follow-up."
 msgstr "<0>참고:</0> 목록을 아카이브 담당자에게 이메일( <1>archive@rockarch.org</1>)로 보내는 경우 메시지 필드에 이름과 이메일 주소를 기재해 주세요. 그렇지 않으면 후속 조치를 위해 연락할 방법이 없습니다."
-
-#. Note to user about a cost estimate
-#: src/components/ModalMyList/index.js:501
-msgid "<0>Please note:</0> if you want a cost estimate for your order, email an archivist at <1>archive@rockarch.org</1>."
-msgstr "<0>참고:</0> 원하시면 아카이브 담당자에게 문의하세요. 이메일: <1>archive@rockarch.org</1>"
 
 #. summary message
 #: src/components/PageAgent/index.js:265
@@ -263,13 +268,18 @@ msgstr "<0>온라인 보기<1/></0>"
 msgid "<0>View Online<1/></0><2>Download <3/></2>{0}"
 msgstr "<0>온라인 보기<1/></0><2>다운로드 <3/></2>{0}"
 
+#. Fees and limitations information
+#: src/components/ModalMyList/index.js:521
+msgid "<0>We generally charge a <1>$25 flat fee per item</1>, with a limit of <2>20 items requested per calendar year</2>.</0><3>For more details, including exceptions for audiovisual and oversized materials, read about our <4>duplication services</4>.</3><5>For help or to request a publication quality scan, email an archivist at <6>archive@rockarch.org</6>.</5>"
+msgstr ""
+
 #. Full Company Address
 #: src/components/Footer/index.js:23
 msgid "15 Dayton Avenue<0/>Sleepy Hollow, New York 10591"
 msgstr "15 Dayton Avenue<0/>슬리피 할로우, 뉴욕 10591"
 
 #. helptext for RAC staff message
-#: src/components/ModalMyList/index.js:431
+#: src/components/ModalMyList/index.js:448
 msgid "255 characters maximum"
 msgstr "최대 255자"
 
@@ -317,8 +327,8 @@ msgstr "모든타입"
 
 #. Modal Form Missing Email Address Test
 #. Missing email address error
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:159
-#: src/components/ModalMyList/index.js:238
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:160
+#: src/components/ModalMyList/index.js:182
 msgid "An email address is required."
 msgstr "이메일 주소는 필수 입력 사항입니다."
 
@@ -337,11 +347,6 @@ msgstr "archive@rockarch.org"
 msgid "Are you sure you want to remove all the items from your list?<0><1/><2/></0>"
 msgstr "목록에서 모든 항목을 삭제하시겠습니까?<0><1/><2/></0>"
 
-#. Label for MP3
-#: src/components/ModalMyList/index.js:48
-msgid "Audio (MP3)"
-msgstr "오디오(MP3)"
-
 #. Bulk Data Download message
 #: src/components/SecondaryLink/index.js:35
 msgid "Bulk data download"
@@ -357,9 +362,9 @@ msgstr "요청을 완료할 수 없음"
 #. Modal Form Reset Test
 #: src/components/Form/__tests__/Form.test.js:28
 #: src/components/Form/index.js:86
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:127
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:195
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:249
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:128
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:196
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:250
 msgid "Cancel"
 msgstr "취소"
 
@@ -377,7 +382,7 @@ msgstr "검색 카테고리 선택"
 #: src/components/ModalConfirm/index.js:17
 #: src/components/ModalMinimap/index.js:38
 #: src/components/ModalMinimap/index.js:73
-#: src/components/ModalMyList/index.js:167
+#: src/components/ModalMyList/index.js:111
 #: src/components/ModalSearch/index.js:50
 msgid "Close"
 msgstr "닫기"
@@ -419,8 +424,8 @@ msgstr "모두 제거 확인"
 msgid "Copyright © Rockefeller Archive Center. All rights reserved."
 msgstr "저작권 © 록펠러 아카이브 센터. 모든 권리 보유."
 
-#. Name for duplicate request form costs
-#: src/components/ModalMyList/index.js:563
+#. Name for duplication request form costs
+#: src/components/ModalMyList/index.js:601
 msgid "costs"
 msgstr "비용"
 
@@ -435,7 +440,7 @@ msgid "Date Range"
 msgstr "날짜 범위"
 
 #. Button Deselect all items Test
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:81
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:82
 msgid "Deselect all items"
 msgstr "모든 항목 선택 해제"
 
@@ -460,14 +465,14 @@ msgid "E-mail:<0/>"
 msgstr "이메일:<0/>"
 
 #. Name of email form
-#: src/components/ModalMyList/index.js:284
+#: src/components/ModalMyList/index.js:228
 msgid "email"
 msgstr "이메일"
 
 #. Email Modal Form Test
 #. Label of Email Form
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:111
-#: src/components/ModalMyList/index.js:280
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:112
+#: src/components/ModalMyList/index.js:224
 msgid "Email *"
 msgstr "이메일 *"
 
@@ -493,7 +498,7 @@ msgid "Enter a search term"
 msgstr "검색어 입력"
 
 #. Helptext for scheduling date.
-#: src/components/ModalMyList/index.js:407
+#: src/components/ModalMyList/index.js:346
 msgid "Enter the date of your research visit (mm/dd/yyyy)"
 msgstr "연구 방문 날짜(월/일/년/월/일)를 입력하세요"
 
@@ -513,15 +518,7 @@ msgstr "팩스: (914) 631-6017"
 msgid "Filters"
 msgstr "필터"
 
-#. Name for format input
-#: src/components/ModalMyList/index.js:77
-#: src/components/ModalMyList/index.js:87
-msgid "format"
-msgstr "형식"
-
-#. Label for format input
 #. Title for Format filter
-#: src/components/ModalMyList/index.js:73
 #: src/components/ModalSearch/index.js:87
 msgid "Format"
 msgstr "형식"
@@ -603,10 +600,12 @@ msgstr "https://rockarch.org/about-us/privacy-policy/"
 msgid "https://rockarch.org/collections/access-and-request-materials/"
 msgstr "https://rockarch.org/collections/access-and-request-materials/"
 
-#. Link for duplicate request services
-#: src/components/ModalMyList/index.js:557
-msgid "https://rockarch.org/collections/access-and-request-materials/#duplication-services-and-fee-schedule"
-msgstr "https://rockarch.org/collections/access-and-request-materials/#duplication-services-and-fee-schedule"
+#. Link for duplication request services
+#. Link for duplication request services
+#: src/components/ModalMyList/index.js:533
+#: src/components/ModalMyList/index.js:595
+msgid "https://rockarch.org/collections/access-and-request-materials/#duplication-services"
+msgstr ""
 
 #. Holiday Schedule link
 #: src/components/PrimaryLink/index.js:46
@@ -638,21 +637,21 @@ msgstr "https://www.instagram.com/rockefellerarchivecenter"
 msgid "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
 msgstr "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
 
-#. Label for duplicate request form
-#: src/components/ModalMyList/index.js:549
+#. Label for duplication request form
+#: src/components/ModalMyList/index.js:587
 msgid "I agree to pay the duplication costs for this request. See our <0>fee schedule</0>."
 msgstr "이 자료를 복사하는 비용을 지불하는 것에 동의합니다. <0>수수료 일정을</0> 참조하세요."
 
 #. Invalid email error
-#: src/components/ModalMyList/index.js:245
+#: src/components/ModalMyList/index.js:189
 msgid "Invalid email address provided."
 msgstr "입력한 이메일 주소가 잘못되었습니다."
 
 #. Name of items error message
-#: src/components/ModalMyList/index.js:29
-#: src/components/ModalMyList/index.js:273
-#: src/components/ModalMyList/index.js:398
-#: src/components/ModalMyList/index.js:542
+#: src/components/ModalMyList/index.js:31
+#: src/components/ModalMyList/index.js:217
+#: src/components/ModalMyList/index.js:435
+#: src/components/ModalMyList/index.js:581
 msgid "items"
 msgstr "아이템"
 
@@ -672,8 +671,8 @@ msgid "Location of Headquarters"
 msgstr "본사 위치"
 
 #. Company Email link
-#: src/components/ModalMyList/index.js:230
-#: src/components/ModalMyList/index.js:502
+#: src/components/ModalMyList/index.js:174
+#: src/components/ModalMyList/index.js:542
 #: src/components/PageBackendError/index.js:19
 #: src/components/PrimaryLink/index.js:33
 msgid "mailto:archive@rockarch.org"
@@ -685,20 +684,20 @@ msgid "mailto:archive@rockarch.org?subject=Scheduling a research appointment"
 msgstr "mailto:archive@rockarch.org?subject=Scheduling 연구 예약"
 
 #. Name of message form
-#: src/components/ModalMyList/index.js:307
+#: src/components/ModalMyList/index.js:251
 msgid "message"
 msgstr "본문"
 
 #. Message Modal Form Test
 #. Label of Message Form
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:119
-#: src/components/ModalMyList/index.js:303
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:120
+#: src/components/ModalMyList/index.js:247
 msgid "Message"
 msgstr "본문"
 
 #. Label for RAC staff message Form
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:188
-#: src/components/ModalMyList/index.js:427
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:189
+#: src/components/ModalMyList/index.js:444
 msgid "Message for RAC staff"
 msgstr "RAC 직원을 위한 메시지"
 
@@ -716,11 +715,6 @@ msgstr "미니맵"
 msgid "Monday-Friday<0/>9:00 a.m. to 5:00 p.m.<1/>"
 msgstr "월요일~금요일<0/>오전 9:00~오후 5:00<1/>"
 
-#. Label for MP4
-#: src/components/ModalMyList/index.js:55
-msgid "Moving image (MP4)"
-msgstr "동영상(MP4)"
-
 #. Message shown on button within Dropdown list
 #. Message shown on button within the Header
 #: src/components/Dropdown/index.js:158
@@ -734,9 +728,9 @@ msgid "Nicknames"
 msgstr "닉네임"
 
 #. No selected items error
-#: src/components/ModalMyList/index.js:254
-#: src/components/ModalMyList/index.js:378
-#: src/components/ModalMyList/index.js:524
+#: src/components/ModalMyList/index.js:198
+#: src/components/ModalMyList/index.js:415
+#: src/components/ModalMyList/index.js:563
 msgid "No items have been selected to submit."
 msgstr "제출할 항목이 선택되지 않았습니다."
 
@@ -763,10 +757,12 @@ msgstr "온라인"
 msgid "opens email"
 msgstr "이메일 열기"
 
-#. Title for duplicate request
+#. Title for duplication services link
+#. Title for duplication request
 #. Title for new window button
 #. Title message for opening an online item
-#: src/components/ModalMyList/index.js:553
+#: src/components/ModalMyList/index.js:529
+#: src/components/ModalMyList/index.js:591
 #: src/components/PageDigitalObject/index.js:112
 #: src/components/RecordsDetail/index.js:229
 msgid "opens in a new window"
@@ -799,24 +795,30 @@ msgstr "검색할 단어나 구문을 추가하세요."
 
 #. Modal Form Missing Field Test
 #. Captcha not completed error
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:155
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:222
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:276
-#: src/components/ModalMyList/index.js:250
-#: src/components/ModalMyList/index.js:375
-#: src/components/ModalMyList/index.js:517
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:156
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:223
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:277
+#: src/components/ModalMyList/index.js:194
+#: src/components/ModalMyList/index.js:412
+#: src/components/ModalMyList/index.js:556
 msgid "Please complete this field."
 msgstr "이 필드를 작성해 주세요."
 
 #. Missing Scheduled Date error
-#: src/components/ModalMyList/index.js:371
+#: src/components/ModalMyList/index.js:405
 msgid "Please provide the date of your research visit."
 msgstr "연구 방문 날짜를 입력해 주세요."
 
+#: src/components/ModalMyList/index.js:409
+msgid "Please select a location of a reading room."
+msgstr ""
+
+#: src/components/ModalMyList/index.js:311
+msgid "Please select a reading room"
+msgstr ""
+
 #. Duplication Format Message Test
-#. No Format selected error
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:279
-#: src/components/ModalMyList/index.js:513
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:280
 msgid "Please select your desired duplication format."
 msgstr "원하는 복제 형식을 선택하세요."
 
@@ -826,7 +828,7 @@ msgid "Positions Held"
 msgstr "보유 직위"
 
 #. Message while MyList modal loads items
-#: src/components/ModalMyList/index.js:195
+#: src/components/ModalMyList/index.js:139
 msgid "Preparing items"
 msgstr "항목 준비"
 
@@ -846,7 +848,7 @@ msgid "Privacy Policy"
 msgstr "개인정보 보호 정책"
 
 #. Name for RAC staff message Form
-#: src/components/ModalMyList/index.js:435
+#: src/components/ModalMyList/index.js:452
 msgid "questions"
 msgstr "고객문의"
 
@@ -862,12 +864,12 @@ msgstr "열람실 이용 시간:"
 
 #. Name of recaptcha element
 #. Name of recaptcha error message
-#: src/components/ModalMyList/index.js:316
-#: src/components/ModalMyList/index.js:323
-#: src/components/ModalMyList/index.js:445
-#: src/components/ModalMyList/index.js:451
-#: src/components/ModalMyList/index.js:574
-#: src/components/ModalMyList/index.js:580
+#: src/components/ModalMyList/index.js:260
+#: src/components/ModalMyList/index.js:267
+#: src/components/ModalMyList/index.js:462
+#: src/components/ModalMyList/index.js:468
+#: src/components/ModalMyList/index.js:612
+#: src/components/ModalMyList/index.js:618
 msgid "recaptcha"
 msgstr "보안 문자"
 
@@ -898,8 +900,8 @@ msgid "Remove item from list"
 msgstr "목록에서 항목 제거"
 
 #. Request items Modal Form Test
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:191
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:246
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:192
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:247
 msgid "Request 4 Items"
 msgstr "4개 항목 요청"
 
@@ -939,15 +941,10 @@ msgstr "방문 예약하기"
 
 #. Scheduled Date Modal Form Test
 #. Label for scheduling date
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:184
-#: src/components/ModalMyList/index.js:412
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:185
+#: src/components/ModalMyList/index.js:351
 msgid "Scheduled Date *"
 msgstr "요청 날짜 *"
-
-#. Name for scheduling date error
-#: src/components/ModalMyList/index.js:419
-msgid "scheduledDate"
-msgstr "scheduledDate"
 
 #. Label for Search button
 #: src/components/SearchForm/index.js:78
@@ -984,15 +981,14 @@ msgstr "검색..."
 msgid "See holiday schedule"
 msgstr "휴일 일정 보기"
 
-#. label for selecting format labels
-#: src/components/ModalMyList/index.js:42
-msgid "Select a format"
-msgstr "형식 선택"
-
 #. Button Select all items Test
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:57
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:58
 msgid "Select all items"
 msgstr "모든 항목 선택"
+
+#: src/components/ModalMyList/index.js:323
+msgid "Select Reading Room Location"
+msgstr ""
 
 #. Message displayed after emailing selected items
 #: src/components/PageMyList/index.js:152
@@ -1000,19 +996,19 @@ msgid "Selected items in your list have been emailed to {0}"
 msgstr "목록에서 선택한 항목이 {0}으로 이메일이 전송되었습니다"
 
 #. Button Select all items Test
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:85
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:86
 msgid "selected:"
 msgstr "를 선택합니다:"
 
 #. totals empty Test
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:62
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:63
 msgid "selected: 0 items"
 msgstr "선택된 항목: 0개"
 
 #. Modal Form Submit Test
 #. Send List sumbit message
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:123
-#: src/components/ModalMyList/index.js:331
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:124
+#: src/components/ModalMyList/index.js:275
 msgid "Send List"
 msgstr "목록 보내기"
 
@@ -1103,15 +1099,15 @@ msgid "Start Year"
 msgstr "시작 연도"
 
 #. Name of subject form
-#: src/components/ModalMyList/index.js:297
+#: src/components/ModalMyList/index.js:241
 msgid "subject"
 msgstr "subject"
 
 #. Subject Modal Form Test
 #. Label of Subject Form
 #. Title for Subject filter
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:115
-#: src/components/ModalMyList/index.js:293
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:116
+#: src/components/ModalMyList/index.js:237
 #: src/components/ModalSearch/index.js:99
 msgid "Subject"
 msgstr "제목"
@@ -1120,16 +1116,6 @@ msgstr "제목"
 #: src/components/SearchForm/index.js:83
 msgid "Submit search"
 msgstr "검색 제출"
-
-#. Aria label for Calendar button
-#: src/components/Inputs/index.js:92
-msgid "Switch to the next month."
-msgstr "다음 달로 전환합니다."
-
-#. Aria label for Calendar button
-#: src/components/Inputs/index.js:82
-msgid "Switch to the previous month."
-msgstr "전월로 전환합니다."
 
 #. Take-down Policy message
 #: src/components/SecondaryLink/index.js:61
@@ -1158,8 +1144,8 @@ msgstr "가상 국제 기관 파일"
 
 #. Payment Modal Form Test
 #. Costs not agreed to error
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:283
-#: src/components/ModalMyList/index.js:520
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:284
+#: src/components/ModalMyList/index.js:559
 msgid "We cannot process your request unless you agree to pay the costs of reproduction."
 msgstr "귀하가 복제 비용 지불에 동의하지 않으면 요청을 처리할 수 없습니다."
 
