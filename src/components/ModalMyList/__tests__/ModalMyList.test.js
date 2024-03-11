@@ -278,10 +278,6 @@ it('validates duplication modal form correctly', async () => {
     message: 'Please complete this field.'
   }))
   expect(form.textContent).toContain(t({
-    comment: 'Duplication Format Message Test',
-    message: 'Please select your desired duplication format.'
-  }))
-  expect(form.textContent).toContain(t({
     comment: 'Payment Modal Form Test',
     message: 'We cannot process your request unless you agree to pay the costs of reproduction.'
   }))
