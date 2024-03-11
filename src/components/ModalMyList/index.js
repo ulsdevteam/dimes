@@ -35,64 +35,6 @@ const SubmitListInput = ({ submitList }) => {
 }
 
 
-const FormatSelectInput = () => {
-  const { setFieldValue } = useFormikContext();
-  const [format, setFormat] = useState('')
-
-  const formatOptions = [
-    {
-      value: '', label: t({
-        comment: 'label for selecting format labels',
-        message: 'Select a format'
-      })
-    },
-    {
-      value: 'MP3', label: t({
-        comment: 'Label for MP3',
-        message: 'Audio (MP3)'
-      })
-    },
-    {value: 'JPEG', label: 'JPEG'},
-    {
-      value: 'MP4', label: t({
-        comment: 'Label for MP4',
-        message: 'Moving image (MP4)'
-      })
-    },
-    {value: 'PDF', label: 'PDF'},
-    {value: 'TIFF', label: 'TIFF'}
-  ]
-
-  useEffect(() => {
-    setFieldValue('format', format)
-  }, [format, setFieldValue])
-
-  return (
-    <div className='form-group mx-0'>
-      <SelectInput
-        className='select__modal'
-        id='format'
-        label={t({
-          comment: 'Label for format input',
-          message: 'Format'
-        })}
-        name={t({
-          comment: 'Name for format input',
-          message: 'format'
-        })}
-        onChange={({selectedItem}) => setFormat(selectedItem.value)}
-        options={formatOptions}
-        required={true}
-        selectedItem={format || ''} />
-      <ErrorMessage
-        id='format-error'
-        name={t({ message: 'format' })}
-        component='div'
-        className='input__error' />
-    </div>
-  )
-}
-
 export const ModalToggleListButton = ({ ignoreRestrictions, items, toggleList }) => {
 
   /** Returns false if any items are unchecked */
@@ -573,22 +515,44 @@ export const DuplicationRequestModal = props => (
     form={
       <>
         <div className='mb-20'>
-          <Trans comment='Note to user about a cost estimate'>
-            <strong>Please note:</strong> if you want a cost estimate for your order, email an archivist at <a href={t({message: 'mailto:archive@rockarch.org'})}>archive@rockarch.org</a>.
+          <Trans comment='Fees and limitations title'>
+            <h3 className='mt-0'>Fees and limitations</h3>
+          </Trans>
+          <Trans comment='Fees and limitations information'>
+            <div className='mb-20'>
+              We generally charge a <strong>$25 flat fee per item</strong>, with a limit of <strong>20 items requested per calendar year</strong>.
+            </div>
+            <div className='mb-20'>
+              For more details, including exceptions for audiovisual and oversized materials, read about our 
+              <a target='_blank'
+                  rel='noopener noreferrer'
+                    title={t({
+                      comment: 'Title for duplication services link',
+                      message: 'opens in a new window'
+                    })}
+                    href={t({
+                      comment: 'Link for duplication request services',
+                      message: 'https://rockarch.org/collections/access-and-request-materials/#duplication-services'
+                    })}>
+                  duplication services
+                </a>.
+            </div>
+            <div>
+              For help or to request a publication quality scan, email an archivist at 
+              <a href={t({message: 'mailto:archive@rockarch.org'})}>archive@rockarch.org</a>.
+            </div>
           </Trans>
         </div>
+        <Trans comment='Complete Request title'>
+          <h3 className='mt-0'>Complete Request</h3>
+        </Trans>
         <Formik
           initialValues={{
-            format: '',
             costs: false,
             items: props.submitList,
             recaptcha: ''}}
           validate={values => {
             const errors = {};
-            if (!values.format) errors.format = t({
-              comment: 'No Format selected error',
-              message: 'Please select your desired duplication format.'
-            });
             if (!values.recaptcha) errors.recaptcha = t({
               message: 'Please complete this field.'
             });
@@ -619,24 +583,23 @@ export const DuplicationRequestModal = props => (
                 })}
               component='div'
               className='input__error' />
-            <FormatSelectInput />
             <FormGroup
-              label={<Trans comment='Label for duplicate request form'>
+              label={<Trans comment='Label for duplication request form'>
                 I agree to pay the duplication costs for this request. See our&nbsp;
                 <a target='_blank'
                   rel='noopener noreferrer'
                     title={t({
-                      comment: 'Title for duplicate request',
+                      comment: 'Title for duplication request',
                       message: 'opens in a new window'
                     })}
                     href={t({
-                      comment: 'Link for duplicate request services',
-                      message: 'https://rockarch.org/collections/access-and-request-materials/#duplication-services-and-fee-schedule'
+                      comment: 'Link for duplication request services',
+                      message: 'https://rockarch.org/collections/access-and-request-materials/#duplication-services'
                     })}>
                   fee schedule
                 </a>.</Trans>}
                 name={t({
-                  comment: 'Name for duplicate request form costs',
+                  comment: 'Name for duplication request form costs',
                   message: 'costs'
                 })}
               type='checkbox'
