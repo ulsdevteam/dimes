@@ -173,11 +173,6 @@ msgstr "<0>Alıntı bilgileri panoya kopyalandı.</0>"
 msgid "<0>Cite<1/></0>"
 msgstr "<0>Alıntıla yapın<1/></0>"
 
-#. Complete Request title
-#: src/components/ModalMyList/index.js:546
-msgid "<0>Complete Request</0>"
-msgstr ""
-
 #. Agent note Description
 #: src/components/PageAgent/index.js:21
 msgid "<0>Description</0>"
@@ -242,6 +237,11 @@ msgstr "<0>Lütfen aramak için bir kelime veya cümle ekleyin.</0>"
 #: src/components/ModalMyList/index.js:173
 msgid "<0>Please note:</0> if are emailing your list to an archivist at <1>archive@rockarch.org</1>, please include your name and email address in the Message field, otherwise we will have no means of contacting you to follow-up."
 msgstr "<0>Lütfen dikkat:</0> listenizi <1>archive@rockarch.org</1> adresindeki bir arşivciye e-posta ile gönderiyorsanız, lütfen Mesaj alanına adınızı ve e-posta adresinizi ekleyin, aksi takdirde takip etmek için sizinle iletişime geçme imkanımız olmayacaktır."
+
+#. Submit Request title
+#: src/components/ModalMyList/index.js:546
+msgid "<0>Submit request</0>"
+msgstr ""
 
 #. summary message
 #: src/components/PageAgent/index.js:265
@@ -817,11 +817,6 @@ msgstr ""
 msgid "Please select a reading room"
 msgstr ""
 
-#. Duplication Format Message Test
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:280
-msgid "Please select your desired duplication format."
-msgstr "Lütfen istediğiniz çoğaltma biçimini seçin."
-
 #. Positions held property
 #: src/components/PageAgent/index.js:192
 msgid "Positions Held"
@@ -1144,7 +1139,7 @@ msgstr "Sanal Uluslararası Yetki Dosyası"
 
 #. Payment Modal Form Test
 #. Costs not agreed to error
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:284
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:280
 #: src/components/ModalMyList/index.js:559
 msgid "We cannot process your request unless you agree to pay the costs of reproduction."
 msgstr "Çoğaltma masraflarını ödemeyi kabul etmediğiniz sürece talebinizi işleme koyamayız."

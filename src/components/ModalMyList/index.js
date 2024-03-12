@@ -543,8 +543,8 @@ export const DuplicationRequestModal = props => (
             </div>
           </Trans>
         </div>
-        <Trans comment='Complete Request title'>
-          <h3 className='mt-0'>Complete Request</h3>
+        <Trans comment='Submit Request title'>
+          <h3 className='mt-0'>Submit request</h3>
         </Trans>
         <Formik
           initialValues={{
