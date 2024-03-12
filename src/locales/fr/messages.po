@@ -171,7 +171,7 @@ msgstr "<0>Informations sur la citation copiées dans le presse-papiers.</0>"
 #. Button to copy citation text
 #: src/components/RecordsDetail/index.js:215
 msgid "<0>Cite<1/></0>"
-msgstr "<0>Citer<1/></0>"
+msgstr "<0>Citer<1/></0><<<<<<< Updated upstream======="
 
 #. Agent note Description
 #: src/components/PageAgent/index.js:21
@@ -181,7 +181,7 @@ msgstr "<0>Description</0>"
 #. Fees and limitations title
 #: src/components/ModalMyList/index.js:518
 msgid "<0>Fees and limitations</0>"
-msgstr ""
+msgstr "<0>Tarifs et limitations</0>"
 
 #. Saved item found in message
 #: src/components/SavedItem/index.js:17
@@ -241,7 +241,7 @@ msgstr "<0>Remarque :</0> si vous envoyez votre liste par courrier électronique
 #. Submit Request title
 #: src/components/ModalMyList/index.js:546
 msgid "<0>Submit request</0>"
-msgstr ""
+msgstr "<0>Soumettre une demande</0>"
 
 #. summary message
 #: src/components/PageAgent/index.js:265
@@ -271,7 +271,7 @@ msgstr "<0>Voir en ligne<1/></0><2>Télécharger <3/></2>{0}"
 #. Fees and limitations information
 #: src/components/ModalMyList/index.js:521
 msgid "<0>We generally charge a <1>$25 flat fee per item</1>, with a limit of <2>20 items requested per calendar year</2>.</0><3>For more details, including exceptions for audiovisual and oversized materials, read about our <4>duplication services</4>.</3><5>For help or to request a publication quality scan, email an archivist at <6>archive@rockarch.org</6>.</5>"
-msgstr ""
+msgstr "<0>Nous facturons généralement un montant <1> forfaitaire de 25 dollars par document</1>, dans la limite de <2>20 documents par année civile</2>.</0><3>Pour plus de détails, y compris les exceptions pour les documents audiovisuels et les documents surdimensionnés, consultez nos <4>services de duplication</4>.</3><5>Pour obtenir de l'aide ou demander une numérisation de qualité, envoyez un courriel à un archiviste à l'adresse <6>archive@rockarch.org.</6></5>"
 
 #. Full Company Address
 #: src/components/Footer/index.js:23
@@ -605,7 +605,7 @@ msgstr "https://rockarch.org/collections/access-and-request-materials/"
 #: src/components/ModalMyList/index.js:533
 #: src/components/ModalMyList/index.js:595
 msgid "https://rockarch.org/collections/access-and-request-materials/#duplication-services"
-msgstr ""
+msgstr "https://rockarch.org/collections/access-and-request-materials/#duplication-services"
 
 #. Holiday Schedule link
 #: src/components/PrimaryLink/index.js:46
@@ -811,11 +811,11 @@ msgstr "Veuillez indiquer la date de votre visite de recherche."
 
 #: src/components/ModalMyList/index.js:409
 msgid "Please select a location of a reading room."
-msgstr ""
+msgstr "Veuillez sélectionner l'emplacement d'une salle de lecture."
 
 #: src/components/ModalMyList/index.js:311
 msgid "Please select a reading room"
-msgstr ""
+msgstr "Veuillez sélectionner une salle de lecture"
 
 #. Positions held property
 #: src/components/PageAgent/index.js:192
@@ -855,7 +855,7 @@ msgstr "Politiques du RAC"
 #. Reading Room Hours message
 #: src/components/Footer/index.js:44
 msgid "Reading Room Hours:"
-msgstr "Horaires de la salle de lecture :"
+msgstr "Horaires de la salle de lecture:"
 
 #. Name of recaptcha element
 #. Name of recaptcha error message
@@ -983,7 +983,7 @@ msgstr "Sélectionner tous les éléments"
 
 #: src/components/ModalMyList/index.js:323
 msgid "Select Reading Room Location"
-msgstr ""
+msgstr "Sélectionnez l'emplacement de la salle de lecture"
 
 #. Message displayed after emailing selected items
 #: src/components/PageMyList/index.js:152

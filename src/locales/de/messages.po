@@ -181,7 +181,7 @@ msgstr "<0>Beschreibung</0>"
 #. Fees and limitations title
 #: src/components/ModalMyList/index.js:518
 msgid "<0>Fees and limitations</0>"
-msgstr ""
+msgstr "<0>Gebühren und Beschränkungen</0>"
 
 #. Saved item found in message
 #: src/components/SavedItem/index.js:17
@@ -241,7 +241,7 @@ msgstr "<0>Bitte beachten Sie:</0> Wenn Sie Ihre Liste per E-Mail an einen Archi
 #. Submit Request title
 #: src/components/ModalMyList/index.js:546
 msgid "<0>Submit request</0>"
-msgstr ""
+msgstr "<0>Antrag einreichen</0>"
 
 #. summary message
 #: src/components/PageAgent/index.js:265
@@ -271,7 +271,7 @@ msgstr "<0>Online ansehen<1/></0><2>Herunterladen <3/></2>{0}"
 #. Fees and limitations information
 #: src/components/ModalMyList/index.js:521
 msgid "<0>We generally charge a <1>$25 flat fee per item</1>, with a limit of <2>20 items requested per calendar year</2>.</0><3>For more details, including exceptions for audiovisual and oversized materials, read about our <4>duplication services</4>.</3><5>For help or to request a publication quality scan, email an archivist at <6>archive@rockarch.org</6>.</5>"
-msgstr ""
+msgstr "<0>Wir berechnen in der Regel eine <1> Pauschalgebühr von 25 $ pro Stück</1>, wobei die Anzahl der <2>angeforderten Stücke auf 20 pro Kalenderjahr</2> begrenzt ist.</0><3>Weitere Einzelheiten, einschließlich Ausnahmen für audiovisuelles und übergroßes Material, finden Sie in den Informationen zu unseren <4>Vervielfältigungsdiensten</4>.</3><5>Wenn Sie Hilfe benötigen oder einen Scan in Publikationsqualität anfordern möchten, senden Sie eine E-Mail an einen Archivar unter <6>archive@rockarch.org.</6></5>"
 
 #. Full Company Address
 #: src/components/Footer/index.js:23
@@ -605,7 +605,7 @@ msgstr "https://rockarch.org/collections/access-and-request-materials/"
 #: src/components/ModalMyList/index.js:533
 #: src/components/ModalMyList/index.js:595
 msgid "https://rockarch.org/collections/access-and-request-materials/#duplication-services"
-msgstr ""
+msgstr "https://rockarch.org/collections/access-and-request-materials/#duplication-services"
 
 #. Holiday Schedule link
 #: src/components/PrimaryLink/index.js:46
@@ -811,11 +811,11 @@ msgstr "Bitte geben Sie das Datum Ihres Forschungsaufenthalts an."
 
 #: src/components/ModalMyList/index.js:409
 msgid "Please select a location of a reading room."
-msgstr ""
+msgstr "Bitte wählen Sie einen Standort für einen Lesesaal."
 
 #: src/components/ModalMyList/index.js:311
 msgid "Please select a reading room"
-msgstr ""
+msgstr "Bitte wählen Sie einen Lesesaal"
 
 #. Positions held property
 #: src/components/PageAgent/index.js:192
@@ -983,7 +983,7 @@ msgstr "Alle Einträge auswählen"
 
 #: src/components/ModalMyList/index.js:323
 msgid "Select Reading Room Location"
-msgstr ""
+msgstr "Standort des Lesesaals auswählen"
 
 #. Message displayed after emailing selected items
 #: src/components/PageMyList/index.js:152

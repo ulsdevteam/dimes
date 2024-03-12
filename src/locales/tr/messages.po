@@ -171,7 +171,7 @@ msgstr "<0>Alıntı bilgileri panoya kopyalandı.</0>"
 #. Button to copy citation text
 #: src/components/RecordsDetail/index.js:215
 msgid "<0>Cite<1/></0>"
-msgstr "<0>Alıntıla yapın<1/></0>"
+msgstr "<0>Alıntıla yapın<1/></0><<<<<<< Updated upstream======="
 
 #. Agent note Description
 #: src/components/PageAgent/index.js:21
@@ -181,7 +181,7 @@ msgstr "<0>Açıklama</0>"
 #. Fees and limitations title
 #: src/components/ModalMyList/index.js:518
 msgid "<0>Fees and limitations</0>"
-msgstr ""
+msgstr "<0>Ücretlendirme ve sınırlamalar</0>"
 
 #. Saved item found in message
 #: src/components/SavedItem/index.js:17
@@ -241,7 +241,7 @@ msgstr "<0>Lütfen dikkat:</0> listenizi <1>archive@rockarch.org</1> adresindeki
 #. Submit Request title
 #: src/components/ModalMyList/index.js:546
 msgid "<0>Submit request</0>"
-msgstr ""
+msgstr "<0>İstek gönder</0>"
 
 #. summary message
 #: src/components/PageAgent/index.js:265
@@ -271,7 +271,7 @@ msgstr "<0>Çevrimiçi Görüntüle<1/></0><2>İndi̇r <3/></2>{0}"
 #. Fees and limitations information
 #: src/components/ModalMyList/index.js:521
 msgid "<0>We generally charge a <1>$25 flat fee per item</1>, with a limit of <2>20 items requested per calendar year</2>.</0><3>For more details, including exceptions for audiovisual and oversized materials, read about our <4>duplication services</4>.</3><5>For help or to request a publication quality scan, email an archivist at <6>archive@rockarch.org</6>.</5>"
-msgstr ""
+msgstr "<0><2>Takvim yılı başına talep edilen materyal sayısı 20</2> ile sınırlı olmak üzere, genellikle materyal <1> başına 25 ABD doları sabit ücret</1> alıyoruz.</0><3>Görsel-işitsel ve büyük boyutlu materyaller için istisnalar da dahil olmak üzere daha fazla ayrıntı için <4>çoğaltma hizmetlerimiz</4> hakkında bilgi edinin.</3><5>Yardım almak veya yayın kalitesinde tarama talep etmek için <6>archive@rockarch.org</6> adresinden bir arşiv uzmanına e-posta gönderin.</5>"
 
 #. Full Company Address
 #: src/components/Footer/index.js:23
@@ -605,7 +605,7 @@ msgstr "https://rockarch.org/collections/access-and-request-materials/"
 #: src/components/ModalMyList/index.js:533
 #: src/components/ModalMyList/index.js:595
 msgid "https://rockarch.org/collections/access-and-request-materials/#duplication-services"
-msgstr ""
+msgstr "https://rockarch.org/collections/access-and-request-materials/#duplication-services"
 
 #. Holiday Schedule link
 #: src/components/PrimaryLink/index.js:46
@@ -811,11 +811,11 @@ msgstr "Lütfen araştırma ziyaretinizin tarihini belirtiniz."
 
 #: src/components/ModalMyList/index.js:409
 msgid "Please select a location of a reading room."
-msgstr ""
+msgstr "Lütfen bir okuma odası konumu seçin."
 
 #: src/components/ModalMyList/index.js:311
 msgid "Please select a reading room"
-msgstr ""
+msgstr "Lütfen bir okuma odası seçin"
 
 #. Positions held property
 #: src/components/PageAgent/index.js:192
@@ -983,7 +983,7 @@ msgstr "Tüm Ögeleri̇ Seç"
 
 #: src/components/ModalMyList/index.js:323
 msgid "Select Reading Room Location"
-msgstr ""
+msgstr "Okuma Odası Konumunu Seçin"
 
 #. Message displayed after emailing selected items
 #: src/components/PageMyList/index.js:152
