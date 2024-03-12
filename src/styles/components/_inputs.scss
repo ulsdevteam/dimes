@@ -136,6 +136,14 @@ select {
   }
 }
 
+/**
+* Overrides react-datepicker.css to fit the full time into the visible space
+**/
+.react-datepicker__time-list-item {
+  padding-left: 3px !important;
+  padding-right: 3px !important;
+}
+
 .select__wrapper {
   position: relative;
 }
