@@ -171,7 +171,7 @@ msgstr "<0>Informazioni sulla citazione copiate negli appunti.</0>"
 #. Button to copy citation text
 #: src/components/RecordsDetail/index.js:215
 msgid "<0>Cite<1/></0>"
-msgstr "<0>Cita<1/></0><<<<<<< Updated upstream======="
+msgstr "<0>Cita<1/></0>"
 
 #. Agent note Description
 #: src/components/PageAgent/index.js:21
