@@ -61,7 +61,7 @@ DIMES uses a [macro implementation](https://lingui.dev/guides/message-extraction
 
 #### Updating HTML structure
 
-1. If adding a new HTML element for translation, first make sure that the HTNL file includes
+1. If adding a new HTML element for translation, first make sure that the HTML file includes
   `import { Trans } from "@lingui/ macro";`.
 2. Wrap the desired string to transform in the `<Trans>` macro if adding a new element, or update
   the HTML structure within an already existing `<Trans>` tag.
@@ -81,6 +81,10 @@ DIMES uses a [macro implementation](https://lingui.dev/guides/message-extraction
 4. Run `$ yarn lingui-compile` to update the locale files into Javascript files which are used by the application
   to present translated strings.
 5. Commit updated code to the GitHub repository.
+
+### Aeon Reading Room Integration
+
+Available dates for reading rooms can be pulled from Aeon via the request broker by setting the `REACT_APP_ENABLE_READING_ROOM_SELECT` environment variable. Not setting this environment variable or leaving it blank will disable this feature. Setting this environment variable to any string will activate it.
 
 ## License
 

@@ -48,13 +48,13 @@ it('renders checkbox props correctly', () => {
 
 it('renders date props correctly', () => {
   act(() => {
-    render(<I18nApp ReactComponent={<DateInput label='Select a date' id='1' />} />, container)
+    render(<I18nApp ReactComponent={<DateInput label='Select a date' id='1' handleChange={jest.fn()} />} />, container)
   })
 
   const label = document.querySelector('label')
   expect(label.textContent).toBe('Select a date')
 
-  const input = document.querySelector('.dp__input')
+  const input = document.querySelector('.dp__wrapper')
   expect(input.id).toBe('1')
 })
 

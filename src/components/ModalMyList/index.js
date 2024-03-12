@@ -12,6 +12,8 @@ import { ModalSavedItemList } from '../ModalSavedItem'
 import { getFormattedDate } from '../Helpers'
 import './styles.scss'
 import { Plural, Trans, select, t } from '@lingui/macro'
+import axios from 'axios'
+import { addBusinessDays, parse, parseISO, startOfDay, isWithinInterval } from 'date-fns'
 
 
 const SubmitListInput = ({ submitList }) => {
@@ -32,64 +34,6 @@ const SubmitListInput = ({ submitList }) => {
   )
 }
 
-
-const FormatSelectInput = () => {
-  const { setFieldValue } = useFormikContext();
-  const [format, setFormat] = useState('')
-
-  const formatOptions = [
-    {
-      value: '', label: t({
-        comment: 'label for selecting format labels',
-        message: 'Select a format'
-      })
-    },
-    {
-      value: 'MP3', label: t({
-        comment: 'Label for MP3',
-        message: 'Audio (MP3)'
-      })
-    },
-    {value: 'JPEG', label: 'JPEG'},
-    {
-      value: 'MP4', label: t({
-        comment: 'Label for MP4',
-        message: 'Moving image (MP4)'
-      })
-    },
-    {value: 'PDF', label: 'PDF'},
-    {value: 'TIFF', label: 'TIFF'}
-  ]
-
-  useEffect(() => {
-    setFieldValue('format', format)
-  }, [format, setFieldValue])
-
-  return (
-    <div className='form-group mx-0'>
-      <SelectInput
-        className='select__modal'
-        id='format'
-        label={t({
-          comment: 'Label for format input',
-          message: 'Format'
-        })}
-        name={t({
-          comment: 'Name for format input',
-          message: 'format'
-        })}
-        onChange={({selectedItem}) => setFormat(selectedItem.value)}
-        options={formatOptions}
-        required={true}
-        selectedItem={format || ''} />
-      <ErrorMessage
-        id='format-error'
-        name={t({ message: 'format' })}
-        component='div'
-        className='input__error' />
-    </div>
-  )
-}
 
 export const ModalToggleListButton = ({ ignoreRestrictions, items, toggleList }) => {
 
@@ -354,7 +298,97 @@ EmailModal.propTypes = {
   toggleModal: PropTypes.func.isRequired,
 }
 
-export const ReadingRoomRequestModal = props => (
+const ReadingRoomSelect = ({ readingRooms }) => {
+  const { setFieldValue } = useFormikContext();
+  const [site, setSite] = useState('');
+
+  const ReadingRoomLocations = readingRooms.map(readingRoom => ({
+    value: readingRoom.sites[0],
+    label: readingRoom.name,
+  }));
+  ReadingRoomLocations.unshift({
+    value: "",
+    label: t({message: "Please select a reading room"}),
+  });
+
+  useEffect(() => {
+    setFieldValue('site', site);
+  }, [site, setFieldValue]);
+
+  return (
+    <div className='form-group'>
+      <SelectInput
+        className='select__modal'
+        id='site'
+        label={t({message: 'Select Reading Room Location'})}
+        name='site'
+        onChange={({ selectedItem }) => setSite(selectedItem.value)}
+        options={ReadingRoomLocations}
+        required={true}
+        selectedItem={site || ''} />
+      <ErrorMessage
+        id='site-error'
+        name='site'
+        component='div'
+        className='modal-form__error' />
+    </div>
+  )
+}
+
+const ReadingRoomDateInput = ({ readingRoom }) => {
+  const { setFieldValue } = useFormikContext();
+
+  return (
+    <div className='form-group'>
+      <Field
+        component={DateInput}
+        handleChange={date => setFieldValue('scheduledDate', date)}
+        helpText={t({
+          comment: 'Helptext for scheduling date.',
+          message: 'Enter the date of your research visit (mm/dd/yyyy)'
+        })}
+        id='scheduledDate'
+        label={t({
+          comment: 'Label for scheduling date',
+          message: 'Scheduled Date *'
+        })}
+        type='date'
+        defaultDate={addBusinessDays(new Date(), readingRoom?.policies[0]?.appointmentMinLeadDays || 1)}
+        minDate={addBusinessDays(new Date(), readingRoom?.policies[0]?.appointmentMinLeadDays || 1)}
+        filterDate={!!process.env.REACT_APP_ENABLE_READING_ROOM_SELECT ? date => readingRoom?.openHours.some(x => x.dayOfWeek === date.getDay()) : null}
+        filterTime={!!process.env.REACT_APP_ENABLE_READING_ROOM_SELECT ? date => {
+          if (readingRoom === undefined) return false;
+          const hours = readingRoom.openHours.find(x => x.dayOfWeek === date.getDay());
+          return isWithinInterval(date, {
+            start: parse(hours.openTime, "HH:mm:ss", date),
+            end: parse(hours.closeTime, "HH:mm:ss", date),
+          });
+        } : null}
+        excludeDateIntervals={readingRoom?.closures.map(closure => ({
+          start: startOfDay(parseISO(closure.startDate)),
+          end: startOfDay(parseISO(closure.endDate)),
+        }))} />
+      <ErrorMessage
+        id='scheduledDate-error'
+        name='scheduledDate'
+        component='div'
+        className='modal-form__error' />
+    </div>
+  )
+}
+
+export const ReadingRoomRequestModal = props => { 
+  const [aeonReadingRooms, setAeonReadingRooms] = useState([]);
+
+  useEffect(() => {
+    if (!!process.env.REACT_APP_ENABLE_READING_ROOM_SELECT) {
+      axios.get(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/reading-rooms`).then(response => {
+        setAeonReadingRooms(response.data);
+      });
+    }
+  }, []); // empty deps array means it runs once
+
+  return (
   <ModalMyList
     appElement={props.appElement}
     title='Request in Reading Room'
@@ -372,6 +406,9 @@ export const ReadingRoomRequestModal = props => (
             comment: 'Missing Scheduled Date error',
             message: 'Please provide the date of your research visit.'
           });
+          if (!!process.env.REACT_APP_ENABLE_READING_ROOM_SELECT && !values.site) errors.site = t({
+            message: 'Please select a location of a reading room.'
+          })
           if (!values.recaptcha) errors.recaptcha = t({
             message: 'Please complete this field.'
           });
@@ -390,7 +427,7 @@ export const ReadingRoomRequestModal = props => (
           setSubmitting(false);
         }}
       >
-      {({ errors, isSubmitting, setFieldValue, touched }) => (
+      {({ errors, isSubmitting, setFieldValue, touched, values }) => (
         <Form>
           <SubmitListInput submitList={props.submitList} />
           <ErrorMessage
@@ -400,29 +437,9 @@ export const ReadingRoomRequestModal = props => (
             })}
             component='div'
             className='input__error' />
-          <div className='form-group mx-0'>
-            <Field
-              component={DateInput}
-              handleChange={date => setFieldValue('scheduledDate', date)}
-              helpText={t({
-                comment: 'Helptext for scheduling date.',
-                message: 'Enter the date of your research visit (mm/dd/yyyy)'
-              })}
-              id='scheduledDate'
-              label={t({
-                comment: 'Label for scheduling date',
-                message: 'Scheduled Date *'
-              })}
-              type='date' />
-            <ErrorMessage
-              id='scheduledDate-error'
-              name={t({
-                comment: 'Name for scheduling date error',
-                message: 'scheduledDate'
-              })}
-              component='div'
-              className='input__error' />
-          </div>
+          {!!process.env.REACT_APP_ENABLE_READING_ROOM_SELECT && <ReadingRoomSelect readingRooms={aeonReadingRooms} />}
+          <ReadingRoomDateInput
+            readingRoom={aeonReadingRooms.find(room => room.sites[0] === values.site)} />
           <FormGroup
             label={t({
               comment: 'Label for RAC staff message Form',
@@ -472,7 +489,7 @@ export const ReadingRoomRequestModal = props => (
       </Formik>
     }
   />
-)
+)}
 
 ReadingRoomRequestModal.propTypes = {
   appElement: PropTypes.object,
@@ -498,22 +515,44 @@ export const DuplicationRequestModal = props => (
     form={
       <>
         <div className='mb-20'>
-          <Trans comment='Note to user about a cost estimate'>
-            <strong>Please note:</strong> if you want a cost estimate for your order, email an archivist at <a href={t({message: 'mailto:archive@rockarch.org'})}>archive@rockarch.org</a>.
+          <Trans comment='Fees and limitations title'>
+            <h3 className='mt-0'>Fees and limitations</h3>
+          </Trans>
+          <Trans comment='Fees and limitations information'>
+            <div className='mb-20'>
+              We generally charge a <strong>$25 flat fee per item</strong>, with a limit of <strong>20 items requested per calendar year</strong>.
+            </div>
+            <div className='mb-20'>
+              For more details, including exceptions for audiovisual and oversized materials, read about our 
+              <a target='_blank'
+                  rel='noopener noreferrer'
+                    title={t({
+                      comment: 'Title for duplication services link',
+                      message: 'opens in a new window'
+                    })}
+                    href={t({
+                      comment: 'Link for duplication request services',
+                      message: 'https://rockarch.org/collections/access-and-request-materials/#duplication-services'
+                    })}>
+                  duplication services
+                </a>.
+            </div>
+            <div>
+              For help or to request a publication quality scan, email an archivist at 
+              <a href={t({message: 'mailto:archive@rockarch.org'})}>archive@rockarch.org</a>.
+            </div>
           </Trans>
         </div>
+        <Trans comment='Submit Request title'>
+          <h3 className='mt-0'>Submit request</h3>
+        </Trans>
         <Formik
           initialValues={{
-            format: '',
             costs: false,
             items: props.submitList,
             recaptcha: ''}}
           validate={values => {
             const errors = {};
-            if (!values.format) errors.format = t({
-              comment: 'No Format selected error',
-              message: 'Please select your desired duplication format.'
-            });
             if (!values.recaptcha) errors.recaptcha = t({
               message: 'Please complete this field.'
             });
@@ -544,24 +583,23 @@ export const DuplicationRequestModal = props => (
                 })}
               component='div'
               className='input__error' />
-            <FormatSelectInput />
             <FormGroup
-              label={<Trans comment='Label for duplicate request form'>
+              label={<Trans comment='Label for duplication request form'>
                 I agree to pay the duplication costs for this request. See our&nbsp;
                 <a target='_blank'
                   rel='noopener noreferrer'
                     title={t({
-                      comment: 'Title for duplicate request',
+                      comment: 'Title for duplication request',
                       message: 'opens in a new window'
                     })}
                     href={t({
-                      comment: 'Link for duplicate request services',
-                      message: 'https://rockarch.org/collections/access-and-request-materials/#duplication-services-and-fee-schedule'
+                      comment: 'Link for duplication request services',
+                      message: 'https://rockarch.org/collections/access-and-request-materials/#duplication-services'
                     })}>
                   fee schedule
                 </a>.</Trans>}
                 name={t({
-                  comment: 'Name for duplicate request form costs',
+                  comment: 'Name for duplication request form costs',
                   message: 'costs'
                 })}
               type='checkbox'

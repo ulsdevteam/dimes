@@ -26,6 +26,7 @@ beforeEach(() => {
       return Promise.reject(new Error('not found'))
     }
   })
+  axios.get.mockImplementation((url) => Promise.resolve({data:[]}))
 })
 
 afterEach(() => {
@@ -275,10 +276,6 @@ it('validates duplication modal form correctly', async () => {
 
   expect(form.textContent).toContain(t({
     message: 'Please complete this field.'
-  }))
-  expect(form.textContent).toContain(t({
-    comment: 'Duplication Format Message Test',
-    message: 'Please select your desired duplication format.'
   }))
   expect(form.textContent).toContain(t({
     comment: 'Payment Modal Form Test',
