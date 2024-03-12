@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Poedit 3.3.2\n"
 
 #. Message returned dependent on how many items selected
-#: src/components/ModalMyList/index.js:154
+#: src/components/ModalMyList/index.js:98
 msgid "{0, plural, =0 {selected: 0 items} other {selected: {1}}}"
 msgstr "{0, plural, =0 {選択された: 0 アイテム} other {選択された: {1}}}"
 
@@ -43,8 +43,8 @@ msgid "{0, select, true {Minimap} other {Introducing the Minimap}}"
 msgstr "{0, select, true {Minimap} other {ミニマップの紹介}}"
 
 #. Text for submiting item(s) request
-#: src/components/ModalMyList/index.js:458
-#: src/components/ModalMyList/index.js:587
+#: src/components/ModalMyList/index.js:475
+#: src/components/ModalMyList/index.js:625
 msgid "{0, select, true {Request {1} Items} other {Request {2} Item}}"
 msgstr "{0, select, true {リクエスト {1} アイテム} other {リクエスト {2} アイテム}}"
 
@@ -63,8 +63,8 @@ msgid "{agentType, select, organization {Date Established} other {Date of Birth}
 msgstr "{agentType, select, organization {設立日} other {生年月日}}"
 
 #. Label for item (de)selection
-#: src/components/ModalMyList/index.js:118
-#: src/components/ModalMyList/index.js:127
+#: src/components/ModalMyList/index.js:62
+#: src/components/ModalMyList/index.js:71
 msgid "{deselect, select, true {Deselect all items} other {Select all items}}"
 msgstr "{deselect, select, true {すべての項目を選択解除} other {すべての項目を選択}}"
 
@@ -178,6 +178,11 @@ msgstr "<0>引用<1/></0>"
 msgid "<0>Description</0>"
 msgstr "<0>説明</0>"
 
+#. Fees and limitations title
+#: src/components/ModalMyList/index.js:518
+msgid "<0>Fees and limitations</0>"
+msgstr "<0>料金と制限</0>"
+
 #. Saved item found in message
 #: src/components/SavedItem/index.js:17
 msgid "<0>Found in: <1>{0}</1></0>"
@@ -229,14 +234,14 @@ msgid "<0>Please add a word or phrase to search for.</0>"
 msgstr "<0>検索する語句を追加してください。</0>"
 
 #. Note to user about including name and email address
-#: src/components/ModalMyList/index.js:229
+#: src/components/ModalMyList/index.js:173
 msgid "<0>Please note:</0> if are emailing your list to an archivist at <1>archive@rockarch.org</1>, please include your name and email address in the Message field, otherwise we will have no means of contacting you to follow-up."
 msgstr "<0>注意：</0> <1>archive@rockarch.org</1> のアーキビストにリストをEメールで送る場合は、メッセージ欄にお名前とEメールアドレスをご記入ください。"
 
-#. Note to user about a cost estimate
-#: src/components/ModalMyList/index.js:501
-msgid "<0>Please note:</0> if you want a cost estimate for your order, email an archivist at <1>archive@rockarch.org</1>."
-msgstr "<0>注：</0>ご注文の見積りが必要な場合は、<1>archive@rockarch.org</1> までアーキビストにEメールをお送りください."
+#. Submit Request title
+#: src/components/ModalMyList/index.js:546
+msgid "<0>Submit request</0>"
+msgstr "<0>リクエストを送信</0>"
 
 #. summary message
 #: src/components/PageAgent/index.js:265
@@ -263,13 +268,18 @@ msgstr "<0>オンラインで見る<1/></0>"
 msgid "<0>View Online<1/></0><2>Download <3/></2>{0}"
 msgstr "<0>オンラインで見る<1/></0><2>ダウンロード<3/></2>{0}"
 
+#. Fees and limitations information
+#: src/components/ModalMyList/index.js:521
+msgid "<0>We generally charge a <1>$25 flat fee per item</1>, with a limit of <2>20 items requested per calendar year</2>.</0><3>For more details, including exceptions for audiovisual and oversized materials, read about our <4>duplication services</4>.</3><5>For help or to request a publication quality scan, email an archivist at <6>archive@rockarch.org</6>.</5>"
+msgstr "<0>通常、<1>1点につき一律25ドル</1>で、<2>年間20点まで</2>承ります。</0><3>視聴覚資料や特大資料の例外を含む詳細については、<4>複写</4>サービスについてをお読みください。</3><5>出版物品質のスキャンをご希望の方は、<6>archive@rockarch.org</6>。</5>"
+
 #. Full Company Address
 #: src/components/Footer/index.js:23
 msgid "15 Dayton Avenue<0/>Sleepy Hollow, New York 10591"
 msgstr "15 Dayton Avenue<0/>Sleepy Hollow, New York 10591"
 
 #. helptext for RAC staff message
-#: src/components/ModalMyList/index.js:431
+#: src/components/ModalMyList/index.js:448
 msgid "255 characters maximum"
 msgstr "最大255文字"
 
@@ -317,8 +327,8 @@ msgstr "すべてのタイプ"
 
 #. Modal Form Missing Email Address Test
 #. Missing email address error
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:159
-#: src/components/ModalMyList/index.js:238
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:160
+#: src/components/ModalMyList/index.js:182
 msgid "An email address is required."
 msgstr "有効なメールアドレスを入力してください."
 
@@ -337,11 +347,6 @@ msgstr "archive@rockarch.org"
 msgid "Are you sure you want to remove all the items from your list?<0><1/><2/></0>"
 msgstr "リストからすべての項目を削除してもよろしいですか？<0><1/><2/></0>"
 
-#. Label for MP3
-#: src/components/ModalMyList/index.js:48
-msgid "Audio (MP3)"
-msgstr "オーディオ (MP3)"
-
 #. Bulk Data Download message
 #: src/components/SecondaryLink/index.js:35
 msgid "Bulk data download"
@@ -357,9 +362,9 @@ msgstr "リクエストを完了できない"
 #. Modal Form Reset Test
 #: src/components/Form/__tests__/Form.test.js:28
 #: src/components/Form/index.js:86
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:127
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:195
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:249
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:128
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:196
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:250
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -377,7 +382,7 @@ msgstr "検索カテゴリーを選択する"
 #: src/components/ModalConfirm/index.js:17
 #: src/components/ModalMinimap/index.js:38
 #: src/components/ModalMinimap/index.js:73
-#: src/components/ModalMyList/index.js:167
+#: src/components/ModalMyList/index.js:111
 #: src/components/ModalSearch/index.js:50
 msgid "Close"
 msgstr "閉じる"
@@ -419,8 +424,8 @@ msgstr "すべて削除を確認する"
 msgid "Copyright © Rockefeller Archive Center. All rights reserved."
 msgstr "著作権 © ロックフェラー・アーカイブ・センター.無断複写・転載を禁じます。"
 
-#. Name for duplicate request form costs
-#: src/components/ModalMyList/index.js:563
+#. Name for duplication request form costs
+#: src/components/ModalMyList/index.js:601
 msgid "costs"
 msgstr "費用"
 
@@ -435,7 +440,7 @@ msgid "Date Range"
 msgstr "期間"
 
 #. Button Deselect all items Test
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:81
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:82
 msgid "Deselect all items"
 msgstr "すべての項目の選択を解除する"
 
@@ -460,14 +465,14 @@ msgid "E-mail:<0/>"
 msgstr "Eメール<0/>"
 
 #. Name of email form
-#: src/components/ModalMyList/index.js:284
+#: src/components/ModalMyList/index.js:228
 msgid "email"
 msgstr "メールアドレス"
 
 #. Email Modal Form Test
 #. Label of Email Form
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:111
-#: src/components/ModalMyList/index.js:280
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:112
+#: src/components/ModalMyList/index.js:224
 msgid "Email *"
 msgstr "メールアドレス *"
 
@@ -493,7 +498,7 @@ msgid "Enter a search term"
 msgstr "検索語を入力"
 
 #. Helptext for scheduling date.
-#: src/components/ModalMyList/index.js:407
+#: src/components/ModalMyList/index.js:346
 msgid "Enter the date of your research visit (mm/dd/yyyy)"
 msgstr "研究訪問の日付（mm/dd/yyyy）を入力してください。"
 
@@ -513,15 +518,7 @@ msgstr "ファックス：(914) 631-6017"
 msgid "Filters"
 msgstr "フィルター"
 
-#. Name for format input
-#: src/components/ModalMyList/index.js:77
-#: src/components/ModalMyList/index.js:87
-msgid "format"
-msgstr "フォーマット"
-
-#. Label for format input
 #. Title for Format filter
-#: src/components/ModalMyList/index.js:73
 #: src/components/ModalSearch/index.js:87
 msgid "Format"
 msgstr "フォーマット"
@@ -603,10 +600,12 @@ msgstr "https://rockarch.org/about-us/privacy-policy/"
 msgid "https://rockarch.org/collections/access-and-request-materials/"
 msgstr "https://rockarch.org/collections/access-and-request-materials/"
 
-#. Link for duplicate request services
-#: src/components/ModalMyList/index.js:557
-msgid "https://rockarch.org/collections/access-and-request-materials/#duplication-services-and-fee-schedule"
-msgstr "https://rockarch.org/collections/access-and-request-materials/#duplication-services-and-fee-schedule"
+#. Link for duplication request services
+#. Link for duplication request services
+#: src/components/ModalMyList/index.js:533
+#: src/components/ModalMyList/index.js:595
+msgid "https://rockarch.org/collections/access-and-request-materials/#duplication-services"
+msgstr "https://rockarch.org/collections/access-and-request-materials/#duplication-services"
 
 #. Holiday Schedule link
 #: src/components/PrimaryLink/index.js:46
@@ -638,21 +637,21 @@ msgstr "https://www.instagram.com/rockefellerarchivecenter"
 msgid "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
 msgstr "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
 
-#. Label for duplicate request form
-#: src/components/ModalMyList/index.js:549
+#. Label for duplication request form
+#: src/components/ModalMyList/index.js:587
 msgid "I agree to pay the duplication costs for this request. See our <0>fee schedule</0>."
 msgstr "私は、この依頼にかかる複製費用を支払うことに同意します。<0>料金表を</0>ご覧ください。"
 
 #. Invalid email error
-#: src/components/ModalMyList/index.js:245
+#: src/components/ModalMyList/index.js:189
 msgid "Invalid email address provided."
 msgstr "無効な電子メール アドレスが指定されました。"
 
 #. Name of items error message
-#: src/components/ModalMyList/index.js:29
-#: src/components/ModalMyList/index.js:273
-#: src/components/ModalMyList/index.js:398
-#: src/components/ModalMyList/index.js:542
+#: src/components/ModalMyList/index.js:31
+#: src/components/ModalMyList/index.js:217
+#: src/components/ModalMyList/index.js:435
+#: src/components/ModalMyList/index.js:581
 msgid "items"
 msgstr "アイテム"
 
@@ -672,8 +671,8 @@ msgid "Location of Headquarters"
 msgstr "本社所在地"
 
 #. Company Email link
-#: src/components/ModalMyList/index.js:230
-#: src/components/ModalMyList/index.js:502
+#: src/components/ModalMyList/index.js:174
+#: src/components/ModalMyList/index.js:542
 #: src/components/PageBackendError/index.js:19
 #: src/components/PrimaryLink/index.js:33
 msgid "mailto:archive@rockarch.org"
@@ -685,20 +684,20 @@ msgid "mailto:archive@rockarch.org?subject=Scheduling a research appointment"
 msgstr "mailto:archive@rockarch.org?subject=Scheduling 研究予約"
 
 #. Name of message form
-#: src/components/ModalMyList/index.js:307
+#: src/components/ModalMyList/index.js:251
 msgid "message"
 msgstr "メッセージ"
 
 #. Message Modal Form Test
 #. Label of Message Form
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:119
-#: src/components/ModalMyList/index.js:303
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:120
+#: src/components/ModalMyList/index.js:247
 msgid "Message"
 msgstr "メッセージ"
 
 #. Label for RAC staff message Form
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:188
-#: src/components/ModalMyList/index.js:427
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:189
+#: src/components/ModalMyList/index.js:444
 msgid "Message for RAC staff"
 msgstr "RACスタッフへのメッセージ"
 
@@ -716,11 +715,6 @@ msgstr "ミニマップ"
 msgid "Monday-Friday<0/>9:00 a.m. to 5:00 p.m.<1/>"
 msgstr "月～金<0/>午前9:00～午後5:00<1/>"
 
-#. Label for MP4
-#: src/components/ModalMyList/index.js:55
-msgid "Moving image (MP4)"
-msgstr "動画 (MP4)"
-
 #. Message shown on button within Dropdown list
 #. Message shown on button within the Header
 #: src/components/Dropdown/index.js:158
@@ -734,9 +728,9 @@ msgid "Nicknames"
 msgstr "ニックネーム"
 
 #. No selected items error
-#: src/components/ModalMyList/index.js:254
-#: src/components/ModalMyList/index.js:378
-#: src/components/ModalMyList/index.js:524
+#: src/components/ModalMyList/index.js:198
+#: src/components/ModalMyList/index.js:415
+#: src/components/ModalMyList/index.js:563
 msgid "No items have been selected to submit."
 msgstr "提出するアイテムが選択されていない。"
 
@@ -763,10 +757,12 @@ msgstr "オンライン"
 msgid "opens email"
 msgstr "メールを開く"
 
-#. Title for duplicate request
+#. Title for duplication services link
+#. Title for duplication request
 #. Title for new window button
 #. Title message for opening an online item
-#: src/components/ModalMyList/index.js:553
+#: src/components/ModalMyList/index.js:529
+#: src/components/ModalMyList/index.js:591
 #: src/components/PageDigitalObject/index.js:112
 #: src/components/RecordsDetail/index.js:229
 msgid "opens in a new window"
@@ -799,26 +795,27 @@ msgstr "検索する語句を追加してください。"
 
 #. Modal Form Missing Field Test
 #. Captcha not completed error
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:155
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:222
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:276
-#: src/components/ModalMyList/index.js:250
-#: src/components/ModalMyList/index.js:375
-#: src/components/ModalMyList/index.js:517
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:156
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:223
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:277
+#: src/components/ModalMyList/index.js:194
+#: src/components/ModalMyList/index.js:412
+#: src/components/ModalMyList/index.js:556
 msgid "Please complete this field."
 msgstr "この欄にご記入ください。"
 
 #. Missing Scheduled Date error
-#: src/components/ModalMyList/index.js:371
+#: src/components/ModalMyList/index.js:405
 msgid "Please provide the date of your research visit."
 msgstr "研究訪問の日付をご記入ください。"
 
-#. Duplication Format Message Test
-#. No Format selected error
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:279
-#: src/components/ModalMyList/index.js:513
-msgid "Please select your desired duplication format."
-msgstr "ご希望の複製形式を選択してください。"
+#: src/components/ModalMyList/index.js:409
+msgid "Please select a location of a reading room."
+msgstr "閲覧室の場所を選択してください。"
+
+#: src/components/ModalMyList/index.js:311
+msgid "Please select a reading room"
+msgstr "閲覧室を選択してください"
 
 #. Positions held property
 #: src/components/PageAgent/index.js:192
@@ -826,7 +823,7 @@ msgid "Positions Held"
 msgstr "役職"
 
 #. Message while MyList modal loads items
-#: src/components/ModalMyList/index.js:195
+#: src/components/ModalMyList/index.js:139
 msgid "Preparing items"
 msgstr "アイテムの準備"
 
@@ -846,7 +843,7 @@ msgid "Privacy Policy"
 msgstr "プライバシーポリシー"
 
 #. Name for RAC staff message Form
-#: src/components/ModalMyList/index.js:435
+#: src/components/ModalMyList/index.js:452
 msgid "questions"
 msgstr "質問"
 
@@ -862,12 +859,12 @@ msgstr "閲覧室の営業時間:"
 
 #. Name of recaptcha element
 #. Name of recaptcha error message
-#: src/components/ModalMyList/index.js:316
-#: src/components/ModalMyList/index.js:323
-#: src/components/ModalMyList/index.js:445
-#: src/components/ModalMyList/index.js:451
-#: src/components/ModalMyList/index.js:574
-#: src/components/ModalMyList/index.js:580
+#: src/components/ModalMyList/index.js:260
+#: src/components/ModalMyList/index.js:267
+#: src/components/ModalMyList/index.js:462
+#: src/components/ModalMyList/index.js:468
+#: src/components/ModalMyList/index.js:612
+#: src/components/ModalMyList/index.js:618
 msgid "recaptcha"
 msgstr "リキャプチャ"
 
@@ -898,8 +895,8 @@ msgid "Remove item from list"
 msgstr "リストから項目を削除する"
 
 #. Request items Modal Form Test
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:191
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:246
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:192
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:247
 msgid "Request 4 Items"
 msgstr "リクエスト 4 アイテム"
 
@@ -939,14 +936,9 @@ msgstr "来店予約"
 
 #. Scheduled Date Modal Form Test
 #. Label for scheduling date
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:184
-#: src/components/ModalMyList/index.js:412
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:185
+#: src/components/ModalMyList/index.js:351
 msgid "Scheduled Date *"
-msgstr "予定日"
-
-#. Name for scheduling date error
-#: src/components/ModalMyList/index.js:419
-msgid "scheduledDate"
 msgstr "予定日"
 
 #. Label for Search button
@@ -984,15 +976,14 @@ msgstr "検索…"
 msgid "See holiday schedule"
 msgstr "休日スケジュールを見る"
 
-#. label for selecting format labels
-#: src/components/ModalMyList/index.js:42
-msgid "Select a format"
-msgstr "フォーマットの選択"
-
 #. Button Select all items Test
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:57
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:58
 msgid "Select all items"
 msgstr "すべてのアイテムを選択"
+
+#: src/components/ModalMyList/index.js:323
+msgid "Select Reading Room Location"
+msgstr "読書室の場所を選択"
 
 #. Message displayed after emailing selected items
 #: src/components/PageMyList/index.js:152
@@ -1000,19 +991,19 @@ msgid "Selected items in your list have been emailed to {0}"
 msgstr "リスト内の選択されたアイテムが{0}にEメールで送信されました。"
 
 #. Button Select all items Test
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:85
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:86
 msgid "selected:"
 msgstr "を選んだ："
 
 #. totals empty Test
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:62
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:63
 msgid "selected: 0 items"
 msgstr "選択済み: 0 件"
 
 #. Modal Form Submit Test
 #. Send List sumbit message
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:123
-#: src/components/ModalMyList/index.js:331
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:124
+#: src/components/ModalMyList/index.js:275
 msgid "Send List"
 msgstr "送信リスト"
 
@@ -1103,15 +1094,15 @@ msgid "Start Year"
 msgstr "開始年"
 
 #. Name of subject form
-#: src/components/ModalMyList/index.js:297
+#: src/components/ModalMyList/index.js:241
 msgid "subject"
 msgstr "件名"
 
 #. Subject Modal Form Test
 #. Label of Subject Form
 #. Title for Subject filter
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:115
-#: src/components/ModalMyList/index.js:293
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:116
+#: src/components/ModalMyList/index.js:237
 #: src/components/ModalSearch/index.js:99
 msgid "Subject"
 msgstr "件名"
@@ -1120,16 +1111,6 @@ msgstr "件名"
 #: src/components/SearchForm/index.js:83
 msgid "Submit search"
 msgstr "検索の送信"
-
-#. Aria label for Calendar button
-#: src/components/Inputs/index.js:92
-msgid "Switch to the next month."
-msgstr "翌月に切り替える。"
-
-#. Aria label for Calendar button
-#: src/components/Inputs/index.js:82
-msgid "Switch to the previous month."
-msgstr "前月に切り替える。"
 
 #. Take-down Policy message
 #: src/components/SecondaryLink/index.js:61
@@ -1158,8 +1139,8 @@ msgstr "仮想国際機関ファイル"
 
 #. Payment Modal Form Test
 #. Costs not agreed to error
-#: src/components/ModalMyList/__tests__/ModalMyList.test.js:283
-#: src/components/ModalMyList/index.js:520
+#: src/components/ModalMyList/__tests__/ModalMyList.test.js:280
+#: src/components/ModalMyList/index.js:559
 msgid "We cannot process your request unless you agree to pay the costs of reproduction."
 msgstr "お客様が複製費用の支払いに同意されない限り、当社はお客様のご依頼を処理することはできません。"
 

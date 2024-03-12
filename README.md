@@ -61,7 +61,7 @@ DIMES uses a [macro implementation](https://lingui.dev/guides/message-extraction
 
 #### Updating HTML structure
 
-1. If adding a new HTML element for translation, first make sure that the HTNL file includes
+1. If adding a new HTML element for translation, first make sure that the HTML file includes
   `import { Trans } from "@lingui/ macro";`.
 2. Wrap the desired string to transform in the `<Trans>` macro if adding a new element, or update
   the HTML structure within an already existing `<Trans>` tag.
