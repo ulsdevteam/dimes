@@ -78,7 +78,7 @@ const PageAgent = () => {
   const [collections, setCollections] = useState([])
   const [attributes, setAttributes] = useState({})
   const [narrativeDescription, setNarrativeDescription] = useState('')
-  const [narrativeDescriptionSource, setNarrativeDescriptionSource] = useState('')
+  const [narrativeDescriptionSource, setNarrativeDescriptionSource] = useState(null)
   const [wikidata, setWikidata] = useState({})
   const [params, setParams] = useState({})
   const { id } = useParams()
