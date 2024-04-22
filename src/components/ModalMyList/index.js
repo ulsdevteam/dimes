@@ -432,9 +432,7 @@ export const ReadingRoomRequestModal = props => {
           <SubmitListInput submitList={props.submitList} />
           <ErrorMessage
             id='items-error'
-            name={t({
-              message: 'items'
-            })}
+            name='items'
             component='div'
             className='input__error' />
           {!!process.env.REACT_APP_ENABLE_READING_ROOM_SELECT && <ReadingRoomSelect readingRooms={aeonReadingRooms} />}
@@ -449,25 +447,18 @@ export const ReadingRoomRequestModal = props => {
               comment: 'helptext for RAC staff message',
               message: '255 characters maximum'
             })}
-            name={t({
-              comment: 'Name for RAC staff message Form',
-              message: 'questions'
-            })}
+            name='questions'
             maxLength={255}
             component='textarea'
             rows={5} />
           <div className='form-group mx-0'>
             <Field
               component={Captcha}
-              name={t({
-                message: 'recaptcha'
-              })}
+              name='recaptcha'
               handleCaptchaChange={(response) => setFieldValue('recaptcha', response)} />
             <ErrorMessage
               id='recaptcha-error'
-              name={t({
-                message: 'recaptcha'
-              })}
+              name='recaptcha'
               component='div'
               className='input__error' />
           </div>
@@ -578,9 +569,7 @@ export const DuplicationRequestModal = props => (
             <SubmitListInput submitList={props.submitList} />
             <ErrorMessage
               id='items-error'
-                name={t({
-                  message: 'items'
-                })}
+              name='items'
               component='div'
               className='input__error' />
             <FormGroup
@@ -598,10 +587,7 @@ export const DuplicationRequestModal = props => (
                     })}>
                   fee schedule
                 </a>.</Trans>}
-                name={t({
-                  comment: 'Name for duplication request form costs',
-                  message: 'costs'
-                })}
+              name='costs'
               type='checkbox'
               required={true}
               errors={errors}
@@ -615,9 +601,7 @@ export const DuplicationRequestModal = props => (
                 handleCaptchaChange={(response) => setFieldValue('recaptcha', response)} />
               <ErrorMessage
                 id='captcha-error'
-                  name={t({
-                    message: 'recaptcha'
-                  })}
+                name='recaptcha'
                 component='div'
                 className='input__error' />
             </div>
