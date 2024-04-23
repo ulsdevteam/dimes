@@ -13,10 +13,6 @@ jobs:
     environment:
       name: development
 
-    env:
-      global:
-        - APPLICATION_NAME: dimes
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
