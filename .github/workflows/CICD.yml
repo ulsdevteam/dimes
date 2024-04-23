@@ -6,7 +6,7 @@ on:
       - development
 
 jobs:
-  build:
+  build_deploy:
     if: if: github.ref != 'refs/heads/base' || github.ref != 'refs/heads/development'
     runs-on: ubuntu-latest
 
@@ -58,51 +58,62 @@ jobs:
           CI=false yarn run build
           yarn test
 
-      steps:
-        - name: Checkout code
-          uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-        - name: Export secrets to environment variables
-          uses: oNaiPs/secrets-to-env-action@v1.5
-          with:
-            secrets: ${{ toJSON(secrets) }}
+      - name: Export secrets to environment variables
+        uses: oNaiPs/secrets-to-env-action@v1.5
+        with:
+          secrets: ${{ toJSON(secrets) }}
 
-        - name: Clone deploy scripts if not present
-          run: |
-            if [ ! -d deploy_scripts ]; then
-              git clone https://github.com/RockefellerArchiveCenter/deploy_scripts.git;
-            fi
+      - name: Clone deploy scripts if not present
+        run: |
+          if [ ! -d deploy_scripts ]; then
+            git clone https://github.com/RockefellerArchiveCenter/deploy_scripts.git;
+          fi
 
-        - name: Substitute environment variables
-          uses: tvarohohlavy/inplace-envsubst-action@v1.0.0
-          with:
-            files: deploy_scripts/containers/invalidate_cloudfront_cache.sh
+      - name: Substitute environment variables
+        uses: tvarohohlavy/inplace-envsubst-action@v1.0.0
+        with:
+          files: |
+            .env.deploy
+            deploy_scripts/containers/invalidate_cloudfront_cache.sh
+            src/components/PageRecords/index.js
+            src/components/PageSearch/index.js
+            src/components/PageDigitalObject/index.js
+            src/components/PageAgent/index.js
+            src/components/RecordsContent/index.js
+            src/components/PageMyList/index.js
+            src/components/ModalMyList/index.js
+            src/components/MyListHelpers.js
+            src/components/RecordsDetail/index.js
+            src/components/Captcha/index.js
 
-        - name: Make deploy scripts executable
-          run: chmod +x deploy_scripts/*.sh
+      - name: Make deploy scripts executable
+        run: chmod +x deploy_scripts/*.sh
 
-        - name: Configure AWS Credentials
-          uses: aws-actions/configure-aws-credentials@v4.0.2
-          with:
-            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-            aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-            role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE }}
-            role-skip-session-tagging: true
-            role-duration-seconds: 1000
-            aws-region: us-east-1
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4.0.2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE }}
+          role-skip-session-tagging: true
+          role-duration-seconds: 1000
+          aws-region: ${{ secrets.AWS_REGION }}
 
-        - name: Sync to AWS
-          uses: jakejarvis/s3-sync-action@v0.5.1
-          with:
-            args: --exclude '.git/*' --exclude '.github/*' --exclude 'README.md'
-          env:
-            AWS_S3_BUCKET: ${{ secrets.AWS_BUCKET_NAME }}
-            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-            AWS_REGION: 'us-east-1'
+      - name: Sync to AWS
+        uses: jakejarvis/s3-sync-action@v0.5.1
+        with:
+          args: --exclude '.git/*' --exclude '.github/*' --exclude 'README.md'
+        env:
+          AWS_S3_BUCKET: ${{ secrets.AWS_BUCKET_NAME }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'us-east-1'
 
-        - name: Deploy to S3
-          run: aws s3 sync $LOCAL_DIR s3://$AWS_BUCKET_NAME --region us-east-1
+      - name: Deploy to S3
+        run: aws s3 sync $LOCAL_DIR s3://$AWS_BUCKET_NAME --region us-east-1
 
-        - name: Invalidate CloudFront cache
-          run: bash deploy_scripts/containers/invalidate_cloudfront_cache.sh
+      - name: Invalidate CloudFront cache
+        run: bash deploy_scripts/containers/invalidate_cloudfront_cache.sh
