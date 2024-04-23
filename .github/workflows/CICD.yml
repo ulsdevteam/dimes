@@ -50,7 +50,24 @@ jobs:
           fi
 
       - name: Substitute environment variables
-        run: sudo deploy_scripts/substitute_env.sh
+        uses: tvarohohlavy/inplace-envsubst-action@v1.0.0
+        with:
+          files: |
+            .env.deploy
+            deploy_scripts/containers/invalidate_cloudfront_cache.sh
+            src/components/PageRecords/index.js
+            src/components/PageSearch/index.js
+            src/components/PageDigitalObject/index.js
+            src/components/PageAgent/index.js
+            src/components/RecordsContent/index.js
+            src/components/PageMyList/index.js
+            src/components/ModalMyList/index.js
+            src/components/MyListHelpers.js
+            src/components/RecordsDetail/index.js
+            src/components/Captcha/index.js
+
+      - name: Make deploy scripts executable
+        run: chmod +x deploy_scripts/*.sh
 
       - name: Build and test
         run: |
@@ -71,26 +88,6 @@ jobs:
           if [ ! -d deploy_scripts ]; then
             git clone https://github.com/RockefellerArchiveCenter/deploy_scripts.git;
           fi
-
-      - name: Substitute environment variables
-        uses: tvarohohlavy/inplace-envsubst-action@v1.0.0
-        with:
-          files: |
-            .env.deploy
-            deploy_scripts/containers/invalidate_cloudfront_cache.sh
-            src/components/PageRecords/index.js
-            src/components/PageSearch/index.js
-            src/components/PageDigitalObject/index.js
-            src/components/PageAgent/index.js
-            src/components/RecordsContent/index.js
-            src/components/PageMyList/index.js
-            src/components/ModalMyList/index.js
-            src/components/MyListHelpers.js
-            src/components/RecordsDetail/index.js
-            src/components/Captcha/index.js
-
-      - name: Make deploy scripts executable
-        run: chmod +x deploy_scripts/*.sh
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4.0.2
