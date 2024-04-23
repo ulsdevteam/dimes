@@ -45,7 +45,7 @@ jobs:
           files: .env.deploy
 
       - name: Replace env file
-        run: mv ./env.deploy ./.env
+        run: mv env.deploy .env
 
       - name: Build Docker
         run: docker build .
