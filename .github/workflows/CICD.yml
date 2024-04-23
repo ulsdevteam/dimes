@@ -75,4 +75,4 @@ jobs:
         run: aws s3 sync ${{ secrets.LOCAL_DIR }} s3://${{ secrets.AWS_BUCKET_NAME }} --region ${{ secrets.AWS_REGION }}
 
       - name: Invalidate CloudFront cache
-        run: aws cloudfront create-invalidation --distribution-id ${{ secrets. CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
+        run: aws cloudfront create-invalidation --region ${{ secrets.AWS_REGION }} --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
