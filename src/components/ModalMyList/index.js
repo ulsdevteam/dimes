@@ -554,8 +554,8 @@ export const DuplicationRequestModal = props => (
             if (!values.items.length) errors.items = t({
               message: 'No items have been selected to submit.'
             })
-            if (values.items.length > 20) errors.items = t({
-              message: 'Please limit your request to 20 items.'
+            if (!!process.env.REACT_APP_DUPLICATION_REQUEST_LIMIT & values.items.length > Number(process.env.REACT_APP_DUPLICATION_REQUEST_LIMIT)) errors.items = t({
+              message: `Please limit your request to ${process.env.REACT_APP_DUPLICATION_REQUEST_LIMIT} items.`
             })
             return errors;
           }}
