@@ -44,7 +44,7 @@ msgstr "{0, select, true {Minimap} other {ミニマップの紹介}}"
 
 #. Text for submiting item(s) request
 #: src/components/ModalMyList/index.js:466
-#: src/components/ModalMyList/index.js:609
+#: src/components/ModalMyList/index.js:612
 msgid "{0, select, true {Request {1} Items} other {Request {2} Item}}"
 msgstr "{0, select, true {リクエスト {1} アイテム} other {リクエスト {2} アイテム}}"
 
@@ -424,11 +424,6 @@ msgstr "すべて削除を確認する"
 msgid "Copyright © Rockefeller Archive Center. All rights reserved."
 msgstr "著作権 © ロックフェラー・アーカイブ・センター.無断複写・転載を禁じます。"
 
-#. Name for duplication request form costs
-#: src/components/ModalMyList/index.js:601
-#~ msgid "costs"
-#~ msgstr "費用"
-
 #. Title for Creator filter
 #: src/components/ModalSearch/index.js:93
 msgid "Creator"
@@ -603,7 +598,7 @@ msgstr "https://rockarch.org/collections/access-and-request-materials/"
 #. Link for duplication request services
 #. Link for duplication request services
 #: src/components/ModalMyList/index.js:524
-#: src/components/ModalMyList/index.js:584
+#: src/components/ModalMyList/index.js:587
 msgid "https://rockarch.org/collections/access-and-request-materials/#duplication-services"
 msgstr "https://rockarch.org/collections/access-and-request-materials/#duplication-services"
 
@@ -638,7 +633,7 @@ msgid "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
 msgstr "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
 
 #. Label for duplication request form
-#: src/components/ModalMyList/index.js:576
+#: src/components/ModalMyList/index.js:579
 msgid "I agree to pay the duplication costs for this request. See our <0>fee schedule</0>."
 msgstr "私は、この依頼にかかる複製費用を支払うことに同意します。<0>料金表を</0>ご覧ください。"
 
@@ -760,7 +755,7 @@ msgstr "メールを開く"
 #. Title for new window button
 #. Title message for opening an online item
 #: src/components/ModalMyList/index.js:520
-#: src/components/ModalMyList/index.js:580
+#: src/components/ModalMyList/index.js:583
 #: src/components/PageDigitalObject/index.js:112
 #: src/components/RecordsDetail/index.js:229
 msgid "opens in a new window"
@@ -802,6 +797,10 @@ msgstr "検索する語句を追加してください。"
 msgid "Please complete this field."
 msgstr "この欄にご記入ください。"
 
+#: src/components/ModalMyList/index.js:557
+msgid "Please limit your request to {0} items."
+msgstr "リクエストは{0}アイテムに限定してください。"
+
 #. Missing Scheduled Date error
 #: src/components/ModalMyList/index.js:405
 msgid "Please provide the date of your research visit."
@@ -840,11 +839,6 @@ msgstr "リクエストデータの準備"
 msgid "Privacy Policy"
 msgstr "プライバシーポリシー"
 
-#. Name for RAC staff message Form
-#: src/components/ModalMyList/index.js:452
-#~ msgid "questions"
-#~ msgstr "質問"
-
 #. Footer.Primary.RAC.message
 #: src/components/PrimaryLink/index.js:89
 msgid "RAC Policies"
@@ -859,7 +853,7 @@ msgstr "閲覧室の開室時間:"
 #. Name of recaptcha error message
 #: src/components/ModalMyList/index.js:260
 #: src/components/ModalMyList/index.js:267
-#: src/components/ModalMyList/index.js:598
+#: src/components/ModalMyList/index.js:601
 msgid "recaptcha"
 msgstr "リキャプチャ"
 

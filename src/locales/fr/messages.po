@@ -44,7 +44,7 @@ msgstr "{0, select, true {Minimap} other {Introduction de la carte minimale}}"
 
 #. Text for submiting item(s) request
 #: src/components/ModalMyList/index.js:466
-#: src/components/ModalMyList/index.js:609
+#: src/components/ModalMyList/index.js:612
 msgid "{0, select, true {Request {1} Items} other {Request {2} Item}}"
 msgstr "{0, select, true {Demander {1} éléments} other {Demander {2} élément}}"
 
@@ -424,11 +424,6 @@ msgstr "Confirmer Retirer tout"
 msgid "Copyright © Rockefeller Archive Center. All rights reserved."
 msgstr "Copyright © Rockefeller Archive Center. Tous droits réservés."
 
-#. Name for duplication request form costs
-#: src/components/ModalMyList/index.js:601
-#~ msgid "costs"
-#~ msgstr "réduits"
-
 #. Title for Creator filter
 #: src/components/ModalSearch/index.js:93
 msgid "Creator"
@@ -603,7 +598,7 @@ msgstr "https://rockarch.org/collections/access-and-request-materials/"
 #. Link for duplication request services
 #. Link for duplication request services
 #: src/components/ModalMyList/index.js:524
-#: src/components/ModalMyList/index.js:584
+#: src/components/ModalMyList/index.js:587
 msgid "https://rockarch.org/collections/access-and-request-materials/#duplication-services"
 msgstr "https://rockarch.org/collections/access-and-request-materials/#duplication-services"
 
@@ -638,7 +633,7 @@ msgid "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
 msgstr "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
 
 #. Label for duplication request form
-#: src/components/ModalMyList/index.js:576
+#: src/components/ModalMyList/index.js:579
 msgid "I agree to pay the duplication costs for this request. See our <0>fee schedule</0>."
 msgstr "J’accepte de payer les frais de reproduction pour cette demande. Voir notre <0>tarifs</0>."
 
@@ -760,7 +755,7 @@ msgstr "ouvre le courrier électronique"
 #. Title for new window button
 #. Title message for opening an online item
 #: src/components/ModalMyList/index.js:520
-#: src/components/ModalMyList/index.js:580
+#: src/components/ModalMyList/index.js:583
 #: src/components/PageDigitalObject/index.js:112
 #: src/components/RecordsDetail/index.js:229
 msgid "opens in a new window"
@@ -802,6 +797,10 @@ msgstr "Veuillez ajouter un mot ou une phrase à rechercher."
 msgid "Please complete this field."
 msgstr "Veuillez remplir ce champ."
 
+#: src/components/ModalMyList/index.js:557
+msgid "Please limit your request to {0} items."
+msgstr "Veuillez limiter votre demande à {0} articles."
+
 #. Missing Scheduled Date error
 #: src/components/ModalMyList/index.js:405
 msgid "Please provide the date of your research visit."
@@ -840,11 +839,6 @@ msgstr "Préparation des données de la demande"
 msgid "Privacy Policy"
 msgstr "Politique de confidentialité"
 
-#. Name for RAC staff message Form
-#: src/components/ModalMyList/index.js:452
-#~ msgid "questions"
-#~ msgstr "questions"
-
 #. Footer.Primary.RAC.message
 #: src/components/PrimaryLink/index.js:89
 msgid "RAC Policies"
@@ -859,7 +853,7 @@ msgstr "Horaires de la salle de lecture:"
 #. Name of recaptcha error message
 #: src/components/ModalMyList/index.js:260
 #: src/components/ModalMyList/index.js:267
-#: src/components/ModalMyList/index.js:598
+#: src/components/ModalMyList/index.js:601
 msgid "recaptcha"
 msgstr "recaptcha"
 
