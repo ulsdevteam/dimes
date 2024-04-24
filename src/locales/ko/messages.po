@@ -798,8 +798,8 @@ msgid "Please complete this field."
 msgstr "이 필드를 작성해 주세요."
 
 #: src/components/ModalMyList/index.js:557
-msgid "Please limit your request to 20 items."
-msgstr "요청은 20개 항목으로 제한해 주세요."
+msgid "Please limit your request to {0} items."
+msgstr "요청을 {0}개 항목으로 제한해 주세요."
 
 #. Missing Scheduled Date error
 #: src/components/ModalMyList/index.js:405

@@ -798,8 +798,8 @@ msgid "Please complete this field."
 msgstr "この欄にご記入ください。"
 
 #: src/components/ModalMyList/index.js:557
-msgid "Please limit your request to 20 items."
-msgstr "リクエストは20点以内でお願いします。"
+msgid "Please limit your request to {0} items."
+msgstr "リクエストは{0}アイテムに限定してください。"
 
 #. Missing Scheduled Date error
 #: src/components/ModalMyList/index.js:405
