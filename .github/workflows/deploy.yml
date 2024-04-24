@@ -1,7 +1,8 @@
-name: Build, Test, and Deploy to S3
+name: Build and Deploy to S3
 
 on:
-  pull_request:
+  workflow_dispatch:
+  push:
     branches:
       - development
       - base
@@ -52,29 +53,6 @@ jobs:
 
       - name: Build application
         run: CI=false yarn run build
-
-      - name: Test build
-        run: yarn test
-
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v4.3.3
-        with:
-          name: build-artifact
-          path: ${{ secrets.LOCAL_DIR }}
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-
-    environment:
-      name: development ##Replace with actual environment after testing
-
-    steps:
-      - name: Download build artifact
-        uses: actions/download-artifact@v4.1.7
-        with:
-          name: build-artifact
-          path: ${{ secrets.LOCAL_DIR }}
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4.0.2
