@@ -44,7 +44,7 @@ msgstr "{0, select, true {Minimap} other {미니맵 소개}}"
 
 #. Text for submiting item(s) request
 #: src/components/ModalMyList/index.js:466
-#: src/components/ModalMyList/index.js:609
+#: src/components/ModalMyList/index.js:612
 msgid "{0, select, true {Request {1} Items} other {Request {2} Item}}"
 msgstr "{0, select, true {요청 {1} 항목} other {요청 {2} 항목}}"
 
@@ -424,11 +424,6 @@ msgstr "모두 제거 확인"
 msgid "Copyright © Rockefeller Archive Center. All rights reserved."
 msgstr "저작권 © 록펠러 아카이브 센터. 모든 권리 보유."
 
-#. Name for duplication request form costs
-#: src/components/ModalMyList/index.js:601
-#~ msgid "costs"
-#~ msgstr "비용"
-
 #. Title for Creator filter
 #: src/components/ModalSearch/index.js:93
 msgid "Creator"
@@ -603,7 +598,7 @@ msgstr "https://rockarch.org/collections/access-and-request-materials/"
 #. Link for duplication request services
 #. Link for duplication request services
 #: src/components/ModalMyList/index.js:524
-#: src/components/ModalMyList/index.js:584
+#: src/components/ModalMyList/index.js:587
 msgid "https://rockarch.org/collections/access-and-request-materials/#duplication-services"
 msgstr "https://rockarch.org/collections/access-and-request-materials/#duplication-services"
 
@@ -638,7 +633,7 @@ msgid "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
 msgstr "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
 
 #. Label for duplication request form
-#: src/components/ModalMyList/index.js:576
+#: src/components/ModalMyList/index.js:579
 msgid "I agree to pay the duplication costs for this request. See our <0>fee schedule</0>."
 msgstr "이 자료를 복사하는 비용을 지불하는 것에 동의합니다. <0>수수료 일정을</0> 참조하세요."
 
@@ -760,7 +755,7 @@ msgstr "이메일 열기"
 #. Title for new window button
 #. Title message for opening an online item
 #: src/components/ModalMyList/index.js:520
-#: src/components/ModalMyList/index.js:580
+#: src/components/ModalMyList/index.js:583
 #: src/components/PageDigitalObject/index.js:112
 #: src/components/RecordsDetail/index.js:229
 msgid "opens in a new window"
@@ -802,6 +797,10 @@ msgstr "검색할 단어나 구문을 추가하세요."
 msgid "Please complete this field."
 msgstr "이 필드를 작성해 주세요."
 
+#: src/components/ModalMyList/index.js:557
+msgid "Please limit your request to {0} items."
+msgstr "요청을 {0}개 항목으로 제한해 주세요."
+
 #. Missing Scheduled Date error
 #: src/components/ModalMyList/index.js:405
 msgid "Please provide the date of your research visit."
@@ -840,11 +839,6 @@ msgstr "요청 데이터 준비"
 msgid "Privacy Policy"
 msgstr "개인정보 보호 정책"
 
-#. Name for RAC staff message Form
-#: src/components/ModalMyList/index.js:452
-#~ msgid "questions"
-#~ msgstr "고객문의"
-
 #. Footer.Primary.RAC.message
 #: src/components/PrimaryLink/index.js:89
 msgid "RAC Policies"
@@ -859,7 +853,7 @@ msgstr "열람실 이용 시간:"
 #. Name of recaptcha error message
 #: src/components/ModalMyList/index.js:260
 #: src/components/ModalMyList/index.js:267
-#: src/components/ModalMyList/index.js:598
+#: src/components/ModalMyList/index.js:601
 msgid "recaptcha"
 msgstr "보안 문자"
 
