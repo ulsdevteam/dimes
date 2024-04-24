@@ -4,14 +4,15 @@ on:
   pull_request:
     branches:
       - development
+      - base
 
 jobs:
-  build_deploy:
+  build:
     if: github.ref != 'refs/heads/base' || github.ref != 'refs/heads/development'
     runs-on: ubuntu-latest
 
     environment:
-      name: development
+      name: development ##Replace with actual environment after testing
 
     steps:
       - name: Checkout code
@@ -55,6 +56,25 @@ jobs:
 
       - name: Test build
         run: yarn test
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4.3.3
+        with:
+          name: build-artifact
+          path: ${{ secrets.LOCAL_DIR }}
+
+  deploy:
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/development' || github.ref == 'refs/heads/workflows'
+    runs-on: ubuntu-latest
+
+    environment:
+      name: development ##Replace with actual environment after testing
+
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4.1.7
+        with:
+          name: build-artifact
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4.0.2
