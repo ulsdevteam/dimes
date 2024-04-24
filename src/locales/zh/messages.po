@@ -44,7 +44,7 @@ msgstr "{0, select, true {Minimap} other {引入最小图}}"
 
 #. Text for submiting item(s) request
 #: src/components/ModalMyList/index.js:466
-#: src/components/ModalMyList/index.js:609
+#: src/components/ModalMyList/index.js:612
 msgid "{0, select, true {Request {1} Items} other {Request {2} Item}}"
 msgstr "{0, select, true {请求 {1} 项目} other {请求 {2} 项目}}"
 
@@ -424,11 +424,6 @@ msgstr "确认全部删除"
 msgid "Copyright © Rockefeller Archive Center. All rights reserved."
 msgstr "洛克菲勒档案中心版权所有。保留所有权利。"
 
-#. Name for duplication request form costs
-#: src/components/ModalMyList/index.js:601
-#~ msgid "costs"
-#~ msgstr "费用"
-
 #. Title for Creator filter
 #: src/components/ModalSearch/index.js:93
 msgid "Creator"
@@ -603,7 +598,7 @@ msgstr "https://rockarch.org/collections/access-and-request-materials/"
 #. Link for duplication request services
 #. Link for duplication request services
 #: src/components/ModalMyList/index.js:524
-#: src/components/ModalMyList/index.js:584
+#: src/components/ModalMyList/index.js:587
 msgid "https://rockarch.org/collections/access-and-request-materials/#duplication-services"
 msgstr "https://rockarch.org/collections/access-and-request-materials/#duplication-services"
 
@@ -638,7 +633,7 @@ msgid "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
 msgstr "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
 
 #. Label for duplication request form
-#: src/components/ModalMyList/index.js:576
+#: src/components/ModalMyList/index.js:579
 msgid "I agree to pay the duplication costs for this request. See our <0>fee schedule</0>."
 msgstr "我同意支付此申请的复制费用。请参阅我们的<0>收费表</0>。"
 
@@ -760,7 +755,7 @@ msgstr "打开电子邮件"
 #. Title for new window button
 #. Title message for opening an online item
 #: src/components/ModalMyList/index.js:520
-#: src/components/ModalMyList/index.js:580
+#: src/components/ModalMyList/index.js:583
 #: src/components/PageDigitalObject/index.js:112
 #: src/components/RecordsDetail/index.js:229
 msgid "opens in a new window"
@@ -802,6 +797,10 @@ msgstr "请添加要搜索的单词或短语。"
 msgid "Please complete this field."
 msgstr "请填写此栏。"
 
+#: src/components/ModalMyList/index.js:557
+msgid "Please limit your request to 20 items."
+msgstr "请将申请限制在 20 件以内。"
+
 #. Missing Scheduled Date error
 #: src/components/ModalMyList/index.js:405
 msgid "Please provide the date of your research visit."
@@ -840,11 +839,6 @@ msgstr "准备申请数据"
 msgid "Privacy Policy"
 msgstr "隐私政策"
 
-#. Name for RAC staff message Form
-#: src/components/ModalMyList/index.js:452
-#~ msgid "questions"
-#~ msgstr "问题"
-
 #. Footer.Primary.RAC.message
 #: src/components/PrimaryLink/index.js:89
 msgid "RAC Policies"
@@ -859,7 +853,7 @@ msgstr "阅览室开放时间:"
 #. Name of recaptcha error message
 #: src/components/ModalMyList/index.js:260
 #: src/components/ModalMyList/index.js:267
-#: src/components/ModalMyList/index.js:598
+#: src/components/ModalMyList/index.js:601
 msgid "recaptcha"
 msgstr "重新验证"
 
