@@ -64,7 +64,6 @@ jobs:
           path: ${{ secrets.LOCAL_DIR }}
 
   deploy:
-    if: ${{ github.ref == 'refs/heads/workflows' }}
     runs-on: ubuntu-latest
 
     environment:
