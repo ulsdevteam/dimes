@@ -554,6 +554,9 @@ export const DuplicationRequestModal = props => (
             if (!values.items.length) errors.items = t({
               message: 'No items have been selected to submit.'
             })
+            if (values.items.length > 20) errors.items = t({
+              message: 'Please limit your request to 20 items.'
+            })
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
