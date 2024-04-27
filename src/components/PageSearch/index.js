@@ -154,7 +154,7 @@ const PageSearch = () => {
 
   /** Executes a new search when search form inputs are changed **/
   const handleSearchFormChange = (category, query, online) => {
-    let newParams = { ...params, query: query, category: category }
+    let newParams = { ...params, query: query, category: category, offset: 0 }
     if (online) {
       newParams.online = true
     } else {
