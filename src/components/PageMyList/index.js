@@ -258,8 +258,14 @@
             .catch(err => setBackendError(err))
         const combinedItems = group.items.map(i => {
           const parsedItem = updatedItems.find(u => {return (u.uri === i.archivesspace_uri)})
-          return { ...i, submit: parsedItem.submit, submitReason: parsedItem.submit_reason }})
-        group.items = combinedItems
+          const list = fetchMyList()
+          if (list.includes(i.uri)) {
+            return { ...i, submit: parsedItem.submit, submitReason: parsedItem.submit_reason }
+          } else {
+            return null
+          }
+        })
+        group.items = combinedItems.filter(n => n)
         return group
       }
 
