@@ -249,23 +249,22 @@
           })
         )
       }
-      /* Resolves submit status of items in savedList groups */
+      /** Resolves submit status of items in savedList groups 
+      * 1. filter out any items that have been removed from list while this request completed. */
       async function resolveItemsStatus(group) {
         const groupUris = group.items.map(i => i.archivesspace_uri)
         const updatedItems = await axios
             .post(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/process-request/parse-batch`, { items: groupUris })
             .then(res => {return res.data})
             .catch(err => setBackendError(err))
+        const storedList = fetchMyList()
         const combinedItems = group.items.map(i => {
           const parsedItem = updatedItems.find(u => {return (u.uri === i.archivesspace_uri)})
-          const list = fetchMyList()
-          if (list.includes(i.uri)) {
-            return { ...i, submit: parsedItem.submit, submitReason: parsedItem.submit_reason }
-          } else {
-            return null
-          }
-        })
-        group.items = combinedItems.filter(n => n)
+          return { ...i, submit: parsedItem.submit, submitReason: parsedItem.submit_reason }}
+        ).filter(
+          n => storedList.includes(n.uri) /* 1 */
+        ) 
+        group.items = combinedItems
         return group
       }
 
