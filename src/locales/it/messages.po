@@ -135,8 +135,13 @@ msgstr "<0><1/>Torna ai dettagli dell'elemento</0>"
 
 #. Social Icons Titles
 #: src/components/SocialIcons/index.js:5
-msgid "<0><1><2><3><4>Twitter Logo</4><5/></3></2></1><6><7><8><9>Facebook Logo</9><10/></8></7></6><11><12><13><14>Instagram Logo</14><15/></13></12></11><16><17><18><19>YouTube Logo</19><20/></18></17></16><21><22><23><24>Flickr Logo</24><25><26><27><28/><29/></27></26></25></23></22></21></0>"
-msgstr "<0><1><2><3><4>Logo Twitter</4><5/></3></2></1><6><7><8><9>Logo Facebook</9><10/></8></7></6><11><12><13><14>Logo Instagram</14><15/></13></12></11><16><17><18><19>Logo YouTube</19><20/></18></17></16><21><22><23><24>Logo Flickr</24><25><26><27><28/><29/></27></26></25></23></22></21></0>"
+msgid "<0><1><2><3><4>Twitter Logo</4><5/></3></2></1><6><7><8><9>Facebook Logo</9><10/></8></7></6><11><12><13><14>Instagram Logo</14><15/></13></12></11><16><17><18><19>YouTube Logo</19><20/></18></17></16><21><22><23><24>Flickr Logo</24><25/></23></22></21></0>"
+msgstr ""
+
+#. Social Icons Titles
+#: src/components/SocialIcons/index.js:5
+#~ msgid "<0><1><2><3><4>Twitter Logo</4><5/></3></2></1><6><7><8><9>Facebook Logo</9><10/></8></7></6><11><12><13><14>Instagram Logo</14><15/></13></12></11><16><17><18><19>YouTube Logo</19><20/></18></17></16><21><22><23><24>Flickr Logo</24><25><26><27><28/><29/></27></26></25></23></22></21></0>"
+#~ msgstr "<0><1><2><3><4>Logo Twitter</4><5/></3></2></1><6><7><8><9>Logo Facebook</9><10/></8></7></6><11><12><13><14>Logo Instagram</14><15/></13></12></11><16><17><18><19>Logo YouTube</19><20/></18></17></16><21><22><23><24>Logo Flickr</24><25><26><27><28/><29/></27></26></25></23></22></21></0>"
 
 #. Page Title for user's list
 #: src/components/PageMyList/index.js:283
@@ -510,8 +515,13 @@ msgstr "Errore nell'invio della richiesta"
 
 #. Company Fax
 #: src/components/Footer/index.js:33
-msgid "Fax: (914) 631-6017"
-msgstr "Fax: (914) 631-6017"
+#~ msgid "Fax: (914) 631-6017"
+#~ msgstr "Fax: (914) 631-6017"
+
+#. Company Fax
+#: src/components/Footer/index.js:33
+msgid "Fax: (914) 631-6017<0/>"
+msgstr ""
 
 #. Label for Filters button
 #: src/components/PageSearch/index.js:249
@@ -778,8 +788,13 @@ msgstr "Persone"
 
 #. Company Phonenumber
 #: src/components/Footer/index.js:30
-msgid "Phone: (914) 366-6300"
-msgstr "Telefono: (914) 366-6300"
+#~ msgid "Phone: (914) 366-6300"
+#~ msgstr "Telefono: (914) 366-6300"
+
+#. Company Phonenumber
+#: src/components/Footer/index.js:30
+msgid "Phone: (914) 366-6300<0/>"
+msgstr ""
 
 #. Place of birth property
 #: src/components/PageAgent/index.js:193

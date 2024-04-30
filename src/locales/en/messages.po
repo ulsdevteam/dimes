@@ -106,7 +106,7 @@ msgstr "{isMobile, select, true {Remove} other {Remove from List}}"
 #. Agent Note source
 #: src/components/PageAgent/index.js:28
 msgid "{source, select, null {Source: Rockefeller Archive Center} other {Source: {source}}}"
-msgstr "{source, select, null {Source: Rockefeller Archive Center} other {Source: {source}}}"
+msgstr "{source, select, null {Source: University of Pittsburgh Archive And Special Collection} other {Source: {source}}}"
 
 #. Message to go back to previous search
 #: src/components/RecordsDetail/index.js:193
@@ -135,18 +135,18 @@ msgstr "<0><1/>Back to Item Details</0>"
 
 #. Social Icons Titles
 #: src/components/SocialIcons/index.js:5
-msgid "<0><1><2><3><4>Twitter Logo</4><5/></3></2></1><6><7><8><9>Facebook Logo</9><10/></8></7></6><11><12><13><14>Instagram Logo</14><15/></13></12></11><16><17><18><19>YouTube Logo</19><20/></18></17></16><21><22><23><24>Flickr Logo</24><25><26><27><28/><29/></27></26></25></23></22></21></0>"
-msgstr "<0><1><2><3><4>Twitter Logo</4><5/></3></2></1><6><7><8><9>Facebook Logo</9><10/></8></7></6><11><12><13><14>Instagram Logo</14><15/></13></12></11><16><17><18><19>YouTube Logo</19><20/></18></17></16><21><22><23><24>Flickr Logo</24><25><26><27><28/><29/></27></26></25></23></22></21></0>"
+msgid "<0><1><2><3><4>Twitter Logo</4><5/></3></2></1><6><7><8><9>Facebook Logo</9><10/></8></7></6><11><12><13><14>Instagram Logo</14><15/></13></12></11><16><17><18><19>YouTube Logo</19><20/></18></17></16><21><22><23><24>Flickr Logo</24><25/></23></22></21></0>"
+msgstr "<0><1><2><3><4>Twitter: Pitt Archives & Special Collections (@PittArchives)</4><5/></3></2></1><6><7><8><9>Facebook: Archives & Special Collections at Pitt</9><10/></8></7></6><11><12><13><14>Instagram: Pitt Archives & Spec. Colls. (@pittarchives)</14><15/></13></12></11><16><17><18><19>Tumblr: Archives & Manuscripts @ Pitt</19><20/></18></17></16><21><22><23><24>Tumblr: Rare Books @ Pitt</24><25/></23></22></21></0>"
 
 #. Page Title for user's list
 #: src/components/PageMyList/index.js:283
 msgid "<0><1>DIMES: My List</1></0>"
-msgstr "<0><1>DIMES: My List</1></0>"
+msgstr "<0><1>MyReadingRoom: My List</1></0>"
 
 #. Page Home
 #: src/components/PageHome/index.js:10
 msgid "<0><1>DIMES: Online Collections and Catalog of Rockefeller Archive Center</1></0><2><3/><4/></2>"
-msgstr "<0><1>DIMES: Online Collections and Catalog of Rockefeller Archive Center</1></0><2><3/><4/></2>"
+msgstr "<0><1>MyReadingRoom: Archives & Special Collections University Library System University of Pittsburgh</1></0><2><3/><4/></2>"
 
 #. Page Not Found
 #: src/components/PageNotFound/index.js:9
@@ -156,7 +156,7 @@ msgstr "<0><1>Page Not Found</1></0><2><3><4/></3><5>Sorry, the requested page w
 #. Page Backend Error
 #: src/components/PageBackendError/index.js:10
 msgid "<0><1>Page Not Found</1></0><2><3><4/></3><5>There was an error fetching data.</5><6>The request to {0} failed.</6><7>To report this problem, send us an email at <8>archive@rockarch.org</8>.</7><9>Error message:</9><10>{1}: {2}</10>{3}{4}</2>"
-msgstr "<0><1>Page Not Found</1></0><2><3><4/></3><5>There was an error fetching data.</5><6>The request to {0} failed.</6><7>To report this problem, send us an email at <8>archive@rockarch.org</8>.</7><9>Error message:</9><10>{1}: {2}</10>{3}{4}</2>"
+msgstr "<0><1>Page Not Found</1></0><2><3><4/></3><5>There was an error fetching data.</5><6>The request to {0} failed.</6><7>To report this problem, send us an email at <8>archives-ref@pitt.edu</8>.</7><9>Error message:</9><10>{1}: {2}</10>{3}{4}</2>"
 
 #. Search Results title
 #: src/components/PageSearch/index.js:192
@@ -236,7 +236,7 @@ msgstr "<0>Please add a word or phrase to search for.</0>"
 #. Note to user about including name and email address
 #: src/components/ModalMyList/index.js:173
 msgid "<0>Please note:</0> if are emailing your list to an archivist at <1>archive@rockarch.org</1>, please include your name and email address in the Message field, otherwise we will have no means of contacting you to follow-up."
-msgstr "<0>Please note:</0> if are emailing your list to an archivist at <1>archive@rockarch.org</1>, please include your name and email address in the Message field, otherwise we will have no means of contacting you to follow-up."
+msgstr "<0>Please note:</0> if are emailing your list to an archivist at <1>archives-ref@pitt.edu</1>, please include your name and email address in the Message field, otherwise we will have no means of contacting you to follow-up."
 
 #. Submit Request title
 #: src/components/ModalMyList/index.js:537
@@ -271,12 +271,12 @@ msgstr "<0>View Online<1/></0><2>Download <3/></2>{0}"
 #. Fees and limitations information
 #: src/components/ModalMyList/index.js:512
 msgid "<0>We generally charge a <1>$25 flat fee per item</1>, with a limit of <2>20 items requested per calendar year</2>.</0><3>For more details, including exceptions for audiovisual and oversized materials, read about our <4>duplication services</4>.</3><5>For help or to request a publication quality scan, email an archivist at <6>archive@rockarch.org</6>.</5>"
-msgstr "<0>We generally charge a <1>$25 flat fee per item</1>, with a limit of <2>20 items requested per calendar year</2>.</0><3>For more details, including exceptions for audiovisual and oversized materials, read about our <4>duplication services</4>.</3><5>For help or to request a publication quality scan, email an archivist at <6>archive@rockarch.org</6>.</5>"
+msgstr "<0>We generally charge a <1>$25 flat fee per item</1>, with a limit of <2>20 items requested per calendar year</2>.</0><3>For more details, including exceptions for audiovisual and oversized materials, read about our <4>duplication services</4>.</3><5>For help or to request a publication quality scan, email an archivist at <6>archives-ref@pitt.edu</6>.</5>"
 
 #. Full Company Address
 #: src/components/Footer/index.js:23
 msgid "15 Dayton Avenue<0/>Sleepy Hollow, New York 10591"
-msgstr "15 Dayton Avenue<0/>Sleepy Hollow, New York 10591"
+msgstr " "
 
 #. helptext for RAC staff message
 #: src/components/ModalMyList/index.js:446
@@ -291,7 +291,7 @@ msgstr "about minimap"
 #. Accessibility Statement message
 #: src/components/PrimaryLink/index.js:63
 msgid "Accessibility Statement"
-msgstr "Accessibility Statement"
+msgstr "‎"
 
 #. Message shown on Dropdown button
 #: src/components/Dropdown/index.js:53
@@ -340,7 +340,7 @@ msgstr "apply dates"
 #. Company Email shown
 #: src/components/PrimaryLink/index.js:37
 msgid "archive@rockarch.org"
-msgstr "archive@rockarch.org"
+msgstr "archives-ref@pitt.edu"
 
 #. Confirmation to delete all items from list
 #: src/components/PageMyList/index.js:369
@@ -350,7 +350,7 @@ msgstr "Are you sure you want to remove all the items from your list?<0><1/><2/>
 #. Bulk Data Download message
 #: src/components/SecondaryLink/index.js:35
 msgid "Bulk data download"
-msgstr "Bulk data download"
+msgstr "‎"
 
 #. Title shown when request failed
 #: src/components/PageMyList/index.js:354
@@ -407,7 +407,7 @@ msgstr "Collections"
 #. Collections data API message
 #: src/components/SecondaryLink/index.js:22
 msgid "Collections data API"
-msgstr "Collections data API"
+msgstr "‎"
 
 #. Agent Related Collections
 #: src/components/PageAgent/index.js:39
@@ -422,7 +422,7 @@ msgstr "Confirm Remove All"
 #. Copyright message
 #: src/components/Footer/index.js:65
 msgid "Copyright © Rockefeller Archive Center. All rights reserved."
-msgstr "Copyright © Rockefeller Archive Center. All rights reserved."
+msgstr "Copyright © University of Pittsburgh. All rights reserved."
 
 #. Name for duplication request form costs
 #: src/components/ModalMyList/index.js:601
@@ -452,7 +452,7 @@ msgstr "Details under heading 1 have been updated to describe the selected recor
 #. Title displayed within the Header
 #: src/components/Header/index.js:11
 msgid "dimes.rockarch.org"
-msgstr "dimes.rockarch.org"
+msgstr "MyReadingRoom @ Archives & Special Collections"
 
 #. Message shown on button within Dropdown list
 #: src/components/Dropdown/index.js:108
@@ -462,7 +462,7 @@ msgstr "Download as .csv"
 #. Company Email
 #: src/components/Footer/index.js:36
 msgid "E-mail:<0/>"
-msgstr "E-mail:<0/>"
+msgstr "E-mail: <0/>"
 
 #. Name of email form
 #: src/components/ModalMyList/index.js:228
@@ -510,8 +510,8 @@ msgstr "Error submitting request"
 
 #. Company Fax
 #: src/components/Footer/index.js:33
-msgid "Fax: (914) 631-6017"
-msgstr "Fax: (914) 631-6017"
+msgid "Fax: (914) 631-6017<0/>"
+msgstr "A&SC at the Archives Service Center<0/>7500 Thomas Boulevard<0/>Pittsburgh, PA 15208<0/>Phone: (412) 648-3232<0/>"
 
 #. Label for Filters button
 #: src/components/PageSearch/index.js:249
@@ -546,7 +546,7 @@ msgstr "Founded by"
 #. How to Access materials message
 #: src/components/PrimaryLink/index.js:24
 msgid "How to access and request materials."
-msgstr "How to access and request materials."
+msgstr "All library hours and directions."
 
 #. Footer.Primary.RAC.href
 #: src/components/PrimaryLink/index.js:85
@@ -556,34 +556,34 @@ msgstr "https://docs.rockarch.org"
 #. Licensing link
 #: src/components/SecondaryLink/index.js:44
 msgid "https://docs.rockarch.org/archival-description-license/"
-msgstr "https://docs.rockarch.org/archival-description-license/"
+msgstr "#main"
 
 #. Collections data API link
 #: src/components/SecondaryLink/index.js:18
 msgid "https://docs.rockarch.org/argo-docs/"
-msgstr "https://docs.rockarch.org/argo-docs/"
+msgstr "#main"
 
 #. Take-down Policy link
 #: src/components/SecondaryLink/index.js:57
 msgid "https://docs.rockarch.org/takedown-policy/"
-msgstr "https://docs.rockarch.org/takedown-policy/"
+msgstr "#main"
 
 #. Bulk Data Download link
 #: src/components/SecondaryLink/index.js:31
 msgid "https://github.com/RockefellerArchiveCenter/data/"
-msgstr "https://github.com/RockefellerArchiveCenter/data/"
+msgstr "#main"
 
 #. Link used for sign-in within Dropdown list
 #. Link used for sign-in within the Header
 #: src/components/Dropdown/index.js:151
 #: src/components/Header/index.js:23
 msgid "https://raccess.rockarch.org"
-msgstr "https://raccess.rockarch.org"
+msgstr "https://pitt.aeon.atlas-sys.com/logon"
 
 #. Aeon access point
 #: src/components/PageMyList/index.js:109
 msgid "https://raccess.rockarch.org/aeon.dll"
-msgstr "https://raccess.rockarch.org/aeon.dll"
+msgstr "https://pitt.aeon.atlas-sys.com/logon"
 
 #. Accessibility Statement Link
 #: src/components/PrimaryLink/index.js:59
@@ -598,7 +598,7 @@ msgstr "https://rockarch.org/about-us/privacy-policy/"
 #. Access Materials link
 #: src/components/PrimaryLink/index.js:20
 msgid "https://rockarch.org/collections/access-and-request-materials/"
-msgstr "https://rockarch.org/collections/access-and-request-materials/"
+msgstr "https://www.library.pitt.edu/hours"
 
 #. Link for duplication request services
 #. Link for duplication request services
@@ -610,32 +610,32 @@ msgstr "https://rockarch.org/collections/access-and-request-materials/#duplicati
 #. Holiday Schedule link
 #: src/components/PrimaryLink/index.js:46
 msgid "https://rockarch.org/collections/access-and-request-materials/holiday-schedule"
-msgstr "https://rockarch.org/collections/access-and-request-materials/holiday-schedule"
+msgstr "https://www.library.pitt.edu/asc-doing-research"
 
 #. Twitter account link
 #: src/components/SocialIcons/index.js:7
 msgid "https://twitter.com/rockarch_org"
-msgstr "https://twitter.com/rockarch_org"
+msgstr "https://twitter.com/pittarchives"
 
 #. Facebook account link
 #: src/components/SocialIcons/index.js:18
 msgid "https://www.facebook.com/RockefellerArchiveCenter"
-msgstr "https://www.facebook.com/RockefellerArchiveCenter"
+msgstr "https://www.facebook.com/pittarchivesandspecialcollections/"
 
 #. Flickr account link
 #: src/components/SocialIcons/index.js:51
 msgid "https://www.flickr.com/photos/147074352@N05/"
-msgstr "https://www.flickr.com/photos/147074352@N05/"
+msgstr "https://pittrarebooks.tumblr.com/"
 
 #. Instagram account link
 #: src/components/SocialIcons/index.js:29
 msgid "https://www.instagram.com/rockefellerarchivecenter"
-msgstr "https://www.instagram.com/rockefellerarchivecenter"
+msgstr "https://www.instagram.com/pittarchives/"
 
 #. Youtube account link
 #: src/components/SocialIcons/index.js:40
 msgid "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
-msgstr "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
+msgstr "https://pittarchives.tumblr.com/"
 
 #. Label for duplication request form
 #: src/components/ModalMyList/index.js:576
@@ -661,7 +661,7 @@ msgstr "Jump to {0} {hitPlural} in this area: {hitTitles}"
 #. Licensing message
 #: src/components/SecondaryLink/index.js:48
 msgid "Licensing for descriptive metadata"
-msgstr "Licensing for descriptive metadata"
+msgstr "‎"
 
 #. Location property
 #: src/components/PageAgent/index.js:195
@@ -674,12 +674,12 @@ msgstr "Location of Headquarters"
 #: src/components/PageBackendError/index.js:19
 #: src/components/PrimaryLink/index.js:33
 msgid "mailto:archive@rockarch.org"
-msgstr "mailto:archive@rockarch.org"
+msgstr "mailto:archives-ref@pitt.edu"
 
 #. Scheduling an appointment email link
 #: src/components/MyListSidebar/index.js:12
 msgid "mailto:archive@rockarch.org?subject=Scheduling a research appointment"
-msgstr "mailto:archive@rockarch.org?subject=Scheduling a research appointment"
+msgstr "mailto:archives-ref@pitt.edu"
 
 #. Name of message form
 #: src/components/ModalMyList/index.js:251
@@ -697,7 +697,7 @@ msgstr "Message"
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:189
 #: src/components/ModalMyList/index.js:442
 msgid "Message for RAC staff"
-msgstr "Message for RAC staff"
+msgstr "Message for Pitt staff"
 
 #. Header for minimap
 #. Aria label for Minimap nav
@@ -711,7 +711,7 @@ msgstr "Minimap"
 #. Reading Room Actual Hours
 #: src/components/Footer/index.js:49
 msgid "Monday-Friday<0/>9:00 a.m. to 5:00 p.m.<1/>"
-msgstr "Monday-Friday<0/>9:00 a.m. to 5:00 p.m.<1/>"
+msgstr "‎"
 
 #. Message shown on button within Dropdown list
 #. Message shown on button within the Header
@@ -778,8 +778,8 @@ msgstr "People"
 
 #. Company Phonenumber
 #: src/components/Footer/index.js:30
-msgid "Phone: (914) 366-6300"
-msgstr "Phone: (914) 366-6300"
+msgid "Phone: (914) 366-6300<0/>"
+msgstr "A&SC at Hillman Library<0/>Phone: (412) 648-8190<0/>"
 
 #. Place of birth property
 #: src/components/PageAgent/index.js:193
@@ -838,7 +838,7 @@ msgstr "Preparing Request Data"
 #. Privacy Policy message
 #: src/components/PrimaryLink/index.js:76
 msgid "Privacy Policy"
-msgstr "Privacy Policy"
+msgstr "‎"
 
 #. Name for RAC staff message Form
 #: src/components/ModalMyList/index.js:452
@@ -848,7 +848,7 @@ msgstr "Privacy Policy"
 #. Footer.Primary.RAC.message
 #: src/components/PrimaryLink/index.js:89
 msgid "RAC Policies"
-msgstr "RAC Policies"
+msgstr "‎"
 
 #. Reading Room Hours message
 #: src/components/Footer/index.js:44
@@ -912,12 +912,12 @@ msgstr "Request in Reading Room"
 #. Institution name for citation
 #: src/components/RecordsDetail/index.js:169
 msgid "Rockefeller Archive Center"
-msgstr "Rockefeller Archive Center"
+msgstr "University of Pittsburgh University Library System's Archive & Speical Collections"
 
 #. Primary Title
 #: src/components/Footer/index.js:14
 msgid "Rockefeller<0/>Archive Center"
-msgstr "Rockefeller<0/>Archive Center"
+msgstr "Archive & Special Collections<0/>University Library System<0/>University of Pittsburgh"
 
 #. Shown for the user to save and close the filter
 #: src/components/ModalSearch/index.js:54
@@ -969,7 +969,7 @@ msgstr "Search..."
 #. Holiday Schedule message
 #: src/components/PrimaryLink/index.js:50
 msgid "See holiday schedule"
-msgstr "See holiday schedule"
+msgstr "How to access and request materials"
 
 #. Button Select all items Test
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:58
@@ -1031,7 +1031,7 @@ msgstr "Show only results with digital matches"
 #: src/components/Dropdown/index.js:146
 #: src/components/Header/index.js:27
 msgid "Sign in to RACcess"
-msgstr "Sign in to RACcess"
+msgstr "Sign in to A&SC Aeon Research Portal"
 
 #. Panel Extent Size message
 #: src/components/RecordsDetail/index.js:50
@@ -1110,12 +1110,12 @@ msgstr "Submit search"
 #. Take-down Policy message
 #: src/components/SecondaryLink/index.js:61
 msgid "Take-down policy"
-msgstr "Take-down policy"
+msgstr "‎"
 
 #. Subtitle displayed within the Header
 #: src/components/Header/index.js:16
 msgid "The Online Collection and Catalog of Rockefeller Archive Center"
-msgstr "The Online Collection and Catalog of Rockefeller Archive Center"
+msgstr "Submit requests in advance of your Reading Room visit"
 
 #. Message displayed when error occurs while submitting request
 #: src/components/PageMyList/index.js:163

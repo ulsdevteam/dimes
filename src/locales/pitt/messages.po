@@ -43,8 +43,8 @@ msgid "{0, select, true {Minimap} other {Introducing the Minimap}}"
 msgstr "{0, select, true {Minimap} other {Introducing the Minimap}}"
 
 #. Text for submiting item(s) request
-#: src/components/ModalMyList/index.js:475
-#: src/components/ModalMyList/index.js:625
+#: src/components/ModalMyList/index.js:466
+#: src/components/ModalMyList/index.js:609
 msgid "{0, select, true {Request {1} Items} other {Request {2} Item}}"
 msgstr "{0, select, true {Request {1} Items} other {Request {2} Item}}"
 
@@ -156,7 +156,7 @@ msgstr "<0><1>Page Not Found</1></0><2><3><4/></3><5>Sorry, the requested page w
 #. Page Backend Error
 #: src/components/PageBackendError/index.js:10
 msgid "<0><1>Page Not Found</1></0><2><3><4/></3><5>There was an error fetching data.</5><6>The request to {0} failed.</6><7>To report this problem, send us an email at <8>archive@rockarch.org</8>.</7><9>Error message:</9><10>{1}: {2}</10>{3}{4}</2>"
-msgstr "<0><1>Page Not Found</1></0><2><3><4/></3><5>There was an error fetching data.</5><6>The request to {0} failed.</6><7>To report this problem, send us an email at <8>archive@rockarch.org</8>.</7><9>Error message:</9><10>{1}: {2}</10>{3}{4}</2>"
+msgstr "<0><1>Page Not Found</1></0><2><3><4/></3><5>There was an error fetching data.</5><6>The request to {0} failed.</6><7>To report this problem, send us an email at <8>archives-ref@pitt.edu</8>.</7><9>Error message:</9><10>{1}: {2}</10>{3}{4}</2>"
 
 #. Search Results title
 #: src/components/PageSearch/index.js:192
@@ -179,7 +179,7 @@ msgid "<0>Description</0>"
 msgstr "<0>Description</0>"
 
 #. Fees and limitations title
-#: src/components/ModalMyList/index.js:518
+#: src/components/ModalMyList/index.js:509
 msgid "<0>Fees and limitations</0>"
 msgstr "<0>Fees and limitations</0>"
 
@@ -236,10 +236,10 @@ msgstr "<0>Please add a word or phrase to search for.</0>"
 #. Note to user about including name and email address
 #: src/components/ModalMyList/index.js:173
 msgid "<0>Please note:</0> if are emailing your list to an archivist at <1>archive@rockarch.org</1>, please include your name and email address in the Message field, otherwise we will have no means of contacting you to follow-up."
-msgstr "<0>Please note:</0> if are emailing your list to an archivist at <1>archive@rockarch.org</1>, please include your name and email address in the Message field, otherwise we will have no means of contacting you to follow-up."
+msgstr "<0>Please note:</0> if are emailing your list to an archivist at <1>archives-ref@pitt.edu</1>, please include your name and email address in the Message field, otherwise we will have no means of contacting you to follow-up."
 
 #. Submit Request title
-#: src/components/ModalMyList/index.js:546
+#: src/components/ModalMyList/index.js:537
 msgid "<0>Submit request</0>"
 msgstr "<0>Submit request</0>"
 
@@ -269,9 +269,9 @@ msgid "<0>View Online<1/></0><2>Download <3/></2>{0}"
 msgstr "<0>View Online<1/></0><2>Download <3/></2>{0}"
 
 #. Fees and limitations information
-#: src/components/ModalMyList/index.js:521
+#: src/components/ModalMyList/index.js:512
 msgid "<0>We generally charge a <1>$25 flat fee per item</1>, with a limit of <2>20 items requested per calendar year</2>.</0><3>For more details, including exceptions for audiovisual and oversized materials, read about our <4>duplication services</4>.</3><5>For help or to request a publication quality scan, email an archivist at <6>archive@rockarch.org</6>.</5>"
-msgstr "<0>We generally charge a <1>$25 flat fee per item</1>, with a limit of <2>20 items requested per calendar year</2>.</0><3>For more details, including exceptions for audiovisual and oversized materials, read about our <4>duplication services</4>.</3><5>For help or to request a publication quality scan, email an archivist at <6>archive@rockarch.org</6>.</5>"
+msgstr "<0>We generally charge a <1>$25 flat fee per item</1>, with a limit of <2>20 items requested per calendar year</2>.</0><3>For more details, including exceptions for audiovisual and oversized materials, read about our <4>duplication services</4>.</3><5>For help or to request a publication quality scan, email an archivist at <6>archives-ref@pitt.edu</6>.</5>"
 
 #. Full Company Address
 #: src/components/Footer/index.js:23
@@ -279,7 +279,7 @@ msgid "15 Dayton Avenue<0/>Sleepy Hollow, New York 10591"
 msgstr " "
 
 #. helptext for RAC staff message
-#: src/components/ModalMyList/index.js:448
+#: src/components/ModalMyList/index.js:446
 msgid "255 characters maximum"
 msgstr "255 characters maximum"
 
@@ -291,7 +291,7 @@ msgstr "about minimap"
 #. Accessibility Statement message
 #: src/components/PrimaryLink/index.js:63
 msgid "Accessibility Statement"
-msgstr "Accessibility Statement"
+msgstr "‎"
 
 #. Message shown on Dropdown button
 #: src/components/Dropdown/index.js:53
@@ -340,7 +340,7 @@ msgstr "apply dates"
 #. Company Email shown
 #: src/components/PrimaryLink/index.js:37
 msgid "archive@rockarch.org"
-msgstr "archive@rockarch.org"
+msgstr "archives-ref@pitt.edu"
 
 #. Confirmation to delete all items from list
 #: src/components/PageMyList/index.js:369
@@ -350,7 +350,7 @@ msgstr "Are you sure you want to remove all the items from your list?<0><1/><2/>
 #. Bulk Data Download message
 #: src/components/SecondaryLink/index.js:35
 msgid "Bulk data download"
-msgstr "Bulk data download"
+msgstr "‎"
 
 #. Title shown when request failed
 #: src/components/PageMyList/index.js:354
@@ -407,7 +407,7 @@ msgstr "Collections"
 #. Collections data API message
 #: src/components/SecondaryLink/index.js:22
 msgid "Collections data API"
-msgstr "Collections data API"
+msgstr "‎"
 
 #. Agent Related Collections
 #: src/components/PageAgent/index.js:39
@@ -426,8 +426,8 @@ msgstr "Copyright © University of Pittsburgh. All rights reserved."
 
 #. Name for duplication request form costs
 #: src/components/ModalMyList/index.js:601
-msgid "costs"
-msgstr "costs"
+#~ msgid "costs"
+#~ msgstr "costs"
 
 #. Title for Creator filter
 #: src/components/ModalSearch/index.js:93
@@ -462,7 +462,7 @@ msgstr "Download as .csv"
 #. Company Email
 #: src/components/Footer/index.js:36
 msgid "E-mail:<0/>"
-msgstr "E-mail:<0/>"
+msgstr "E-mail: <0/>"
 
 #. Name of email form
 #: src/components/ModalMyList/index.js:228
@@ -510,8 +510,8 @@ msgstr "Error submitting request"
 
 #. Company Fax
 #: src/components/Footer/index.js:33
-msgid "Fax: (914) 631-6017"
-msgstr "A&SC at Hillman Library\n\nPhone: (412) 648-8190"
+msgid "Fax: (914) 631-6017<0/>"
+msgstr "A&SC at the Archives Service Center<0/>7500 Thomas Boulevard<0/>Pittsburgh, PA 15208<0/>Phone: (412) 648-3232<0/>"
 
 #. Label for Filters button
 #: src/components/PageSearch/index.js:249
@@ -556,22 +556,22 @@ msgstr "https://docs.rockarch.org"
 #. Licensing link
 #: src/components/SecondaryLink/index.js:44
 msgid "https://docs.rockarch.org/archival-description-license/"
-msgstr "https://docs.rockarch.org/archival-description-license/"
+msgstr "#main"
 
 #. Collections data API link
 #: src/components/SecondaryLink/index.js:18
 msgid "https://docs.rockarch.org/argo-docs/"
-msgstr "https://docs.rockarch.org/argo-docs/"
+msgstr "#main"
 
 #. Take-down Policy link
 #: src/components/SecondaryLink/index.js:57
 msgid "https://docs.rockarch.org/takedown-policy/"
-msgstr "https://docs.rockarch.org/takedown-policy/"
+msgstr "#main"
 
 #. Bulk Data Download link
 #: src/components/SecondaryLink/index.js:31
 msgid "https://github.com/RockefellerArchiveCenter/data/"
-msgstr "https://github.com/RockefellerArchiveCenter/data/"
+msgstr "#main"
 
 #. Link used for sign-in within Dropdown list
 #. Link used for sign-in within the Header
@@ -602,8 +602,8 @@ msgstr "https://www.library.pitt.edu/hours"
 
 #. Link for duplication request services
 #. Link for duplication request services
-#: src/components/ModalMyList/index.js:533
-#: src/components/ModalMyList/index.js:595
+#: src/components/ModalMyList/index.js:524
+#: src/components/ModalMyList/index.js:584
 msgid "https://rockarch.org/collections/access-and-request-materials/#duplication-services"
 msgstr "https://rockarch.org/collections/access-and-request-materials/#duplication-services"
 
@@ -615,30 +615,30 @@ msgstr "https://www.library.pitt.edu/asc-doing-research"
 #. Twitter account link
 #: src/components/SocialIcons/index.js:7
 msgid "https://twitter.com/rockarch_org"
-msgstr "https://twitter.com/rockarch_org"
+msgstr "https://twitter.com/pittarchives"
 
 #. Facebook account link
 #: src/components/SocialIcons/index.js:18
 msgid "https://www.facebook.com/RockefellerArchiveCenter"
-msgstr "https://www.facebook.com/RockefellerArchiveCenter"
+msgstr "https://www.facebook.com/pittarchivesandspecialcollections/"
 
 #. Flickr account link
 #: src/components/SocialIcons/index.js:51
 msgid "https://www.flickr.com/photos/147074352@N05/"
-msgstr "https://www.flickr.com/photos/147074352@N05/"
+msgstr "https://pittrarebooks.tumblr.com/"
 
 #. Instagram account link
 #: src/components/SocialIcons/index.js:29
 msgid "https://www.instagram.com/rockefellerarchivecenter"
-msgstr "https://www.instagram.com/rockefellerarchivecenter"
+msgstr "https://www.instagram.com/pittarchives/"
 
 #. Youtube account link
 #: src/components/SocialIcons/index.js:40
 msgid "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
-msgstr "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
+msgstr "https://pittarchives.tumblr.com/"
 
 #. Label for duplication request form
-#: src/components/ModalMyList/index.js:587
+#: src/components/ModalMyList/index.js:576
 msgid "I agree to pay the duplication costs for this request. See our <0>fee schedule</0>."
 msgstr "I agree to pay the duplication costs for this request. See our <0>fee schedule</0>."
 
@@ -650,8 +650,6 @@ msgstr "Invalid email address provided."
 #. Name of items error message
 #: src/components/ModalMyList/index.js:31
 #: src/components/ModalMyList/index.js:217
-#: src/components/ModalMyList/index.js:435
-#: src/components/ModalMyList/index.js:581
 msgid "items"
 msgstr "items"
 
@@ -663,7 +661,7 @@ msgstr "Jump to {0} {hitPlural} in this area: {hitTitles}"
 #. Licensing message
 #: src/components/SecondaryLink/index.js:48
 msgid "Licensing for descriptive metadata"
-msgstr "Licensing for descriptive metadata"
+msgstr "‎"
 
 #. Location property
 #: src/components/PageAgent/index.js:195
@@ -672,7 +670,7 @@ msgstr "Location of Headquarters"
 
 #. Company Email link
 #: src/components/ModalMyList/index.js:174
-#: src/components/ModalMyList/index.js:542
+#: src/components/ModalMyList/index.js:533
 #: src/components/PageBackendError/index.js:19
 #: src/components/PrimaryLink/index.js:33
 msgid "mailto:archive@rockarch.org"
@@ -697,7 +695,7 @@ msgstr "Message"
 
 #. Label for RAC staff message Form
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:189
-#: src/components/ModalMyList/index.js:444
+#: src/components/ModalMyList/index.js:442
 msgid "Message for RAC staff"
 msgstr "Message for Pitt staff"
 
@@ -730,7 +728,7 @@ msgstr "Nicknames"
 #. No selected items error
 #: src/components/ModalMyList/index.js:198
 #: src/components/ModalMyList/index.js:415
-#: src/components/ModalMyList/index.js:563
+#: src/components/ModalMyList/index.js:554
 msgid "No items have been selected to submit."
 msgstr "No items have been selected to submit."
 
@@ -761,8 +759,8 @@ msgstr "opens email"
 #. Title for duplication request
 #. Title for new window button
 #. Title message for opening an online item
-#: src/components/ModalMyList/index.js:529
-#: src/components/ModalMyList/index.js:591
+#: src/components/ModalMyList/index.js:520
+#: src/components/ModalMyList/index.js:580
 #: src/components/PageDigitalObject/index.js:112
 #: src/components/RecordsDetail/index.js:229
 msgid "opens in a new window"
@@ -780,8 +778,8 @@ msgstr "People"
 
 #. Company Phonenumber
 #: src/components/Footer/index.js:30
-msgid "Phone: (914) 366-6300"
-msgstr "A&SC at the Archives Service Center\x3C<br>Phone: (412) 648-3232"
+msgid "Phone: (914) 366-6300<0/>"
+msgstr "A&SC at Hillman Library<0/>Phone: (412) 648-8190<0/>"
 
 #. Place of birth property
 #: src/components/PageAgent/index.js:193
@@ -800,7 +798,7 @@ msgstr "Please add a word or phrase to search for."
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:277
 #: src/components/ModalMyList/index.js:194
 #: src/components/ModalMyList/index.js:412
-#: src/components/ModalMyList/index.js:556
+#: src/components/ModalMyList/index.js:547
 msgid "Please complete this field."
 msgstr "Please complete this field."
 
@@ -840,17 +838,17 @@ msgstr "Preparing Request Data"
 #. Privacy Policy message
 #: src/components/PrimaryLink/index.js:76
 msgid "Privacy Policy"
-msgstr "Privacy Policy"
+msgstr "‎"
 
 #. Name for RAC staff message Form
 #: src/components/ModalMyList/index.js:452
-msgid "questions"
-msgstr "questions"
+#~ msgid "questions"
+#~ msgstr "questions"
 
 #. Footer.Primary.RAC.message
 #: src/components/PrimaryLink/index.js:89
 msgid "RAC Policies"
-msgstr "RAC Policies"
+msgstr "‎"
 
 #. Reading Room Hours message
 #: src/components/Footer/index.js:44
@@ -861,10 +859,7 @@ msgstr "Reading Room Hours:"
 #. Name of recaptcha error message
 #: src/components/ModalMyList/index.js:260
 #: src/components/ModalMyList/index.js:267
-#: src/components/ModalMyList/index.js:462
-#: src/components/ModalMyList/index.js:468
-#: src/components/ModalMyList/index.js:612
-#: src/components/ModalMyList/index.js:618
+#: src/components/ModalMyList/index.js:598
 msgid "recaptcha"
 msgstr "recaptcha"
 
@@ -1115,7 +1110,7 @@ msgstr "Submit search"
 #. Take-down Policy message
 #: src/components/SecondaryLink/index.js:61
 msgid "Take-down policy"
-msgstr "Take-down policy"
+msgstr "‎"
 
 #. Subtitle displayed within the Header
 #: src/components/Header/index.js:16
@@ -1140,7 +1135,7 @@ msgstr "Virtual International Authority File"
 #. Payment Modal Form Test
 #. Costs not agreed to error
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:280
-#: src/components/ModalMyList/index.js:559
+#: src/components/ModalMyList/index.js:550
 msgid "We cannot process your request unless you agree to pay the costs of reproduction."
 msgstr "We cannot process your request unless you agree to pay the costs of reproduction."
 
