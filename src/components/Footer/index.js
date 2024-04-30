@@ -28,11 +28,11 @@ const Footer = () => (
             </p>
             <p className='footer-primary__text'>
               <Trans comment='Company Phonenumber'>
-                Phone: (914) 366-6300
-              </Trans><br />
+                Phone: (914) 366-6300<br />
+              </Trans>
               <Trans comment='Company Fax'>
-                Fax: (914) 631-6017
-              </Trans><br />
+                Fax: (914) 631-6017<br />
+              </Trans>
               <Trans comment='Company Email'>
                 E-mail:
                 <PrimaryLinkEmail />
