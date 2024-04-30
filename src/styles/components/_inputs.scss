@@ -35,6 +35,10 @@ select {
   border: 1px solid;
 }
 
+.checkbox--online, .checkbox--online + label {
+  display: none;
+}
+
 .checkbox--online:not(:checked) + label,
 .checkbox--online:checked + label {
   padding: 13px 15px 13px 45px;
