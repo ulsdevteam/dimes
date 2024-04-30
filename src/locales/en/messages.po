@@ -779,7 +779,7 @@ msgstr "People"
 #. Company Phonenumber
 #: src/components/Footer/index.js:30
 msgid "Phone: (914) 366-6300<0/>"
-msgstr "A&SC at Hillman Library<0/>Phone: (412) 648-8190<0/>"
+msgstr "A&SC at Hillman Library<0/>320 Hillman Library<0/>University of Pittsburgh<0/>3960 Forbes Avenue<0/>Pittsburgh, PA 15260<0/>Phone: (412) 648-8190<0/><0/>"
 
 #. Place of birth property
 #: src/components/PageAgent/index.js:193
