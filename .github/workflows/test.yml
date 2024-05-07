@@ -34,8 +34,11 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      - name: Test build
+        run: yarn test
+
       - name: Build Docker
         run: docker build .
 
-      - name: Test build
-        run: yarn test
+      - name: test repository variable
+        run: echo "${{ env.DEV_ENVIRONMENT }}"
