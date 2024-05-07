@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     environment:
-      name: development ##Replace with actual environment after testing
+      name: ${{ github.ref_name }}
 
     steps:
       - name: Checkout code
@@ -48,9 +48,6 @@ jobs:
       - name: Replace env file
         run: mv .env.deploy .env
 
-      - name: Build Docker
-        run: docker build .
-
       - name: Build application
         run: CI=false yarn run build
 
@@ -61,7 +58,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE }}
           role-skip-session-tagging: true
-          role-duration-seconds: 1000
+          role-duration-seconds: 900
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Deploy to S3
