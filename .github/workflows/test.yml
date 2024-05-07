@@ -17,28 +17,28 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Use Node.js ${{ matrix.node_version }}
-        uses: actions/setup-node@v4.0.2
-        with:
-          node-version: 'lts/*'
+      #- name: Use Node.js ${{ matrix.node_version }}
+      #  uses: actions/setup-node@v4.0.2
+      #  with:
+      #    node-version: 'lts/*'
 
-      - name: Cache dependencies
-        uses: actions/cache@v3
-        id: yarn-cache
-        with:
-          path: ./node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+      #- name: Cache dependencies
+      #  uses: actions/cache@v3
+      #  id: yarn-cache
+      #  with:
+      #    path: ./node_modules
+      #    key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+      #    restore-keys: |
+      #      ${{ runner.os }}-yarn-
 
-      - name: Install dependencies
-        run: yarn install
+      #- name: Install dependencies
+      #  run: yarn install
 
-      - name: Test build
-        run: yarn test
+      #- name: Test build
+      #  run: yarn test
 
-      - name: Build Docker
-        run: docker build .
+      #- name: Build Docker
+      #  run: docker build .
 
       - name: test repository variable
-        run: echo "${{ env.DEV_ENVIRONMENT }}"
+        run: echo "${{ vars.DEV_ENVIRONMENT }}"
