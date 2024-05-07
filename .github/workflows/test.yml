@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     environment:
-      name: ${{ github.ref_name }}
+      name: development
 
     steps:
       - name: Checkout code
