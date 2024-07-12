@@ -114,7 +114,7 @@ msgid "<0/>Back to Search"
 msgstr "<0/>Torna alla ricerca"
 
 #. New Search button
-#: src/components/PageMyList/index.js:292
+#: src/components/PageMyList/index.js:297
 msgid "<0/>Start a New Search"
 msgstr "<0/>Avvia una nuova ricerca"
 
@@ -139,7 +139,7 @@ msgid "<0><1><2><3><4>Twitter Logo</4><5/></3></2></1><6><7><8><9>Facebook Logo<
 msgstr "<0><1><2><3><4>Logo Twitter</4><5/></3></2></1><6><7><8><9>Logo Facebook</9><10/></8></7></6><11><12><13><14>Logo Instagram</14><15/></13></12></11><16><17><18><19>Logo YouTube</19><20/></18></17></16><21><22><23><24>Logo Flickr</24><25><26><27><28/><29/></27></26></25></23></22></21></0>"
 
 #. Page Title for user's list
-#: src/components/PageMyList/index.js:283
+#: src/components/PageMyList/index.js:288
 msgid "<0><1>DIMES: My List</1></0>"
 msgstr "<0><1>DIMES: La mia lista</1></0>"
 
@@ -224,7 +224,7 @@ msgid "<0>More about this {agentType}</0>"
 msgstr "<0>Per saperne di più {agentType}</0>"
 
 #. Header for user's list
-#: src/components/PageMyList/index.js:298
+#: src/components/PageMyList/index.js:303
 msgid "<0>My List</0>"
 msgstr "<0>La mia lista</0>"
 
@@ -343,7 +343,7 @@ msgid "archive@rockarch.org"
 msgstr "archive@rockarch.org"
 
 #. Confirmation to delete all items from list
-#: src/components/PageMyList/index.js:369
+#: src/components/PageMyList/index.js:374
 msgid "Are you sure you want to remove all the items from your list?<0><1/><2/></0>"
 msgstr "Siete sicuri di voler rimuovere tutti gli elementi dall'elenco?<0><1/><2/></0>"
 
@@ -353,7 +353,7 @@ msgid "Bulk data download"
 msgstr "Scarica I dati bulk"
 
 #. Title shown when request failed
-#: src/components/PageMyList/index.js:354
+#: src/components/PageMyList/index.js:359
 msgid "Can't Complete Request"
 msgstr "Impossibile completare la richiesta"
 
@@ -415,7 +415,7 @@ msgid "Collections Related to {agentTitle}"
 msgstr "Collezioni Collegate Alla {agentTitle}"
 
 #. Remove all confirmation title
-#: src/components/PageMyList/index.js:382
+#: src/components/PageMyList/index.js:387
 msgid "Confirm Remove All"
 msgstr "Conferma Rimuovi tutto"
 
@@ -580,6 +580,11 @@ msgstr "https://raccess.rockarch.org"
 msgid "https://raccess.rockarch.org/aeon.dll"
 msgstr "https://raccess.rockarch.org/aeon.dll"
 
+#. Scheduling an appointment email link
+#: src/components/MyListSidebar/index.js:12
+msgid "https://raccess.rockarch.org/aeon.dll?Action=10&Form=94"
+msgstr ""
+
 #. Accessibility Statement Link
 #: src/components/PrimaryLink/index.js:59
 msgid "https://rockarch.org/about-us/accessibility/"
@@ -673,8 +678,8 @@ msgstr "mailto:archive@rockarch.org"
 
 #. Scheduling an appointment email link
 #: src/components/MyListSidebar/index.js:12
-msgid "mailto:archive@rockarch.org?subject=Scheduling a research appointment"
-msgstr "mailto:archive@rockarch.org?subject=Scheduling un appuntamento di ricerca"
+#~ msgid "mailto:archive@rockarch.org?subject=Scheduling a research appointment"
+#~ msgstr "mailto:archive@rockarch.org?subject=Scheduling un appuntamento di ricerca"
 
 #. Name of message form
 #: src/components/ModalMyList/index.js:251
@@ -1043,7 +1048,7 @@ msgid "Social Networks and Archival Context"
 msgstr "Reti sociali e contesto archivistico"
 
 #. Message shown when request failed
-#: src/components/PageMyList/index.js:350
+#: src/components/PageMyList/index.js:355
 msgid "Sorry, our system is unable to process requests right now. We're working to fix this! Please try again later."
 msgstr "Siamo spiacenti, il nostro sistema non è in grado di elaborare le richieste in questo momento. Stiamo lavorando per risolvere il problema! Si prega di riprovare più tardi."
 
