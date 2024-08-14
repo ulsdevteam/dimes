@@ -87,7 +87,7 @@ export const DateInput = props => {
       filterTime={filterPassedTime}
       // example date exclusions
       // n.b. months are zero based in javascript
-      //excludeDates={[new Date(2024, 0, 15)]}
+      excludeDates={[new Date(2024, 7, 16), new Date(2024, 8, 2)]}
       //excludeDateIntervals={[{start: new Date(2023, 11, 22), end: new Date(2024, 0, 1)}]}
       onChange={(date:Date) => setStartDate(date)}
       dateFormat="yyyy-MM-dd h:mm aa">
