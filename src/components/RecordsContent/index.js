@@ -153,6 +153,7 @@ export const RecordsChild = props => {
   /** Calls the setActiveRecords callback function */
   const handleItemClick = uri => {
     props.setActiveRecords(uri)
+    console.log("Check ActiveItem: ", props.item.uri)
   }
 
   /** Add or remove an item from MyList */
@@ -196,6 +197,7 @@ export const RecordsChild = props => {
 
   /** Sets isItemSaved state when myListCount changes */
   useEffect(() => {
+    console.log("Check item saved: ", item)
     setIsSaved(isItemSaved(item))
   }, [item, myListCount])
 
@@ -405,9 +407,7 @@ const RecordsContent = props => {
       <h2 className='content__title mt-0 pb-0'><Trans comment='Collection Content title'>Collection Content</Trans></h2>
       <h3 className='collection__title mb-0'>{collection.title}</h3>
       <p className='collection__date'>{dateString(collection.dates)}</p>
-      <p className='collection__text text--truncate'>
-        {truncateString(collection.description, 180)}
-      </p>
+      <div className='collection__text'>{collection.description}</div>
       <RecordsContentList
         ariaLevel={3}
         className='child__list--top-level'

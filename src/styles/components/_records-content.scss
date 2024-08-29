@@ -53,6 +53,12 @@
 
 .collection__text {
   font-size: 16px;
+  height: 80px;
+  padding: 20px;
+  border: 3px solid $silver-grey;
+  border-radius: 2px !important;
+  margin-bottom: 9px;  
+  overflow-y: auto;
 }
 
 .child__list {
