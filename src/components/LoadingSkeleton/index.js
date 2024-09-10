@@ -3,7 +3,7 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 export const SearchSkeleton = () => (
-  <ul className='card-list list--unstyled mt-40 mb-32'>
+  <ul className='card-list mt-40 mb-32'>
     {Array(8)
       .fill()
       .map((item, index) => (
@@ -79,7 +79,7 @@ export const AgentRelatedCollectionsSkeleton = () => (
     <h2 className='agent__section-title pb-12'>
       <Skeleton />
     </h2>
-    <ul className='card-list list--unstyled card--related-collections mt-40 mb-32'>
+    <ul className='card-list card--related-collections mt-40 mb-32'>
       {Array(6)
         .fill()
         .map((item, index) => (

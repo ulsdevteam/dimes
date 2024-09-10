@@ -12,11 +12,11 @@ const Header = ({ myListCount }) => (
               dimes.rockarch.org
             </Trans>
           </a>
-          <p className='header__brand-subtitle'>
+          <div className='header__brand-subtitle'>
             <Trans comment='Subtitle displayed within the Header'>
               The Online Collection and Catalog of Rockefeller Archive Center
             </Trans>
-          </p>
+          </div>
         </div>
         <Nav ariaLabel='Main'>
           <NavItem id='raccess' icon='arrow_right_alt'
