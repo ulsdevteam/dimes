@@ -136,7 +136,7 @@ msgstr "<0><1/>Volver a los detalles del item</0>"
 #. Social Icons Titles
 #: src/components/SocialIcons/index.js:5
 msgid "<0><1><2><3><4>Facebook Logo</4><5/></3></2></1><6><7><8><9>Instagram Logo</9><10/></8></7></6><11><12><13><14>LinkedIn Logo</14><15/></13></12></11><16><17><18><19>YouTube Logo</19><20/></18></17></16></0>"
-msgstr ""
+msgstr "<0><1><2><3><4>Logotipo de Facebook</4><5/></3></2></1><6><7><8><9>Logotipo de Instagram</9><10/></8></7></6><11><12><13><14>Logotipo de LinkedIn</14><15/></13></12></11><16><17><18><19>Logotipo de YouTube</19><20/></18></17></16></0>"
 
 #. Page Title for user's list
 #: src/components/PageMyList/index.js:288
@@ -620,7 +620,7 @@ msgstr "https://www.instagram.com/rockefellerarchivecenter"
 #. LinkedIn account link
 #: src/components/SocialIcons/index.js:29
 msgid "https://www.linkedin.com/company/rockefeller-archive-center"
-msgstr ""
+msgstr "https://www.linkedin.com/company/rockefeller-archive-center"
 
 #. Youtube account link
 #: src/components/SocialIcons/index.js:41
@@ -696,7 +696,7 @@ msgstr "Minimapa"
 #. Reading Room Actual Hours
 #: src/components/Footer/index.js:49
 msgid "Monday-Friday<0/>9:30 a.m. to 5:00 p.m.<1/>"
-msgstr ""
+msgstr "De lunes a viernes<0/>de 9:30 a 17:00.<1/>"
 
 #. Message shown on button within Dropdown list
 #. Message shown on button within the Header

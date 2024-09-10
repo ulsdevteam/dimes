@@ -136,7 +136,7 @@ msgstr "<0><1/>항목 세부 정보로 돌아가기</0>"
 #. Social Icons Titles
 #: src/components/SocialIcons/index.js:5
 msgid "<0><1><2><3><4>Facebook Logo</4><5/></3></2></1><6><7><8><9>Instagram Logo</9><10/></8></7></6><11><12><13><14>LinkedIn Logo</14><15/></13></12></11><16><17><18><19>YouTube Logo</19><20/></18></17></16></0>"
-msgstr ""
+msgstr "<0><1><2><3><4>페이스북 로고</4><5/></3></2></1><6><7><8><9>인스타그램 로고</9><10/></8></7></6><11><12><13><14>링크드인 로고</14><15/></13></12></11><16><17><18><19>YouTube 로고</19><20/></18></17></16></0>"
 
 #. Page Title for user's list
 #: src/components/PageMyList/index.js:288
