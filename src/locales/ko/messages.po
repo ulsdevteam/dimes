@@ -578,7 +578,7 @@ msgstr "https://raccess.rockarch.org/aeon.dll"
 #. Scheduling an appointment email link
 #: src/components/MyListSidebar/index.js:12
 msgid "https://raccess.rockarch.org/aeon.dll?Action=10&Form=94"
-msgstr ""
+msgstr "https://raccess.rockarch.org/aeon.dll?Action=10&Form=94"
 
 #. Accessibility Statement Link
 #: src/components/PrimaryLink/index.js:59
