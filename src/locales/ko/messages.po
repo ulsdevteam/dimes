@@ -620,7 +620,7 @@ msgstr "https://www.instagram.com/rockefellerarchivecenter"
 #. LinkedIn account link
 #: src/components/SocialIcons/index.js:29
 msgid "https://www.linkedin.com/company/rockefeller-archive-center"
-msgstr ""
+msgstr "https://www.linkedin.com/company/rockefeller-archive-center"
 
 #. Youtube account link
 #: src/components/SocialIcons/index.js:41
