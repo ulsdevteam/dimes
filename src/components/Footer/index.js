@@ -48,7 +48,7 @@ const Footer = () => (
             <p className='footer-primary__text'>
               <Trans comment='Reading Room Actual Hours'>
                 Monday-Friday<br />
-                9:00 a.m. to 5:00 p.m.<br />
+                9:30 a.m. to 5:00 p.m.<br />
               </Trans>
               <PrimaryLinkAccessMaterials />
             </p>

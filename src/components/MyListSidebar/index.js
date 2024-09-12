@@ -11,7 +11,7 @@ const MyListSidebar = ({ duplicationRequest, readingRoomRequest }) => (
         className='btn btn--orange btn--lg'
         href={t({
           comment: 'Scheduling an appointment email link',
-          message: 'mailto:archive@rockarch.org?subject=Scheduling a research appointment'
+          message: 'https://raccess.rockarch.org/aeon.dll?Action=10&Form=94'
         })}
         title='opens email'>
         <MaterialIcon icon='account_balance' className='material-icon--space-after' /> Schedule a Visit

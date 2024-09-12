@@ -1,0 +1,68 @@
+name: Build and Deploy to S3
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - development
+      - base
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    environment:
+      name: ${{ github.ref_name }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node_version }}
+        uses: actions/setup-node@v4.0.2
+        with:
+          node-version: 'lts/*'
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Export secrets to environment variables
+        uses: oNaiPs/secrets-to-env-action@v1.5
+        with:
+          secrets: ${{ toJSON(secrets) }}
+
+      - name: Substitute environment variables
+        uses: tvarohohlavy/inplace-envsubst-action@v1.0.0
+        with:
+          files: .env.deploy
+
+      - name: Replace env file
+        run: mv .env.deploy .env
+
+      - name: Build application
+        run: CI=false yarn run build
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4.0.2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE }}
+          role-skip-session-tagging: true
+          role-duration-seconds: 900
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Deploy to S3
+        run: aws s3 sync ${{ secrets.LOCAL_DIR }} s3://${{ secrets.AWS_BUCKET_NAME }} --region ${{ secrets.AWS_REGION }}
+
+      - name: Invalidate CloudFront cache
+        run: aws cloudfront create-invalidation --region ${{ secrets.AWS_REGION }} --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
