@@ -253,8 +253,11 @@ const RecordsDetail = props => {
                 <PanelTextSection
                   title='Dates'
                   text={dateString(props.item.dates)} />
-                <PanelExtentSection
-                  extents={props.item.extents} />
+                { (props.item.extents && props.item.extents[0].value) ?
+                  (<PanelExtentSection
+                    extents={props.item.extents} /> ) :
+                    (null)
+                }
                 <PanelFormatSection
                   formats={props.item.formats}
                   notes={props.item.notes} />
