@@ -24,6 +24,12 @@ export const noteTextByType = (notes, noteType) => {
   return filteredNotes ? filteredNotes.map(note => note.subnotes.map(s => s.content)).join('\r') : null
 }
 
+/** Returns boolean indicator if included any noteTypes to be exposed */
+export const noteType_extra = notes => {
+  let otherTypelst =["bioghist","odd", "prefercite", "processinfo","acqinfo","odhist"]
+  return notes && notes.filter(n=>{return otherTypelst.includes(n.type) }).length
+}
+
 /** Adds params (passed as an object) to a URL */
 export const appendParams = (url, params) => {
   return `${url}?${queryString.stringify(params)}`

@@ -17,7 +17,7 @@ import MaterialIcon from '../MaterialIcon'
 import QueryHighlighter from '../QueryHighlighter'
 import { Trans, t } from '@lingui/macro'
 import { DetailSkeleton, FoundInItemSkeleton } from '../LoadingSkeleton'
-import { appendParams, dateString, hasAccessOrUse, noteText, noteTextByType } from '../Helpers'
+import { appendParams, dateString, hasAccessOrUse, noteText, noteTextByType, noteType_extra } from '../Helpers'
 import { isItemSaved } from '../MyListHelpers'
 import './styles.scss'
 
@@ -236,7 +236,7 @@ const RecordsDetail = props => {
       }
       </>
     }
-    <Accordion className='accordion mt-20' preExpanded={['summary']} allowZeroExpanded={true}>
+    <Accordion className='accordion mt-20' preExpanded={['summary', 'accessAndUse']} allowZeroExpanded={true}>
       <AccordionItem className='accordion__item' uuid='summary'>
         <AccordionItemHeading ariaLevel={2}>
           <AccordionItemButton className='accordion__button py-12 px-0'>Summary</AccordionItemButton>
@@ -254,7 +254,7 @@ const RecordsDetail = props => {
                   title='Dates'
                   text={dateString(props.item.dates)} />
                 <PanelExtentSection
-                  extents={props.item.extents} />
+                  extents={props.item.extents} /> 
                 <PanelFormatSection
                   formats={props.item.formats}
                   notes={props.item.notes} />
@@ -263,37 +263,20 @@ const RecordsDetail = props => {
                 ancestors={props.ancestors}
                 isItemLoading={props.isAncestorsLoading}
                 params={props.params} />
-              <PanelTextSection
-                params={props.params}
-                title='Description'
-                text={props.item.description} />
-              <PanelTextSection
-                params={props.params}
-                title='Biographical/Historical Note'
-                text={noteTextByType(props.item.notes, 'bioghist')} />
-              { props.item.notes && props.item.notes.filter(n => n.type === 'odd').map(n => (
-                <PanelTextSection
-                params={props.params}
-                title={n.title}
-                text={noteText(n)}
-                />
-              ))}
-              { noteTextByType(props.item.notes, 'processinfo') ?
+              { noteTextByType(props.item.notes, 'abstract') ?
                 (<PanelTextSection
                   params={props.params}
-                  title='Processing Information'
-                  text={noteTextByType(props.item.notes, 'processinfo')} />) :
+                  title='Description'
+                  text={noteTextByType(props.item.notes, 'abstract')} />) :
                 (null)
               }
-                <PanelTextSection
-                  title='Immediate Source of Acquisition'
-                  text={noteTextByType(props.item.notes, 'acqinfo')} />
-                <PanelTextSection
-                  title='Custodial History'
-                  text={noteTextByType(props.item.notes, 'custodhist')} />
-              </>
-              )
-            }
+              <PanelTextSection
+                  params={props.params}
+                  title='Scope and Contents'
+                  text={noteTextByType(props.item.notes, 'scopecontent')} />
+            </>
+            )
+          }
         </AccordionItemPanel>
       </AccordionItem>
       { hasAccessOrUse(props.item.notes) ?
@@ -316,7 +299,54 @@ const RecordsDetail = props => {
               text={noteTextByType(props.item.notes, 'altformavail')} />
           </AccordionItemPanel>
         </AccordionItem>) :
-        (null)}
+        (null)
+      }
+      { noteType_extra(props.item.notes) ? (
+      <AccordionItem className='accordion__item' uuid='relatednotes'>
+        <AccordionItemHeading ariaLevel={2}>
+          <AccordionItemButton className='accordion__button py-12 px-0'>Related Notes</AccordionItemButton>
+        </AccordionItemHeading>
+        <AccordionItemPanel className='accordion__panel'>
+        {!props.isItemLoading ?
+             ( <>
+              <PanelTextSection
+                params={props.params}
+                title='Biographical/Historical Note'
+                text={noteTextByType(props.item.notes, 'bioghist')} />
+              { props.item.notes && props.item.notes.filter(n => n.type === 'odd').map(n => (
+                <PanelTextSection
+                params={props.params}
+                title={n.title}
+                text={noteText(n)}
+                />
+              ))}
+              { noteTextByType(props.item.notes, 'prefercite') ?
+                (<PanelTextSection
+                  params={props.params}
+                  title='Preferred Citation'
+                  text={noteTextByType(props.item.notes, 'prefercite')} />) :
+                (null)
+              } 
+              { noteTextByType(props.item.notes, 'processinfo') ?
+                (<PanelTextSection
+                  params={props.params}
+                  title='Processing Information'
+                  text={noteTextByType(props.item.notes, 'processinfo')} />) :
+                (null)
+              } 
+                <PanelTextSection
+                  title='Immediate Source of Acquisition'
+                  text={noteTextByType(props.item.notes, 'acqinfo')} />
+                <PanelTextSection
+                  title='Custodial History'
+                  text={noteTextByType(props.item.notes, 'custodhist')} />
+             </> ) :
+              (null) 
+        }
+        </AccordionItemPanel>
+      </AccordionItem> ) :  
+              (null)
+      }
       { props.item.terms && props.item.terms.length ?
         (<AccordionItem className='accordion__item' uuid='relatedTerms'>
             <AccordionItemHeading ariaLevel={2}>
