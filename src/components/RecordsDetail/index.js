@@ -15,10 +15,19 @@ import Button from '../Button'
 import ListToggleButton from '../ListToggleButton'
 import MaterialIcon from '../MaterialIcon'
 import QueryHighlighter from '../QueryHighlighter'
+import { Trans, t } from '@lingui/macro'
 import { DetailSkeleton, FoundInItemSkeleton } from '../LoadingSkeleton'
-import { appendParams, dateString, hasAccessOrUse, isDesktop, noteText, noteTextByType } from '../Helpers'
+import { appendParams, dateString, hasAccessOrUse, noteText, noteTextByType } from '../Helpers'
 import { isItemSaved } from '../MyListHelpers'
 import './styles.scss'
+
+const flattenObject = (obj, flattened = []) => {
+  flattened.push(obj.title);
+  if (obj.child) {
+    flattenObject(obj.child, flattened)
+  }
+  return flattened
+}
 
 const FoundInItem = ({ className, item, params, topLevel }) => (
   <>
@@ -37,9 +46,9 @@ const FoundInItem = ({ className, item, params, topLevel }) => (
 
 const PanelExtentSection = ({ extents }) => (
   extents ? (
-  <div className='panel__section'>
-    <h3 className='panel__heading'>Size</h3>
-    <ul className='panel__list--unstyled'>
+  <div className='mr-15'>
+    <h3 className='panel__heading mt-10 mb-5'><Trans comment='Panel Extent Size message'>Size</Trans></h3>
+    <ul className='panel__list--unstyled pl-0 mt-0'>
       {extents.map((e, index) => {
         const extentArray = e.type.replace('_', ' ').split(' ').map((ext, i, arr) => (
           arr.length - 1 === i ? pluralize(ext, e.value) : ext
@@ -59,9 +68,9 @@ const PanelFormatSection = ({ formats, notes }) => {
   const filteredFormatText = formatText.filter(i => i != null).filter(i => i !== '')
   return (
     displayFormats.length ? (
-      <div className='panel__section'>
-        <h3 className='panel__heading'>Formats</h3>
-        <ul className='panel__list--unstyled'>
+      <div className='mr-15'>
+        <h3 className='panel__heading mt-10 mb-5'><Trans comment='Panel Format message'>Formats</Trans></h3>
+        <ul className='panel__list--unstyled pl-0 mt-0'>
           {filteredFormatText.length ?
             (<li className='panel__text'>{filteredFormatText.join('\n')}</li>) :
             (displayFormats.map((format, index) => (
@@ -76,9 +85,9 @@ const PanelFormatSection = ({ formats, notes }) => {
 
 const PanelFoundInSection = ({ ancestors, isItemLoading, params }) => (
   ancestors.title ?
-    (<div className='panel__section'>
-      <h3 className='panel__heading'>Found In</h3>
-      <ul className='found-in'>
+    (<div className='mr-15'>
+      <h3 className='panel__heading mt-10 mb-5'><Trans comment='Panel Found In message'>Found In</Trans></h3>
+      <ul className='found-in list--unstyled mt-0'>
       {isItemLoading ?
         (<FoundInItemSkeleton/>) :
         (<FoundInItem
@@ -93,9 +102,9 @@ const PanelFoundInSection = ({ ancestors, isItemLoading, params }) => (
 
 const PanelLinkedListSection = ({ listData, params, title }) =>  (
   listData ?
-    (<div className='panel__section'>
-      <h3 className='panel__heading'>{title}</h3>
-      <ul className='panel__list--unstyled'>
+    (<div className='mr-15'>
+      <h3 className='panel__heading mt-10 mb-5'>{title}</h3>
+      <ul className='panel__list--unstyled pl-0 mt-0'>
         {listData.map((item, index) => (
         <li key={index} className='panel__text'><a href={appendParams(item.uri, params)}>{item.title}</a></li>))}
       </ul>
@@ -105,9 +114,9 @@ const PanelLinkedListSection = ({ listData, params, title }) =>  (
 
 const PanelListSection = ({ listData, title }) =>  (
   listData ?
-    (<div className='panel__section'>
-      <h3 className='panel__heading'>{title}</h3>
-      <ul className='panel__list--unstyled'>
+    (<div className='mr-15'>
+      <h3 className='panel__heading mt-10 mb-5'>{title}</h3>
+      <ul className='panel__list--unstyled pl-0 mt-0'>
         {listData.map((item, index) => (
         <li key={index} className='panel__text'>{item.title}</li>))}
       </ul>
@@ -119,8 +128,8 @@ const PanelTextSection = ({ params, text, title }) => {
   const parsedQuery = params && params.query ? (params.query) : ('')
   return (
   text ?
-    (<div className='panel__section'>
-      <h3 className='panel__heading'>{title}</h3>
+    (<div className='mr-15'>
+      <h3 className='panel__heading mt-10 mb-5'>{title}</h3>
       <p className='panel__text--narrative'>
         <QueryHighlighter query={parsedQuery} text={text} />
       </p>
@@ -133,6 +142,8 @@ const RecordsDetail = props => {
   var [isSaved, setIsSaved] = useState(() => {
     return !props.isItemLoading && isItemSaved(props.item)
   })
+
+  var [citationCopied, setCitationCopied] = useState(false)
 
   /** Set isSaved in state after item finishes loading */
   useEffect(() => {
@@ -150,42 +161,85 @@ const RecordsDetail = props => {
     props.item.uri && props.item.uri.split('/')[props.item.uri.split('/').length - 1]
   )
 
+  /** Returns a citation string */
+  const dates = props.item.dates && props.item.dates.map(d => d.expression).join(', ')
+  const citation = (
+    [...new Set([props.item.title, dates])]
+      .concat(flattenObject(props.ancestors))
+      .concat(t({ comment: 'Institution name for citation', message: 'Rockefeller Archive Center' }))
+      .concat(window.location.origin + window.location.pathname)
+      .filter(n => n)
+      .join('; ')
+  )
+
+  const handleCitationButtonClick = () => {
+    setCitationCopied(true)
+    setTimeout(() => {setCitationCopied(false)}, '6000')
+  }
+  
+
   return (
   <div className={classnames('records__detail', {'hidden': props.isContentShown})}>
+    {props.isDesktop ? <Button
+      type='button'
+      className='btn--sm btn--transparent btn--minimap-info mt-22 mr-0 p-0'
+      handleClick={props.toggleMinimapModal}
+      iconAfter='info'
+      label={t({ comment: 'About minimap message', message: 'about minimap' })}
+    /> : null
+    }
     <nav className='records__nav'>
-      <a href={searchUrl} className='btn btn--back'>
-        <MaterialIcon icon='keyboard_arrow_left'/>Back to Search
+      <a href={searchUrl} className='btn btn--sm btn--gray'>
+        <Trans comment='Message to go back to previous search'>  
+          <MaterialIcon icon='keyboard_arrow_left' className='material-icon--space-after'/>Back to Search
+        </Trans>
       </a>
     </nav>
     <h1 className='records__title'>{props.isItemLoading ? <Skeleton /> : props.item.title }</h1>
     {props.item.type === 'object' &&
       <>
       <ListToggleButton
-        className='btn-add--detail'
+        className='btn--sm btn--orange btn--detail mr-10 mb-10 p-8'
         isSaved={isSaved}
         item={props.item}
         toggleSaved={props.toggleInList} />
-        {props.item.online &&
-          <>
-          <a className='btn btn-launch--detail'
-            href={`${props.item.uri}/view`}>View Online <MaterialIcon icon='visibility' /></a>
-          <a className='btn btn-download--detail'
-            href={`${process.env.REACT_APP_S3_BASEURL}/pdfs/${identifier}`}
-            target='_blank'
-            title='opens in a new window'
-            rel='noopener noreferrer'
-            >Download <MaterialIcon icon='get_app' /></a>
-            { props.downloadSize ?
-              <p className='panel__text'>{`Acrobat PDF, ${props.downloadSize}`}</p> :
-              <p className='panel__text'><Skeleton/></p> }
-          </>
-        }
+      
+        <div className='tooltip__wrapper btn--detail'>
+        {citationCopied ? 
+          (<Trans comment='Confirmation message when citation copied'>
+              <div className='tooltip tooltip--top' role='alert'>
+                Citation information copied to clipboard.
+              </div>
+            </Trans>) : 
+        null }
+        <Trans comment='Button to copy citation text'>
+        <button className='btn btn--sm btn--orange btn--detail mr-10 mb-10 p-8'
+          onClick={() => {navigator.clipboard.writeText(citation); handleCitationButtonClick()}}>
+          Cite<MaterialIcon icon='edit' className='material-icon--space-before'/>
+        </button>
+        </Trans>
+      </div>
+      {props.item.online &&
+        <Trans comment='Buttons for online records'>
+        <a className='btn btn--sm btn--orange btn--detail mr-10 mb-10 p-8'
+          href={`${props.item.uri}/view`}>View Online<MaterialIcon icon='visibility' className='material-icon--space-before'/></a>
+        <a className='btn btn--sm btn--orange btn--detail mr-10 mb-10 p-8'
+          href={`${process.env.REACT_APP_S3_BASEURL}/pdfs/${identifier}`}
+          target='_blank'
+          title={t({ comment: 'Title message for opening an online item', message: 'opens in a new window' })}
+          rel='noopener noreferrer'
+          >Download <MaterialIcon icon='get_app' className='material-icon--space-before' /></a>
+          { props.downloadSize ?
+            <p className='panel__text'>{`Acrobat PDF, ${props.downloadSize}`}</p> :
+            <p className='panel__text'><Skeleton/></p> }
+        </Trans>
+      }
       </>
     }
-    <Accordion className='accordion accordion--details' preExpanded={['summary']} allowZeroExpanded={true}>
+    <Accordion className='accordion mt-20' preExpanded={['summary']} allowZeroExpanded={true}>
       <AccordionItem className='accordion__item' uuid='summary'>
         <AccordionItemHeading ariaLevel={2}>
-          <AccordionItemButton className='accordion__button'>Summary</AccordionItemButton>
+          <AccordionItemButton className='accordion__button py-12 px-0'>Summary</AccordionItemButton>
         </AccordionItemHeading>
         <AccordionItemPanel className='accordion__panel'>
           {props.isItemLoading ?
@@ -199,8 +253,11 @@ const RecordsDetail = props => {
                 <PanelTextSection
                   title='Dates'
                   text={dateString(props.item.dates)} />
-                <PanelExtentSection
-                  extents={props.item.extents} />
+                { (props.item.extents && props.item.extents[0].value) ?
+                  (<PanelExtentSection
+                    extents={props.item.extents} /> ) :
+                    (null)
+                }
                 <PanelFormatSection
                   formats={props.item.formats}
                   notes={props.item.notes} />
@@ -231,6 +288,12 @@ const RecordsDetail = props => {
                   text={noteTextByType(props.item.notes, 'processinfo')} />) :
                 (null)
               }
+                <PanelTextSection
+                  title='Immediate Source of Acquisition'
+                  text={noteTextByType(props.item.notes, 'acqinfo')} />
+                <PanelTextSection
+                  title='Custodial History'
+                  text={noteTextByType(props.item.notes, 'custodhist')} />
               </>
               )
             }
@@ -239,7 +302,7 @@ const RecordsDetail = props => {
       { hasAccessOrUse(props.item.notes) ?
         (<AccordionItem className='accordion__item' uuid='accessAndUse'>
           <AccordionItemHeading ariaLevel={2}>
-            <AccordionItemButton className='accordion__button'>Access and Use</AccordionItemButton>
+            <AccordionItemButton className='accordion__button py-12 px-0'>Access and Use</AccordionItemButton>
           </AccordionItemHeading>
           <AccordionItemPanel className='accordion__panel'>
             <PanelTextSection
@@ -248,13 +311,19 @@ const RecordsDetail = props => {
             <PanelTextSection
               title='Reproduction and Duplication'
               text={noteTextByType(props.item.notes, 'userestrict')} />
+            <PanelTextSection
+              title='Technical Access'
+              text={noteTextByType(props.item.notes, 'phystech')} />
+            <PanelTextSection
+              title='Existence and Location of Copies'
+              text={noteTextByType(props.item.notes, 'altformavail')} />
           </AccordionItemPanel>
         </AccordionItem>) :
         (null)}
       { props.item.terms && props.item.terms.length ?
         (<AccordionItem className='accordion__item' uuid='relatedTerms'>
             <AccordionItemHeading ariaLevel={2}>
-              <AccordionItemButton className='accordion__button'>Related Terms</AccordionItemButton>
+              <AccordionItemButton className='accordion__button py-12 px-0'>Related Terms</AccordionItemButton>
             </AccordionItemHeading>
             <AccordionItemPanel className='accordion__panel'>
               <PanelListSection

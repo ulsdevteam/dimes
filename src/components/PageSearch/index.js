@@ -6,19 +6,22 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { Helmet } from 'react-helmet'
 import { useNavigate, useLocation } from 'react-router-dom'
+import PageBackendError from '../PageBackendError'
 import Button from '../Button'
 import { SelectInput } from '../Inputs'
 import { SearchSkeleton } from '../LoadingSkeleton'
 import { FacetModal } from '../ModalSearch'
 import { SearchPagination } from '../Pagination'
+import { Plural, Select, Trans, t } from '@lingui/macro'
 import SearchForm from '../SearchForm'
 import SearchNotFound from '../SearchNotFound'
-import TileList from '../Tile'
+import CardList from '../Card'
 import { appendParams, firePageViewEvent } from '../Helpers'
 import './styles.scss'
 
 const PageSearch = () => {
 
+  const [backendError, setBackendError] = useState({})
   const [facetIsOpen, setFacetIsOpen] = useState(false)
   const [facetData, setFacetData] = useState({})
   const [inProgress, setInProgress] = useState(true)
@@ -33,9 +36,24 @@ const PageSearch = () => {
   const { pathname, search } = useLocation()
   const navigate = useNavigate()
   const sortOptions = [
-    {value: '', label: 'Sort by relevance'},
-    {value: 'title', label: 'Sort by title'},
-    {value: 'creator', label: 'Sort by creator name'}
+    {
+      value: '', label: t({
+        comment: 'Sort by relevance label',
+        message: 'Sort by relevance'
+      })
+    },
+    {
+      value: 'title', label: t({
+        comment: 'Sort by title label',
+        message: 'Sort by title'
+      })
+    },
+    {
+      value: 'creator', label: t({
+        comment: 'Sort by creator name label',
+        message: 'Sort by creator name'
+      })
+    }
   ]
 
   /** Execute search on initial page load */
@@ -68,7 +86,7 @@ const PageSearch = () => {
       axios
         .get(appendParams(`${process.env.REACT_APP_ARGO_BASEURL}/facets`, params))
         .then(res => setFacetData(res.data))
-        .catch(err => console.log(err));
+        .catch(err => setBackendError(err));
     }
   }, [params])
 
@@ -84,8 +102,8 @@ const PageSearch = () => {
           }, [])
           setSuggestions(suggestions)
         })
-        .catch(err => console.log(err))
-    }
+        .catch(err => setBackendError(err))
+      }
   }, [params])
 
   /** Executes search and sets results in state */
@@ -99,9 +117,11 @@ const PageSearch = () => {
           setItems(res.data.results)
           setResultsCount(res.data.count)
           setPageCount(Math.ceil(res.data.count / pageSize))
-          setInProgress(false)
         })
-        .catch(err => console.log(err));
+        .catch(err => setBackendError(err))
+        .then(res => setInProgress(false));
+    } else {
+      setInProgress(false)
     }
   }, [params])
 
@@ -134,7 +154,7 @@ const PageSearch = () => {
 
   /** Executes a new search when search form inputs are changed **/
   const handleSearchFormChange = (category, query, online) => {
-    let newParams = { ...params, query: query, category: category }
+    let newParams = { ...params, query: query, category: category, offset: 0 }
     if (online) {
       newParams.online = true
     } else {
@@ -164,12 +184,17 @@ const PageSearch = () => {
     setFacetIsOpen(!facetIsOpen)
   }
 
+  if (!!Object.keys(backendError).length) {
+    return <PageBackendError error={backendError} />
+  }
   return (
     <React.Fragment>
-      <Helmet
-        onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
-        <title>Search Results</title>
-      </Helmet>
+      <Trans comment='Search Results title'>
+        <Helmet
+          onChangeClientState={(newState) => firePageViewEvent(newState.title)} >
+          <title>Search Results</title>
+        </Helmet>
+      </Trans>
       <div className='container--full-width'>
         <div className='search-bar'>
           <SearchForm
@@ -179,39 +204,67 @@ const PageSearch = () => {
             online={params.online}
             category={params.category} />
         </div>
-        <div className='results'>
-        <h1 className={classnames('results__title', { 'loading-dots': inProgress })}>{inProgress ? "Searching" :
-          (resultsCount ?
-            (`Search Results ${params.query && `for “${params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`) :
-            (`Sorry, there are no search results ${params.query && `for “${params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`))
-        }
-        </h1>
+        <main id='main' className='results'>
+          <h1 className={classnames('results__title mt-30 mb-13', { 'loading-dots': inProgress })}>
+            <Trans comment='Search Results header'>
+              <Select
+                value={inProgress}
+                _true="Searching"
+                other=
+                {
+                  <Select value={params.query}
+                    _false='No search query entered'
+                    other={
+                      <Plural
+                        value={resultsCount}
+                        _0={`Sorry, there are no search results for ${`“${params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`}
+                        other={`Search Results for ${`“${params.query.replace(/"([^"]+(?="))"/g, '$1')}”`}`}
+                      />
+                    }
+                  />
+                }
+              />
+            </Trans>
+          </h1>
           {!resultsCount && !inProgress ?
-            (
-              <SearchNotFound suggestions={suggestions}/>
-            ) :
-            (<>
+            (<SearchNotFound suggestions={suggestions} query={params.query}/>) :
+            <>
               <div className='results__header'>
                 <div className='results__summary'>
                   <p className='results__summary--text'>
-                    {inProgress ? (<Skeleton />) : (`${startItem === endItem ?
-                        startItem :
-                        `${startItem}-${endItem}`} of ${resultsCount} results`)}
+                    {inProgress ? (<Skeleton />) :
+                      <Trans comment='Current Results shown of total results'>
+                        <Select
+                          value={startItem === endItem}
+                          _true={`${startItem} result`}
+                          other={`${startItem}-${endItem} of ${resultsCount} results`}
+                        />
+                      </Trans>
+                    }
                   </p>
                 </div>
                 <div className='results__controls'>
                   <Button
                     handleClick={() => toggleFacetModal()}
-                    label='Filters'
+                    label={t({
+                      comment: 'Label for Filters button',
+                      message: 'Filters'
+                    })}
                     iconBefore='filter_alt'
-                    className='btn--filter' />
+                    className='btn--light-blue btn--filter mr-16' />
                   <SelectInput
                     className='select__sort'
                     hideLabel
                     id='sort'
-                    name='sort'
+                    name={t({
+                      comment: 'Name for sort results input',
+                      message: 'sort'
+                    })}
                     onChange={({selectedItem}) => handleSortChange(selectedItem.value)}
-                    label='Sort search results'
+                    label={t({
+                      comment: 'Label for sort results input',
+                      message: 'Sort search results'
+                    })}
                     selectedItem={params.sort || ''}
                     options={sortOptions} />
                 </div>
@@ -227,15 +280,19 @@ const PageSearch = () => {
               </div>
               { inProgress ?
                   (<SearchSkeleton />) :
-                  (<TileList
+                  (<CardList
                     items={items}
                     params={params} />)}
-              <div className='results__footer'>
+              <div className='results__footer mb-30'>
                 <div className='results__summary'>
                   <p className='results__summary--text'>
-                    {inProgress ? (<Skeleton />) : (`${startItem === endItem ?
-                        startItem :
-                        `${startItem}-${endItem}`} of ${resultsCount} results`)}
+                    {inProgress ? (<Skeleton />) :
+                      <Select
+                        value={startItem === endItem}
+                        _true={startItem}
+                        other={`${startItem}-${endItem} of ${resultsCount} results`}
+                      />
+                    }
                   </p>
                 </div>
                 <div className='results__pagination'>
@@ -246,11 +303,11 @@ const PageSearch = () => {
                       pageCount={pageCount}
                       handlePageClick={handlePageClick} />
                   )}
-                </div>
               </div>
-            </>
-          )}
-        </div>
+            </div>
+          </>
+          }
+        </main>
       </div>
       <FacetModal
         isOpen={facetIsOpen}

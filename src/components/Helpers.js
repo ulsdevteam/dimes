@@ -1,4 +1,5 @@
 import queryString from 'query-string'
+import { t, plural } from '@lingui/macro'
 
 /** Returns a string from a date object or string */
 export const dateString = dates => {
@@ -51,9 +52,17 @@ export const formatBytes = (bytes, decimals = 2) => {
 }
 
 /** Returns a human readable representation of a number of matches **/
-export const formatMatchString = (hitCount, online) => {
+export const formatMatchString = (hitCount, online) => {  
   const count = hitCount === 10000 ? `${hitCount}+` : hitCount
-  const suffix = online ? (hitCount === 1 ? 'digital match' : 'digital matches' ) : (hitCount === 1 ? 'match' : 'matches')
+  const physicalMatch = t({
+    comment: 'Pluralization of match(es)',
+    message: plural(hitCount, {one: 'match', other: 'matches'})
+  })
+  const digitalMatch = t({
+    comment: 'Pluralization of digital match(es)',
+    message: plural(hitCount, {one: 'digital match', other: 'digital matches'})
+  })
+  const suffix = (online ? digitalMatch : physicalMatch)
   return `${count} ${suffix}`
 }
 
@@ -73,7 +82,7 @@ export const truncateString = (text, maxLength) => {
   }
 }
 
-/** Sends a custom pageview event to Google Tag Manager.
+/** Sends a custom pageview event to Matomo Tag Manager.
 * This allows us to ensure that the correct page titles are sent.  */
 var done = false
 var prevTitle = ''
@@ -82,22 +91,13 @@ export const firePageViewEvent = title => {
     done = false
   }
   if (title && !done) {
-    if (window && window.dataLayer) {
-      let dataLayer = window.dataLayer || []
+    if (window && window._mtm) {
+      let dataLayer = window._mtm || [];
       dataLayer.push({
         'event': 'reactPageViewEvent'
-      })
+      });
       done = true
       prevTitle = title
     }
   }
 }
-
-/** Checks the width of the window to determine if current device is mobile **/
-export const isMobile = window.innerWidth < 580;
-
-/** Checks the width of the window to determine if current device is tablet **/
-export const isTablet = window.innerWidth < 1024;
-
-/** Checks the width of the window to determine if current device is tablet **/
-export const isDesktop = window.innerWidth >= 1024;

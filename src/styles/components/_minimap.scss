@@ -1,0 +1,15 @@
+@import "../styles";
+
+.minimap__wrapper {
+  width: $minimap-width;
+  height: calc(100vh - 60px);
+  float: left;
+  position: sticky;
+  top: 60px;
+  z-index: 998;
+}
+
+.minimap__wrapper--modal {
+  width: 100%;
+  height: calc(100% - 72px);
+}

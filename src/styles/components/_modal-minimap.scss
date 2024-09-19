@@ -1,0 +1,36 @@
+.modal--minimap {
+  top: 70px;
+  right: 40px;
+  left: 40px;
+  bottom: unset;
+  @include md-up {
+    top: 100px;
+    right: 25%;
+    left: 25%;
+  }
+  @include lg-up {
+    top: 80px;
+    left: 10%;
+    right: calc(63% + 20px);
+  }
+}
+
+.modal__header--minimap {
+  background-color: $white;
+  display: flex;
+  justify-content: space-between;
+  line-height: 1.15;
+}
+
+.modal__header-title--minimap {
+  color: inherit;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.modal__body--minimap {
+  font-size: 13px;
+  height: calc(100% - 23px);
+  line-height: 1.15;
+}

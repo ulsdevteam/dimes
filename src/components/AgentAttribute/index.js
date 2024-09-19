@@ -1,21 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import classnames from 'classnames'
 import './styles.scss'
 
-const AgentAttribute = ({ label, note, value }) => (
-  <div className={classnames('agent-attribute', {'agent-attribute--full-width': note})}>
-    <p className='agent-attribute__label'>{label}</p>
+const AgentAttribute = ({ label, value }) => (
+  <div className={'agent-attribute'}>
+    <h3 className='agent-attribute__label m-0'>{label}</h3>
     <p className='agent-attribute__value'>{value}</p>
   </div>)
 
 const AgentAttributeList = ({ items }) => {
-  const listItems = items.map((item, index) =>
+  const listItems = Object.keys(items).map((item, index) =>
     <AgentAttribute
       key={index}
-      label={item.label}
-      value={item.value}
-      note={item.note} />
+      label={item}
+      value={items[item]} />
   )
   return (
     <div className='agent__attributes'>
@@ -26,7 +24,6 @@ const AgentAttributeList = ({ items }) => {
 
 AgentAttribute.propTypes = {
   label: PropTypes.string.isRequired,
-  note: PropTypes.bool,
   value: PropTypes.string.isRequired
 }
 

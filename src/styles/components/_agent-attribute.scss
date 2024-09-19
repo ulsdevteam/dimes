@@ -2,27 +2,19 @@
 
 .agent__attributes {
   width: 100%;
-  float: left;
-  margin-left: -$gutters-default;
-  margin-right: -$gutters-default;
+  display: flex;
+  column-gap: 15px;
 }
 
 .agent-attribute {
-  @include grid-column(12);
   margin-bottom: 24px;
-  @include md-up  {
-    @include grid-column(4);
-  }
+  min-width: 18%;
+  flex-grow: 1;
   @include lg-up {
-    @include grid-column(3);
     margin-bottom: 27px;
   }
 }
 
-.agent-attribute--full-width {
-  @include grid-column(12);
-}
-
-.agent-attribute__value {
+.agent-attribute__value, .agent-note__value {
   white-space: pre-line;
 }

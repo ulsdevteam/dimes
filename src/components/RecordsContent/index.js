@@ -12,10 +12,11 @@ import { Badge } from '../Badge'
 import ListToggleButton from '../ListToggleButton'
 import MaterialIcon from '../MaterialIcon'
 import QueryHighlighter from '../QueryHighlighter'
-import { appendParams, dateString, isMobile, formatMatchString, truncateString} from '../Helpers'
+import { appendParams, dateString, formatMatchString, truncateString} from '../Helpers'
 import { useOnScreen } from '../Hooks'
 import { isItemSaved } from '../MyListHelpers'
 import { RecordsChildSkeleton } from '../LoadingSkeleton'
+import { Trans, t, select } from '@lingui/macro';
 import classnames from 'classnames'
 import './styles.scss'
 
@@ -207,8 +208,8 @@ export const RecordsChild = props => {
     if (targetElementLoaded) {
       setTimeout(() => {
         const targetElement = document.getElementById(`accordion__heading-${currentUrl}`)
-        targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
         targetElement.focus()
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
       }, 500) /* 2 */
       setTimeout(() => setIsScrolled(true), 3000)
     }
@@ -226,14 +227,21 @@ export const RecordsChild = props => {
       </div>
       <div className='child__buttons'>
         {item.online ? (
-          <a className='btn btn-launch--content'
-             href={`${item.uri}/view`}>{isMobile? 'View' : 'View Online'}
-             <MaterialIcon icon='visibility' /></a>) :
+          <a className='btn btn--sm btn--blue btn-launch--content mr-10 p-8'
+            href={`${item.uri}/view`}>{
+              t({
+                message: select(props.isMobile, {
+                  true: 'View',
+                  other: 'View Online'
+                })
+              })
+            }
+             <MaterialIcon icon='visibility' className='material-icon--space-before' /></a>) :
           (null)
         }
         <ListToggleButton
-          className='btn-add--content'
-          isMobile={isMobile}
+          className='btn--sm btn--orange btn-add--content mr-10 p-8'
+          isMobile={props.isMobile}
           isSaved={isSaved}
           item={props.item}
           toggleSaved={toggleSaved} />
@@ -387,13 +395,15 @@ const RecordsContent = props => {
 
   return (
   children ?
-    (<div className={classnames('records__content', {'hidden': !isContentShown})}>
+    (<div className={classnames('records__content', 'py-40', 'px-30', {'hidden': !isContentShown})}>
       {isLoading ? (
         <div className='loading'>
-          <p id='content-loading' className='loading__text loading-dots'>Loading</p>
+            <Trans comment='Records content is loading'>
+              <p id='content-loading' className='records-loading__text loading-dots'>Loading</p>
+            </Trans>
         </div>) : (null)}
-      <h2 className='content__title'>Collection Content</h2>
-      <h3 className='collection__title'>{collection.title}</h3>
+      <h2 className='content__title mt-0 pb-0'><Trans comment='Collection Content title'>Collection Content</Trans></h2>
+      <h3 className='collection__title mb-0'>{collection.title}</h3>
       <p className='collection__date'>{dateString(collection.dates)}</p>
       <p className='collection__text text--truncate'>
         {truncateString(collection.description, 180)}

@@ -11,6 +11,9 @@ import MaterialIcon from '../MaterialIcon'
 import { ModalSavedItemList } from '../ModalSavedItem'
 import { getFormattedDate } from '../Helpers'
 import './styles.scss'
+import { Plural, Trans, select, t } from '@lingui/macro'
+import axios from 'axios'
+import { addBusinessDays, parse, parseISO, startOfDay, isWithinInterval } from 'date-fns'
 
 
 const SubmitListInput = ({ submitList }) => {
@@ -25,46 +28,12 @@ const SubmitListInput = ({ submitList }) => {
   return (
     <Field
       type='hidden'
-      name='items'/>
+      name={t({
+        message: 'items'
+      })} />
   )
 }
 
-
-const FormatSelectInput = () => {
-  const { setFieldValue } = useFormikContext();
-  const [format, setFormat] = useState('')
-
-  const formatOptions = [
-    {value: '', label: 'Select a format'},
-    {value: 'Digital Image ', label: 'Digital Image'},
-    {value: 'Photographic Print ', label: 'Photographic Print'},
-    {value: 'Audio/Video/Film', label: 'Audio/Video/Film'},
-    {value: 'Photocopy/Quickscan', label: 'Photocopy/Quickscan'}
-  ]
-
-  useEffect(() => {
-    setFieldValue('format', format)
-  }, [format, setFieldValue])
-
-  return (
-    <div className='form-group'>
-      <SelectInput
-        className='select__modal'
-        id='format'
-        label='Format'
-        name='format'
-        onChange={({selectedItem}) => setFormat(selectedItem.value)}
-        options={formatOptions}
-        required={true}
-        selectedItem={format || ''} />
-      <ErrorMessage
-        id='format-error'
-        name='format'
-        component='div'
-        className='modal-form__error' />
-    </div>
-  )
-}
 
 export const ModalToggleListButton = ({ ignoreRestrictions, items, toggleList }) => {
 
@@ -90,8 +59,23 @@ export const ModalToggleListButton = ({ ignoreRestrictions, items, toggleList })
     <Button
       className='btn--sm btn--gray'
       handleClick={() => toggleList(!deselect, ignoreRestrictions)}
-      label={deselect ? 'Deselect all items' : 'Select all items'}
-      ariaLabel={deselect ? 'Deselect all items' : 'Select all items'}
+      label={t({
+        comment: 'Label for item (de)selection',
+        message: select(
+          deselect, {
+            true: 'Deselect all items',
+            other: 'Select all items'
+          }
+        )
+      })}
+      ariaLabel={t({
+        message: select(
+          deselect, {
+            true: 'Deselect all items',
+            other: 'Select all items'
+          }
+        )
+      })}
       ariaPressed={deselect}
       iconBefore={deselect ? 'check_box_outline_blank' : 'check_box'} />
   )
@@ -111,7 +95,7 @@ export const SelectedTotals = ({ items }) => {
       {...total, [current.type]: parseFloat(current.value)}
   ), {})
   const extents = Object.entries(totals).map(e => pluralize(e[0], e[1], true))
-  return (extents.length ? <p className='selected-totals'>{`selected: ${extents.join(', ')}`}</p> : <p className='selected-totals'>selected: 0 items</p>)
+  return <p className='selected-totals mt-10'><Trans comment='Message returned dependent on how many items selected' ><Plural value={extents.length} _0="selected: 0 items" other={`selected: ${extents.join(', ')}`} /></Trans></p>
 }
 
 
@@ -120,16 +104,17 @@ export const ModalMyList = props => (
     appElement={props.appElement ? props.appElement : Modal.setAppElement('#root')}
     isOpen={props.isOpen}
     onRequestClose={props.toggleModal}
-    className='modal-content'
-    overlayClassName='modal-overlay'>
-    <div className='modal-header'>
-      <h2 className='modal-header__title'>{props.title}</h2>
-      <button className='modal-header__button' aria-label='Close' onClick={props.toggleModal}>
+    className='modal'
+    overlayClassName='modal__overlay'>
+    <div className='modal__header'>
+      <h2 className='modal__header-title'>{props.title}</h2>
+      <button className='modal__header-button' aria-label={t({ message: 'Close' })} onClick={props.toggleModal}>
         <MaterialIcon icon='close'/>
       </button>
     </div>
-    <div className='modal-body'>
-      <div className='modal-list'>
+    {props.list.every(listGroup => (listGroup.items.every(item => item.submit !== undefined))) ? (
+    <div className='modal__body p-0'>
+      <div className='modal-list py-30 px-20'>
         <ModalToggleListButton
           ignoreRestrictions={props.ignoreRestrictions}
           items={props.list}
@@ -140,11 +125,20 @@ export const ModalMyList = props => (
           items={props.list}
           handleChange={props.handleChange} />
         <SelectedTotals items={props.list} />
+        <ModalToggleListButton
+          ignoreRestrictions={props.ignoreRestrictions}
+          items={props.list}
+          toggleList={props.toggleList} />
       </div>
-      <div className='modal-form'>
+      <div className='modal-form pt-30 px-20 pb-18'>
         {props.form}
       </div>
-    </div>
+    </div>) :
+    (<div className='modal__body'>
+      <p className='loading-dots modal-loading__text'>
+        <Trans comment='Message while MyList modal loads items'>Preparing items</Trans>
+      </p>
+    </div>)}
   </Modal>
 )
 
@@ -174,72 +168,121 @@ export const EmailModal = props => (
     toggleModal={props.toggleModal}
     list={props.list}
     form={
-      <Formik
-        initialValues={{email: '', subject: '', message: '', items: props.submitList, recaptcha: ''}}
-        validate={values => {
-          const errors = {};
-          if (!values.email) {
-            errors.email = 'An email address is required.';
-          } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          ) {
-            errors.email = 'Invalid email address provided.';
-          }
-          if (!values.recaptcha) errors.recaptcha = 'Please complete this field.';
-          if (!values.items.length) errors.items = 'No items have been selected to submit.'
-          return errors;
-        }}
-        onSubmit={(values, { setSubmitting }) => {
-          props.toggleModal()
-          props.handleFormSubmit(
-            `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/deliver-request/email`,
-            values);
-          setSubmitting(false);
-        }}
-      >
-      {({ errors, isSubmitting, setFieldValue, touched }) => (
-        <Form>
-          <SubmitListInput submitList={props.submitList} />
-          <ErrorMessage
-            id='items-error'
-            name='items'
-            component='div'
-            className='modal-form__error' />
-          <FormGroup
-            label='Email *'
-            name='email'
-            type='email'
-            required={true}
-            errors={errors}
-            touched={touched} />
-          <FormGroup
-            label='Subject'
-            name='subject'
-            type='text' />
-          <FormGroup
-            label='Message'
-            name='message'
-            component='textarea'
-            rows={5} />
-          <div className='form-group'>
-            <Field
-              component={Captcha}
-              name='recaptcha'
-              handleCaptchaChange={(response) => setFieldValue('recaptcha', response)} />
-            <ErrorMessage
-              id='recaptcha-error'
-              name='recaptcha'
-              component='div'
-              className='modal-form__error' />
+      <>
+        <div className='mb-20'>
+            <Trans comment='Note to user about including name and email address'>
+              <strong>Please note:</strong> if are emailing your list to an archivist at <a href={t({message: 'mailto:archives-ref@pitt.edu'})}>archives-ref@pitt.edu</a>, please include your name and email address in the Message field, otherwise we will have no means of contacting you to follow-up.
+            </Trans>
           </div>
-          <FormButtons
-            submitText='Send List'
-            toggleModal={props.toggleModal}
-            isSubmitting={isSubmitting} />
-          <FocusError />
-        </Form>
-      )}
-      </Formik>
+        <Formik
+          initialValues={{email: '', subject: '', message: '', items: props.submitList, recaptcha: ''}}
+          validate={values => {
+            const errors = {};
+            if (!values.email) {
+              errors.email = t({
+                comment: 'Missing email address error',
+                message: 'An email address is required.'
+              });
+            } else if (
+              !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+            ) {
+              errors.email = t({
+                comment: 'Invalid email error',
+                message: 'Invalid email address provided.'
+              });
+            }
+            if (!values.recaptcha) errors.recaptcha = t({
+              comment: 'Captcha not completed error',
+              message: 'Please complete this field.'
+            });
+            if (!values.items.length) errors.items = t({
+              comment: 'No selected items error',
+              message: 'No items have been selected to submit.'
+            })
+            return errors;
+          }}
+          onSubmit={(values, { setSubmitting }) => {
+            props.toggleModal()
+            props.handleFormSubmit(
+              `${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/deliver-request/email`,
+              values);
+            setSubmitting(false);
+          }}
+        >
+        {({ errors, isSubmitting, setFieldValue, touched }) => (
+          <Form>
+            <SubmitListInput submitList={props.submitList} />
+            <ErrorMessage
+              id='items-error'
+                name={t({
+                  comment: 'Name of items error message',
+                  message: 'items'
+                })}
+              component='div'
+              className='input__error' />
+            <FormGroup
+              label={t({
+                comment: 'Label of Email Form',
+                message: 'Email *'
+              })}
+              name={t({
+                comment: 'Name of email form',
+                message: 'email'
+              })}
+              type='email'
+              required={true}
+              errors={errors}
+              touched={touched} />
+            <FormGroup
+              label={t({
+                comment: 'Label of Subject Form',
+                message: 'Subject'
+              })}
+              name={t({
+                comment: 'Name of subject form',
+                message: 'subject'
+              })}
+              type='text' />
+            <FormGroup
+              label={t({
+                comment: 'Label of Message Form',
+                message: 'Message'
+              })}
+              name={t({
+                comment: 'Name of message form',
+                message: 'message'
+              })}
+              component='textarea'
+              rows={5} />
+            <div className='form-group mx-0'>
+              <Field
+                component={Captcha}
+                name={t({
+                  comment: 'Name of recaptcha element',
+                  message: 'recaptcha'
+                })}
+                handleCaptchaChange={(response) => setFieldValue('recaptcha', response)} />
+              <ErrorMessage
+                id='recaptcha-error'
+                name={t({
+                  comment: 'Name of recaptcha error message',
+                  message: 'recaptcha'
+                })}
+                component='div'
+                className='input__error' />
+            </div>
+            <FormButtons
+              submitText={t({
+                comment: 'Send List sumbit message',
+                message: 'Send List'
+              })}
+              toggleModal={props.toggleModal}
+              isSubmitting={isSubmitting} />
+            <FocusError />
+          </Form>
+        )}
+        </Formik>
+      </>
     }
   />
 )
@@ -255,29 +298,31 @@ EmailModal.propTypes = {
   toggleModal: PropTypes.func.isRequired,
 }
 
-const ReadingRoomSelect = () => {
+const ReadingRoomSelect = ({ readingRooms }) => {
   const { setFieldValue } = useFormikContext();
-  const [site, setSite] = useState('')
+  const [site, setSite] = useState('');
 
-  const ReadingRoomLocations = [
-   { value: "", label: "Please select a reading room"},
-   { value: "ASCHILLMAN", label: "A&SC Hillman Library 320"},
-   { value: "ASCTHOMAS", label: "A&SC Thomas Boulevard"},
-   { value: "CAMUSIC", label: "Center for American Music Reading Room"}
-  ];
+  const ReadingRoomLocations = readingRooms.map(readingRoom => ({
+    value: readingRoom.sites[0],
+    label: readingRoom.name,
+  }));
+  ReadingRoomLocations.unshift({
+    value: "",
+    label: t({message: "Please select a reading room"}),
+  });
 
   useEffect(() => {
-    setFieldValue('site', site)
-  }, [site, setSite])
+    setFieldValue('site', site);
+  }, [site, setFieldValue]);
 
   return (
     <div className='form-group'>
       <SelectInput
         className='select__modal'
         id='site'
-        label='Select Reading Room Location'
+        label={t({message: 'Select Reading Room Location'})}
         name='site'
-        onChange={({selectedItem}) => setSite(selectedItem.value)}
+        onChange={({ selectedItem }) => setSite(selectedItem.value)}
         options={ReadingRoomLocations}
         required={true}
         selectedItem={site || ''} />
@@ -290,7 +335,60 @@ const ReadingRoomSelect = () => {
   )
 }
 
-export const ReadingRoomRequestModal = props => (
+const ReadingRoomDateInput = ({ readingRoom }) => {
+  const { setFieldValue } = useFormikContext();
+
+  return (
+    <div className='form-group'>
+      <Field
+        component={DateInput}
+        handleChange={date => setFieldValue('scheduledDate', date)}
+        helpText={t({
+          comment: 'Helptext for scheduling date.',
+          message: 'Enter the date of your research visit (mm/dd/yyyy)'
+        })}
+        id='scheduledDate'
+        label={t({
+          comment: 'Label for scheduling date',
+          message: 'Scheduled Date *'
+        })}
+        type='date'
+        defaultDate={addBusinessDays(new Date(), readingRoom?.policies[0]?.appointmentMinLeadDays || 1)}
+        minDate={addBusinessDays(new Date(), readingRoom?.policies[0]?.appointmentMinLeadDays || 1)}
+        filterDate={!!process.env.REACT_APP_ENABLE_READING_ROOM_SELECT ? date => readingRoom?.openHours.some(x => x.dayOfWeek === date.getDay()) : null}
+        filterTime={!!process.env.REACT_APP_ENABLE_READING_ROOM_SELECT ? date => {
+          if (readingRoom === undefined) return false;
+          const hours = readingRoom.openHours.find(x => x.dayOfWeek === date.getDay());
+          return isWithinInterval(date, {
+            start: parse(hours.openTime, "HH:mm:ss", date),
+            end: parse(hours.closeTime, "HH:mm:ss", date),
+          });
+        } : null}
+        excludeDateIntervals={readingRoom?.closures.map(closure => ({
+          start: startOfDay(parseISO(closure.startDate)),
+          end: startOfDay(parseISO(closure.endDate)),
+        }))} />
+      <ErrorMessage
+        id='scheduledDate-error'
+        name='scheduledDate'
+        component='div'
+        className='modal-form__error' />
+    </div>
+  )
+}
+
+export const ReadingRoomRequestModal = props => { 
+  const [aeonReadingRooms, setAeonReadingRooms] = useState([]);
+
+  useEffect(() => {
+    if (!!process.env.REACT_APP_ENABLE_READING_ROOM_SELECT) {
+      axios.get(`${process.env.REACT_APP_REQUEST_BROKER_BASEURL}/reading-rooms`).then(response => {
+        setAeonReadingRooms(response.data);
+      });
+    }
+  }, []); // empty deps array means it runs once
+
+  return (
   <ModalMyList
     appElement={props.appElement}
     title='Request in Reading Room'
@@ -304,10 +402,22 @@ export const ReadingRoomRequestModal = props => (
         initialValues={{scheduledDate: new Date(), questions: '', notes: '', readingRoomID: '', site: '', items: props.submitList, recaptcha: ''}}
         validate={values => {
           const errors = {};
-          if (!values.scheduledDate) errors.scheduledDate = 'Please provide the date of your research visit.';
           if (!values.site) errors.site = 'Please select a location of a reading room.';
           if (!values.recaptcha) errors.recaptcha = 'Please complete this field.';
           if (!values.items.length) errors.items = 'No items have been selected to submit.'
+          if (!values.scheduledDate) errors.scheduledDate = t({
+            comment: 'Missing Scheduled Date error',
+            message: 'Please provide the date of your research visit.'
+          });
+         if (!!process.env.REACT_APP_ENABLE_READING_ROOM_SELECT && !values.site) errors.site = t({
+            message: 'Please select a location of a reading room.'
+          })
+          if (!values.recaptcha) errors.recaptcha = t({
+            message: 'Please complete this field.'
+          });
+          if (!values.items.length) errors.items = t({
+            message: 'No items have been selected to submit.'
+          })
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
@@ -320,37 +430,31 @@ export const ReadingRoomRequestModal = props => (
           setSubmitting(false);
         }}
       >
-      {({ errors, isSubmitting, setFieldValue, touched }) => (
+      {({ errors, isSubmitting, setFieldValue, touched, values }) => (
         <Form>
           <SubmitListInput submitList={props.submitList} />
           <ErrorMessage
             id='items-error'
             name='items'
             component='div'
-            className='modal-form__error' />
-          <div className='form-group'>
-            <Field
-              component={DateInput}
-              handleChange={date => setFieldValue('scheduledDate', date)}
-              helpText='Enter the date of your research visit (mm/dd/yyyy)'
-              id='scheduledDate'
-              label='Scheduled Date *'
-              type='date' />
-            <ErrorMessage
-              id='scheduledDate-error'
-              name='scheduledDate'
-              component='div'
-              className='modal-form__error' />
-          </div>
-          <ReadingRoomSelect />
+            className='input__error' />
+          {!!process.env.REACT_APP_ENABLE_READING_ROOM_SELECT && <ReadingRoomSelect readingRooms={aeonReadingRooms} />}
+          <ReadingRoomDateInput
+            readingRoom={aeonReadingRooms.find(room => room.sites[0] === values.site)} />
           <FormGroup
-            label='Message for Pitt staff'
-            helpText='255 characters maximum'
+            label={t({
+              comment: 'Label for Pitt staff message Form',
+              message: 'Message for Pitt staff''
+            })}
+            helpText={t({
+              comment: 'helptext for Pitt staff message',
+              message: '255 characters maximum'
+            })}
             name='questions'
             maxLength={255}
             component='textarea'
             rows={5} />
-          <div className='form-group'>
+          <div className='form-group mx-0'>
             <Field
               component={Captcha}
               name='recaptcha'
@@ -359,10 +463,18 @@ export const ReadingRoomRequestModal = props => (
               id='recaptcha-error'
               name='recaptcha'
               component='div'
-              className='modal-form__error' />
+              className='input__error' />
           </div>
           <FormButtons
-            submitText={`Request ${props.submitList.length ? (props.submitList.length) : '0'} ${props.submitList.length !== 1 ? 'Items' : 'Item'}`}
+              submitText={t({
+                comment: 'Text for submiting item(s) request',
+                message: select(
+                  props.submitList.length !== 1, {
+                    true: `Request ${props.submitList.length} Items`,
+                    other: `Request ${props.submitList.length} Item`
+                  }
+                )
+              })}
             toggleModal={props.toggleModal}
             isSubmitting={isSubmitting} />
           <FocusError />
@@ -371,7 +483,7 @@ export const ReadingRoomRequestModal = props => (
       </Formik>
     }
   />
-)
+)}
 
 ReadingRoomRequestModal.propTypes = {
   appElement: PropTypes.object,
@@ -396,25 +508,58 @@ export const DuplicationRequestModal = props => (
     list={props.list}
     form={
       <>
-        <div className='modal-form__intro'>
-          <strong>Please note:</strong> if you want a cost estimate for your order, email an archivist at <a href='mailto:archive-ref@pitt.edu'>archive-ref@pitt.edu</a>.
+        <div className='mb-20'>
+          <Trans comment='Fees and limitations title'>
+            <h3 className='mt-0'>Fees and limitations</h3>
+          </Trans>
+          <Trans comment='Fees and limitations information'>
+            <div className='mb-20'>
+		<strong>Please note:</strong> if you want a cost estimate for your order, email an archivist at <a href='mailto:archive-ref@pitt.edu'>archive-ref@pitt.edu</a>.
+            </div>
+            <div className='mb-20'>
+              For more details, including exceptions for audiovisual and oversized materials, read about our 
+              <a target='_blank'
+                  rel='noopener noreferrer'
+                    title={t({
+                      comment: 'Title for duplication services link',
+                      message: 'opens in a new window'
+                    })}
+                    href={t({
+                      comment: 'Link for duplication request services',
+                      message: 'https://rockarch.org/collections/access-and-request-materials/#duplication-services'
+                    })}>
+                  duplication services
+                </a>.
+            </div>
+            <div>
+              For help or to request a publication quality scan, email an archivist at 
+              <a href={t({message: 'mailto:archives-ref@pitt.edu'})}>archives-ref@pitt.edu</a>.
+            </div>
+          </Trans>
         </div>
+        <Trans comment='Submit Request title'>
+          <h3 className='mt-0'>Submit request</h3>
+        </Trans>
         <Formik
           initialValues={{
-            format: '',
-            description: 'Entire folder',
-            questions: '',
-            notes: '',
-	    site: 'ASCTHOMAS',
-            confirm: false,
+            costs: false,
             items: props.submitList,
             recaptcha: ''}}
           validate={values => {
             const errors = {};
-            if (!values.format) errors.format = 'Please select your desired duplication format.';
-            if (!values.recaptcha) errors.recaptcha = 'Please complete this field.';
-            if (!values.confirm) errors.confirm = 'Please check the box to acknowledge that an archivist may not be able to fulfill your requestat this time.';
-            if (!values.items.length) errors.items = 'No items have been selected to submit.'
+            if (!values.recaptcha) errors.recaptcha = t({
+              message: 'Please complete this field.'
+            });
+            if (!values.costs) errors.costs = t({
+              comment: 'Costs not agreed to error',
+              message: 'We cannot process your request unless you agree to pay the costs of reproduction.'
+            });
+            if (!values.items.length) errors.items = t({
+              message: 'No items have been selected to submit.'
+            })
+            if (!!process.env.REACT_APP_DUPLICATION_REQUEST_LIMIT & values.items.length > Number(process.env.REACT_APP_DUPLICATION_REQUEST_LIMIT)) errors.items = t({
+              message: `Please limit your request to ${process.env.REACT_APP_DUPLICATION_REQUEST_LIMIT} items.`
+            })
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
@@ -432,43 +577,49 @@ export const DuplicationRequestModal = props => (
               id='items-error'
               name='items'
               component='div'
-              className='modal-form__error' />
-            <FormatSelectInput />
+              className='input__error' />
             <FormGroup
-              label='Description of Materials'
-              helpText='Please describe the materials you want reproduced. 255 characters maximum.'
-              name='description'
-              maxLength={255}
-              component='textarea'
-              rows={5} />
-            <FormGroup
-              label='Message for Pitt staff'
-              helpText='255 characters maximum.'
-              maxLength={255}
-              name='questions'
-              component='textarea'
-              rows={5} />
-            <FormGroup
-              label={<>
-                By checking this box, I acknowledge archival staff may not be able to fulfill my request at this time.</>}
-              name='confirm'
+              label={<Trans comment='Label for duplication request form'>
+                I agree to pay the duplication costs for this request. See our&nbsp;
+                <a target='_blank'
+                  rel='noopener noreferrer'
+                    title={t({
+                      comment: 'Title for duplication request',
+                      message: 'opens in a new window'
+                    })}
+                    href={t({
+                      comment: 'Link for duplication request services',
+                      message: 'https://rockarch.org/collections/access-and-request-materials/#duplication-services'
+                    })}>
+                  fee schedule
+                </a>.</Trans>}
+              name='costs'
               type='checkbox'
               required={true}
               errors={errors}
               touched={touched} />
-            <div className='form-group'>
+            <div className='form-group mx-0'>
               <Field
                 component={Captcha}
-                name='recaptcha'
+                  name={t({
+                    message: 'recaptcha'
+                  })}
                 handleCaptchaChange={(response) => setFieldValue('recaptcha', response)} />
               <ErrorMessage
                 id='captcha-error'
                 name='recaptcha'
                 component='div'
-                className='modal-form__error' />
+                className='input__error' />
             </div>
             <FormButtons
-              submitText={`Request ${props.submitList.length ? (props.submitList.length) : '0'} ${props.submitList.length !== 1 ? 'Items' : 'Item'}`}
+              submitText={t({
+                message: select(
+                  props.submitList.length !== 1, {
+                    true: `Request ${props.submitList.length} Items`,
+                    other: `Request ${props.submitList.length} Item`
+                  }
+                )
+              })}
               toggleModal={props.toggleModal}
               isSubmitting={isSubmitting} />
             <FocusError />

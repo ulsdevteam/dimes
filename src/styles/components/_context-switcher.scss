@@ -13,11 +13,9 @@
 }
 
 .toggle-context {
-  @extend .btn--lg;
-  @extend .btn--gold;
-  margin-bottom: 0;
   border-radius: 0 !important;
   width: 100%;
+  justify-content: center;
   position: fixed;
   bottom: 0;
 }
@@ -26,11 +24,11 @@
   opacity: 0;
   @include md-up {
     opacity: 1;
-    background: $off-white;
-    color: $dark-gray;
+    background: $desert-grey;
+    color: $night-grey;
     &:hover, &:focus {
-      background: $neutral-sand;
-      color: $dark-gray;
+      background: $wan-white-grey;
+      color: $night-grey;
     }
   }
 }
