@@ -44,7 +44,7 @@ const CardList = ({ items, params, cardClassName, className }) => {
       date={item.dates?.length ? item.dates.map(d => d.expression).join(', ') : null} />
   )
   return (
-    <ul className={classnames('card-list list--unstyled mt-40 mb-32', className)}>
+    <ul className={classnames('card-list mt-40 mb-32', className)}>
       {listItems}
     </ul>
   )

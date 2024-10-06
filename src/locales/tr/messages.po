@@ -44,7 +44,7 @@ msgstr "{0, select, true {Minimap} other {Minimap Tanıtımı}}"
 
 #. Text for submiting item(s) request
 #: src/components/ModalMyList/index.js:466
-#: src/components/ModalMyList/index.js:609
+#: src/components/ModalMyList/index.js:612
 msgid "{0, select, true {Request {1} Items} other {Request {2} Item}}"
 msgstr "{0, select, true {Materyalleri̇ Talep et {1}} other {Materyalleri̇ Talep et {2}}}"
 
@@ -114,7 +114,7 @@ msgid "<0/>Back to Search"
 msgstr "<0/>aramaya geri̇ dön"
 
 #. New Search button
-#: src/components/PageMyList/index.js:292
+#: src/components/PageMyList/index.js:297
 msgid "<0/>Start a New Search"
 msgstr "<0/>Yeni Bir Arama Başlatın"
 
@@ -135,16 +135,11 @@ msgstr "<0><1/>Madde Detaylarina Geri̇ Dön</0>"
 
 #. Social Icons Titles
 #: src/components/SocialIcons/index.js:5
-msgid "<0><1><2><3><4>Twitter Logo</4><5/></3></2></1><6><7><8><9>Facebook Logo</9><10/></8></7></6><11><12><13><14>Instagram Logo</14><15/></13></12></11><16><17><18><19>YouTube Logo</19><20/></18></17></16><21><22><23><24>Flickr Logo</24><25/></23></22></21></0>"
-msgstr ""
-
-#. Social Icons Titles
-#: src/components/SocialIcons/index.js:5
-#~ msgid "<0><1><2><3><4>Twitter Logo</4><5/></3></2></1><6><7><8><9>Facebook Logo</9><10/></8></7></6><11><12><13><14>Instagram Logo</14><15/></13></12></11><16><17><18><19>YouTube Logo</19><20/></18></17></16><21><22><23><24>Flickr Logo</24><25><26><27><28/><29/></27></26></25></23></22></21></0>"
-#~ msgstr "<0><1><2><3><4>Twitter Logosu</4><5/></3></2></1><6><7><8><9>Facebook Logosu</9><10/></8></7></6><11><12><13><14>Instagram Logosu</14><15/></13></12></11><16><17><18><19>YouTube Logosu</19><20/></18></17></16><21><22><23><24>Flickr Logosu</24><25><26><27><28/><29/></27></26></25></23></22></21></0>"
+msgid "<0><1><2><3><4>Facebook Logo</4><5/></3></2></1><6><7><8><9>Instagram Logo</9><10/></8></7></6><11><12><13><14>LinkedIn Logo</14><15/></13></12></11><16><17><18><19>YouTube Logo</19><20/></18></17></16></0>"
+msgstr "<0><1><2><3><4>Facebook Logosu</4><5/></3></2></1><6><7><8><9>Instagram Logosu</9><10/></8></7></6><11><12><13><14>LinkedIn Logosu</14><15/></13></12></11><16><17><18><19>YouTube Logosu</19><20/></18></17></16></0>"
 
 #. Page Title for user's list
-#: src/components/PageMyList/index.js:283
+#: src/components/PageMyList/index.js:288
 msgid "<0><1>DIMES: My List</1></0>"
 msgstr "<0><1>DIMES: Listem</1></0>"
 
@@ -229,7 +224,7 @@ msgid "<0>More about this {agentType}</0>"
 msgstr "<0>Hakkında daha fazla bilgi {agentType}</0>"
 
 #. Header for user's list
-#: src/components/PageMyList/index.js:298
+#: src/components/PageMyList/index.js:303
 msgid "<0>My List</0>"
 msgstr "<0>Listem</0>"
 
@@ -348,7 +343,7 @@ msgid "archive@rockarch.org"
 msgstr "archive@rockarch.org"
 
 #. Confirmation to delete all items from list
-#: src/components/PageMyList/index.js:369
+#: src/components/PageMyList/index.js:374
 msgid "Are you sure you want to remove all the items from your list?<0><1/><2/></0>"
 msgstr "Listenizdeki tüm öğeleri kaldırmak istediğinizden emin misiniz?<0><1/><2/></0>"
 
@@ -358,7 +353,7 @@ msgid "Bulk data download"
 msgstr "Toplu veri indirme"
 
 #. Title shown when request failed
-#: src/components/PageMyList/index.js:354
+#: src/components/PageMyList/index.js:359
 msgid "Can't Complete Request"
 msgstr "Talep Tamamlanamıyor"
 
@@ -372,11 +367,6 @@ msgstr "Talep Tamamlanamıyor"
 #: src/components/ModalMyList/__tests__/ModalMyList.test.js:250
 msgid "Cancel"
 msgstr "İptal"
-
-#. Name for Category selector
-#: src/components/SearchForm/index.js:101
-msgid "category"
-msgstr "kategori"
 
 #. Label for Category selector
 #: src/components/SearchForm/index.js:97
@@ -420,7 +410,7 @@ msgid "Collections Related to {agentTitle}"
 msgstr "{agentTitle} İle İlgi̇li̇ Koleksi̇yonlar"
 
 #. Remove all confirmation title
-#: src/components/PageMyList/index.js:382
+#: src/components/PageMyList/index.js:387
 msgid "Confirm Remove All"
 msgstr "Onaylayın Tümünü Kaldır"
 
@@ -428,11 +418,6 @@ msgstr "Onaylayın Tümünü Kaldır"
 #: src/components/Footer/index.js:65
 msgid "Copyright © Rockefeller Archive Center. All rights reserved."
 msgstr "Telif Hakkı © Rockefeller Arşiv Merkezi. Tüm hakları saklıdır."
-
-#. Name for duplication request form costs
-#: src/components/ModalMyList/index.js:601
-#~ msgid "costs"
-#~ msgstr "maliyetler"
 
 #. Title for Creator filter
 #: src/components/ModalSearch/index.js:93
@@ -595,6 +580,11 @@ msgstr "https://raccess.rockarch.org"
 msgid "https://raccess.rockarch.org/aeon.dll"
 msgstr "https://raccess.rockarch.org/aeon.dll"
 
+#. Scheduling an appointment email link
+#: src/components/MyListSidebar/index.js:12
+msgid "https://raccess.rockarch.org/aeon.dll?Action=10&Form=94"
+msgstr "https://raccess.rockarch.org/aeon.dll?Action=10&Form=94"
+
 #. Accessibility Statement Link
 #: src/components/PrimaryLink/index.js:59
 msgid "https://rockarch.org/about-us/accessibility/"
@@ -613,7 +603,7 @@ msgstr "https://rockarch.org/collections/access-and-request-materials/"
 #. Link for duplication request services
 #. Link for duplication request services
 #: src/components/ModalMyList/index.js:524
-#: src/components/ModalMyList/index.js:584
+#: src/components/ModalMyList/index.js:587
 msgid "https://rockarch.org/collections/access-and-request-materials/#duplication-services"
 msgstr "https://rockarch.org/collections/access-and-request-materials/#duplication-services"
 
@@ -622,33 +612,28 @@ msgstr "https://rockarch.org/collections/access-and-request-materials/#duplicati
 msgid "https://rockarch.org/collections/access-and-request-materials/holiday-schedule"
 msgstr "https://rockarch.org/collections/access-and-request-materials/holiday-schedule"
 
-#. Twitter account link
-#: src/components/SocialIcons/index.js:7
-msgid "https://twitter.com/rockarch_org"
-msgstr "https://twitter.com/rockarch_org"
-
 #. Facebook account link
-#: src/components/SocialIcons/index.js:18
+#: src/components/SocialIcons/index.js:7
 msgid "https://www.facebook.com/RockefellerArchiveCenter"
 msgstr "https://www.facebook.com/RockefellerArchiveCenter"
 
-#. Flickr account link
-#: src/components/SocialIcons/index.js:51
-msgid "https://www.flickr.com/photos/147074352@N05/"
-msgstr "https://www.flickr.com/photos/147074352@N05/"
-
 #. Instagram account link
-#: src/components/SocialIcons/index.js:29
+#: src/components/SocialIcons/index.js:18
 msgid "https://www.instagram.com/rockefellerarchivecenter"
 msgstr "https://www.instagram.com/rockefellerarchivecenter"
 
+#. LinkedIn account link
+#: src/components/SocialIcons/index.js:29
+msgid "https://www.linkedin.com/company/rockefeller-archive-center"
+msgstr "https://www.linkedin.com/company/rockefeller-archive-center"
+
 #. Youtube account link
-#: src/components/SocialIcons/index.js:40
+#: src/components/SocialIcons/index.js:41
 msgid "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
 msgstr "https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg"
 
 #. Label for duplication request form
-#: src/components/ModalMyList/index.js:576
+#: src/components/ModalMyList/index.js:579
 msgid "I agree to pay the duplication costs for this request. See our <0>fee schedule</0>."
 msgstr "Bu talep için çoğaltma masraflarını ödemeyi kabul ediyorum. <0>Ücretlendirme</0> planına bakınız."
 
@@ -686,11 +671,6 @@ msgstr "Genel Merkezi̇n Bulunduğu Yer"
 msgid "mailto:archive@rockarch.org"
 msgstr "mailto:archive@rockarch.org"
 
-#. Scheduling an appointment email link
-#: src/components/MyListSidebar/index.js:12
-msgid "mailto:archive@rockarch.org?subject=Scheduling a research appointment"
-msgstr "mailto:archive@rockarch.org?subject=Scheduling bir araştırma randevusu"
-
 #. Name of message form
 #: src/components/ModalMyList/index.js:251
 msgid "message"
@@ -720,8 +700,8 @@ msgstr "Minimap"
 
 #. Reading Room Actual Hours
 #: src/components/Footer/index.js:49
-msgid "Monday-Friday<0/>9:00 a.m. to 5:00 p.m.<1/>"
-msgstr "Pazartesi-Cuma<0/>9:00 - 17:00 arası.<1/>"
+msgid "Monday-Friday<0/>9:30 a.m. to 5:00 p.m.<1/>"
+msgstr ""Pazartesi-Cuma<0/>9:30 - 17:00 arası.<1/>""
 
 #. Message shown on button within Dropdown list
 #. Message shown on button within the Header
@@ -755,11 +735,6 @@ msgstr "Kayıtlı öğe yok."
 msgid "Occupations"
 msgstr "Meslekler"
 
-#. Name for digital matches only checkbox
-#: src/components/SearchForm/index.js:113
-msgid "online"
-msgstr "çevrimiçi"
-
 #. Tooltip for button
 #: src/components/Dropdown/index.js:72
 msgid "opens email"
@@ -770,7 +745,7 @@ msgstr "e-posta açar"
 #. Title for new window button
 #. Title message for opening an online item
 #: src/components/ModalMyList/index.js:520
-#: src/components/ModalMyList/index.js:580
+#: src/components/ModalMyList/index.js:583
 #: src/components/PageDigitalObject/index.js:112
 #: src/components/RecordsDetail/index.js:229
 msgid "opens in a new window"
@@ -817,6 +792,10 @@ msgstr "Lütfen aramak için bir kelime veya cümle ekleyin."
 msgid "Please complete this field."
 msgstr "Lütfen bu alanı doldurunuz."
 
+#: src/components/ModalMyList/index.js:557
+msgid "Please limit your request to {0} items."
+msgstr "Lütfen talebinizi {0} öğe ile sınırlayın."
+
 #. Missing Scheduled Date error
 #: src/components/ModalMyList/index.js:405
 msgid "Please provide the date of your research visit."
@@ -855,11 +834,6 @@ msgstr "Talep Verilerinin Hazırlanması"
 msgid "Privacy Policy"
 msgstr "Kişisel Verilere Dair Politika"
 
-#. Name for RAC staff message Form
-#: src/components/ModalMyList/index.js:452
-#~ msgid "questions"
-#~ msgstr "Sorular"
-
 #. Footer.Primary.RAC.message
 #: src/components/PrimaryLink/index.js:89
 msgid "RAC Policies"
@@ -874,7 +848,7 @@ msgstr "Okuma Odası Saatleri:"
 #. Name of recaptcha error message
 #: src/components/ModalMyList/index.js:260
 #: src/components/ModalMyList/index.js:267
-#: src/components/ModalMyList/index.js:598
+#: src/components/ModalMyList/index.js:601
 msgid "recaptcha"
 msgstr "recaptcha"
 
@@ -1038,7 +1012,7 @@ msgid "show less"
 msgstr "daha az göster"
 
 #. Label for digital matches only checkbox
-#: src/components/SearchForm/index.js:122
+#: src/components/SearchForm/index.js:116
 msgid "Show only results with digital matches"
 msgstr "Yalnızca dijital eşleşmeli sonuçları göster"
 
@@ -1064,7 +1038,7 @@ msgid "Social Networks and Archival Context"
 msgstr "Sosyal Ağlar ve Arşiv Bağlamı"
 
 #. Message shown when request failed
-#: src/components/PageMyList/index.js:350
+#: src/components/PageMyList/index.js:355
 msgid "Sorry, our system is unable to process requests right now. We're working to fix this! Please try again later."
 msgstr "Üzgünüz, sistemimiz şu anda talepleri işleme koyamıyor. Bunu düzeltmek için çalışıyoruz! Lütfen daha sonra tekrar deneyin."
 

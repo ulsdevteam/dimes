@@ -27,12 +27,10 @@ const Footer = () => (
               </Trans>
             </p>
             <p className='footer-primary__text'>
-              <Trans comment='Company Phonenumber'>
-                Phone: (914) 366-6300<br />
-              </Trans>
-              <Trans comment='Company Fax'>
-                Fax: (914) 631-6017<br />
-              </Trans>
+              <Trans comment='Reading Room Address'>
+                Monday-Friday<br />
+                9:30 a.m. to 5:00 p.m.<br />
+              </Trans><br />
               <Trans comment='Company Email'>
                 E-mail:
                 <PrimaryLinkEmail />
@@ -46,10 +44,6 @@ const Footer = () => (
               </Trans>
             </p>
             <p className='footer-primary__text'>
-              <Trans comment='Reading Room Actual Hours'>
-                Monday-Friday<br />
-                9:00 a.m. to 5:00 p.m.<br />
-              </Trans>
               <PrimaryLinkAccessMaterials />
             </p>
             <PrimaryLinkHoliday />

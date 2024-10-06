@@ -98,10 +98,7 @@ const SearchForm = props => {
                 comment: 'Label for Category selector',
                 message: 'Choose a search category'
               })}
-              name={t({
-                comment: 'Name for Category selector',
-                message: 'category'
-              })}
+              name='category'
               onChange={({ selectedItem }) => {
                 isHomePage ? setCategory(selectedItem.value) : props.handleSearchFormChange(selectedItem.value, query, online)
               }}
@@ -110,10 +107,7 @@ const SearchForm = props => {
             />
             <CheckBoxInput
               id='online'
-              name={t({
-                comment: 'Name for digital matches only checkbox',
-                message: 'online'
-              })}
+              name='online'
               className='checkbox--blue checkbox--online input--outline'
               checked={online}
               handleChange={e => {
