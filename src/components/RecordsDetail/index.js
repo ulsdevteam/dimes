@@ -141,19 +141,29 @@ const RefineSearchSection = ({ refinable, params, title }) => {
   const curr_category = params && params.category ? params.category : ""
   return (
     (refinable && refinable.toLowerCase() === 'true') ?
-    (<form className ='refine-search-form' onSubmit="return false;">
-        <input type="hidden" name="category" value={curr_category} />
-        <input type="hidden" name="limit" value={params.limit || '40'}/>
-        <label for="query" className='refine-search-label'>{title}</label>
+    (<form className='refine-search-form'>
+        <input type='hidden' name='category' value={curr_category} />
+        <input type='hidden' name='limit' value={params.limit || '40'}/>
+        <label htmlFor='query' className='refine-search-label'>{title}</label>
         <input className='refine-search-input'
                type='search' 
-               id="query"
-               name="query"
+               id='query'
+               name='query'
                placeholder={params.query}
                maxLength={255}
-               size={60}/>     
+               size={60}
+        /> 
+        <Button
+        className='btn btn--orange refine-search-btn'
+        type='submit'
+        iconAfter='search'
+        ariaLabel={t({
+          comment: 'Aria Label for search submission button',
+          message: 'Submit search'
+        })}
+      />
     </form> ) : (null)
-    )}
+)}
 
 const RecordsDetail = props => {
 
@@ -204,7 +214,7 @@ const RecordsDetail = props => {
       label={t({ comment: 'About minimap message', message: 'about minimap' })}
     /> : null
     }
-    <RefineSearchSection
+   <RefineSearchSection
       refinable={process.env.REACT_APP_REFINE_SEARCH}
       params={props.params}
       title={t({

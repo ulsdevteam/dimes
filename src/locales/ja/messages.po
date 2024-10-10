@@ -109,7 +109,7 @@ msgid "{source, select, null {Source: Rockefeller Archive Center} other {Source:
 msgstr "{source, select, null {出典：Rockefeller Archive Center} other {Source：{source}}}"
 
 #. Message to go back to previous search
-#: src/components/RecordsDetail/index.js:193
+#: src/components/RecordsDetail/index.js:227
 msgid "<0/>Back to Search"
 msgstr "<0/>検索に戻る"
 
@@ -136,7 +136,7 @@ msgstr "<0><1/>アイテム詳細に戻る</0>"
 #. Social Icons Titles
 #: src/components/SocialIcons/index.js:5
 msgid "<0><1><2><3><4>Facebook Logo</4><5/></3></2></1><6><7><8><9>Instagram Logo</9><10/></8></7></6><11><12><13><14>LinkedIn Logo</14><15/></13></12></11><16><17><18><19>YouTube Logo</19><20/></18></17></16></0>"
-msgstr msgid "<0><1><2><3><4>Facebookのロゴ</4><5/></3></2></1><6><7><8><9>Instagramロゴ</9><10/></8></7></6><11><12><13><14>LinkedInロゴ</14><15/></13></12></11><16><17><18><19>YouTubeロゴ</19><20/></18></17></16></0>"
+msgstr "<0><1><2><3><4>Facebookのロゴ</4><5/></3></2></1><6><7><8><9>Instagramロゴ</9><10/></8></7></6><11><12><13><14>LinkedInロゴ</14><15/></13></12></11><16><17><18><19>YouTubeロゴ</19><20/></18></17></16></0>"
 
 #. Page Title for user's list
 #: src/components/PageMyList/index.js:288
@@ -164,12 +164,12 @@ msgid "<0><1>Search Results</1></0>"
 msgstr "<0><1>検索結果</1></0>"
 
 #. Confirmation message when citation copied
-#: src/components/RecordsDetail/index.js:209
+#: src/components/RecordsDetail/index.js:243
 msgid "<0>Citation information copied to clipboard.</0>"
 msgstr "<0>引用情報がクリップボードにコピーされました。</0>"
 
 #. Button to copy citation text
-#: src/components/RecordsDetail/index.js:215
+#: src/components/RecordsDetail/index.js:249
 msgid "<0>Cite<1/></0>"
 msgstr "<0>引用<1/></0>"
 
@@ -264,7 +264,7 @@ msgid "<0>View Online<1/></0>"
 msgstr "<0>オンラインで見る<1/></0>"
 
 #. Buttons for online records
-#: src/components/RecordsDetail/index.js:223
+#: src/components/RecordsDetail/index.js:257
 msgid "<0>View Online<1/></0><2>Download <3/></2>{0}"
 msgstr "<0>オンラインで見る<1/></0><2>ダウンロード<3/></2>{0}"
 
@@ -284,7 +284,7 @@ msgid "255 characters maximum"
 msgstr "最大255文字"
 
 #. About minimap message
-#: src/components/RecordsDetail/index.js:188
+#: src/components/RecordsDetail/index.js:214
 msgid "about minimap"
 msgstr "ミニマップについて"
 
@@ -742,7 +742,7 @@ msgstr "メールを開く"
 #: src/components/ModalMyList/index.js:520
 #: src/components/ModalMyList/index.js:583
 #: src/components/PageDigitalObject/index.js:112
-#: src/components/RecordsDetail/index.js:229
+#: src/components/RecordsDetail/index.js:263
 msgid "opens in a new window"
 msgstr "新しいウィンドウで開きます"
 
@@ -842,6 +842,11 @@ msgstr "閲覧室の開室時間:"
 msgid "recaptcha"
 msgstr "リキャプチャ"
 
+#. Placeholder for search refinement textbox
+#: src/components/RecordsDetail/index.js:220
+msgid "Refining search..."
+msgstr "検索を絞り込んでいます..."
+
 #. Test Remove button label
 #. Label to remove saved item
 #: src/components/ListToggleButton/__tests__/ListToggleButton.test.js:79
@@ -889,7 +894,7 @@ msgid "Request in Reading Room"
 msgstr "閲覧室でのリクエスト"
 
 #. Institution name for citation
-#: src/components/RecordsDetail/index.js:169
+#: src/components/RecordsDetail/index.js:197
 msgid "Rockefeller Archive Center"
 msgstr "ロックフェラー アーカイブ センター"
 
@@ -1082,6 +1087,8 @@ msgid "Subject"
 msgstr "件名"
 
 #. Aria Label for search submission button
+#. Aria Label for search submission button
+#: src/components/RecordsDetail/index.js:160
 #: src/components/SearchForm/index.js:83
 msgid "Submit search"
 msgstr "検索の送信"

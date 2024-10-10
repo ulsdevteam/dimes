@@ -109,7 +109,7 @@ msgid "{source, select, null {Source: Rockefeller Archive Center} other {Source:
 msgstr "{source, select, null {출처: 록펠러 아카이브 센터} other {출처: {source}}}"
 
 #. Message to go back to previous search
-#: src/components/RecordsDetail/index.js:193
+#: src/components/RecordsDetail/index.js:227
 msgid "<0/>Back to Search"
 msgstr "<0/>검색으로 돌아가기"
 
@@ -164,12 +164,12 @@ msgid "<0><1>Search Results</1></0>"
 msgstr "<0><1>검색 결과</1></0>"
 
 #. Confirmation message when citation copied
-#: src/components/RecordsDetail/index.js:209
+#: src/components/RecordsDetail/index.js:243
 msgid "<0>Citation information copied to clipboard.</0>"
 msgstr "<0>인용 정보가 클립보드에 복사되었습니다.</0>"
 
 #. Button to copy citation text
-#: src/components/RecordsDetail/index.js:215
+#: src/components/RecordsDetail/index.js:249
 msgid "<0>Cite<1/></0>"
 msgstr "<0>인용<1/></0>"
 
@@ -264,7 +264,7 @@ msgid "<0>View Online<1/></0>"
 msgstr "<0>온라인 보기<1/></0>"
 
 #. Buttons for online records
-#: src/components/RecordsDetail/index.js:223
+#: src/components/RecordsDetail/index.js:257
 msgid "<0>View Online<1/></0><2>Download <3/></2>{0}"
 msgstr "<0>온라인 보기<1/></0><2>다운로드 <3/></2>{0}"
 
@@ -284,7 +284,7 @@ msgid "255 characters maximum"
 msgstr "최대 255자"
 
 #. About minimap message
-#: src/components/RecordsDetail/index.js:188
+#: src/components/RecordsDetail/index.js:214
 msgid "about minimap"
 msgstr "미니맵 정보"
 
@@ -742,7 +742,7 @@ msgstr "이메일 열기"
 #: src/components/ModalMyList/index.js:520
 #: src/components/ModalMyList/index.js:583
 #: src/components/PageDigitalObject/index.js:112
-#: src/components/RecordsDetail/index.js:229
+#: src/components/RecordsDetail/index.js:263
 msgid "opens in a new window"
 msgstr "새 창에서 열기"
 
@@ -842,6 +842,11 @@ msgstr "열람실 이용 시간:"
 msgid "recaptcha"
 msgstr "보안 문자"
 
+#. Placeholder for search refinement textbox
+#: src/components/RecordsDetail/index.js:220
+msgid "Refining search..."
+msgstr "검색 세분화..."
+
 #. Test Remove button label
 #. Label to remove saved item
 #: src/components/ListToggleButton/__tests__/ListToggleButton.test.js:79
@@ -889,7 +894,7 @@ msgid "Request in Reading Room"
 msgstr "열람실에서 요청하기"
 
 #. Institution name for citation
-#: src/components/RecordsDetail/index.js:169
+#: src/components/RecordsDetail/index.js:197
 msgid "Rockefeller Archive Center"
 msgstr "록펠러 아카이브 센터"
 
@@ -1082,6 +1087,8 @@ msgid "Subject"
 msgstr "제목"
 
 #. Aria Label for search submission button
+#. Aria Label for search submission button
+#: src/components/RecordsDetail/index.js:160
 #: src/components/SearchForm/index.js:83
 msgid "Submit search"
 msgstr "검색 제출"

@@ -109,7 +109,7 @@ msgid "{source, select, null {Source: Rockefeller Archive Center} other {Source:
 msgstr "{source, select, null {Fonte: Rockefeller Archive Center} other {Fonte: {source}}}"
 
 #. Message to go back to previous search
-#: src/components/RecordsDetail/index.js:193
+#: src/components/RecordsDetail/index.js:227
 msgid "<0/>Back to Search"
 msgstr "<0/>Torna alla ricerca"
 
@@ -164,12 +164,12 @@ msgid "<0><1>Search Results</1></0>"
 msgstr "<0><1>Risultati</1></0>"
 
 #. Confirmation message when citation copied
-#: src/components/RecordsDetail/index.js:209
+#: src/components/RecordsDetail/index.js:243
 msgid "<0>Citation information copied to clipboard.</0>"
 msgstr "<0>Informazioni sulla citazione copiate negli appunti.</0>"
 
 #. Button to copy citation text
-#: src/components/RecordsDetail/index.js:215
+#: src/components/RecordsDetail/index.js:249
 msgid "<0>Cite<1/></0>"
 msgstr "<0>Cita<1/></0>"
 
@@ -264,7 +264,7 @@ msgid "<0>View Online<1/></0>"
 msgstr "<0>Visualizza online<1/></0>"
 
 #. Buttons for online records
-#: src/components/RecordsDetail/index.js:223
+#: src/components/RecordsDetail/index.js:257
 msgid "<0>View Online<1/></0><2>Download <3/></2>{0}"
 msgstr "<0>Visualizza online<1/></0><2>Scarica  <3/></2>{0}"
 
@@ -284,7 +284,7 @@ msgid "255 characters maximum"
 msgstr "Massimo 255 caratteri"
 
 #. About minimap message
-#: src/components/RecordsDetail/index.js:188
+#: src/components/RecordsDetail/index.js:214
 msgid "about minimap"
 msgstr "Informazioni sulla minimappa"
 
@@ -742,7 +742,7 @@ msgstr "apre l'e-mail"
 #: src/components/ModalMyList/index.js:520
 #: src/components/ModalMyList/index.js:583
 #: src/components/PageDigitalObject/index.js:112
-#: src/components/RecordsDetail/index.js:229
+#: src/components/RecordsDetail/index.js:263
 msgid "opens in a new window"
 msgstr "si apre in una nuova finestra"
 
@@ -842,6 +842,11 @@ msgstr "Orari della sala di consultazione:"
 msgid "recaptcha"
 msgstr "recaptcha"
 
+#. Placeholder for search refinement textbox
+#: src/components/RecordsDetail/index.js:220
+msgid "Refining search..."
+msgstr "Perfezionamento della ricerca..."
+
 #. Test Remove button label
 #. Label to remove saved item
 #: src/components/ListToggleButton/__tests__/ListToggleButton.test.js:79
@@ -889,7 +894,7 @@ msgid "Request in Reading Room"
 msgstr "Richiedi in Sala di consultazione"
 
 #. Institution name for citation
-#: src/components/RecordsDetail/index.js:169
+#: src/components/RecordsDetail/index.js:197
 msgid "Rockefeller Archive Center"
 msgstr "Rockefeller Archive Center"
 
@@ -1082,6 +1087,8 @@ msgid "Subject"
 msgstr "Soggetto"
 
 #. Aria Label for search submission button
+#. Aria Label for search submission button
+#: src/components/RecordsDetail/index.js:160
 #: src/components/SearchForm/index.js:83
 msgid "Submit search"
 msgstr "Avvia ricerca"

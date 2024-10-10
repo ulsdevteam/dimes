@@ -109,7 +109,7 @@ msgid "{source, select, null {Source: Rockefeller Archive Center} other {Source:
 msgstr "{source, select, null {Kaynak: Rockefeller Arşiv Merkezi} other {Kaynak: {source}}}"
 
 #. Message to go back to previous search
-#: src/components/RecordsDetail/index.js:193
+#: src/components/RecordsDetail/index.js:227
 msgid "<0/>Back to Search"
 msgstr "<0/>aramaya geri̇ dön"
 
@@ -164,12 +164,12 @@ msgid "<0><1>Search Results</1></0>"
 msgstr "<0><1>Arama Sonuçları</1></0>"
 
 #. Confirmation message when citation copied
-#: src/components/RecordsDetail/index.js:209
+#: src/components/RecordsDetail/index.js:243
 msgid "<0>Citation information copied to clipboard.</0>"
 msgstr "<0>Alıntı bilgileri panoya kopyalandı.</0>"
 
 #. Button to copy citation text
-#: src/components/RecordsDetail/index.js:215
+#: src/components/RecordsDetail/index.js:249
 msgid "<0>Cite<1/></0>"
 msgstr "<0>Alıntıla yapın<1/></0>"
 
@@ -264,7 +264,7 @@ msgid "<0>View Online<1/></0>"
 msgstr "<0>Çevrimiçi Görüntüle<1/></0>"
 
 #. Buttons for online records
-#: src/components/RecordsDetail/index.js:223
+#: src/components/RecordsDetail/index.js:257
 msgid "<0>View Online<1/></0><2>Download <3/></2>{0}"
 msgstr "<0>Çevrimiçi Görüntüle<1/></0><2>İndi̇r <3/></2>{0}"
 
@@ -284,7 +284,7 @@ msgid "255 characters maximum"
 msgstr "En fazla 255 karakter"
 
 #. About minimap message
-#: src/components/RecordsDetail/index.js:188
+#: src/components/RecordsDetail/index.js:214
 msgid "about minimap"
 msgstr "minimap hakkında"
 
@@ -696,7 +696,7 @@ msgstr "Minimap"
 #. Reading Room Actual Hours
 #: src/components/Footer/index.js:49
 msgid "Monday-Friday<0/>9:30 a.m. to 5:00 p.m.<1/>"
-msgstr ""Pazartesi-Cuma<0/>9:30 - 17:00 arası.<1/>""
+msgstr "\"Pazartesi-Cuma<0/>9:30 - 17:00 arası.<1/>\""
 
 #. Message shown on button within Dropdown list
 #. Message shown on button within the Header
@@ -742,7 +742,7 @@ msgstr "e-posta açar"
 #: src/components/ModalMyList/index.js:520
 #: src/components/ModalMyList/index.js:583
 #: src/components/PageDigitalObject/index.js:112
-#: src/components/RecordsDetail/index.js:229
+#: src/components/RecordsDetail/index.js:263
 msgid "opens in a new window"
 msgstr "yeni bir pencerede açılır"
 
@@ -842,6 +842,11 @@ msgstr "Okuma Odası Saatleri:"
 msgid "recaptcha"
 msgstr "recaptcha"
 
+#. Placeholder for search refinement textbox
+#: src/components/RecordsDetail/index.js:220
+msgid "Refining search..."
+msgstr "Arama hassaslaştırılıyor..."
+
 #. Test Remove button label
 #. Label to remove saved item
 #: src/components/ListToggleButton/__tests__/ListToggleButton.test.js:79
@@ -889,7 +894,7 @@ msgid "Request in Reading Room"
 msgstr "Okuma odası için talep"
 
 #. Institution name for citation
-#: src/components/RecordsDetail/index.js:169
+#: src/components/RecordsDetail/index.js:197
 msgid "Rockefeller Archive Center"
 msgstr "Rockefeller Arşiv Merkezi"
 
@@ -1082,6 +1087,8 @@ msgid "Subject"
 msgstr "Konu"
 
 #. Aria Label for search submission button
+#. Aria Label for search submission button
+#: src/components/RecordsDetail/index.js:160
 #: src/components/SearchForm/index.js:83
 msgid "Submit search"
 msgstr "Aramayı gönder"
