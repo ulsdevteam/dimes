@@ -109,7 +109,7 @@ msgid "{source, select, null {Source: Rockefeller Archive Center} other {Source:
 msgstr "{source, select, null {出典：Rockefeller Archive Center} other {Source：{source}}}"
 
 #. Message to go back to previous search
-#: src/components/RecordsDetail/index.js:227
+#: src/components/RecordsDetail/index.js:231
 msgid "<0/>Back to Search"
 msgstr "<0/>検索に戻る"
 
@@ -164,12 +164,12 @@ msgid "<0><1>Search Results</1></0>"
 msgstr "<0><1>検索結果</1></0>"
 
 #. Confirmation message when citation copied
-#: src/components/RecordsDetail/index.js:243
+#: src/components/RecordsDetail/index.js:247
 msgid "<0>Citation information copied to clipboard.</0>"
 msgstr "<0>引用情報がクリップボードにコピーされました。</0>"
 
 #. Button to copy citation text
-#: src/components/RecordsDetail/index.js:249
+#: src/components/RecordsDetail/index.js:253
 msgid "<0>Cite<1/></0>"
 msgstr "<0>引用<1/></0>"
 
@@ -238,6 +238,11 @@ msgstr "<0>検索する語句を追加してください。</0>"
 msgid "<0>Please note:</0> if are emailing your list to an archivist at <1>archive@rockarch.org</1>, please include your name and email address in the Message field, otherwise we will have no means of contacting you to follow-up."
 msgstr "<0>注意：</0> <1>archive@rockarch.org</1> のアーキビストにリストをEメールで送る場合は、メッセージ欄にお名前とEメールアドレスをご記入ください。"
 
+#. Label for search refinement textbox
+#: src/components/RecordsDetail/index.js:207
+msgid "<0>Refining Search...</0>"
+msgstr "検索を絞り込んでいます..."
+
 #. Submit Request title
 #: src/components/ModalMyList/index.js:537
 msgid "<0>Submit request</0>"
@@ -264,7 +269,7 @@ msgid "<0>View Online<1/></0>"
 msgstr "<0>オンラインで見る<1/></0>"
 
 #. Buttons for online records
-#: src/components/RecordsDetail/index.js:257
+#: src/components/RecordsDetail/index.js:261
 msgid "<0>View Online<1/></0><2>Download <3/></2>{0}"
 msgstr "<0>オンラインで見る<1/></0><2>ダウンロード<3/></2>{0}"
 
@@ -284,7 +289,7 @@ msgid "255 characters maximum"
 msgstr "最大255文字"
 
 #. About minimap message
-#: src/components/RecordsDetail/index.js:214
+#: src/components/RecordsDetail/index.js:199
 msgid "about minimap"
 msgstr "ミニマップについて"
 
@@ -514,12 +519,12 @@ msgid "Format"
 msgstr "フォーマット"
 
 #. Panel Format message
-#: src/components/RecordsDetail/index.js:72
+#: src/components/RecordsDetail/index.js:73
 msgid "Formats"
 msgstr "フォーマット"
 
 #. Panel Found In message
-#: src/components/RecordsDetail/index.js:89
+#: src/components/RecordsDetail/index.js:90
 msgid "Found In"
 msgstr "右資料内"
 
@@ -742,7 +747,7 @@ msgstr "メールを開く"
 #: src/components/ModalMyList/index.js:520
 #: src/components/ModalMyList/index.js:583
 #: src/components/PageDigitalObject/index.js:112
-#: src/components/RecordsDetail/index.js:263
+#: src/components/RecordsDetail/index.js:267
 msgid "opens in a new window"
 msgstr "新しいウィンドウで開きます"
 
@@ -842,11 +847,6 @@ msgstr "閲覧室の開室時間:"
 msgid "recaptcha"
 msgstr "リキャプチャ"
 
-#. Placeholder for search refinement textbox
-#: src/components/RecordsDetail/index.js:220
-msgid "Refining search..."
-msgstr "検索を絞り込んでいます..."
-
 #. Test Remove button label
 #. Label to remove saved item
 #: src/components/ListToggleButton/__tests__/ListToggleButton.test.js:79
@@ -894,7 +894,7 @@ msgid "Request in Reading Room"
 msgstr "閲覧室でのリクエスト"
 
 #. Institution name for citation
-#: src/components/RecordsDetail/index.js:197
+#: src/components/RecordsDetail/index.js:170
 msgid "Rockefeller Archive Center"
 msgstr "ロックフェラー アーカイブ センター"
 
@@ -1018,7 +1018,7 @@ msgid "Sign in to RACcess"
 msgstr "RACcessにサインイン"
 
 #. Panel Extent Size message
-#: src/components/RecordsDetail/index.js:50
+#: src/components/RecordsDetail/index.js:51
 msgid "Size"
 msgstr "サイズ"
 
@@ -1088,7 +1088,7 @@ msgstr "件名"
 
 #. Aria Label for search submission button
 #. Aria Label for search submission button
-#: src/components/RecordsDetail/index.js:160
+#: src/components/RecordsDetail/index.js:221
 #: src/components/SearchForm/index.js:83
 msgid "Submit search"
 msgstr "検索の送信"

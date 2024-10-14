@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import pluralize from 'pluralize'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
@@ -137,34 +138,6 @@ const PanelTextSection = ({ params, text, title }) => {
     (null)
 )}
 
-const RefineSearchSection = ({ refinable, params, title }) => {
-  const curr_category = params && params.category ? params.category : ""
-  return (
-    (refinable && refinable.toLowerCase() === 'true') ?
-    (<form className='refine-search-form'>
-        <input type='hidden' name='category' value={curr_category} />
-        <input type='hidden' name='limit' value={params.limit || '40'}/>
-        <label htmlFor='query' className='refine-search-label'>{title}</label>
-        <input className='refine-search-input'
-               type='search' 
-               id='query'
-               name='query'
-               placeholder={params.query}
-               maxLength={255}
-               size={60}
-        /> 
-        <Button
-        className='btn btn--orange refine-search-btn'
-        type='submit'
-        iconAfter='search'
-        ariaLabel={t({
-          comment: 'Aria Label for search submission button',
-          message: 'Submit search'
-        })}
-      />
-    </form> ) : (null)
-)}
-
 const RecordsDetail = props => {
 
   var [isSaved, setIsSaved] = useState(() => {
@@ -204,6 +177,18 @@ const RecordsDetail = props => {
     setCitationCopied(true)
     setTimeout(() => {setCitationCopied(false)}, '6000')
   }
+
+  const [searchParams, setSearchParams] = useSearchParams({
+    query: props.params.query,
+    category: props.params.category,
+    limit: props.params.limit,
+  });
+
+  //search refinement handler
+  const handleChange = (e) => {
+    setSearchParams({ ...searchParams, [e.target.name]: e.target.value });
+   };
+
   return (
   <div className={classnames('records__detail', {'hidden': props.isContentShown})}>
     {props.isDesktop ? <Button
@@ -214,14 +199,33 @@ const RecordsDetail = props => {
       label={t({ comment: 'About minimap message', message: 'about minimap' })}
     /> : null
     }
-   <RefineSearchSection
-      refinable={process.env.REACT_APP_REFINE_SEARCH}
-      params={props.params}
-      title={t({
-        comment: 'Placeholder for search refinement textbox',
-        message: 'Refining search...'
-      })}
-    />
+    { process.env.REACT_APP_REFINE_SEARCH && 
+      process.env.REACT_APP_REFINE_SEARCH.toLowerCase() === 'true' ?
+      ( <form className='refine-search-form' >
+        <input type='hidden' name='category' value={props.params.category} />
+        <input type='hidden' name='limit' value={props.params.limit || '40'}/>
+        <Trans comment='Label for search refinement textbox'>
+            <label htmlFor='query' className='refine-search-label'>Refining Search...</label>
+        </Trans>
+        <input 
+          className='refine-search-input'
+          type='search' 
+          name='query'
+          placeholder={props.params.query} 
+          value={searchParams.query}
+          onChange={handleChange}/>
+        <Button
+          className='btn btn--orange refine-search-btn'
+          type='submit'
+          iconAfter='search'
+          ariaLabel={t({
+            comment: 'Aria Label for search submission button',
+            message: 'Submit search'
+          })}
+        />
+        </form> 
+      ) : null 
+    }
     <nav className='records__nav'>
       <a href={searchUrl} className='btn btn--sm btn--gray'>
         <Trans comment='Message to go back to previous search'>  
