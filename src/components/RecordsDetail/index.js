@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
 import pluralize from 'pluralize'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
@@ -178,16 +177,15 @@ const RecordsDetail = props => {
     setTimeout(() => {setCitationCopied(false)}, '6000')
   }
 
-  const [searchParams, setSearchParams] = useSearchParams({
-    query: props.params.query,
-    category: props.params.category,
-    limit: props.params.limit,
+  const [refinedVal, setRefinedVal] = useState({
+    query: new URLSearchParams(window.location.search).get('query') || '',
+    category: new URLSearchParams(window.location.search).get('category') || '',
+    limit: new URLSearchParams(window.location.search).get('limit') || '40',
   });
-
-  //search refinement handler
+  
   const handleChange = (e) => {
-    setSearchParams({ ...searchParams, [e.target.name]: e.target.value });
-   };
+    setRefinedVal({ ...refinedVal, [e.target.name]: e.target.value });
+  };
 
   return (
   <div className={classnames('records__detail', {'hidden': props.isContentShown})}>
@@ -212,7 +210,7 @@ const RecordsDetail = props => {
           type='search' 
           name='query'
           placeholder={props.params.query} 
-          value={searchParams.query}
+          value={refinedVal.query}
           onChange={handleChange}/>
         <Button
           className='btn btn--orange refine-search-btn'
