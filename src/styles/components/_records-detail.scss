@@ -75,13 +75,13 @@
 }
 
 // style for search refinement on the search results page
-.refine-search-form {
+.refine-search__form {
   position: relative;
   width: 200px;
   padding-top: 20px;
 }
 
-.refine-search-input {
+.refine-search__input {
   padding: 10px;
   font-family: inherit;
   color: inherit;
@@ -93,12 +93,12 @@
   border: 1px solid $silver-grey;
 }
 
-.refine-search-label {
+.refine-search__label {
   display: inline-block;
   font-weight: bold;
 }
 
-.refine-search-btn {
+.refine-search__btn {
   height: 36px;
   min-width: unset;
 }

@@ -109,7 +109,7 @@ msgid "{source, select, null {Source: Rockefeller Archive Center} other {Source:
 msgstr "{source, select, null {Fonte: Rockefeller Archive Center} other {Fonte: {source}}}"
 
 #. Message to go back to previous search
-#: src/components/RecordsDetail/index.js:231
+#: src/components/RecordsDetail/index.js:238
 msgid "<0/>Back to Search"
 msgstr "<0/>Torna alla ricerca"
 
@@ -164,12 +164,12 @@ msgid "<0><1>Search Results</1></0>"
 msgstr "<0><1>Risultati</1></0>"
 
 #. Confirmation message when citation copied
-#: src/components/RecordsDetail/index.js:247
+#: src/components/RecordsDetail/index.js:254
 msgid "<0>Citation information copied to clipboard.</0>"
 msgstr "<0>Informazioni sulla citazione copiate negli appunti.</0>"
 
 #. Button to copy citation text
-#: src/components/RecordsDetail/index.js:253
+#: src/components/RecordsDetail/index.js:260
 msgid "<0>Cite<1/></0>"
 msgstr "<0>Cita<1/></0>"
 
@@ -239,7 +239,7 @@ msgid "<0>Please note:</0> if are emailing your list to an archivist at <1>archi
 msgstr "<0>Nota bene:</0> se state inviando la vostra lista via e-mail a un archivista di <1>archive@rockarch.org,</1> includete il vostro nome e l'indirizzo e-mail nel campo Messaggio, altrimenti non avremo modo di contattarvi per un follow-up."
 
 #. Label for search refinement textbox
-#: src/components/RecordsDetail/index.js:207
+#: src/components/RecordsDetail/index.js:212
 msgid "<0>Refining Search...</0>"
 msgstr "Perfezionamento della ricerca..."
 
@@ -269,7 +269,7 @@ msgid "<0>View Online<1/></0>"
 msgstr "<0>Visualizza online<1/></0>"
 
 #. Buttons for online records
-#: src/components/RecordsDetail/index.js:261
+#: src/components/RecordsDetail/index.js:268
 msgid "<0>View Online<1/></0><2>Download <3/></2>{0}"
 msgstr "<0>Visualizza online<1/></0><2>Scarica  <3/></2>{0}"
 
@@ -289,7 +289,7 @@ msgid "255 characters maximum"
 msgstr "Massimo 255 caratteri"
 
 #. About minimap message
-#: src/components/RecordsDetail/index.js:199
+#: src/components/RecordsDetail/index.js:203
 msgid "about minimap"
 msgstr "Informazioni sulla minimappa"
 
@@ -671,6 +671,11 @@ msgstr "Ubicazione della sede centrale"
 msgid "mailto:archive@rockarch.org"
 msgstr "mailto:archive@rockarch.org"
 
+#. Message for search refinement
+#: src/components/RecordsDetail/index.js:190
+msgid "Map navigation links have been updated to reflect new search results for {0}"
+msgstr "I collegamenti di navigazione della mappa sono stati aggiornati per riflettere i nuovi risultati di ricerca per {0}"
+
 #. Name of message form
 #: src/components/ModalMyList/index.js:251
 msgid "message"
@@ -747,7 +752,7 @@ msgstr "apre l'e-mail"
 #: src/components/ModalMyList/index.js:520
 #: src/components/ModalMyList/index.js:583
 #: src/components/PageDigitalObject/index.js:112
-#: src/components/RecordsDetail/index.js:267
+#: src/components/RecordsDetail/index.js:274
 msgid "opens in a new window"
 msgstr "si apre in una nuova finestra"
 
@@ -1088,7 +1093,7 @@ msgstr "Soggetto"
 
 #. Aria Label for search submission button
 #. Aria Label for search submission button
-#: src/components/RecordsDetail/index.js:221
+#: src/components/RecordsDetail/index.js:226
 #: src/components/SearchForm/index.js:83
 msgid "Submit search"
 msgstr "Avvia ricerca"

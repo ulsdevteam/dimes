@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { LiveMessage } from 'react-aria-live'
 import pluralize from 'pluralize'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
@@ -177,6 +178,7 @@ const RecordsDetail = props => {
     setTimeout(() => {setCitationCopied(false)}, '6000')
   }
 
+  const [SearchMessage, setSearchMessage] = useState('')
   const [refinedVal, setRefinedVal] = useState({
     query: new URLSearchParams(window.location.search).get('query') || '',
     category: new URLSearchParams(window.location.search).get('category') || '',
@@ -185,6 +187,10 @@ const RecordsDetail = props => {
   
   const handleChange = (e) => {
     setRefinedVal({ ...refinedVal, [e.target.name]: e.target.value });
+    setSearchMessage(t({
+      comment: 'Message for search refinement',
+      message: `Map navigation links have been updated to reflect new search results for ${refinedVal.query}`
+    }));
   };
 
   return (
@@ -199,21 +205,22 @@ const RecordsDetail = props => {
     }
     { process.env.REACT_APP_REFINE_SEARCH && 
       process.env.REACT_APP_REFINE_SEARCH.toLowerCase() === 'true' ?
-      ( <form className='refine-search-form' >
+      ( <div>
+        <form className='refine-search__form' >
         <input type='hidden' name='category' value={props.params.category} />
         <input type='hidden' name='limit' value={props.params.limit || '40'}/>
         <Trans comment='Label for search refinement textbox'>
-            <label htmlFor='query' className='refine-search-label'>Refining Search...</label>
+            <label htmlFor='query' className='refine-search__label'>Refining Search...</label>
         </Trans>
         <input 
-          className='refine-search-input'
+          className='refine-search__input'
           type='search' 
           name='query'
           placeholder={props.params.query} 
           value={refinedVal.query}
           onChange={handleChange}/>
         <Button
-          className='btn btn--orange refine-search-btn'
+          className='btn btn--orange refine-search__btn'
           type='submit'
           iconAfter='search'
           ariaLabel={t({
@@ -222,6 +229,8 @@ const RecordsDetail = props => {
           })}
         />
         </form> 
+        <LiveMessage message={SearchMessage} aria-live='polite' />
+      </div>
       ) : null 
     }
     <nav className='records__nav'>
