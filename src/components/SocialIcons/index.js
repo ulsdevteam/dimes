@@ -42,12 +42,12 @@ const SocialIcons = () => (
         comment: 'Youtube account link',
         message: 'https://www.youtube.com/channel/UCks9ctz4OF9tMNOTrRkWIZg'
       })} aria-label='YouTube'>
-        <span className='social-icons__icon'>
-        <svg aria-hidden='true' focusable='false' width='24px' height='24px' viewBox='0 0 320 512' version='1.1' xmlns='http://www.w3.org/2000/svg'>
+      <span className='social-icons__icon'>
+          <svg aria-hidden='true' focusable='false' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'>
             <title>YouTube Logo</title>
-            <path fill='#192E49' d='M309.8 480.3c-13.6 14.5-50 31.7-97.4 31.7-120.8 0-147-88.8-147-140.6v-144H17.9c-5.5 0-10-4.5-10-10v-68c0-7.2 4.5-13.6 11.3-16 62-21.8 81.5-76 84.3-117.1.8-11 6.5-16.3 16.1-16.3h70.9c5.5 0 10 4.5 10 10v115.2h83c5.5 0 10 4.4 10 9.9v81.7c0 5.5-4.5 10-10 10h-83.4V360c0 34.2 23.7 53.6 68 35.8 4.8-1.9 9-3.2 12.7-2.2 3.5.9 5.8 3.4 7.4 7.9l22 64.3c1.8 5 3.3 10.6-.4 14.5'/>
+            <path fill='#192E49' d='M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z' />
           </svg>
-        </span>
+        </span> 
       </a>
     </div>
   </Trans>

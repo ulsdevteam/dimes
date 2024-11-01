@@ -28,8 +28,12 @@ const Footer = () => (
             </p>
             <p className='footer-primary__text'>
               <Trans comment='Reading Room Address'>
-                Monday-Friday<br />
-                9:30 a.m. to 5:00 p.m.<br />
+              A&SC at the Archives Service Center<br />
+              7500 Thomas Boulevard<br />
+              Pittsburgh, PA 15208<br />
+              </Trans>
+              <Trans comment='Company Phonenumber'>
+                Phone: (412) 648-8190
               </Trans><br />
               <Trans comment='Company Email'>
                 E-mail:
@@ -44,6 +48,10 @@ const Footer = () => (
               </Trans>
             </p>
             <p className='footer-primary__text'>
+            <Trans comment='Reading Room Actual Hours'>
+                Monday-Friday<br />
+                9:00 a.m. to 5:00 p.m.<br />
+              </Trans>
               <PrimaryLinkAccessMaterials />
             </p>
             <PrimaryLinkHoliday />

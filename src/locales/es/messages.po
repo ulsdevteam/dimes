@@ -135,8 +135,8 @@ msgstr "<0><1/>Volver a los detalles del item</0>"
 
 #. Social Icons Titles
 #: src/components/SocialIcons/index.js:5
-msgid "<0><1><2><3><4>Facebook Logo</4><5/></3></2></1><6><7><8><9>Instagram Logo</9><10/></8></7></6><11><12><13><14>LinkedIn Logo</14><15/></13></12></11><16><17><18><19>YouTube Logo</19><20/></18></17></16></0>"
-msgstr "<0><1><2><3><4>Logotipo de Facebook</4><5/></3></2></1><6><7><8><9>Logotipo de Instagram</9><10/></8></7></6><11><12><13><14>Logotipo de LinkedIn</14><15/></13></12></11><16><17><18><19>Logotipo de YouTube</19><20/></18></17></16></0>"
+msgid "<0><1><2><3><4>Facebook Logo</4><5/></3></2></1><6><7><8><9>Instagram Logo</9><10/></8></7></6><11><12><13><14>LinkedIn Logo</14><15/></13></12></11><16><17><18><19>YouTube Logo</19><20/></18></17> </16></0>"
+msgstr "<0><1><2><3><4>Logotipo de Facebook</4><5/></3></2></1><6><7><8><9>Logotipo de Instagram</9><10/></8></7></6><11><12><13><14>Logotipo de LinkedIn</14><15/></13></12></11><16><17><18><19>Logotipo de YouTube</19><20/></18></17> </16></0>"
 
 #. Page Title for user's list
 #: src/components/PageMyList/index.js:288
@@ -276,12 +276,17 @@ msgstr "<0>Por lo general, cobramos una <1> tarifa fija de 25 $ por artículo</1
 #. Full Company Address
 #: src/components/Footer/index.js:23
 msgid "15 Dayton Avenue<0/>Sleepy Hollow, New York 10591"
-msgstr "15 Dayton Avenue<0/>Sleepy Hollow, Nueva York 10591"
+msgstr "A&SC at Hillman Library<0/>320 Hillman Library<0/>University of Pittsburgh<0/>3960 Forbes Avenue<0/>Pittsburgh, PA 15260<0/>Phone: (412) 648-8190<0/><0/>"
 
 #. helptext for RAC staff message
 #: src/components/ModalMyList/index.js:446
 msgid "255 characters maximum"
 msgstr "255 caracteres máximo"
+
+#. Reading Room Address
+#: src/components/Footer/index.js:30
+msgid "A&SC at the Archives Service Center<0/>7500 Thomas Boulevard<1/>Pittsburgh, PA 15208<2/>"
+msgstr "A&SC at the Archives Service Center<0/>7500 Thomas Boulevard<1/>Pittsburgh, PA 15208<2/>"
 
 #. About minimap message
 #: src/components/RecordsDetail/index.js:188
@@ -415,7 +420,7 @@ msgid "Confirm Remove All"
 msgstr "Confirmar Eliminar todo"
 
 #. Copyright message
-#: src/components/Footer/index.js:65
+#: src/components/Footer/index.js:67
 msgid "Copyright © Rockefeller Archive Center. All rights reserved."
 msgstr "Copyright © Centro de Archivos Rockefeller. Todos los derechos reservados."
 
@@ -450,7 +455,7 @@ msgid "Download as .csv"
 msgstr "Descargar como .csv"
 
 #. Company Email
-#: src/components/Footer/index.js:36
+#: src/components/Footer/index.js:38
 msgid "E-mail:<0/>"
 msgstr "Correo electrónico:<0/>"
 
@@ -505,8 +510,8 @@ msgstr "Error al enviar la solicitud"
 
 #. Company Fax
 #: src/components/Footer/index.js:33
-msgid "Fax: (914) 631-6017<0/>"
-msgstr ""
+#~ msgid "Fax: (914) 631-6017<0/>"
+#~ msgstr ""
 
 #. Label for Filters button
 #: src/components/PageSearch/index.js:249
@@ -699,9 +704,9 @@ msgid "Minimap"
 msgstr "Minimapa"
 
 #. Reading Room Actual Hours
-#: src/components/Footer/index.js:49
-msgid "Monday-Friday<0/>9:30 a.m. to 5:00 p.m.<1/>"
-msgstr "De lunes a viernes<0/>de 9:30 a 17:00.<1/>"
+#: src/components/Footer/index.js:51
+msgid "Monday-Friday<0/>9:00 a.m. to 5:00 p.m.<1/>"
+msgstr "De lunes a viernes<0/>de 9:00 a 17:00.<1/>"
 
 #. Message shown on button within Dropdown list
 #. Message shown on button within the Header
@@ -762,14 +767,9 @@ msgid "People"
 msgstr "Personas"
 
 #. Company Phonenumber
-#: src/components/Footer/index.js:30
-#~ msgid "Phone: (914) 366-6300"
-#~ msgstr "Teléfono: (914) 366-6300"
-
-#. Company Phonenumber
-#: src/components/Footer/index.js:30
-msgid "Phone: (914) 366-6300<0/>"
-msgstr ""
+#: src/components/Footer/index.js:35
+msgid "Phone: (412) 648-8190"
+msgstr "Teléfono: (412) 648-8190"
 
 #. Place of birth property
 #: src/components/PageAgent/index.js:193
@@ -840,7 +840,7 @@ msgid "RAC Policies"
 msgstr "Políticas del RAC"
 
 #. Reading Room Hours message
-#: src/components/Footer/index.js:44
+#: src/components/Footer/index.js:46
 msgid "Reading Room Hours:"
 msgstr "Horario de la sala de lectura:"
 

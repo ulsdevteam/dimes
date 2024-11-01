@@ -133,10 +133,11 @@ msgstr "<0><1/> 到访预约</0>"
 msgid "<0><1/>Back to Item Details</0>"
 msgstr "<0><1/>返回项目详情</0>"
 
+
 #. Social Icons Titles
 #: src/components/SocialIcons/index.js:5
-msgid "<0><1><2><3><4>Facebook Logo</4><5/></3></2></1><6><7><8><9>Instagram Logo</9><10/></8></7></6><11><12><13><14>LinkedIn Logo</14><15/></13></12></11><16><17><18><19>YouTube Logo</19><20/></18></17></16></0>"
-msgstr "<0><1><2><3><4>Facebook 徽标</4><5/></3></2></1><6><7><8><9>Instagram 徽标</9><10/></8></7></6><11><12><13><14>LinkedIn 徽标</14><15/></13></12></11><16><17><18><19>YouTube 徽标</19><20/></18></17></16></0>"
+msgid "<0><1><2><3><4>Facebook Logo</4><5/></3></2></1><6><7><8><9>Instagram Logo</9><10/></8></7></6><11><12><13><14>LinkedIn Logo</14><15/></13></12></11><16><17><18><19>YouTube Logo</19><20/></18></17> </16></0>"
+msgstr "<0><1><2><3><4>Facebook 徽标</4><5/></3></2></1><6><7><8><9>Instagram 徽标</9><10/></8></7></6><11><12><13><14>LinkedIn 徽标</14><15/></13></12></11><16><17><18><19>YouTube 徽标</19><20/></18></17> </16></0>"
 
 #. Page Title for user's list
 #: src/components/PageMyList/index.js:288
@@ -276,12 +277,17 @@ msgstr "<0>一般情况下，我们对<1>每件物品</1>收取<1> 25 美元的�
 #. Full Company Address
 #: src/components/Footer/index.js:23
 msgid "15 Dayton Avenue<0/>Sleepy Hollow, New York 10591"
-msgstr "15 Dayton Avenue<0/>Sleepy Hollow, New York 10591"
+msgstr "A&SC at Hillman Library<0/>320 Hillman Library<0/>University of Pittsburgh<0/>3960 Forbes Avenue<0/>Pittsburgh, PA 15260<0/>Phone: (412) 648-8190<0/><0/>"
 
 #. helptext for RAC staff message
 #: src/components/ModalMyList/index.js:446
 msgid "255 characters maximum"
 msgstr "最多 255 个字符"
+
+#. Reading Room Address
+#: src/components/Footer/index.js:30
+msgid "A&SC at the Archives Service Center<0/>7500 Thomas Boulevard<1/>Pittsburgh, PA 15208<2/>"
+msgstr "A&SC at the Archives Service Center<0/>7500 Thomas Boulevard<1/>Pittsburgh, PA 15208<2/>"
 
 #. About minimap message
 #: src/components/RecordsDetail/index.js:188
@@ -415,7 +421,7 @@ msgid "Confirm Remove All"
 msgstr "确认全部删除"
 
 #. Copyright message
-#: src/components/Footer/index.js:65
+#: src/components/Footer/index.js:67
 msgid "Copyright © Rockefeller Archive Center. All rights reserved."
 msgstr "洛克菲勒档案中心版权所有。保留所有权利。"
 
@@ -450,7 +456,7 @@ msgid "Download as .csv"
 msgstr "以 .csv 格式下载"
 
 #. Company Email
-#: src/components/Footer/index.js:36
+#: src/components/Footer/index.js:38
 msgid "E-mail:<0/>"
 msgstr "电子邮件：<0/>"
 
@@ -505,8 +511,8 @@ msgstr "提交申请出错"
 
 #. Company Fax
 #: src/components/Footer/index.js:33
-msgid "Fax: (914) 631-6017<0/>"
-msgstr ""
+#~ msgid "Fax: (914) 631-6017<0/>"
+#~ msgstr ""
 
 #. Label for Filters button
 #: src/components/PageSearch/index.js:249
@@ -699,9 +705,14 @@ msgid "Minimap"
 msgstr "迷你地图"
 
 #. Reading Room Actual Hours
+#: src/components/Footer/index.js:51
+msgid "Monday-Friday<0/>9:00 a.m. to 5:00 p.m.<1/>"
+msgstr "星期一至星期五<0/>上午 9:00 至下午 5:00。<1/>"
+
+#. Reading Room Actual Hours
 #: src/components/Footer/index.js:49
-msgid "Monday-Friday<0/>9:30 a.m. to 5:00 p.m.<1/>"
-msgstr "星期一至星期五<0/>上午 9:30 至下午 5:00。<1/>"
+#~ msgid "Monday-Friday<0/>9:30 a.m. to 5:00 p.m.<1/>"
+#~ msgstr "星期一至星期五<0/>上午 9:30 至下午 5:00。<1/>"
 
 #. Message shown on button within Dropdown list
 #. Message shown on button within the Header
@@ -762,14 +773,19 @@ msgid "People"
 msgstr "人"
 
 #. Company Phonenumber
+#: src/components/Footer/index.js:35
+msgid "Phone: (412) 648-8190"
+msgstr "电话: (412) 648-8190"
+
+#. Company Phonenumber
 #: src/components/Footer/index.js:30
 #~ msgid "Phone: (914) 366-6300"
 #~ msgstr "电话：（914）366-6300"
 
 #. Company Phonenumber
 #: src/components/Footer/index.js:30
-msgid "Phone: (914) 366-6300<0/>"
-msgstr ""
+#~ msgid "Phone: (914) 366-6300<0/>"
+#~ msgstr ""
 
 #. Place of birth property
 #: src/components/PageAgent/index.js:193
@@ -840,7 +856,7 @@ msgid "RAC Policies"
 msgstr "RAC 政策"
 
 #. Reading Room Hours message
-#: src/components/Footer/index.js:44
+#: src/components/Footer/index.js:46
 msgid "Reading Room Hours:"
 msgstr "阅览室开放时间:"
 
