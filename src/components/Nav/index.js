@@ -4,9 +4,9 @@ import MaterialIcon from '../MaterialIcon'
 import {NavDropdown} from '../Dropdown'
 import classnames from 'classnames'
 
-export const NavItem = ({ className, href, icon, id, label}) => (
+export const NavItem = ({ className, href, icon, id, hidden, label}) => (
   <li className={classnames('nav__item btn--navy', className)}>
-    <a className={classnames('nav__link', className)} href={href} id={id}>{label} {icon && <MaterialIcon icon={icon} />}</a>
+    <a className={classnames('nav__link', className)} href={href} id={id} hidden={hidden}>{label} {icon && <MaterialIcon icon={icon} />}</a>
   </li>)
 
 NavItem.propTypes = {
@@ -14,6 +14,7 @@ NavItem.propTypes = {
   href: PropTypes.string.isRequired,
   icon: PropTypes.string,
   id: PropTypes.string,
+  hidden: PropTypes.bool,
   label: PropTypes.string.isRequired
 }
 

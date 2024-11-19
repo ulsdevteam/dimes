@@ -26,7 +26,7 @@ const Header = ({ myListCount }) => (
             })}
             label={t({
               message: 'Sign in to RACcess'
-            })} />
+            })} hidden='true'/>
           <NavItem href='/list/' id='list'
             label={
               t({
