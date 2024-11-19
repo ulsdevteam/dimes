@@ -109,7 +109,7 @@ msgid "{source, select, null {Source: Rockefeller Archive Center} other {Source:
 msgstr "{source, select, null {资料来源：洛克菲勒档案中心} other {来源： {source}}}"
 
 #. Message to go back to previous search
-#: src/components/RecordsDetail/index.js:193
+#: src/components/RecordsDetail/index.js:232
 msgid "<0/>Back to Search"
 msgstr "<0/>返回搜索"
 
@@ -132,7 +132,6 @@ msgstr "<0><1/> 到访预约</0>"
 #: src/components/PageDigitalObject/index.js:119
 msgid "<0><1/>Back to Item Details</0>"
 msgstr "<0><1/>返回项目详情</0>"
-
 
 #. Social Icons Titles
 #: src/components/SocialIcons/index.js:5
@@ -165,12 +164,12 @@ msgid "<0><1>Search Results</1></0>"
 msgstr "<0><1>搜索结果</1></0>"
 
 #. Confirmation message when citation copied
-#: src/components/RecordsDetail/index.js:209
+#: src/components/RecordsDetail/index.js:248
 msgid "<0>Citation information copied to clipboard.</0>"
 msgstr "<0>引用信息复制到剪贴板。</0>"
 
 #. Button to copy citation text
-#: src/components/RecordsDetail/index.js:215
+#: src/components/RecordsDetail/index.js:254
 msgid "<0>Cite<1/></0>"
 msgstr "<0>引用<1/></0>"
 
@@ -239,6 +238,11 @@ msgstr "<0>请添加要搜索的单词或短语。</0>"
 msgid "<0>Please note:</0> if are emailing your list to an archivist at <1>archive@rockarch.org</1>, please include your name and email address in the Message field, otherwise we will have no means of contacting you to follow-up."
 msgstr "<0>请注意：</0>如果要将您的名单通过电子邮件发送给<1>archive@rockarch.org</1> 的档案管理员<1>，</1>请在 \"信息 \"栏中注明您的姓名和电子邮件地址，否则我们将无法与您联系，无法跟进。"
 
+#. Label for search refinement textbox
+#: src/components/RecordsDetail/index.js:207
+msgid "<0>Refining Search...</0>"
+msgstr "<0>重新搜索...</0>"
+
 #. Submit Request title
 #: src/components/ModalMyList/index.js:537
 msgid "<0>Submit request</0>"
@@ -265,7 +269,7 @@ msgid "<0>View Online<1/></0>"
 msgstr "<0>在线阅读<1/></0>"
 
 #. Buttons for online records
-#: src/components/RecordsDetail/index.js:223
+#: src/components/RecordsDetail/index.js:262
 msgid "<0>View Online<1/></0><2>Download <3/></2>{0}"
 msgstr "<0>在线阅读<1/></0><2>下载<3/></2>{0}"
 
@@ -290,7 +294,7 @@ msgid "A&SC at the Archives Service Center<0/>7500 Thomas Boulevard<1/>Pittsburg
 msgstr "A&SC at the Archives Service Center<0/>7500 Thomas Boulevard<1/>Pittsburgh, PA 15208<2/>"
 
 #. About minimap message
-#: src/components/RecordsDetail/index.js:188
+#: src/components/RecordsDetail/index.js:198
 msgid "about minimap"
 msgstr "关于微缩位置图"
 
@@ -758,7 +762,7 @@ msgstr "打开电子邮件"
 #: src/components/ModalMyList/index.js:520
 #: src/components/ModalMyList/index.js:583
 #: src/components/PageDigitalObject/index.js:112
-#: src/components/RecordsDetail/index.js:229
+#: src/components/RecordsDetail/index.js:268
 msgid "opens in a new window"
 msgstr "在新窗口打开"
 
@@ -1108,6 +1112,8 @@ msgid "Subject"
 msgstr "主题"
 
 #. Aria Label for search submission button
+#. Aria Label for search submission button
+#: src/components/RecordsDetail/index.js:221
 #: src/components/SearchForm/index.js:83
 msgid "Submit search"
 msgstr "搜索"

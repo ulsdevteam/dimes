@@ -177,6 +177,16 @@ const RecordsDetail = props => {
     setTimeout(() => {setCitationCopied(false)}, '6000')
   }
   
+  /** Retrieve current search params for users to refine a query based on initial search results */
+  const [refinedVal, setRefinedVal] = useState({
+    query: new URLSearchParams(window.location.search).get('query') || '',
+    category: new URLSearchParams(window.location.search).get('category') || '',
+    limit: new URLSearchParams(window.location.search).get('limit') || '40',
+  });
+
+  const handleChange = (e) => {
+    setRefinedVal({ ...refinedVal, [e.target.name]: e.target.value });
+  };
 
   return (
   <div className={classnames('records__detail', {'hidden': props.isContentShown})}>
@@ -188,6 +198,35 @@ const RecordsDetail = props => {
       label={t({ comment: 'About minimap message', message: 'about minimap' })}
     /> : null
     }
+    { process.env.REACT_APP_REFINE_SEARCH && 
+      process.env.REACT_APP_REFINE_SEARCH.toLowerCase() === 'true' ?
+      (
+        <form className='refine-search__form' >
+        <input type='hidden' name='category' value={props.params.category} />
+        <input type='hidden' name='limit' value={props.params.limit || '40'}/>
+        <Trans comment='Label for search refinement textbox'>
+            <label htmlFor='query' className='refine-search__label'>Refining Search...</label>
+        </Trans>
+        <input 
+          className='refine-search__input'
+          type='search' 
+          name='query'
+          placeholder=""
+          value={refinedVal.query}
+          onChange={handleChange}/>
+        <Button
+          className='btn btn--orange refine-search__btn'
+          type='submit'
+          iconAfter='search'
+          ariaLabel={t({
+            comment: 'Aria Label for search submission button',
+            message: 'Submit search'
+          })}
+        />
+        </form> 
+      ) : null 
+    }
+ 
     <nav className='records__nav'>
       <a href={searchUrl} className='btn btn--sm btn--gray'>
         <Trans comment='Message to go back to previous search'>  

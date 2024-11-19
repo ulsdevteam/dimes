@@ -109,7 +109,7 @@ msgid "{source, select, null {Source: Rockefeller Archive Center} other {Source:
 msgstr "{source, select, null {Kaynak: Rockefeller Arşiv Merkezi} other {Kaynak: {source}}}"
 
 #. Message to go back to previous search
-#: src/components/RecordsDetail/index.js:193
+#: src/components/RecordsDetail/index.js:232
 msgid "<0/>Back to Search"
 msgstr "<0/>aramaya geri̇ dön"
 
@@ -132,7 +132,6 @@ msgstr "<0><1/> Zi̇yaret Planla</0>"
 #: src/components/PageDigitalObject/index.js:119
 msgid "<0><1/>Back to Item Details</0>"
 msgstr "<0><1/>Madde Detaylarina Geri̇ Dön</0>"
-
 
 #. Social Icons Titles
 #: src/components/SocialIcons/index.js:5
@@ -165,12 +164,12 @@ msgid "<0><1>Search Results</1></0>"
 msgstr "<0><1>Arama Sonuçları</1></0>"
 
 #. Confirmation message when citation copied
-#: src/components/RecordsDetail/index.js:209
+#: src/components/RecordsDetail/index.js:248
 msgid "<0>Citation information copied to clipboard.</0>"
 msgstr "<0>Alıntı bilgileri panoya kopyalandı.</0>"
 
 #. Button to copy citation text
-#: src/components/RecordsDetail/index.js:215
+#: src/components/RecordsDetail/index.js:254
 msgid "<0>Cite<1/></0>"
 msgstr "<0>Alıntıla yapın<1/></0>"
 
@@ -239,6 +238,11 @@ msgstr "<0>Lütfen aramak için bir kelime veya cümle ekleyin.</0>"
 msgid "<0>Please note:</0> if are emailing your list to an archivist at <1>archive@rockarch.org</1>, please include your name and email address in the Message field, otherwise we will have no means of contacting you to follow-up."
 msgstr "<0>Lütfen dikkat:</0> listenizi <1>archive@rockarch.org</1> adresindeki bir arşivciye e-posta ile gönderiyorsanız, lütfen Mesaj alanına adınızı ve e-posta adresinizi ekleyin, aksi takdirde takip etmek için sizinle iletişime geçme imkanımız olmayacaktır."
 
+#. Label for search refinement textbox
+#: src/components/RecordsDetail/index.js:207
+msgid "<0>Refining Search...</0>"
+msgstr "<0>Arama hassaslaştırılıyor...</0>"
+
 #. Submit Request title
 #: src/components/ModalMyList/index.js:537
 msgid "<0>Submit request</0>"
@@ -265,7 +269,7 @@ msgid "<0>View Online<1/></0>"
 msgstr "<0>Çevrimiçi Görüntüle<1/></0>"
 
 #. Buttons for online records
-#: src/components/RecordsDetail/index.js:223
+#: src/components/RecordsDetail/index.js:262
 msgid "<0>View Online<1/></0><2>Download <3/></2>{0}"
 msgstr "<0>Çevrimiçi Görüntüle<1/></0><2>İndi̇r <3/></2>{0}"
 
@@ -290,7 +294,7 @@ msgid "A&SC at the Archives Service Center<0/>7500 Thomas Boulevard<1/>Pittsburg
 msgstr "A&SC at the Archives Service Center<0/>7500 Thomas Boulevard<1/>Pittsburgh, PA 15208<2/>"
 
 #. About minimap message
-#: src/components/RecordsDetail/index.js:188
+#: src/components/RecordsDetail/index.js:198
 msgid "about minimap"
 msgstr "minimap hakkında"
 
@@ -758,7 +762,7 @@ msgstr "e-posta açar"
 #: src/components/ModalMyList/index.js:520
 #: src/components/ModalMyList/index.js:583
 #: src/components/PageDigitalObject/index.js:112
-#: src/components/RecordsDetail/index.js:229
+#: src/components/RecordsDetail/index.js:268
 msgid "opens in a new window"
 msgstr "yeni bir pencerede açılır"
 
@@ -1098,6 +1102,8 @@ msgid "Subject"
 msgstr "Konu"
 
 #. Aria Label for search submission button
+#. Aria Label for search submission button
+#: src/components/RecordsDetail/index.js:221
 #: src/components/SearchForm/index.js:83
 msgid "Submit search"
 msgstr "Aramayı gönder"
