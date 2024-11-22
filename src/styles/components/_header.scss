@@ -24,7 +24,6 @@
 
 .header-secondary__brand {
   margin-left: 20px;
-  margin-top: 9px;
   z-index: 3;
   @include grid-column(11);
   box-sizing: border-box;
@@ -60,4 +59,5 @@
     float: left;
     margin-top: 4px;
   }
+  visibility: hidden;
 }
