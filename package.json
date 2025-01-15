@@ -1,6 +1,11 @@
 {
   "name": "dimes",
   "version": "0.1.0",
+  "jest": {
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules/(?!(mirador|manifesto.js|react-datepicker|react-loading-skeleton))"
+    ]
+  },
   "private": true,
   "dependencies": {
     "@lingui/detect-locale": "^4.5.0",
