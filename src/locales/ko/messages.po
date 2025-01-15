@@ -120,8 +120,8 @@ msgstr "<0/>새 검색 시작"
 
 #. Download button for digital object
 #: src/components/PageDigitalObject/index.js:108
-msgid "<0><1/> Download</0>"
-msgstr "<0><1/> 다운로드</0>"
+#~ msgid "<0><1/> Download</0>"
+#~ msgstr "<0><1/> 다운로드</0>"
 
 #. Schedule a visit button
 #: src/components/MyListSidebar/index.js:9
@@ -129,7 +129,7 @@ msgid "<0><1/> Schedule a Visit</0>"
 msgstr "<0><1/> 방문 예약하기</0>"
 
 #. Go back to Item details for digital object
-#: src/components/PageDigitalObject/index.js:119
+#: src/components/PageDigitalObject/index.js:172
 msgid "<0><1/>Back to Item Details</0>"
 msgstr "<0><1/>항목 세부 정보로 돌아가기</0>"
 
@@ -424,6 +424,11 @@ msgstr "저작권 © 록펠러 아카이브 센터. 모든 권리 보유."
 msgid "Creator"
 msgstr "작성자"
 
+#. Message shown for downloading high-res images in digital object viewer
+#: src/components/PageDigitalObject/index.js:153
+msgid "Current Page - JPEG2000 {pixelDimensions}"
+msgstr ""
+
 #. title for Date Range
 #: src/components/ModalSearch/index.js:61
 msgid "Date Range"
@@ -443,6 +448,11 @@ msgstr "제목 1 아래의 세부 정보가 {0}이라는 제목의 선택된 레
 #: src/components/Header/index.js:11
 msgid "dimes.rockarch.org"
 msgstr "dimes.rockarch.org"
+
+#. Message shown on download dropdown button
+#: src/components/PageDigitalObject/index.js:137
+msgid "Download"
+msgstr ""
 
 #. Message shown on button within Dropdown list
 #: src/components/Dropdown/index.js:108
@@ -491,6 +501,11 @@ msgstr "검색어 입력"
 #: src/components/ModalMyList/index.js:346
 msgid "Enter the date of your research visit (mm/dd/yyyy)"
 msgstr "연구 방문 날짜(월/일/년/월/일)를 입력하세요"
+
+#. Message shown for downloading PDF in digital object viewer
+#: src/components/PageDigitalObject/index.js:164
+msgid "Entire Item - PDF"
+msgstr ""
 
 #. Title displayed when error occurs while submitting request
 #: src/components/PageMyList/index.js:128
@@ -737,11 +752,9 @@ msgstr "이메일 열기"
 
 #. Title for duplication services link
 #. Title for duplication request
-#. Title for new window button
 #. Title message for opening an online item
 #: src/components/ModalMyList/index.js:520
 #: src/components/ModalMyList/index.js:583
-#: src/components/PageDigitalObject/index.js:112
 #: src/components/RecordsDetail/index.js:210
 msgid "opens in a new window"
 msgstr "새 창에서 열기"
