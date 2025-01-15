@@ -135,7 +135,7 @@ const PageDigitalObject = ({isMobile}) => {
       <div className='viewer-bar__buttons mt-5 mr-10'>
         <Dropdown
           label={t({
-            comment: 'Message shown on Dropdown button',
+            comment: 'Message shown on download dropdown button',
             message: 'Download'
           })}
           iconBefore='download'
@@ -145,14 +145,14 @@ const PageDigitalObject = ({isMobile}) => {
           role='menu'>
             {canvases.map((canvas) => {
               const info = infoResponse(canvas.id)
-              const pixelDimensions = info.json && `${info.json.width} x ${info.json.height}`
+              const pixelDimensions = info.json && `${info.json.width} x ${info.json.height} px`
               return (
               <DropdownItem
                   order={1}
                   className='btn--orange dropdown__btn dropdown__item--orange'
                   label={t({
-                    comment: 'Message shown on button within Dropdown list',
-                    message: `Hi Res Image (${pixelDimensions})`
+                    comment: 'Message shown for downloading high-res images in digital object viewer',
+                    message: `Current Page - JPEG2000 ${pixelDimensions}`
                   })}
                   iconBefore='image'
                   href={imageDownloadUrl(info)}
@@ -162,8 +162,8 @@ const PageDigitalObject = ({isMobile}) => {
               order={1}
               className='btn--orange dropdown__btn dropdown__item--orange'
               label={t({
-                comment: 'Message shown on button within Dropdown list',
-                message: 'PDF (entire item)'
+                comment: 'Message shown for downloading PDF in digital object viewer',
+                message: 'Entire Item - PDF'
               })}
               iconBefore='picture_as_pdf'
               href={pdfDownloadUrl}
