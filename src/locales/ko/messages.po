@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.5\n"
 
 #. Message returned dependent on how many items selected
 #: src/components/ModalMyList/index.js:98
@@ -117,11 +117,6 @@ msgstr "<0/>검색으로 돌아가기"
 #: src/components/PageMyList/index.js:297
 msgid "<0/>Start a New Search"
 msgstr "<0/>새 검색 시작"
-
-#. Download button for digital object
-#: src/components/PageDigitalObject/index.js:108
-#~ msgid "<0><1/> Download</0>"
-#~ msgstr "<0><1/> 다운로드</0>"
 
 #. Schedule a visit button
 #: src/components/MyListSidebar/index.js:9
@@ -427,7 +422,7 @@ msgstr "작성자"
 #. Message shown for downloading high-res images in digital object viewer
 #: src/components/PageDigitalObject/index.js:153
 msgid "Current Page - JPEG2000 {pixelDimensions}"
-msgstr ""
+msgstr "현재 페이지 - JPEG2000 {pixelDimensions}"
 
 #. title for Date Range
 #: src/components/ModalSearch/index.js:61
@@ -452,7 +447,7 @@ msgstr "dimes.rockarch.org"
 #. Message shown on download dropdown button
 #: src/components/PageDigitalObject/index.js:137
 msgid "Download"
-msgstr ""
+msgstr "다운로드"
 
 #. Message shown on button within Dropdown list
 #: src/components/Dropdown/index.js:108
@@ -505,7 +500,7 @@ msgstr "연구 방문 날짜(월/일/년/월/일)를 입력하세요"
 #. Message shown for downloading PDF in digital object viewer
 #: src/components/PageDigitalObject/index.js:164
 msgid "Entire Item - PDF"
-msgstr ""
+msgstr "전체 항목 - PDF"
 
 #. Title displayed when error occurs while submitting request
 #: src/components/PageMyList/index.js:128
@@ -580,8 +575,7 @@ msgstr "https://github.com/RockefellerArchiveCenter/data/"
 
 #. Link used for sign-in within Dropdown list
 #. Link used for sign-in within the Header
-#: src/components/Dropdown/index.js:151
-#: src/components/Header/index.js:23
+#: src/components/Dropdown/index.js:151 src/components/Header/index.js:23
 msgid "https://raccess.rockarch.org"
 msgstr "https://raccess.rockarch.org"
 
@@ -702,8 +696,7 @@ msgstr "RAC 직원을 위한 메시지"
 #. Header for minimap
 #. Aria label for Minimap nav
 #. Header for modal minimap
-#: src/components/Minimap/index.js:79
-#: src/components/Minimap/index.js:83
+#: src/components/Minimap/index.js:79 src/components/Minimap/index.js:83
 #: src/components/ModalMinimap/index.js:69
 msgid "Minimap"
 msgstr "미니맵"
@@ -711,12 +704,11 @@ msgstr "미니맵"
 #. Reading Room Actual Hours
 #: src/components/Footer/index.js:49
 msgid "Monday-Friday<0/>9:30 a.m. to 5:00 p.m.<1/>"
-msgstr ""
+msgstr "월요일~금요일<0/>오전 9:30~오후 5:00<1/>"
 
 #. Message shown on button within Dropdown list
 #. Message shown on button within the Header
-#: src/components/Dropdown/index.js:158
-#: src/components/Header/index.js:32
+#: src/components/Dropdown/index.js:158 src/components/Header/index.js:32
 msgid "My List"
 msgstr "내 목록"
 
@@ -889,15 +881,13 @@ msgstr "4개 항목 요청"
 
 #. Message shown on button within Dropdown list
 #. Shown to request copies of an item
-#: src/components/Dropdown/index.js:89
-#: src/components/MyListSidebar/index.js:30
+#: src/components/Dropdown/index.js:89 src/components/MyListSidebar/index.js:30
 msgid "Request Copies"
 msgstr "복사 요청"
 
 #. Message shown on button within Dropdown list
 #. Shown to Request the item in a Reading Room
-#: src/components/Dropdown/index.js:79
-#: src/components/MyListSidebar/index.js:22
+#: src/components/Dropdown/index.js:79 src/components/MyListSidebar/index.js:22
 msgid "Request in Reading Room"
 msgstr "열람실에서 요청하기"
 
@@ -1015,8 +1005,7 @@ msgid "Show only results with digital matches"
 msgstr "디지털 원문이 있는 결과만 표시"
 
 #. Message shown on sign-in button
-#: src/components/Dropdown/index.js:146
-#: src/components/Header/index.js:27
+#: src/components/Dropdown/index.js:146 src/components/Header/index.js:27
 msgid "Sign in to RACcess"
 msgstr "RACcess에 로그인"
 
@@ -1130,3 +1119,7 @@ msgstr "귀하가 복제 비용 지불에 동의하지 않으면 요청을 처�
 #: src/components/PageAgent/index.js:174
 msgid "WorldCat Identities"
 msgstr "월드캣 아이덴티티"
+
+#. Download button for digital object
+#~ msgid "<0><1/> Download</0>"
+#~ msgstr "<0><1/> 다운로드</0>"

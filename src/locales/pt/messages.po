@@ -427,7 +427,7 @@ msgstr "Acervo"
 #. Message shown for downloading high-res images in digital object viewer
 #: src/components/PageDigitalObject/index.js:153
 msgid "Current Page - JPEG2000 {pixelDimensions}"
-msgstr ""
+msgstr "Página atual - JPEG2000 {pixelDimensions}"
 
 #. title for Date Range
 #: src/components/ModalSearch/index.js:61
@@ -452,7 +452,7 @@ msgstr "dimes.rockarch.org"
 #. Message shown on download dropdown button
 #: src/components/PageDigitalObject/index.js:137
 msgid "Download"
-msgstr ""
+msgstr "Baixar"
 
 #. Message shown on button within Dropdown list
 #: src/components/Dropdown/index.js:108
@@ -505,7 +505,7 @@ msgstr "Insira a data de sua visita de pesquisa (mm/dd/aaaa)"
 #. Message shown for downloading PDF in digital object viewer
 #: src/components/PageDigitalObject/index.js:164
 msgid "Entire Item - PDF"
-msgstr ""
+msgstr "Item completo - PDF"
 
 #. Title displayed when error occurs while submitting request
 #: src/components/PageMyList/index.js:128

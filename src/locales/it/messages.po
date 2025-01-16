@@ -427,7 +427,7 @@ msgstr "Creatore"
 #. Message shown for downloading high-res images in digital object viewer
 #: src/components/PageDigitalObject/index.js:153
 msgid "Current Page - JPEG2000 {pixelDimensions}"
-msgstr ""
+msgstr "Pagina corrente - JPEG2000 {pixelDimensions}"
 
 #. title for Date Range
 #: src/components/ModalSearch/index.js:61
@@ -452,7 +452,7 @@ msgstr "dimes.rockarch.org"
 #. Message shown on download dropdown button
 #: src/components/PageDigitalObject/index.js:137
 msgid "Download"
-msgstr ""
+msgstr "Scarica"
 
 #. Message shown on button within Dropdown list
 #: src/components/Dropdown/index.js:108
@@ -505,7 +505,7 @@ msgstr "Inserisci la data del del tuo appuntamento (mm/dd/yyyy)"
 #. Message shown for downloading PDF in digital object viewer
 #: src/components/PageDigitalObject/index.js:164
 msgid "Entire Item - PDF"
-msgstr ""
+msgstr "Intero articolo - PDF"
 
 #. Title displayed when error occurs while submitting request
 #: src/components/PageMyList/index.js:128
