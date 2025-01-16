@@ -143,21 +143,6 @@ const PageDigitalObject = ({isMobile}) => {
           buttonClassName='btn btn--orange btn--sm mr-10'
           listClassName='dropdown__list--orange dropdown__list--slide-down mylist__actions--dropdown'
           role='menu'>
-            {canvases.map((canvas) => {
-              const info = infoResponse(canvas.id)
-              const pixelDimensions = info.json && `${info.json.width} x ${info.json.height} px`
-              return (
-              <DropdownItem
-                  order={1}
-                  className='btn--orange dropdown__btn dropdown__item--orange'
-                  label={t({
-                    comment: 'Message shown for downloading high-res images in digital object viewer',
-                    message: `Current Page - JPEG2000 ${pixelDimensions}`
-                  })}
-                  iconBefore='image'
-                  href={imageDownloadUrl(info)}
-                  role='menuitem' />
-            )})}
             <DropdownItem
               order={1}
               className='btn--orange dropdown__btn dropdown__item--orange'
@@ -168,6 +153,21 @@ const PageDigitalObject = ({isMobile}) => {
               iconBefore='picture_as_pdf'
               href={pdfDownloadUrl}
               role='menuitem' />
+            {canvases.map((canvas) => {
+              const info = infoResponse(canvas.id)
+              const pixelDimensions = info.json && `${info.json.width} x ${info.json.height} px`
+              return (
+              <DropdownItem
+                  order={2}
+                  className='btn--orange dropdown__btn dropdown__item--orange'
+                  label={t({
+                    comment: 'Message shown for downloading high-res images in digital object viewer',
+                    message: `Current Page - JPEG2000 ${pixelDimensions}`
+                  })}
+                  iconBefore='image'
+                  href={imageDownloadUrl(info)}
+                  role='menuitem' />
+            )})}
         </Dropdown>
         <Trans comment='Go back to Item details for digital object'>
           <a href={itemUrl} className='btn btn--sm btn--black'>
