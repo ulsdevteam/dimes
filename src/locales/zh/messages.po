@@ -425,7 +425,7 @@ msgid "Creator"
 msgstr "创建者"
 
 #. Message shown for downloading high-res images in digital object viewer
-#: src/components/PageDigitalObject/index.js:153
+#: src/components/PageDigitalObject/index.js:163
 msgid "Current Page - JPEG2000 {pixelDimensions}"
 msgstr "当前页面 - JPEG2000 {pixelDimensions}"
 
@@ -503,7 +503,7 @@ msgid "Enter the date of your research visit (mm/dd/yyyy)"
 msgstr "请输入研究访问日期（月/日/年）"
 
 #. Message shown for downloading PDF in digital object viewer
-#: src/components/PageDigitalObject/index.js:164
+#: src/components/PageDigitalObject/index.js:149
 msgid "Entire Item - PDF"
 msgstr "整个项目 - PDF"
 
