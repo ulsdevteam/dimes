@@ -118,7 +118,7 @@ const PageDigitalObject = ({isMobile}) => {
     /** Constructs url for PDF download 
      * In the future it may be possible to derive this from the IIIF manifest
     */
-    const pdfDownloadUrl = `${process.env.REACT_APP_S3_BASEURL}/pdf/${id}`
+    const pdfDownloadUrl = `${process.env.REACT_APP_S3_BASEURL}/pdfs/${id}`
 
     /** Constructs url for single image download */
     const imageDownloadUrl = infoResponse => {
