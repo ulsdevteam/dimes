@@ -123,7 +123,7 @@ const PageDigitalObject = ({isMobile}) => {
     /** Constructs url for single image download */
     const imageDownloadUrl = infoResponse => {
       const imagePath = infoResponse.id && infoResponse.id.split('/').at(-1)
-      const downloadUrl = `${process.env.REACT_APP_S3_BASEURL}/images/${imagePath}`
+      const downloadUrl = `${process.env.REACT_APP_S3_BASEURL}/images/${imagePath}?response-content-disposition=attachment;filename=${imagePath}.jp2`
       return downloadUrl
     }
   
