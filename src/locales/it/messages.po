@@ -48,7 +48,7 @@ msgstr "{0, select, true {Minimap} other {Introduzione della minimappa}}"
 msgid "{0, select, true {Request {1} Items} other {Request {2} Item}}"
 msgstr "{0, select, true {Richiesta {1} Elementi} other {Richiesta {2} Elemento}}"
 
-#: src/components/RecordsContent/index.js:232
+#: src/components/RecordsContent/index.js:234
 msgid "{0, select, true {View} other {View Online}}"
 msgstr "{0, select, true {Visualizzazione} other {Visualizza online}}"
 
@@ -120,8 +120,8 @@ msgstr "<0/>Avvia una nuova ricerca"
 
 #. Download button for digital object
 #: src/components/PageDigitalObject/index.js:108
-msgid "<0><1/> Download</0>"
-msgstr "<0><1/> Scarica</0>"
+#~ msgid "<0><1/> Download</0>"
+#~ msgstr "<0><1/> Scarica</0>"
 
 #. Schedule a visit button
 #: src/components/MyListSidebar/index.js:9
@@ -129,7 +129,7 @@ msgid "<0><1/> Schedule a Visit</0>"
 msgstr "<0><1/> Richiedi un appuntamento</0>"
 
 #. Go back to Item details for digital object
-#: src/components/PageDigitalObject/index.js:119
+#: src/components/PageDigitalObject/index.js:172
 msgid "<0><1/>Back to Item Details</0>"
 msgstr "<0><1/>Torna ai dettagli dell'elemento</0>"
 
@@ -214,7 +214,7 @@ msgid "<0>Last requested on: {0}</0>"
 msgstr "<0>Ultima richiesta il: {0}</0>"
 
 #. Records content is loading
-#: src/components/RecordsContent/index.js:401
+#: src/components/RecordsContent/index.js:403
 msgid "<0>Loading</0>"
 msgstr "<0>Caricamento</0>"
 
@@ -395,7 +395,7 @@ msgstr "Chiudi"
 #. switcher label text content
 #. Collection Content title
 #: src/components/ContextSwitcher/__tests__/ContextSwitcher.test.js:20
-#: src/components/RecordsContent/index.js:405
+#: src/components/RecordsContent/index.js:407
 msgid "Collection Content"
 msgstr "Contenuto della collezione"
 
@@ -434,6 +434,11 @@ msgstr "Copyright © Rockefeller Archive Center. Tutti i diritti riservati."
 msgid "Creator"
 msgstr "Creatore"
 
+#. Message shown for downloading high-res images in digital object viewer
+#: src/components/PageDigitalObject/index.js:163
+msgid "Current Page - JPEG2000 {pixelDimensions}"
+msgstr "Pagina corrente - JPEG2000 {pixelDimensions}"
+
 #. title for Date Range
 #: src/components/ModalSearch/index.js:61
 msgid "Date Range"
@@ -445,7 +450,7 @@ msgid "Deselect all items"
 msgstr "Deselezionare tutti gli elementi"
 
 #. Update message for selected record
-#: src/components/PageRecords/index.js:118
+#: src/components/PageRecords/index.js:119
 msgid "Details under heading 1 have been updated to describe the selected records titled {0}"
 msgstr "I dettagli della rubrica 1 sono stati aggiornati per descrivere i record selezionati intitolati {0}"
 
@@ -453,6 +458,11 @@ msgstr "I dettagli della rubrica 1 sono stati aggiornati per descrivere i record
 #: src/components/Header/index.js:11
 msgid "dimes.rockarch.org"
 msgstr "dimes.rockarch.org"
+
+#. Message shown on download dropdown button
+#: src/components/PageDigitalObject/index.js:137
+msgid "Download"
+msgstr "Scarica"
 
 #. Message shown on button within Dropdown list
 #: src/components/Dropdown/index.js:108
@@ -502,6 +512,11 @@ msgstr "Inserisci un termine da ricercare"
 msgid "Enter the date of your research visit (mm/dd/yyyy)"
 msgstr "Inserisci la data del del tuo appuntamento (mm/dd/yyyy)"
 
+#. Message shown for downloading PDF in digital object viewer
+#: src/components/PageDigitalObject/index.js:149
+msgid "Entire Item - PDF"
+msgstr "Intero articolo - PDF"
+
 #. Title displayed when error occurs while submitting request
 #: src/components/PageMyList/index.js:128
 #: src/components/PageMyList/index.js:159
@@ -529,12 +544,12 @@ msgid "Format"
 msgstr "Formato"
 
 #. Panel Format message
-#: src/components/RecordsDetail/index.js:72
+#: src/components/RecordsDetail/index.js:64
 msgid "Formats"
 msgstr "Formati"
 
 #. Panel Found In message
-#: src/components/RecordsDetail/index.js:89
+#: src/components/RecordsDetail/index.js:81
 msgid "Found In"
 msgstr "Contenuto in"
 
@@ -762,7 +777,6 @@ msgstr "apre l'e-mail"
 
 #. Title for duplication services link
 #. Title for duplication request
-#. Title for new window button
 #. Title message for opening an online item
 #: src/components/ModalMyList/index.js:520
 #: src/components/ModalMyList/index.js:583
@@ -913,11 +927,6 @@ msgstr "Richiedi delle riproduzioni"
 msgid "Request in Reading Room"
 msgstr "Richiedi in Sala di consultazione"
 
-#. Institution name for citation
-#: src/components/RecordsDetail/index.js:169
-msgid "Rockefeller Archive Center"
-msgstr "Rockefeller Archive Center"
-
 #. Primary Title
 #: src/components/Footer/index.js:14
 msgid "Rockefeller<0/>Archive Center"
@@ -1038,7 +1047,7 @@ msgid "Sign in to RACcess"
 msgstr "Accedi a RACcess"
 
 #. Panel Extent Size message
-#: src/components/RecordsDetail/index.js:50
+#: src/components/RecordsDetail/index.js:42
 msgid "Size"
 msgstr "Dimensioni"
 

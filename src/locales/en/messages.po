@@ -48,7 +48,7 @@ msgstr "{0, select, true {Minimap} other {Introducing the Minimap}}"
 msgid "{0, select, true {Request {1} Items} other {Request {2} Item}}"
 msgstr "{0, select, true {Request {1} Items} other {Request {2} Item}}"
 
-#: src/components/RecordsContent/index.js:232
+#: src/components/RecordsContent/index.js:234
 msgid "{0, select, true {View} other {View Online}}"
 msgstr "{0, select, true {View} other {View Online}}"
 
@@ -120,8 +120,8 @@ msgstr "<0/>Start a New Search"
 
 #. Download button for digital object
 #: src/components/PageDigitalObject/index.js:108
-msgid "<0><1/> Download</0>"
-msgstr "<0><1/> Download</0>"
+#~ msgid "<0><1/> Download</0>"
+#~ msgstr "<0><1/> Download</0>"
 
 #. Schedule a visit button
 #: src/components/MyListSidebar/index.js:9
@@ -129,7 +129,7 @@ msgid "<0><1/> Schedule a Visit</0>"
 msgstr "<0><1/> Schedule a Visit</0>"
 
 #. Go back to Item details for digital object
-#: src/components/PageDigitalObject/index.js:119
+#: src/components/PageDigitalObject/index.js:172
 msgid "<0><1/>Back to Item Details</0>"
 msgstr "<0><1/>Back to Item Details</0>"
 
@@ -214,7 +214,7 @@ msgid "<0>Last requested on: {0}</0>"
 msgstr "<0>Last requested on: {0}</0>"
 
 #. Records content is loading
-#: src/components/RecordsContent/index.js:401
+#: src/components/RecordsContent/index.js:403
 msgid "<0>Loading</0>"
 msgstr "<0>Loading</0>"
 
@@ -395,7 +395,7 @@ msgstr "Close"
 #. switcher label text content
 #. Collection Content title
 #: src/components/ContextSwitcher/__tests__/ContextSwitcher.test.js:20
-#: src/components/RecordsContent/index.js:405
+#: src/components/RecordsContent/index.js:407
 msgid "Collection Content"
 msgstr "Collection Content"
 
@@ -439,6 +439,11 @@ msgstr "Copyright © University of Pittsburgh. All rights reserved."
 msgid "Creator"
 msgstr "Creator"
 
+#. Message shown for downloading high-res images in digital object viewer
+#: src/components/PageDigitalObject/index.js:163
+msgid "Current Page - JPEG2000 {pixelDimensions}"
+msgstr "Current Page - JPEG2000 {pixelDimensions}"
+
 #. title for Date Range
 #: src/components/ModalSearch/index.js:61
 msgid "Date Range"
@@ -450,7 +455,7 @@ msgid "Deselect all items"
 msgstr "Deselect all items"
 
 #. Update message for selected record
-#: src/components/PageRecords/index.js:118
+#: src/components/PageRecords/index.js:119
 msgid "Details under heading 1 have been updated to describe the selected records titled {0}"
 msgstr "Details under heading 1 have been updated to describe the selected records titled {0}"
 
@@ -507,6 +512,11 @@ msgstr "Enter a search term"
 msgid "Enter the date of your research visit (mm/dd/yyyy)"
 msgstr "Enter the date of your research visit (mm/dd/yyyy)"
 
+#. Message shown for downloading PDF in digital object viewer
+#: src/components/PageDigitalObject/index.js:149
+msgid "Entire Item - PDF"
+msgstr "Entire Item - PDF"
+
 #. Title displayed when error occurs while submitting request
 #: src/components/PageMyList/index.js:128
 #: src/components/PageMyList/index.js:159
@@ -529,12 +539,12 @@ msgid "Format"
 msgstr "Format"
 
 #. Panel Format message
-#: src/components/RecordsDetail/index.js:72
+#: src/components/RecordsDetail/index.js:64
 msgid "Formats"
 msgstr "Formats"
 
 #. Panel Found In message
-#: src/components/RecordsDetail/index.js:89
+#: src/components/RecordsDetail/index.js:81
 msgid "Found In"
 msgstr "Found In"
 
@@ -773,7 +783,6 @@ msgstr "opens email"
 
 #. Title for duplication services link
 #. Title for duplication request
-#. Title for new window button
 #. Title message for opening an online item
 #: src/components/ModalMyList/index.js:520
 #: src/components/ModalMyList/index.js:583
@@ -1054,7 +1063,7 @@ msgid "Sign in to RACcess"
 msgstr "Sign in to A&SC Aeon Research Portal"
 
 #. Panel Extent Size message
-#: src/components/RecordsDetail/index.js:50
+#: src/components/RecordsDetail/index.js:42
 msgid "Size"
 msgstr "Size"
 
