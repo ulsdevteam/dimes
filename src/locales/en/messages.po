@@ -135,13 +135,8 @@ msgstr "<0><1/>Back to Item Details</0>"
 
 #. Social Icons Titles
 #: src/components/SocialIcons/index.js:5
-msgid "<0><1><2><3><4>Facebook Logo</4><5/></3></2></1><6><7><8><9>Instagram Logo</9><10/></8></7></6><11><12><13><14>LinkedIn Logo</14><15/></13></12></11><16><17><18><19>YouTube Logo</19><20/></18></17> </16></0>"
-msgstr "<0><1><2><3><4>Facebook Logo</4><5/></3></2></1><6><7><8><9>Instagram Logo</9><10/></8></7></6><11><12><13><14>LinkedIn Logo</14><15/></13></12></11><16><17><18><19>YouTube Logo</19><20/></18></17> </16></0>"
-
-#. Social Icons Titles
-#: src/components/SocialIcons/index.js:5
-#~ msgid "<0><1><2><3><4>Facebook Logo</4><5/></3></2></1><6><7><8><9>Instagram Logo</9><10/></8></7></6><11><12><13><14>LinkedIn Logo</14><15/></13></12></11><16><17><18><19>YouTube Logo</19><20/></18></17></16></0>"
-#~ msgstr "<0><1><2><3><4>Facebook: Archives & Special Collections at Pitt</4></3></2></1><6><7><8><9>Instagram: Pitt Archives & Spec. Colls. (@pittarchives)</9></8></7></6><10><11><12><13>LinkedIn Logo</13></12></11></10><14><15><16><17>YouTube Logo</17></16></15></14></0>"
+msgid "<0><1><2><3><4>Facebook: Archives & Special Collections at Pitt</4><5/></3></2></1><6><7><8><9>Instagram: Pitt Archives & Spec. Colls. (@pittarchives)</9><10/></8></7></6><11><12><13><14>LinkedIn: Archives & Special Collections at Pitt</14><15/></13></12></11><16><17><18><19>Tumblr: Archives & Manuscripts @ Pitt</19><20/></18></17> </16><21><22><23><24>Tumblr: Rare Books @ Pitt</24><25/></23></22></21></0>"
+msgstr "<0><1><2><3><4>Facebook: Archives & Special Collections at Pitt</4><5/></3></2></1><6><7><8><9>Instagram: Pitt Archives & Spec. Colls. (@pittarchives)</9><10/></8></7></6><11><12><13><14>LinkedIn: Archives & Special Collections at Pitt</14><15/></13></12></11><16><17><18><19>Tumblr: Archives & Manuscripts @ Pitt</19><20/></18></17> </16><21><22><23><24>Tumblr: Rare Books @ Pitt</24><25/></23></22></21></0>"
 
 #. Page Title for user's list
 #: src/components/PageMyList/index.js:288
@@ -638,9 +633,9 @@ msgid "https://www.facebook.com/RockefellerArchiveCenter"
 msgstr "https://www.facebook.com/pittarchivesandspecialcollections/"
 
 #. Flickr account link
-#: src/components/SocialIcons/index.js:51
-#~ msgid "https://www.flickr.com/photos/147074352@N05/"
-#~ msgstr "https://pittrarebooks.tumblr.com/"
+#: src/components/SocialIcons/index.js:52
+msgid "https://www.flickr.com/photos/147074352@N05/"
+msgstr "https://pittrarebooks.tumblr.com/"
 
 #. Instagram account link
 #: src/components/SocialIcons/index.js:18
