@@ -126,7 +126,7 @@ msgstr "<0/>Start a New Search"
 #. Schedule a visit button
 #: src/components/MyListSidebar/index.js:9
 msgid "<0><1/> Schedule a Visit</0>"
-msgstr "<0><1/> Schedule a Visit</0>"
+msgstr "<0><1/> Ask Us a Question</0>"
 
 #. Go back to Item details for digital object
 #: src/components/PageDigitalObject/index.js:172
@@ -276,7 +276,7 @@ msgstr "<0>View Online<1/></0><2>Download <3/></2>{0}"
 #. Fees and limitations information
 #: src/components/ModalMyList/index.js:512
 msgid "<0>We generally charge a <1>$25 flat fee per item</1>, with a limit of <2>20 items requested per calendar year</2>.</0><3>For more details, including exceptions for audiovisual and oversized materials, read about our <4>duplication services</4>.</3><5>For help or to request a publication quality scan, email an archivist at <6>archive@rockarch.org</6>.</5>"
-msgstr "<0>We generally charge a <1>$25 flat fee per item</1>, with a limit of <2>20 items requested per calendar year</2>.</0><3>For more details, including exceptions for audiovisual and oversized materials, read about our <4>duplication services</4>.</3><5>For help or to request a publication quality scan, email an archivist at <6>archives-ref@pitt.edu</6>.</5>"
+msgstr "<0>Interested in obtaining a copy of an item or need a digital image of our material? We offer a variety of reproduction services for personal use or publication needs. <1>Please allow 5-10 business days to fulfill your request.</1> See our pricing via <2>the link below</2>.</0>Information for <3> <4>Ordering Reproductions from Archives & Special Collections</4>.</3><5>If you need help, please do not hesitate to <6>contact us</6>.</5>"
 
 #. Full Company Address
 #: src/components/Footer/index.js:23
@@ -625,7 +625,7 @@ msgstr "https://www.library.pitt.edu/asc-doing-research"
 #: src/components/ModalMyList/index.js:524
 #: src/components/ModalMyList/index.js:587
 msgid "https://rockarch.org/collections/access-and-request-materials/#duplication-services"
-msgstr "https://rockarch.org/collections/access-and-request-materials/#duplication-services"
+msgstr "https://library.pitt.edu/asc-ordering-reproductions"
 
 #. Holiday Schedule link
 #: src/components/PrimaryLink/index.js:46
