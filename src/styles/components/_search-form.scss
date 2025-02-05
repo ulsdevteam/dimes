@@ -123,3 +123,7 @@
     margin-left: 0px; /* 1 */
   }
 }
+
+div.select__search__wrapper > button.select__search__control {
+  display: none;
+}
