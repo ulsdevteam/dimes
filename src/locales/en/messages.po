@@ -941,12 +941,12 @@ msgstr "Request in Reading Room"
 #. Institution name for citation
 #: src/components/RecordsDetail/index.js:169
 msgid "Rockefeller Archive Center"
-msgstr "University of Pittsburgh University Library System's Archive & Speical Collections"
+msgstr "University of Pittsburgh University Library System's Archives & Special Collections"
 
 #. Primary Title
 #: src/components/Footer/index.js:14
 msgid "Rockefeller<0/>Archive Center"
-msgstr "Archive & Special Collections<0/>University Library System<0/>University of Pittsburgh"
+msgstr "Archives & Special Collections<0/>University Library System<0/>University of Pittsburgh"
 
 #. Shown for the user to save and close the filter
 #: src/components/ModalSearch/index.js:54
