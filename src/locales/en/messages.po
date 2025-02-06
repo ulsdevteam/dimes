@@ -632,11 +632,6 @@ msgstr "https://library.pitt.edu/asc-ordering-reproductions"
 msgid "https://rockarch.org/collections/access-and-request-materials/holiday-schedule"
 msgstr "https://www.library.pitt.edu/hours"
 
-#. Twitter account link
-#: src/components/SocialIcons/index.js:7
-#~ msgid "https://twitter.com/rockarch_org"
-#~ msgstr "https://twitter.com/pittarchives"
-
 #. Facebook account link
 #: src/components/SocialIcons/index.js:7
 msgid "https://www.facebook.com/RockefellerArchiveCenter"
@@ -700,11 +695,6 @@ msgstr "Location of Headquarters"
 #: src/components/PrimaryLink/index.js:33
 msgid "mailto:archive@rockarch.org"
 msgstr "mailto:archives-ref@pitt.edu"
-
-#. Scheduling an appointment email link
-#: src/components/MyListSidebar/index.js:12
-#~ msgid "mailto:archive@rockarch.org?subject=Scheduling a research appointment"
-#~ msgstr "mailto:archives-ref@pitt.edu"
 
 #. Name of message form
 #: src/components/ModalMyList/index.js:251
@@ -805,11 +795,6 @@ msgstr "People"
 #: src/components/Footer/index.js:35
 msgid "Phone: (412) 648-8190"
 msgstr "Phone: (412) 648-8190"
-
-#. Company Phonenumber
-#: src/components/Footer/index.js:30
-#~ msgid "Phone: (914) 366-6300"
-#~ msgstr "Phone: (412) 648-8190<0/>"
 
 #. Place of birth property
 #: src/components/PageAgent/index.js:193
@@ -937,11 +922,6 @@ msgstr "Request Copies"
 #: src/components/MyListSidebar/index.js:22
 msgid "Request in Reading Room"
 msgstr "Request in Reading Room"
-
-#. Institution name for citation
-#: src/components/RecordsDetail/index.js:169
-msgid "Rockefeller Archive Center"
-msgstr "University of Pittsburgh University Library System's Archives & Special Collections"
 
 #. Primary Title
 #: src/components/Footer/index.js:14
