@@ -10,3 +10,12 @@
   position: absolute;
   right: 0;
 }
+
+/* Hide Sign In, dropdown version */
+nav.nav-right a#menu-item-1 {
+  display: none;
+}
+/* Hide Sign In, bar version */
+nav.nav-right a#raccess {
+  display: none;
+}
