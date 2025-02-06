@@ -232,12 +232,12 @@ const RecordsDetail = props => {
               </div>
             </Trans>) : 
         null }
-        <Trans comment='Button to copy citation text'>
+{/*        <Trans comment='Button to copy citation text'>
         <button className='btn btn--sm btn--orange btn--detail mr-10 mb-10 p-8'
           onClick={() => {navigator.clipboard.writeText(props.citation); handleCitationButtonClick()}}>
           Cite<MaterialIcon icon='edit' className='material-icon--space-before'/>
         </button>
-        </Trans>
+        </Trans> */}
       </div>
       {props.item.online &&
         <Trans comment='Buttons for online records'>
